@@ -1,0 +1,4 @@
+datacity_public:
+    resource: "@DatacityPublicBundle/Resources/config/routing.yml"
+    prefix:   /
+
