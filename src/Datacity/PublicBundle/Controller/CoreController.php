@@ -8,7 +8,7 @@ class CoreController extends Controller
 {
     public function homeAction()
     {
-    	$response = $this->render('DatacityPublicBundle:Core:home.html.twig');
+    	$response = $this->render('DatacityPublicBundle::home.html.twig');
     	$response->setPublic();
     	$response->setMaxAge(600);
     	$response->setSharedMaxAge(600);
