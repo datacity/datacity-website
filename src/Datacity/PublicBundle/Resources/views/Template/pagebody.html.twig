@@ -1,0 +1,24 @@
+{% extends 'DatacityPublicBundle:Template:body.html.twig' %}
+
+{% block content %}
+	<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="span4">
+				<div class="inner-heading">
+					<h2>{% block pagetitle %}{% endblock %}</h2>
+				</div>
+			</div>
+			{# TODO Generate breadcrumb ? #}
+			<div class="span8">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a href="#">Pages</a><i class="icon-angle-right"></i></li>
+					<li class="active">Testimonials</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</section>
+	{% block pagecontent %}{% endblock %}
+{% endblock %}

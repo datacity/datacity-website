@@ -1,3 +1,7 @@
+datacity_private:
+    resource: "@DatacityPrivateBundle/Resources/config/routing.yml"
+    prefix:   /private
+
 datacity_public:
     resource: "@DatacityPublicBundle/Resources/config/routing.yml"
     prefix:   /

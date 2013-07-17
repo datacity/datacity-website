@@ -21,7 +21,8 @@ class AppKernel extends Kernel
 	    new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
 
 	    //Datacity
-            new Datacity\PublicBundle\DatacityPublicBundle()
+            new Datacity\PublicBundle\DatacityPublicBundle(),
+            new Datacity\PrivateBundle\DatacityPrivateBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

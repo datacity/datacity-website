@@ -4,7 +4,7 @@ namespace Datacity\PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class CoreController extends Controller
+class DefaultController extends Controller
 {
     public function homeAction()
     {

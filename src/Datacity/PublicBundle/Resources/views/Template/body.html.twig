@@ -38,7 +38,7 @@
 	<link rel="shortcut icon" href="{{ asset('bundles/datacitypublic/ico/favicon.png') }}" />
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper" class="boxed">
 	<!-- toggle top area -->
 	<div class="hidden-top">
 		<div class="hidden-top-inner container">
@@ -64,30 +64,34 @@
 		<!-- end toggle link -->
 		<div class="row nomargin">
 			<div class="span12">
-				<div class="headnav">
-					<ul>
-						<li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
-						<li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
-					</ul>
-				</div>
-				<!-- Signup Modal -->
-				<div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
-					{# TODO Use render ! #}
-					{% include 'DatacityPublicBundle:Include:register.html.twig' %}
-				</div>
-				<!-- end signup modal -->
-				<!-- Sign in Modal -->
-				<div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
-					{# TODO Use render ! #}
-					{% include 'DatacityPublicBundle:Include:login.html.twig' %}
-				</div>
-				<!-- end signin modal -->
-				<!-- Reset Modal -->
-				<div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
-					{# TODO Use render ! #}
-					{% include 'DatacityPublicBundle:Include:resetPass.html.twig' %}
-				</div>
-				<!-- end reset modal -->
+				{% if not app.user %}
+					<div class="headnav">
+						<ul>
+							<li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
+							<li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
+						</ul>
+					</div>
+					<!-- Signup Modal -->
+					<div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
+						{# TODO Use render ! #}
+						{% include 'DatacityPublicBundle:Include:register.html.twig' %}
+					</div>
+					<!-- end signup modal -->
+					<!-- Sign in Modal -->
+					<div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
+						{# TODO Use render ! #}
+						{% include 'DatacityPublicBundle:Include:login.html.twig' %}
+					</div>
+					<!-- end signin modal -->
+					<!-- Reset Modal -->
+					<div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
+						{# TODO Use render ! #}
+						{% include 'DatacityPublicBundle:Include:resetPass.html.twig' %}
+					</div>
+					<!-- end reset modal -->
+				{% else %}
+					{% include 'DatacityPrivateBundle:Include:accountLink.html.twig' %}
+				{% endif %}
 			</div>
 		</div>
 		<div class="row">

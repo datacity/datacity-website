@@ -1,0 +1,11 @@
+{% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets
+		'bundles/datacitypublic/css/bodybg/bg4.css'
+		filter='cssrewrite'
+	%}
+	    <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
