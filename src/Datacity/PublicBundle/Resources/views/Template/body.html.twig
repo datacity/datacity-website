@@ -7,10 +7,10 @@
 	<meta name="description" content="{% block description %}{% endblock %}" />
 	<meta name="author" content="{% block author %}{% endblock %}" />
 	<!-- css -->
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700">
 	{% block stylesheets %}
 		{% stylesheets
+			'css/bootstrap.css'
 			'bundles/datacitypublic/js/theme/google-code-prettify/prettify.css'
 			'bundles/datacitypublic/css/font-awesome.css'
 			'bundles/datacitypublic/css/custom-fonts.css'
