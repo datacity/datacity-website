@@ -1,0 +1,32 @@
+.box-header {
+	font-size: 21px;
+	font-weight: 200;
+	line-height: 30px;
+	padding: 10px 15px;
+}
+
+.blue-background {
+	background-color: #00acec !important;
+}
+
+ .box .box-header:before, .box .box-header:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+
+.blue-background .title {
+	color: white;
+}
+
+.box-header .title{
+	font-size: 21px;
+	font-weight: 200;
+	line-height: 30px;
+}
+
+#demo
+{
+	border:1px solid #dddddd;
+	margin:0px;
+}

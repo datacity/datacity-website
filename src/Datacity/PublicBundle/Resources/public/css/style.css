@@ -812,6 +812,21 @@ form#commentform textarea {
 	padding:0;
 }
 
+/* --- Drag and Drop upload form --- */
+#drop_zone {
+border: 2px dashed #bbb;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+padding: 10px;
+text-align: center;
+font: 20pt bold 'Vollkorn';
+color: #bbb;
+}
+
+#target {
+	text-align: center;
+}
 
 
 /* ===============================

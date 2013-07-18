@@ -6,6 +6,47 @@
 {% block pagecontent %}
 	<section id="content">
 	<div class="container">
+		
+		<div class="row">
+			<div class="span12">
+		<div id="drop_zone">
+			<form id="target">
+				<input type="file" name="files[]" title="Add a File" multiple />
+				<output id="list"></output>
+				<button class="btn btn-primary" type="submit">Send File</button>
+ 			</form>
+ 			Drop files here or
+		</div>			
+	</div>
+	
+	<div class="span6">
+		 <div class="thumbnail src">           
+         </div>
+ 	</div>
+ 	<div class="span6">
+ 		<div class="thumbnail dst">		
+		</div>
+ 	</div>
+
+	<div class="span12">
+	<form class="form-inline">
+		<label class="checkbox">
+       		<input id="merge" type="checkbox"> <b style="color: purple">Fusionner les champs </b>
+     	</label>
+     	<b> - </b>
+ 		<label class="checkbox">
+       		<input id="selection" type="checkbox"> <b style="color: orange">
+       			Selectionner les champs
+       		</b> 
+     	</label>
+ 	</form>	
+	</div>
+ 	
+ 	</div>
+	<div id="demo">
+	</div>
+	</div>
+
 		<div class="row demobtn">
 			<div class="span12">
 				<div class="row">
