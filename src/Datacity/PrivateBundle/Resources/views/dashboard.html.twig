@@ -1,5 +1,31 @@
 {% extends 'DatacityPrivateBundle:Template:privatepagebody.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets
+		'bundles/datacityprivate/css/dataTable.css'
+		'bundles/datacityprivate/css/DT_bootstrap.css'
+		filter='cssrewrite'
+	%}
+	    <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{% javascripts
+		'@DatacityPrivateBundle/Resources/public/js/jquery.dataTables.min.js'
+	    '@DatacityPrivateBundle/Resources/public/js/file.upload.js'
+	    '@DatacityPrivateBundle/Resources/public/js/dynamicDataTables.js'
+	    '@DatacityPrivateBundle/Resources/public/js/DT_bootstrap.js'
+	    '@DatacityPrivateBundle/Resources/public/js/csvparse.js'
+	    '@DatacityPrivateBundle/Resources/public/js/csvjson.min.js'
+	    '@DatacityPrivateBundle/Resources/public/js/bootstrap.file-input.js'
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
 {% block title %}Datacity -- Tableau de bord{% endblock %}
 {% block pagetitle %}Tableau de bord{% endblock %}
 

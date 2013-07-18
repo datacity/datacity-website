@@ -21,8 +21,6 @@
 			'bundles/datacitypublic/css/jcarousel.css'
 			'bundles/datacitypublic/css/flexslider.css'
 			'bundles/datacitypublic/css/skins/blue.css'
-			'bundles/datacitypublic/css/dataTable.css'
-			'bundles/datacitypublic/css/DT_bootstrap.css'
 			filter='cssrewrite'
 		%}
 		    <link rel="stylesheet" href="{{ asset_url }}" />
@@ -253,33 +251,28 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
-{% javascripts
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.easing.1.3.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jcarousel/jquery.jcarousel.min.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.fancybox.pack.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.fancybox-media.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/google-code-prettify/prettify.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/portfolio/jquery.quicksand.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/portfolio/setting.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/tweet/jquery.tweet.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.flexslider.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.nivo.slider.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/modernizr.custom.79639.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.ba-cond.min.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.slitslider.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/modernizr.custom.28468.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.cslider.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/animate.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/custom.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/jquery.dataTables.min.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/file.upload.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/dynamicDataTables.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/DT_bootstrap.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/csvparse.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/csvjson.min.js'
-    '@DatacityPublicBundle/Resources/public/js/theme/bootstrap.file-input.js'
-%}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+{% block javascripts %}
+	{% javascripts
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.easing.1.3.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jcarousel/jquery.jcarousel.min.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.fancybox.pack.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.fancybox-media.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/google-code-prettify/prettify.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/portfolio/jquery.quicksand.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/portfolio/setting.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/tweet/jquery.tweet.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.flexslider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.nivo.slider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/modernizr.custom.79639.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.ba-cond.min.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.slitslider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/modernizr.custom.28468.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.cslider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/animate.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/custom.js'
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
 </body>
 </html>
