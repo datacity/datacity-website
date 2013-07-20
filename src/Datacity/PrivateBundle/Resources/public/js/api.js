@@ -33,4 +33,4 @@ var generateModel = function(model) {
 		result += '<br/><button class="btn btn-default" type="button">' + field + '</button><br/>';
 	}
 	return result;
-}
+};
