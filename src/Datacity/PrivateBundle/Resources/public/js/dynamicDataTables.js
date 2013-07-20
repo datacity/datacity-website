@@ -1,3 +1,5 @@
+var example = 0;
+
 Object.size = function(obj) {
  var size = 0, key;
  for (key in obj) {
@@ -32,9 +34,10 @@ function generateHeaders(headers) {
 }
 
 function generateDataTables(headers, rows, tableName) {
-    $('#demo').append("<div class='box-header blue-background'><div class='title'>" + tableName + "</div></div><br>");
-	$('#demo').append( '<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example' + exemple + '"></table>' );
-    $('#example' + exemple).dataTable( {
+   	$('.test' + example).addClass('active');
+    $('#demo' + example).append("<div class='box-header blue-background'><div class='title'>" + tableName + "</div></div><br>");
+	$('#demo' + example).append( '<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example' + example + '"></table>' );
+    $('#example' + example).dataTable( {
     	"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 		"sScrollY": "200px",
 		"sScrollX": "900px",
@@ -47,7 +50,7 @@ function generateDataTables(headers, rows, tableName) {
         "aoColumns": generateHeaders(headers)
     } );
     $("#demo").append("<hr>");
-    exemple++;
+    example++;
 }
 
 var saveOnThumbnail = function (first, second, type) {	

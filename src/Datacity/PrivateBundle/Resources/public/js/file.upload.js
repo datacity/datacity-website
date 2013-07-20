@@ -1,19 +1,26 @@
+var limitUpload = 3;
+var currentUpload;
+
 function readFilesAsText(files) {
 	for (var i = 0, f; f = files[i]; i++) {
-		var reader = new FileReader(); 
+		var reader = new FileReader();
       	reader.onloadend = (function(theFile) {
       		return function(e) {
-      			var contents = e.target.result;
-	     	 	contentFile(contents, theFile.name);
+            var contents = e.target.result;
+            contentFile(contents, theFile.name);
       		}
 	  	})(f);
-	reader.readAsText(f, "Iso-8859-1"); 
+	reader.readAsText(f, "Iso-8859-1");
 	}
 }
 
 function handleFileSelect(evt) {
-	var files = evt.target[0].files;
-	readFilesAsText(files);
+	if (window.File && window.FileReader && window.FileList) {
+    var files = evt.target[0].files;
+    readFilesAsText(files);
+  }
+  else
+    console.log('The File APIs are not fully supported in this browser.');
 }	
 
 $('#target').submit(function(evt) {
@@ -22,11 +29,14 @@ $('#target').submit(function(evt) {
 });
 
 function handleFileSelectDragAndDrop(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-
-    var files = evt.dataTransfer.files; 
-   	readFilesAsText(files);
+    if (window.File && window.FileReader && window.FileList) {
+      evt.stopPropagation();
+      evt.preventDefault();
+      var files = evt.dataTransfer.files; 
+      readFilesAsText(files);
+    }
+    else
+      console.log('The File APIs are not fully supported in this browser.');
   }
 
   function handleDragOver(evt) {

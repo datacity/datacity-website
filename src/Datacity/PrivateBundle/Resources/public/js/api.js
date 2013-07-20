@@ -1,5 +1,3 @@
-var exemple = 0;
-
 var callAjax = function(jsonobject) {
 	$.ajax({
 		type: "GET",
