@@ -14,6 +14,7 @@
 {% block javascripts %}
 	{{ parent() }}
 	{% javascripts
+		'@DatacityPrivateBundle/Resources/public/js/api.js'
 		'@DatacityPrivateBundle/Resources/public/js/jquery.dataTables.js'
 	    '@DatacityPrivateBundle/Resources/public/js/file.upload.js'
 	    '@DatacityPrivateBundle/Resources/public/js/dynamicDataTables.js'
@@ -21,6 +22,7 @@
 	    '@DatacityPrivateBundle/Resources/public/js/csvparse.js'
 	    '@DatacityPrivateBundle/Resources/public/js/csvjson.js'
 	    '@DatacityPrivateBundle/Resources/public/js/bootstrap.file-input.js'
+
 	%}
 	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
@@ -33,8 +35,8 @@
 	<section id="content">
 	<div class="container">
 		
-		<div class="row">
-			<div class="span12">
+	<div class="row">
+	<div class="span12">
 		<div id="drop_zone">
 			<form id="target">
 				<input type="file" name="files[]" title="Add a File" multiple />
@@ -45,52 +47,69 @@
 		</div>			
 	</div>
 	
-	<div class="span6">
+	<!-- <div class="span6">
 		 <div class="thumbnail src">           
-         </div>
- 	</div>
- 	<div class="span6">
- 		<div class="thumbnail dst">		
+	         </div>
+	 	</div>
+	 	<div class="span6">
+	 		<div class="thumbnail dst">		
 		</div>
- 	</div>
+	 	</div> -->
 
-	<div class="span12">
+	<!-- <div class="span12">
 	<form class="form-inline">
 		<label class="checkbox">
-       		<input id="merge" type="checkbox"> <b style="color: purple">Fusionner les champs </b>
-     	</label>
-     	<b> - </b>
- 		<label class="checkbox">
-       		<input id="selection" type="checkbox"> <b style="color: orange">
-       			Selectionner les champs
-       		</b> 
-     	</label>
- 	</form>	
-	</div>
- 	
+	       		<input id="merge" type="checkbox"> <b style="color: purple">Fusionner les champs </b>
+	     	</label>
+	     	<b> - </b>
+	 		<label class="checkbox">
+	       		<input id="selection" type="checkbox"> <b style="color: orange">
+	       			Selectionner les champs
+	       		</b> 
+	     	</label>
+	     	 
+	 	</form>	
+	</div> -->
  	</div>
 
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#one" data-toggle="tab"><i class="icon-briefcase"></i> One</a></li>
-		<li><a href="#two" data-toggle="tab">Two</a></li>
-		<li><a href="#three" data-toggle="tab">Three</a></li>
-	</ul>
+	 <div class="row">
+	<div class="span9">
+		<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-briefcase"></i> One</a></li>
+		<li><a href="#tab2" data-toggle="tab">Two</a></li>
+		<li><a href="#tab3" data-toggle="tab">Three</a></li>
+		</ul>
 		<div class="tab-content">
-			<div class="tab-pane active" id="one">
-				<div id="demo0">
+			<div class="tab-pane active" id="tab1">
+				<div id="datatable1">
 				</div>
 			</div>
-			<div class="tab-pane" id="two">
-				<div id="demo1">
+			<div class="tab-pane" id="tab2">
+				<div id="datatable2">
 				</div>
 			</div>
-			<div class="tab-pane" id="three">
-				<div id="demo2">
+			<div class="tab-pane" id="tab3">
+				<div id="datatable3">
 				</div>
 			</div>
 		</div>
-
-		<div class="row demobtn">
+	</div>
+	<div class="span3">
+		 <div class="btn-group">
+	                <button class="btn dropdown-toggle btn-blue" data-toggle="dropdown">Choir un modèle<span class="caret"></span></button>
+	                <ul class="dropdown-menu">
+	                  <li><a id="public-service">Service public</a></li>
+	                  <li><a>Zoo de Montpellier</a></li>
+	                  <li><a>Indice de pollution</a></li>
+	                  <li><a>Dépences publiques</a></li>
+	                </ul>
+	              </div>
+		<div class="models">	
+		</div>
+	</div>
+	</div>
+	
+		<!--<div class="row demobtn">
 			<div class="span12">
 				<div class="row">
 					<div class="span12">
@@ -115,14 +134,14 @@
 						<a class="btn btn-large btn-theme btn-rounded" href="#">Call action button</a>
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
+				end divider
 				<div class="row">
 					<div class="span6">
 						<h4>Button with icon</h4>
@@ -154,14 +173,14 @@
 						</pre>
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
+				end divider
 				<div class="row">
 					<div class="span6">
 						<h4>Button sizes</h4>
@@ -187,14 +206,14 @@
 						<a href="#" class="btn btn-danger btn-medium btn-rounded">flat button</a>
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
+				end divider
 				<div class="row">
 					<div class="span6">
 						<h4>Tab <strong>top</strong></h4>
@@ -256,17 +275,17 @@
 								</div>
 							</div>
 						</div>
-						<!-- end tab -->
+						end tab
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
+				end divider
 				<div class="row">
 					<div class="span6">
 						<h4>Tabs <strong>right</strong></h4>
@@ -300,11 +319,11 @@
 								</div>
 							</div>
 						</div>
-						<!-- end tab -->
+						end tab
 					</div>
 					<div class="span6">
 						<h4>Accordion</h4>
-						<!-- start: Accordion -->
+						start: Accordion
 						<div class="accordion" id="accordion2">
 							<div class="accordion-group">
 								<div class="accordion-heading">
@@ -340,17 +359,17 @@
 								</div>
 							</div>
 						</div>
-						<!--end: Accordion -->
+						end: Accordion
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
+				end divider
 				<div class="row">
 					<div class="span6">
 						<h4>Progress bars</h4>
@@ -398,14 +417,14 @@
 						</pre>
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
+				end divider
 				<div class="row">
 					<div class="span6">
 						<h4 class="heading">Testimonial<span></span></h4>
@@ -444,17 +463,16 @@
 						</div>
 					</div>
 				</div>
-				<!-- divider -->
+				divider
 				<div class="row">
 					<div class="span12">
 						<div class="solidline">
 						</div>
 					</div>
 				</div>
-				<!-- end divider -->
-			</div>
-			<!-- end span12 -->
+				end divider
+			</div> 
 		</div>
-	</div>
+	</div>-->
 	</section>   
 {% endblock %}
