@@ -41,7 +41,6 @@ var csvjson = {};
 	 */
 	csvjson.csv2json = function(csvdata, args) {
 		args = args || {};
-		console.log("voila mon délimiteur" + args.delim);
 		var delim = isdef(args.delim) ? args.delim : ",";
 		
 		// Unused

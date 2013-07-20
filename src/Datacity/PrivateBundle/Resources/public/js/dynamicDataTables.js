@@ -1,4 +1,4 @@
-var example = 0;
+var example = 1;
 
 Object.size = function(obj) {
  var size = 0, key;
@@ -34,10 +34,9 @@ function generateHeaders(headers) {
 }
 
 function generateDataTables(headers, rows, tableName) {
-   	$('.test' + example).addClass('active');
-    $('#demo' + example).append("<div class='box-header blue-background'><div class='title'>" + tableName + "</div></div><br>");
-	$('#demo' + example).append( '<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example' + example + '"></table>' );
-    $('#example' + example).dataTable( {
+    $('#datatable' + example).append("<div class='box-header blue-background'><div class='title'>" + tableName + "</div></div><br>");
+	$('#datatable' + example).append( '<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tableopt' + example + '"></table>' );
+    $('#tableopt' + example).dataTable( {
     	"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 		"sScrollY": "200px",
 		"sScrollX": "900px",
@@ -49,9 +48,14 @@ function generateDataTables(headers, rows, tableName) {
         "aaData": generateRows(rows, headers.length),
         "aoColumns": generateHeaders(headers)
     } );
-    $("#demo").append("<hr>");
     example++;
 }
+
+$('#public-service').click(function() {
+	$('.models').html(
+		generateModel(erpModel)
+		);
+});
 
 var saveOnThumbnail = function (first, second, type) {	
 	$('.src').filter('.src').append('<br/><button class="btn btn-primary ' + type + '" type="button">' + $(first).text() + '</button>');

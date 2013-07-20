@@ -1,3 +1,12 @@
+var erpModel = {
+	"id" 			: null,
+	"nom"			: null,
+	"titre"			: null,
+	"description" 	: null,
+	"longitude" 	: null,
+	"latitude"		: null
+};
+
 var callAjax = function(jsonobject) {
 	$.ajax({
 		type: "GET",
@@ -14,3 +23,10 @@ var callAjax = function(jsonobject) {
 	});
 }
 
+var generateModel = function(model) {
+	var result = '';
+	for (field in model) {
+		result += '<br/><button class="btn btn-default" type="button">' + field + '</button><br/>';
+	}
+	return result;
+}
