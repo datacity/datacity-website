@@ -23,6 +23,10 @@ var callAjax = function(jsonobject) {
 	});
 }
 
+$('#public-service').click(function() {
+	$('.models').html(generateModel(erpModel));
+});
+
 var generateModel = function(model) {
 	var result = '';
 	for (field in model) {
