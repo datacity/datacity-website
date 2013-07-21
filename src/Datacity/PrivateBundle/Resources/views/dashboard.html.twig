@@ -5,6 +5,7 @@
 	{% stylesheets
 		'bundles/datacityprivate/css/dataTable.css'
 		'bundles/datacityprivate/css/DT_bootstrap.css'
+		'bundles/datacityprivate/css/dashboard.css'
 		filter='cssrewrite'
 	%}
 	    <link rel="stylesheet" href="{{ asset_url }}" />
@@ -74,28 +75,22 @@
  	</div>
 
 	 <div class="row">
-	<div class="span9">
+	<div class="span10">
 		<ul class="nav nav-tabs">
-		<li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-briefcase"></i> One</a></li>
-		<li><a href="#tab2" data-toggle="tab">Two</a></li>
-		<li><a href="#tab3" data-toggle="tab">Three</a></li>
+		<li class="current1"><a href="#tab1" data-toggle="tab"><i class="icon-briefcase"></i> One</a></li>
+		<li class="current2"><a href="#tab2" data-toggle="tab">Two</a></li>
+		<li class="current3"><a href="#tab3" data-toggle="tab">Three</a></li>
 		</ul>
 		<div class="tab-content">
-			<div class="tab-pane active" id="tab1">
-				<div id="datatable1">
-				</div>
+			<div class="tab-pane" id="tab1">
 			</div>
 			<div class="tab-pane" id="tab2">
-				<div id="datatable2">
-				</div>
 			</div>
 			<div class="tab-pane" id="tab3">
-				<div id="datatable3">
-				</div>
 			</div>
 		</div>
 	</div>
-	<div class="span3">
+	<div class="span2">
 		 <div class="btn-group">
 	                <button class="btn dropdown-toggle btn-blue" data-toggle="dropdown">Choir un modèle<span class="caret"></span></button>
 	                <ul class="dropdown-menu">
@@ -107,6 +102,8 @@
 	              </div>
 		<div class="models">	
 		</div>
+		<hr>
+		Couleur choisie: <span class="boxColored">&nbsp;</span>
 	</div>
 	</div>
 	
