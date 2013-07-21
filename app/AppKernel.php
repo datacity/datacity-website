@@ -17,10 +17,11 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-	    //Third party
-	    new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
+		    //Third party
+		    new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
+	        //new FOS\UserBundle\FOSUserBundle(),
 
-	    //Datacity
+	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),
             new Datacity\PrivateBundle\DatacityPrivateBundle(),
         );
