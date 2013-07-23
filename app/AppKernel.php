@@ -19,7 +19,7 @@ class AppKernel extends Kernel
 
 		    //Third party
 		    new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
-	        //new FOS\UserBundle\FOSUserBundle(),
+	        new FOS\UserBundle\FOSUserBundle(),
 
 	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),
