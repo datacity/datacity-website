@@ -1,0 +1,7 @@
+parameters:
+#    datacity_user.example.class: Datacity\UserBundle\Example
+
+services:
+#    datacity_user.example:
+#        class: %datacity_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

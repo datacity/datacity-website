@@ -7,7 +7,7 @@ bc_bootstrap:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -27,6 +27,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        fos_csrf_provider: "@form.csrf_provider"
 
 # Assetic Configuration
 assetic:

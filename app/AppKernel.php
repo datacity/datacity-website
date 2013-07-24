@@ -24,6 +24,7 @@ class AppKernel extends Kernel
 	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),
             new Datacity\PrivateBundle\DatacityPrivateBundle(),
+            new Datacity\UserBundle\DatacityUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
