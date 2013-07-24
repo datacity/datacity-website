@@ -1,6 +1,6 @@
 <?php
 
-namespace Datacity\PrivateBundle\Command;
+namespace Datacity\UserBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
