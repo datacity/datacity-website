@@ -1354,7 +1354,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twitter/bootstrap/zipball/v2.3.2",
+                "url": "https://github.com/twbs/bootstrap/archive/v2.3.2.zip",
                 "reference": "v2.3.2",
                 "shasum": ""
             },
