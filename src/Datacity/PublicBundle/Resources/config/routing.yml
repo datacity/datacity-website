@@ -1,3 +1,15 @@
 datacity_public_homepage:
     pattern:  /
     defaults: { _controller: DatacityPublicBundle:Default:home }
+    
+datacity_public_portalpage:
+    pattern:  /portal
+    defaults: { _controller: DatacityPublicBundle:Default:portal }
+    
+datacity_public_documentationpage:
+    pattern:  /documentation
+    defaults: { _controller: DatacityPublicBundle:Default:documentation }
+    
+datacity_public_dataviewpage:
+    pattern:  /dataview
+    defaults: { _controller: DatacityPublicBundle:Default:dataview }
