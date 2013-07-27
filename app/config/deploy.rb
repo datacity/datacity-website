@@ -3,7 +3,7 @@ set :default_stage, "prod"
 set :stage_dir,     "app/config"
 require 'capistrano/ext/multistage'
 
-set :application, "Datacity website"
+set :application, "Datacity_website"
 #set(:deploy_to) { "#{spec_deploy_to}" }
 set :app_path,    "app"
 
