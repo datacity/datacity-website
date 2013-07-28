@@ -13,7 +13,12 @@ class DefaultController extends Controller
 	}
 	public function portalAction()
 	{
-		$response = $this->render('DatacityPublicBundle::portal.html.twig');
+		$villes = array("Montpellier", "Paris", "Lille", "Bordeaux", "Lyon", "Marseille");
+		$projects = array(
+				1 => array('app_name' => 'Datacity Tourism', 'app_description' => 'Application de référencement des principaux lieux culturels, historiques et touristiques.', 'app_images' => array("http://www.caledonianpost.com/wp-content/uploads/2013/04/android.jpg", "http://www.theartoftylerjordan.com/newsite_images/Illustration/concepts/googlebot.jpg"), 'app_platforms' => array("iOs", "Android", "Blackberry", "Windows Phone")),
+				2 => array('app_name' => 'Datacity Tourism', 'app_description' => 'Application de référencement des principaux lieux culturels, historiques et touristiques.', 'app_images' => array("http://www.caledonianpost.com/wp-content/uploads/2013/04/android.jpg", "http://www.theartoftylerjordan.com/newsite_images/Illustration/concepts/googlebot.jpg"), 'app_platforms' => array("iOs", "Android", "Blackberry", "Windows Phone")),
+				3 => array('app_name' => 'Datacity Tourism', 'app_description' => 'Application de référencement des principaux lieux culturels, historiques et touristiques.', 'app_images' => array("http://www.caledonianpost.com/wp-content/uploads/2013/04/android.jpg", "http://www.theartoftylerjordan.com/newsite_images/Illustration/concepts/googlebot.jpg"), 'app_platforms' => array("iOs", "Android", "Blackberry", "Windows Phone")));
+		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $villes, 'all_projects' => $projects));
 		return $response;
 	}
 	public function appDetailAction($id)
