@@ -9,6 +9,14 @@
 	background-color: #085e86 !important;
 }
 
+.green-background {
+	background-color: #669933;
+}
+
+.green-background .title {
+	color: white;
+}
+
  .box .box-header:before, .box .box-header:after {
 	display: table;
 	content: "";

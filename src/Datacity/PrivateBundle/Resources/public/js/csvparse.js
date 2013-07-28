@@ -8,7 +8,7 @@ function watchDelimiter(str, delimiter) {
 	return false;
 }
 
-function contentFile(content, name) {
+function contentFileJSON(content, name) {
 	var delimiter = ";";
 	if (watchDelimiter(content, ",") == true)
 		delimiter = ",";
@@ -16,5 +16,23 @@ function contentFile(content, name) {
 		"delim"	: delimiter
 	}
 	var jsonObject = csvjson.csv2json(content, args);
-	generateDataTables(jsonObject.headers, jsonObject.rows, name);
+	//TODO: A terme séparer les couches parsing csv et génération de table
+	createTable(jsonObject, name);
+	return jsonObject;
+}
+
+function createTable(jsonObject, name) {
+	var formatedHeaders = generateHeaders(jsonObject.headers, 'table' + indexTable);
+	var formatedRows = generateRows(jsonObject.rows, jsonObject.headers.length);
+	addNewTab();
+   	createRelationFile(formatedHeaders, formatedRows, generateMap(jsonObject.headers));
+	$('#tab' + indexTable).generateDataTables({
+			'header' 	: {
+				'name' 	: name,
+				'color' : 'blue-background'
+			},
+			'tableId' 	: 'table',
+			'data'		: formatedRows,
+			'field'		: formatedHeaders
+	});
 }

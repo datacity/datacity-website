@@ -1,11 +1,12 @@
-var example = 1;
+var indexTable = 1;
+var file = {};
 
 Object.size = function(obj) {
  var size = 0, key;
  for (key in obj) {
  	if (obj.hasOwnProperty(key)) size++;
  }
- return size;	
+ return size;
 }
 
 function generateRows(rows, nbfield) {
@@ -22,122 +23,143 @@ function generateRows(rows, nbfield) {
 	return array;
 }
 
-function generateHeaders(headers) {
+function generateHeaders(headers, headerClass) {
 	var array =	new Array();
 	var json = {};
 
 	for (field in headers) {
-		json = {"sTitle" : headers[field].replace(/ /g, "_")};
+		json = {
+			"sTitle" : headers[field].replace(/ /g, "_"),
+			"sClass" : headerClass
+		};
 		array.push(json);
 	}
 	return array;
 }
 
-function generateDataTables(headers, rows, tableName) {
-   	example--
-   	$('#tab' + example).removeClass('active');
-   	$('.current' + example).removeClass('active');
-   	example++;
-   	$('#tab' + example).addClass('active');
-   	$('.current' + example).addClass('active');
-    $('#tab' + example).append("<div class='box-header blue-background'><div class='title'>" + tableName + "</div></div><br>");
-	$('#tab' + example).append( '<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tableopt' + example + '"></table>' );
-    $('#tableopt' + example).dataTable( {
-		"sScrollY": "200px",
-		"sScrollX": "900px",
-		"bSort": false,
+function generateMap(headers) {
+	var map = {};
+	var i = 0;
+	for (field in headers) {
+		var fieldName = headers[field].replace(/ /g, "_");
+		map[fieldName] = i++;
+	}
+	return map;
+}
+
+function createRelationFile(headersDtFormat, rowsDtFormat, map) {
+	file['table' + indexTable] = {};
+   	file['table' + indexTable]['header'] = headersDtFormat;
+   	file['table' + indexTable]['rows'] = rowsDtFormat;
+   	file['table' + indexTable]['map'] = map;
+   	file['table' + indexTable]['link'] = new Array();
+}
+
+(function($) {
+	$.fn.generateDataTables = function(options) {
+		var defaults = {
+			'header' 	: {
+				'color'	: 'blue-background',
+				'name' 	: null
+			},
+			'tableId' 	: 'table',
+			'sizeX' 	: '900px',
+			'sizeY'		: '300px',
+			'sortColumn': false,
+			'displayLength' : 30,
+			'data'		: null,
+			'field'		: null
+		};
+		var params = $.extend(defaults, options);
+		if (params.data == null || params.field == null) {
+			console.log("You have to send a aaData and aoColumns of Datatable format");
+			return;
+		}
+		$(this).append("<div class='box-header " + params.header.color + "'><div class='title'>" + params.header.name + "</div></div><br>");
+		$(this).append('<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="' + params.tableId + indexTable + '"></table>');
+		$('#' + params.tableId + indexTable).dataTable( {
+		"sScrollY": params.sizeY,
+		"sScrollX": params.sizeX,
+		"bSort": params.sortColumn,
 		"oLanguage": {
 			"sLengthMenu": "_MENU_ records per page"
 		},
-		"iDisplayLength": 30,
+		"iDisplayLength": params.displayLength,
     	"aLengthMenu": [[30, 50, 100, 500, -1], [30, 50, 100, 500, "Tous"]],
-        "aaData": generateRows(rows, headers.length),
-        "aoColumns": generateHeaders(headers)
-    } );
-    example++;
-}
-
-var saveOnThumbnail = function (first, second, type) {	
-	$('.src').filter('.src').append('<br/><button class="btn btn-primary ' + type + '" type="button">' + $(first).text() + '</button>');
-	$('.dst').filter('.dst').append('<br/><button class="btn btn-primary ' + type + '" type="button">' + $(second).text() + '</button>');
-	$('.' + type).css('background-color', first.color);
-	$('.' + type).css('background-color', second.color);
-};
-
-var app = {
-	"select" : null,
-	"merge"	: null
-};
-
-(function($) {
-	$.fn.cellsSelection = function(options, callback) {
-		var defaults = {
-			'color' 		: 'purple',
-			'rgbString' 	: 'rgb(128, 0, 128)',
-			'initColor' 	: 'white',
-			'onTwoClicked' 	: null,
-			'globalSave'	: null,
-			'checked'       : null,
-			'type'			: null
-		};
-		var params = $.extend(defaults, options);
-		if (params.checked == 'checked') {		
-			if ($(this).css('background-color') == params.rgbString)
-				$(this).css("background-color", params.initColor)
-			else {
-				this.color = params.color;
-				if (params.globalSave != null) {
-					params.onTwoClicked(params.globalSave, this, params.type);
-					$(params.globalSave).css("background-color", params.initColor);
-					callback(null, params.type);
-				}
-				else {
-					$(this).css('background-color', params.color);
-					callback(this, params.type);
-				}
-			}
-		}
+        "aaData": params.data,
+        "aoColumns": params.field
+    	} );
+		indexTable++;
 	}
 })(jQuery);
 
-var saveIt = function (element, type) {
-	if (type == 'select')
-		app.select = element;
-	else if (type == 'merge')
-		app.merge = element;
+var initArray = function(length) {
+	var tab = new Array();
+	for (var i = 0; i < length; i++) {
+		tab[i] = 0;
+	}
+	return tab;
 }
 
+function addNewTab() {
+	indexTable--
+   	$('#tab' + indexTable).removeClass('active');
+   	$('.current' + indexTable).removeClass('active');
+   	indexTable++;
+   	$('#tab' + indexTable).addClass('active');
+   	$('.current' + indexTable).addClass('active');
+}
+
+$('.final-merge').click(function() {
+	var header = generateHeaders(model.fields);
+	var rowArray = new Array();
+
+	for (var subfile in file) {
+		for (var rows in file[subfile].rows) {
+			var rowLine = initArray(model.fields.length);
+			for (var link in file[subfile].link) {
+				for (var key in file[subfile].link[link]) {
+					var value = file[subfile].link[link][key];
+					rowLine[value] = file[subfile].rows[rows][key];
+				}
+			}
+			rowArray.push(rowLine);
+		}
+	}
+	addNewTab();
+	$('#tab' + indexTable).generateDataTables({
+			'header' 	: {
+				'name' 	: 'Table fusionnée',
+				'color' : 'green-background'
+			},
+			'tableId' 	: 'table',
+			'data'		: rowArray,
+			'field'		: header
+	});
+});
+
 $('body').on('click', 'th', function(e) { 
-	console.log($(this).css('background-color'));
-	console.log(currentColor);
+	var currentTable = $(this).attr('class').split(' ')[1];
 	if ($(this).css('background-color') != "rgba(0, 0, 0, 0)" 
 		&& $(this).css('background-color') != 'rgb(255, 255, 255)') {
 		$(this).css('background-color', 'white');
 		$(this).css('color', '#656565');
-	}	
+		// ON DOIT POP LE TRUC QUI A ETE ENLEVE PAR RAPPORT A LA CATEGORIE
+		file[currentTable]['link'].pop();
+	}
 	else {
 		if (currentColor != null) {
+			var clickedCategory = $(this).text();
+			var linkMap = {};
+			var indexKey = file[currentTable].map[$(this).text()];
+			var valueFinalTableIndex = model.map[selectedField];
+			linkMap[indexKey] = valueFinalTableIndex;
+			file[currentTable]['link'].push(linkMap);
 			$(this).css('background-color', currentColor);
 			$(this).css('color', 'white');
 			$('.boxColored').css('background-color', 'white');
 			currentColor = null;
 		}
 	}
-	
-	
-	/*$(this).cellsSelection({
-		'type'			: 'merge',
-		'onTwoClicked' 	: saveOnThumbnail,
-		'globalSave' 	: app.merge,
-		'checked'		: $("#merge").attr('checked')
-	}, saveIt);
-	$(this).cellsSelection({
-		'color'			: 'orange',
-		'rgbString'		: 'rgb(255, 165, 0)',
-		'type'			: 'select',
-		'onTwoClicked' 	: saveOnThumbnail,
-		'globalSave' 	: app.select,
-		'checked'		: $("#selection").attr('checked')
-	}, saveIt);*/
  });
 

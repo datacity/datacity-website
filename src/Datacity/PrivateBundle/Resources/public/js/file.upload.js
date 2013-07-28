@@ -7,7 +7,7 @@ function readFilesAsText(files) {
       	reader.onloadend = (function(theFile) {
       		return function(e) {
             var contents = e.target.result;
-            contentFile(contents, theFile.name);
+            contentFileJSON(contents, theFile.name);
       		}
 	  	})(f);
 	reader.readAsText(f, "Iso-8859-1");
