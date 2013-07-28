@@ -21,6 +21,10 @@
 			'bundles/datacitypublic/css/jcarousel.css'
 			'bundles/datacitypublic/css/flexslider.css'
 			'bundles/datacitypublic/css/skins/blue.css'
+			'bundles/datacitypublic/css/bootstrap.css'
+			'bundles/datacitypublic/css/bootstrap-responsive.css'
+			'bundles/datacitypublic/css/fancybox/jquery.fancybox.css'
+			'bundles/datacitypublic/css/flexslider.css'
 			filter='cssrewrite'
 		%}
 		    <link rel="stylesheet" href="{{ asset_url }}" />
@@ -94,7 +98,7 @@
 			<div class="span4">
 				<div class="logo">
 					<a href="{{ path('datacity_public_homepage') }}"><img src="{{ asset('bundles/datacitypublic/img/logo.png') }}" alt="" class="logo" /></a>
-					<h1>Flat and trendy bootstrap template</h1>
+					<h1>L'API de l'open data</h1>
 				</div>
 			</div>
 			<div class="span8">
@@ -167,7 +171,7 @@
 	</div>
   </header>
   {% block content %}{% endblock %}
-  <footer>
+  <!--  <footer>
 	<div class="container">
 		<div class="row">
 			<div class="span3">
@@ -218,14 +222,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div id="sub-footer">
 		<div class="container">
 			<div class="row">
 				<div class="span6">
 					<div class="copyright">
 						<p>
-							<span>&copy; Flattern 2013 All right reserved. Designed by</span><a href="http://iweb-studio.com" target="_blank">iweb-studio</a>
+							<span>&copy; DataCity 2013 All right reserved.
 						</p>
 					</div>
 				</div>
@@ -264,6 +268,22 @@
 	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.slitslider.js'
 	    '@DatacityPublicBundle/Resources/public/js/theme/modernizr.custom.28468.js'
 	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.cslider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/animate.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/custom.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.easing.1.3.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jcarousel/jquery.jcarousel.min.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.fancybox.pack.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.fancybox-media.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/google-code-prettify/prettify.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/portfolio/jquery.quicksand.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/portfolio/setting.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/tweet/jquery.tweet.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.flexslider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.nivo.slider.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/modernizr.custom.79639.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.ba-cond.min.js'
+	    '@DatacityPublicBundle/Resources/public/js/theme/jquery.slitslider.js'
 	    '@DatacityPublicBundle/Resources/public/js/theme/animate.js'
 	    '@DatacityPublicBundle/Resources/public/js/theme/custom.js'
 	%}

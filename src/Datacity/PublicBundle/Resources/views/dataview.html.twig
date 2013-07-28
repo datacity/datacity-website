@@ -13,68 +13,38 @@
 {% block title %}Datacity -- Page de vue des données{% endblock %}
 
 {% block content %}
-	<section id="featured">
-	<!-- start slider -->
-	<!-- Slider -->
-	<div id="nivo-slider">
-		<div class="nivo-slider">
-			<!-- Slide #1 image -->
-			<img src="{{ asset('bundles/datacitypublic/img/slides/nivo/bg-1.jpg') }}" alt="" title="#caption-1" />
-			<!-- Slide #2 image -->
-			<img src="{{ asset('bundles/datacitypublic/img/slides/nivo/bg-2.jpg') }}" alt="" title="#caption-2" />
-			<!-- Slide #3 image -->
-			<img src="{{ asset('bundles/datacitypublic/img/slides/nivo/bg-3.jpg') }}" alt="" title="#caption-3" />
-		</div>
-		<div class="container">
+
+<!--  <link href="css/style.css" rel="stylesheet" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+<link rel="shortcut icon" href="ico/favicon.png" />
+</head>
+<body> -->
+<div id="wrapper">
+	<!-- toggle top area -->
+	<div class="hidden-top">
+		<div class="hidden-top-inner container">
 			<div class="row">
 				<div class="span12">
-					<!-- Slide #1 caption -->
-					<div class="nivo-caption" id="caption-1">
-						<div>
-							<h2>Awesome <strong>features</strong></h2>
-							<p>
-								Lorem ipsum dolor sit amet nsectetuer nec Vivamus. Curabitu laoreet amet eget. Viurab oremd ellentesque ameteget. Lorem ipsum dolor sit amet nsectetuer nec vivamus.
-							</p>
-							<a href="#" class="btn btn-theme">Read More</a>
-						</div>
-					</div>
-					<!-- Slide #2 caption -->
-					<div class="nivo-caption" id="caption-2">
-						<div>
-							<h2>Fully <strong>responsive</strong></h2>
-							<p>
-								Lorem ipsum dolor sit amet nsectetuer nec Vivamus. Curabitu laoreet amet eget. Viurab oremd ellentesque ameteget. Lorem ipsum dolor sit amet nsectetuer nec vivamus.
-							</p>
-							<a href="#" class="btn btn-theme">Read More</a>
-						</div>
-					</div>
-					<!-- Slide #3 caption -->
-					<div class="nivo-caption" id="caption-3">
-						<div>
-							<h2>Very <strong>customizable</strong></h2>
-							<p>
-								Lorem ipsum dolor sit amet nsectetuer nec Vivamus. Curabitu laoreet amet eget. Viurab oremd ellentesque ameteget. Lorem ipsum dolor sit amet nsectetuer nec vivamus.
-							</p>
-							<a href="#" class="btn btn-theme">Read More</a>
-						</div>
-					</div>
+					<ul>
+						<li><strong>We are available for any custom works this month</strong></li>
+						<li>Main office: Springville center X264, Park Ave S.01</li>
+						<li>Call us <i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end slider -->
-	</section>
-	<section class="callaction">
+	<!-- end toggle top area -->
+	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
-			<div class="span12">
-				<div class="big-cta">
-					<div class="cta-text">
-						<h3>We've created more than <span class="highlight"><strong>5000 websites</strong></span> this year!</h3>
-					</div>
-					<div class="cta floatright">
-						<a class="btn btn-large btn-theme btn-rounded" href="#">Request a quote</a>
-					</div>
+			<div class="span4">
+				<div class="inner-heading">
+					<h2>Visualisation des données DataCity</h2>
 				</div>
 			</div>
 		</div>
@@ -83,251 +53,179 @@
 	<section id="content">
 	<div class="container">
 		<div class="row">
-			<div class="span12">
-				<div class="row">
-					<div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-briefcase icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Corporate business</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-desktop icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Responsive theme</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-beaker icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Coded carefully</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-coffee icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Sit and enjoy</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
+			<div class="span4">
+				<aside class="left-sidebar">
+				<div class="widget">
+					<form class="form-search">
+						<input placeholder="Taper recherche" type="text" class="input-medium search-query">
+						<button type="submit" class="btn btn-square btn-theme">Search</button>
+					</form>
 				</div>
-			</div>
-		</div>
-		<!-- divider -->
-		<div class="row">
-			<div class="span12">
-				<div class="solidline">
-				</div>
-			</div>
-		</div>
-		<!-- end divider -->
-		<!-- Portfolio Projects -->
-		<div class="row">
-			<div class="span12">
-				<h4 class="heading">Some of recent <strong>works</strong></h4>
-				<div class="row">
-					<section id="projects">
-					<ul id="thumbs" class="portfolio">
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design" data-id="id-0" data-type="web">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="{{ asset('bundles/datacitypublic/img/works/full/image-01-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-01.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design" data-id="id-1" data-type="icon">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="{{ asset('bundles/datacitypublic/img/works/full/image-02-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-02.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="{{ asset('bundles/datacitypublic/img/works/full/image-03-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-03.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="{{ asset('bundles/datacitypublic/img/works/full/image-04-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-04.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography" data-id="id-4" data-type="web">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Sea" href="{{ asset('bundles/datacitypublic/img/works/full/image-05-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-05.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography" data-id="id-5" data-type="icon">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Clouds" href="{{ asset('bundles/datacitypublic/img/works/full/image-06-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-06.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="{{ asset('bundles/datacitypublic/img/works/full/image-07-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-07.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design" data-id="id-0" data-type="web">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Dark" href="{{ asset('bundles/datacitypublic/img/works/full/image-08-full.jpg') }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="{{ asset('bundles/datacitypublic/img/works/thumbs/image-08.jpg') }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
+				<div class="widget">
+					<h5 class="widgetheading">Catégories</h5>
+					<ul class="cat">
+						<li><i class="icon-angle-right"></i><a href="#">Services publics</a><span> (20)</span></li>
+						<li><i class="icon-angle-right"></i><a href="#"></a>Finances<span>(17)</span></li>
+						<li><i class="icon-angle-right"></i><a href="#"></a><span>Sports et loisirs(9)</span></li>
+						<li><i class="icon-angle-right"></i><a href="#">Technologies</a><span> (12)</span></li>
+						<li><i class="icon-angle-right"></i><a href="#">Transports publics</a><span> (10)</span></li>
 					</ul>
-					</section>
 				</div>
-			</div>
-		</div>
-		<!-- End Portfolio Projects -->
-		<!-- divider -->
-		<div class="row">
-			<div class="span12">
-				<div class="solidline">
+				<div class="widget">
+					<h5 class="widgetheading">Dernières publications</h5>
+					<ul class="recent">
+						<li>
+						<img src="{{ asset('bundles/datacitypublic/img/dummies/blog/65x65/thumb1.jpg') }}" class="pull-left" alt="" />
+						<h6><a href="#">Titre 1</a></h6>
+						<p>
+							 Mazim alienum appellantur eu cu ullum officiis pro pri
+						</p>
+						</li>
+						<li>
+						<img src="{{ asset('bundles/datacitypublic/img/dummies/blog/65x65/thumb2.jpg') }}" class="pull-left" alt="" />
+						<h6><a href="#">Titre 2</a></h6>
+						<p>
+							 Mazim alienum appellantur eu cu ullum officiis pro pri
+						</p>
+						</li>
+						<li>
+						<img src="{{ asset('bundles/datacitypublic/img/dummies/blog/65x65/thumb3.jpg') }}" class="pull-left" alt="" />
+						<h6><a href="#">Titre 3</a></h6>
+						<p>
+							 Mazim alienum appellantur eu cu ullum officiis pro pri
+						</p>
+						</li>
+					</ul>
 				</div>
+				<div class="widget">
+					<h5 class="widgetheading">Tags populaires</h5>
+					<ul class="tags">
+						<li><a href="#">Services publics</a></li>
+						<li><a href="#">Finances</a></li>
+						<li><a href="#">Sports et loisirs</a></li>
+						<li><a href="#">Technologies</a></li>
+						<li><a href="#">Transports publics</a></li>
+						
+					</ul>
+				</div>
+				</aside>
 			</div>
-		</div>
-		<!-- end divider -->
-		<div class="row">
-			<div class="span12">
-				<h4>Very satisfied <strong>clients</strong></h4>
-				<ul id="mycarousel" class="jcarousel-skin-tango recent-jcarousel clients">
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client1.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client2.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client3.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client4.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client5.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client6.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client1.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client2.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client3.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client4.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client5.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client6.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-				</ul>
+			<div class="span8">
+				<article>
+				<div class="row">
+					<div class="span8">
+						<div class="post-image">
+							<div class="post-heading">
+								<h3><a href="#">Titre de la source</a></h3>
+							</div>
+							<img src= "{{ asset('bundles/datacitypublic/img/dummies/blog/img1.jpg') }}" />
+						</div>
+						<p>
+							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed. Dicam appetere ne qui, no has scripta appellantur. Mazim alienum appellantur eu cum, cu ullum officiis pro, pri at eius erat accusamus. Eos id hinc fierent indoctum, ad accusam consetetur voluptatibus sit. His at quod impedit. Eu zril quando perfecto mel, sed eu eros debet.
+						</p>
+						<blockquote>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, ei quod constituto qui. Summo labores expetendis ad quo, lorem luptatum et vis. No qui vidisse signiferumque...
+						</blockquote>
+						<p>
+							 Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed. Dicam appetere ne qui, no has scripta appellantur. Mazim alienum appellantur eu cum, cu ullum officiis pro, pri at eius erat accusamus.
+						</p>
+						<div class="bottom-article">
+							<!--  <ul class="meta-post">
+								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
+								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
+								<li><i class="icon-tags"></i><a href="#">Web design</a></li>
+							</ul> -->
+							<p> <strong>Auteur : </strong>Cynt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <strong>Date : </strong>le 28/07/2013 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <strong>Source : </strong>http://www.montpellier.fr/</p>
+						</div>
+					</div>
+				</div>
+				</article>
+				<!-- author info -->
+				<!-- <div class="about-author">
+					<a href="#" class="thumbnail align-left"><img src="img/avatar.png" alt="" /></a>
+					<h5><strong><a href="#">John doe</a></strong></h5>
+					<p>
+						 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper ad qui, est rebum nulla argumentum ei.
+					</p>
+				</div>
+				<div class="comment-area">
+					<h4>4 Comments</h4>
+					<div class="media">
+						<a href="#" class="thumbnail pull-left"><img src="img/avatar.png" alt="" /></a>
+						<div class="media-body">
+							<div class="media-content">
+								<h6><span>March 12, 2013</span> Karen medisson</h6>
+								<p>
+									 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</p>
+								<a href="#" class="align-right">Reply comment</a>
+							</div>
+						</div>
+					</div>
+					<div class="media">
+						<a href="#" class="thumbnail pull-left"><img src="img/avatar.png" alt="" /></a>
+						<div class="media-body">
+							<div class="media-content">
+								<h6><span>March 12, 2013</span> Smith sanderson</h6>
+								<p>
+									 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</p>
+								<a href="#" class="align-right">Reply comment</a>
+							</div>
+							<div class="media">
+								<a href="#" class="thumbnail pull-left"><img src="img/avatar.png" alt="" /></a>
+								<div class="media-body">
+									<div class="media-content">
+										<h6><span>March 12, 2013</span> Thomas guttenberg</h6>
+										<p>
+											 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+										</p>
+										<a href="#" class="align-right">Reply comment</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> 
+					<div class="media">
+						<a href="#" class="thumbnail pull-left"><img src="img/avatar.png" alt="" /></a>
+						<div class="media-body">
+							<div class="media-content">
+								<h6><span>March 12, 2013</span> Vicky lumora</h6>
+								<p>
+									 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</p>
+								<a href="#" class="align-right">Reply comment</a>
+							</div>
+						</div>
+					</div>
+					<h4>Leave your comment</h4>
+					<form id="commentform" action="#" method="post" name="comment-form">
+						<div class="row">
+							<div class="span4">
+								<input type="text" placeholder="* Enter your full name" />
+							</div>
+							<div class="span4">
+								<input type="text" placeholder="* Enter your email address" />
+							</div>
+							<div class="span4 margintop10">
+								<input type="text" placeholder="Enter your website" />
+							</div>
+							<div class="span8 margintop10">
+								<p>
+									<textarea rows="12" class="input-block-level" placeholder="*Your comment here"></textarea>
+								</p>
+								<p>
+									<button class="btn btn-theme margintop10" type="submit">Submit comment</button>
+								</p>
+							</div>
+						</div>
+					</form> -->
+				</div>
 			</div>
 		</div>
 	</div>
-	</section>    
+	</section>
+</div>
+<a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+
 {% endblock %}
