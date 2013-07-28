@@ -77,28 +77,16 @@
 				{% else %}
 					<div class="headnav">
 						<ul>
-							<li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
+							<li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-user"></i> Sign up</a></li>
 							<li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
 						</ul>
 					</div>
-					<!-- Signup Modal -->
-					<div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
-						{# {% include 'DatacityPublicBundle:Include:register.html.twig' %}  #}
-						{{ render(controller('FOSUserBundle:Registration:register')) }}
-					</div>
-					<!-- end signup modal -->
 					<!-- Sign in Modal -->
 					<div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
 						{# {% include 'DatacityPublicBundle:Include:login.html.twig' %} #}
 						{{ render(controller('FOSUserBundle:Security:login')) }}
 					</div>
 					<!-- end signin modal -->
-					<!-- Reset Modal -->
-					<div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
-						{# TODO Use render ! #}
-						{% include 'DatacityPublicBundle:Include:resetPass.html.twig' %}
-					</div>
-					<!-- end reset modal -->
 				{% endif %}
 			</div>
 		</div>

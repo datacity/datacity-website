@@ -1,7 +1,6 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
 
+{# TODO : Better display of error #}
 {% block fos_user_content %}
 {% if error %}
     <div>{{ error|trans }}</div>
@@ -37,7 +36,7 @@
 				<button type="submit" id="_submit" class="btn">{{ 'security.login.submit'|trans }}</button>
 			</div>
 			<p class="aligncenter margintop20">
-				Mot de passe oublié ? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Réinitialiser le mot de passe</a>
+				Mot de passe oublié ? <a href="{{ path('fos_user_resetting_request') }}">Réinitialiser le mot de passe</a>
 			</p>
 		</div>
 	</form>

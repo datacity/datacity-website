@@ -1,5 +1,15 @@
 {% extends 'DatacityPublicBundle:Template:body.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets
+		'bundles/datacitypublic/css/bodybg/bg1.css'
+		filter='cssrewrite'
+	%}
+	    <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
 {% block content %}
 	<section id="inner-headline">
 	<div class="container">
@@ -14,7 +24,7 @@
 				<ul class="breadcrumb">
 					<li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
 					<li><a href="#">Pages</a><i class="icon-angle-right"></i></li>
-					<li class="active">Testimonials</li>
+					<li class="active">{% block pagename %}Testimonials{% endblock %}</li>
 				</ul>
 			</div>
 		</div>
