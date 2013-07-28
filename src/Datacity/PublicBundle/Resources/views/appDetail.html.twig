@@ -1,0 +1,57 @@
+{% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+
+{% block title %}Datacity -- Portail Applicatif{% endblock %}
+{% block pagetitle %}Portail Applicatif{% endblock %}
+{% block pagename %}Portail Applicatif{% endblock %}
+{% block pagecontent %}
+	<section id="content">
+		<div class="container">
+			<div class="row">
+				<div class="span8">
+					<article>
+					<div class="top-wrapper">
+						<div class="post-heading">
+							<h3><a href="#">{{ app_name }}</a></h3>
+						</div>
+						<!-- start flexslider -->
+						<div class="flexslider">
+							<ul class="slides">
+								<li>
+								<img src="{{ app_images[0] }}" alt="" />
+								</li>
+								<li>
+								<img src="{{ app_images[1] }}" alt="" />
+								</li>
+							</ul>
+						</div>
+						<!-- end flexslider -->
+					</div>
+					<p>
+						 {{ app_description }}
+					</p>
+					</article>
+				</div>
+				<div class="span4">
+					<aside class="right-sidebar">
+					<div class="widget">
+						<h5 class="widgetheading">Informations</h5>
+						<ul class="folio-detail">
+							<li><label>Categories :</label>  {% for cat in app_categories %}{{ cat }} {% endfor %}</li>
+							<li><label>Client :</label> {{ app_client }}</li>
+							<li><label>Plateformes :</label> {% for platform in app_platforms %}{{ platform }} {% endfor %}</li>
+							<li><label>Téléchargements :</label> {{ app_downloaded }}</li>
+							<li><label>Project URL :</label><a href="#"> {{ app_url }}</a></li>
+						</ul>
+					</div>
+					<div class="widget">
+						<h5 class="widgetheading">Sources</h5>
+						<p>
+							Toutes les données de cette application sont générées depuis des sources OpenData.
+						</p>
+					</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section> 
+{% endblock %}

@@ -6,6 +6,10 @@ datacity_public_portalpage:
     pattern:  /portal
     defaults: { _controller: DatacityPublicBundle:Default:portal }
     
+datacity_public_appDetail:
+    pattern:  /detail/{id}
+    defaults: { _controller: DatacityPublicBundle:Default:appDetail, id: 0 }
+    
 datacity_public_documentationpage:
     pattern:  /documentation
     defaults: { _controller: DatacityPublicBundle:Default:documentation }
