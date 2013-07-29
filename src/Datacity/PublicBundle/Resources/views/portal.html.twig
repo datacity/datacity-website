@@ -71,7 +71,7 @@
 							<div class="span8">
 								<div class="post-slider">
 									<div class="post-heading">
-										<h3><a href="#">{{ article['app_name'] }}</a></h3>
+										<h3><a href="{{ path('datacity_public_appDetail', {'id' : article["app_id"]}) }}">{{ article['app_name'] }}</a></h3>
 									</div>
 									<!-- start flexslider -->
 									<div class="flexslider">
@@ -95,7 +95,7 @@
 										<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
 										<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
 									</ul>
-									<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
+									<a href="{{ path('datacity_public_appDetail', {'id' : article["app_id"]}) }}" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
 								</div>
 							</div>
 						</div>
