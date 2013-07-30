@@ -1,9 +1,10 @@
 <?php
 
-namespace Datacity\PrivateBundle\Entity;
+namespace Datacity\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -26,6 +27,15 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50)
+     * 
+     * @Assert\NotBlank(message="Entrez votre prénom.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="Le prénom est trop petit..",
+     *     maxMessage="Le prénom est trop long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $firstname;
 
@@ -33,16 +43,18 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=50)
+     * 
+     * @Assert\NotBlank(message="Entrez votre nom.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="Le nom est trop petit..",
+     *     maxMessage="Le nom est trop long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $lastname;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="gender", type="string", length=1)
-     */
-    private $gender;
-    
     public function __construct()
     {
     	parent::__construct();
@@ -103,28 +115,5 @@ class User extends BaseUser
     public function getLastname()
     {
         return $this->lastname;
-    }
-
-    /**
-     * Set gender
-     *
-     * @param string $gender
-     * @return User
-     */
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
-    
-        return $this;
-    }
-
-    /**
-     * Get gender
-     *
-     * @return string 
-     */
-    public function getGender()
-    {
-        return $this->gender;
     }
 }

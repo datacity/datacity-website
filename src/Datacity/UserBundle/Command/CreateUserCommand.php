@@ -20,8 +20,7 @@ class CreateUserCommand extends BaseCommand
 		->setName('datacity:user:create')
 		->getDefinition()->addArguments(array(
 				new InputArgument('firstname', InputArgument::REQUIRED, 'The firstname'),
-				new InputArgument('lastname', InputArgument::REQUIRED, 'The lastname'),
-				new InputArgument('gender', InputArgument::REQUIRED, 'The gender (M/F)')
+				new InputArgument('lastname', InputArgument::REQUIRED, 'The lastname')
 		))
 		;
 	}
@@ -57,23 +56,6 @@ class CreateUserCommand extends BaseCommand
 			);
 			$input->setArgument('lastname', $lastname);
 		}
-		if (!$input->getArgument('gender')) {
-			$gender = $this->getHelper('dialog')->askAndValidate(
-					$output,
-					'Please choose a gender:',
-					function($gender) {
-						if (empty($gender)) {
-							throw new \Exception('Gender can not be empty');
-						}
-						if ($gender != 'M' && $gender != 'F') {
-							throw new \Exception('Gender must be M or F');
-						}
-								
-						return $gender;
-					}
-			);
-			$input->setArgument('gender', $gender);
-		}
 	}
 	
 	/**
@@ -91,7 +73,6 @@ class CreateUserCommand extends BaseCommand
 		$user->setSuperAdmin((bool)$input->getOption('super-admin'));
 		$user->setFirstname($input->getArgument('firstname'));
 		$user->setLastname($input->getArgument('lastname'));
-		$user->setGender($input->getArgument('gender'));
 	
 		$user_manager->updateUser($user);
 	
