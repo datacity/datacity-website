@@ -17,3 +17,7 @@ datacity_public_documentationpage:
 datacity_public_dataviewpage:
     pattern:  /dataview
     defaults: { _controller: DatacityPublicBundle:Default:dataview }
+
+datacity_public_contactpage:
+    pattern:  /contact
+    defaults: { _controller: DatacityPublicBundle:Default:contact }

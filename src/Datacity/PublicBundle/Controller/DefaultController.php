@@ -11,6 +11,11 @@ class DefaultController extends Controller
 		$response = $this->render('DatacityPublicBundle::home.html.twig');
 		return $response;
 	}
+	public function contactAction()
+	{
+		$response = $this->render('DatacityPublicBundle::contact.html.twig');
+		return $response;
+	}
 	public function portalAction()
 	{
 		$villes = array("Montpellier", "Paris", "Lille", "Bordeaux", "Lyon", "Marseille");
