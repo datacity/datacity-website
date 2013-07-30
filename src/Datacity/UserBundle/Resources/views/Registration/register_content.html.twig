@@ -1,8 +1,24 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-</form>
+<div class="container">
+	<div class="row margintop10">
+		<div class="span5">
+			<aside class="left-sidebar"> 
+				<h4>Créez un compte, <strong>c'est gratuit !</strong></h4>
+				<img src="{{ asset('bundles/datacitypublic/img/dummies/dummy-1.jpg') }}" alt="" class="align-left">
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non mod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et eabum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet</p>
+			</aside>
+		</div>
+		<div class="span7 margintop20">
+			<form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+			    {{ form_widget(form, {'form_type': 'horizontal'}) }}
+			    <div class="control-group">
+			    	<div class="controls">
+	                    <button type="submit" class="btn btn-theme">{{ 'registration.submit'|trans }}</button>
+	                    <span class="pull-right margintop20">* Merci de remplir tout les champs requis !</span>
+                    </div>
+                </div>
+			</form>
+		</div>
+	</div>
+</div>
