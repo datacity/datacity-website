@@ -1,12 +1,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="span12 margintop20">
-	<form class="form-horizontal" action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+	<form class="form-horizontal" action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
 	    {{ form_widget(form, {'form_type': 'horizontal'}) }}
 	    <div class="control-group">
 		    <div class="controls">
-	        	<button type="submit" class="btn btn-theme">{{ 'profile.edit.submit'|trans }}</button>
-	           	<a class="btn btn-theme" href="{{ path('fos_user_profile_show') }}">Annuler</a>
+	        	<button type="submit" class="btn btn-theme"><i class="icon-ok"></i>{{ 'profile.edit.submit'|trans }}</button>
+	           	<a class="btn btn-theme" href="{{ path('fos_user_profile_show') }}"><i class="icon-remove"></i>Annuler</a>
 	  		</div>
 	  	</div>
 	</form>
