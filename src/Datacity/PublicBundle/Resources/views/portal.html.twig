@@ -55,7 +55,6 @@
 					<h5 class="widgetheading">Tags populaires</h5>
 					<ul class="tags">
 						<li><a href="#">Historique</a></li>
-						<li><a href="#">Tourisme</a></li>
 						<li><a href="#">Sorties</a></li>
 						<li><a href="#">Loisirs</a></li>
 						<li><a href="#">Paris</a></li>
@@ -65,20 +64,20 @@
 				</aside>
 			</div>
 			<div class="span8">
-				{% for article in projects %}
+				{% for app in apps %}
 					<article>
 						<div class="row">
 							<div class="span8">
 								<div class="post-slider">
 									<div class="post-heading">
-										<h3><a href="{{ path('datacity_public_appDetail', {'id' : article["app_id"]}) }}">{{ article['app_name'] }}</a></h3>
+										<h3><a href="{{ path('datacity_public_appDetail', {'id' : app.getId() }) }}">{{ app.getName() }}</a></h3>
 									</div>
 									<!-- start flexslider -->
 									<div class="flexslider">
 										<ul class="slides">
-										{% for image in article['app_images'] %}
+										{% for image in app.getImages() %}
 											<li>
-												<img src="{{ image }}" alt="" />
+												<img src="{{ image.getUrl() }}" alt="{{ image.getAlt() }}" />
 											</li>
 										{% endfor %}
 										</ul>
@@ -86,7 +85,7 @@
 									<!-- end flexslider -->
 								</div>
 								<p>
-									 {{ article['app_description'] }}
+									 {{ app.getDescription() }}
 								</p>
 								<div class="bottom-article">
 									<ul class="meta-post">
@@ -95,7 +94,7 @@
 										<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
 										<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
 									</ul>
-									<a href="{{ path('datacity_public_appDetail', {'id' : article["app_id"]}) }}" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
+									<a href="{{ path('datacity_public_appDetail', {'id' : app.getId() }) }}" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
 								</div>
 							</div>
 						</div>

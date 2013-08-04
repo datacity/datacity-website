@@ -11,23 +11,22 @@
 					<article>
 					<div class="top-wrapper">
 						<div class="post-heading">
-							<h3><a href="#">{{ app_name }}</a></h3>
+							<h3><a href="#">{{ appli.getName() }}</a></h3>
 						</div>
 						<!-- start flexslider -->
 						<div class="flexslider">
 							<ul class="slides">
+							{% for image in appli.getImages() %}
 								<li>
-								<img src="{{ app_images[0] }}" alt="" />
+									<img src="{{ image.getUrl() }}" alt="{{ image.getAlt() }}" />
 								</li>
-								<li>
-								<img src="{{ app_images[1] }}" alt="" />
-								</li>
+							{% endfor %}
 							</ul>
 						</div>
 						<!-- end flexslider -->
 					</div>
 					<p>
-						 {{ app_description }}
+						 {{ appli.getDescription() }}
 					</p>
 					</article>
 				</div>
