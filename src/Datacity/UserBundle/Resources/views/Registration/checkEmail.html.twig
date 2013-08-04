@@ -2,6 +2,13 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}Datacity -- Enregitrement{% endblock %}
+{% block pagetitle %}Enregitrement{% endblock %}
+
 {% block fos_user_content %}
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+<div class="row">
+	<div class="span12 margintop20">
+		<p class="lead">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+	</div>
+</div>
 {% endblock fos_user_content %}

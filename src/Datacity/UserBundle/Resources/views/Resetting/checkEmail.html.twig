@@ -2,8 +2,13 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}Datacity -- Réinitialisation du mot de passe{% endblock %}
+{% block pagetitle %}Réinitialisation du mot de passe{% endblock %}
+
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}) }}
-</p>
+<div class="row">
+	<div class="span12 margintop20">
+		<p class="lead">{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
+	</div>
+</div>
 {% endblock %}

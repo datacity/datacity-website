@@ -1,12 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="container">
-	<div class="row margintop10">
-		<div class="span12">
-			<h4>{{ user.firstname }} {{ user.lastname }}</h4>
-		    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-		    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-		    <a href={{ path('fos_user_profile_edit') }} class="btn btn-theme">Editer</a>
-		</div>
+<div class="row margintop10">
+	<div class="span12">
+		<h4>{{ user.firstname }} {{ user.lastname }}</h4>
+	    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+	    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+	    <a href={{ path('fos_user_profile_edit') }} class="btn btn-theme"><i class="icon-cog"></i>Editer mes informations</a>
+	    <a href={{ path('fos_user_change_password') }} class="btn btn-theme"><i class="icon-cog"></i>Changer mon mot de passe</a>
 	</div>
 </div>

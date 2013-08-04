@@ -2,10 +2,17 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}Datacity -- Enregitrement{% endblock %}
+{% block pagetitle %}Enregitrement{% endblock %}
+
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
-    {% endif %}
+<div class="row">
+	<div class="span12">
+		<h2>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h2>
+	    {% if app.session is not empty %}
+	        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+	        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+	    {% endif %}
+    </div>
+</div>
 {% endblock fos_user_content %}

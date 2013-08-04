@@ -2,14 +2,13 @@
 
 {# TODO : Better display of error #}
 {% block fos_user_content %}
-{% if error %}
-    <div>{{ error|trans }}</div>
-{% endif %}
-
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 	<h4 id="mySigninModalLabel">Connexion au <strong>compte</strong></h4>
 </div>
+{% if error %}
+    <div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>{{ error|trans }}</div>
+{% endif %}
 <div class="modal-body">
 	<form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
 	 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
