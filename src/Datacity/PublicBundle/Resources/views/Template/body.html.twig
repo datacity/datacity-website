@@ -39,14 +39,6 @@
 </head>
 <body>
 <div id="wrapper" class="boxed">
-	{# TODO : Better display #}
-	{% for type, messages in app.session.flashbag.all() %}
-        {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
-                </div>
-        {% endfor %}
-    {% endfor %}
 	<!-- toggle top area -->
 	<div class="hidden-top">
 		<div class="hidden-top-inner container">
