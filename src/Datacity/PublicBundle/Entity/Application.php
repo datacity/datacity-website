@@ -122,7 +122,7 @@ class Application
      *
      * @param \Datacity\PublicBundle\Entity\Image $images
      */
-    public function removeImage(\Datacity\PublicgBundle\Entity\Image $images)
+    public function removeImage(\Datacity\PublicBundle\Entity\Image $images)
     {
         $this->images->removeElement($images);
     }
