@@ -1,0 +1,32 @@
+{% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+
+{% block title %}Datacity -- 404{% endblock %}
+{% block pagetitle %}404{% endblock %}
+{% block pagename %}404{% endblock %}
+
+{% block pagecontent %}
+<section id="content">
+<div class="container">
+	<div class="row">
+		<div class="span12 aligncenter">
+			<h2>404 Page introuvable</h3>
+			<p>
+				La page que vous recherchez n'existe pas.
+			</p>
+			<form class="form-search margintop20">
+				<div class="control-group">
+					<div class="controls">
+						<input placeholder="Rechercher dans la base" type="text" class="input-large search-query"/>
+					</div>
+				</div>
+				<div class="control-group">
+			    	<div class="controls">
+						<button type="submit" class="btn btn-theme"><i class="icon-search"></i>Rechercher</button>
+					</div>
+           		</div>
+			</form>
+		</div>
+	</div>
+</div>
+</section>
+{% endblock %}

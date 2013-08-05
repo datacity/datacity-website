@@ -64,7 +64,7 @@
 		<!-- end toggle link -->
 		<div class="row nomargin">
 			<div class="span12">
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				{% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					{% include 'DatacityPrivateBundle:Include:accountLink.html.twig' %}
 				{% else %}
 					<div class="headnav">
@@ -75,7 +75,6 @@
 					</div>
 					<!-- Sign in Modal -->
 					<div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
-						{# {% include 'DatacityPublicBundle:Include:login.html.twig' %} #}
 						{{ render(controller('FOSUserBundle:Security:login')) }}
 					</div>
 					<!-- end signin modal -->
