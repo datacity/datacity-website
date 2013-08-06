@@ -41,46 +41,44 @@
 						<button type="submit" class="btn btn-square btn-theme">Recherche</button>
 					</form>
 				</div>
+				<script>
+					activeCat = "";
+					function docSwitcher(id) {
+						$('#' + activeCat).hide();
+						activeCat = id;
+						$('#' + id).show('fast');
+					}
+				</script>
 				<div class="widget">
 					<h5 class="widgetheading">Categories</h5>
 					<ul class="cat">
-						<li><i class="icon-angle-right"></i><a href="#">Présentation de l'API</a><span> (20)</span></li>
+					{% for cat in docCategories %} 
+						<li><i class="icon-angle-right"></i><a onclick="docSwitcher('{{ cat|lower|replace({' ':''}) }}')" href="#">{{ cat }}</a></li>
+					{% endfor %}
 					</ul>
 				</div>
 				
 				</aside>
 			</div>
-			<h3>Présentation de l'API</h1>
-			<div class="tabbable tabs-left">
+			{% for option, cat in docCategoriesContent %}
+			<div style="display: none" id="{{ option|lower|replace({' ':''}) }}" class="tabbable tabs-left">
+				<h3>{{ option }}</h3>
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#topone" data-toggle="tab">Contexte</a></li>
-								<li><a href="#toptwo" data-toggle="tab">Explication</a></li>
-								<li><a href="#topthree" data-toggle="tab">Projet</a></li>
+								{% for content in cat %}
+								<li {% if loop.first %}class="active"{% endif %}><a href="#{{ content.subCategorieTitle|lower|replace({' ':''}) }}" data-toggle="tab">{{ content.subCategorieTitle }}</a></li>
+								{% endfor %}
 							</ul>
 							<div class="tab-content">
-								<div class="tab-pane active" id="topone">
+								{% for content in cat %}
+								<div class="tab-pane {% if loop.first %}active{% endif %}" id="{{ content.subCategorieTitle|lower|replace({' ':''}) }}">
 									<p>
-										<strong>Augue iriure</strong> dolorum per ex, ne iisque ornatus veritus duo. Ex nobis integre lucilius sit, pri ea falli ludus appareat. Eum quodsi fuisset id, nostro patrioque qui id. Nominati eloquentiam in mea.
-									</p>
-									<p>
-										 No eum sanctus vituperata reformidans, dicant abhorreant ut pro. Duo id enim iisque praesent, amet intellegat per et, solet referrentur eum et.
+										{{ content.docContent }}
 									</p>
 								</div>
-								<div class="tab-pane" id="toptwo">
-									<p>
-										 Tale dolor mea ex, te enim assum suscipit cum, vix aliquid omittantur in. Duo eu cibo dolorum menandri, nam sumo dicit admodum ei. Ne mazim commune honestatis cum, mentitum phaedrum sit et.
-									</p>
-								</div>
-								<div class="tab-pane" id="topthree">
-									<p>
-										 Cu cum commodo regione definiebas. Cum ea eros laboramus, audire deseruisse his at, munere aeterno ut quo. Et ius doming causae philosophia, vitae bonorum intellegat usu cu.
-									</p>
-									<p>
-										 Tale dolor mea ex, te enim assum suscipit cum, vix aliquid omittantur in. Duo eu cibo dolorum menandri, nam sumo dicit admodum ei. Ne mazim commune honestatis cum, mentitum phaedrum sit et.
-									</p>
-								</div>
+								{% endfor %}
 							</div>
 						</div>
+					{% endfor %}
 			</div>
 		</div>
 	</div>

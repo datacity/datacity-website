@@ -84,7 +84,24 @@ class DefaultController extends Controller
 	}
 	public function documentationAction()
 	{
-		$response = $this->render('DatacityPublicBundle::documentation.html.twig');
+		$docCategories = array("Categorie 1", "Categorie 2",  "Categorie 3");
+		$cat1 = array(
+			1 => array("subCategorieTitle" => "Sous Categorie 11", "docContent" => "Contenu 1"),
+			2 => array("subCategorieTitle" => "Sous Categorie 12", "docContent" => "Contenu 2"),
+			3 => array("subCategorieTitle" => "Sous Categorie 13", "docContent" => "Contenu 3")
+			);
+		$cat2 = array(
+			1 => array("subCategorieTitle" => "Sous Categorie 21", "docContent" => "Contenu 1"),
+			2 => array("subCategorieTitle" => "Sous Categorie 22", "docContent" => "Contenu 2"),
+			3 => array("subCategorieTitle" => "Sous Categorie 23", "docContent" => "Contenu 3")
+			);
+		$cat3 = array(
+			1 => array("subCategorieTitle" => "Sous Categorie 31", "docContent" => "Contenu 1"),
+			2 => array("subCategorieTitle" => "Sous Categorie 32", "docContent" => "Contenu 2"),
+			3 => array("subCategorieTitle" => "Sous Categorie 33", "docContent" => "Contenu 3")
+			);
+		$docCategoriesContent = array("Categorie 1" => $cat1, "Categorie 2" => $cat2, "Categorie 3" => $cat3);
+		$response = $this->render('DatacityPublicBundle::documentation.html.twig', array("docCategories" => $docCategories, "docCategoriesContent" => $docCategoriesContent));
 		return $response;
 	}
 	public function dataviewAction()
