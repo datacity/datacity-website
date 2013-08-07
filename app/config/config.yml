@@ -4,6 +4,7 @@ imports:
 
 bc_bootstrap:
     less_filter: lessphp
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
 
 framework:
     #esi:             ~
