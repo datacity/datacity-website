@@ -24,7 +24,9 @@
         "twbs/bootstrap": "2.3.*",
         "jquery/jquery": "1.9.*",
 	"leafo/lessphp": "0.3.9",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "doctrine/data-fixtures": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

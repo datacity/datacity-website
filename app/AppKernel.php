@@ -20,6 +20,7 @@ class AppKernel extends Kernel
 		    //Third party
 		    new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
 	        new FOS\UserBundle\FOSUserBundle(),
+        	new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 
 	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),
