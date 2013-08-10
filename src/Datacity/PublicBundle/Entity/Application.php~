@@ -124,9 +124,6 @@ class Application
     public function __construct()
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->platforms = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        
     }
     
     /**
