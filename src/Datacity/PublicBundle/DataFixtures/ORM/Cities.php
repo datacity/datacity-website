@@ -16,10 +16,10 @@ class Cities implements FixtureInterface
       $liste_cities[$i] = new City();
       $liste_cities[$i]->setName($name);
  
-      $manager->persist($liste_cities[$i]);
+     // $manager->persist($liste_cities[$i]);
     }
  
-    $manager->flush();
+    //$manager->flush();
   }
   
 }

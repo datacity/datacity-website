@@ -8,6 +8,7 @@ use Datacity\PublicBundle\Entity\Image;
 use Datacity\PublicBundle\Entity\City;
 use Datacity\PublicBundle\Entity\Customer;
 use Datacity\PublicBundle\Entity\Platform;
+use Datacity\PublicBundle\Entity\Category;
 
 class DefaultController extends Controller
 {
@@ -23,6 +24,43 @@ class DefaultController extends Controller
 	}
 	public function portalAction()
 	{
+		$em = $this->getDoctrine()->getManager();
+		
+		$noms = array('Culture', 'Itinéraire', 'Tourisme', 'Évènement', 'Concerts', 'Musique', 'Cinémas');
+		
+		foreach($noms as $i => $name)
+		{
+			// On crée la catégorie
+			$liste_categories[$i] = new Category();
+			$liste_categories[$i]->setName($name);
+		
+			// On la persiste
+			$em->persist($liste_categories[$i]);
+		}
+		
+		$noms = array('iOS', 'Android', 'Windows Phone', 'Blackberry');
+		$versions = array('7.0', '4.3', '7.8', '7.1');
+		foreach($noms as $i => $name)
+		{
+			// On crée la catégorie
+			$liste_platforms[$i] = new Platform();
+			$liste_platforms[$i]->setName($name);
+			$liste_platforms[$i]->setVersion($versions[$i]);
+			// On la persiste
+			$em->persist($liste_platforms[$i]);
+		}
+		
+		$noms = array('Montpellier', 'Ales', 'Nimes', 'Paris', 'Lyon', 'Catalogne (village)');
+		
+		foreach($noms as $i => $name)
+		{
+			$liste_cities[$i] = new City();
+			$liste_cities[$i]->setName($name);
+		
+			$em->persist($liste_cities[$i]);
+		}
+		$em->flush();
+		
 		$villes = $this->getDoctrine()->getRepository("DatacityPublicBundle:City");
 		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
 		$platforms = $this->getDoctrine()->getRepository("DatacityPublicBundle:Platform");
@@ -63,7 +101,6 @@ class DefaultController extends Controller
 		$customer->addApplication($application);
 		
 		
-		$em = $this->getDoctrine()->getManager();
 		$em->persist($customer);
 		$em->persist($application);
 		$em->persist($image1);
