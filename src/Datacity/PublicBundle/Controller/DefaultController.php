@@ -26,7 +26,7 @@ class DefaultController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		
-		$noms = array('Culture', 'Itinéraire', 'Tourisme', 'Évènement', 'Concerts', 'Musique', 'Cinémas');
+		/*$noms = array('Culture', 'Itinéraire', 'Tourisme', 'Évènement', 'Concerts', 'Musique', 'Cinémas');
 		
 		foreach($noms as $i => $name)
 		{
@@ -60,11 +60,11 @@ class DefaultController extends Controller
 			$em->persist($liste_cities[$i]);
 		}
 		$em->flush();
-		
+		*/
 		$villes = $this->getDoctrine()->getRepository("DatacityPublicBundle:City");
 		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
 		$platforms = $this->getDoctrine()->getRepository("DatacityPublicBundle:Platform");
-		
+		/*
 		$customer = new Customer();
 		$customer->setCity("Montpellier");
 		$customer->setContactFirstName("Lionel");
@@ -287,7 +287,7 @@ class DefaultController extends Controller
 		$em->persist($image8);
 		
 		$em->flush();
-
+*/
 		
 		$repo = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application");
 		$applications = $repo->findAll();
