@@ -35,10 +35,10 @@
 					<div class="widget">
 						<h5 class="widgetheading">Informations</h5>
 						<ul class="folio-detail">
-							<li><label>Categories :</label>  {% for cat in app_categories %}{{ cat }} {% endfor %}</li>
-							<li><label>Client :</label> {{ app_client }}</li>
-							<li><label>Plateformes :</label> {% for platform in app_platforms %}{{ platform }} {% endfor %}</li>
-							<li><label>Téléchargements :</label> {{ app_downloaded }}</li>
+							<li><label>Categories :</label>  {% for cat in appli.getCategories() %}{{ cat.getName() }} {% endfor %}</li>
+							<li><label>Client :</label> {{ appli.getCustomer().getName() }}</li>
+							<li><label>Plateformes :</label> {% for platform in appli.getPlatforms() %}{{ platform.getName() }} {% endfor %}</li>
+							<li><label>Téléchargements :</label> {{ appli.getDownloaded() }}</li>
 							<li><label>Project URL :</label><a href="#"> {{ app_url }}</a></li>
 						</ul>
 					</div>

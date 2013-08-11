@@ -48,6 +48,11 @@ class Application
     private $images;
     
     /**
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", inversedBy="applications", cascade={"persist"})
+     */
+    private $city;
+    
+    /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", cascade={"persist"})
      */
     private $platforms;
@@ -124,6 +129,9 @@ class Application
     public function __construct()
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->platforms = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
     
     /**

@@ -48,6 +48,11 @@ class Application
     private $images;
     
     /**
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", inversedBy="applications", cascade={"persist"})
+     */
+    private $city;
+    
+    /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", cascade={"persist"})
      */
     private $platforms;
@@ -254,23 +259,48 @@ class Application
     /**
      * Set customer
      *
-     * @param \Datacity\PublicBundle\Entity\applications $customer
+     * @param \Datacity\PublicBundle\Entity\Customer $customer
      * @return Application
      */
-    public function setCustomer(\Datacity\PublicBundle\Entity\applications $customer = null)
+    public function setCustomer(\Datacity\PublicBundle\Entity\Customer $customer = null)
     {
         $this->customer = $customer;
     
+        $customer->addApplication($this);
         return $this;
     }
 
     /**
      * Get customer
      *
-     * @return \Datacity\PublicBundle\Entity\applications 
+     * @return \Datacity\PublicBundle\Entity\Customer 
      */
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Datacity\PublicBundle\Entity\City $city
+     * @return Application
+     */
+    public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+    
+        $city->addApplication($this);
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Datacity\PublicBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

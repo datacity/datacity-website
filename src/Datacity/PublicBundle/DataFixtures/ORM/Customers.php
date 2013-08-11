@@ -30,11 +30,11 @@ class customers implements FixtureInterface
       $liste_customers[$i]->setContactPhone($cp[$i]);
       $liste_customers[$i]->setSiret($s[$i]);
       // On la persiste
-      $manager->persist($liste_customers[$i]);
+  //    $manager->persist($liste_customers[$i]);
     }
  
     // On déclenche l'enregistrement
-    $manager->flush();
+//    $manager->flush();
   }
 }
 ?>
