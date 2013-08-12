@@ -6,15 +6,34 @@
 
 var model = {
 	"fields": [
-		"id",
-		"nom",			
-		"categorie",	
+		"nom",		
+		"catégorie(s)",
+		"tags",
 		"description",	
 		"longitude",	
 		"latitude",	
-		"adresse"]
+		"adresse",
+		"horaires",
+		"téléphone",
+		"site web",
+		"e-mail"]
 };
-var colors = ["purple", "green", "orange", "pink", "brown", "red", "blue"];
+
+var modelApi = {
+	"fields": [
+		"name",		
+		"categorie",
+		"tags",
+		"description",	
+		"longitude",	
+		"latitude",	
+		"adress",
+		"schedules",
+		"phone",
+		"website",
+		"email"]
+};
+var colors = ["purple", "green", "orange", "pink", "brown", "red", "blue", "yellow"];
 var currentColor;
 var selectedField;
 
@@ -34,6 +53,21 @@ var callAjax = function(jsonobject) {
 	});
 }
 
+var createJsonFile = function(jsonObject) {
+	$.ajax({
+		type: "POST",
+		url: "http://127.0.0.1:8888/test",
+        crossDomain: true,
+        //contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		data: jsonObject,
+		success: function (data) {
+			console.log("success" + data);
+		}
+	});
+}
+
+
 $('#public-service').click(function() {
 	$('.models').html(generateModel(model));
 });
@@ -50,7 +84,7 @@ var generateModel = function(model) {
 	model.map = {};
 	for (var field in model.fields) {
 		model.map[model.fields[field]] = i;
-		result += '<br/><button class="btn modelfield btn-default btn-' + colors[i] + '" type="button">' + model.fields[field] + '</button><br/>';
+		result += '<br/><button class="btn modelfield btn-default" type="button" style="color: #FFF;background-color: ' + getRandomColor() + '">' + model.fields[field] + '</button><br/>';
 		i++;
 	}
 	return result;
