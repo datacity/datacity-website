@@ -23,7 +23,6 @@ class customers implements FixtureInterface
       // On crée la catégorie
       $liste_customers[$i] = new Customer();
       $liste_customers[$i]->setName($name);
-      $liste_customers[$i]->setCity($cities[$i]);
       $liste_customers[$i]->setContactFirstName($cfn[$i]);
       $liste_customers[$i]->setContactLastName($cln[$i]);
       $liste_customers[$i]->setContactMail($cm[$i]);

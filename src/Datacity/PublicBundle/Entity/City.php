@@ -32,6 +32,11 @@ class City
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="city", cascade={"persist"})
      */
     private $applications;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Customer", mappedBy="city", cascade={"persist"})
+     */
+    private $customers;
 
     /**
      * Get id
@@ -104,5 +109,38 @@ class City
     public function getApplications()
     {
         return $this->applications;
+    }
+
+    /**
+     * Add customers
+     *
+     * @param \Datacity\PublicBundle\Entity\Customer $customers
+     * @return City
+     */
+    public function addCustomer(\Datacity\PublicBundle\Entity\Customer $customers)
+    {
+        $this->customers[] = $customers;
+    
+        return $this;
+    }
+
+    /**
+     * Remove customers
+     *
+     * @param \Datacity\PublicBundle\Entity\Customer $customers
+     */
+    public function removeCustomer(\Datacity\PublicBundle\Entity\Customer $customers)
+    {
+        $this->customers->removeElement($customers);
+    }
+
+    /**
+     * Get customers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCustomers()
+    {
+        return $this->customers;
     }
 }

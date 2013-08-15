@@ -39,7 +39,7 @@
 							<li><label>Client :</label> {{ appli.getCustomer().getName() }}</li>
 							<li><label>Plateformes :</label> {% for platform in appli.getPlatforms() %}{{ platform.getName() }} {% endfor %}</li>
 							<li><label>Téléchargements :</label> {{ appli.getDownloaded() }}</li>
-							<li><label>Project URL :</label><a href="#"> {{ app_url }}</a></li>
+							<li><label>Project URL :</label><a href="#"> {{ appli.getUrl() }}</a></li>
 						</ul>
 					</div>
 					<div class="widget">

@@ -66,7 +66,7 @@ class DefaultController extends Controller
 		$platforms = $this->getDoctrine()->getRepository("DatacityPublicBundle:Platform");
 		/*
 		$customer = new Customer();
-		$customer->setCity("Montpellier");
+		$customer->setCity($villes->findOneByName("Paris"));
 		$customer->setContactFirstName("Lionel");
 		$customer->setContactLastName("Samsoul");
 		$customer->setContactMail("lionel.samsoul@gmail.com");
@@ -77,6 +77,7 @@ class DefaultController extends Controller
 		
 		$application = new Application();
 		$application->setName('Datacity Culture');
+		$application->setUrl('http://www.url-culture.fr');
 		$application->setDescription('Application de référencement des principaux lieux culturels');
 		$application->setCity($villes->findOneByName("Paris"));
 		$application->addCategorie($categories->findOneByName("Musique"));
@@ -117,7 +118,7 @@ class DefaultController extends Controller
 		
 
 		$customer2 = new Customer();
-		$customer2->setCity("Montpellier");
+		$customer2->setCity($villes->findOneByName("Montpellier"));
 		$customer2->setContactFirstName("Pierro");
 		$customer2->setContactLastName("Dujardin");
 		$customer2->setContactMail("pierrodujardin@gmail.com");
@@ -128,6 +129,7 @@ class DefaultController extends Controller
 		
 		$application2 = new Application();
 		$application2->setName('Datacity Street');
+		$application2->setUrl("http://www.url-street.fr/");
 		$application2->setDescription('Application de référencement des principales rues. ^^');
 		$application2->setCity($villes->findOneByName("Montpellier"));
 		$application2->addCategorie($categories->findOneByName("Culture"));
@@ -170,7 +172,7 @@ class DefaultController extends Controller
 		
 
 		$customer3 = new Customer();
-		$customer3->setCity("Ales");
+		$customer3->setCity($villes->findOneByName("Ales"));
 		$customer3->setContactFirstName("Alfred");
 		$customer3->setContactLastName("Bond");
 		$customer3->setContactMail("ab@gmail.com");
@@ -181,6 +183,7 @@ class DefaultController extends Controller
 		
 		$application3 = new Application();
 		$application3->setName('Datacity Datacity Tourism');
+		$application3->setUrl("http://www.url-tourism.fr/");
 		$application3->setDescription('Application de référencement des principaux lieux touritiques');
 		$application3->setCity($villes->findOneByName("Ales"));
 		$application3->addCategorie($categories->findOneByName("Tourisme"));
@@ -245,7 +248,7 @@ class DefaultController extends Controller
 		
 
 		$customer4 = new Customer();
-		$customer4->setCity("Catalogne (village)");
+		$customer4->setCity($villes->findOneByName("Catalogne (village)"));
 		$customer4->setContactFirstName("Cyril");
 		$customer4->setContactLastName("Decatalogne");
 		$customer4->setContactMail("catalogne.cyril@gmail.com");
@@ -256,6 +259,7 @@ class DefaultController extends Controller
 		
 		$application4 = new Application();
 		$application4->setName('Datacity Inch\'Allah');
+		$application4->setUrl("http://www.url-inchallah.fr");
 		$application4->setDescription('Application de référencement des principaux coins a eviter. <3');
 		$application4->setCity($villes->findOneByName("Catalogne (village)"));
 		$application4->addCategorie($categories->findOneByName("Évènement"));
@@ -286,8 +290,8 @@ class DefaultController extends Controller
 		$em->persist($image7);
 		$em->persist($image8);
 		
-		$em->flush();
-*/
+		$em->flush();*/
+
 		
 		$repo = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application");
 		$applications = $repo->findAll();

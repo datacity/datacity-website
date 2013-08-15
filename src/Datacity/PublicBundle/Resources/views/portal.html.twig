@@ -30,6 +30,7 @@
 					
 						<!-- Item Project and Filter Name -->
 						<li class="item-thumbs span4 {{ app.getCity().getName() }}" data-id="id-{{ app.getId() }}" data-type="{{ app.getCity().getName() }}">
+						<h5>{{ app.getName() }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ app.getName() }}" href="{{ path('datacity_public_appDetail', {'id' : app.getId() }) }}">
 						<span class="overlay-img"></span>

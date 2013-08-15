@@ -43,9 +43,7 @@ class Customer
     private $contactLastName;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", inversedBy="customers", cascade={"persist"})
      */
     private $city;
 
@@ -157,29 +155,6 @@ class Customer
     public function getContactLastName()
     {
         return $this->contactLastName;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Customer
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
     }
 
     /**
@@ -322,5 +297,29 @@ class Customer
     public function getApplications()
     {
         return $this->applications;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Datacity\PublicBundle\Entity\City $city
+     * @return Customer
+     */
+    public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+    
+        $city->addCustomer($this);
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Datacity\PublicBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
