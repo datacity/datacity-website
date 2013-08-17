@@ -21,3 +21,7 @@ datacity_public_dataviewpage:
 datacity_public_contactpage:
     pattern:  /contact
     defaults: { _controller: DatacityPublicBundle:Default:contact }
+    
+datacity_public_initdb:
+    pattern:  /initdb
+    defaults: { _controller: DatacityPublicBundle:Default:initdb }
