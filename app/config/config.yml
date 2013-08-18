@@ -28,8 +28,6 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    globals:
-        fos_csrf_provider: "@form.csrf_provider"
 
 # Assetic Configuration
 assetic:
