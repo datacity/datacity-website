@@ -21,3 +21,12 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+
+assetic:
+    filters:
+        uglifyjs2:
+            bin: %kernel.root_dir%/Resources/node_modules/uglify-js/bin/uglifyjs
+            apply_to:   "\.js$"
+        uglifycss:
+            bin: %kernel.root_dir%/Resources/node_modules/uglifycss/uglifycss
+            apply_to:   "\.css$"
