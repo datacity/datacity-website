@@ -1,0 +1,57 @@
+{% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+
+{% block title %}Datacity -- Vue des données{% endblock %}
+{% block pagetitle %}Vue des données{% endblock %}
+{% block pagename %}Source - Détail{% endblock %}
+{% block pagecontent %}
+	<section id="content">
+		<div class="container">
+			<div class="row">
+				<div class="span8">
+					<article>
+					<div class="top-wrapper">
+						<div class="post-heading">
+							<h3><a href="#">Informations ville montpellier</a></h3>
+						</div>
+						<!-- start flexslider -->
+						<div class="flexslider">
+							<ul class="slides">
+								<li>
+								<img src="{{ asset('http://www.caledonianpost.com/wp-content/uploads/2013/04/android.jpg') }}" alt="" />
+								</li>
+								<li>
+								<img src="{{ asset('http://www.theartoftylerjordan.com/newsite_images/Illustration/concepts/googlebot.jpg') }}" alt="" />
+								</li>
+							</ul>
+						</div>
+						<!-- end flexslider -->
+					</div>
+					<p>
+					Application de référencement des principaux lieux culturels, historiques et touristiques.
+					</p>
+					</article>
+				</div>
+				<div class="span4">
+					<aside class="right-sidebar">
+					<div class="widget">
+						<h5 class="widgetheading">Informations</h5>
+						<ul class="folio-detail">
+							<li><label>Categories : </label>Villes</li>
+							<li><label>Client : </label> Toto</li>
+							<li><label>Plateformes : </label>Ios</li>
+							<li><label>Téléchargements : </label>45</li>
+							<li><label>Project URL : </label><a href="#">www.test.com</a></li>
+						</ul>
+					</div>
+					<div class="widget">
+						<h5 class="widgetheading">Sources</h5>
+						<p>
+							Toutes les données de cette application sont générées depuis des sources OpenData.
+						</p>
+					</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section> 
+{% endblock %}

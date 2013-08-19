@@ -320,9 +320,55 @@ class DefaultController extends Controller
 		$em->persist($image7);
 		$em->persist($image8);
 		
+		// Création des données News
+		$news = new News();
+		$news->setTitle('Test1');
+		$news->setUser('Cynt');
+		$news->setMessage("Message pour l'article numero un");
+		$news->setDate("15.08.2013");
+		
+		$news2 = new News();
+		$news2->setTitle('Test2');
+		$news2->setUser('Marco');
+		$news2->setMessage("Message pour l'article numero deux");
+		$news2->setDate("10.07.2013");
+		
+		$news3 = new News();
+		$news3->setTitle('Test3');
+		$news3->setUser('Cedric');
+		$news3->setMessage("Message pour l'article numero trois");
+		$news3->setDate("22.05.2013");
+				
+	
+		$em->persist($news);
+		$em->persist($news2);
+		$em->persist($news3);
+		
+		
 		$em->flush();
 		return ("Initialisation de la DB finie.");
 		}
 		return ("Les donnees sont deja en base !");
+	}
+	public function dataViewDetailAction($id)
+	{
+		$response = $this->render('DatacityPublicBundle::dataViewDetail.html.twig');
+		return $response;
+	}
+	public function newsAction()
+	{
+		
+		$em = $this->getDoctrine()->getManager();
+		
+		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
+		$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News");
+		
+		$news = $news->findAll();
+		
+		$categories = $categories->findAll();
+		
+		
+		$response = $this->render('DatacityPublicBundle::news.html.twig', array('news' => $news, 'categories' => $categories));
+		return $response;
 	}
 }
