@@ -38,7 +38,7 @@ class DefaultController extends Controller
 		
 		$cities = $villes->findAll();
 		
-		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'apps' => $applications));
+		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
 		return $response;
 	}
 	public function appDetailAction($id)
