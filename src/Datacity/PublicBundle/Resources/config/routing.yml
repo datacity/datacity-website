@@ -25,3 +25,15 @@ datacity_public_contactpage:
 datacity_public_initdb:
     pattern:  /initdb
     defaults: { _controller: DatacityPublicBundle:Default:initdb }
+
+datacity_public_dataViewDetail:
+    pattern:  /datadetail/{id}
+    defaults: { _controller: DatacityPublicBundle:Default:dataViewDetail, id: 0 }
+    
+datacity_public_news:
+    pattern:  /news
+    defaults: { _controller: DatacityPublicBundle:Default:news }
+   
+datacity_public_ajouter:
+    pattern:  /ajouter
+    defaults: { _controller: DatacityPublicBundle:Default:ajouter }

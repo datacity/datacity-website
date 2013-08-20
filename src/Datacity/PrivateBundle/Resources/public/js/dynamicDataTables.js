@@ -55,6 +55,7 @@ function createRelationFile(headersDtFormat, rowsDtFormat, map) {
    	file['table' + indexTable]['map'] = map;
    	file['table' + indexTable]['link'] = new Array();
    	file['table' + indexTable]['append'] = new Array();
+   	file['table' + indexTable]['clickedColors'] = {};
 }
 
 (function($) {
@@ -188,6 +189,7 @@ function formatAdress(rows) {
 			}
 		}
 	});
+	console.log(rows);
 }
 
 function escapeMultiRows(rows) {
@@ -215,15 +217,18 @@ function escapeMultiRows(rows) {
 $('.final-merge').click(function() {
 	var header = generateHeaders(modelApi.fields);
 	var rowArray = new Array();
+	addNewTab();
 	for (var subfile in file) {
 		for (var rows in file[subfile].rows) {
 			var rowLine = initArray(model.fields.length);
 			
 			// CHAMPS CONCATENES
 			for (var colors in file[subfile]['append']) {
+				if (file[subfile].rows[rows][file[subfile]['append'][colors][0]] == "0")
+					file[subfile].rows[rows][file[subfile]['append'][colors][0]] = "";
 				for (var index in file[subfile]['append'][colors]) {
-					if (index > 0) 
-						file[subfile].rows[rows][file[subfile]['append'][colors][0]] = file[subfile].rows[rows][file[subfile]['append'][colors][0]].toString() + " " + file[subfile].rows[rows][file[subfile]['append'][colors][index]];
+					if (index > 0 && file[subfile].rows[rows][file[subfile]['append'][colors][index]] != "0")
+						file[subfile].rows[rows][file[subfile]['append'][colors][0]] = file[subfile].rows[rows][file[subfile]['append'][colors][0]].toString() + " " + file[subfile].rows[rows][file[subfile]['append'][colors][index]];						
 				}
 			}
 
@@ -246,13 +251,12 @@ $('.final-merge').click(function() {
 		objectArray.push(objectJson);
 	}
 	formatAdress(objectArray);
-	escapeMultiRows(objectArray);
-	console.log(objectArray);
+	//escapeMultiRows(objectArray);
 	writeContentOnServer({
 		"status" : "ok",
 		"response"	 : objectArray
 	});
-	addNewTab();
+	
 	//TODO : eviter de regénérer les headers
 	header = generateHeaders(model.fields, "final-table");
 	$('#tab' + indexTable).generateDataTables({
@@ -270,9 +274,9 @@ $('body').on('click', '.final-table', function(e) {
 	alert('on a cliqué sur la final table ! ');
 });
 
-function isAlreadySameColor(colorToCheck) {
-	for (var color in clickedColors) {
-		if (color == colorToCheck) 
+function sameColor(clickedColors, comparator) {
+	for (keys in clickedColors) {
+		if (keys == comparator)
 			return true;
 	}
 	return false;
@@ -303,13 +307,13 @@ $('body').on('click', 'th', function(e) {
 				file[currentTable]['append'][currentColor].push(indexKey);
 				console.log("ajout d'un nouvelle instance a la suite du tableau de correspondance");
 			}
-			else if (clickedColors[currentColor]) {
+			else if (file[currentTable].clickedColors[currentColor] && sameColor(file[currentTable].clickedColors, currentColor) == true) {
 				file[currentTable]['append'][currentColor] = [];
-				file[currentTable]['append'][currentColor].push(clickedColors[currentColor], indexKey);
+				file[currentTable]['append'][currentColor].push(file[currentTable].clickedColors[currentColor], indexKey);
 				console.log("ajout d'une nouvelle coleur dans le tableau de correspondance");
 			}
 			else {
-				clickedColors[currentColor] = indexKey;
+				file[currentTable].clickedColors[currentColor] = indexKey;
 				var valueFinalTableIndex = model.map[selectedField];
 				linkMap[indexKey] = valueFinalTableIndex;
 				file[currentTable]['link'].push(linkMap);

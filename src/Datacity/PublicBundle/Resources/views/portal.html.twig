@@ -17,7 +17,7 @@
 				<ul class="portfolio-categ filter">
 					<li class="all active"><a href="#">Toutes</a></li>
 					{% for city in filter_cities %}
-							<li class="{{ city.getName() }} active"><a href="#">{{ city.getName() }}</a></li>
+							<li class="{{ city.name }} active"><a href="#">{{ city.name }}</a></li>
 					{% endfor %}
 				</ul>
 				<div class="clearfix">
@@ -26,18 +26,18 @@
 					<section id="projects">
 					<ul id="thumbs" class="portfolio">
 					
-					{% for app in apps %}
+					{% for appl in applis %}
 					
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span4 {{ app.getCity().getName() }}" data-id="id-{{ app.getId() }}" data-type="{{ app.getCity().getName() }}">
-						<h5>{{ app.getName() }}</h5>
+						<li class="item-thumbs span4 {{ appl.city.name }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
+						<h5>{{ appl.name }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ app.getName() }}" href="{{ path('datacity_public_appDetail', {'id' : app.getId() }) }}">
+						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'id' : appl.id }) }}">
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
 						<!-- Thumb Image and Description -->
-						<img src="{{ app.getImages()[0].getUrl() }}" alt="{{ app.getDescription() }}">
+						<img src="{{ appl.images[0].url }}" alt="{{ appl.description }}">
 						</li>
 						
 					{% endfor %}
