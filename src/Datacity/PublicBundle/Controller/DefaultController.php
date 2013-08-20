@@ -68,7 +68,7 @@ class DefaultController extends Controller
 		}
 		
 		
-		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app, "app_categories" => $cats, "app_client" => $client, "app_platforms" => $platforms, "app_url" => $url, "app_downloaded" => $downloaded));
+		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app));
 		return $response;
 	}
 	public function documentationAction()
