@@ -56,9 +56,8 @@ var callAjax = function(jsonobject) {
 var createJsonFile = function(jsonObject) {
 	$.ajax({
 		type: "POST",
-		url: "http://datacity.fr:8888/test",
+		url: "http://api.datacity.fr/test",
         crossDomain: true,
-        //contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		data: jsonObject,
 		success: function (data) {
