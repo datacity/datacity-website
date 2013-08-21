@@ -85,7 +85,7 @@
 	
 	<section id="content">
 	 <div class="container">
-		<!-- <div class="row">
+		{# <div class="row">
 			 <div class="span12">
 				<div class="row">
 					 <div class="span3">
@@ -153,7 +153,7 @@
 				<div class="solidline">
 				</div>
 			</div>
-		</div> -->
+		</div> #}
 		<!-- end divider -->
 		<!-- Portfolio Projects -->
 		<div class="row">
@@ -165,30 +165,30 @@
 						<!-- Item Project and Filter Name -->
 						<li class="item-thumbs span3 design" data-id="id-0" data-type="web">
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						{% image '@DatacityPublicBundle/Resources/public/img/works/full/image-01-full.jpg' %}
-							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="{{ asset_url }}">
+						{% image 'http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg' %}
+							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Datacity Culture" href="{{ asset_url }}">
 						{% endimage %}
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
 						<!-- Thumb Image and Description -->
-						{% image '@DatacityPublicBundle/Resources/public/img/works/thumbs/image-01.jpg' %}
-							<img src="{{ asset_url }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+						{% image 'http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg' %}
+							<img src="{{ asset_url }}" alt="Application de référencement des principaux lieux culturels.">
                         {% endimage %}
 						</li>
 						<!-- End Item Project -->
 						<!-- Item Project and Filter Name -->
 						<li class="item-thumbs span3 design" data-id="id-1" data-type="icon">
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						{% image '@DatacityPublicBundle/Resources/public/img/works/full/image-02-full.jpg' %}
-							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="{{ asset_url }}">
+						{% image 'http://fr.rotterdam.info/data/offer/offerid1005/large/City-Racing-Rotterdam---Bavaria-City-Racing-133882027806.jpg' %}
+							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Datacity Tourism" href="{{ asset_url }}">
 						{% endimage %}
 						<span class="overlay-img"></span>
 						<span class="overlay-img-thumb font-icon-plus"></span>
 						</a>
 						<!-- Thumb Image and Description -->
-						{% image '@DatacityPublicBundle/Resources/public/img/works/thumbs/image-02.jpg' %}
-							<img src="{{ asset_url }}" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+						{% image 'http://fr.rotterdam.info/data/offer/offerid1005/large/City-Racing-Rotterdam---Bavaria-City-Racing-133882027806.jpg' %}
+							<img src="{{ asset_url }}" alt="Application de référencement des principaux lieux touritiques">
 						{% endimage %}
 						</li>
 						<!-- End Item Project -->
@@ -298,7 +298,7 @@
 		<!-- end divider -->
 		<div class="row">
 			<div class="span12">
-				<h4>Very satisfied <strong>clients</strong></h4>
+				<h4>Partners and <strong>clients</strong></h4>
 				<ul id="mycarousel" class="jcarousel-skin-tango recent-jcarousel clients">
 					<li>
 					<a href="#">
@@ -328,16 +328,6 @@
 					<li>
 					<a href="#">
 					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client6.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client1.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client2.png') }}" class="client-logo" alt="" />
 					</a>
 					</li>
 					<li>
