@@ -32,7 +32,6 @@ class DefaultController extends Controller
 
 		
 		$repo = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application");
-<<<<<<< HEAD
 		$applications = $repo->findAll();
 		
 		
@@ -101,7 +100,6 @@ class DefaultController extends Controller
 	}
 	public function initdbAction()
 	{
-=======
 		$applications = $repo->findAll();
 		
 		
@@ -170,7 +168,6 @@ class DefaultController extends Controller
 	}
 	public function initdbAction()
 	{
->>>>>>> d6694c49f3f500669262251ebaf61685b39931d4
 		$em = $this->getDoctrine()->getManager();
 		
 		$villes = $this->getDoctrine()->getRepository("DatacityPublicBundle:City")->findAll();
