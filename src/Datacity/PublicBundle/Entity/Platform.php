@@ -35,6 +35,11 @@ class Platform
      */
     private $version;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", mappedBy="platforms", cascade={"persist"})
+     */
+    private $applications;
+    
 
     /**
      * Get id
@@ -90,5 +95,45 @@ class Platform
     public function getVersion()
     {
         return $this->version;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Platform $applications
+     * @return Platform
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Platform $applications)
+    {
+        $this->applications[] = $applications;
+    
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Platform $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Platform $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

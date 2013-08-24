@@ -32,6 +32,11 @@ class Category
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="category", cascade={"persist","remove"})
      */
     private $images;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", mappedBy="platforms", cascade={"persist"})
+     */
+    private $applications;
 
     /**
      * Get id
@@ -105,5 +110,38 @@ class Category
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Platform $applications
+     * @return Category
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Platform $applications)
+    {
+        $this->applications[] = $applications;
+    
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Platform $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Platform $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

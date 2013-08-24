@@ -60,12 +60,12 @@ class Application
     private $city;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", inversedBy="applications", cascade={"persist"})
      */
     private $platforms;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="applications", cascade={"persist"})
      */
     private $categories;
     
@@ -207,6 +207,7 @@ class Application
     {
         $this->platforms[] = $platforms;
     
+        $platforms->addApplication($this);
         return $this;
     }
 
@@ -240,6 +241,7 @@ class Application
     {
         $this->categories[] = $categories;
     
+        $categories->addApplication($this);
         return $this;
     }
 
