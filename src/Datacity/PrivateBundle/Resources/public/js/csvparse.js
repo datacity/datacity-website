@@ -24,7 +24,8 @@ function contentFileJSON(content, name) {
 function createTable(jsonObject, name) {
 	var formatedHeaders = generateHeaders(jsonObject.headers, 'table' + indexTable);
 	var formatedRows = generateRows(jsonObject.rows, jsonObject.headers.length);
-	addNewTab();
+	addNewTab(name);
+	console.log(name);
    	createRelationFile(formatedHeaders, formatedRows, generateMap(jsonObject.headers));
 	$('#tab' + indexTable).generateDataTables({
 			'header' 	: {

@@ -104,11 +104,12 @@ var initArray = function(length) {
 	return tab;
 }
 
-function addNewTab() {
+function addNewTab(name) {
 	indexTable--
    	$('#tab' + indexTable).removeClass('active');
    	$('.current' + indexTable).removeClass('active');
    	indexTable++;
+   	$('#mtab' + indexTable).text(name.substr(0, 10));
    	$('#tab' + indexTable).addClass('active');
    	$('.current' + indexTable).addClass('active');
 }
@@ -217,7 +218,7 @@ function escapeMultiRows(rows) {
 $('.final-merge').click(function() {
 	var header = generateHeaders(modelApi.fields);
 	var rowArray = new Array();
-	addNewTab();
+	addNewTab("Final Table");
 	for (var subfile in file) {
 		for (var rows in file[subfile].rows) {
 			var rowLine = initArray(model.fields.length);
