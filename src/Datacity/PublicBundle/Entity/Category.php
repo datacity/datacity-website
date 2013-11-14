@@ -29,14 +29,16 @@ class Category
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_article", type="integer")
+     */
+    private $nb_article;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="category", cascade={"persist","remove"})
      */
     private $images;
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", mappedBy="platforms", cascade={"persist"})
-     */
-    private $applications;
 
     /**
      * Get id
@@ -69,6 +71,29 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+    
+    /**
+     * Set nb_article
+     *
+     * @param integer $nb_article
+     * @return Category
+     */
+    public function setNb_article($nb_article)
+    {
+    	$this->nb_article = $nb_article;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get nb_article
+     *
+     * @return integer
+     */
+    public function getNb_article()
+    {
+    	return $this->nb_article;
     }
     
     /**
@@ -110,38 +135,5 @@ class Category
     public function getImages()
     {
         return $this->images;
-    }
-
-    /**
-     * Add applications
-     *
-     * @param \Datacity\PublicBundle\Entity\Platform $applications
-     * @return Category
-     */
-    public function addApplication(\Datacity\PublicBundle\Entity\Platform $applications)
-    {
-        $this->applications[] = $applications;
-    
-        return $this;
-    }
-
-    /**
-     * Remove applications
-     *
-     * @param \Datacity\PublicBundle\Entity\Platform $applications
-     */
-    public function removeApplication(\Datacity\PublicBundle\Entity\Platform $applications)
-    {
-        $this->applications->removeElement($applications);
-    }
-
-    /**
-     * Get applications
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getApplications()
-    {
-        return $this->applications;
     }
 }

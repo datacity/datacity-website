@@ -9,6 +9,8 @@ use Datacity\PublicBundle\Entity\City;
 use Datacity\PublicBundle\Entity\Customer;
 use Datacity\PublicBundle\Entity\Platform;
 use Datacity\PublicBundle\Entity\Category;
+use Datacity\PublicBundle\Entity\News;
+
 
 class DefaultController extends Controller
 {
@@ -29,7 +31,7 @@ class DefaultController extends Controller
 		$villes = $this->getDoctrine()->getRepository("DatacityPublicBundle:City");
 		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
 		$platforms = $this->getDoctrine()->getRepository("DatacityPublicBundle:Platform");
-
+		
 		
 		$repo = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application");
 		$applications = $repo->findAll();
@@ -100,14 +102,64 @@ class DefaultController extends Controller
 	}
 	public function initdbAction()
 	{
-		$applications = $repo->findAll();
+		$em = $this->getDoctrine()->getManager();
+		// Création des données News
+		/*$news = new News;
+		$news->setTitle('Test1');
+		$news->setUser('Cynt');
+		$news->setMessage("Message pour l'article numero un");
+		$news->setDate("15.08.2013");
+		$news->setImg("http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg");
+		
+		$news2 = new News;
+		$news2->setTitle('Test2');
+		$news2->setUser('Marco');
+		$news2->setMessage("Message pour l'article numero deux");
+		$news2->setDate("10.07.2013");
+		$news2->setImg("http://senseable.mit.edu/copenhagenwheel/pix_urbanData/data_02.jpg");
+		
+		$news3 = new News;
+		$news3->setTitle('Test3');
+		$news3->setUser('Cedric');
+		$news3->setMessage("Message pour l'article numero trois");
+		$news3->setDate("22.05.2013");
+		$news3->setImg("http://www.clandoustphotography.co.uk/images/banner_bridges1.jpg");
+		
+		
+		$em->persist($news);
+		$em->persist($news2);
+		$em->persist($news3);*/
+		
+		// Creation des category
+				
+		/*	$noms = array('Culture', 'Itinéraire', 'Tourisme', 'Évènement', 'Concerts', 'Musique', 'Cinémas');
+		
+			foreach($noms as $i => $name)
+			{
+				// On crée la catégorie
+				$liste_categories[$i] = new Category();
+				$liste_categories[$i]->setName($name);
+		
+				// On la persiste
+				$em->persist($liste_categories[$i]);
+			}*/
+		
+		
+		//$em->flush();
+		
+		
+		//$applications = $repo->findAll();
 		
 		
 		
-		$cities = $villes->findAll();
+		//$cities = $villes->findAll();
 		
-		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
-		return $response;
+		//$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
+		
+		//return $response;
+		//return ("Initialisation de la DB finie.");
+	
+		
 	}
 	public function dataViewDetailAction($id)
 	{
