@@ -1,4 +1,4 @@
-set :stages,        %w(prod dev)
+set :stages,        %w(prod dev demo)
 set :default_stage, "prod"
 set :stage_dir,     "app/config"
 require 'capistrano/ext/multistage'
