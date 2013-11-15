@@ -61,9 +61,9 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$manager->persist($application);
 		
 		$application = new Application();
-		$application->setName('Datacity Inch\'Allah');
-		$application->setUrl("http://www.url-inchallah.fr");
-		$application->setDescription('Application de référencement des principaux coins a eviter. <3');
+		$application->setName('Datacity Fiction');
+		$application->setUrl("http://www.url-fiction.fr");
+		$application->setDescription('Application fictive');
 		$application->setCity($this->getReference('city-'.CitiesData::$citiesName[3])); //Catalogne (village)
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[3])); //Évènement
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[1])); //Itinéraire

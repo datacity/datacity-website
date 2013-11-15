@@ -14,61 +14,52 @@ use Datacity\PublicBundle\Entity\News;
 
 class DefaultController extends Controller
 {
+	// Controlleur de la page Home: page statique actuellement,
+	// on affiche donc seulement la page d'accueil twig sans donnees dynamiques.
 	public function homeAction()
 	{
 		$response = $this->render('DatacityPublicBundle::home.html.twig');
 		return $response;
 	}
+	
+	// Controlleur de la page Contact: page statique actuellement,
+	// on affiche donc seulement la page brute de contact twig.
 	public function contactAction()
 	{
 		$response = $this->render('DatacityPublicBundle::contact.html.twig');
 		return $response;
 	}
+	
+	
+	// Controlleur du portail applicatif. Ici nous recuperons les entites qui sont en DB pour generer le contenu
+	// de notre portail applicatif. (On importe ici la liste de toutes les villes et applications).
 	public function portalAction()
 	{
 		$em = $this->getDoctrine()->getManager();
 		
-		$villes = $this->getDoctrine()->getRepository("DatacityPublicBundle:City");
-		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
-		$platforms = $this->getDoctrine()->getRepository("DatacityPublicBundle:Platform");
-		
-		
-		$repo = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application");
-		$applications = $repo->findAll();
-		
-		
-		
-		$cities = $villes->findAll();
+		$cities = $this->getDoctrine()->getRepository("DatacityPublicBundle:City")->findAll();	
+		$applications = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application")->findAll();
 		
 		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
 		return $response;
 	}
+	
+	
+	// Controlleur pour la page de detail des applications: in ID est passe en parametre a ce controlleur via la route "detail"
+	// Cette ID correspond au numero dans l'URL datacity.fr/detail/1 (1 = id)
+	// Ici, on recupere l'application desiree pour generer sont contenu dynamiquement depuis la page twig.
+	// Si aucune aplication n'existe avec cet ID, une exception est generee.
 	public function appDetailAction($id)
-	{
-		$name = "DataCity Tourism";
-		$description = "Application de référencement des principaux lieux culturels, historiques et touristiques.";
-		$cats =  array("Tourisme", "Loisirs", "Histoire");
-		$client = "Montpellier";
-		$platforms =  array("iOs", "Android", "Blackberry", "Windows Phone");
-		$images = array("http://www.caledonianpost.com/wp-content/uploads/2013/04/android.jpg", "http://www.theartoftylerjordan.com/newsite_images/Illustration/concepts/googlebot.jpg");
-		$url = "http://www.google.fr/";
-		$downloaded = 1423;
-		
-		$apps = $this->getDoctrine()
+	{		
+		$app = $this->getDoctrine()
 		->getRepository('DatacityPublicBundle:Application')
-		->findById($id);
-		
-		foreach ($apps as $value)
-		{
-			$app = $value;
-		}
+		->findById($id)[0];
 		
 		if (!isset($app) || !$app) {
 			throw $this->createNotFoundException(
 					'Aucune application trouvée pour cet id : '.$id
 			);
 		}
-		
 		
 		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app));
 		return $response;
@@ -100,6 +91,8 @@ class DefaultController extends Controller
 		$response = $this->render('DatacityPublicBundle::dataview.html.twig');
 		return $response;
 	}
+	
+	//Ancien systeme remplace par les fixtures (a retirer une fois les fixtures totalement finies)
 	public function initdbAction()
 	{
 		$em = $this->getDoctrine()->getManager();

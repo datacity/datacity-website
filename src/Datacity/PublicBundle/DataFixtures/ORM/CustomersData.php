@@ -13,7 +13,7 @@ class CustomersData extends AbstractFixture implements OrderedFixtureInterface
 			'Paris Mairie',
 			'Montpellier Mairie',
 			'Ales Mairie',
-			'Catalogne (village) Mairie'
+			'Lyon Mairie'
 	);
 	
 	public function load(ObjectManager $manager)

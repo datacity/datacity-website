@@ -13,7 +13,7 @@ class CitiesData extends AbstractFixture implements OrderedFixtureInterface
 			'Paris',
 			'Montpellier',
 			'Ales',
-			'Catalogne (village)',
+			'Catalogne',
 			'Nimes',
 			'Lyon' 
 	);

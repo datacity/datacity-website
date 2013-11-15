@@ -136,4 +136,27 @@ class Category
     {
         return $this->images;
     }
+
+    /**
+     * Set nb_article
+     *
+     * @param integer $nbArticle
+     * @return Category
+     */
+    public function setNbArticle($nbArticle)
+    {
+        $this->nb_article = $nbArticle;
+    
+        return $this;
+    }
+
+    /**
+     * Get nb_article
+     *
+     * @return integer 
+     */
+    public function getNbArticle()
+    {
+        return $this->nb_article;
+    }
 }
