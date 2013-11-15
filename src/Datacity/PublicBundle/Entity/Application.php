@@ -207,7 +207,6 @@ class Application
     {
         $this->platforms[] = $platforms;
     
-        $platforms->addApplication($this);
         return $this;
     }
 
@@ -241,7 +240,6 @@ class Application
     {
         $this->categories[] = $categories;
     
-        $categories->addApplication($this);
         return $this;
     }
 

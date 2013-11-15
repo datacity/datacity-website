@@ -26,6 +26,7 @@ class CategoriesData extends AbstractFixture implements OrderedFixtureInterface
 			$cat = new Category();
 			$cat->setName($name); 
 			$manager->persist($cat);
+			$this->getReference('image-'.md5(ImagesData::$imagesUrl[$i]))->setCategory($cat);
 			$this->addReference('category-'.$name, $cat);
     	}
 		$manager->flush();

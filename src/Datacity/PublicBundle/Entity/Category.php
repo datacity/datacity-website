@@ -33,7 +33,7 @@ class Category
      *
      * @ORM\Column(name="nb_article", type="integer")
      */
-    private $nb_article;
+    private $nb_article = 0;
     
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="category", cascade={"persist","remove"})
