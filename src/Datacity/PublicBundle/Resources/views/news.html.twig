@@ -18,14 +18,17 @@
 						<button type="submit" class="btn btn-square btn-theme">Search</button>
 					</form>
 				</div>
+				{# Affichage des catégories #}
 				<div class="widget">
 					<h5 class="widgetheading">Categories</h5>
 					<ul class="cat">
+					{# Parcours de la liste des catégories envoyés par le controlleur #}
 					{% for categories in categories %}
 						<li><i class="icon-angle-right"></i><a href="#">{{ categories.getName() }}</a><span> ({{ categories.getNb_article() }})</span></li>
 					{% endfor %}
 					</ul>
 				</div>
+				{# Affichage des dernieres news #}
 				<div class="widget">
 					<h5 class="widgetheading">Latest posts</h5>
 					<ul class="recent">
@@ -61,8 +64,10 @@
 					</ul>
 				</div>
 				</aside>
+			{# Affichage des news #}
 			</div>
 			<div class="span8">
+			{# Parcours de la liste des news envoyés par le controlleur #}
 					{% for news in news %}
 					<article>
 						<div class="row">
@@ -92,6 +97,7 @@
 				</div>
 				</article>
 				{% endfor %}
+				{# Affichage de la pagination #}
 				<div id="pagination">
 					<span class="all">Page 1 of 3</span>
 					<span class="current">1</span>

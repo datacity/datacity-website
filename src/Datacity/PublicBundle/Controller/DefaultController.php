@@ -90,92 +90,37 @@ class DefaultController extends Controller
 		$response = $this->render('DatacityPublicBundle::documentation.html.twig', array("docCategories" => $docCategories, "docCategoriesContent" => $docCategoriesContent));
 		return $response;
 	}
+	
+	// Controller de la page visualisation des données
 	public function dataviewAction()
 	{
 		$response = $this->render('DatacityPublicBundle::dataview.html.twig');
 		return $response;
 	}
 	
-	//Ancien systeme remplace par les fixtures (a retirer une fois les fixtures totalement finies)
-	public function initdbAction()
-	{
-		$em = $this->getDoctrine()->getManager();
-		// Création des données News
-		/*$news = new News;
-		$news->setTitle('Test1');
-		$news->setUser('Cynt');
-		$news->setMessage("Message pour l'article numero un");
-		$news->setDate("15.08.2013");
-		$news->setImg("http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg");
-		
-		$news2 = new News;
-		$news2->setTitle('Test2');
-		$news2->setUser('Marco');
-		$news2->setMessage("Message pour l'article numero deux");
-		$news2->setDate("10.07.2013");
-		$news2->setImg("http://senseable.mit.edu/copenhagenwheel/pix_urbanData/data_02.jpg");
-		
-		$news3 = new News;
-		$news3->setTitle('Test3');
-		$news3->setUser('Cedric');
-		$news3->setMessage("Message pour l'article numero trois");
-		$news3->setDate("22.05.2013");
-		$news3->setImg("http://www.clandoustphotography.co.uk/images/banner_bridges1.jpg");
-		
-		
-		$em->persist($news);
-		$em->persist($news2);
-		$em->persist($news3);*/
-		
-		// Creation des category
-				
-		/*	$noms = array('Culture', 'Itinéraire', 'Tourisme', 'Évènement', 'Concerts', 'Musique', 'Cinémas');
-		
-			foreach($noms as $i => $name)
-			{
-				// On crée la catégorie
-				$liste_categories[$i] = new Category();
-				$liste_categories[$i]->setName($name);
-		
-				// On la persiste
-				$em->persist($liste_categories[$i]);
-			}*/
-		
-		
-		//$em->flush();
-		
-		
-		//$applications = $repo->findAll();
-		
-		
-		
-		//$cities = $villes->findAll();
-		
-		//$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
-		
-		//return $response;
-		//return ("Initialisation de la DB finie.");
-	
-		
-	}
+	// Controller de la page detail d'une donnée on envoit l'id en parametre de la donnée selectionnée par l'utilisateur.
+	// Cette page permet d'afficher plus de details sur une données présente dans la page visualisation des données.
 	public function dataViewDetailAction($id)
 	{
 		$response = $this->render('DatacityPublicBundle::dataViewDetail.html.twig');
 		return $response;
 	}
+	
+	// Controller de la page News
+	// Dans ce controller nous récupérons également l'ensemble des catégories car nous avons besoins de les réafficher sur la page de news.
 	public function newsAction()
 	{
 		
 		$em = $this->getDoctrine()->getManager();
-		
+		//Récupération des catégory qui sont en base
 		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
-		$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News");
-		
-		$news = $news->findAll();
-		
 		$categories = $categories->findAll();
 		
+		// Récupération des news qui sont en base
+		$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News");
+		$news = $news->findAll();
 		
+		//Redirection vers la page news en envoyant le tableau de news et de categories initialisé précédement.
 		$response = $this->render('DatacityPublicBundle::news.html.twig', array('news' => $news, 'categories' => $categories));
 		return $response;
 	}
