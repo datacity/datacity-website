@@ -1,6 +1,6 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
 
-
+{# Ici, on configure les parametre de base de la page #}
 {% block title %}Datacity -- Portail Applicatif{% endblock %}
 {% block pagetitle %}Portail Applicatif{% endblock %}
 {% block pagename %}Portail Applicatif{% endblock %}
@@ -16,6 +16,7 @@
 			<div class="span12">
 				<ul class="portfolio-categ filter">
 					<li class="all active"><a href="#">Toutes</a></li>
+					{# On parcour toutes les ville en DB pour generer le filtre par ville (inline) #}
 					{% for city in filter_cities %}
 							<li class="{{ city.name }} active"><a href="#">{{ city.name }}</a></li>
 					{% endfor %}
@@ -25,7 +26,7 @@
 				<div class="row">
 					<section id="projects">
 					<ul id="thumbs" class="portfolio">
-					
+					{# Boucle for de creation des block correspondant aux applications en base de donnee #}
 					{% for appl in applis %}
 					
 						<!-- Item Project and Filter Name -->

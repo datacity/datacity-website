@@ -1,5 +1,5 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
-
+{# Ici, on configure les parametre de base de la page #}
 {% block title %}Datacity -- Portail Applicatif{% endblock %}
 {% block pagetitle %}Portail Applicatif{% endblock %}
 {% block pagename %}Application - Détail{% endblock %}
@@ -11,11 +11,13 @@
 					<article>
 					<div class="top-wrapper">
 						<div class="post-heading">
+							{# On recupere ici le nom de l'applciation en cour de visualisation #}
 							<h3><a href="#">{{ appli.getName() }}</a></h3>
 						</div>
 						<!-- start flexslider -->
 						<div class="flexslider">
 							<ul class="slides">
+							{# On genere ci-dessous la galerie d'images de l'application en cour de visualisation #}
 							{% for image in appli.getImages() %}
 								<li>
 									<img src="{{ image.getUrl() }}" alt="{{ image.getAlt() }}" />
@@ -26,6 +28,7 @@
 						<!-- end flexslider -->
 					</div>
 					<p>
+						{# On recupere et insere ci-dessous la description de l'application en cour de visualisation #}		
 						 {{ appli.getDescription() }}
 					</p>
 					</article>
@@ -34,6 +37,7 @@
 					<aside class="right-sidebar">
 					<div class="widget">
 						<h5 class="widgetheading">Informations</h5>
+						{# On genere ci-dessous le panel droit contenant les details de l'application en cour de visualisation #}
 						<ul class="folio-detail">
 							<li><label>Categories :</label>  {% for cat in appli.getCategories() %}{{ cat.getName() }} {% endfor %}</li>
 							<li><label>Client :</label> {{ appli.getCustomer().getName() }}</li>
