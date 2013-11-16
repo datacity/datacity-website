@@ -41,6 +41,8 @@
 						<button type="submit" class="btn btn-square btn-theme">Recherche</button>
 					</form>
 				</div>
+				<!- Petit script qui permet de switch entre le contenu de chaque categorie->
+				<!- A ranger dans un .js->
 				<script>
 					activeCat = "";
 					function docSwitcher(id) {
@@ -52,6 +54,7 @@
 				<div class="widget">
 					<h5 class="widgetheading">Categories</h5>
 					<ul class="cat">
+					<!- On boucle sur la liste des categories->
 					{% for cat in docCategories %} 
 						<li><i class="icon-angle-right"></i><a onclick="docSwitcher('{{ cat|lower|replace({' ':''}) }}')" href="#">{{ cat }}</a></li>
 					{% endfor %}
@@ -60,11 +63,13 @@
 				
 				</aside>
 			</div>
+			<!- On boucle sur le contenu des categories->
 			{% for option, cat in docCategoriesContent %}
 			<div style="display: none" id="{{ option|lower|replace({' ':''}) }}" class="tabbable tabs-left">
 				<h3>{{ option }}</h3>
 							<ul class="nav nav-tabs">
 								{% for content in cat %}
+								<!- La premiere categorie de la liste est celle active par defaut->
 								<li {% if loop.first %}class="active"{% endif %}><a href="#{{ content.subCategorieTitle|lower|replace({' ':''}) }}" data-toggle="tab">{{ content.subCategorieTitle }}</a></li>
 								{% endfor %}
 							</ul>

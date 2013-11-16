@@ -64,8 +64,11 @@ class DefaultController extends Controller
 		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app));
 		return $response;
 	}
+	//Page de documentation
 	public function documentationAction()
 	{
+		// La prochaine version ira piocher le contenu dans la base de donnee.
+		// On recupere la liste des categories et leur contenu qu'on envoi en reponse.
 		$docCategories = array("Categorie 1", "Categorie 2",  "Categorie 3");
 		$cat1 = array(
 			1 => array("subCategorieTitle" => "Sous Categorie 11", "docContent" => "Contenu 1"),
@@ -82,6 +85,7 @@ class DefaultController extends Controller
 			2 => array("subCategorieTitle" => "Sous Categorie 32", "docContent" => "Contenu 2"),
 			3 => array("subCategorieTitle" => "Sous Categorie 33", "docContent" => "Contenu 3")
 			);
+		// On match chaque categorie avec leur contenu.
 		$docCategoriesContent = array("Categorie 1" => $cat1, "Categorie 2" => $cat2, "Categorie 3" => $cat3);
 		$response = $this->render('DatacityPublicBundle::documentation.html.twig', array("docCategories" => $docCategories, "docCategoriesContent" => $docCategoriesContent));
 		return $response;
