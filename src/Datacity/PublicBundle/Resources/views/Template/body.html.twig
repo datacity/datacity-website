@@ -65,6 +65,7 @@
 		<!-- end toggle link -->
 		<div class="row nomargin">
 			<div class="span12">
+				<!-- On inclut un lien vers le compte utilisateur si la personne est connecté -->
 				{% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					{% include 'DatacityPrivateBundle:Include:accountLink.html.twig' %}
 				{% else %}
