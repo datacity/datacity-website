@@ -18,7 +18,9 @@ class DefaultController extends Controller
 	// on affiche donc seulement la page d'accueil twig sans donnees dynamiques.
 	public function homeAction()
 	{
-		$response = $this->render('DatacityPublicBundle::home.html.twig');
+		$applications = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application")->findAll();
+		
+		$response = $this->render('DatacityPublicBundle::home.html.twig', array('applis' => $applications));
 		return $response;
 	}
 	

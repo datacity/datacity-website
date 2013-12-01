@@ -120,17 +120,18 @@
   <footer>
 	<div class="container">
 		<div class="row">
-			<div class="span3">
+			<div class="span5">
 				<div class="widget">
 					<h5 class="widgetheading">Parcourir</h5>
 					<ul class="link-list">
-						<li><a href="#">A propos de nous</a></li>
-						<li><a href="#">Notre équipe</a></li>
-						<li><a href="#">Portail d'applications</a></li>
+						<li><a href="{{ path('datacity_public_portalpage') }}">Portail applicatif</a></li>
+						<li><a href="{{ path('datacity_public_news') }}">News</a></li>
+						<li><a href="{{ path('datacity_public_dataviewpage') }}">Tableau de données</a></li>
+						<li><a href="{{ path('datacity_public_documentationpage') }}">Documentation </a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span5">
 				<div class="widget">
 					<h5 class="widgetheading">Infos utiles</h5>
 					<ul class="link-list">
@@ -140,17 +141,12 @@
 					</ul>
 				</div>
 			</div>
-			<div class="span3">
+			<div class="span2">
 				<div class="widget">
 					<h5 class="widgetheading">Nous contacter</h5>
-					<address>
-					<strong>Quelques part</strong><br>
-					 dans le cloud<br>
-					 Internet </address>
-					<p>
-						<i class="icon-phone"></i> (033) 06 060606 <br>
-						<i class="icon-envelope-alt"></i> contact@datacity.com
-					</p>
+					<p><a href="{{ path('datacity_public_contactpage') }}">Formulaire de contact</a></p>
+					<p>Ou</p>
+					<p><i class="icon-envelope-alt"></i> contact@datacity.com </p>
 				</div>
 			</div>
 		</div>
