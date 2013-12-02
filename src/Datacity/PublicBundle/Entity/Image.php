@@ -36,7 +36,7 @@ class Image
     private $alt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Application", inversedBy="images")
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Application", inversedBy="images")
      * @ORM\JoinColumn(nullable=true)
      */
     private $application;
@@ -115,14 +115,14 @@ class Image
      * @param \Datacity\PublicBundle\Entity\Application $application
      * @return Image
      */
-    public function setApplication(\Datacity\PublicBundle\Entity\Application $application = null)
+   /* public function setApplication(\Datacity\PublicBundle\Entity\Application $application = null)
     {
         $this->application = $application;
 
         if (isset($application))
 	        $application->addImage($this);
         return $this;
-    }
+    }*/
 
     /**
      * Get application
@@ -181,5 +181,35 @@ class Image
     public function getCustomer()
     {
         return $this->customer;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->application = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add application
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $application
+     * @return Image
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $application)
+    {
+        $this->application[] = $application;
+    
+        return $this;
+    }
+
+    /**
+     * Remove application
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $application
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $application)
+    {
+        $this->application->removeElement($application);
     }
 }

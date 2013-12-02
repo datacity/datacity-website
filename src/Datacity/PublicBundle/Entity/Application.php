@@ -50,7 +50,7 @@ class Application
     private $description;
     
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="application", cascade={"persist","remove"})
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="application", cascade={"persist","remove"})
      */
     private $images;
     
