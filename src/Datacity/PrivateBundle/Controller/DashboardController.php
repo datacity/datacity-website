@@ -8,6 +8,8 @@ class DashboardController extends Controller
 {
     public function indexAction()
     {
-    	return $this->render('DatacityPrivateBundle::dashboard.html.twig');
+    	//return $this->render('DatacityPrivateBundle::dashboard.html.twig');
+    	$response = $this->render('DatacityPrivateBundle::dashboard2.html.twig');
+    	return $response;
     }
 }
