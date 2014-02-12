@@ -28,6 +28,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		'bundles/datacityprivate/assets/plugins/bootstrap/css/bootstrap.min.css'
 		'bundles/datacityprivate/assets/plugins/uniform/css/uniform.default.css'
 
+		'bundles/datacityprivate/assets/plugins/dropzone/css/dropzone.css'
+		'bundles/datacityprivate/assets/plugins/dropzone/css/basic.css'
 		'bundles/datacityprivate/assets/plugins/gritter/css/jquery.gritter.css'
 		'bundles/datacityprivate/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
 		'bundles/datacityprivate/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css'
@@ -202,6 +204,346 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			</div>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN DASHBOARD STATS -->
+			
+			<div class="row custom-row-dropzone">
+				<div class="col-md-12">
+					
+					<form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone"></form>
+					
+					<br />
+					
+					<input type="submit" class="btn purple btn-block" value="Submit">
+				</div>
+			</div>
+			
+			
+	<div class="row">
+	
+	<div class="col-md-12 col-sm-6">
+     <div class="portlet box blue">
+      <div class="portlet-title">
+       <div class="caption">
+        <i class="fa fa-bell-o"></i>Recent Activities
+       </div>
+       <div class="actions">
+        <div class="btn-group">
+         <a class="btn btn-sm default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+         Filter By <i class="fa fa-angle-down"></i>
+         </a>
+         <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+          <label><input type="checkbox"/> Finance</label>
+          <label><input type="checkbox" checked=""/> Membership</label>
+          <label><input type="checkbox"/> Customer Support</label>
+          <label><input type="checkbox" checked=""/> HR</label>
+          <label><input type="checkbox"/> System</label>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="portlet-body">
+       <div class="scroller" style="height: 150px;" data-always-visible="1" data-rail-visible="0">
+        <ul class="feeds">
+         <li>
+          <div class="col1">
+           <div class="cont">
+            <div class="cont-col1">
+             <div class="label label-sm label-info">
+              <i class="fa fa-check"></i>
+             </div>
+            </div>
+            <div class="cont-col2">
+             <div class="desc">
+               You have 4 pending tasks.
+              <span class="label label-sm label-warning ">
+                Take action <i class="fa fa-share"></i>
+              </span>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="col2">
+           <div class="date">
+             Just now
+           </div>
+          </div>
+         </li>
+         <li>
+          <a href="#">
+          <div class="col1">
+           <div class="cont">
+            <div class="cont-col1">
+             <div class="label label-sm label-success">
+              <i class="fa fa-bar-chart-o"></i>
+             </div>
+            </div>
+            <div class="cont-col2">
+             <div class="desc">
+               Finance Report for year 2013 has been released.
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="col2">
+           <div class="date">
+             20 mins
+           </div>
+          </div>
+          </a>
+         </li>
+        </ul>
+       </div>
+       <div class="scroller-footer">
+        <div class="pull-right">
+         <a href="#">Afficher tous les fichiers <i class="m-icon-swapright m-icon-gray"></i></a> &nbsp;
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+	
+	</div>
+	
+	<!-- DATA TABLE -->
+	
+	<div class="row">
+	
+	<div class="col-md-6">
+     <!-- BEGIN EXAMPLE TABLE PORTLET-->
+     <div class="portlet box blue">
+      <div class="portlet-title">
+       <div class="caption">
+        <i class="fa fa-edit"></i>Editable Table
+       </div>
+       <div class="tools">
+        <a href="javascript:;" class="collapse"></a>
+        <a href="#portlet-config" data-toggle="modal" class="config"></a>
+        <a href="javascript:;" class="reload"></a>
+        <a href="javascript:;" class="remove"></a>
+       </div>
+      </div>
+      <div class="portlet-body">
+       <div class="table-toolbar">
+        <div class="btn-group">
+         <button id="sample_editable_1_new" class="btn green">
+         Add New <i class="fa fa-plus"></i>
+         </button>
+        </div>
+        <div class="btn-group pull-right">
+         <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+         </button>
+         <ul class="dropdown-menu pull-right">
+          <li>
+           <a href="#">Print</a>
+          </li>
+          <li>
+           <a href="#">Save as PDF</a>
+          </li>
+          <li>
+           <a href="#">Export to Excel</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+	   <div id="sample_editable_1_filter" class="dataTables_filter">
+    <label> Search: 
+	<input class="form-control input-medium" type="text" aria-controls="sample_editable_1"></input>
+    </label>
+
+</div>
+       <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+       <thead>
+       <tr>
+        <th>
+         Username
+        </th>
+        <th>
+         Full Name
+        </th>
+        <th>
+         Points
+        </th>
+        <th>
+         Notes
+        </th>
+        <th>
+         Edit
+        </th>
+        <th>
+         Delete
+        </th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr>
+        <td>
+         alex
+        </td>
+        <td>
+         Alex Nilson
+        </td>
+        <td>
+         1234
+        </td>
+        <td class="center">
+         power user
+        </td>
+        <td>
+         <a class="edit" href="javascript:;">Edit</a>
+        </td>
+        <td>
+         <a class="delete" href="javascript:;">Delete</a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         lisa
+        </td>
+        <td>
+         Lisa Wong
+        </td>
+        <td>
+         434
+        </td>
+        <td class="center">
+         new user
+        </td>
+        <td>
+         <a class="edit" href="javascript:;">Edit</a>
+        </td>
+        <td>
+         <a class="delete" href="javascript:;">Delete</a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         nick12
+        </td>
+        <td>
+         Nick Roberts
+        </td>
+        <td>
+         232
+        </td>
+        <td class="center">
+         power user
+        </td>
+        <td>
+         <a class="edit" href="javascript:;">Edit</a>
+        </td>
+        <td>
+         <a class="delete" href="javascript:;">Delete</a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         goldweb
+        </td>
+        <td>
+         Sergio Jackson
+        </td>
+        <td>
+         132
+        </td>
+        <td class="center">
+         elite user
+        </td>
+        <td>
+         <a class="edit" href="javascript:;">Edit</a>
+        </td>
+        <td>
+         <a class="delete" href="javascript:;">Delete</a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         webriver
+        </td>
+        <td>
+         Antonio Sanches
+        </td>
+        <td>
+         462
+        </td>
+        <td class="center">
+         new user
+        </td>
+        <td>
+         <a class="edit" href="javascript:;">Edit</a>
+        </td>
+        <td>
+         <a class="delete" href="javascript:;">Delete</a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         gist124
+        </td>
+        <td>
+         Nick Roberts
+        </td>
+        <td>
+         62
+        </td>
+        <td class="center">
+         new user
+        </td>
+        <td>
+         <a class="edit" href="javascript:;">Edit</a>
+        </td>
+        <td>
+         <a class="delete" href="javascript:;">Delete</a>
+        </td>
+       </tr>
+       </tbody>
+       </table>
+      </div>
+     </div>
+     <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+		
+		
+		<div class="col-md-6">
+		
+			<div class="portlet box blue">
+	      		<div class="portlet-title">
+	       			<div class="caption">
+	        			<i class="fa fa-reorder"></i>Modèles
+	       			</div>
+	      		</div>
+				<div class="portlet-body">
+			
+					<div class="col-md-9">
+						<input type="text" class="form-control" placeholder="Nom">
+					</div>
+					<button type="submit" class="btn blue">Ajouter au modèle</button>
+							
+					<div class="clearfix">
+						<h4 class="block">CATEGORIES</h4>
+						<button type="button" class="btn default">VILLE</button>
+						<button type="button" class="btn red">NOM</button>
+						<button type="button" class="btn blue">PRENOM</button>
+						<button type="button" class="btn green">ADRESSE</button>
+						<button type="button" class="btn yellow">LONGITUDE</button>
+						<button type="button" class="btn purple">LATITUDE</button>
+						<button type="button" class="btn dark">SITE WEB</button>
+						<br></br>
+						<button type="button" class="btn default">HORAIRE</button>
+						<button type="button" class="btn red">EMAIL</button>
+						<button type="button" class="btn blue">DESCRIPTION</button>
+						<button type="button" class="btn green">TAG</button>
+						<button type="button" class="btn yellow">CATEGORIE</button>
+						<button type="button" class="btn green">TAG</button>
+						<button type="button" class="btn yellow">CATEGORIE</button>
+						<br></br>
+						<button type="button" class="btn blue">PRENOM</button>
+						<button type="button" class="btn green">ADRESSE</button>
+					</div>
+				 
+				 	</div>
+				 </div>
+		 	</div>
+			</div>
+			
 			<!-- END DASHBOARD STATS -->
 			<div class="clearfix">
 			</div>
@@ -266,6 +608,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
 
 		
+		'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.min.js'
+		'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
