@@ -205,20 +205,21 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN DASHBOARD STATS -->
 			
-			<div class="row">
+			<div class="row custom-row-dropzone">
 				<div class="col-md-12">
 					
-					<form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone">
-					</form>
-					<br>
-						<input type="submit" class="btn purple btn-block" value="Submit">
+					<form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone"></form>
+					
+					<br />
+					
+					<input type="submit" class="btn purple btn-block" value="Submit">
 				</div>
-			<!--</div>-->
+			</div>
 			
 			
-			
-			
-			<div class="col-md-6 col-sm-6">
+	<div class="row">
+	
+	<div class="col-md-12 col-sm-6">
      <div class="portlet box blue">
       <div class="portlet-title">
        <div class="caption">
@@ -240,7 +241,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
        </div>
       </div>
       <div class="portlet-body">
-       <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
+       <div class="scroller" style="height: 150px;" data-always-visible="1" data-rail-visible="0">
         <ul class="feeds">
          <li>
           <div class="col1">
@@ -289,292 +290,22 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           </div>
           </a>
          </li>
-         <li>
-			<div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-danger">
-              <i class="fa fa-user"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               You have 5 pending membership that requires a quick review.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             24 mins
-           </div>
-          </div>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-info">
-              <i class="fa fa-shopping-cart"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               New order received with
-              <span class="label label-sm label-success">
-               Reference Number: DR23923
-              </span>
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             30 mins
-           </div>
-          </div>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-success">
-              <i class="fa fa-user"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               You have 5 pending membership that requires a quick review.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             24 mins
-           </div>
-          </div>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-default">
-              <i class="fa fa-bell-o"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               Web server hardware needs to be upgraded.
-              <span class="label label-sm label-default ">
-               Overdue
-              </span>
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             2 hours
-           </div>
-          </div>
-         </li>
-         <li>
-          <a href="#">
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-default">
-              <i class="fa fa-briefcase"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               IPO Report for year 2013 has been released.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             20 mins
-           </div>
-          </div>
-          </a>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-info">
-              <i class="fa fa-check"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               You have 4 pending tasks.
-              <span class="label label-sm label-warning ">
-                Take action <i class="fa fa-share"></i>
-              </span>
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             Just now
-           </div>
-          </div>
-         </li>
-         <li>
-          <a href="#">
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-danger">
-              <i class="fa fa-bar-chart-o"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               Finance Report for year 2013 has been released.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             20 mins
-           </div>
-          </div>
-          </a>
-         </li>
-         <li>
-		 <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-default">
-              <i class="fa fa-user"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               You have 5 pending membership that requires a quick review.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             24 mins
-           </div>
-          </div>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-info">
-              <i class="fa fa-shopping-cart"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               New order received with
-              <span class="label label-sm label-success">
-               Reference Number: DR23923
-              </span>
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             30 mins
-           </div>
-          </div>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-success">
-              <i class="fa fa-user"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               You have 5 pending membership that requires a quick review.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             24 mins
-           </div>
-          </div>
-         </li>
-         <li>
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-warning">
-              <i class="fa fa-bell-o"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               Web server hardware needs to be upgraded.
-              <span class="label label-sm label-default ">
-               Overdue
-              </span>
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             2 hours
-           </div>
-          </div>
-         </li>
-         <li>
-          <a href="#">
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-info">
-              <i class="fa fa-briefcase"></i>
-             </div>
-            </div>
-            <div class="cont-col2">
-             <div class="desc">
-               IPO Report for year 2013 has been released.
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             20 mins
-           </div>
-          </div>
-          </a>
-         </li>
         </ul>
        </div>
        <div class="scroller-footer">
         <div class="pull-right">
-         <a href="#">See All Records <i class="m-icon-swapright m-icon-gray"></i></a> &nbsp;
+         <a href="#">Afficher tous les fichiers <i class="m-icon-swapright m-icon-gray"></i></a> &nbsp;
         </div>
        </div>
       </div>
      </div>
     </div>
 	
+	</div>
 	
 	<!-- DATA TABLE -->
+	
+	<div class="row">
 	
 	<div class="col-md-6">
      <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -769,35 +500,48 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
      </div>
      <!-- END EXAMPLE TABLE PORTLET-->
     </div>
-							<div class="col-md-4">
-										<input type="text" class="form-control" placeholder="Nom">
-										</div>
-										<button type="submit" class="btn blue">Ajouter au modèle</button>
-									
-	
-	
-							<div class="clearfix">
-								<h4 class="block">CATEGORIES</h4>
-								<button type="button" class="btn default">VILLE</button>
-								<button type="button" class="btn red">NOM</button>
-								<button type="button" class="btn blue">PRENOM</button>
-								<button type="button" class="btn green">ADRESSE</button>
-								<button type="button" class="btn yellow">LONGITUDE</button>
-								<button type="button" class="btn purple">LATITUDE</button>
-								<button type="button" class="btn dark">SITE WEB</button>
-								<br></br>
-								<button type="button" class="btn default">HORAIRE</button>
-								<button type="button" class="btn red">EMAIL</button>
-								<button type="button" class="btn blue">DESCRIPTION</button>
-								<button type="button" class="btn green">TAG</button>
-								<button type="button" class="btn yellow">CATEGORIE</button>
-								<button type="button" class="btn green">TAG</button>
-								<button type="button" class="btn yellow">CATEGORIE</button>
-								<br></br>
-								<button type="button" class="btn blue">PRENOM</button>
-								<button type="button" class="btn green">ADRESSE</button>
-							</div>
-		 
+		
+		
+		<div class="col-md-6">
+		
+			<div class="portlet box blue">
+	      		<div class="portlet-title">
+	       			<div class="caption">
+	        			<i class="fa fa-reorder"></i>Modèles
+	       			</div>
+	      		</div>
+				<div class="portlet-body">
+			
+					<div class="col-md-9">
+						<input type="text" class="form-control" placeholder="Nom">
+					</div>
+					<button type="submit" class="btn blue">Ajouter au modèle</button>
+							
+					<div class="clearfix">
+						<h4 class="block">CATEGORIES</h4>
+						<button type="button" class="btn default">VILLE</button>
+						<button type="button" class="btn red">NOM</button>
+						<button type="button" class="btn blue">PRENOM</button>
+						<button type="button" class="btn green">ADRESSE</button>
+						<button type="button" class="btn yellow">LONGITUDE</button>
+						<button type="button" class="btn purple">LATITUDE</button>
+						<button type="button" class="btn dark">SITE WEB</button>
+						<br></br>
+						<button type="button" class="btn default">HORAIRE</button>
+						<button type="button" class="btn red">EMAIL</button>
+						<button type="button" class="btn blue">DESCRIPTION</button>
+						<button type="button" class="btn green">TAG</button>
+						<button type="button" class="btn yellow">CATEGORIE</button>
+						<button type="button" class="btn green">TAG</button>
+						<button type="button" class="btn yellow">CATEGORIE</button>
+						<br></br>
+						<button type="button" class="btn blue">PRENOM</button>
+						<button type="button" class="btn green">ADRESSE</button>
+					</div>
+				 
+				 	</div>
+				 </div>
+		 	</div>
 			</div>
 			
 			<!-- END DASHBOARD STATS -->
