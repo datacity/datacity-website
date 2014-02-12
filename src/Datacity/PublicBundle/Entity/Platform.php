@@ -36,7 +36,7 @@ class Platform
     private $version;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", mappedBy="platforms", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="platforms", cascade={"persist"})
      */
     private $applications;
     

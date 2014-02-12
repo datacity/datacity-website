@@ -41,6 +41,11 @@ class Category
     private $images;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="categories", cascade={"persist"})
+     */
+    private $applications;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -158,5 +163,38 @@ class Category
     public function getNbArticle()
     {
         return $this->nb_article;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @return Category
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+    
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }
