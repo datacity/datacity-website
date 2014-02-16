@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Datacity\PublicBundle\Entity\Application;
 use Datacity\PublicBundle\Entity\Image;
 use Datacity\PublicBundle\Entity\City;
-use Datacity\PublicBundle\Entity\Customer;
 use Datacity\PublicBundle\Entity\Platform;
 use Datacity\PublicBundle\Entity\Category;
 use Datacity\PublicBundle\Entity\News;
@@ -56,13 +55,20 @@ class DefaultController extends Controller
 		$app = $this->getDoctrine()
 		->getRepository('DatacityPublicBundle:Application')
 		->findById($id)[0];
-		
+				
 		if (!isset($app) || !$app) {
 			throw $this->createNotFoundException(
-					'Aucune application trouvée pour cet id : '.$id
+					'Aucune application trouvée pour l\'id '.$id
 			);
 		}
 		
+		/*$userManager = $this->container->get('fos_user.user_manager');
+		$users = $userManager->findUsers();
+		
+		
+		foreach ($users as $user) {
+			$response .= $user->getUsername();
+		}		*/
 		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app));
 		return $response;
 	}

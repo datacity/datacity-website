@@ -40,7 +40,7 @@
 						{# On genere ci-dessous le panel droit contenant les details de l'application en cour de visualisation #}
 						<ul class="folio-detail">
 							<li><label>Categories :</label>  {% for cat in appli.getCategories() %}{{ cat.getName() }} {% endfor %}</li>
-							<li><label>Client :</label> {{ appli.getCustomer().getName() }}</li>
+							<li><label>Client :</label> {{ appli.getUser().getUsername() }}</li>
 							<li><label>Plateformes :</label> {% for platform in appli.getPlatforms() %}{{ platform.getName() }} {% endfor %}</li>
 							<li><label>Téléchargements :</label> {{ appli.getDownloaded() }}</li>
 							<li><label>Project URL :</label><a href="#"> {{ appli.getUrl() }}</a></li>

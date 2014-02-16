@@ -29,7 +29,7 @@
 					{# Boucle for de creation des block correspondant aux applications en base de donnee #}
 					{% set x = 0 %}
 					{% set currentPagination = 1 %}
-					{% set nbPaginationDisplay = 6 %}
+					{% set nbPaginationDisplay = 2 %}
 					{% for appl in applis %}
 						<!-- Item Project and Filter Name -->
 						<li class="item-thumbs span4 {{ appl.city.name }} prs-pagination-item prs-pagination-item-{{ currentPagination }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
@@ -43,7 +43,7 @@
 						<img style="width: 370px; height:166px;" src="{{ appl.images[0].url }}" alt="{{ appl.description }}">
 						</li>
 						{% set x = x + 1 %}
-						{% if x % 6 == 0 %}
+						{% if x % 2 == 0 %}
 							{% set currentPagination = currentPagination + 1 %}
 						{% endif %}
 					{% endfor %}

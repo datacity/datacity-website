@@ -46,13 +46,12 @@ class Image
      * @ORM\JoinColumn(nullable=true)
      */
     private $category;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Customer", inversedBy="images")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $customer;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="images")
+     */
+    private $user;
+    
     /**
      * Get id
      *
@@ -160,29 +159,6 @@ class Image
     }
 
     /**
-     * Set customer
-     *
-     * @param \Datacity\PublicBundle\Entity\Customer $customer
-     * @return Image
-     */
-    public function setCustomer(\Datacity\PublicBundle\Entity\Customer $customer = null)
-    {
-        $this->customer = $customer;
-    	if (isset($customer))
-	        $customer->addImage($this);
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \Datacity\PublicBundle\Entity\Customer 
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-    /**
      * Constructor
      */
     public function __construct()
@@ -211,5 +187,28 @@ class Image
     public function removeApplication(\Datacity\PublicBundle\Entity\Application $application)
     {
         $this->application->removeElement($application);
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Datacity\UserBundle\Entity\User $user
+     * @return Image
+     */
+    public function setUser(\Datacity\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Datacity\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

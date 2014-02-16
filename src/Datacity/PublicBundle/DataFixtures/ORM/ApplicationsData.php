@@ -11,7 +11,7 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 {
 	public function load(ObjectManager $manager)
 	{
-		for ($i = 10; $i > 0; $i--) {
+		//for ($i = 10; $i > 0; $i--) {
 			$application = new Application();
 			$application->setName('Datacity Culture');
 			$application->setUrl('http://www.url-culture.fr');
@@ -20,13 +20,13 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 			$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[0])); //Culture
 			$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[4])); //Concerts
 			$application->setDownloaded(6879);
-			$application->setCustomer($this->getReference('customer-'.CustomersData::$customersName[0])); //Paris Mairie
 			$this->getReference('image-'.md5(ImagesData::$imagesUrl[0]))->addApplication($application);
 			$this->getReference('image-'.md5(ImagesData::$imagesUrl[1]))->addApplication($application);
 			foreach (PlatformsData::$platformName as $name)
 			{
 				$application->addPlatform($this->getReference('platform-'.$name));
 			}
+			$this->addReference("application-". $application->getName(), $application);
 			$manager->persist($application);
 		
 		$application = new Application();
@@ -37,11 +37,11 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[0])); //Culture
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[2])); //Tourisme
 		$application->setDownloaded(434);
-		$application->setCustomer($this->getReference('customer-'.CustomersData::$customersName[1])); //Montpellier Mairie
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[0])); //iOS
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[3])); //Blackberry
 		$this->getReference('image-'.md5(ImagesData::$imagesUrl[2]))->addApplication($application);
 		$this->getReference('image-'.md5(ImagesData::$imagesUrl[3]))->addApplication($application);
+		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);
 		
 		$application = new Application();
@@ -53,12 +53,12 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[4])); //Concerts
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[6])); //Cinémas
 		$application->setDownloaded(236);
-		$application->setCustomer($this->getReference('customer-'.CustomersData::$customersName[2])); //Ales Mairie
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[0])); //iOS
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[1])); //Android
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[2])); //Windows Phone
 		$this->getReference('image-'.md5(ImagesData::$imagesUrl[4]))->addApplication($application);
 		$this->getReference('image-'.md5(ImagesData::$imagesUrl[5]))->addApplication($application);
+		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);
 		
 		$application = new Application();
@@ -69,14 +69,14 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[3])); //Évènement
 		$application->addCategorie($this->getReference('category-'.CategoriesData::$categoriesName[1])); //Itinéraire
 		$application->setDownloaded(988465);
-		$application->setCustomer($this->getReference('customer-'.CustomersData::$customersName[3])); //Catalogne (village) Mairie
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[0])); //iOS
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[1])); //Android
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[3])); //Blackberry
 		$this->getReference('image-'.md5(ImagesData::$imagesUrl[6]))->addApplication($application);
 		$this->getReference('image-'.md5(ImagesData::$imagesUrl[7]))->addApplication($application);
+		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);
-		}
+		//}
 		$manager->flush();
 	}
 	

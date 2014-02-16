@@ -34,9 +34,9 @@ class City
     private $applications;
     
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Customer", mappedBy="city", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\User", mappedBy="city", cascade={"persist"})
      */
-    private $customers;
+    private $users;
 
     /**
      * Get id
@@ -112,35 +112,35 @@ class City
     }
 
     /**
-     * Add customers
+     * Add users
      *
-     * @param \Datacity\PublicBundle\Entity\Customer $customers
+     * @param \Datacity\UserBundle\Entity\User $users
      * @return City
      */
-    public function addCustomer(\Datacity\PublicBundle\Entity\Customer $customers)
+    public function addUser(\Datacity\UserBundle\Entity\User $users)
     {
-        $this->customers[] = $customers;
+        $this->users[] = $users;
     
         return $this;
     }
 
     /**
-     * Remove customers
+     * Remove users
      *
-     * @param \Datacity\PublicBundle\Entity\Customer $customers
+     * @param \Datacity\UserBundle\Entity\User $users
      */
-    public function removeCustomer(\Datacity\PublicBundle\Entity\Customer $customers)
+    public function removeUser(\Datacity\UserBundle\Entity\User $users)
     {
-        $this->customers->removeElement($customers);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get customers
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCustomers()
+    public function getUsers()
     {
-        return $this->customers;
+        return $this->users;
     }
 }

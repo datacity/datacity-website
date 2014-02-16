@@ -55,6 +55,22 @@ class User extends BaseUser
      */
     private $lastname;
 
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"persist"})
+     */
+    private $applications;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", inversedBy="users", cascade={"persist"})
+     */
+    private $city;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="user")
+     */
+    private $images;
+    
     public function __construct()
     {
     	parent::__construct();
@@ -115,5 +131,97 @@ class User extends BaseUser
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @return User
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+        
+    	$applications->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Datacity\PublicBundle\Entity\City $city
+     * @return User
+     */
+    public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+    	$city->addUser($this);
+        
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Datacity\PublicBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $images
+     * @return User
+     */
+    public function addImage(\Datacity\PublicBundle\Entity\Image $images)
+    {
+        $this->images[] = $images;
+        
+    	$images->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $images
+     */
+    public function removeImage(\Datacity\PublicBundle\Entity\Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

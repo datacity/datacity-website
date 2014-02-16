@@ -1,6 +1,7 @@
 <?php
 
 namespace Datacity\PublicBundle\Entity;
+use Datacity\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -70,9 +71,9 @@ class Application
     private $categories;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Customer", inversedBy="applications", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="applications", cascade={"persist"})
      */
-    private $customer;
+    private $user;
     
     /**
      * Get id
@@ -264,30 +265,6 @@ class Application
     }
 
     /**
-     * Set customer
-     *
-     * @param \Datacity\PublicBundle\Entity\Customer $customer
-     * @return Application
-     */
-    public function setCustomer(\Datacity\PublicBundle\Entity\Customer $customer = null)
-    {
-        $this->customer = $customer;
-    
-        $customer->addApplication($this);
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \Datacity\PublicBundle\Entity\Customer 
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
      * Set city
      *
      * @param \Datacity\PublicBundle\Entity\City $city
@@ -332,5 +309,28 @@ class Application
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Datacity\UserBundle\Entity\User $user
+     * @return Application
+     */
+    public function setUser(\Datacity\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Datacity\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
