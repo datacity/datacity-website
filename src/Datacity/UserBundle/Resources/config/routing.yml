@@ -1,12 +1,5 @@
-fos_user_security_check:
-    pattern:  /login_check
-    defaults: { _controller: FOSUserBundle:Security:check }
-    requirements:
-        _method:  POST
-    
-fos_user_security_logout:
-    pattern:  /logout
-    defaults: { _controller: FOSUserBundle:Security:logout }
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
  
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"

@@ -1,17 +1,63 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}Datacity -- Connexion{% endblock %}
+{% block pagetitle %}Connexion	{% endblock %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
-{# TODO : Better display of error #}
+{% block fos_user_content %}
+<div class="row margintop10">
+	<div class="offset3 span7 margintop20">
+		{% if error %}
+		<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>{{ error|trans }}</div>
+		{% endif %}
+
+		<form class="form-horizontal" action="{{ path('fos_user_security_check') }}" method="post">
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+			<div class="control-group">
+				<label class="control-label" for="inputText">{{ 'security.login.username'|trans }}</label>
+				<div class="controls">
+					<input type="text" id="inputText" name="_username" value="{{ last_username }}" required="required" placeholder="Login" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputSigninPassword">{{ 'security.login.password'|trans }}</label>
+				<div class="controls">
+					<input type="password" id="inputSigninPassword" name="_password" required="required" placeholder="Mot de passe" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+				<div class="controls">
+					<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" id="_submit" class="btn">{{ 'security.login.submit'|trans }}</button>
+				</div>
+				<p class="offset1 margintop20">
+					Mot de passe oublié ? <a href="{{ path('fos_user_resetting_request') }}">Réinitialiser le mot de passe</a>
+				</p>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock fos_user_content %}
+
+
+{# TODO : Better display of error
 {% block fos_user_content %}
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 	<h4 id="mySigninModalLabel">Connexion au <strong>compte</strong></h4>
 </div>
 {% if error %}
-    <div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>{{ error|trans }}</div>
+<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>{{ error|trans }}</div>
 {% endif %}
 <div class="modal-body">
 	<form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
-	 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 		<div class="control-group">
 			<label class="control-label" for="inputText">{{ 'security.login.username'|trans }}</label>
 			<div class="controls">
@@ -28,8 +74,8 @@
 			<label class="control-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 			<div class="controls">
 				<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-		    </div>
-	    </div>
+			</div>
+		</div>
 		<div class="control-group">
 			<div class="controls">
 				<button type="submit" id="_submit" class="btn">{{ 'security.login.submit'|trans }}</button>
@@ -41,4 +87,4 @@
 	</form>
 </div>
 
-{% endblock fos_user_content %}
+{% endblock fos_user_content %} #}

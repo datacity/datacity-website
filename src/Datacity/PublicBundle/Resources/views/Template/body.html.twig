@@ -72,14 +72,9 @@
 					<div class="headnav">
 						<ul>
 							<li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-user"></i> Inscription</a></li>
-							<li><a href="#mySignin" data-toggle="modal">Connexion</a></li>
+							<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
 						</ul>
 					</div>
-					<!-- Sign in Modal -->
-					<div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
-						{{ render(controller('FOSUserBundle:Security:login')) }}
-					</div>
-					<!-- end signin modal -->
 				{% endif %}
 			</div>
 		</div>

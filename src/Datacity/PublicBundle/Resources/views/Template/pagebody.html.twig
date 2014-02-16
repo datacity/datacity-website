@@ -33,7 +33,7 @@
 	{% for type, messages in app.session.flashbag.all() %}
         {% for message in messages %}
 	        <div class="alert alert-{{ type }}">
-	       		{{ message }}
+	       		{{ message|trans({}, 'FOSUserBundle') }}
 	        </div>
         {% endfor %}
     {% endfor %}
