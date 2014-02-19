@@ -893,11 +893,11 @@ Bootstrap  Datetimepicker
 
 .datetimepicker table td {
   font-weight: 300  !important;
-  font-family: 'Open Sans' !important;
+  font-family: 'Source Sans Pro', Arial !important;
 }
 
 .datetimepicker table th {
-  font-family: 'Open Sans' !important;
+  font-family: 'Source Sans Pro', Arial !important;
   font-weight: 400  !important;
 }
 
@@ -960,11 +960,11 @@ Bootstrap Datepicker
 
 .datepicker table td {
   font-weight: 300  !important;
-  font-family: 'Open Sans' !important;
+  font-family: 'Source Sans Pro', Arial !important;
 }
 
 .datepicker table th {
-  font-family: 'Open Sans' !important;
+  font-family: 'Source Sans Pro', Arial !important;
   font-weight: 400  !important;
 }
 
@@ -1173,7 +1173,7 @@ Bootstrap Markdown
 Bootstrap Datepaginator
 ***/
 .datepaginator a {
-  font-family: 'Open Sans';
+  font-family: 'Source Sans Pro', Arial;
   font-size: 13px;
   font-weight: 300;
 }

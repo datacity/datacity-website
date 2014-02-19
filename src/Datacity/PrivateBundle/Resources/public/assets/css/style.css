@@ -44,7 +44,7 @@ Reset and overrides
 /* general body settings */
 body { 
   color: #000; 
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
   padding: 0px !important;
   margin: 0px !important;
   font-size:13px; 
@@ -100,7 +100,7 @@ h3,
 h4, 
 h5, 
 h6 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
   font-weight: 300 !important;
 }
 
@@ -914,7 +914,7 @@ Page title
   color: #666;
   margin: 0px 0px 15px 0px;
   font-weight: 300;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 .page-title small {
@@ -1691,7 +1691,7 @@ Custom icon buttons
 }
 
 .icon-btn div {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
   margin-top: 5px;
   margin-bottom: 20px;  
   color: #000;
@@ -1701,7 +1701,7 @@ Custom icon buttons
 
 .icon-btn .badge {
   position: absolute;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 11px !important;
   font-weight: 300;
   top: -5px;
@@ -1856,7 +1856,7 @@ Custom icon buttons
 .dropdown-menu.tasks .task .percent {
   font-size: 14px;
   font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
   float: right;
   display: inline-block;
 }
@@ -3485,7 +3485,9 @@ Social Icons(new in v1.2.2)
 .social-icons .vk {background: url(../img/social/vk.png) no-repeat;}
 .social-icons .instagram {background: url(../img/social/instagram.png) no-repeat;}
 .social-icons .reddit {background: url(../img/social/reddit.png) no-repeat;}
-
+.social-icons .xml {background: url(../img/social/xml.png) no-repeat;}
+.social-icons .json {background: url(../img/social/json.png) no-repeat;}
+.social-icons .csv {background: url(../img/social/csv.png) no-repeat;}
 /***
 Inline Social Icons
 ***/
@@ -3532,6 +3534,9 @@ Inline Social Icons
 .social-icon.vk {background: url(../img/social/vk.png) no-repeat;}
 .social-icon.instagram {background: url(../img/social/instagram.png) no-repeat;}
 .social-icon.reddit {background: url(../img/social/reddit.png) no-repeat;}
+.social-icon.xml {background: url(../img/social/xml.png) no-repeat;}
+.social-icon.json {background: url(../img/social/json.png) no-repeat;}
+.social-icon.csv {background: url(../img/social/csv.png) no-repeat;}
 
 .social-icon:hover {
   background-position:0 -38px;
