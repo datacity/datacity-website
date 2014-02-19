@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0.3
+DataCity - Responsive Admin Dashboard build with Twitter Bootstrap 3.0.3
 Version: 1.5.5
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Author: DataCity Web Dev team
+Website: http://datacity.fr
 -->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -14,7 +13,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>Metronic | Admin Dashboard Template</title>
+<title>DataCity | Developer Portal</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="" name="description"/>
@@ -43,6 +42,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		'bundles/datacityprivate/assets/css/pages/tasks.css'
 		'bundles/datacityprivate/assets/css/themes/default.css'
 		'bundles/datacityprivate/assets/css/custom.css'
+    'bundles/datacityprivate/assets/css/autocomplete-jquery-ui.css'
+    'bundles/datacityprivate/assets/css/dashboard.css'
 		filter='cssrewrite'
 	%}
 	   <link rel="stylesheet" href="{{ asset_url }}" />
@@ -64,7 +65,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		<!-- END LOGO -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<img src="assets/img/menu-toggler.png" alt=""/>
+		{# <img src="assets/img/menu-toggler.png" alt=""/> #}
 		</a>
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<!-- BEGIN TOP NAVIGATION MENU -->
@@ -203,29 +204,30 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				</div>
 			</div>
 			<!-- END PAGE HEADER-->
-			<!-- BEGIN DASHBOARD STATS -->
 			
+      <!-- File Uploader -->
 			<div class="row custom-row-dropzone">
 				<div class="col-md-12">
-					
-					<form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone"></form>
+					<form action="#" class="dropzone" id="my-dropzone"></form>
+					{# <form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone"></form> #}
 					
 					<br />
 					
 					<input type="submit" class="btn purple btn-block" value="Submit">
 				</div>
 			</div>
+      <!-- END File Uploader -->
 			
-			
+	<!-- Window Of Uploaded Files -->
 	<div class="row">
 	
 	<div class="col-md-12 col-sm-6">
      <div class="portlet box blue">
       <div class="portlet-title">
        <div class="caption">
-        <i class="fa fa-bell-o"></i>Recent Activities
+        <i class="fa fa-cloud-download"></i>Fichiers uploadés sur le serveur
        </div>
-       <div class="actions">
+       {# <div class="actions">
         <div class="btn-group">
          <a class="btn btn-sm default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
          Filter By <i class="fa fa-angle-down"></i>
@@ -238,93 +240,24 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           <label><input type="checkbox"/> System</label>
          </div>
         </div>
-       </div>
+       </div> #}
       </div>
-      <div class="portlet-body">
+      <div class="portlet-body uploadbody">
        <div class="scroller" style="height: 150px;" data-always-visible="1" data-rail-visible="0">
-        <ul class="feeds">
-         <li>
-          <a href="#">
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-info">
-              <i class="fa fa-check"></i>
-             </div>
-            </div>
-            <div class="cont-col2 file">
-             <div class="desc">
-               Démographie Marseille
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             Just Now
-           </div>
-          </div>
-          </a>
-         </li>
-         
-         <li>
-          <a href="#">
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-warning">
-              <i class="fa fa-share"></i>
-             </div>
-            </div>
-            <div class="cont-col2 file">
-             <div class="desc">
-               Finance mairie de Montpellier
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             20 mins
-           </div>
-          </div>
-          </a>
-         </li>
-         <li>
-          <a href="#">
-          <div class="col1">
-           <div class="cont">
-            <div class="cont-col1">
-             <div class="label label-sm label-success">
-              <i class="fa fa-bar-chart-o"></i>
-             </div>
-            </div>
-            <div class="cont-col2 file">
-             <div class="desc">
-        	Transport en commum Bordeaux
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="col2">
-           <div class="date">
-             42 mins
-           </div>
-          </div>
-          </a>
-         </li>
+        <ul class="feeds uploadedFiles">
         </ul>
        </div>
-       <div class="scroller-footer">
+       {# <div class="scroller-footer">
         <div class="pull-right">
          <a href="#">Afficher tous les fichiers <i class="m-icon-swapright m-icon-gray"></i></a> &nbsp;
         </div>
-       </div>
+       </div> #}
       </div>
      </div>
     </div>
 	
 	</div>
+  <!-- End Window of Uploaded Files-->
 	
 	<!-- DATA TABLE -->
 	
@@ -524,7 +457,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
      <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 		
-		
+		<!-- DataBiding Window -->
 		<div class="col-md-6">
 		
 			<div class="portlet box blue">
@@ -535,36 +468,32 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	      		</div>
 				<div class="portlet-body">
 			
+          
 					<div class="col-md-9">
-						<input type="text" class="form-control" placeholder="Nom">
-					</div>
-					<button type="submit" class="btn blue">Ajouter au modèle</button>
-							
+            <div class="ui-widget">
+              <br/>
+              <input id="inputModel" class="form-control">
+              
+            </div>
+           
+          </div>
+					<div class="col-md-3">
+            <button id="addCategoryModel" type="submit" class="btn blue">Ajouter au modèle</button>
+          </div>
+					<hr/>
 					<div class="clearfix">
-						<h4 class="block">CATEGORIES</h4>
-						<button type="button" class="btn default">VILLE</button>
-						<button type="button" class="btn red">NOM</button>
-						<button type="button" class="btn blue">PRENOM</button>
-						<button type="button" class="btn green">ADRESSE</button>
-						<button type="button" class="btn yellow">LONGITUDE</button>
-						<button type="button" class="btn purple">LATITUDE</button>
-						<button type="button" class="btn dark">SITE WEB</button>
-						<br></br>
-						<button type="button" class="btn default">HORAIRE</button>
-						<button type="button" class="btn red">EMAIL</button>
-						<button type="button" class="btn blue">DESCRIPTION</button>
-						<button type="button" class="btn green">TAG</button>
-						<button type="button" class="btn yellow">CATEGORIE</button>
-						<button type="button" class="btn green">TAG</button>
-						<button type="button" class="btn yellow">CATEGORIE</button>
-						<br></br>
-						<button type="button" class="btn blue">PRENOM</button>
-						<button type="button" class="btn green">ADRESSE</button>
+						<h4 id="categoryModelContainer" class="block">CATEGORIES: </h4>
 					</div>
+
+          <hr>
+            Couleur choisie: <span class="boxColored">&nbsp;</span>
+          <hr>
 				 
 				 	</div>
 				 </div>
 		 	</div>
+      <!-- END DataBiding Window-->
+
 			</div>
 			
 			<!-- END DASHBOARD STATS -->
@@ -632,11 +561,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 		
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
 		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/tableaudebord.js'
 		
 		'@DatacityPrivateBundle/Resources/public/js/dashboard.js'
 		
@@ -644,7 +571,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
 		'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
 		'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
-	
+	  '@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
+    '@DatacityPrivateBundle/Resources/public/assets/js/databiding.js'
+    '@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
 		%}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
@@ -654,14 +583,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 jQuery(document).ready(function() {    
    App.init(); // initlayout and core plugins
    Index.init();
-   Index.initJQVMAP(); // init index page's custom scripts
-   Index.initCalendar(); // init index page's custom scripts
-   Index.initCharts(); // init index page's custom scripts
-   Index.initChat();
-   Index.initMiniCharts();
-   Index.initDashboardDaterange();
-   Index.initIntro();
-   Tasks.initDashboardWidget();
+   FormDropzone.init();
+   // Index.initJQVMAP(); // init index page's custom scripts
+   // Index.initCalendar(); // init index page's custom scripts
+   // Index.initCharts(); // init index page's custom scripts
+   // Index.initChat();
+   // Index.initMiniCharts();
+   // Index.initDashboardDaterange();
+   //Index.initIntro();
+   // Tasks.initDashboardWidget();
 });
 </script>
 <!-- END JAVASCRIPTS -->
