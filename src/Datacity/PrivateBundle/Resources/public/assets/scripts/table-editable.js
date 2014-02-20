@@ -4,6 +4,8 @@ var TableEditable = function () {
 
         //main function to initiate the module
         init: function () {
+            var oTable;
+            var nEditing = null;
             function restoreRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
@@ -47,14 +49,60 @@ var TableEditable = function () {
                 oTable.fnDraw();
             }
 
-            var oTable = $('#sample_editable_1').dataTable({
+
+            function requestRows(callback) {
+                $.ajax({
+                    url: 'http://localhost:4567/user/4561321edgjlkjd/parse/9115b0a5c76f679f456e3772bd3c0b7a',
+                    type: 'GET',
+                    success: function(response, status, jqXHR) {
+                        if (response.data)
+                            callback(response.data);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                })
+            }
+
+            function generateHeaders(headers, headerClass) {
+                var array = new Array();
+                console.log(headers);
+                var json = {};
+                var keys = Object.keys(headers);
+                for (index in keys) {                    
+                    json = {
+                        "sTitle" : keys[index].replace(/ /g, "_"),
+                        "sClass" : headerClass
+                    };
+                    array.push(json);
+                }
+                return array;
+            }
+
+            function generateRows(rows, nbfield) {
+                var array = new Array();
+                for (rowName in rows) {
+                    //TODO: VERIFICATION DU FICHIER
+                    subArray = new Array();
+                    for (rowContent in rows[rowName]) {
+                        subArray.push(rows[rowName][rowContent]);
+                    }
+                    array.push(subArray);  
+                }
+                return array;
+            }
+
+            function generateTable(rows) {
+                var header = generateHeaders(rows[0], "test");
+                var row = generateRows(rows, header.length);
+                oTable = $('#sample_editable_1').dataTable({
                 "aLengthMenu": [
-                    [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
+                    [7, 15, 20, 100],
+                    [7, 15, 20, 100] // change per page values here
                 ],
                 // set the initial value
-                "iDisplayLength": 5,
-                
+                 
+                "iDisplayLength": 7,  
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ records",
@@ -63,22 +111,22 @@ var TableEditable = function () {
                         "sNext": "Next"
                     }
                 },
-                "aoColumnDefs": [{
+                "aaData": row,
+                "aoColumns": header
+                /*"aoColumnDefs": [{
                         'bSortable': false,
                         'aTargets': [0]
                     }
-                ]
-            });
+                ],*/
+                });
+                $('.table-scrollable').css('overflow-y', 'scroll').css('height', '300px');
+                jQuery('#sample_editable_1_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
+                jQuery('#sample_editable_1_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
+                jQuery('#sample_editable_1_wrapper .dataTables_length select').select2({
+                    showSearchInput : false //hide search box with special css class
+                }); // initialize select2 dropdown
 
-            jQuery('#sample_editable_1_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
-            jQuery('#sample_editable_1_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
-            jQuery('#sample_editable_1_wrapper .dataTables_length select').select2({
-                showSearchInput : false //hide search box with special css class
-            }); // initialize select2 dropdown
-
-            var nEditing = null;
-
-            $('#sample_editable_1_new').click(function (e) {
+                $('#sample_editable_1_new').click(function (e) {
                 e.preventDefault();
                 var aiNew = oTable.fnAddData(['', '', '', '',
                         '<a class="edit" href="">Edit</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
@@ -133,6 +181,14 @@ var TableEditable = function () {
                     nEditing = nRow;
                 }
             });
+            }
+
+            
+            requestRows(generateTable);
+
+            
+
+            
         }
 
     };

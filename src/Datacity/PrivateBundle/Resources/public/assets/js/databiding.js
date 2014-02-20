@@ -49,11 +49,9 @@ DataBiding.prototype = {
 			url: "http://localhost:4567/source/model",
 			type: 'GET',
 			data: parameters,
-			success: function(data, textStatus, jqXHR) {
-				console.log(textStatus);
-				console.log(data);
-				if (data.data)
-					callback(data.data);
+			success: function(response, textStatus, jqXHR) {
+				if (response.data)
+					callback(response.data);
 			},
 			error: function(err) {
 				console.error(err);
@@ -87,7 +85,6 @@ DataBiding.prototype = {
 		//the categories are loaded
 		this.getRemoteCategories(function(categories) {
 			if (categories instanceof Array)
-				console.log(categories);
 			$('#inputModel').autocomplete({
 				delay: 0,
 				source: categories
@@ -97,28 +94,35 @@ DataBiding.prototype = {
 	},
 	initEvents: function() {
 		var that = this;
-		$('#addCategoryModel').on('click', function() {
-			var inputCategory = that.getInputCategory();
-			if (inputCategory) {
-				that.addCategory(inputCategory);
-				$('#inputModel').val("");
-			}
-		});
-		$('#inputModel').on('keypress', function(e) {
-			if (e.which == 13) {
+
+		var onAddCategory = function() {
+			$('#addCategoryModel').on('click', function() {
 				var inputCategory = that.getInputCategory();
 				if (inputCategory) {
 					that.addCategory(inputCategory);
 					$('#inputModel').val("");
 				}
-			}
-		});
-		$('#categoryModelContainer').on('click', function(e) {
-			if (e.target.tagName.toLowerCase() == 'button') {
-				var id = $(e.target).attr('id');
-				that.clickedButtonInterface(that.getButtonFromId(id));	
-			}
-		});
+			});
+		}();
+		
+		var onClickEnter = function() {
+			$('#inputModel').on('keypress', function(e) {
+				if (e.which == 13) {
+					var inputCategory = that.getInputCategory();
+					if (inputCategory) {
+						that.addCategory(inputCategory);
+						$('#inputModel').val("");
+					}
+				}
+			});
+		}();
+		
+		var onClickCategory = function() {
+			$('#categoryModelContainer').on('click', 'button', function(e) {
+				var id = $(this).attr('id');
+				that.clickedButtonInterface(that.getButtonFromId(id));
+			});
+		}();
 	}
 }
 
@@ -144,5 +148,3 @@ ButtonModel.prototype = {
 		this.isClicked = status;
 	}
 }
-//TODO: Fonction Init appellée dans le window.load de la page twig
-var dataBiding = new DataBiding();

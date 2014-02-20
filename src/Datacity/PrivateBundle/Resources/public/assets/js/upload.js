@@ -19,9 +19,9 @@ UploadFilesBox.prototype = {
 		$.ajax({
 			url: "http://localhost:4567/user/" + publickey + "/files",
 			type: 'GET',
-			success: function(data, textStatus, jqXHR) {
-				if (data.data)
-					callback(data.data);
+			success: function(response, textStatus, jqXHR) {
+				if (response.data)
+					callback(response.data);
 			},
 			error: function(err) {
 				console.error(err);
@@ -43,24 +43,30 @@ UploadFilesBox.prototype = {
 		});
 	},
 	initEvents: function() {
-		console.log("call init events")
 		var that = this;
-		$('.uploadbody').on('newFileUploaded', function(event, file) {
-			//TODO: Standardiser ce qu'on envoi depuis le serveur
-			if (file.filename && file.uploadedDate) {
-				var typeTab = file.filename.split('.');
-				var type = typeTab[typeTab.length - 1];
-				that.addLineInfo(file.filename, type, file.uploadedDate, false);
-			}
-		});
-		$('.col1').on('hover', function(e) {
-			var sub = $(this).children('.cont').children('.cont-col1').children('a');
-			$(sub).css("background-position", "0 -38px");
-		});
-		$('.col1').on('mouseout', function(e) {
-			var sub = $(this).children('.cont').children('.cont-col1').children('a');
-			$(sub).css("background-position", "0 0px");
-		});
+
+		var onFileUploaded = function() {
+			$('.uploadbody').on('newFileUploaded', function(event, file) {
+				//TODO: Standardiser ce qu'on envoi depuis le serveur
+				if (file.filename && file.uploadedDate) {
+					var typeTab = file.filename.split('.');
+					var type = typeTab[typeTab.length - 1];
+					that.addLineInfo(file.filename, type, file.uploadedDate, false);
+				}
+			});
+		}();
+
+		var onIconHover = function() {
+			$('.col1').on('hover', 'a' , function(e) {
+				$(this).css("background-position", "0 -38px");
+			});
+		}();
+
+		var onIconOut = function() {
+			$('.col1').on('mouseout', 'a', function(e) {
+				$(this).css("background-position", "0 0px");
+			});
+		}();
 	}
 }
 
@@ -106,5 +112,3 @@ var Icon = function(type) {
 	this.type = type;
 	this.htmlElement = $(document.createElement('a')).attr('href', '#').attr('class', 'iconfile social-icon ' + this.type);
 }
-
-var uploadBox = new UploadFilesBox();

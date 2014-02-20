@@ -18,9 +18,9 @@ var FormDropzone = function () {
                           data: formData,
                           contentType: false,
                           processData: false,
-                          success: function(data, textStatus, jqXHR) {
-                            if (data.data && data.data.files && data.data.files instanceof Array)
-                              data.data.files.map(function(item) {
+                          success: function(response, textStatus, jqXHR) {
+                            if (response.data && response.data.files && response.data.files instanceof Array)
+                              response.data.files.map(function(item) {
                                 console.log(item);
                                 $('.uploadbody').trigger('newFileUploaded', item)      
                               });
