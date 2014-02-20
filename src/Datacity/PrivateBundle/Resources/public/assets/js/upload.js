@@ -43,6 +43,7 @@ UploadFilesBox.prototype = {
 		});
 	},
 	initEvents: function() {
+
 		var that = this;
 
 		var onFileUploaded = function() {
@@ -57,14 +58,16 @@ UploadFilesBox.prototype = {
 		}();
 
 		var onIconHover = function() {
-			$('.col1').on('hover', 'a' , function(e) {
-				$(this).css("background-position", "0 -38px");
+			$('.col1').on('hover', function(e) {
+				var child = $(this).children('.cont').children('.cont-col1').children('a');
+				$(child).css("background-position", "0 -38px");
 			});
 		}();
 
 		var onIconOut = function() {
-			$('.col1').on('mouseout', 'a', function(e) {
-				$(this).css("background-position", "0 0px");
+			$('.col1').on('mouseout', function(e) {
+				var child = $(this).children('.cont').children('.cont-col1').children('a');
+				$(child).css("background-position", "0 0px");
 			});
 		}();
 	}

@@ -4,14 +4,14 @@ var TableEditable = function (options) {
         "filePath": "9115b0a5c76f679f456e3772bd3c0b7a",
         "jqueryTable": $('#sample_editable_1'),
         "jqueryNewButton": $('#sample_editable_1_new'),
-        "url": "http://localhost:4567",
-        
+        "url": "http://localhost:4567"
     };
     var params = $.extend(defaults, options);
 
     this.publicKey = params.publicKey;
     this.filePath = params.filePath;
     this.jqueryTable = params.jqueryTable;
+    this.jqueryNewButton = params.jqueryNewButton;
     this.url = params.url;
     this.oTable = null;
     this.nEditing = null;
@@ -117,13 +117,13 @@ TableEditable.prototype = {
         this.initCSS();
     },
     getTableColumns: function() {
-        
+
     },
     initEvents: function() {
         var that = this;
 
         var onNewRowAction = function() {
-            this.jqueryNewButton.on('click', function (e) {
+            that.jqueryNewButton.on('click', function (e) {
                 e.preventDefault();
                 var aiNew = oTable.fnAddData(['', '', '', '',
                     '<a class="edit" href="">Edit</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
@@ -135,7 +135,7 @@ TableEditable.prototype = {
         }();
         
         var onDeleteAction = function () {
-            this.jqueryTable.on('click', 'a.delete' , function (e) {
+            that.jqueryTable.on('click', 'a.delete' , function (e) {
                 e.preventDefault();
 
                 if (confirm("Are you sure to delete this row ?") == false) {
@@ -149,7 +149,7 @@ TableEditable.prototype = {
         }();
         
         var onCancelAction = function() {
-            this.jqueryTable.on('click', 'a.cancel' , function (e) {
+            that.jqueryTable.on('click', 'a.cancel' , function (e) {
                 e.preventDefault();
                 if ($(this).attr("data-mode") == "new") {
                     var nRow = $(this).parents('tr')[0];
@@ -162,7 +162,7 @@ TableEditable.prototype = {
         }();
         
         var onEditAction = function() {
-            this.jqueryTable.on('click', 'a.edit' , function (e) {
+            that.jqueryTable.on('click', 'a.edit' , function (e) {
                 e.preventDefault();
 
                 /* Get the row as a parent of the link that was clicked on */
@@ -187,7 +187,7 @@ TableEditable.prototype = {
         }();
 
         var onCategorySetColor = function() {
-            this.jqueryTable.on('click', 'th', function (e) {
+            that.jqueryTable.on('click', 'th', function (e) {
                 var color = $('.boxColored').css('background-color');
                 $(this).css('background-color', $('.boxColored').css('background-color'));
                 if (color === "rgb(255, 255, 255)")

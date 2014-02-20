@@ -44,7 +44,7 @@ DataBiding.prototype = {
 			publickey: "4561321edgjlkjd",
 			category: "services_publics"
 		}
-
+		console.log("enter here");
 		$.ajax({
 			url: "http://localhost:4567/source/model",
 			type: 'GET',
@@ -84,12 +84,14 @@ DataBiding.prototype = {
 		//We load first the categories from remote server and in the callback we will ensure that 
 		//the categories are loaded
 		this.getRemoteCategories(function(categories) {
-			if (categories instanceof Array)
-			$('#inputModel').autocomplete({
-				delay: 0,
-				source: categories
-			});
-			that.initEvents();
+			console.log(categories);
+			if (categories instanceof Array) {
+				$('#inputModel').autocomplete({
+					delay: 0,
+					source: categories
+				});
+				that.initEvents();
+			}
 		});
 	},
 	initEvents: function() {
