@@ -11,7 +11,7 @@ DataBiding.prototype = {
 			return;
 		var button = new ButtonModel(value);
 		this.buttonModelArray.push(button);
-		$("#categoryModelContainer").append(button.htmlElement);
+		$("#categoryModelContainer").append(button.htmlElement).append('<br/>');
 	},
 	checkIfSameButtonName: function(value) {
 		for (var i in this.buttonModelArray) {
@@ -40,25 +40,25 @@ DataBiding.prototype = {
 		// Ou sinon extraire la clé privée depuis le client en js (me paraît un peu plus crade)
 		// En attendant, clé en dur
 
-		 var parameters = {
-        	publickey: "4561321edgjlkjd",
-        	category: "services_publics"
-    	}
+		var parameters = {
+			publickey: "4561321edgjlkjd",
+			category: "services_publics"
+		}
 
 		$.ajax({
-            url: "http://localhost:4567/source/model",
-            type: 'GET',
-            data: parameters,
-            success: function(data, textStatus, jqXHR) {
-            	console.log(textStatus);
-            	console.log(data);
-                if (data.data)
-                	callback(data.data);
-            },
-            error: function(err) {
-                console.error(err);
-            }
-        });	
+			url: "http://localhost:4567/source/model",
+			type: 'GET',
+			data: parameters,
+			success: function(data, textStatus, jqXHR) {
+				console.log(textStatus);
+				console.log(data);
+				if (data.data)
+					callback(data.data);
+			},
+			error: function(err) {
+				console.error(err);
+			}
+		});	
 	},
 	//	Get the value from the input html autocomplete
 	getInputCategory: function() {
@@ -88,9 +88,9 @@ DataBiding.prototype = {
 		this.getRemoteCategories(function(categories) {
 			if (categories instanceof Array)
 				console.log(categories);
-				$('#inputModel').autocomplete({
-					delay: 0,
-					source: categories
+			$('#inputModel').autocomplete({
+				delay: 0,
+				source: categories
 			});
 			that.initEvents();
 		});
@@ -129,11 +129,11 @@ var ButtonModel = function(value) {
 	this.value = value;
 	this.isClicked = false;
 	this.htmlElement = $(document.createElement('button'))
-		.css('background-color', this.color)
-		.css('color', 'white')
-		.text(this.value.toUpperCase())
-		.attr('id', this.id)
-		.attr('class', 'btn btnmodel');
+	.css('background-color', this.color)
+	.css('color', 'white')
+	.text(this.value.toUpperCase())
+	.attr('id', this.id)
+	.attr('class', 'btn btnmodel');
 }
 
 ButtonModel.prototype = {

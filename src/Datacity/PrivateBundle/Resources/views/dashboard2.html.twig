@@ -12,589 +12,565 @@ Website: http://datacity.fr
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-<meta charset="utf-8"/>
-<title>DataCity | Developer Portal</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="" name="description"/>
-<meta content="" name="author"/>
-<meta name="MobileOptimized" content="320">
-<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<meta charset="utf-8"/>
+	<title>DataCity | Developer Portal</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<meta content="" name="description"/>
+	<meta content="" name="author"/>
+	<meta name="MobileOptimized" content="320">
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 
-{% block stylesheets %}
+	{% block stylesheets %}
 	{% stylesheets
-		'bundles/datacityprivate/assets/plugins/font-awesome/css/font-awesome.min.css'
-		'bundles/datacityprivate/assets/plugins/bootstrap/css/bootstrap.min.css'
-		'bundles/datacityprivate/assets/plugins/uniform/css/uniform.default.css'
+	'bundles/datacityprivate/assets/plugins/font-awesome/css/font-awesome.min.css'
+	'bundles/datacityprivate/assets/plugins/bootstrap/css/bootstrap.min.css'
+	'bundles/datacityprivate/assets/plugins/uniform/css/uniform.default.css'
 
-		'bundles/datacityprivate/assets/plugins/dropzone/css/dropzone.css'
-		'bundles/datacityprivate/assets/plugins/dropzone/css/basic.css'
-		'bundles/datacityprivate/assets/plugins/gritter/css/jquery.gritter.css'
-		'bundles/datacityprivate/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
-		'bundles/datacityprivate/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css'
-		'bundles/datacityprivate/assets/plugins/jqvmap/jqvmap/jqvmap.css'
-		'bundles/datacityprivate/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
+	'bundles/datacityprivate/assets/plugins/dropzone/css/dropzone.css'
+	'bundles/datacityprivate/assets/plugins/dropzone/css/basic.css'
+	'bundles/datacityprivate/assets/plugins/gritter/css/jquery.gritter.css'
+	'bundles/datacityprivate/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
+	'bundles/datacityprivate/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css'
+	'bundles/datacityprivate/assets/plugins/jqvmap/jqvmap/jqvmap.css'
+	'bundles/datacityprivate/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
 
-		'bundles/datacityprivate/assets/css/style-metronic.css'
-		'bundles/datacityprivate/assets/css/style.css'
-		'bundles/datacityprivate/assets/css/style-responsive.css'
-		'bundles/datacityprivate/assets/css/plugins.css'
-		'bundles/datacityprivate/assets/css/pages/tasks.css'
-		'bundles/datacityprivate/assets/css/themes/default.css'
-		'bundles/datacityprivate/assets/css/custom.css'
-    'bundles/datacityprivate/assets/css/autocomplete-jquery-ui.css'
-    'bundles/datacityprivate/assets/css/dashboard.css'
-		filter='cssrewrite'
+	'bundles/datacityprivate/assets/css/style-metronic.css'
+	'bundles/datacityprivate/assets/css/style.css'
+	'bundles/datacityprivate/assets/css/style-responsive.css'
+	'bundles/datacityprivate/assets/css/plugins.css'
+	'bundles/datacityprivate/assets/css/pages/tasks.css'
+	'bundles/datacityprivate/assets/css/themes/default.css'
+	'bundles/datacityprivate/assets/css/custom.css'
+	'bundles/datacityprivate/assets/css/autocomplete-jquery-ui.css'
+	'bundles/datacityprivate/assets/css/dashboard.css'
+
+	'bundles/datacityprivate/assets/plugins/select2/select2_metro.css'
+	'bundles/datacityprivate/assets/plugins/data-tables/DT_bootstrap.css'
+
+	filter='cssrewrite'
 	%}
-	   <link rel="stylesheet" href="{{ asset_url }}" />
+	<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
-{% endblock %}
+	{% endblock %}
 
-<link rel="shortcut icon" href="{{ asset('bundles/datacitypublic/ico/favicon.png') }}" />
+	<link rel="shortcut icon" href="{{ asset('bundles/datacitypublic/ico/favicon.png') }}" />
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
-<!-- BEGIN HEADER -->
-<div class="header navbar navbar-inverse navbar-fixed-top">
-	<!-- BEGIN TOP NAVIGATION BAR -->
-	<div class="header-inner">
-		<!-- BEGIN LOGO -->
-		<a class="navbar-brand" href="{{ path('datacity_public_homepage') }}">
-		</a>
-		<!-- END LOGO -->
-		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
-		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		{# <img src="assets/img/menu-toggler.png" alt=""/> #}
-		</a>
-		<!-- END RESPONSIVE MENU TOGGLER -->
-		<!-- BEGIN TOP NAVIGATION MENU -->
-		<ul class="nav navbar-nav pull-right">
-			<!-- BEGIN USER LOGIN DROPDOWN -->
-			<li class="dropdown user">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-				<!-- <img alt="" src="assets/img/avatar1_small.jpg"/> -->
-				<span class="username">
-					PatMan
-				</span>
-				<i class="fa fa-angle-down"></i>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="extra_profile.html"><i class="fa fa-user"></i> Mon Profile</a>
-					</li>
-					<li>
-						<a href="page_calendar.html"><i class="fa fa-calendar"></i> Mon Calendrier</a>
-					</li>
-					<li>
-						<a href="inbox.html"><i class="fa fa-envelope"></i> Mes mails
-						<span class="badge badge-danger">
-							3
+	<!-- BEGIN HEADER -->
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<!-- BEGIN TOP NAVIGATION BAR -->
+		<div class="header-inner">
+			<!-- BEGIN LOGO -->
+			<a class="navbar-brand" href="{{ path('datacity_public_homepage') }}">
+			</a>
+			<!-- END LOGO -->
+			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+			<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+			</a>
+			<!-- END RESPONSIVE MENU TOGGLER -->
+			<!-- BEGIN TOP NAVIGATION MENU -->
+			<ul class="nav navbar-nav pull-right">
+				<!-- BEGIN USER LOGIN DROPDOWN -->
+				<li class="dropdown user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<!-- <img alt="" src="assets/img/avatar1_small.jpg"/> -->
+						<span class="username">
+							PatMan
 						</span>
-						</a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-tasks"></i> Mes taches
-						<span class="badge badge-success">
-							7
-						</span>
-						</a>
-					</li>
-					<li class="divider">
-					</li>
-					<li>
-						<a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i> Plein écran</a>
-					</li>
-					<li>
-						<a href="extra_lock.html"><i class="fa fa-lock"></i> Ecran de vérouillage</a>
-					</li>
-					<li>
-						<a href="login.html"><i class="fa fa-key"></i> Déconnexion</a>
-					</li>
-				</ul>
-			</li>
-			<!-- END USER LOGIN DROPDOWN -->
-		</ul>
-		<!-- END TOP NAVIGATION MENU -->
-	</div>
-	<!-- END TOP NAVIGATION BAR -->
-</div>
-<!-- END HEADER -->
-<div class="clearfix">
-</div>
-<!-- BEGIN CONTAINER -->
-<div class="page-container">
-	<!-- BEGIN SIDEBAR -->
-	<div class="page-sidebar-wrapper">
-		<div class="page-sidebar navbar-collapse collapse">
-			<!-- BEGIN SIDEBAR MENU -->
-			<ul class="page-sidebar-menu">
-				<li class="sidebar-toggler-wrapper">
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-					<div class="sidebar-toggler hidden-phone">
-					</div>
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-				</li>
-				<li class="sidebar-search-wrapper">
-					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-					<form class="sidebar-search" action="extra_search.html" method="POST">
-						<div class="form-container">
-							<div class="input-box">
-								<a href="javascript:;" class="remove"></a>
-								<input type="text" placeholder="Recherche..."/>
-								<input type="button" class="submit" value=" "/>
-							</div>
-						</div>
-					</form>
-					<!-- END RESPONSIVE QUICK SEARCH FORM -->
-				</li>
-				<li class="start active ">
-					<a href="index.html">
-					<i class="fa fa-home"></i>
-					<span class="title">
-						Tableau de bord
-					</span>
-					<span class="selected">
-					</span>
+						<i class="fa fa-angle-down"></i>
 					</a>
-				</li>
-				
-			</ul>
-			<!-- END SIDEBAR MENU -->
-		</div>
-	</div>
-	<!-- END SIDEBAR -->
-	<!-- BEGIN CONTENT -->
-	<div class="page-content-wrapper">
-		<div class="page-content">
-			<!-- BEGIN PAGE HEADER-->
-			<div class="row">
-				<div class="col-lg-1">
-				<img src="{{ asset('bundles/datacitypublic/img/logo2.png') }}" width="55px"alt="" class="img-responsive" />
-				</div>
-
-				<div class="col-lg-11">
-					<h3 class="page-title">
-					Tableau de bord <small>Configurez vos donnée</small>
-					</h3>				
-				</div>
-				
-
-				<div class="col-md-12">
-					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-					<ul class="page-breadcrumb breadcrumb">
+					<ul class="dropdown-menu">
 						<li>
-							<i class="fa fa-home"></i>
-							<a href="index.html">Acceuil</a>
-							<i class="fa fa-angle-right"></i>
+							<a href="extra_profile.html"><i class="fa fa-user"></i> Mon Profile</a>
 						</li>
 						<li>
-							<a href="#">Tableau de bord</a>
+							<a href="page_calendar.html"><i class="fa fa-calendar"></i> Mon Calendrier</a>
 						</li>
-						<li class="pull-right">
-							<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
-								<i class="fa fa-calendar"></i>
-								<span>
+						<li>
+							<a href="inbox.html"><i class="fa fa-envelope"></i> Mes mails
+								<span class="badge badge-danger">
+									3
 								</span>
-								<i class="fa fa-angle-down"></i>
-							</div>
+							</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-tasks"></i> Mes taches
+								<span class="badge badge-success">
+									7
+								</span>
+							</a>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							<a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i> Plein écran</a>
+						</li>
+						<li>
+							<a href="extra_lock.html"><i class="fa fa-lock"></i> Ecran de vérouillage</a>
+						</li>
+						<li>
+							<a href="login.html"><i class="fa fa-key"></i> Déconnexion</a>
 						</li>
 					</ul>
-					<!-- END PAGE TITLE & BREADCRUMB-->
-				</div>
-			</div>
-			<!-- END PAGE HEADER-->
-			
-      <!-- File Uploader -->
-			<div class="row custom-row-dropzone">
-				<div class="col-md-12">
-					<form action="#" class="dropzone" id="my-dropzone"></form>
-					{# <form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone"></form> #}
-					
-					<br />
-					
-					<input type="submit" class="btn purple btn-block" value="Submit">
-				</div>
-			</div>
-      <!-- END File Uploader -->
-			
-	<!-- Window Of Uploaded Files -->
-	<div class="row">
-	
-	<div class="col-md-12 col-sm-6">
-     <div class="portlet box blue">
-      <div class="portlet-title">
-       <div class="caption">
-        <i class="fa fa-cloud-download"></i>Fichiers uploadés sur le serveur
-       </div>
-       {# <div class="actions">
-        <div class="btn-group">
-         <a class="btn btn-sm default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-         Filter By <i class="fa fa-angle-down"></i>
-         </a>
-         <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
-          <label><input type="checkbox"/> Finance</label>
-          <label><input type="checkbox" checked=""/> Membership</label>
-          <label><input type="checkbox"/> Customer Support</label>
-          <label><input type="checkbox" checked=""/> HR</label>
-          <label><input type="checkbox"/> System</label>
-         </div>
-        </div>
-       </div> #}
-      </div>
-      <div class="portlet-body uploadbody">
-       <div class="scroller" style="height: 150px;" data-always-visible="1" data-rail-visible="0">
-        <ul class="feeds uploadedFiles">
-        </ul>
-       </div>
-       {# <div class="scroller-footer">
-        <div class="pull-right">
-         <a href="#">Afficher tous les fichiers <i class="m-icon-swapright m-icon-gray"></i></a> &nbsp;
-        </div>
-       </div> #}
-      </div>
-     </div>
-    </div>
-	
+				</li>
+				<!-- END USER LOGIN DROPDOWN -->
+			</ul>
+			<!-- END TOP NAVIGATION MENU -->
+		</div>
+		<!-- END TOP NAVIGATION BAR -->
 	</div>
-  <!-- End Window of Uploaded Files-->
-	
-	<!-- DATA TABLE -->
-	
-	<div class="row">
-	
-	<div class="col-md-6">
-     <!-- BEGIN EXAMPLE TABLE PORTLET-->
-     <div class="portlet box blue">
-      <div class="portlet-title">
-       <div class="caption">
-        <i class="fa fa-edit"></i>Editable Table
-       </div>
-       <div class="tools">
-        <a href="javascript:;" class="collapse"></a>
-        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-        <a href="javascript:;" class="reload"></a>
-        <a href="javascript:;" class="remove"></a>
-       </div>
-      </div>
-      <div class="portlet-body">
-       <div class="table-toolbar">
-        <div class="btn-group">
-         <button id="sample_editable_1_new" class="btn green">
-         Add New <i class="fa fa-plus"></i>
-         </button>
-        </div>
-        <div class="btn-group pull-right">
-         <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-         </button>
-         <ul class="dropdown-menu pull-right">
-          <li>
-           <a href="#">Print</a>
-          </li>
-          <li>
-           <a href="#">Save as PDF</a>
-          </li>
-          <li>
-           <a href="#">Export to Excel</a>
-          </li>
-         </ul>
-        </div>
-       </div>
-	   <div id="sample_editable_1_filter" class="dataTables_filter">
-    <label> Search: 
-	<input class="form-control input-medium" type="text" aria-controls="sample_editable_1"></input>
-    </label>
+	<!-- END HEADER -->
+	<div class="clearfix">
+	</div>
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar-wrapper">
+			<div class="page-sidebar navbar-collapse collapse">
+				<!-- BEGIN SIDEBAR MENU -->
+				<ul class="page-sidebar-menu">
+					<li class="sidebar-toggler-wrapper">
+						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+						<div class="sidebar-toggler hidden-phone">
+						</div>
+						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					</li>
+					<li class="sidebar-search-wrapper">
+						<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+						<form class="sidebar-search" action="extra_search.html" method="POST">
+							<div class="form-container">
+								<div class="input-box">
+									<a href="javascript:;" class="remove"></a>
+									<input type="text" placeholder="Recherche..."/>
+									<input type="button" class="submit" value=" "/>
+								</div>
+							</div>
+						</form>
+						<!-- END RESPONSIVE QUICK SEARCH FORM -->
+					</li>
+					<li class="start active ">
+						<a href="index.html">
+							<i class="fa fa-home"></i>
+							<span class="title">
+								Tableau de bord
+							</span>
+							<span class="selected">
+							</span>
+						</a>
+					</li>
 
-</div>
-       <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-       <thead>
-       <tr>
-        <th>
-         Username
-        </th>
-        <th>
-         Full Name
-        </th>
-        <th>
-         Points
-        </th>
-        <th>
-         Notes
-        </th>
-        <th>
-         Edit
-        </th>
-        <th>
-         Delete
-        </th>
-       </tr>
-       </thead>
-       <tbody>
-       <tr>
-        <td>
-         alex
-        </td>
-        <td>
-         Alex Nilson
-        </td>
-        <td>
-         1234
-        </td>
-        <td class="center">
-         power user
-        </td>
-        <td>
-         <a class="edit" href="javascript:;">Edit</a>
-        </td>
-        <td>
-         <a class="delete" href="javascript:;">Delete</a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         lisa
-        </td>
-        <td>
-         Lisa Wong
-        </td>
-        <td>
-         434
-        </td>
-        <td class="center">
-         new user
-        </td>
-        <td>
-         <a class="edit" href="javascript:;">Edit</a>
-        </td>
-        <td>
-         <a class="delete" href="javascript:;">Delete</a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         nick12
-        </td>
-        <td>
-         Nick Roberts
-        </td>
-        <td>
-         232
-        </td>
-        <td class="center">
-         power user
-        </td>
-        <td>
-         <a class="edit" href="javascript:;">Edit</a>
-        </td>
-        <td>
-         <a class="delete" href="javascript:;">Delete</a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         goldweb
-        </td>
-        <td>
-         Sergio Jackson
-        </td>
-        <td>
-         132
-        </td>
-        <td class="center">
-         elite user
-        </td>
-        <td>
-         <a class="edit" href="javascript:;">Edit</a>
-        </td>
-        <td>
-         <a class="delete" href="javascript:;">Delete</a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         webriver
-        </td>
-        <td>
-         Antonio Sanches
-        </td>
-        <td>
-         462
-        </td>
-        <td class="center">
-         new user
-        </td>
-        <td>
-         <a class="edit" href="javascript:;">Edit</a>
-        </td>
-        <td>
-         <a class="delete" href="javascript:;">Delete</a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         gist124
-        </td>
-        <td>
-         Nick Roberts
-        </td>
-        <td>
-         62
-        </td>
-        <td class="center">
-         new user
-        </td>
-        <td>
-         <a class="edit" href="javascript:;">Edit</a>
-        </td>
-        <td>
-         <a class="delete" href="javascript:;">Delete</a>
-        </td>
-       </tr>
-       </tbody>
-       </table>
-      </div>
-     </div>
-     <!-- END EXAMPLE TABLE PORTLET-->
-    </div>
-		
-		<!-- DataBiding Window -->
-		<div class="col-md-6">
-		
-			<div class="portlet box blue">
-	      		<div class="portlet-title">
-	       			<div class="caption">
-	        			<i class="fa fa-reorder"></i>Modèles
-	       			</div>
-	      		</div>
-				<div class="portlet-body">
-			
-          
-					<div class="col-md-9">
-            <div class="ui-widget">
-              <br/>
-              <input id="inputModel" class="form-control">
-              
-            </div>
-           
-          </div>
-					<div class="col-md-3">
-            <button id="addCategoryModel" type="submit" class="btn blue">Ajouter au modèle</button>
-          </div>
-					<hr/>
-					<div class="clearfix">
-						<h4 id="categoryModelContainer" class="block">CATEGORIES: </h4>
-					</div>
-
-          <hr>
-            Couleur choisie: <span class="boxColored">&nbsp;</span>
-          <hr>
-				 
-				 	</div>
-				 </div>
-		 	</div>
-      <!-- END DataBiding Window-->
-
-			</div>
-			
-			<!-- END DASHBOARD STATS -->
-			<div class="clearfix">
+				</ul>
+				<!-- END SIDEBAR MENU -->
 			</div>
 		</div>
-	</div>
-	<!-- END CONTENT -->
-</div>
-<!-- END CONTAINER -->
-<!-- BEGIN FOOTER -->
-<footer class="footer">
-	<div class="footer-inner">
-		 2014 &copy; by Datacity.
-	</div>
-	<div class="footer-tools">
-		<span class="go-top">
-			<i class="fa fa-angle-up"></i>
-		</span>
-	</div>
-</footer>
-<!-- END FOOTER -->
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-<!-- BEGIN CORE PLUGINS -->
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<div class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row">
+					<div class="col-lg-1">
+						<img src="{{ asset('bundles/datacitypublic/img/logo2.png') }}" width="55px"alt="" class="img-responsive" />
+					</div>
+
+					<div class="col-lg-11">
+						<h3 class="page-title">
+							Tableau de bord <small>Configurez vos donnée</small>
+						</h3>				
+					</div>
+
+
+					<div class="col-md-12">
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+						<ul class="page-breadcrumb breadcrumb">
+							<li>
+								<i class="fa fa-home"></i>
+								<a href="index.html">Acceuil</a>
+								<i class="fa fa-angle-right"></i>
+							</li>
+							<li>
+								<a href="#">Tableau de bord</a>
+							</li>
+							<li class="pull-right">
+								<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
+									<i class="fa fa-calendar"></i>
+									<span>
+									</span>
+									<i class="fa fa-angle-down"></i>
+								</div>
+							</li>
+						</ul>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+
+				<!-- File Uploader -->
+				<div class="row custom-row-dropzone">
+					<div class="col-md-12">
+						<form action="#" class="dropzone" id="my-dropzone"></form>
+						<!-- <form action="{{ asset('bundles/datacityprivate/assets/plugins/dropzone/upload.php') }}" class="dropzone" id="my-dropzone"></form> -->
+
+						<br />
+
+						<input type="submit" class="btn purple btn-block" value="Submit">
+					</div>
+				</div>
+				<!-- END File Uploader -->
+
+				<!-- Window Of Uploaded Files -->
+				<div class="row">
+
+					<div class="col-md-12 col-sm-6">
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-cloud-download"></i>Fichiers uploadés sur le serveur
+								</div>
+
+							</div>
+							<div class="portlet-body uploadbody">
+								<div class="scroller" style="height: 150px;" data-always-visible="1" data-rail-visible="0">
+									<ul class="feeds uploadedFiles">
+									</ul>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- End Window of Uploaded Files-->
+
+				<!-- DATA TABLE -->
+
+				<div class="row">
+					<div class="col-md-8">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-edit"></i>Editable Table
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="javascript:;" class="reload"></a>
+									<a href="javascript:;" class="remove"></a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-toolbar">
+									<div class="btn-group">
+										<button id="sample_editable_1_new" class="btn green">
+											Add New <i class="fa fa-plus"></i>
+										</button>
+									</div>
+									<div class="btn-group pull-right">
+										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+										</button>
+										<ul class="dropdown-menu pull-right">
+											<li>
+												<a href="#">Print</a>
+											</li>
+											<li>
+												<a href="#">Save as PDF</a>
+											</li>
+											<li>
+												<a href="#">Export to Excel</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+									<thead>
+										<tr>
+											<th>
+												Username
+											</th>
+											<th>
+												Full Name
+											</th>
+											<th>
+												Points
+											</th>
+											<th>
+												Notes
+											</th>
+											<th>
+												Edit
+											</th>
+											<th>
+												Delete
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												alex
+											</td>
+											<td>
+												Alex Nilson
+											</td>
+											<td>
+												1234
+											</td>
+											<td class="center">
+												power user
+											</td>
+											<td>
+												<a class="edit" href="javascript:;">Edit</a>
+											</td>
+											<td>
+												<a class="delete" href="javascript:;">Delete</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												lisa
+											</td>
+											<td>
+												Lisa Wong
+											</td>
+											<td>
+												434
+											</td>
+											<td class="center">
+												new user
+											</td>
+											<td>
+												<a class="edit" href="javascript:;">Edit</a>
+											</td>
+											<td>
+												<a class="delete" href="javascript:;">Delete</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												nick12
+											</td>
+											<td>
+												Nick Roberts
+											</td>
+											<td>
+												232
+											</td>
+											<td class="center">
+												power user
+											</td>
+											<td>
+												<a class="edit" href="javascript:;">Edit</a>
+											</td>
+											<td>
+												<a class="delete" href="javascript:;">Delete</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												goldweb
+											</td>
+											<td>
+												Sergio Jackson
+											</td>
+											<td>
+												132
+											</td>
+											<td class="center">
+												elite user
+											</td>
+											<td>
+												<a class="edit" href="javascript:;">Edit</a>
+											</td>
+											<td>
+												<a class="delete" href="javascript:;">Delete</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												webriver
+											</td>
+											<td>
+												Antonio Sanches
+											</td>
+											<td>
+												462
+											</td>
+											<td class="center">
+												new user
+											</td>
+											<td>
+												<a class="edit" href="javascript:;">Edit</a>
+											</td>
+											<td>
+												<a class="delete" href="javascript:;">Delete</a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												gist124
+											</td>
+											<td>
+												Nick Roberts
+											</td>
+											<td>
+												62
+											</td>
+											<td class="center">
+												new user
+											</td>
+											<td>
+												<a class="edit" href="javascript:;">Edit</a>
+											</td>
+											<td>
+												<a class="delete" href="javascript:;">Delete</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- END EXAMPLE TABLE PORTLET-->
+					</div>
+
+					<!-- DataBiding Window -->
+					<div class="col-md-4">
+
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-reorder"></i>Modèles
+								</div>
+							</div>
+							<div class="portlet-body">
+
+								<div class="row">
+									<div class="col-md-7">
+										<div class="ui-widget">
+											<br/>
+											<input id="inputModel" class="form-control">
+
+										</div>
+									</div>
+									<div class="col-md-3">
+										<br/><br/>
+										<button id="addCategoryModel" type="submit" class="btn blue">Ajouter au modèle</button>
+									</div>
+								</div>
+								<div class="clearfix">
+									<div id="categoryModelContainer" class="block">
+										<hr/>
+										<p> Categories: </p>
+									</div>
+
+								</div>
+								<hr/>
+								Couleur choisie: <span class="boxColored">&nbsp;</span>
+							</div>
+						</div>
+					</div>
+					<!-- END DataBiding Window-->
+				</div>
+			</div>
+			<!-- END CONTENT -->
+		</div>
+		<!-- END CONTAINER -->
+		<!-- BEGIN FOOTER -->
+		<footer class="footer">
+			<div class="footer-inner">
+				2014 &copy; by Datacity.
+			</div>
+			<div class="footer-tools">
+				<span class="go-top">
+					<i class="fa fa-angle-up"></i>
+				</span>
+			</div>
+		</footer>
+		<!-- END FOOTER -->
+		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+		<!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="assets/plugins/respond.min.js"></script>
 <script src="assets/plugins/excanvas.min.js"></script> 
 <![endif]-->
 
-
-
-<!-- <script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
- -->
-
-
 {% block javascripts %}
-	{% javascripts
-		
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-migrate-1.2.1.min.js'
-	   	
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap/js/bootstrap.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.blockui.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.cokie.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/uniform/jquery.uniform.min.js'
+{% javascripts
 
-		
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/jquery.vmap.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.resize.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.pulsate.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/moment.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/daterangepicker.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-migrate-1.2.1.min.js'
 
-		
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
-		'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
-		
-		'@DatacityPrivateBundle/Resources/public/js/dashboard.js'
-		
-		'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
-		'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
-		'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
-		'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
-	  '@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
-    '@DatacityPrivateBundle/Resources/public/assets/js/databiding.js'
-    '@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
-		%}
-		<script type="text/javascript" src="{{ asset_url }}"></script>
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap/js/bootstrap.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.blockui.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.cokie.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/uniform/jquery.uniform.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/jquery.vmap.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.resize.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.pulsate.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/moment.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/daterangepicker.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
+
+
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/databiding.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
+
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/select2/select2.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/jquery.dataTables.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/DT_bootstrap.js'
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/table-editable.js'
+
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
-{% endblock %}
+	{% endblock %}
 
-<script>
-jQuery(document).ready(function() {    
-   App.init(); // initlayout and core plugins
-   Index.init();
-   FormDropzone.init();
-   // Index.initJQVMAP(); // init index page's custom scripts
-   // Index.initCalendar(); // init index page's custom scripts
-   // Index.initCharts(); // init index page's custom scripts
-   // Index.initChat();
-   // Index.initMiniCharts();
-   // Index.initDashboardDaterange();
-   //Index.initIntro();
-   // Tasks.initDashboardWidget();
-});
-</script>
-<!-- END JAVASCRIPTS -->
+	<script>
+	jQuery(document).ready(function() {    
+   		App.init(); // initlayout and core plugins
+   		Index.init();
+   		FormDropzone.init();
+   		TableEditable.init();
+	   // Index.initJQVMAP(); // init index page's custom scripts
+	   // Index.initCalendar(); // init index page's custom scripts
+	   // Index.initCharts(); // init index page's custom scripts
+	   // Index.initChat();
+	   // Index.initMiniCharts();
+	   // Index.initDashboardDaterange();
+	   //Index.initIntro();
+	   // Tasks.initDashboardWidget();
+	});
+	</script>
+	<!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
 </html>

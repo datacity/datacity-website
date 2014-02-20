@@ -17,16 +17,16 @@ UploadFilesBox.prototype = {
 	getRemoteFiles: function(callback) {
 		var publickey = "4561321edgjlkjd";
 		$.ajax({
-            url: "http://localhost:4567/user/" + publickey + "/files",
-            type: 'GET',
-            success: function(data, textStatus, jqXHR) {
-            	if (data.data)
-                	callback(data.data);
-            },
-            error: function(err) {
-                console.error(err);
-            }
-        });	
+			url: "http://localhost:4567/user/" + publickey + "/files",
+			type: 'GET',
+			success: function(data, textStatus, jqXHR) {
+				if (data.data)
+					callback(data.data);
+			},
+			error: function(err) {
+				console.error(err);
+			}
+		});	
 	},
 	init: function() {
 		var that = this;
@@ -83,19 +83,19 @@ UploadLineInfo.prototype = {
 		var desc = $(document.createElement('div')).attr('class', 'desc').append(this.fileName);
 		var date = $(document.createElement('div')).attr('class', 'date').append(this.uploadDate);
 		var htmlLine = line.append(
-								col1.append(
-									col1block.append(
-										col1sub1.append(icon)
-									).append(
-										col1sub2.append(desc)
-									)
-								)
-							)
-						   .append(
-						   		col2.append(
-						   			col2.append(date)
-						   		)
-							)
+			col1.append(
+				col1block.append(
+					col1sub1.append(icon)
+					).append(
+					col1sub2.append(desc)
+					)
+					)
+			)
+		.append(
+			col2.append(
+				col2.append(date)
+				)
+			)
 		return htmlLine;
 	}
 }
