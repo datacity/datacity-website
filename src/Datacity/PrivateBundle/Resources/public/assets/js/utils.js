@@ -14,3 +14,12 @@ var getRandomColor = function() {
   // after the decimal.
   return Math.random().toString(36).substr(2, 9);
 };
+
+var deleteFromArray = function(array, property, value) {
+  $.each(array, function(i){
+    if (array[i][property] && array[i][property] === value) {
+      array.splice(i,1);
+      return false;
+    }
+  });
+}

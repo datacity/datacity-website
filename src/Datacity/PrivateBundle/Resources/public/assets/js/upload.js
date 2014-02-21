@@ -21,16 +21,17 @@ UploadFilesBox.prototype = {
 			type: 'GET',
 			success: function(response, textStatus, jqXHR) {
 				if (response.data)
-					callback(response.data);
+					callback(null, response.data);
 			},
 			error: function(err) {
 				console.error(err);
+				callback(err, null);
 			}
 		});	
 	},
 	init: function() {
 		var that = this;
-		this.getRemoteFiles(function(files) {
+		this.getRemoteFiles(function(err, files) {
 			for (index in files) {
 				var file = files[index];
 				if (file.filename && file.uploadedDate) {
@@ -98,7 +99,7 @@ UploadLineInfo.prototype = {
 					).append(
 					col1sub2.append(desc)
 					)
-					)
+				)
 			)
 		.append(
 			col2.append(

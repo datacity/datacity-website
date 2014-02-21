@@ -15,6 +15,8 @@ var TableEditable = function (options) {
     this.url = params.url;
     this.oTable = null;
     this.nEditing = null;
+    this.bindingArray = [];
+    this.rows = null;
     this.init();
 };
 
@@ -59,7 +61,6 @@ TableEditable.prototype = {
     },
     requestRows: function(callback) {
         var urlContent = this.url + "/user/" + this.publicKey + "/parse/" + this.filePath;
-        console.log(urlContent);
         $.ajax({
             url: urlContent,
             type: 'GET',
@@ -98,6 +99,7 @@ TableEditable.prototype = {
         return array;
     },
     generateTable: function(rows) {
+        this.rows = rows;
         var header = this.generateHeaders(rows[0], "test");
         var row = this.generateRows(rows, header.length);
         this.oTable = this.jqueryTable.dataTable({
@@ -189,14 +191,48 @@ TableEditable.prototype = {
         var onCategorySetColor = function() {
             that.jqueryTable.on('click', 'th', function (e) {
                 var color = $('.boxColored').css('background-color');
-                $(this).css('background-color', $('.boxColored').css('background-color'));
-                if (color === "rgb(255, 255, 255)")
+                if (color === "rgb(255, 255, 255)" || color === "rgba(0, 0, 0, 0)") {
                     $(this).css('color', 'black');
-                else
+                    deleteFromArray(that.bindingArray, "color", $(this).css('background-color'))
+                }
+                else {
                     $(this).css('color', 'white');
+                    var textBindedCategory = null;
+                    $('.btnmodel').each(function(index) {
+                        if ($(this).css("background-color") === color)
+                            textBindedCategory = $(this).text();
+                    });
+                    if (textBindedCategory) {
+                        var bindedColumn = new BindedColumn(color, $(this).text(), textBindedCategory);
+                        that.bindingArray.push(bindedColumn);
+                    }
+                }
+                $(this).css('background-color', $('.boxColored').css('background-color'));
             });
         }();
 
+        var onUploadSource = function() {
+            $('.uploadSource').on('click', function() {
+                var dataJSON = {
+                    "jsonData": that.rows,
+                    "sourceName": "exemple",
+                    "city": "montpellier",
+                    "databiding": that.bindingArray
+                }
+                $.ajax({
+                    url: that.url + '/user/' + that.publicKey + '/source/services_publics/upload',
+                    type: 'POST',
+                    data: dataJSON,
+                    dataType: 'json',
+                    success: function(response, status, jqXHR) {
+                       console.log(response);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+        }();
     },
     initCSS: function() {
         $('.table-scrollable').css('overflow-y', 'scroll').css('height', '300px');
@@ -216,5 +252,14 @@ TableEditable.prototype = {
         }); 
        
     }
+};
+
+var BindedColumn = function(color, text, textBiding) {
+    this[text] = textBiding;
+    this.color = color;
 }
+
+BindedColumn.prototype = {
+
+};
 
