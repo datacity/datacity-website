@@ -35,6 +35,22 @@ DataBiding.prototype = {
 		}
 		return false;
 	},
+	getButtonFromValue: function(value) {
+		for (var i in this.buttonModelArray) {
+			if (this.buttonModelArray[i].value === value) {
+				return this.buttonModelArray[i];
+			}
+		}
+		return false;
+	},
+	getButtonFromColor: function(color) {
+		for (var i in this.buttonModelArray) {
+			if (this.buttonModelArray[i].color === color) {
+				return this.buttonModelArray[i];
+			}
+		}
+		return false;
+	},
 	getRemoteCategories: function(callback) {
 		//TODO: Partie sécurité donc soit passer par un service php qui se charge d'envoyer les bonnes routes de sécurité
 		// Ou sinon extraire la clé privée depuis le client en js (me paraît un peu plus crade)
@@ -44,7 +60,6 @@ DataBiding.prototype = {
 			publickey: "4561321edgjlkjd",
 			category: "services_publics"
 		}
-		console.log("enter here");
 		$.ajax({
 			url: "http://localhost:4567/source/model",
 			type: 'GET',
@@ -55,6 +70,7 @@ DataBiding.prototype = {
 			},
 			error: function(err) {
 				console.error(err);
+				callback(err);
 			}
 		});	
 	},
@@ -84,14 +100,13 @@ DataBiding.prototype = {
 		//We load first the categories from remote server and in the callback we will ensure that 
 		//the categories are loaded
 		this.getRemoteCategories(function(categories) {
-			console.log(categories);
 			if (categories instanceof Array) {
 				$('#inputModel').autocomplete({
 					delay: 0,
 					source: categories
 				});
-				that.initEvents();
 			}
+			that.initEvents();
 		});
 	},
 	initEvents: function() {
