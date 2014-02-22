@@ -24,13 +24,10 @@ Router.prototype = {
 			processDataDef = pdata;
 		if (dataToSend === "undefined")
 			dataToSend = "";
-		else
-			console.log(dataToSend);
 		$.ajax({
 			url: ajaxUrl,
 			type: httpType,
 			data: dataToSend,
-			dataType: 'json',
             contentType: contentTypeDef,
             processData: processDataDef,
 			success: function(response, textStatus, jqXHR) {
