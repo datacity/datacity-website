@@ -15,3 +15,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     jpegtran_path:     /usr/bin/jpegtran
+
+    datacity_api_url:  http://api.datacity.fr/

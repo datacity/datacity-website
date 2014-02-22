@@ -4,3 +4,9 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: datacity_user_registration }
+
+    datacity_user.registration.completed:
+        class: Datacity\UserBundle\EventListener\UserRegisteredListener
+        arguments: [@datacity_private_api]
+        tags:
+            - { name: kernel.event_subscriber }

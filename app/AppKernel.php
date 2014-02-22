@@ -21,6 +21,7 @@ class AppKernel extends Kernel
 		    new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
 	        new FOS\UserBundle\FOSUserBundle(),
         	new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Misd\GuzzleBundle\MisdGuzzleBundle(),
 
 	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),

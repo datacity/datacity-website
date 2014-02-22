@@ -1,7 +1,17 @@
 parameters:
-#    datacity_private.example.class: Datacity\PrivateBundle\Example
+    datacity_private.privateapi.class: Datacity\PrivateBundle\Service\PrivateApi
+    datacity_private.privateapi.url: %datacity_api_url%
 
 services:
 #    datacity_private.example:
 #        class: %datacity_private.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+services:
+    guzzle_client_datacity:
+        class:        %guzzle.client.class%
+        arguments:    ["%datacity_private.privateapi.url%"]
+        tags:
+            -  { name: guzzle.client }
+    datacity_private_api:
+        class:        %datacity_private.privateapi.class%
+        arguments:    [@guzzle_client_datacity]
