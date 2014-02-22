@@ -8,8 +8,11 @@ var FormDropzone = function () {
                 init: function() {
                   this.on("addedfile", function(file) {
 
-                    var onUploadDone = function(data) {
-                      console.log(data);
+                    var onUploadDone = function(err, data) {
+                      if (err) {
+                        console.warn(err);
+                        return;
+                      }
                       $.each(data.files, function(index, value) {
                         $('.uploadbody').trigger('newFileUploaded', value);
                       });

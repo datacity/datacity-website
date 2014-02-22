@@ -79,7 +79,13 @@ DataBinding.prototype = {
 	init: function() {
 		var that = this;
 		//We load first the categories from remote server and in the callback we will ensure that the categories are loaded
-		this.getRemoteCategories(function(categories) {
+		this.getRemoteCategories(function(err, categories) {
+			if (err) {
+				console.warn(err);
+				that.initEvents();
+				return;
+			}
+			console.log("on a bien init");
 			if (categories instanceof Array) {
 				$('#inputModel').autocomplete({
 					delay: 0,
@@ -103,6 +109,7 @@ DataBinding.prototype = {
 		}();
 		
 		var onClickEnter = function() {
+			console.log("init aussi !");
 			$('#inputModel').on('keypress', function(e) {
 				if (e.which == 13) {
 					var inputCategory = that.getInputCategory();

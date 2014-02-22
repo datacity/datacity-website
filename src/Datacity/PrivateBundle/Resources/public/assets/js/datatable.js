@@ -1,8 +1,10 @@
 var TableEditable = function (options) {
     var defaults = {
-        "filePath": "9115b0a5c76f679f456e3772bd3c0b7a",
+        
+        "filePath": "5a2abb8dfadeacc33270bcef5d1efdd2",
         "jqueryTable": $('#sample_editable_1'),
         "jqueryNewButton": $('#sample_editable_1_new'),
+       
         "router": null
     };
     var params = $.extend(defaults, options);
@@ -10,7 +12,7 @@ var TableEditable = function (options) {
     this.filePath = params.filePath;
     this.jqueryTable = params.jqueryTable;
     this.jqueryNewButton = params.jqueryNewButton;
-    
+
     //TODO: FAIRE UNE GESTION DERREUR DANS LE CAS OU ON OUBLIE LE ROUTER
     this.router = params.router;
     this.oTable = null;
@@ -211,8 +213,7 @@ TableEditable.prototype = {
                 }
                 that.router.postRemoteSource(function(err, data) {
                     if (err)
-                        console.error(err);
-                    console.log(data);
+                        console.warn(err);
                 }, dataJSON);
             });
         }();
@@ -229,7 +230,11 @@ TableEditable.prototype = {
         //TODO: VIRER CETTE VARIABLE
         var nEditing = null;
         var that = this;
-        this.requestRows(function(rows) {
+        this.requestRows(function(err, rows) {
+            if (err) {
+                console.warn(err);
+                return;
+            }
             that.generateTable(rows);
             that.initEvents();
         });       

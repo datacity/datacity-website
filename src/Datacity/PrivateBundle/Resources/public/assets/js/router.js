@@ -20,25 +20,27 @@ Router.prototype = {
 
 		if (ctype !== "undefined") 
 			contentTypeDef = ctype;
-		if (pdata !== "undefined") 
+		if (pdata !== "undefined")
 			processDataDef = pdata;
-		if (!dataToSend)
+		if (dataToSend === "undefined")
 			dataToSend = "";
+		else
+			console.log(dataToSend);
 		$.ajax({
 			url: ajaxUrl,
 			type: httpType,
 			data: dataToSend,
+			dataType: 'json',
             contentType: contentTypeDef,
             processData: processDataDef,
 			success: function(response, textStatus, jqXHR) {
 				if (response.status && response.status === "success" && response.data) {
-					callback(response.data);
+					callback(null, response.data);
 					if (response.message)
 						console.log(response.message);
-				}
-					
+				}	
 				else if (response.status && response.status === "error" && response.message)
-					console.warn(response.message);
+					callback(response.message);
 				else
 					console.warn("Response not well formated");
 			},
@@ -102,8 +104,8 @@ Router.prototype = {
 		this.ajaxRequest(callback, url, "POST", parameters.data, false, false);
 	},
 	postRemoteSource: function(callback, parameters) {
-		if (this.checkParameters(callback, parameters, ["category", "jsonData", "sourceName", "city", "databinding"]) === false)
-			return;
+		//if (this.checkParameters(callback, parameters, ["category", "jsonData", "sourceName", "city", "databinding"]) === false)
+			//return;
 		var url = this.url + '/user/' + this.publicKey + '/source/' + parameters.category + '/upload';
 		this.ajaxRequest(callback, url, "POST", parameters);
 	},

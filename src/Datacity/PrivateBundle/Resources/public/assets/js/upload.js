@@ -11,6 +11,7 @@ var UploadDataBox = function(uploadType, jqueryContainer, router) {
 UploadDataBox.prototype = {
 	addLineInfo: function(dataInfo, append) {
 		//TODO: Standardiser ce qu'on envoi depuis le serveur
+		console.log(dataInfo);
 		if (dataInfo.name && dataInfo.uploadedDate) {
 			var typeTab = dataInfo.name.split('.');
 			dataInfo.type = typeTab[typeTab.length - 1];
@@ -42,7 +43,13 @@ UploadDataBox.prototype = {
 
 	init: function() {
 		var that = this;
-		this.getRemoteData(function(data) {
+		this.getRemoteData(function(err, data) {
+			console.log("on a bien le callback!");
+			if (err) {
+				console.warn(err);
+				that.initEvents();
+				return;
+			}
 			for (index in data) {
 				that.addLineInfo(data[index], true);
 			}
