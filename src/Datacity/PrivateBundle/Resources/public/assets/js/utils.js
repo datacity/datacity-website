@@ -23,3 +23,7 @@ var deleteFromArray = function(array, property, value) {
     }
   });
 }
+
+var displayError = function(error) {
+
+}

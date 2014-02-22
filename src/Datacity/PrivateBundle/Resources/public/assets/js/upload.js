@@ -1,44 +1,50 @@
 var allowedType = ["csv", "json", "xml"];
 
-var UploadFilesBox = function() {
+var UploadDataBox = function(uploadType, jqueryContainer, router) {
 	this.lineInfoTab = [];
+	this.uploadType = uploadType;
+	this.jqueryContainer = jqueryContainer;
+	this.router = router;
 	this.init();
 }
 
-UploadFilesBox.prototype = {
-	addLineInfo: function(fileName, type, uploadDate, append) {
-		var line = new UploadLineInfo(fileName, type, uploadDate)
+UploadDataBox.prototype = {
+	addLineInfo: function(dataInfo, append) {
+		//TODO: Standardiser ce qu'on envoi depuis le serveur
+		if (dataInfo.name && dataInfo.uploadedDate) {
+			var typeTab = dataInfo.name.split('.');
+			dataInfo.type = typeTab[typeTab.length - 1];
+			if (allowedType.indexOf(dataInfo.type) === -1)
+				dataInfo.type = "json";
+		}
+		var defaults = {
+			"id": getRandomId(),
+			"name": "Undefined file",
+			"type": "json",
+			"uploadedDate": new Date()
+		};
+		var params = $.extend(defaults, dataInfo);
+		var line = new UploadLineInfo(params.id, params.name, params.type, params.uploadedDate)
 		this.lineInfoTab.push(line);
 		if (append === true)
-			$('.uploadedFiles').append(line.htmlElement);
+			this.jqueryContainer.append(line.htmlElement);
 		else if (append === false)
-			$('.uploadedFiles').prepend(line.htmlElement);
+			this.jqueryContainer.prepend(line.htmlElement);
 	},
-	getRemoteFiles: function(callback) {
-		var publickey = "4561321edgjlkjd";
-		$.ajax({
-			url: "http://localhost:4567/user/" + publickey + "/files",
-			type: 'GET',
-			success: function(response, textStatus, jqXHR) {
-				if (response.data)
-					callback(null, response.data);
-			},
-			error: function(err) {
-				console.error(err);
-				callback(err, null);
-			}
-		});	
+	getRemoteData: function(callback) {
+		if (this.uploadType === "files")
+			this.router.getRemoteFiles(callback);
+		else if (this.uploadType === "sources")
+			this.router.getRemoteSources(callback);
+		else
+			callback("you have to specifiy the uploadType on the constructor");
 	},
+
 	init: function() {
 		var that = this;
-		this.getRemoteFiles(function(err, files) {
-			for (index in files) {
-				var file = files[index];
-				if (file.filename && file.uploadedDate) {
-					var typeTab = file.filename.split('.');
-					var type = typeTab[typeTab.length - 1];
-					that.addLineInfo(file.filename, type, file.uploadedDate, true);
-				}			
+		this.getRemoteData(function(data) {
+			for (index in data) {
+				that.addLineInfo(data[index], true);
 			}
 			that.initEvents();
 		});
@@ -46,15 +52,9 @@ UploadFilesBox.prototype = {
 	initEvents: function() {
 
 		var that = this;
-
 		var onFileUploaded = function() {
 			$('.uploadbody').on('newFileUploaded', function(event, file) {
-				//TODO: Standardiser ce qu'on envoi depuis le serveur
-				if (file.filename && file.uploadedDate) {
-					var typeTab = file.filename.split('.');
-					var type = typeTab[typeTab.length - 1];
-					that.addLineInfo(file.filename, type, file.uploadedDate, false);
-				}
+				that.addLineInfo(file, false);
 			});
 		}();
 
@@ -74,10 +74,11 @@ UploadFilesBox.prototype = {
 	}
 }
 
-var UploadLineInfo = function(fileName, type, uploadDate) {
-	this.fileName = fileName;
+var UploadLineInfo = function(id, sourceName, type, uploadedDate) {
+	this.id = id;
+	this.sourceName = sourceName;
 	this.icon = new Icon(type);
-	this.uploadDate = new Date(uploadDate).toDateString();
+	this.uploadedDate = new Date(uploadedDate).toDateString();
 	this.htmlElement = this.buildHTMLLine();
 }
 
@@ -90,8 +91,8 @@ UploadLineInfo.prototype = {
 		var col1sub1 = $(document.createElement('div')).attr('class', 'cont-col1');
 		var col1sub2 = $(document.createElement('div')).attr('class', 'cont-col2');
 		var icon = this.icon.htmlElement;
-		var desc = $(document.createElement('div')).attr('class', 'desc').append(this.fileName);
-		var date = $(document.createElement('div')).attr('class', 'date').append(this.uploadDate);
+		var desc = $(document.createElement('div')).attr('class', 'desc').append(this.sourceName);
+		var date = $(document.createElement('div')).attr('class', 'date').append(this.uploadedDate);
 		var htmlLine = line.append(
 			col1.append(
 				col1block.append(

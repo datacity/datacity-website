@@ -1,10 +1,11 @@
 //	Objet DataBiding : contains a collection of buttonModel and is the interface to manage the databiding
-var DataBiding = function() {
+var DataBinding = function(router) {
 	this.buttonModelArray = [];
+	this.router = router;
 	this.init();
 }
 
-DataBiding.prototype = {	
+DataBinding.prototype = {
 	//	Add a new category in the container
 	addCategory: function(value) {
 		if (this.checkIfSameButtonName(value) == true)
@@ -52,29 +53,9 @@ DataBiding.prototype = {
 		return false;
 	},
 	getRemoteCategories: function(callback) {
-		//TODO: Partie sécurité donc soit passer par un service php qui se charge d'envoyer les bonnes routes de sécurité
-		// Ou sinon extraire la clé privée depuis le client en js (me paraît un peu plus crade)
-		// En attendant, clé en dur
-
-		var parameters = {
-			publickey: "4561321edgjlkjd",
-			category: "services_publics"
-		}
-		$.ajax({
-			url: "http://localhost:4567/source/model",
-			type: 'GET',
-			data: parameters,
-			success: function(response, textStatus, jqXHR) {
-				if (response.data)
-					callback(response.data);
-			},
-			error: function(err) {
-				console.error(err);
-				callback(err);
-			}
-		});	
+		//TODO: En attendant le formulaire wizard avec la catégorie
+		this.router.getRemoteCategories(callback, {"category": "services_publics"});
 	},
-	//	Get the value from the input html autocomplete
 	getInputCategory: function() {
 		return $("#inputModel").val();
 	},
@@ -97,8 +78,7 @@ DataBiding.prototype = {
 	},
 	init: function() {
 		var that = this;
-		//We load first the categories from remote server and in the callback we will ensure that 
-		//the categories are loaded
+		//We load first the categories from remote server and in the callback we will ensure that the categories are loaded
 		this.getRemoteCategories(function(categories) {
 			if (categories instanceof Array) {
 				$('#inputModel').autocomplete({

@@ -1,18 +1,18 @@
 var TableEditable = function (options) {
     var defaults = {
-        "publicKey": "4561321edgjlkjd",
         "filePath": "9115b0a5c76f679f456e3772bd3c0b7a",
         "jqueryTable": $('#sample_editable_1'),
         "jqueryNewButton": $('#sample_editable_1_new'),
-        "url": "http://localhost:4567"
+        "router": null
     };
     var params = $.extend(defaults, options);
 
-    this.publicKey = params.publicKey;
     this.filePath = params.filePath;
     this.jqueryTable = params.jqueryTable;
     this.jqueryNewButton = params.jqueryNewButton;
-    this.url = params.url;
+    
+    //TODO: FAIRE UNE GESTION DERREUR DANS LE CAS OU ON OUBLIE LE ROUTER
+    this.router = params.router;
     this.oTable = null;
     this.nEditing = null;
     this.bindingArray = [];
@@ -60,18 +60,7 @@ TableEditable.prototype = {
         oTable.fnDraw();
     },
     requestRows: function(callback) {
-        var urlContent = this.url + "/user/" + this.publicKey + "/parse/" + this.filePath;
-        $.ajax({
-            url: urlContent,
-            type: 'GET',
-            success: function(response, status, jqXHR) {
-                if (response.data)
-                    callback(response.data);
-            },
-            error: function(error) {
-                console.error(error);
-            }
-        });
+      this.router.getRemoteParsedFile(callback, {"path": this.filePath});
     },
     generateHeaders: function(headers, headerClass) {
         var array = new Array();
@@ -216,21 +205,15 @@ TableEditable.prototype = {
                 var dataJSON = {
                     "jsonData": that.rows,
                     "sourceName": "exemple",
+                    "category": "services_publics",
                     "city": "montpellier",
                     "databiding": that.bindingArray
                 }
-                $.ajax({
-                    url: that.url + '/user/' + that.publicKey + '/source/services_publics/upload',
-                    type: 'POST',
-                    data: dataJSON,
-                    dataType: 'json',
-                    success: function(response, status, jqXHR) {
-                       console.log(response);
-                    },
-                    error: function(error) {
-                        console.error(error);
-                    }
-                });
+                that.router.postRemoteSource(function(err, data) {
+                    if (err)
+                        console.error(err);
+                    console.log(data);
+                }, dataJSON);
             });
         }();
     },
@@ -249,8 +232,7 @@ TableEditable.prototype = {
         this.requestRows(function(rows) {
             that.generateTable(rows);
             that.initEvents();
-        }); 
-       
+        });       
     }
 };
 
