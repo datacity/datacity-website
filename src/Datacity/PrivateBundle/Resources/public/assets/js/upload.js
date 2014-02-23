@@ -33,7 +33,6 @@ UploadDataBox.prototype = {
 	},
 	deleteLineInfo: function(dataInfo) {
 		var line = this.getLineInfoFromName(dataInfo.name);
-
 		if (line !== false) {
 			$(line.htmlElement).remove();
 			var index = this.getIndexInfoFromName(dataInfo.name);
@@ -43,7 +42,7 @@ UploadDataBox.prototype = {
 	},
 	getLineInfoFromName: function(name) {
 		for (var index in this.lineInfoTab) {
-			if (this.lineInfoTab[index].sourceName === name)
+			if (this.lineInfoTab[index].name === name)
 				return this.lineInfoTab[index];
 		}
 		return false;
@@ -51,7 +50,7 @@ UploadDataBox.prototype = {
 	getIndexInfoFromName: function(name) {
 		var i = 0;
 		for (var index in this.lineInfoTab) {
-			if (this.lineInfoTab[index].sourceName === name)
+			if (this.lineInfoTab[index].name === name)
 				return i;
 			i++;
 		}
@@ -68,7 +67,6 @@ UploadDataBox.prototype = {
 	init: function() {
 		var that = this;
 		this.getRemoteData(function(err, data) {
-			console.log("on a bien le callback!");
 			if (err) {
 				console.warn(err);
 				that.initEvents();
@@ -91,19 +89,16 @@ UploadDataBox.prototype = {
 
 		var onFileDeleted = function() {
 			$('.uploadbody').on('fileDelete', function(event, file) {
-				console.log("event file delete : ");
-				that.deleteLineInfo(file, false);
+				that.deleteLineInfo(file);
 			});
-			$('.line-info-btn').on('click', function(event) {
-				console.log("event file delete : ");
+			$('.uploadedFiles').on('click', '.line-info-btn', function(event) {
 				var file = that.getLineInfoFromName($(this).parent().parent().children('.col1').children('.cont').children('.cont-col2').children('.desc').text());
-				console.log(file);
 				that.router.deleteRemoteFile(function(err, data) {
 					if (err) {
                         console.warn(err);
                          return;
 					}
-					that.deleteLineInfo(file, false);
+					that.deleteLineInfo(file);
 				}, {"path": file.path});
 				
 			});
@@ -124,28 +119,25 @@ UploadDataBox.prototype = {
 		}();
 
 	  	var onClicked = function() {
-			$(".uploadedFiles").on("click", "li", function(){
-				$(".uploadedFiles li").css({"background-color": "inherit"});
-    			$(this).css({"background-color": "#A0B6E3"});
+	  		$(".uploadedFiles").on("click", "li", function(){
+	  			$(".uploadedFiles li").css({"background-color": "inherit"});
+	  			$(this).css({"background-color": "#A0B6E3"});
 
-    			var desc = $(this).find(".desc").html();
-    			var file = that.getLineInfoFromName(desc);
-    			var path = file.path;
+	  			var desc = $(this).find(".desc").html();
+	  			var file = that.getLineInfoFromName(desc);
+	  			var path = file.path;
 
-    			$('#sample_editable_1').trigger('destroyTable');
-    			var et = new TableEditable({"filePath":path, "router": that.router});
-    			
-
-
-			});
+	  			$('#sample_editable_1').trigger('destroyTable');
+	  			var et = new TableEditable({"filePath":path, "router": that.router});
+	  		});
 		}();
 
 	}
 }
 
-var UploadLineInfo = function(path, sourceName, type, uploadedDate) {
+var UploadLineInfo = function(path, name, type, uploadedDate) {
 	this.path = path;
-	this.sourceName = sourceName;
+	this.name = name;
 	this.icon = new Icon(type);
 	this.uploadedDate = new Date(uploadedDate).toDateString();
 	this.htmlElement = this.buildHTMLLine();
@@ -161,7 +153,7 @@ UploadLineInfo.prototype = {
 		var col1sub1 = $(document.createElement('div')).attr('class', 'cont-col1');
 		var col1sub2 = $(document.createElement('div')).attr('class', 'cont-col2');
 		var icon = this.icon.htmlElement;
-		var desc = $(document.createElement('div')).attr('class', 'desc').append(this.sourceName);
+		var desc = $(document.createElement('div')).attr('class', 'desc').append(this.name);
 		var delButton = $(document.createElement('button')).attr('class', 'btn btn-sm btn-block line-info-btn').append(document.createTextNode("Remove file"));
 		var date = $(document.createElement('div')).attr('class', 'date').append(this.uploadedDate);
 		var htmlLine = line.append(

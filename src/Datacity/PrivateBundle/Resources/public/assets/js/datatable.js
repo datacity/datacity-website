@@ -11,8 +11,7 @@ var TableEditable = function (options) {
     this.filePath = params.filePath;
     this.jqueryTable = params.jqueryTable;
     this.jqueryNewButton = params.jqueryNewButton;
-
-    console.log("new table:" + this.filePath);
+    
     //TODO: FAIRE UNE GESTION DERREUR DANS LE CAS OU ON OUBLIE LE ROUTER
     this.router = params.router;
     this.oTable = null;
@@ -220,8 +219,6 @@ TableEditable.prototype = {
     
         var onDestroy = function() {
             that.jqueryTable.on('destroyTable', function() {
-            console.log("onDestroy");
-            console.log(that);
             if (that.oTable)
               that.oTable.fnDestroy();
               that.jqueryTable.empty();
