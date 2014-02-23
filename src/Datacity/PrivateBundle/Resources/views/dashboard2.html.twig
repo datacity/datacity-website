@@ -412,11 +412,8 @@ Website: http://datacity.fr
 	jQuery(document).ready(function() {
    		App.init(); // initlayout and core plugins
    		Index.init();
-<<<<<<< HEAD
-   		var router = new Router("http://api.datacity.fr:4567");
-=======
+
    		var router = new Router("{{ datacity_api_url }}");
->>>>>>> bd84e0b8f1a42f44ba361c2ca7ae08c9767e6401
    		FormDropzone.init(router);
    		new UploadDataBox("files", $('.uploadedFiles'), router);
    		var databiding = new DataBinding(router);
