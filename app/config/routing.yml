@@ -9,3 +9,6 @@ datacity_private:
 datacity_public:
     resource: "@DatacityPublicBundle/Resources/config/routing.yml"
     prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

@@ -353,6 +353,8 @@ Website: http://datacity.fr
 <![endif]-->
 
 {% block javascripts %}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 {% javascripts
 
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
@@ -390,7 +392,6 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
-
 
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/utils.js'

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
 	        new FOS\UserBundle\FOSUserBundle(),
         	new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
 	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),
