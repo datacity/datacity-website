@@ -109,6 +109,23 @@ UploadDataBox.prototype = {
 				$(child).css("background-position", "0 0px");
 			});
 		}();
+
+	  	var onClicked = function() {
+			$(".uploadedFiles li").on("click", function(){
+
+				$("#sample_editable_1").trigger("onDestroy");
+				$(".uploadedFiles li").css({"background-color": "inherit"});
+    			$(this).css({"background-color": "#A0B6E3"});
+    			var desc = $(this).find(".desc").html();
+    			var file = that.getLineInfoFromName(desc);
+    			var path = file.path;
+    			var et = new TableEditable({"path":path, "router": that.router});
+    			
+
+
+			});
+		}();
+
 	}
 }
 

@@ -1,7 +1,7 @@
 var TableEditable = function (options) {
     var defaults = {
         
-        "filePath": "5a2abb8dfadeacc33270bcef5d1efdd2",
+        "filePath": "fd4dec3bccba3020eb6375b6c4fedb93",
         "jqueryTable": $('#sample_editable_1'),
         "jqueryNewButton": $('#sample_editable_1_new'),
        
@@ -217,7 +217,17 @@ TableEditable.prototype = {
                 }, dataJSON);
             });
         }();
+    
+        var onDestroy = function() {
+            that.jqueryTable.on('onDestroy', function() {
+            console.log("onDestroy");
+            if (that.oTable)
+              that.oTable.fnDestroy();
+              
+            });
+        }();
     },
+
     initCSS: function() {
         $('.table-scrollable').css('overflow-y', 'scroll').css('height', '300px');
         jQuery('#sample_editable_1_wrapper .dataTables_filter input').addClass("form-control input-medium"); // modify table search input
@@ -240,6 +250,8 @@ TableEditable.prototype = {
         });       
     }
 };
+
+
 
 var BindedColumn = function(color, text, textBiding) {
     this[text] = textBiding;

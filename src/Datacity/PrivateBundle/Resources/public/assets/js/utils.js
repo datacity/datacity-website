@@ -27,3 +27,17 @@ var deleteFromArray = function(array, property, value) {
 var displayError = function(error) {
 
 }
+
+/*var fileClicked = function (elem) {
+    $(".uploadedFiles li").css({"background-color": "inherit"});
+    $(elem).css({"background-color": "#A0B6E3"});
+    var desc = $(elem).find(".desc").html();
+    var file = getLineInfoFromName(desc);
+    alert(file);
+    /*TableEditable.filePath = path;
+    TableEditable.generateTable();
+}*/
+ 
+
+ 
+

@@ -363,6 +363,17 @@
 .dropzone-previews a.dz-remove:hover {
   color: #666;
 }
+
+.uploadedFiles li:hover{
+
+background-color: #A5EAC3;
+}
+
+.fileClicked{
+  display:none;
+  background-color: red;
+}
+
 @-moz-keyframes loading {
   0% {
     background-position: 0 -400px;
