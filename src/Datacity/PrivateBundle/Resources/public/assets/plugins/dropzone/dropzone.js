@@ -532,6 +532,15 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       },
       addedfile: function(file) {
         var _this = this;
+        var fileName = file.name.substring(file.name.lastIndexOf('.')+1);
+        if (fileName == "json")
+          this.options.previewTemplate = "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"http://c.dryicons.com/images/icon_sets/coquette_part_5_icons_set/png/128x128/json_file.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>";
+        else if (fileName == "xml")
+          this.options.previewTemplate = "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"http://b.dryicons.com/images/icon_sets/coquette_part_5_icons_set/png/128x128/xml_file.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>";
+        else if (fileName == "csv")
+          this.options.previewTemplate = "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"http://c.dryicons.com/images/icon_sets/coquette_part_5_icons_set/png/128x128/csv_file.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>";
+        else
+          this.options.previewTemplate = "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"http://c.dryicons.com/images/icon_sets/minimalistica_icons/png/128x128/question_mark.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>";
         file.previewElement = Dropzone.createElement(this.options.previewTemplate);
         file.previewTemplate = file.previewElement;
         this.previewsContainer.appendChild(file.previewElement);
@@ -608,7 +617,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       },
       completemultiple: noop,
       maxfilesexceeded: noop,
-      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"http://c.dryicons.com/images/icon_sets/minimalistica_icons/png/128x128/question_mark.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
     };
 
     extend = function() {

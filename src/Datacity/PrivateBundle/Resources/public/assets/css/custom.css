@@ -5,9 +5,26 @@
 	margin-bottom: 25px;
 }
 
-.last-post-hide {
-	display: none;
+.dropzone .dz-preview .dz-details .dz-icon .dz-icon-icon,
+.dropzone .dz-preview:hover .dz-details .dz-icon .dz-icon-icon,
+.dropzone-previews .dz-preview:hover .dz-details .dz-icon .dz-icon-icon {
+	position: absolute;
+	height: 80%;
+	top: 0;
+	left: 0;
+	display: block;
 }
 
-.last-post-show {
+.feeds .col3 {
+	float: left;
+	width: 75px;
+	margin-left: -200px;
+}
+
+.feeds .col3 .line-info-btn {
+	background-color: red;
+	color: white;
+	margin-top: 5px;
+	border-radius: 5px !important;
+	
 }

@@ -94,6 +94,19 @@ UploadDataBox.prototype = {
 				console.log("event file delete : ");
 				that.deleteLineInfo(file, false);
 			});
+			$('.line-info-btn').on('click', function(event) {
+				console.log("event file delete : ");
+				var file = that.getLineInfoFromName($(this).parent().parent().children('.col1').children('.cont').children('.cont-col2').children('.desc').text());
+				console.log(file);
+				that.router.deleteRemoteFile(function(err, data) {
+					if (err) {
+                        console.warn(err);
+                         return;
+					}
+					that.deleteLineInfo(file, false);
+				}, {"path": file.path});
+				
+			});
 		}();
 
 		var onIconHover = function() {
@@ -143,11 +156,13 @@ UploadLineInfo.prototype = {
 		var line = $(document.createElement('li'));
 		var col1 = $(document.createElement('div')).attr('class', 'col1');
 		var col2 = $(document.createElement('div')).attr('class', 'col2');
+		var col3 = $(document.createElement('div')).attr('class', 'col3');
 		var col1block = $(document.createElement('div')).attr('class', 'cont');
 		var col1sub1 = $(document.createElement('div')).attr('class', 'cont-col1');
 		var col1sub2 = $(document.createElement('div')).attr('class', 'cont-col2');
 		var icon = this.icon.htmlElement;
 		var desc = $(document.createElement('div')).attr('class', 'desc').append(this.sourceName);
+		var delButton = $(document.createElement('button')).attr('class', 'btn btn-sm btn-block line-info-btn').append(document.createTextNode("Remove file"));
 		var date = $(document.createElement('div')).attr('class', 'date').append(this.uploadedDate);
 		var htmlLine = line.append(
 			col1.append(
@@ -162,6 +177,9 @@ UploadLineInfo.prototype = {
 			col2.append(
 				col2.append(date)
 				)
+			)
+		.append(
+			col3.append(delButton)
 			)
 		return htmlLine;
 	}
