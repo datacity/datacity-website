@@ -6,13 +6,16 @@ var FormDropzone = function () {
 
             Dropzone.options.myDropzone = {
                 init: function() {
-                  this.on("addedfile", function(file) {
 
+                  this.on("addedfile", function(file) {
+                    var resFiles;
+                    var deleteFile;
                     var onUploadDone = function(err, data) {
                       if (err) {
                         console.warn(err);
                         return;
                       }
+                      resFiles = data.files;
                       $.each(data.files, function(index, value) {
                         $('.uploadbody').trigger('newFileUploaded', value);
                       });
@@ -35,8 +38,24 @@ var FormDropzone = function () {
                       e.preventDefault();
                       e.stopPropagation();
 
+                      var onDeleteDone = function(err, data) {
+                        if (err) {
+                          console.warn(err);
+                          return;
+                        }
+                        $('.uploadbody').trigger('fileDelete', deleteFile);
+                      };
+
                       // Remove the file preview.
                       _this.removeFile(file);
+                      
+                      $.each(resFiles, function(index, item) {
+                        if (item.name === file.name) {
+                          deleteFile = item;
+                          router.deleteRemoteFile(onDeleteDone, {"path": item.path});
+                        }
+                      });
+
                       
                       // If you want to the delete the file on the server as well,
                       // you can do the AJAX request here.

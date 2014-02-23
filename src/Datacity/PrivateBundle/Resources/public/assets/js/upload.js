@@ -11,7 +11,6 @@ var UploadDataBox = function(uploadType, jqueryContainer, router) {
 UploadDataBox.prototype = {
 	addLineInfo: function(dataInfo, append) {
 		//TODO: Standardiser ce qu'on envoi depuis le serveur
-		console.log(dataInfo);
 		if (dataInfo.name && dataInfo.uploadedDate) {
 			var typeTab = dataInfo.name.split('.');
 			dataInfo.type = typeTab[typeTab.length - 1];
@@ -25,12 +24,38 @@ UploadDataBox.prototype = {
 			"uploadedDate": new Date()
 		};
 		var params = $.extend(defaults, dataInfo);
-		var line = new UploadLineInfo(params.id, params.name, params.type, params.uploadedDate)
+		var line = new UploadLineInfo(params.path, params.name, params.type, params.uploadedDate)
 		this.lineInfoTab.push(line);
 		if (append === true)
 			this.jqueryContainer.append(line.htmlElement);
 		else if (append === false)
 			this.jqueryContainer.prepend(line.htmlElement);
+	},
+	deleteLineInfo: function(dataInfo) {
+		var line = this.getLineInfoFromName(dataInfo.name);
+
+		if (line !== false) {
+			$(line.htmlElement).remove();
+			var index = this.getIndexInfoFromName(dataInfo.name);
+			if (index !== -1)
+				this.lineInfoTab.splice( index, 1 );
+		}
+	},
+	getLineInfoFromName: function(name) {
+		for (var index in this.lineInfoTab) {
+			if (this.lineInfoTab[index].sourceName === name)
+				return this.lineInfoTab[index];
+		}
+		return false;
+	},
+	getIndexInfoFromName: function(name) {
+		var i = 0;
+		for (var index in this.lineInfoTab) {
+			if (this.lineInfoTab[index].sourceName === name)
+				return i;
+			i++;
+		}
+		return -1;
 	},
 	getRemoteData: function(callback) {
 		if (this.uploadType === "files")
@@ -40,7 +65,6 @@ UploadDataBox.prototype = {
 		else
 			callback("you have to specifiy the uploadType on the constructor");
 	},
-
 	init: function() {
 		var that = this;
 		this.getRemoteData(function(err, data) {
@@ -65,6 +89,13 @@ UploadDataBox.prototype = {
 			});
 		}();
 
+		var onFileDeleted = function() {
+			$('.uploadbody').on('fileDelete', function(event, file) {
+				console.log("event file delete : ");
+				that.deleteLineInfo(file, false);
+			});
+		}();
+
 		var onIconHover = function() {
 			$('.col1').on('hover', function(e) {
 				var child = $(this).children('.cont').children('.cont-col1').children('a');
@@ -81,8 +112,8 @@ UploadDataBox.prototype = {
 	}
 }
 
-var UploadLineInfo = function(id, sourceName, type, uploadedDate) {
-	this.id = id;
+var UploadLineInfo = function(path, sourceName, type, uploadedDate) {
+	this.path = path;
 	this.sourceName = sourceName;
 	this.icon = new Icon(type);
 	this.uploadedDate = new Date(uploadedDate).toDateString();

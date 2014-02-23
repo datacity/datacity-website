@@ -54,7 +54,7 @@ Router.prototype = {
 		var errorFinded = false;
 		for (var params in toCheck) {
 			if (!parameters || !parameters[toCheck[params]]) {
-				errorMessage += params + '| ';
+				errorMessage += toCheck[params] + '| ';
 				errorFinded = true;				
 			}
 		}
@@ -105,6 +105,12 @@ Router.prototype = {
 			//return;
 		var url = this.url + '/user/' + this.publicKey + '/source/' + parameters.category + '/upload';
 		this.ajaxRequest(callback, url, "POST", parameters);
+	},
+	deleteRemoteFile: function(callback, parameters) {
+		if (this.checkParameters(callback, parameters, ["path"]) === false)
+			return;
+		var url = this.url + '/user/' + this.publicKey + '/file/' + parameters.path;
+		this.ajaxRequest(callback, url, "DELETE");
 	},
 	setUrl: function(url) {
 		this.url = url;
