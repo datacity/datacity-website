@@ -28,6 +28,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        datacity_api_url: "%datacity_api_url%"
 
 # Assetic Configuration
 assetic:
