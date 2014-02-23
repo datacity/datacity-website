@@ -353,6 +353,8 @@ Website: http://datacity.fr
 <![endif]-->
 
 {% block javascripts %}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 {% javascripts
 
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
@@ -391,7 +393,6 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
 
-
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/databinding.js'
@@ -411,7 +412,11 @@ Website: http://datacity.fr
 	jQuery(document).ready(function() {
    		App.init(); // initlayout and core plugins
    		Index.init();
+<<<<<<< HEAD
    		var router = new Router("http://api.datacity.fr:4567");
+=======
+   		var router = new Router("{{ datacity_api_url }}");
+>>>>>>> bd84e0b8f1a42f44ba361c2ca7ae08c9767e6401
    		FormDropzone.init(router);
    		new UploadDataBox("files", $('.uploadedFiles'), router);
    		var databiding = new DataBinding(router);

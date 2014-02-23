@@ -7,7 +7,7 @@ set :application, "Datacity_website"
 #set(:deploy_to) { "#{spec_deploy_to}" }
 set :app_path,    "app"
 
-set :repository,  "git@github.com:Wylk/Datacity.git"
+set :repository,  "git@github.com:Wykks/Datacity.git"
 set :scm,         :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
 
