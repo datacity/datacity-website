@@ -109,7 +109,6 @@ DataBinding.prototype = {
 		}();
 		
 		var onClickEnter = function() {
-			console.log("init aussi !");
 			$('#inputModel').on('keypress', function(e) {
 				if (e.which == 13) {
 					var inputCategory = that.getInputCategory();

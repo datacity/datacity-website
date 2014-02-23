@@ -97,29 +97,30 @@ UploadDataBox.prototype = {
 		}();
 
 		var onIconHover = function() {
-			$('.col1').on('hover', function(e) {
+			$('.uploadedFiles').on('hover', ".col1", function(e) {
 				var child = $(this).children('.cont').children('.cont-col1').children('a');
 				$(child).css("background-position", "0 -38px");
 			});
 		}();
 
 		var onIconOut = function() {
-			$('.col1').on('mouseout', function(e) {
+			$('.uploadedFiles').on('mouseout', '.col1', function(e) {
 				var child = $(this).children('.cont').children('.cont-col1').children('a');
 				$(child).css("background-position", "0 0px");
 			});
 		}();
 
 	  	var onClicked = function() {
-			$(".uploadedFiles li").on("click", function(){
-
-				$("#sample_editable_1").trigger("onDestroy");
+			$(".uploadedFiles").on("click", "li", function(){
 				$(".uploadedFiles li").css({"background-color": "inherit"});
     			$(this).css({"background-color": "#A0B6E3"});
+
     			var desc = $(this).find(".desc").html();
     			var file = that.getLineInfoFromName(desc);
     			var path = file.path;
-    			var et = new TableEditable({"path":path, "router": that.router});
+
+    			$('#sample_editable_1').trigger('destroyTable');
+    			var et = new TableEditable({"filePath":path, "router": that.router});
     			
 
 

@@ -1,6 +1,5 @@
 var TableEditable = function (options) {
     var defaults = {
-        
         "filePath": "fd4dec3bccba3020eb6375b6c4fedb93",
         "jqueryTable": $('#sample_editable_1'),
         "jqueryNewButton": $('#sample_editable_1_new'),
@@ -13,6 +12,7 @@ var TableEditable = function (options) {
     this.jqueryTable = params.jqueryTable;
     this.jqueryNewButton = params.jqueryNewButton;
 
+    console.log("new table:" + this.filePath);
     //TODO: FAIRE UNE GESTION DERREUR DANS LE CAS OU ON OUBLIE LE ROUTER
     this.router = params.router;
     this.oTable = null;
@@ -219,11 +219,15 @@ TableEditable.prototype = {
         }();
     
         var onDestroy = function() {
-            that.jqueryTable.on('onDestroy', function() {
+            that.jqueryTable.on('destroyTable', function() {
             console.log("onDestroy");
+            console.log(that);
             if (that.oTable)
               that.oTable.fnDestroy();
-              
+              that.jqueryTable.empty();
+              that.jqueryTable.unbind('destroyTable');
+              $('.uploadSource').unbind('click');
+              delete that;
             });
         }();
     },
