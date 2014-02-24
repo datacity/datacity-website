@@ -31,7 +31,6 @@ Router.prototype = {
             contentType: contentTypeDef,
             processData: processDataDef,
 			success: function(response, textStatus, jqXHR) {
-				console.log(response);
 				if (response.status && response.status === "success") {
 					if (response.data)
 						callback(null, response.data);

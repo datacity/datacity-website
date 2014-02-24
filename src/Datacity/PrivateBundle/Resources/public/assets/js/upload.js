@@ -128,7 +128,6 @@ UploadDataBox.prototype = {
 	  			var desc = $(this).find(".desc").html();
 	  			var file = that.getLineInfoFromName(desc);
 	  			var path = file.path;
-
 	  			$('#sample_editable_1').trigger('destroyTable');
 	  			var et = new TableEditable("files", {"filePath":path, "router": that.router});
 	  		});

@@ -62,8 +62,6 @@ TableEditable.prototype = {
         oTable.fnDraw();
     },
     requestRows: function(callback) {
-        console.log("On rappelle le requestRows :");
-        console.log(this.uploadType);
         if (this.uploadType === "files")
             this.router.getRemoteParsedFile(callback, {"path": this.filePath});
         else if (this.uploadType === "sources")
@@ -106,7 +104,6 @@ TableEditable.prototype = {
             header = this.generateHeaders(rows[0]._source, "test");
         else
             header = this.generateHeaders(rows[0], "test");
-       console.log(header);
         var row = this.generateRows(rows, header.length);
         this.oTable = this.jqueryTable.dataTable({
             "aLengthMenu": [[7, 15, 20, 100],[7, 15, 20, 100]],
