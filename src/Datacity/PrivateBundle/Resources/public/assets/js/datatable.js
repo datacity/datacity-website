@@ -11,7 +11,7 @@ var TableEditable = function (options) {
     this.filePath = params.filePath;
     this.jqueryTable = params.jqueryTable;
     this.jqueryNewButton = params.jqueryNewButton;
-    
+
     //TODO: FAIRE UNE GESTION DERREUR DANS LE CAS OU ON OUBLIE LE ROUTER
     this.router = params.router;
     this.oTable = null;
@@ -203,16 +203,25 @@ TableEditable.prototype = {
 
         var onUploadSource = function() {
             $('.uploadSource').on('click', function() {
+                var sourcename = $(".sourcename").val();
+                var categoryname = $(".categoryname").val();
+
+                if (!sourcename || !categoryname) {
+                   console.warn("Enter a sourcename and a category name please");
+                   return;
+               }
                 var dataJSON = {
                     "jsonData": that.rows,
-                    "sourceName": "exemple",
-                    "category": "services_publics",
+                    "sourceName": sourcename,
+                    "category": categoryname,
                     "city": "montpellier",
                     "databiding": that.bindingArray
                 }
+                console.log(dataJSON);
                 that.router.postRemoteSource(function(err, data) {
                     if (err)
                         console.warn(err);
+                    console.log(sourcename);
                 }, dataJSON);
             });
         }();

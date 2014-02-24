@@ -57,7 +57,7 @@ DataBinding.prototype = {
 		this.router.getRemoteCategories(callback, {"category": "services_publics"});
 	},
 	getInputCategory: function() {
-		return $("#inputModel").val();
+		return $("#inputModel").val().toLowerCase();
 	},
 	setColorIndicator: function(color) {
 		$('.boxColored').css('background-color', color);

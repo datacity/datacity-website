@@ -1,9 +1,12 @@
 var FormDropzone = function () {
 
+    var _this;
+
     return {
+
         //main function to initiate the module
         init: function (router) {
-
+          
             Dropzone.options.myDropzone = {
                 init: function() {
 
@@ -30,7 +33,8 @@ var FormDropzone = function () {
                     var removeButton = Dropzone.createElement("<button class='btn btn-sm btn-block'>Remove file</button>");
                     
                     // Capture the Dropzone instance as closure.
-                    var _this = this;
+                     
+                    _this = this;
 
                     // Listen to the click event
                     removeButton.addEventListener("click", function(e) {
@@ -70,9 +74,10 @@ var FormDropzone = function () {
 
         var onLineInfoDeleted = function() {
           $('.dropzone').on('onLineInfoDeleted', function(event, file) {
-              this.removeFile(file);
+              console.log("Je rentre dans le trou");
+              _this.removeFile(file);
           });
         }();
-      }
+      }()
     };
 }();

@@ -31,10 +31,14 @@ Router.prototype = {
             contentType: contentTypeDef,
             processData: processDataDef,
 			success: function(response, textStatus, jqXHR) {
-				if (response.status && response.status === "success" && response.data) {
-					callback(null, response.data);
-					if (response.message)
+				if (response.status && response.status === "success") {
+					if (response.data)
+						callback(null, response.data);
+					if (response.message) {
 						console.log(response.message);
+					}
+					if (!response.data && response.message)
+						callback(null, response.message);
 				}	
 				else if (response.status && response.status === "error" && response.message)
 					callback(response.message);
@@ -103,7 +107,7 @@ Router.prototype = {
 	postRemoteSource: function(callback, parameters) {
 		//if (this.checkParameters(callback, parameters, ["category", "jsonData", "sourceName", "city", "databinding"]) === false)
 			//return;
-		var url = this.url + '/user/' + this.publicKey + '/source/' + parameters.category + '/upload';
+		var url = this.url + '/user/' + this.publicKey + '/source/' + parameters.category + '/' + parameters.sourceName + '/upload';
 		this.ajaxRequest(callback, url, "POST", parameters);
 	},
 	deleteRemoteFile: function(callback, parameters) {

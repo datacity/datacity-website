@@ -260,7 +260,14 @@ Website: http://datacity.fr
 							</div>
 							<div class="portlet-body editablebody">
 								<div class="table-toolbar">
-									<div class="btn-group">
+									<div class="col-md-12">
+										<input type="text" class="form-control sourcename" placeholder="Enter the source's name">
+										<br/>
+										<input type="text" class="form-control categoryname" placeholder="Enter the category's name">
+										<hr/>
+									</div>
+
+									<!-- <div class="btn-group">
 										<button id="sample_editable_1_new" class="btn green">
 											Add New <i class="fa fa-plus"></i>
 										</button>
@@ -279,7 +286,7 @@ Website: http://datacity.fr
 												<a href="#">Export to Excel</a>
 											</li>
 										</ul>
-									</div>
+									</div> -->
 								</div>
 								<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
 								</table>
@@ -301,15 +308,14 @@ Website: http://datacity.fr
 							<div class="portlet-body">
 
 								<div class="row">
-									<div class="col-md-7">
-										<div class="ui-widget">
-											<br/>
-											<input id="inputModel" class="form-control">
+									<div class="col-md-12">
+										<div class="input-group">
+											<input id="inputModel" type="text" class="form-control">
+											<span class="input-group-btn">
+												<button id="addCategoryModel" class="btn blue" type="button">Ajouter au modèle</button>
+											</span>
 										</div>
-									</div>
-									<div class="col-md-3">
-										<br/><br/>
-										<button id="addCategoryModel" type="submit" class="btn blue">Ajouter au modèle</button>
+										<!-- /input-group -->
 									</div>
 								</div>
 								<div class="clearfix">
@@ -410,7 +416,7 @@ Website: http://datacity.fr
    		App.init(); // initlayout and core plugins
    		Index.init();
 
-   		var router = new Router("http://api.datacity.fr:4567");
+   		var router = new Router("http://localhost:4567");
    		FormDropzone.init(router);
    		new UploadDataBox("files", $('.uploadedFiles'), router);
    		var databiding = new DataBinding(router);
