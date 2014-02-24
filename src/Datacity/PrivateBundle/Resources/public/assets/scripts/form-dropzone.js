@@ -65,6 +65,14 @@ var FormDropzone = function () {
                   });
                 }            
             }
-        }
+        },
+        initEvents: function() {
+
+        var onLineInfoDeleted = function() {
+          $('.dropzone').on('onLineInfoDeleted', function(event, file) {
+              this.removeFile(file);
+          });
+        }();
+      }
     };
 }();

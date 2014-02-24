@@ -92,6 +92,7 @@ UploadDataBox.prototype = {
 				that.deleteLineInfo(file);
 			});
 			$('.uploadedFiles').on('click', '.line-info-btn', function(event) {
+				event.stopPropagation();
 				var file = that.getLineInfoFromName($(this).parent().parent().children('.col1').children('.cont').children('.cont-col2').children('.desc').text());
 				that.router.deleteRemoteFile(function(err, data) {
 					if (err) {
@@ -99,6 +100,7 @@ UploadDataBox.prototype = {
                          return;
 					}
 					that.deleteLineInfo(file);
+					$('.dropzone').trigger('onLineInfoDeleted', file);
 				}, {"path": file.path});
 				
 			});
