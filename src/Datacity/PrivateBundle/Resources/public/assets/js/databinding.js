@@ -85,7 +85,6 @@ DataBinding.prototype = {
 				that.initEvents();
 				return;
 			}
-			console.log("on a bien init");
 			if (categories instanceof Array) {
 				$('#inputModel').autocomplete({
 					delay: 0,

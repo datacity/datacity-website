@@ -31,6 +31,7 @@ Router.prototype = {
             contentType: contentTypeDef,
             processData: processDataDef,
 			success: function(response, textStatus, jqXHR) {
+				console.log(response);
 				if (response.status && response.status === "success") {
 					if (response.data)
 						callback(null, response.data);
@@ -95,13 +96,18 @@ Router.prototype = {
 		var url = this.url + "/user/" + this.publicKey + "/parse/" + parameters.path;
 		this.ajaxRequest(callback, url, "GET");
 	},
+	getRemoteParsedSource: function(callback, parameters) {
+		if (this.checkParameters(callback, parameters, ["sourceName"]) === false)
+			return;
+		var url = this.url + "/source/" + parameters.sourceName + "/download";
+		this.ajaxRequest(callback, url, "GET");
+	},
 
 	/* -----POST-----*/
 	postRemoteFiles: function(callback, parameters) {
 		if (this.checkParameters(callback, parameters, ["data"]) === false)
 			return;
 		var url = this.url + "/user/" + this.publicKey + "/upload";
-		console.log(url);
 		this.ajaxRequest(callback, url, "POST", parameters.data, false, false);
 	},
 	postRemoteSource: function(callback, parameters) {

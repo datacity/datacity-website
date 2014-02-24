@@ -1,14 +1,15 @@
-var TableEditable = function (options) {
+var TableEditable = function (uploadType, options) {
     var defaults = {
         "filePath": "fd4dec3bccba3020eb6375b6c4fedb93",
         "jqueryTable": $('#sample_editable_1'),
         "jqueryNewButton": $('#sample_editable_1_new'),
-       
+        "sourceName": "",
         "router": null
     };
     var params = $.extend(defaults, options);
-
+    this.uploadType = uploadType;
     this.filePath = params.filePath;
+    this.sourceName = params.sourceName;
     this.jqueryTable = params.jqueryTable;
     this.jqueryNewButton = params.jqueryNewButton;
 
@@ -61,7 +62,12 @@ TableEditable.prototype = {
         oTable.fnDraw();
     },
     requestRows: function(callback) {
-      this.router.getRemoteParsedFile(callback, {"path": this.filePath});
+        console.log("On rappelle le requestRows :");
+        console.log(this.uploadType);
+        if (this.uploadType === "files")
+            this.router.getRemoteParsedFile(callback, {"path": this.filePath});
+        else if (this.uploadType === "sources")
+            this.router.getRemoteParsedSource(callback, {"sourceName": this.sourceName});
     },
     generateHeaders: function(headers, headerClass) {
         var array = new Array();
@@ -81,16 +87,26 @@ TableEditable.prototype = {
         for (rowName in rows) {
             //TODO: VERIFICATION DU FICHIER
             subArray = new Array();
-            for (rowContent in rows[rowName]) {
-                subArray.push(rows[rowName][rowContent]);
+            var object;
+            if (this.uploadType === "sources")
+                object = rows[rowName]._source;
+            else
+                object = rows[rowName];
+            for (rowContent in object) {
+                subArray.push(object[rowContent]);
             }
             array.push(subArray);  
         }
         return array;
     },
     generateTable: function(rows) {
-        this.rows = rows;
-        var header = this.generateHeaders(rows[0], "test");
+        var header;
+         this.rows = rows;
+        if (this.uploadType === "sources")
+            header = this.generateHeaders(rows[0]._source, "test");
+        else
+            header = this.generateHeaders(rows[0], "test");
+       console.log(header);
         var row = this.generateRows(rows, header.length);
         this.oTable = this.jqueryTable.dataTable({
             "aLengthMenu": [[7, 15, 20, 100],[7, 15, 20, 100]],
@@ -190,7 +206,7 @@ TableEditable.prototype = {
                     var textBindedCategory = null;
                     $('.btnmodel').each(function(index) {
                         if ($(this).css("background-color") === color)
-                            textBindedCategory = $(this).text();
+                            textBindedCategory = $(this).text().toLowerCase();
                     });
                     if (textBindedCategory) {
                         var bindedColumn = new BindedColumn(color, $(this).text(), textBindedCategory);
@@ -217,11 +233,17 @@ TableEditable.prototype = {
                     "city": "montpellier",
                     "databiding": that.bindingArray
                 }
-                console.log(dataJSON);
                 that.router.postRemoteSource(function(err, data) {
                     if (err)
                         console.warn(err);
-                    console.log(sourcename);
+                    var router = that.router;
+                    that.oTable.fnDestroy();
+                    that.jqueryTable.empty();
+                    that.jqueryTable.unbind();
+                    $('.uploadSource').unbind();
+                    $('.editablebody').remove();
+                    $('.uploadEditable').remove();
+                    that = new TableEditable("sources", {"sourceName":sourcename, "router": router});
                 }, dataJSON);
             });
         }();
@@ -231,8 +253,8 @@ TableEditable.prototype = {
             if (that.oTable)
               that.oTable.fnDestroy();
               that.jqueryTable.empty();
-              that.jqueryTable.unbind('destroyTable');
-              $('.uploadSource').unbind('click');
+              that.jqueryTable.unbind();
+              $('.uploadSource').unbind();
               delete that;
             });
         }();

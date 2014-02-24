@@ -17,7 +17,6 @@ UploadDataBox.prototype = {
 			if (allowedType.indexOf(dataInfo.type) === -1)
 				dataInfo.type = "json";
 		}
-		console.log(dataInfo);
 		var defaults = {
 			"id": getRandomId(),
 			"name": "Undefined file",
@@ -73,8 +72,6 @@ UploadDataBox.prototype = {
 				that.initEvents();
 				return;
 			}
-			console.log("le retour de mon upload");
-			console.log(data);
 			for (index in data) {
 				that.addLineInfo(data[index], true);
 			}
@@ -133,7 +130,7 @@ UploadDataBox.prototype = {
 	  			var path = file.path;
 
 	  			$('#sample_editable_1').trigger('destroyTable');
-	  			var et = new TableEditable({"filePath":path, "router": that.router});
+	  			var et = new TableEditable("files", {"filePath":path, "router": that.router});
 	  		});
 		}();
 
