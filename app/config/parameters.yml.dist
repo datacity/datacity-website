@@ -16,4 +16,4 @@ parameters:
 
     jpegtran_path:     /usr/bin/jpegtran
 
-    datacity_api_url:  http://api.datacity.fr:4567
+    datacity_api_url:  http://api.datacity.fr
