@@ -100,6 +100,7 @@ UploadDataBox.prototype = {
                          return;
 					}
 					that.deleteLineInfo(file);
+					console.log(file);
 					$('.dropzone').trigger('onLineInfoDeleted', file);
 				}, {"path": file.path});
 				
@@ -123,7 +124,7 @@ UploadDataBox.prototype = {
 	  	var onClicked = function() {
 	  		$(".uploadedFiles").on("click", "li", function(){
 	  			$(".uploadedFiles li").css({"background-color": "inherit"});
-	  			$(this).css({"background-color": "#A0B6E3"});
+	  			$(this).css({"background-color": "#C1CBD0"});
 
 	  			var desc = $(this).find(".desc").html();
 	  			var file = that.getLineInfoFromName(desc);
@@ -167,13 +168,11 @@ UploadLineInfo.prototype = {
 				)
 			)
 		.append(
-			col2.append(
-				col2.append(date)
-				)
-			)
+			col2.append(date)
+		)
 		.append(
 			col3.append(delButton)
-			)
+		)
 		return htmlLine;
 	}
 }

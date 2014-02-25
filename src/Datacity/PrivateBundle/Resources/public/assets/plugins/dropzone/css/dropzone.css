@@ -366,11 +366,6 @@
   color: #666;
 }
 
-.uploadedFiles li:hover{
-
-background-color: #A5EAC3;
-}
-
 .fileClicked{
   display:none;
   background-color: red;

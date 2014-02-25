@@ -24,7 +24,30 @@
 .feeds .col3 .line-info-btn {
 	background-color: red;
 	color: white;
-	margin-top: 5px;
+	margin-top: 9px;
 	border-radius: 5px !important;
-	
+}
+
+.feeds .col1 .cont {
+	margin-left: 10px;
+}
+
+.feeds .col1 .cont .cont-col1 {
+	margin-top: 9px;
+}
+
+.feeds .col1 .cont .cont-col2 {
+	margin-top: 11px;
+}
+
+.feeds li {
+	border-radius: 5px !important;
+}
+
+.feeds .col2 .date {
+	color: black;
+}
+
+.uploadedFiles li:hover{
+	background-color: #EBEBEB;
 }

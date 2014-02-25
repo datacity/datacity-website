@@ -617,7 +617,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       },
       completemultiple: noop,
       maxfilesexceeded: noop,
-      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"http://c.dryicons.com/images/icon_sets/minimalistica_icons/png/128x128/question_mark.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n  <div class=\"dz-icon\"><img class=\"dz-icon-icon\" src=\"/bundles/datacityprivate/assets/img/question_mark.png\"></div>\n <div class=\"dz-filename\"><span data-dz-name></span></div>\n  <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
     };
 
     extend = function() {

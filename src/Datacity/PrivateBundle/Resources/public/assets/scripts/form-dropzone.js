@@ -1,7 +1,5 @@
 var FormDropzone = function () {
 
-    var _this;
-
     return {
 
         //main function to initiate the module
@@ -9,6 +7,8 @@ var FormDropzone = function () {
           
             Dropzone.options.myDropzone = {
                 init: function() {
+
+                  var listFiles = new Array();
 
                   this.on("addedfile", function(file) {
                     var resFiles;
@@ -28,13 +28,25 @@ var FormDropzone = function () {
                     if (formData)
                       formData.append("files[]", file);
                     router.postRemoteFiles(onUploadDone, {"data": formData});
+
+                    listFiles.push(file);
                   
                     // Create the remove button
-                    var removeButton = Dropzone.createElement("<button class='btn btn-sm btn-block'>Remove file</button>");
+                    var removeButton = Dropzone.createElement("<button class='btn btn-sm btn-block dropzone-file'>Remove file</button>");
                     
                     // Capture the Dropzone instance as closure.
-                     
-                    _this = this;
+                    var _this = this;
+
+                    // Listen to click event send by deleting a file in "upload.js" => "Dernier fichiers uploades"
+
+                    $('.dropzone').on('onLineInfoDeleted', function(event, file) {
+                        $.each(listFiles, function(index, item) {
+                          if (item.name === file.name) {
+                              _this.removeFile(item);
+                              listFiles.splice(index, 1);
+                          }
+                        });
+                    });
 
                     // Listen to the click event
                     removeButton.addEventListener("click", function(e) {
@@ -69,15 +81,6 @@ var FormDropzone = function () {
                   });
                 }            
             }
-        },
-        initEvents: function() {
-
-        var onLineInfoDeleted = function() {
-          $('.dropzone').on('onLineInfoDeleted', function(event, file) {
-              console.log("Je rentre dans le trou");
-              _this.removeFile(file);
-          });
-        }();
-      }()
+        }
     };
 }();
