@@ -24,7 +24,7 @@ class News
     /**
      * @var string
      *
-     * @ORM\Column(name="user", type="string", length=50)
+     * @ORM\Column(name="datacity_user", type="string", length=50)
      */
     private $user;
 
