@@ -5,3 +5,7 @@ datacity_private_homepage:
 datacity_private_dashboard:
     pattern:  /dashboard
     defaults: { _controller: DatacityPrivateBundle:Dashboard:index }
+    
+datacity_private_usersmanager:
+    pattern:  /usersmanager
+    defaults: { _controller: DatacityPrivateBundle:UsersManager:index }
