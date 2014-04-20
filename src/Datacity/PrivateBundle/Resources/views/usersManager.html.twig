@@ -1,0 +1,12 @@
+{% extends 'DatacityPrivateBundle:Template:privatetemplate.html.twig' %}
+{% block pageTitle %}Gestion d'utilisateurs{% endblock %}
+{% block lineTitleLink %}Gestion d'utilisateurs{% endblock %}
+{% block pagecontent %}
+	Content here
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+	$("#nav-usersmanager").addClass("active");
+</script>
+{% endblock %}
