@@ -6,58 +6,43 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Datacity\PublicBundle\Entity\News;
+use Datacity\UserBundle\Entity\User;
+use DateTime;
 
 class NewsData extends AbstractFixture implements OrderedFixtureInterface
 {
-	// Créaton d'utilisateurs pour la news
-	static public $customer = array(
-			'Cyntia',
-			'Marc',
-			'Cedric'
-	);
-	
+			
+
 	public function load(ObjectManager $manager)
 	{
-		// Création de titres pour la news
-		$title = array (
-				'Titre 1',
-				'Titre 2',
-				'Titre 3'
-		);
 		
-		// Création de messages pour la news
-		$message =  array (
-			'Message 1',
-			'Message 2',
-			'Message 3'
-		);
 		
-		//Création de dates pour la news
-		$date =  array (
-			'21.09.2013',
-			'08.10.2013',
-			'16.11.2013'
-		);
-		//Création d'URL d'image pour la news
-		$img =  array (
-				'http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg',
-				'http://senseable.mit.edu/copenhagenwheel/pix_urbanData/data_02.jpg',
-				'http://www.clandoustphotography.co.uk/images/banner_bridges1.jpg'
-		);
+		// Construction de 3 objets news 
 		
-		// Construction de 3 objets news avec les données des tableaux crées au dessus
-		foreach (self::$customer as $i => $cust)
-		{
 			$news = new News();
-			$news->setUser($cust);
-			$news->setTitle($title[$i]);
-			$news->setMessage($message[$i]);
-			$news->setDate($date[$i]);
-			$news->setImg($img[$i]);
+			$news->setTitle("Titre1");
+			$news->setMessage("Message1");
+			$news->setDate(new \DateTime('now'));
+			$news->setImg("http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg");
+			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
-			$this->addReference('news-'.$cust, $news);
-		}
-		// Insertion des objet news en base
+
+			$news = new News();
+			$news->setTitle("Titre2");
+			$news->setMessage("Message2");
+			$news->setDate(new \DateTime('now'));
+			$news->setImg("http://senseable.mit.edu/copenhagenwheel/pix_urbanData/data_02.jpg");
+			$this->addReference("news-". $news->getTitle(), $news);
+			$manager->persist($news);
+
+			$news = new News();
+			$news->setTitle("Titre3");
+			$news->setMessage("Message3");
+			$news->setDate(new \DateTime('now'));
+			$news->setImg("http://fr.rotterdam.info/data/offer/offerid1005/large/City-Racing-Rotterdam---Bavaria-City-Racing-133882027806.jpg");
+			$this->addReference("news-". $news->getTitle(), $news);
+			$manager->persist($news);
+
 		$manager->flush();
 	}
 	

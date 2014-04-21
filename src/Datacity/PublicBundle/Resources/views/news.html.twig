@@ -89,8 +89,8 @@
 						</p> -->
 						<div class="bottom-article">
 							<ul class="meta-post">
-								<li><i class="icon-user"></i>{{ news.getUser() }}</li>
-								<li><p>{{ news.getDate() }}</p></li>
+								<li><i class="icon-user"></i>{{ news.getUser().getUsername()}}</li>
+								<li><p>{{ news.getDate() | date('Y-m-d H:i:s') }}</p></li>
 							</ul>
 						</div>
 					</div>

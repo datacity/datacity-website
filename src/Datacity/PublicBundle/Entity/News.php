@@ -1,7 +1,9 @@
 <?php
 
+
 namespace Datacity\PublicBundle\Entity;
 
+use Datacity\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,10 +23,8 @@ class News
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="datacity_user", type="string", length=50)
+     /**
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="news", cascade={"persist"})
      */
     private $user;
 
@@ -42,13 +42,21 @@ class News
      */
     private $title;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="date", type="string")
-     */
-    private $date;
     
+    /**
+    * @var datetime $date
+    *
+    * @ORM\Column(name="date", type="datetime")
+    */
+    private $date;
+
+    public function __construct()
+    {
+    $this->date = new \Datetime();
+    }
+    
+
+
     /**
      * @var string
      *
@@ -66,18 +74,19 @@ class News
         return $this->id;
     }
 
-    /**
+     /**
      * Set user
      *
-     * @param string $user
+     * @param \Datacity\UserBundle\Entity\User $user
      * @return News
      */
-    public function setUser($user)
+    public function setUser(\Datacity\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
     
         return $this;
     }
+
 
     /**
      * Get user
@@ -135,24 +144,22 @@ class News
         return $this->title;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return News
-     */
-    public function setDate($date)
+     /**
+    * Set date
+    *
+    * @param datetime $date
+    * @return News
+    */
+    public function setDate(\Datetime $date)
     {
         $this->date = $date;
-    
-        return $this;
     }
 
     /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
+    * Get date
+    *
+    * @return datetime
+    */
     public function getDate()
     {
         return $this->date;

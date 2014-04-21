@@ -70,6 +70,12 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="user")
      */
     private $images;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
+     */
+    private $news;
     
     public function __construct()
     {
@@ -132,6 +138,44 @@ class User extends BaseUser
     {
         return $this->lastname;
     }
+
+    
+    /**
+     * Add news
+     *
+     * @param \Datacity\PublicBundle\Entity\News $news
+     * @return User
+     */
+    public function addNews(\Datacity\PublicBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+        $news->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param \Datacity\PublicBundle\Entity\News $news
+     */
+    public function removeNews(\Datacity\PublicBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
+    }
+
+    /**
+     * Get news
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNews()
+    {
+        return $this->news;
+    }
+
+
+
+
 
     /**
      * Add applications
