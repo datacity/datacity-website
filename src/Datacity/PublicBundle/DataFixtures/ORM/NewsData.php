@@ -18,7 +18,7 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 		
 		
 		// Construction de 3 objets news 
-		
+
 			$news = new News();
 			$news->setTitle("Titre1");
 			$news->setMessage("Message1");

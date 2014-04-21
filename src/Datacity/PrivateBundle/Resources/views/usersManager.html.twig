@@ -2,11 +2,93 @@
 {% block pageTitle %}Gestion d'utilisateurs{% endblock %}
 {% block lineTitleLink %}Gestion d'utilisateurs{% endblock %}
 {% block pagecontent %}
-	Content here
+					<!-- BEGIN SAMPLE TABLE PORTLET-->
+					<div class="portlet">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-bell-o"></i>Table des utilisateurs ({{users|length}} utilisateurs enregistrés)
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-advance table-hover">
+								<thead>
+								<tr>
+									<th>
+										<i class="fa fa-user"></i> Contact
+									</th>
+									<th class="hidden-xs">
+										<i class="fa fa-bookmark"></i> Ville
+									</th>
+									<th>
+										<i class="fa fa-briefcase"></i> Nombre d'applications
+									</th>
+									<th>
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for user in users %}
+									<tr id="row-user-{{user.getId()}}">
+									<td class="highlight">
+										<div class="success">
+										</div>
+										<a href="#">{{ user.firstname }} {{ user.lastname }}</a>
+									</td>
+									<td class="hidden-xs">
+										{{ user.city.name }}
+									</td>
+									<td>
+										{{ user.getApplications().count() }}
+									</td>
+									<td>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteUser({{ user.getId() }}, '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+									</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+									<h4 class="modal-title">Supression d'utilisateur</h4>
+								</div>
+								<div class="modal-body">
+									 Attention ! Vous êtes sur le point de supprimer le compte utilisateur de <span id='userToDeleteName'></span>.<br/>Merci de confirmer votre action.
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn default" data-dismiss="modal">Close</button>
+									<button id="buttonDeleteUser" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- END SAMPLE TABLE PORTLET-->
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
 <script type="text/javascript">
 	$("#nav-usersmanager").addClass("active");
+	function deleteUser(id) {
+		$.ajax({
+		    type: 'POST',  
+		    dataType: 'json',                  
+		    url: "{{ path('datacity_private_usersmanager_remove') }}/" + id,
+		    success: function(response) {
+		        $("#row-user-" + response['id']).fadeOut(300, function() { $(this).remove(); });
+		      }
+		  });
+		}
+	function setDeleteUser(id, name) {
+		$("#buttonDeleteUser").attr("onClick", "deleteUser(" + id + ");")
+		$("#userToDeleteName").html(name);
+	}
 </script>
 {% endblock %}

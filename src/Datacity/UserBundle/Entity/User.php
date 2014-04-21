@@ -57,7 +57,7 @@ class User extends BaseUser
 
     
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"remove", "persist"})
      */
     private $applications;
     
