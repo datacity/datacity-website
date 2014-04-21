@@ -46,7 +46,7 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 		);
 		
 		// Construction de 3 objets news avec les données des tableaux crées au dessus
-		foreach (self::$customer as $i => $cust)
+		/*foreach (self::$customer as $i => $cust)
 		{
 			$news = new News();
 			$news->setUser($cust);
@@ -56,7 +56,7 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			$news->setImg($img[$i]);
 			$manager->persist($news);
 			$this->addReference('news-'.$cust, $news);
-		}
+		}*/
 		// Insertion des objet news en base
 		$manager->flush();
 	}

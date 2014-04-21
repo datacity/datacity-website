@@ -9,3 +9,7 @@ datacity_private_dashboard:
 datacity_private_usersmanager:
     pattern:  /usersmanager
     defaults: { _controller: DatacityPrivateBundle:UsersManager:index }
+
+datacity_private_usersmanager_remove:
+    pattern:  /usersmanager/remove/{user_id}
+    defaults: { _controller: DatacityPrivateBundle:UsersManager:remove, user_id: -1 }
