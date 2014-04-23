@@ -17,6 +17,11 @@ var TableEditable = function (uploadType, options) {
     this.router = params.router;
     this.oTable = null;
     this.nEditing = null;
+
+    this.isEditable = true;
+    this.isTableModified = false;
+    this.header;
+
     this.bindingArray = [];
     this.rows = null;
     this.init();
@@ -35,30 +40,45 @@ TableEditable.prototype = {
     editRow: function(oTable, nRow) {
         var aData = oTable.fnGetData(nRow);
         var jqTds = $('>td', nRow);
-        jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
+        var i;
+        for (i = 0; i < jqTds.length ; i++)
+        {
+            jqTds[i].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[i] + '">';
+        }
+        /*jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
         jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
         jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
-        jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-        jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
-        jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
+        jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';*/
+        // jqTds[i].innerHTML = '<a class="edit" href="">Save</a>';
+        // jqTds[i+1].innerHTML = '<a class="cancel" href="">Cancel</a>';
     },
     saveRow: function(oTable, nRow) {
         var jqInputs = $('input', nRow);
-        oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
+        var i;
+        for (i = 0; i < jqInputs.length ; i++)
+        {
+            oTable.fnUpdate(jqInputs[i].value, nRow, i, false);
+        }
+        /*oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
         oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
         oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-        oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-        oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-        oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
+        oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);*/
+        // oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, i, false);
+        // oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, i+1, false);
         oTable.fnDraw();
     },
     cancelEditRow: function(oTable, nRow) {
         var jqInputs = $('input', nRow);
-        oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-        oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-        oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-        oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-        oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
+        var i;
+        for (i = 0; i < jqInputs.length ; i++)
+        {
+            oTable.fnUpdate(jqInputs[i].value, nRow, i, false);
+        }
+        // oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
+        // oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
+        // oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
+        // oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
+        // oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, i, false);
         oTable.fnDraw();
     },
     requestRows: function(callback) {
@@ -93,18 +113,18 @@ TableEditable.prototype = {
             for (rowContent in object) {
                 subArray.push(object[rowContent]);
             }
-            array.push(subArray);  
+            array.push(subArray);
         }
         return array;
     },
     generateTable: function(rows) {
-        var header;
+        //var header;
          this.rows = rows;
         if (this.uploadType === "sources")
-            header = this.generateHeaders(rows[0]._source, "test");
+            this.header = this.generateHeaders(rows[0]._source, "test");
         else
-            header = this.generateHeaders(rows[0], "test");
-        var row = this.generateRows(rows, header.length);
+            this.header = this.generateHeaders(rows[0], "test");
+        var row = this.generateRows(rows, this.header.length);
         this.oTable = this.jqueryTable.dataTable({
             "aLengthMenu": [[7, 15, 20, 100],[7, 15, 20, 100]],
             "iDisplayLength": 7,
@@ -117,12 +137,48 @@ TableEditable.prototype = {
                 }
             },
             "aaData": row,
-            "aoColumns": header
+            "aoColumns": this.header
         });
         this.initCSS();
     },
     getTableColumns: function() {
 
+    },
+    tableToJson: function(oTable) {
+        var data = [];
+
+        // first row needs to be headers
+        //oTable.fnSort( [0,'asc'] );
+        var headers = oTable.dataTableSettings[0].aoColumns;
+        var oRows = oTable.fnGetNodes();
+
+        //alert(JSON.stringify(oRows[0]));
+         // alert("TEST OFFICieu :  " + oRows[0].cells[0].innerHTML);
+
+        // for (var i=0; i<oRows[0].cells.length; i++) {
+        //     headers[i] = oRows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+        // }
+        
+        //console.log("TEST 1 : " + JSON.stringify(.sTitle));
+        // go through cells
+        for (var i=0; i<oRows.length; i++) {
+
+            var oTableRow = oRows[i];
+            //alert(JSON.stringify(oTableRow));
+            var rowData = {};
+
+            $.each(headers, function(i,header) { 
+
+                rowData[ header.sTitle ] = oTableRow.cells[i].innerHTML;
+            });
+            // for (var j=0; j<oTableRow.cells.length; j++) {
+            // }
+
+            data.push(rowData);
+        }
+        console.log(data);
+        //alert(JSON.stringify(data));
+        return data;
     },
     initEvents: function() {
         var that = this;
@@ -167,27 +223,33 @@ TableEditable.prototype = {
         }();
         
         var onEditAction = function() {
-            that.jqueryTable.on('click', 'a.edit' , function (e) {
+            that.jqueryTable.on('click', 'tr' , function (e) {
                 e.preventDefault();
 
-                /* Get the row as a parent of the link that was clicked on */
-                var nRow = $(this).parents('tr')[0];
 
-                if (nEditing !== null && nEditing != nRow) {
-                    /* Currently editing - but not this row - restore the old before continuing to edit mode */
-                    restoreRow(oTable, nEditing);
-                    editRow(oTable, nRow);
-                    nEditing = nRow;
-                } else if (nEditing == nRow && this.innerHTML == "Save") {
-                    /* Editing this row and want to save it */
-                    saveRow(oTable, nEditing);
-                    nEditing = null;
-                    alert("Updated! Do not forget to do some ajax to sync with backend :)");
-                } else {
-                    /* No edit in progress - let's start one */
-                    editRow(oTable, nRow);
-                    nEditing = nRow;
-                }
+
+                    var nRow = $(this)[0];
+
+                    if (that.nEditing !== null && that.nEditing != nRow && that.isEditable == false) {
+                        /* Currently editing - but not this row - restore the old before continuing to edit mode */
+                        that.restoreRow(that.oTable, that.nEditing);
+                        that.editRow(that.oTable, nRow);
+                        that.nEditing = nRow;
+                    } else if (that.isEditable == true) {
+                        /* No edit in progress - let's start one */
+                        that.isEditable = false;
+                        that.editRow(that.oTable, nRow);
+                        that.nEditing = nRow;
+                    }
+                    $("td").keyup(function (e) {
+                        if (e.keyCode == 13 && that.nEditing == nRow) {
+                            that.saveRow(that.oTable, that.nEditing);
+                            that.nEditing = null;
+                            that.isTableModified = true;
+                            that.isEditable = true;
+                            alert("Row updated!");
+                        }
+                    });
             });
         }();
 
@@ -222,14 +284,21 @@ TableEditable.prototype = {
                 if (!sourcename || !categoryname) {
                    console.warn("Enter a sourcename and a category name please");
                    return;
-               }
+                }
+                var jsonData = (that.isTableModified ? that.tableToJson(that.oTable) : that.rows);
+
+                console.log(that.rows);
+                alert("TEST OFFI :  \n" + JSON.stringify(that.rows) + "\n\n");
+                alert(that.rows);
+
                 var dataJSON = {
-                    "jsonData": that.rows,
+                    "jsonData": jsonData,
                     "sourceName": sourcename,
                     "category": categoryname,
                     "city": "montpellier",
                     "databiding": that.bindingArray
                 }
+                
                 that.router.postRemoteSource(function(err, data) {
                     if (err)
                         console.warn(err);
