@@ -10,4 +10,6 @@ class DatacityUserBundle extends Bundle
 	{
 		return 'FOSUserBundle';
 	}
+	
+
 }

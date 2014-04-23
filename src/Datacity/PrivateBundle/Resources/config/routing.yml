@@ -13,3 +13,11 @@ datacity_private_usersmanager:
 datacity_private_usersmanager_remove:
     pattern:  /usersmanager/remove/{user_id}
     defaults: { _controller: DatacityPrivateBundle:UsersManager:remove, user_id: -1 }
+
+datacity_private_newsmanager:
+    pattern:  /newsmanager
+    defaults: { _controller: DatacityPrivateBundle:NewsManager:index }
+
+datacity_private_newsmanager_add:
+    pattern:  /newsmanager/add
+    defaults: { _controller: DatacityPrivateBundle:NewsManager:add}

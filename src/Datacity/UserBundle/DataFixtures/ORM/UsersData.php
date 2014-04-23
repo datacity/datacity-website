@@ -126,7 +126,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEnabled(true);
 		$user->setEmail('john.doe@example.com');
 		$user->addApplication($this->getReference("application-Datacity Culture"));
-		$user->addNews($this->getReference("news-Titre1"));
+		//$user->addNews($this->getReference("news-Titre1"));
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[0]));
 		
 		
@@ -140,7 +140,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEnabled(true);
 		$user->setEmail('marcel@example.com');
 		$user->addApplication($this->getReference("application-Datacity Street"));
-		$user->addNews($this->getReference("news-Titre2"));
+		//$user->addNews($this->getReference("news-Titre2"));
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[1]));
 				
 		
@@ -154,7 +154,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEnabled(true);
 		$user->setEmail('alberto@example.com');
 		$user->addApplication($this->getReference("application-Datacity Tourism"));
-		$user->addNews($this->getReference("news-Titre3"));
+		//$user->addNews($this->getReference("news-Titre3"));
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[2]));
 		
 		$userManager->updateUser($user);

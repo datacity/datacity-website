@@ -81,16 +81,11 @@
 						<p>
 							 {{ news.getMessage() }}
 						</p>
-						<!-- <blockquote>
-							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, ei quod constituto qui. Summo labores expetendis ad quo, lorem luptatum et vis. No qui vidisse signiferumque...
-						</blockquote>
-						<p>
-							 Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed. Dicam appetere ne qui, no has scripta appellantur. Mazim alienum appellantur eu cum, cu ullum officiis pro, pri at eius erat accusamus.
-						</p> -->
+						
 						<div class="bottom-article">
 							<ul class="meta-post">
 								<li><i class="icon-user"></i>{{ news.getUser().getUsername()}}</li>
-								<li><p>{{ news.getDate() | date('Y-m-d H:i:s') }}</p></li>
+								<li><p>{{ news.getDate() | date('d-m-Y H:i') }}</p></li>
 							</ul>
 						</div>
 					</div>

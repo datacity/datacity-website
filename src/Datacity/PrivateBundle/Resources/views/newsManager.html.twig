@@ -1,0 +1,75 @@
+{% extends 'DatacityPrivateBundle:Template:privatetemplate.html.twig' %}
+{% block pageTitle %}Gestion des Actualités{% endblock %}
+{% block lineTitleLink %}Gestion des Actualités{% endblock %}
+{% block pagecontent %}
+
+
+<a href="{{ path('datacity_private_newsmanager_add') }}" class="btn btn-lg green">Ajouter une actualité <i class="fa fa-plus"></i></a><br><br>
+<!-- BEGIN SAMPLE TABLE PORTLET-->
+					<div class="portlet">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-bell-o"></i>Table des actualités ({{news|length}} actualités enregistrés)
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-advance table-hover">
+								<thead>
+								<tr>
+									<th>
+										<i class="fa fa-user"></i> Auteur
+									</th>
+									<th class="hidden-xs">
+										<i class="fa fa-bookmark"></i> Titre
+									</th>
+									<th>
+										<i class="fa fa-briefcase"></i> Message
+									</th>
+									<th>
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for new in news %}
+									<tr id="row-user-{{new.getId()}}">
+									<td class="highlight">
+										<div class="success">
+										</div>
+										<a href="#">{{ new.getUser().firstname }} {{ new.getUser().lastname }}</a>
+									</td>
+									<td class="hidden-xs">
+										{% if new.title |length > 50 %}
+										{{ new.title |slice(0, 50)}}...
+										{% else %}
+										{{ new.title}}
+										{% endif %}
+									</td>
+									<td>
+										{% if new.message |length > 100 %}
+										{{ new.message |slice(0, 100)}}...
+										{% else %}
+										{{new.message}}
+										{% endif %}	
+									</td>
+									<td>
+										<a href"#"><i class="fa fa-trash-o"></i> Delete</a>
+									</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+
+
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+	<script type="text/javascript">
+		$("#nav-newsmanager").addClass("active");
+	</script>
+{% endblock %}

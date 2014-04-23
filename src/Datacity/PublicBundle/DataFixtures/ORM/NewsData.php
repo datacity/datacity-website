@@ -19,7 +19,7 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 		
 		// Construction de 3 objets news 
 
-			$news = new News();
+			/*$news = new News();
 			$news->setTitle("Titre1");
 			$news->setMessage("Message1");
 			$news->setDate(new \DateTime('now'));
@@ -43,7 +43,7 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
 
-		$manager->flush();
+		$manager->flush();*/
 	}
 	
 	// Exécution de la fixture aprés l'éxécution des 6 autres.

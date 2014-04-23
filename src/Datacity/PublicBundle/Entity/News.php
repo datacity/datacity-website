@@ -52,7 +52,8 @@ class News
 
     public function __construct()
     {
-    $this->date = new \Datetime();
+    $this->date = new \Datetime('now', new \DateTimeZone('Europe/Dublin'));
+
     }
     
 
@@ -60,7 +61,7 @@ class News
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=200)
+     * @ORM\Column(name="image", type="string", length=200, nullable=true)
      */
     private $img;
 
