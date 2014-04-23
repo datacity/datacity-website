@@ -1,3 +1,4 @@
+{% trans_default_domain "body" %}
 <!DOCTYPE html>
 <html lang="{% block language %}fr{% endblock %}">
 <head>
@@ -71,7 +72,7 @@
 				{% else %}
 					<div class="headnav">
 						<ul>
-							<li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-user"></i> Inscription</a></li>
+							<li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-user"></i>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
 							<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
 						</ul>
 					</div>
@@ -90,18 +91,18 @@
 						<nav>
 						<ul class="nav topnav">
 							<li class="active">
-								<a href="{{ path('datacity_public_homepage') }}">Accueil </a>
+								<a href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a>
 							</li>
 							<li class="dropdown">
-								<a>Nos services <i class="icon-angle-down"></i></a>
+								<a>{{ 'menu.service'|trans }}<i class="icon-angle-down"></i></a>
 								<ul class="dropdown-menu">
-								<li><a href="{{ path('datacity_public_portalpage') }}">Portail applicatif</a></li>
-								<li><a href="{{ path('datacity_public_news') }}">News</a></li>
-								<li><a href="{{ path('datacity_public_dataviewpage') }}">Tableau de données</a></li>
+								<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
+								<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
+								<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
 							</ul>
 							</li>
-							<li><a href="{{ path('datacity_public_documentationpage') }}">Documentation </a></li>
-							<li><a href="{{ path('datacity_public_contactpage') }}">Contact </a></li>
+							<li><a href="{{ path('datacity_public_documentationpage') }}">{{ 'menu.doc'|trans }}</a></li>
+							<li><a href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
 						</ul>
 						</nav>
 					</div>
@@ -117,30 +118,30 @@
 		<div class="row">
 			<div class="span5">
 				<div class="widget">
-					<h5 class="widgetheading">Parcourir</h5>
+					<h5 class="widgetheading">{{ 'footer.browse'|trans }}</h5>
 					<ul class="link-list">
-						<li><a href="{{ path('datacity_public_portalpage') }}">Portail applicatif</a></li>
-						<li><a href="{{ path('datacity_public_news') }}">News</a></li>
-						<li><a href="{{ path('datacity_public_dataviewpage') }}">Tableau de données</a></li>
-						<li><a href="{{ path('datacity_public_documentationpage') }}">Documentation </a></li>
+						<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
+						<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
+						<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
+						<li><a href="{{ path('datacity_public_documentationpage') }}">{{ 'menu.doc'|trans }}</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="span5">
 				<div class="widget">
-					<h5 class="widgetheading">Infos utiles</h5>
+					<h5 class="widgetheading">{{ 'footer.info'|trans }}</h5>
 					<ul class="link-list">
-						<li><a href="#">On parle de nous</a></li>
-						<li><a href="#">Conditions d'utilisation</a></li>
-						<li><a href="#">Privacy policy</a></li>
+						<li><a href="#">{{ 'footer.talkaboutus'|trans }}</a></li>
+						<li><a href="#">{{ 'footer.condition'|trans }}</a></li>
+						<li><a href="#">{{ 'footer.privacypolicy'|trans }}</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="span2">
 				<div class="widget">
-					<h5 class="widgetheading">Nous contacter</h5>
-					<p><a href="{{ path('datacity_public_contactpage') }}">Formulaire de contact</a></p>
-					<p>Ou</p>
+					<h5 class="widgetheading">{{ 'footer.contact.title'|trans }}</h5>
+					<p><a href="{{ path('datacity_public_contactpage') }}">{{ 'footer.contact.form'|trans }}</a></p>
+					<p>{{ 'footer.contact.or'|trans }}</p>
 					<p><i class="icon-envelope-alt"></i> contact@datacity.com </p>
 				</div>
 			</div>
@@ -152,7 +153,7 @@
 				<div class="span6">
 					<div class="copyright">
 						<p>
-							<span>&copy; DataCity 2013 Tout droits reservés.
+							<span>{{ 'datacity.copyright'|trans }}
 						</p>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 {% extends 'DatacityPublicBundle:Template:body.html.twig' %}
-
+{% trans_default_domain "home" %}
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets
@@ -18,17 +18,15 @@
 	<div id="da-slider" class="da-slider">
 		<div class="da-slide">
 			<h2>DataCity</h2>
-			<p>Datacity est un projet qui offre plusieurs fonctionnalités dans le domaine de l'Open Data. 
-			Il analyse et centralise les besoins des collectivités territoriales grâce à l'exploitation de données libres, et les met à disposition par une interface de programmation (API). DataCity offre également un portail applicatif extensible et malléable à la demande des services publics.</p>
+			<p>{{ 'datacity.description'|trans }}</p>
 			<div class="da-img">
 				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/toto.png') }}" alt="image01" />
 			</div>
 		</div>
 		<div class="da-slide">
-			<h2>Tableau de bord</h2>
+			<h2>{{ 'dashboard'|trans }}</h2>
 			<p>
-				Le tableau de bord de DataCity permet a tous de selectionner, trier et dédoublonner les données pour
-				un resultat claire dans le format que l'utilisateur désire.
+				{{ 'dashboard.description'|trans }}
 			</p>
 			<a href="/private/dashboard" class="da-link">Accès</a>
 			<div class="da-img">
@@ -134,7 +132,7 @@
 		<!-- Portfolio Projects -->
 		<div class="row">
 			<div class="span12">
-				<h4 class="heading">Nouvelles <strong>applications</strong> du store</h4>
+				<h4 class="heading">{{ 'apps.new'|trans|raw }}</h4>
 				<div class="row">
 					<section id="projects">
 						<ul id="thumbs" class="portfolio">
@@ -171,7 +169,7 @@
 		<!-- end divider -->
 		<div class="row">
 			<div class="span12">
-				<h4>Partenaires et <strong>clients</strong></h4>
+				<h4>{{ 'partner'|trans|raw }}</h4>
 				<ul id="mycarousel" class="jcarousel-skin-tango recent-jcarousel clients">
 					<li>
 					<a href="#">

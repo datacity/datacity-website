@@ -1,0 +1,19 @@
+menu:
+   home: Accueil
+   app: Portail applicatif
+   news: News
+   datatable: Tableau de données
+   doc: Documentation
+   contact: Contact
+   service: Nos services
+footer:
+   browse: Parcourir
+   info: Infos utiles
+   talkaboutus: On parle de nous
+   condition: Conditions d'utilisation
+   privacypolicy: Politique de confidentialité 
+   contact:
+      title: Nous contacter
+      form: Formulaire de contact
+      or: Ou
+datacity.copyright: © DataCity 2013 Tout droits reservés.
