@@ -20,7 +20,6 @@ var TableEditable = function (uploadType, options) {
 
     this.isEditable = true;
     this.isTableModified = false;
-    this.header;
 
     this.bindingArray = [];
     this.rows = null;
@@ -118,13 +117,13 @@ TableEditable.prototype = {
         return array;
     },
     generateTable: function(rows) {
-        //var header;
+        var header;
          this.rows = rows;
         if (this.uploadType === "sources")
-            this.header = this.generateHeaders(rows[0]._source, "test");
+            header = this.generateHeaders(rows[0]._source, "test");
         else
-            this.header = this.generateHeaders(rows[0], "test");
-        var row = this.generateRows(rows, this.header.length);
+            header = this.generateHeaders(rows[0], "test");
+        var row = this.generateRows(rows, header.length);
         this.oTable = this.jqueryTable.dataTable({
             "aLengthMenu": [[7, 15, 20, 100],[7, 15, 20, 100]],
             "iDisplayLength": 7,
@@ -137,7 +136,7 @@ TableEditable.prototype = {
                 }
             },
             "aaData": row,
-            "aoColumns": this.header
+            "aoColumns": header
         });
         this.initCSS();
     },
@@ -147,37 +146,20 @@ TableEditable.prototype = {
     tableToJson: function(oTable) {
         var data = [];
 
-        // first row needs to be headers
-        //oTable.fnSort( [0,'asc'] );
         var headers = oTable.dataTableSettings[0].aoColumns;
         var oRows = oTable.fnGetNodes();
 
-        //alert(JSON.stringify(oRows[0]));
-         // alert("TEST OFFICieu :  " + oRows[0].cells[0].innerHTML);
-
-        // for (var i=0; i<oRows[0].cells.length; i++) {
-        //     headers[i] = oRows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
-        // }
-        
-        //console.log("TEST 1 : " + JSON.stringify(.sTitle));
-        // go through cells
         for (var i=0; i<oRows.length; i++) {
 
             var oTableRow = oRows[i];
-            //alert(JSON.stringify(oTableRow));
             var rowData = {};
 
             $.each(headers, function(i,header) { 
-
                 rowData[ header.sTitle ] = oTableRow.cells[i].innerHTML;
             });
-            // for (var j=0; j<oTableRow.cells.length; j++) {
-            // }
 
             data.push(rowData);
         }
-        console.log(data);
-        //alert(JSON.stringify(data));
         return data;
     },
     initEvents: function() {
@@ -247,7 +229,6 @@ TableEditable.prototype = {
                             that.nEditing = null;
                             that.isTableModified = true;
                             that.isEditable = true;
-                            alert("Row updated!");
                         }
                     });
             });
@@ -286,10 +267,6 @@ TableEditable.prototype = {
                    return;
                 }
                 var jsonData = (that.isTableModified ? that.tableToJson(that.oTable) : that.rows);
-
-                console.log(that.rows);
-                alert("TEST OFFI :  \n" + JSON.stringify(that.rows) + "\n\n");
-                alert(that.rows);
 
                 var dataJSON = {
                     "jsonData": jsonData,
