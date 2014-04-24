@@ -1,0 +1,14 @@
+title: Homepage
+datacity.description: > #FIXME Innacurate translation
+    Datacity is a project which offers several features in the domain of Open Data. 
+    It analyzes and centralizes the needs for regions thanks to the exploitation of free data,
+    and expose these by an application programming interface (API).
+    DataCity also offers a stretchable and moldable application portal on request of public services.
+dashboard:
+    title: Dashboard
+    description: > #FIXME Innacurate translation
+        The dashboard of DataCity provide select, sort, and deduplicate data for 
+        a clear result in a format desired by the user.
+    access: Access
+apps.new: New <strong>applications</strong> in the store
+partner: Partner and <strong>customers</strong>

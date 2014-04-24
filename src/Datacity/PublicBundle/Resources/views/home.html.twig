@@ -10,7 +10,7 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{% block title %}Datacity -- Page d'accueil{% endblock %}
+{% block title %}Datacity -- {{ 'title'|trans }}{% endblock %}
 
 {% block content %}
 	<section id="featured">
@@ -24,11 +24,11 @@
 			</div>
 		</div>
 		<div class="da-slide">
-			<h2>{{ 'dashboard'|trans }}</h2>
+			<h2>{{ 'dashboard.title'|trans }}</h2>
 			<p>
 				{{ 'dashboard.description'|trans }}
 			</p>
-			<a href="/private/dashboard" class="da-link">Accès</a>
+			<a href="/private/dashboard" class="da-link">{{ 'dashboard.access'|trans }}</a>
 			<div class="da-img">
 				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/1.png') }}" alt="image01" />
 			</div>
