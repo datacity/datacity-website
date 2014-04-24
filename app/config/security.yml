@@ -27,8 +27,13 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/[^/]+/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/[^/]+/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/[^/]+/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/[^/]+/admin/, role: ROLE_ADMIN }
-        - { path: ^/[^/]+/private/, role: ROLE_USER }
+        - { path: ^/(fr|en)/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(fr|en)/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(fr|en)/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(fr|en)/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/(fr|en)/private/, role: ROLE_USER }
+        - { path: ^/private/, role: ROLE_USER }
