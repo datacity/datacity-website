@@ -1,6 +1,6 @@
 {% trans_default_domain "body" %}
 <!DOCTYPE html>
-<html lang="{% block language %}fr{% endblock %}">
+<html lang="{{ app.request.locale }}">
 <head>
 	<meta charset="utf-8">
 	<title>{% block title %}Datacity{% endblock %}</title>
