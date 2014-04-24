@@ -5,6 +5,7 @@ namespace Datacity\PrivateBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Datacity\UserBundle\Entity\User;
 use Datacity\PublicBundle\Entity\News;
+use Datacity\PrivateBundle\Entity\NewsType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
@@ -26,33 +27,23 @@ class NewsManagerController extends Controller
     
     // Récupère l'utilisateur courant
     $news->setUser($this->get('security.context')->getToken()->getUser());
-    // On crée le FormBuilder grâce à la méthode du contrôleur
-    $formBuilder = $this->createFormBuilder($news);
-    // On ajoute les champs de l'entité que l'on veut à notre formulaire
-    $formBuilder
-        ->add('title', 'text')
-        ->add('message', 'textarea')
-        ->add('img', 'text');
-    // À partir du formBuilder, on génère le formulaire
-    $form = $formBuilder->getForm();
-    // On récupère la requête
+
+    $form = $this->createForm(new NewsType, $news);
+
     $request = $this->get('request');
-    // On vérifie qu'elle est de type POST
     if ($request->getMethod() == 'POST') {
-      // On fait le lien Requête <-> Formulaire
-      // À partir de maintenant, la variable $article contient les valeurs entrées dans le formulaire par le visiteur
-      $form->bind($request);
+    $form->bind($request);
 
-      // On vérifie que les valeurs entrées sont correctes
-      if ($form->isValid()) {
-        // On enregistre l'article dans la base de données
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($news);
-        $em->flush();
+    if ($form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      //$em->persist($news->getImage());
+      $em->persist($news);
+      //
+      $em->flush();
 
-        // On redirige vers la page de visualisation de l'article nouvellement créé
-        return $this->redirect($this->generateUrl('datacity_private_newsmanager'), 301);
-        
+    
+    // On redirige vers la page de visualisation de l'article nouvellement créé
+    return $this->redirect($this->generateUrl('datacity_private_newsmanager'), 301);    
       }
     }
 
@@ -60,6 +51,23 @@ class NewsManagerController extends Controller
     return $this->render('DatacityPrivateBundle::addNews.html.twig', array(
         'form' => $form->createView(),
     ));
+    }
+
+     public function removeAction($news_id)
+    {
+        if ($news_id != -1) {
+            $news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News")->find($news_id); 
+            $title = $news->getTitle();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($news);
+            $em->flush();
+
+            //return "Title" . $news_id . " deleted";
+            $response = new JsonResponse(array('status' => true, 'title' => $title, 'id' => $news_id));
+            return $response;
+        }
+        $response = new JsonResponse(array('status' => false, 'title' => "UNKNOWN", 'id' => $news_id));
+        return $response;
     }
 
 }

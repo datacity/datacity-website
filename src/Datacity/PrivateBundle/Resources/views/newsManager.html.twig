@@ -32,7 +32,7 @@
 								</thead>
 								<tbody>
 								{% for new in news %}
-									<tr id="row-user-{{new.getId()}}">
+									<tr id="row-news-{{new.getId()}}">
 									<td class="highlight">
 										<div class="success">
 										</div>
@@ -53,7 +53,7 @@
 										{% endif %}	
 									</td>
 									<td>
-										<a href"#"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteNews({{ new.getId() }}, '{{ new.getTitle()|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -62,7 +62,26 @@
 							</div>
 						</div>
 					</div>
-					
+					<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+									<h4 class="modal-title">Supression d'une actualité</h4>
+								</div>
+								<div class="modal-body">
+									 Attention ! Vous êtes sur le point de supprimer l'actualité <span id='newsToDeleteTitle'></span>.<br/>Merci de confirmer votre action.
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn default" data-dismiss="modal">Close</button>
+									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- END SAMPLE TABLE PORTLET-->
 
 
 
@@ -71,5 +90,20 @@
 {{ parent() }}
 	<script type="text/javascript">
 		$("#nav-newsmanager").addClass("active");
+		function deleteNews(id) {
+		$.ajax({
+		    type: 'POST',  
+		    dataType: 'json',                  
+		    url: "{{ path('datacity_private_newsmanager_remove') }}/" + id,
+		    success: function(response) {
+		        $("#row-news-" + response['id']).fadeOut(300, function() { $(this).remove(); });
+		      }
+		  });
+		}
+	function setDeleteNews(id, title) {
+		$("#buttonDeleteNews").attr("onClick", "deleteNews(" + id + ");")
+		$("#newsToDeleteTitle").html(title);
+		
+	}
 	</script>
 {% endblock %}

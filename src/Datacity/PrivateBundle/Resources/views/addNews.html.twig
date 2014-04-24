@@ -6,7 +6,7 @@
 <h3></h3>
 
 <div class="row">
-				<div class="col-md-6 ">
+				<div class="col-md-12 ">
 					<!-- BEGIN SAMPLE FORM PORTLET-->
 					<div class="portlet box green">
 						<div class="portlet-title">
@@ -19,25 +19,21 @@
 							<form action="{{path('datacity_private_newsmanager_add')}}" method="post" {{ form_enctype(form) }}>
 								<div class="form-body">
 									<div class="form-group">
-										<label>{{ form_label(form.title, "Titre de l'article") }}</label>
+										<label>{{ form_label(form.title, "Titre") }}</label>
 										 {{ form_errors(form.title) }}
 										{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
 									</div>
 									<div class="form-group">
-										<label>{{ form_label(form.message, "Contenu de l'article") }}</label>
+										<label>{{ form_label(form.message, "Contenu") }}</label>
 										 {{ form_errors(form.message) }}
 										{{ form_widget(form.message, {'attr': {'class': 'form-control', 'style': 'resize: none; height:200px'}}) }}
 										
 									</div>
 									<div class="form-group">
-										<label>{{ form_label(form.img, "Télécharger une image") }}</label>
-										 {{ form_errors(form.img) }}
-										{{ form_widget(form.img, {'attr': {'class': 'form-control'}}) }}
+										<label>{{ form_label(form.image, "Télécharger une image") }}</label>
+										 {{ form_errors(form.image) }}
+										{{ form_widget(form.image) }}
 									</div>
-									<!--<div class="form-group">
-										<label>{{ form_label(form.img, "Télécharger une image") }}</label>
-										<input type="file" id="exampleInputFile1">
-									</div>-->
 									{{ form_rest(form) }}
 								</div>
 								<div class="form-actions">

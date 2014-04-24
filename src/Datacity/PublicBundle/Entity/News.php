@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * News
- *
+ * @ORM\Entity
  * @ORM\Table(name = "news")
  * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\NewsRepository")
  */
@@ -53,17 +53,16 @@ class News
     public function __construct()
     {
     $this->date = new \Datetime('now', new \DateTimeZone('Europe/Dublin'));
-
+    
     }
     
-
-
     /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="string", length=200, nullable=true)
+     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="news", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $img;
+    private $image;
+
+    
 
     /**
      * Get id
@@ -166,26 +165,39 @@ class News
         return $this->date;
     }
 
-    /**
-     * Set img
-     *
-     * @param \String $img
-     * @return News
-     */
-    public function setImg($img)
+   public function addImage(\Datacity\PublicBundle\Entity\Image $image)
     {
-    	$this->img = $img;
+        $this->image[] = $image;
     
-    	return $this;
+        return $this;
     }
-    
+
     /**
-     * Get img
+     * Remove image
      *
-     * @return \String
+     * @param \Datacity\PublicBundle\Entity\Image $image
      */
-    public function getImg()
+    public function removeImage(\Datacity\PublicBundle\Entity\Image $image)
     {
-    	return $this->img;
+        $this->image->removeElement($image);
     }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    
+
 }

@@ -21,3 +21,7 @@ datacity_private_newsmanager:
 datacity_private_newsmanager_add:
     pattern:  /newsmanager/add
     defaults: { _controller: DatacityPrivateBundle:NewsManager:add}
+
+datacity_private_newsmanager_remove:
+    pattern:  /newsmanager/remove/{news_id}
+    defaults: { _controller: DatacityPrivateBundle:NewsManager:remove, news_id: -1 }
