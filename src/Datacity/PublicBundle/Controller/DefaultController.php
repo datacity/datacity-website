@@ -50,25 +50,8 @@ class DefaultController extends Controller
 	// Cette ID correspond au numero dans l'URL datacity.fr/detail/1 (1 = id)
 	// Ici, on recupere l'application desiree pour generer sont contenu dynamiquement depuis la page twig.
 	// Si aucune aplication n'existe avec cet ID, une exception est generee.
-	public function appDetailAction($id)
+	public function appDetailAction(Application $app)
 	{		
-		$app = $this->getDoctrine()
-		->getRepository('DatacityPublicBundle:Application')
-		->findById($id)[0];
-				
-		if (!isset($app) || !$app) {
-			throw $this->createNotFoundException(
-					'Aucune application trouvée pour l\'id '.$id
-			);
-		}
-		
-		/*$userManager = $this->container->get('fos_user.user_manager');
-		$users = $userManager->findUsers();
-		
-		
-		foreach ($users as $user) {
-			$response .= $user->getUsername();
-		}		*/
 		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app));
 		return $response;
 	}
