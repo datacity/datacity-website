@@ -28,7 +28,8 @@
         "doctrine/data-fixtures": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "misd/guzzle-bundle": "~1.0",
-        "friendsofsymfony/jsrouting-bundle": "@stable"
+        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "jms/i18n-routing-bundle": "~1.1"
     },
     "scripts": {
         "post-install-cmd": [

@@ -86,3 +86,8 @@ fos_user:
     registration:
         form:
             type: datacity_user_registration
+
+jms_i18n_routing:
+    default_locale: fr
+    locales: [en, fr]
+    strategy: prefix_except_default
