@@ -43,6 +43,10 @@ datacity_public_news:
     pattern:  /news
     defaults: { _controller: DatacityPublicBundle:Default:news }
    
+datacity_public_newsDetail:
+    pattern:  /newsdetail/{id}
+    defaults: { _controller: DatacityPublicBundle:Default:newsDetail, id: 0 }
+
 datacity_public_ajouter:
     pattern:  /ajouter
     defaults: { _controller: DatacityPublicBundle:Default:ajouter }

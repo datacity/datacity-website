@@ -47,7 +47,7 @@
 					<div class="span8">
 						<div class="post-image">
 							<div class="post-heading">
-								<h3><a href="#">{{ news.getTitle() }}</a></h3>
+								<h3><a href="{{ path('datacity_public_newsDetail', {'id' : news.id }) }}">{{ news.getTitle() }}</a></h3>
 							</div>
 							{% if news.image != null %}
 							<img src="{{ news.image.webPath }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>

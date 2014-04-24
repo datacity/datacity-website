@@ -132,4 +132,23 @@ class DefaultController extends Controller
 		$response = $this->render('DatacityPublicBundle::news.html.twig', array('news' => $news, 'categories' => $categories));
 		return $response;
 	}
+	
+	public function newsDetailAction($id)
+	{
+
+		$news = $this->getDoctrine()
+		->getRepository('DatacityPublicBundle:News')
+		->findById($id)[0];
+				
+		if (!isset($news) || !$news) {
+			throw $this->createNotFoundException(
+					'Aucune news trouvée pour l\'id '.$id
+			);
+		}
+		
+		$response = $this->render('DatacityPublicBundle::newsDetail.html.twig', array("news" => $news));
+		return $response;
+	}
+
+
 }
