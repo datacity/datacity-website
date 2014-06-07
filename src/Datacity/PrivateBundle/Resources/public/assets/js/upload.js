@@ -11,6 +11,9 @@ var UploadDataBox = function(uploadType, jqueryContainer, router) {
 UploadDataBox.prototype = {
 	addLineInfo: function(dataInfo, append) {
 		//TODO: Standardiser ce qu'on envoi depuis le serveur
+		//console.log(dataInfo.name);
+		if (!dataInfo)
+			return;
 		if (dataInfo.name && dataInfo.uploadedDate) {
 			var typeTab = dataInfo.name.split('.');
 			dataInfo.type = typeTab[typeTab.length - 1];
@@ -72,6 +75,7 @@ UploadDataBox.prototype = {
 				that.initEvents();
 				return;
 			}
+			console.log(data);
 			for (index in data) {
 				that.addLineInfo(data[index], true);
 			}

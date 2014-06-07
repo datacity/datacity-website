@@ -76,29 +76,29 @@ Router.prototype = {
 
 	/* -----GET-----*/
 	getRemoteFiles: function(callback) {
-		var url = this.url + "/user/" + this.publicKey + "/files";
+		var url = this.url + "/users/" + this.publicKey + "/files/list";
 		this.ajaxRequest(callback, url, "GET");
 	},
 	getRemoteSources: function(callback) {
-		var url = this.url + "/user/" + this.publicKey + "/sources";
+		var url = this.url + "/users/" + this.publicKey + "/sources";
 		this.ajaxRequest(callback, url, "GET");
 	},
 	getRemoteCategories: function(callback, parameters) {
 		if (this.checkParameters(callback, parameters, ["category"]) === false)
 			return;
-		var url = this.url + "/source/" + parameters.category + "/model";
+		var url = this.url + "/users/" + this.publicKey + "/source/" + parameters.category + "/model";
 		this.ajaxRequest(callback, url, "GET");
 	},
 	getRemoteParsedFile: function(callback, parameters) {
 		if (this.checkParameters(callback, parameters, ["path"]) === false)
 			return;
-		var url = this.url + "/user/" + this.publicKey + "/parse/" + parameters.path;
+		var url = this.url + "/users/" + this.publicKey + "/files/" + parameters.path + "/parse";
 		this.ajaxRequest(callback, url, "GET");
 	},
 	getRemoteParsedSource: function(callback, parameters) {
 		if (this.checkParameters(callback, parameters, ["sourceName"]) === false)
 			return;
-		var url = this.url + "/source/" + parameters.sourceName + "/download";
+		var url = this.url + "/users/" + this.publicKey + "/source/" + parameters.sourceName + "/download";
 		this.ajaxRequest(callback, url, "GET");
 	},
 
@@ -106,19 +106,19 @@ Router.prototype = {
 	postRemoteFiles: function(callback, parameters) {
 		if (this.checkParameters(callback, parameters, ["data"]) === false)
 			return;
-		var url = this.url + "/user/" + this.publicKey + "/upload";
+		var url = this.url + "/users/" + this.publicKey + "/files/add";
 		this.ajaxRequest(callback, url, "POST", parameters.data, false, false);
 	},
 	postRemoteSource: function(callback, parameters) {
 		//if (this.checkParameters(callback, parameters, ["category", "jsonData", "sourceName", "city", "databinding"]) === false)
 			//return;
-		var url = this.url + '/user/' + this.publicKey + '/source/' + parameters.category + '/' + parameters.sourceName + '/upload';
+		var url = this.url + '/users/' + this.publicKey + '/source/' + parameters.category + '/' + parameters.sourceName + '/upload';
 		this.ajaxRequest(callback, url, "POST", parameters);
 	},
 	deleteRemoteFile: function(callback, parameters) {
 		if (this.checkParameters(callback, parameters, ["path"]) === false)
 			return;
-		var url = this.url + '/user/' + this.publicKey + '/file/' + parameters.path;
+		var url = this.url + '/users/' + this.publicKey + '/files/' + parameters.path;
 		this.ajaxRequest(callback, url, "DELETE");
 	},
 	setUrl: function(url) {
