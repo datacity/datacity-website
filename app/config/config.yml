@@ -52,6 +52,25 @@ assetic:
     twig:
         functions:
             jpegtran: { output: img/*.jpg }
+    assets:
+        jquery:
+            inputs:
+                - %kernel.root_dir%/../vendor/angular-ui/ui-router/angular-ui-router.js
+            output: js/angular-mods.js
+        angularjs:
+            inputs:
+                - %kernel.root_dir%/../vendor/angularjs/angular/angular.js
+            output: js/angular.js
+        angularstrap:
+            inputs:
+                - %kernel.root_dir%/../vendor/mgcrea/angular-strap/angular-strap.js
+                - %kernel.root_dir%/../vendor/mgcrea/angular-strap-tpl/angular-strap.tpl.js
+            output: js/angular-strap.js
+        angularstrapcss:
+            inputs:
+                - %kernel.root_dir%/../vendor/mgcrea/angular-motion/angular-motion.css
+                - %kernel.root_dir%/../vendor/mgcrea/bootstrap-additions/bootstrap-additions.css
+            output: css/angular-strap-dep.css
 
 # Doctrine Configuration
 doctrine:

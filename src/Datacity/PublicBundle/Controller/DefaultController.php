@@ -45,7 +45,6 @@ class DefaultController extends Controller
 		return $response;
 	}
 	
-	
 	// Controlleur pour la page de detail des applications: in ID est passe en parametre a ce controlleur via la route "detail"
 	// Cette ID correspond au numero dans l'URL datacity.fr/detail/1 (1 = id)
 	// Ici, on recupere l'application desiree pour generer sont contenu dynamiquement depuis la page twig.
@@ -79,21 +78,6 @@ class DefaultController extends Controller
 		// On match chaque categorie avec leur contenu.
 		$docCategoriesContent = array("Categorie 1" => $cat1, "Categorie 2" => $cat2, "Categorie 3" => $cat3);
 		$response = $this->render('DatacityPublicBundle::documentation.html.twig', array("docCategories" => $docCategories, "docCategoriesContent" => $docCategoriesContent));
-		return $response;
-	}
-	
-	// Controller de la page visualisation des données
-	public function dataviewAction()
-	{
-		$response = $this->render('DatacityPublicBundle::dataview.html.twig');
-		return $response;
-	}
-	
-	// Controller de la page detail d'une donnée on envoit l'id en parametre de la donnée selectionnée par l'utilisateur.
-	// Cette page permet d'afficher plus de details sur une données présente dans la page visualisation des données.
-	public function dataViewDetailAction($id)
-	{
-		$response = $this->render('DatacityPublicBundle::dataViewDetail.html.twig');
 		return $response;
 	}
 	

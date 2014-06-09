@@ -4,8 +4,41 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "96ad1c070a4cd5e1883c99aff9b64a33",
+    "hash": "29e21dc7e9a013bcb3e84e18ccc7d491",
     "packages": [
+        {
+            "name": "angular-ui/ui-router",
+            "version": "0.2.10",
+            "dist": {
+                "type": "file",
+                "url": "http://angular-ui.github.io/ui-router/release/angular-ui-router.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "angularjs/angular",
+            "version": "1.2.16",
+            "dist": {
+                "type": "file",
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "angularjs/angular-animate",
+            "version": "1.2.16",
+            "dist": {
+                "type": "file",
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "braincrafted/bootstrap-bundle",
             "version": "1.4.2",
@@ -864,12 +897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "3969d7fe39fd58398bf9a00110ca349c000fa05e"
+                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3969d7fe39fd58398bf9a00110ca349c000fa05e",
-                "reference": "3969d7fe39fd58398bf9a00110ca349c000fa05e",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a93c355d70fd57a8171faece7969a13cb9387efb",
+                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb",
                 "shasum": ""
             },
             "require": {
@@ -924,7 +957,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-05-18 21:15:38"
+            "time": "2014-06-08 14:16:45"
         },
         {
             "name": "guzzle/guzzle",
@@ -1384,6 +1417,50 @@
             "description": "lessphp is a compiler for LESS written in PHP.",
             "homepage": "http://leafo.net/lessphp/",
             "time": "2013-03-02 16:13:31"
+        },
+        {
+            "name": "mgcrea/angular-motion",
+            "version": "1.0",
+            "dist": {
+                "type": "file",
+                "url": "https://raw.githubusercontent.com/mgcrea/angular-motion/master/dist/angular-motion.css",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "mgcrea/angular-strap",
+            "version": "2.0.2",
+            "dist": {
+                "type": "file",
+                "url": "http://mgcrea.github.io/angular-strap/dist/angular-strap.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "mgcrea/angular-strap-tpl",
+            "version": "2.0.2",
+            "dist": {
+                "type": "file",
+                "url": "http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "mgcrea/bootstrap-additions",
+            "version": "1.0",
+            "dist": {
+                "type": "file",
+                "url": "https://raw.githubusercontent.com/mgcrea/bootstrap-additions/master/dist/bootstrap-additions.css",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "misd/guzzle-bundle",

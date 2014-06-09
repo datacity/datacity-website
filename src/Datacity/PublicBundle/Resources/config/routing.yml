@@ -16,7 +16,9 @@ datacity_public_documentationpage:
     
 datacity_public_dataviewpage:
     pattern:  /dataview
-    defaults: { _controller: DatacityPublicBundle:Default:dataview }
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'DatacityPublicBundle::dataview.html.twig'
 
 datacity_public_contactpage:
     pattern:  /contact
@@ -25,10 +27,6 @@ datacity_public_contactpage:
 datacity_public_initdb:
     pattern:  /initdb
     defaults: { _controller: DatacityPublicBundle:Default:initdb }
-
-datacity_public_dataViewDetail:
-    pattern:  /datadetail/{id}
-    defaults: { _controller: DatacityPublicBundle:Default:dataViewDetail, id: 0 }
     
 datacity_public_news:
     pattern:  /news
