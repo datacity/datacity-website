@@ -28,12 +28,11 @@ class Tag
      */
     private $name;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="source_id", type="integer")
+     /**
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Source", inversedBy="tag")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $sourceId;
+    private $source_id;
 
 
     /**
