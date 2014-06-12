@@ -53,6 +53,14 @@ class Application
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="application", cascade={"persist","remove"})
      */
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="useful_nb", type="integer")
+     */
+    private $useful_nb;
+
     private $images;
     
     /**
@@ -74,6 +82,13 @@ class Application
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="applications", cascade={"persist"})
      */
     private $user;
+
+     /**
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Rating", inversedBy="application_id", cascade={"persist"})
+     */
+    private $rating;
+
+
     
     /**
      * Get id
