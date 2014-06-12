@@ -70,6 +70,11 @@ class File
      */
     private $encoding;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Source", mappedBy="file_id", cascade={"persist"})
+     */
+    private $sources;
+
       /**
      * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="files")
      * @ORM\JoinColumn(nullable=true)

@@ -44,6 +44,11 @@ class Category
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="categories", cascade={"persist"})
      */
     private $applications;
+
+     /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Source", mappedBy="category_id", cascade={"persist"})
+     */
+    private $sources;
     
     /**
      * Get id
