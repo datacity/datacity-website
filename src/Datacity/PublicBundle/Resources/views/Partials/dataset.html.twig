@@ -1,0 +1,36 @@
+<div class="span8">
+	<article>
+	{% verbatim %}
+	<div class="top-wrapper">
+		<div class="post-heading">
+			<h3>{{ dataset.name }}</h3>
+		</div>
+	</div>
+	<p>
+		 {{ dataset.desc }}
+	</p>
+	</article>
+	{% endverbatim %}
+</div>
+<div class="span4">
+	<aside class="right-sidebar">
+	<div class="widget">
+		<h5 class="widgetheading">Information</h5>
+		{% verbatim %}
+		<ul class="folio-detail">
+			<li><label>Categorie :</label> TODO</li>
+			<li data-ng-if="dataset.user"><label>Auteur :</label> {{ dataset.user }} </li>
+			<li><label>Date de publication :</label> {{ dataset.date }}</li>
+			<li data-ng-if="dataset.location"><label>Location :</label> {{ dataset.location }}</li>
+			<li data-ng-if="dataset.lastUpdate"><label>Derniere mise à jour :</label> {{ dataset.lastUpdate }}</li>
+		</ul>
+		{% endverbatim %}
+	</div>
+	<div class="widget">
+		<h5 class="widgetheading">Sources attachées</h5>
+		<p>
+			 TODO
+		</p>
+	</div>
+	</aside>
+</div>

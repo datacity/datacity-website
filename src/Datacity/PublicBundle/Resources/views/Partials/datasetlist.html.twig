@@ -1,0 +1,45 @@
+<div class="span12">
+	<form data-ng-submit="search()" class="form-search" >
+		<input data-ng-bind="searchText" placeholder="Rechercher" type="text" class="input-medium search-query">
+		<input data-ng-bind="searchPlace" placeholder="Ou ?" type="text" class="input-medium search-query">
+		<button type="submit" class="btn btn-square btn-theme">Search</button>
+	</form>
+	{# Affichage des catégories de donnée #}
+	{% verbatim %}
+	<ul class="inline">
+		<li>Categorie</li>
+		<li>Afficher</li>
+	</ul>
+	{% endverbatim %}
+</div>
+{# Affichage des données avec leur titre un apercu de leur descriptif et leur image si il y en a une #}
+<div class="span12">
+	<div class="row">
+		<div class="span12 dataset-result" data-ng-repeat="dataset in datasets" data-ng-click="goto(dataset)">
+			{% verbatim %}
+				<h5 class="dataset-result-title">{{ dataset.name }}</h5>
+				<p>
+					 {{ dataset.desc | limitTo:300 }}...
+				</p>
+				<div class="dataset-result-bottom">
+					<ul class="meta-post">
+						<li data-ng-if="dataset.type == 'source'"><i class="icon-file"></i><a href="#"> Source</a></li>
+						<li data-ng-if="dataset.type == 'dataset'"><i class="icon-copy"></i><a href="#"> Jeux de donnée</a></li>
+						<li data-ng-if="dataset.lastUpdate"><i class="icon-calendar"></i><a href="#"> {{ dataset.lastUpdate }}</a></li>
+						<li data-ng-if="dataset.user"><i class="icon-user"></i><a href="#"> {{ dataset.user }}</a></li>
+						<li data-ng-if="dataset.location"><i class="icon-globe"></i><a href="#"> {{ dataset.location }}</a></li>
+					</ul>
+					<a data-ng-if="dataset.type == 'source'" href="#" class="pull-right">Accéder à la source <i class="icon-angle-right"></i></a>
+					<a data-ng-if="dataset.type == 'dataset'" href="#" class="pull-right">Accéder au jeux de donnée <i class="icon-angle-right"></i></a>
+				</div>
+			{% endverbatim %}
+		</div>
+	</div>
+</div>
+{# Affichage pagination #}
+<div id="pagination" class="span12">
+	<span class="all">Page 1 of 3</span>
+	<span class="current">1</span>
+	<a href="#" class="inactive">2</a>
+	<a href="#" class="inactive">3</a>
+</div>
