@@ -1,7 +1,7 @@
 <?php
 
 namespace Datacity\PublicBundle\Entity;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +27,12 @@ class Dataset
      * @ORM\Column(name="title", type="string", length=100)
      */
     private $title;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var text
@@ -56,7 +62,24 @@ class Dataset
      */
     private $undesirableNb;
 
-      /**
+    /**
+     * @var integer
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="creation_date", type="date")
+     */
+    private $creationDate;
+
+    /**
+     * @var integer
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="last_update", type="datetime")
+     */
+    private $lastUpdate;
+
+    /**
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetOwned")
      */
     private $creator;
@@ -292,5 +315,74 @@ class Dataset
     public function getSources()
     {
         return $this->sources;
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     * @return Dataset
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Dataset
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Dataset
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

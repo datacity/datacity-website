@@ -112,3 +112,11 @@ jms_i18n_routing:
     default_locale: fr
     locales: [en, fr]
     strategy: prefix_except_default
+
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            timestampable: true
+            blameable: true
+            sluggable: true
