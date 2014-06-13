@@ -53,9 +53,11 @@ assetic:
         functions:
             jpegtran: { output: img/*.jpg }
     assets:
-        jquery:
+        angularmods:
             inputs:
                 - %kernel.root_dir%/../vendor/angular-ui/ui-router/angular-ui-router.js
+                - %kernel.root_dir%/../vendor/angularjs/angular-animate/angular-animate.js
+                - %kernel.root_dir%/../vendor/angularjs/angular-sanitize/angular-sanitize.js
             output: js/angular-mods.js
         angularjs:
             inputs:
