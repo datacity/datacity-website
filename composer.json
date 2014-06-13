@@ -34,6 +34,7 @@
         "angular-ui/ui-router": "0.2.*",
         "angularjs/angular": "1.2.*",
         "angularjs/angular-animate": "1.2.*",
+        "angularjs/angular-sanitize": "1.2.*",
         "angular-ui/ui-router": "0.2.*",
         "mgcrea/angular-strap": "~2.0",
         "mgcrea/angular-strap-tpl": "~2.0",
@@ -102,6 +103,17 @@
                 "version": "1.2.16",
                 "dist": {
                     "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js",
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "angularjs/angular-sanitize",
+                "version": "1.2.16",
+                "dist": {
+                    "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js",
                     "type": "file"
                 }
             }
