@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Source
+class DSource
 {
     /**
      * @var integer
@@ -131,10 +131,10 @@ class Source
     private $category_id;
 
      /**
-     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Dataset", inversedBy="sources")
+     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\Dataset", inversedBy="sources")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $dataset_id;
+    private $datasets;
 
      /**
      * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Tag", mappedBy="source_id", cascade={"persist"})

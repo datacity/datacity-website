@@ -149,6 +149,16 @@ class User extends BaseUser
      */
     private $files;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="creator")
+     */
+    private $datasetOwned;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", inversedBy="contributors")
+     */
+    private $datasetContributed;
+
     
     public function __construct()
     {

@@ -23,10 +23,10 @@ class Follower
 
     
        /**
-     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="followers")
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\User", mappedBy="followers")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $user_id;
+    private $user;
 
 
     /**

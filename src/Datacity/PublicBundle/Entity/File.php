@@ -76,10 +76,9 @@ class File
     private $sources;
 
       /**
-     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="files")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\User", mappedBy="files")
      */
-    private $user_id;
+    private $user;
 
 
     /**

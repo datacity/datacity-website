@@ -29,10 +29,10 @@ class Tag
     private $name;
 
      /**
-     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Source", inversedBy="tag")
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Source", mappedBy="tag")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $source_id;
+    private $source;
 
 
     /**

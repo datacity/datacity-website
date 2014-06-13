@@ -24,14 +24,14 @@ class Dataset
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=45)
+     * @ORM\Column(name="title", type="string", length=100)
      */
     private $title;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="description", type="string", length=45)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
@@ -57,21 +57,28 @@ class Dataset
     private $undesirableNb;
 
       /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\Creator", inversedBy="dataset")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetOwned")
      */
-    private $creator_id;
+    private $creator;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Contributor", mappedBy="dataset_id", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\User", mappedBy="datasetContributed")
      */
-    private $contributors
+    private $contributors;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Source", mappedBy="dataset_id", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="datasets")
      */
     private $sources;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->contributors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sources = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -199,25 +206,91 @@ class Dataset
     }
 
     /**
-     * Set creatorId
+     * Set creator
      *
-     * @param integer $creatorId
+     * @param \Datacity\UserBundle\Entity\User $creator
      * @return Dataset
      */
-    public function setCreatorId($creatorId)
+    public function setCreator(\Datacity\UserBundle\Entity\User $creator = null)
     {
-        $this->creatorId = $creatorId;
+        $this->creator = $creator;
 
         return $this;
     }
 
     /**
-     * Get creatorId
+     * Get creator
      *
-     * @return integer 
+     * @return \Datacity\UserBundle\Entity\User 
      */
-    public function getCreatorId()
+    public function getCreator()
     {
-        return $this->creatorId;
+        return $this->creator;
+    }
+
+    /**
+     * Add contributors
+     *
+     * @param \Datacity\UserBundle\Entity\User $contributors
+     * @return Dataset
+     */
+    public function addContributor(\Datacity\UserBundle\Entity\User $contributors)
+    {
+        $this->contributors[] = $contributors;
+
+        return $this;
+    }
+
+    /**
+     * Remove contributors
+     *
+     * @param \Datacity\UserBundle\Entity\User $contributors
+     */
+    public function removeContributor(\Datacity\UserBundle\Entity\User $contributors)
+    {
+        $this->contributors->removeElement($contributors);
+    }
+
+    /**
+     * Get contributors
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContributors()
+    {
+        return $this->contributors;
+    }
+
+    /**
+     * Add sources
+     *
+     * @param \Datacity\PublicBundle\Entity\DSource $sources
+     * @return Dataset
+     */
+    public function addSource(\Datacity\PublicBundle\Entity\DSource $sources)
+    {
+        $this->sources[] = $sources;
+
+        return $this;
+    }
+
+    /**
+     * Remove sources
+     *
+     * @param \Datacity\PublicBundle\Entity\DSource $sources
+     */
+    public function removeSource(\Datacity\PublicBundle\Entity\DSource $sources)
+    {
+        $this->sources->removeElement($sources);
+    }
+
+    /**
+     * Get sources
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSources()
+    {
+        return $this->sources;
     }
 }

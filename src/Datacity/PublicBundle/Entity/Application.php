@@ -84,7 +84,7 @@ class Application
     private $user;
 
      /**
-     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Rating", inversedBy="application_id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Rating", mappedBy="application_id", cascade={"persist"})
      */
     private $rating;
 
