@@ -56,20 +56,12 @@ class User extends BaseUser
     private $lastname;
 
      /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=50)
-     */
-
-    private $pseudo
-
-     /**
      * @var int
      *
      * @ORM\Column(name="point", type="int", length=50)
      */
 
-    private $point
+    private $point;
 
       /**
      * @var text
@@ -77,16 +69,7 @@ class User extends BaseUser
      * @ORM\Column(name="description", type="text", length=500)
      */
 
-    private $description
-
-    
-      /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=50)
-     */
-
-    private $email
+    private $description;
 
       /**
      * @var string
@@ -94,9 +77,7 @@ class User extends BaseUser
      * @ORM\Column(name="public_key", type="string", length=50)
      */
 
-    private $public_key
-
-
+    private $public_key;
 
       /**
      * @var string
@@ -104,7 +85,7 @@ class User extends BaseUser
      * @ORM\Column(name="private_key", type="string", length=50)
      */
 
-    private $private_key
+    private $private_key;
 
     /**
      * @var string
@@ -112,7 +93,7 @@ class User extends BaseUser
      * @ORM\Column(name="facebook", type="string", length=50)
      */
 
-    private $facebook
+    private $facebook;
 
     /**
      * @var string
@@ -120,7 +101,7 @@ class User extends BaseUser
      * @ORM\Column(name="twitter", type="string", length=45)
      */
 
-    private $twitter
+    private $twitter;
 
     /**
      * @var string
@@ -128,7 +109,7 @@ class User extends BaseUser
      * @ORM\Column(name="langue", type="string", length=45)
      */
 
-    private $langue
+    private $langue;
 
 
     /**
@@ -168,11 +149,6 @@ class User extends BaseUser
      */
     private $files;
 
-      /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\RightU", inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
-     */
-      private $right_id;
     
     public function __construct()
     {
@@ -269,9 +245,6 @@ class User extends BaseUser
     {
         return $this->news;
     }
-
-
-
 
 
     /**
