@@ -128,17 +128,17 @@ class DSource
     private $license;
 
      /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\Frequency")
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
      */
     private $frequency;
 
      /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\Place")
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Place")
      */
     private $place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\CoverageTerritory")
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
      */
     private $coverageTerritory;
 
@@ -148,12 +148,12 @@ class DSource
     private $creator;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\Category", inversedBy="sources")
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="sources")
      */
     private $category;
 
      /**
-     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\Dataset", mappedBy="sources")
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="sources")
      * @ORM\JoinColumn(nullable=true)
      */
     private $datasets;

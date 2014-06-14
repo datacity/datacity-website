@@ -39,7 +39,7 @@ class Category
     private $applications;
 
      /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Source", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="category")
      */
     private $sources;
 

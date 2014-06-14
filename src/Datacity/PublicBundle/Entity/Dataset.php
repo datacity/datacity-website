@@ -93,13 +93,13 @@ class Dataset
 
     /**
      * L'ensemble des lieux de chaques sources du dataset.
-     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\Place")
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Place")
      */
     private $places;
 
     /**
      * La couverture la plus grande des sources du dataset.
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\CoverageTerritory")
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
      */
     private $coverageTerritory;
 

@@ -58,7 +58,7 @@ class User extends BaseUser
      /**
      * @var int
      *
-     * @ORM\Column(name="point", type="int", length=50)
+     * @ORM\Column(name="point", type="integer", length=50)
      */
 
     private $point;
