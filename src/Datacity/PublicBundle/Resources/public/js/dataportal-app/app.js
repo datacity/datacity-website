@@ -69,13 +69,23 @@ angular
             }
         }
     ])
-    .controller('datasetCtrl', ['$scope', 'dataset',
-        function($scope, $dataset) {
+    .controller('datasetCtrl', ['$scope', '$state', 'dataset',
+        function($scope, $state, $dataset) {
             $scope.dataset = $dataset;
+            $scope.goto = function(source) {
+                $state.go('source', {
+                    slug: source.slug
+                });
+            }
         }
     ])
-    .controller('sourceCtrl', ['$scope', 'source',
-        function($scope, $source) {
+    .controller('sourceCtrl', ['$scope', '$state', 'source',
+        function($scope, $state, $source) {
             $scope.source = $source;
+            $scope.goto = function(dataset) {
+                $state.go('dataset', {
+                    slug: dataset.slug
+                });
+            }
         }
     ]);

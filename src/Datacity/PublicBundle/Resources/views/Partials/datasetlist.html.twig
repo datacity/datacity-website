@@ -15,24 +15,8 @@
 {# Affichage des données avec leur titre un apercu de leur descriptif et leur image si il y en a une #}
 <div class="span12">
 	<div class="row">
-		<div class="span12 dataset-result" data-ng-repeat="dataset in datasets" data-ng-click="goto(dataset)">
-			{% verbatim %}
-				<h5 class="dataset-result-title">{{ dataset.name }}</h5>
-				<p>
-					 {{ dataset.desc | limitTo:300 }}...
-				</p>
-				<div class="dataset-result-bottom">
-					<ul class="meta-post">
-						<li data-ng-if="dataset.type == 'source'"><i class="icon-file"></i><a href="#"> Source</a></li>
-						<li data-ng-if="dataset.type == 'dataset'"><i class="icon-copy"></i><a href="#"> Jeux de donnée</a></li>
-						<li data-ng-if="dataset.lastUpdate"><i class="icon-calendar"></i><a href="#"> {{ dataset.lastUpdate }}</a></li>
-						<li data-ng-if="dataset.user"><i class="icon-user"></i><a href="#"> {{ dataset.user }}</a></li>
-						<li data-ng-if="dataset.location"><i class="icon-globe"></i><a href="#"> {{ dataset.location }}</a></li>
-					</ul>
-					<a data-ng-if="dataset.type == 'source'" href="#" class="pull-right">Accéder à la source <i class="icon-angle-right"></i></a>
-					<a data-ng-if="dataset.type == 'dataset'" href="#" class="pull-right">Accéder au jeux de donnée <i class="icon-angle-right"></i></a>
-				</div>
-			{% endverbatim %}
+		<div class="span12 horizontal-data-bloc" data-ng-repeat="dataset in datasets"
+			data-ng-click="goto(dataset)" data-ng-include="'/partials/datablochoriz'">
 		</div>
 	</div>
 </div>

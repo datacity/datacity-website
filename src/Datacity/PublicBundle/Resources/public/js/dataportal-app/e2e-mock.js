@@ -8,6 +8,7 @@ angular
                 slug: 'dataset-1',
                 name: 'Dataset1',
                 desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
+                date: '9 Mars 2013',
                 lastUpdate: '23 Mars 2013',
                 user: 'Admin',
                 location: 'France',
@@ -106,7 +107,8 @@ angular
                 lastUpdate: '23 Mars 2013',
                 user: 'Admin',
                 location: 'France',
-                type: 'source'
+                type: 'source',
+                datasets: [datasets[0]]
             }, {
                 slug: 'source-2',
                 name: 'Source2',
@@ -193,6 +195,16 @@ angular
                 date: '28 Septembre 2013',
                 lastUpdate: '28 Septembre 2013',
                 user: 'Ryan',
+                type: 'source'
+            }];
+            datasets[0].sources = [{
+                slug: 'source-1',
+                name: 'Source1',
+                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
+                date: '22 Octobre 2012',
+                lastUpdate: '23 Mars 2013',
+                user: 'Admin',
+                location: 'France',
                 type: 'source'
             }];
             popularDatasets = [datasets[1], datasets[3], datasets[5], sources[0]];

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1c02004250fdb868e5bbd986c1473752",
+    "hash": "1161f494b973f88d15497ba8e6120294",
     "packages": [
         {
             "name": "angular-ui/ui-router",
@@ -908,12 +908,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb"
+                "reference": "71ed2505443f375876a38e82ff0d1929d6078270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a93c355d70fd57a8171faece7969a13cb9387efb",
-                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/71ed2505443f375876a38e82ff0d1929d6078270",
+                "reference": "71ed2505443f375876a38e82ff0d1929d6078270",
                 "shasum": ""
             },
             "require": {
@@ -968,7 +968,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-06-08 14:16:45"
+            "time": "2014-06-13 14:56:35"
         },
         {
             "name": "gedmo/doctrine-extensions",
