@@ -113,16 +113,11 @@ class Source
     private $frequency;
 
     /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\File", inversedBy="file")
-     * @ORM\JoinColumn(nullable=true)
+     * @var integer
+     *
+     * @ORM\Column(name="file_id", type="integer")
      */
-    private $file_id;
-
-     /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="sources")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $user_id;
+    private $fileId;
 
 
     /**
