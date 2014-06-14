@@ -67,11 +67,6 @@ class Dataset
      */
     private $contributors
 
-    /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Source", mappedBy="dataset_id", cascade={"persist"})
-     */
-    private $sources;
-
 
     /**
      * Get id

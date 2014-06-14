@@ -113,7 +113,7 @@ class Source
     private $frequency;
 
     /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\File", inversedBy="files")
+     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\File", inversedBy="file")
      * @ORM\JoinColumn(nullable=true)
      */
     private $file_id;
@@ -123,23 +123,6 @@ class Source
      * @ORM\JoinColumn(nullable=true)
      */
     private $user_id;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\Category", inversedBy="sources")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $category_id;
-
-     /**
-     * @ORM\OneToMany(targetEntity="Datacity\UserBundle\Entity\Dataset", inversedBy="sources")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $dataset_id;
-
-     /**
-     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Tag", mappedBy="source_id", cascade={"persist"})
-     */
-    private $tag;
 
 
     /**
