@@ -133,7 +133,7 @@ class User extends BaseUser
     private $news;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="creator", cascade={"persist"})
      */
     private $sources;
 
@@ -162,7 +162,7 @@ class User extends BaseUser
     private $datasetOwned;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", inversedBy="contributors")
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="contributors")
      */
     private $datasetContributed;
     /**

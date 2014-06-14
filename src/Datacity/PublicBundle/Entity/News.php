@@ -42,6 +42,11 @@ class News
      */
     private $title;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="news", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image;
     
     /**
     * @var datetime $date
@@ -54,15 +59,7 @@ class News
     {
     $this->date = new \Datetime('now', new \DateTimeZone('Europe/Dublin'));
     
-    }
-    
-    /**
-     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="news", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $image;
-
-    
+    }    
 
     /**
      * Get id
