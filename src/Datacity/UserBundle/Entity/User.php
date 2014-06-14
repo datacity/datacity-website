@@ -55,86 +55,10 @@ class User extends BaseUser
      */
     private $lastname;
 
-     /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=50)
-     */
-
-    private $pseudo
-
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="point", type="int", length=50)
-     */
-
-    private $point
-
-      /**
-     * @var text
-     *
-     * @ORM\Column(name="description", type="text", length=500)
-     */
-
-    private $description
-
     
-      /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=50)
-     */
-
-    private $email
-
-      /**
-     * @var string
-     *
-     * @ORM\Column(name="public_key", type="string", length=50)
-     */
-
-    private $public_key
-
-
-
-      /**
-     * @var string
-     *
-     * @ORM\Column(name="private_key", type="string", length=50)
-     */
-
-    private $private_key
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="facebook", type="string", length=50)
-     */
-
-    private $facebook
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="twitter", type="string", length=45)
-     */
-
-    private $twitter
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="langue", type="string", length=45)
-     */
-
-    private $langue
-
-
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"remove", "persist"})
      */
-
     private $applications;
     
     /**
@@ -152,27 +76,6 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
      */
     private $news;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Source", mappedBy="user", cascade={"persist"})
-     */
-    private $sources;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Follower", mappedBy="user", cascade={"persist"})
-     */
-    private $followers;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\File", mappedBy="user_id", cascade={"persist"})
-     */
-    private $files;
-
-      /**
-     * @ORM\OneToOne(targetEntity="Datacity\UserBundle\Entity\RightU", inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
-     */
-      private $right_id;
     
     public function __construct()
     {
