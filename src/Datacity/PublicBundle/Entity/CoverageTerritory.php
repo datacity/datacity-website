@@ -5,12 +5,12 @@ namespace Datacity\PublicBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DataBinding
+ * CoverageTerritory
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class DataBinding
+class CoverageTerritory
 {
     /**
      * @var integer
@@ -24,9 +24,18 @@ class DataBinding
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
+
+    /**
+     * @var integer
+     *
+     * Utile pour trouver la couverture la plus importante
+     * lors de la determination de la couverture d'un jeux de donnee.
+     * @ORM\Column(name="level", type="integer")
+     */
+    private $level;
 
 
     /**
@@ -43,7 +52,7 @@ class DataBinding
      * Set name
      *
      * @param string $name
-     * @return DataBinding
+     * @return CoverageTerritory
      */
     public function setName($name)
     {
@@ -60,5 +69,28 @@ class DataBinding
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return CoverageTerritory
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }

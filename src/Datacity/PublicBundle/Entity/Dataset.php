@@ -24,15 +24,22 @@ class Dataset
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=100)
+     * @ORM\Column(name="title", type="string", length=200)
      */
     private $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(length=228, unique=true)
      */
     private $slug;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="did", type="integer")
+     */
+    private $did;
 
     /**
      * @var text
@@ -63,7 +70,7 @@ class Dataset
     private $undesirableNb;
 
     /**
-     * @var integer
+     * @var \Date
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creation_date", type="date")
@@ -71,12 +78,12 @@ class Dataset
     private $creationDate;
 
     /**
-     * @var integer
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
      */
-    private $lastUpdate;
+    private $lastModifiedDate;
 
     /**
      * @Gedmo\Blameable(on="create")
@@ -85,304 +92,37 @@ class Dataset
     private $creator;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\User", mappedBy="datasetContributed")
+     * L'ensemble des lieux de chaques sources du dataset.
+     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\Place")
+     */
+    private $places;
+
+    /**
+     * La couverture la plus grande des sources du dataset.
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\CoverageTerritory")
+     */
+    private $coverageTerritory;
+
+    /**
+     * L'ensemble des createur de chaques sources du dataset.
+     * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetContributed")
      */
     private $contributors;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="datasets")
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", inversedBy="datasets")
      */
     private $sources;
 
     /**
-     * Constructor
+     * L'ensemble des categories de chaques sources du dataset.
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="datasets")
      */
-    public function __construct()
-    {
-        $this->contributors = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sources = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $categories;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * L'ensemble des tags de chaques sources du dataset.
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Tag")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Dataset
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Dataset
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set usefulNb
-     *
-     * @param integer $usefulNb
-     * @return Dataset
-     */
-    public function setUsefulNb($usefulNb)
-    {
-        $this->usefulNb = $usefulNb;
-
-        return $this;
-    }
-
-    /**
-     * Get usefulNb
-     *
-     * @return integer 
-     */
-    public function getUsefulNb()
-    {
-        return $this->usefulNb;
-    }
-
-    /**
-     * Set visitedNb
-     *
-     * @param integer $visitedNb
-     * @return Dataset
-     */
-    public function setVisitedNb($visitedNb)
-    {
-        $this->visitedNb = $visitedNb;
-
-        return $this;
-    }
-
-    /**
-     * Get visitedNb
-     *
-     * @return integer 
-     */
-    public function getVisitedNb()
-    {
-        return $this->visitedNb;
-    }
-
-    /**
-     * Set undesirableNb
-     *
-     * @param integer $undesirableNb
-     * @return Dataset
-     */
-    public function setUndesirableNb($undesirableNb)
-    {
-        $this->undesirableNb = $undesirableNb;
-
-        return $this;
-    }
-
-    /**
-     * Get undesirableNb
-     *
-     * @return integer 
-     */
-    public function getUndesirableNb()
-    {
-        return $this->undesirableNb;
-    }
-
-    /**
-     * Set creator
-     *
-     * @param \Datacity\UserBundle\Entity\User $creator
-     * @return Dataset
-     */
-    public function setCreator(\Datacity\UserBundle\Entity\User $creator = null)
-    {
-        $this->creator = $creator;
-
-        return $this;
-    }
-
-    /**
-     * Get creator
-     *
-     * @return \Datacity\UserBundle\Entity\User 
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * Add contributors
-     *
-     * @param \Datacity\UserBundle\Entity\User $contributors
-     * @return Dataset
-     */
-    public function addContributor(\Datacity\UserBundle\Entity\User $contributors)
-    {
-        $this->contributors[] = $contributors;
-
-        return $this;
-    }
-
-    /**
-     * Remove contributors
-     *
-     * @param \Datacity\UserBundle\Entity\User $contributors
-     */
-    public function removeContributor(\Datacity\UserBundle\Entity\User $contributors)
-    {
-        $this->contributors->removeElement($contributors);
-    }
-
-    /**
-     * Get contributors
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getContributors()
-    {
-        return $this->contributors;
-    }
-
-    /**
-     * Add sources
-     *
-     * @param \Datacity\PublicBundle\Entity\DSource $sources
-     * @return Dataset
-     */
-    public function addSource(\Datacity\PublicBundle\Entity\DSource $sources)
-    {
-        $this->sources[] = $sources;
-
-        return $this;
-    }
-
-    /**
-     * Remove sources
-     *
-     * @param \Datacity\PublicBundle\Entity\DSource $sources
-     */
-    public function removeSource(\Datacity\PublicBundle\Entity\DSource $sources)
-    {
-        $this->sources->removeElement($sources);
-    }
-
-    /**
-     * Get sources
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSources()
-    {
-        return $this->sources;
-    }
-
-    /**
-     * Set creationDate
-     *
-     * @param \DateTime $creationDate
-     * @return Dataset
-     */
-    public function setCreationDate($creationDate)
-    {
-        $this->creationDate = $creationDate;
-
-        return $this;
-    }
-
-    /**
-     * Get creationDate
-     *
-     * @return \DateTime 
-     */
-    public function getCreationDate()
-    {
-        return $this->creationDate;
-    }
-
-    /**
-     * Set lastUpdate
-     *
-     * @param \DateTime $lastUpdate
-     * @return Dataset
-     */
-    public function setLastUpdate($lastUpdate)
-    {
-        $this->lastUpdate = $lastUpdate;
-
-        return $this;
-    }
-
-    /**
-     * Get lastUpdate
-     *
-     * @return \DateTime 
-     */
-    public function getLastUpdate()
-    {
-        return $this->lastUpdate;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Dataset
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
+    private $tags;
 }

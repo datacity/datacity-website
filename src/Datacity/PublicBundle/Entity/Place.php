@@ -5,12 +5,12 @@ namespace Datacity\PublicBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tag
+ * Place
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Tag
+class Place
 {
     /**
      * @var integer
@@ -24,7 +24,7 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 }
