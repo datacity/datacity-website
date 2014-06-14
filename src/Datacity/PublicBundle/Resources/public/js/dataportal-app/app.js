@@ -1,6 +1,7 @@
 angular
     .module('datacity.datasets', [
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap'
     ])
     .config(['$urlRouterProvider', '$stateProvider',
         function($urlRouterProvider, $stateProvider) {
@@ -54,8 +55,8 @@ angular
                 })
         }
     ])
-    .controller('homeCtrl', ['$scope', '$state', 'datasets',
-        function($scope, $state, $datasets) {
+    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets',
+        function($scope, $state, $http, $datasets) {
             $scope.datasets = $datasets;
             $scope.goto = function(dataset) {
                 if (dataset.type == 'source')
@@ -67,6 +68,20 @@ angular
                         slug: dataset.slug
                     });
             }
+            $scope.getLocation = function(val) {
+                return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+                    params: {
+                        address: val,
+                        sensor: false
+                    }
+                }).then(function(res) {
+                    var addresses = [];
+                    angular.forEach(res.data.results, function(item) {
+                        addresses.push(item.formatted_address);
+                    });
+                    return addresses;
+                });
+            };
         }
     ])
     .controller('datasetCtrl', ['$scope', '$state', 'dataset',

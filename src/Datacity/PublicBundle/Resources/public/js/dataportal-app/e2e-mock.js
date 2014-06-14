@@ -9,7 +9,7 @@ angular
                 name: 'Dataset1',
                 desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
                 date: '9 Mars 2013',
-                lastUpdate: '23 Mars 2013',
+                lastUpdate: '23 Mars 2014',
                 user: 'Admin',
                 location: 'France',
                 type: 'dataset'
@@ -180,7 +180,8 @@ angular
                 lastUpdate: '28 Septembre 2013',
                 user: 'Ryan',
                 location: 'France',
-                type: 'source'
+                type: 'source',
+                datasets: [datasets[0]]
             }, {
                 slug: 'source-10',
                 name: 'Source10',
@@ -206,8 +207,17 @@ angular
                 user: 'Admin',
                 location: 'France',
                 type: 'source'
+            }, {
+                slug: 'source-9',
+                name: 'Source9',
+                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
+                date: '28 Septembre 2013',
+                lastUpdate: '28 Septembre 2013',
+                user: 'Ryan',
+                location: 'France',
+                type: 'source'
             }];
-            popularDatasets = [datasets[1], datasets[3], datasets[5], sources[0]];
+            popularDatasets = [datasets[0], datasets[3], datasets[5], sources[0]];
 
             $httpBackend.whenGET('/ajax/popular-datasets').respond(popularDatasets);
             for (var i = datasets.length - 1; i >= 0; i--) {
@@ -217,5 +227,6 @@ angular
                 $httpBackend.whenGET('/ajax/source/' + sources[i].slug).respond(sources[i]);
             };
             $httpBackend.whenGET(/^\/partials\//).passThrough();
+            $httpBackend.whenGET(/^http:\/\//).passThrough();
         }
     ]);

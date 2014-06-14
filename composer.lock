@@ -4,8 +4,19 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1161f494b973f88d15497ba8e6120294",
+    "hash": "1c04f1f01e397636e7cb8f3726f71ee3",
     "packages": [
+        {
+            "name": "angular-ui/ui-bootstrap",
+            "version": "0.8.0",
+            "dist": {
+                "type": "file",
+                "url": "http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.8.0.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "angular-ui/ui-router",
             "version": "0.2.10",

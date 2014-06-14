@@ -1,7 +1,9 @@
 <div class="span12">
 	<form data-ng-submit="search()" class="form-search" >
-		<input data-ng-bind="searchText" placeholder="Rechercher" type="text" class="input-medium search-query">
-		<input data-ng-bind="searchPlace" placeholder="Ou ?" type="text" class="input-medium search-query">
+		<input data-ng-model="searchText" placeholder="Rechercher" type="text" class="input-medium search-query">
+		<input data-typeahead="address for address in getLocation($viewValue)" data-typeahead-loading="loadingLocations"
+			data-ng-model="searchPlace" placeholder="Ou ?" type="text" class="input-medium search-query">
+		<i ng-show="loadingLocations" class="icon-refresh"></i>
 		<button type="submit" class="btn btn-square btn-theme">Search</button>
 	</form>
 	{# Affichage des catégories de donnée #}

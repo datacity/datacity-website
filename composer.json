@@ -4,7 +4,9 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {
+            "": "src/"
+        }
     },
     "require": {
         "php": ">=5.3.3",
@@ -40,7 +42,8 @@
         "mgcrea/angular-strap": "~2.0",
         "mgcrea/angular-strap-tpl": "~2.0",
         "mgcrea/angular-motion": "~1.0",
-        "mgcrea/bootstrap-additions": "~1.0"
+        "mgcrea/bootstrap-additions": "~1.0",
+        "angular-ui/ui-bootstrap": "0.8.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -74,105 +77,105 @@
         }
     },
 
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery",
-                "version": "1.10.2",
-                "dist": {
-                    "url": "http://code.jquery.com/jquery-1.10.2.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "angularjs/angular",
-                "version": "1.2.16",
-                "dist": {
-                    "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "angularjs/angular-animate",
-                "version": "1.2.16",
-                "dist": {
-                    "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "angularjs/angular-sanitize",
-                "version": "1.2.16",
-                "dist": {
-                    "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "angular-ui/ui-router",
-                "version": "0.2.10",
-                "dist": {
-                    "url": "http://angular-ui.github.io/ui-router/release/angular-ui-router.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "mgcrea/angular-strap",
-                "version": "2.0.2",
-                "dist": {
-                    "url": "http://mgcrea.github.io/angular-strap/dist/angular-strap.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "mgcrea/angular-strap-tpl",
-                "version": "2.0.2",
-                "dist": {
-                    "url": "http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "mgcrea/angular-motion",
-                "version": "1.0",
-                "dist": {
-                    "url": "https://raw.githubusercontent.com/mgcrea/angular-motion/master/dist/angular-motion.css",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "mgcrea/bootstrap-additions",
-                "version": "1.0",
-                "dist": {
-                    "url": "https://raw.githubusercontent.com/mgcrea/bootstrap-additions/master/dist/bootstrap-additions.css",
-                    "type": "file"
-                }
+    "repositories": [{
+        "type": "package",
+        "package": {
+            "name": "jquery/jquery",
+            "version": "1.10.2",
+            "dist": {
+                "url": "http://code.jquery.com/jquery-1.10.2.js",
+                "type": "file"
             }
         }
-    ]
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angularjs/angular",
+            "version": "1.2.16",
+            "dist": {
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angularjs/angular-animate",
+            "version": "1.2.16",
+            "dist": {
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angularjs/angular-sanitize",
+            "version": "1.2.16",
+            "dist": {
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angular-ui/ui-router",
+            "version": "0.2.10",
+            "dist": {
+                "url": "http://angular-ui.github.io/ui-router/release/angular-ui-router.js",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "mgcrea/angular-strap",
+            "version": "2.0.2",
+            "dist": {
+                "url": "http://mgcrea.github.io/angular-strap/dist/angular-strap.js",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "mgcrea/angular-strap-tpl",
+            "version": "2.0.2",
+            "dist": {
+                "url": "http://mgcrea.github.io/angular-strap/dist/angular-strap.tpl.js",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "mgcrea/angular-motion",
+            "version": "1.0",
+            "dist": {
+                "url": "https://raw.githubusercontent.com/mgcrea/angular-motion/master/dist/angular-motion.css",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "mgcrea/bootstrap-additions",
+            "version": "1.0",
+            "dist": {
+                "url": "https://raw.githubusercontent.com/mgcrea/bootstrap-additions/master/dist/bootstrap-additions.css",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angular-ui/ui-bootstrap",
+            "version": "0.8.0",
+            "dist": {
+                "url": "http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.8.0.js",
+                "type": "file"
+            }
+        }
+    }]
 }
