@@ -407,7 +407,7 @@ class User extends BaseUser
     public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
     {
         $this->applications[] = $applications;
-
+        $applications->setUser($this);
         return $this;
     }
 
@@ -440,7 +440,7 @@ class User extends BaseUser
     public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
     {
         $this->city = $city;
-
+        $city->addUser($this);
         return $this;
     }
 
@@ -463,7 +463,7 @@ class User extends BaseUser
     public function addImage(\Datacity\PublicBundle\Entity\Image $images)
     {
         $this->images[] = $images;
-
+        $images->setUser($this);
         return $this;
     }
 
@@ -496,7 +496,7 @@ class User extends BaseUser
     public function addNews(\Datacity\PublicBundle\Entity\News $news)
     {
         $this->news[] = $news;
-
+        $news->setUser($this);
         return $this;
     }
 
