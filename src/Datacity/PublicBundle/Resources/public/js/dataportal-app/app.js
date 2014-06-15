@@ -103,4 +103,9 @@ angular
                 });
             }
         }
+    ])
+    .controller('visualizatorCtrl', ['$scope',
+        function($scope) {
+            
+        }
     ]);

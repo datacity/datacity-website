@@ -112,7 +112,7 @@ class DefaultController extends Controller
 			//TODO Configurer le cache HTTP ne devrais pas trop poser de probleme ici.
 			return $response;
 		} catch (\Exception $ex) {
-			throw $this->createNotFoundException();
+			throw $this->createNotFoundException('Not Found', $ex);
 		}
 	}
 }

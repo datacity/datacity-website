@@ -10,6 +10,7 @@
 		 {{ dataset.desc }}
 	</p>
 	</article>
+	<div class="visualizator" data-ng-init="dataId = 'd'+dataset.did" ng-include="'/partials/visualizator'"></div>
 	{% endverbatim %}
 	<section data-ng-if="dataset.sources" class="data-links">
 		<div class="row">

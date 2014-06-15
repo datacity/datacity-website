@@ -26,3 +26,10 @@
 .data-left {
 	float: left;
 }
+
+.visualizator {
+	margin-bottom: 40px;
+}
+
+/* ui-bootstrap stuff */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
