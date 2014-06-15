@@ -55,10 +55,66 @@ class User extends BaseUser
      */
     private $lastname;
 
-    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="point", type="integer", length=50)
+     */
+
+    private $point;
+
+      /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text", length=500)
+     */
+
+    private $description;
+
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="public_key", type="string", length=50)
+     */
+
+    private $public_key;
+
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="private_key", type="string", length=50)
+     */
+
+    private $private_key;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=50)
+     */
+
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=45)
+     */
+
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="langue", type="string", length=45)
+     */
+
+    private $langue;
+
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"remove", "persist"})
      */
+
     private $applications;
     
     /**
@@ -71,16 +127,58 @@ class User extends BaseUser
      */
     private $images;
 
-
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
      */
     private $news;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="creator", cascade={"persist"})
+     */
+    private $sources;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="followers")
+     * @ORM\JoinTable(name="user_followers",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
+     *      )
+     */
+    private $followed;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="followed")
+     */
+    private $followers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\File", mappedBy="user", cascade={"persist"})
+     */
+    private $files;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="creator")
+     */
+    private $datasetOwned;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="contributors")
+     */
+    private $datasetContributed;
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-    	parent::__construct();
-    	//May add something here later...
+        $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sources = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->followed = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->followers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->datasetOwned = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->datasetContributed = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -102,7 +200,7 @@ class User extends BaseUser
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-    
+
         return $this;
     }
 
@@ -125,7 +223,7 @@ class User extends BaseUser
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-    
+
         return $this;
     }
 
@@ -139,7 +237,256 @@ class User extends BaseUser
         return $this->lastname;
     }
 
-    
+    /**
+     * Set point
+     *
+     * @param \int $point
+     * @return User
+     */
+    public function setPoint(\int $point)
+    {
+        $this->point = $point;
+
+        return $this;
+    }
+
+    /**
+     * Get point
+     *
+     * @return \int 
+     */
+    public function getPoint()
+    {
+        return $this->point;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return User
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set public_key
+     *
+     * @param string $publicKey
+     * @return User
+     */
+    public function setPublicKey($publicKey)
+    {
+        $this->public_key = $publicKey;
+
+        return $this;
+    }
+
+    /**
+     * Get public_key
+     *
+     * @return string 
+     */
+    public function getPublicKey()
+    {
+        return $this->public_key;
+    }
+
+    /**
+     * Set private_key
+     *
+     * @param string $privateKey
+     * @return User
+     */
+    public function setPrivateKey($privateKey)
+    {
+        $this->private_key = $privateKey;
+
+        return $this;
+    }
+
+    /**
+     * Get private_key
+     *
+     * @return string 
+     */
+    public function getPrivateKey()
+    {
+        return $this->private_key;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string 
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set langue
+     *
+     * @param string $langue
+     * @return User
+     */
+    public function setLangue($langue)
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get langue
+     *
+     * @return string 
+     */
+    public function getLangue()
+    {
+        return $this->langue;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @return User
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+        $applications->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
+    }
+
+    /**
+     * Set city
+     *
+     * @param \Datacity\PublicBundle\Entity\City $city
+     * @return User
+     */
+    public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+        $city->addUser($this);
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Datacity\PublicBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $images
+     * @return User
+     */
+    public function addImage(\Datacity\PublicBundle\Entity\Image $images)
+    {
+        $this->images[] = $images;
+        $images->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $images
+     */
+    public function removeImage(\Datacity\PublicBundle\Entity\Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
     /**
      * Add news
      *
@@ -173,99 +520,201 @@ class User extends BaseUser
         return $this->news;
     }
 
-
-
-
-
     /**
-     * Add applications
+     * Add sources
      *
-     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @param \Datacity\PublicBundle\Entity\DSource $sources
      * @return User
      */
-    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    public function addSource(\Datacity\PublicBundle\Entity\DSource $sources)
     {
-        $this->applications[] = $applications;
-        
-    	$applications->setUser($this);
+        $this->sources[] = $sources;
+
         return $this;
     }
 
     /**
-     * Remove applications
+     * Remove sources
      *
-     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @param \Datacity\PublicBundle\Entity\DSource $sources
      */
-    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    public function removeSource(\Datacity\PublicBundle\Entity\DSource $sources)
     {
-        $this->applications->removeElement($applications);
+        $this->sources->removeElement($sources);
     }
 
     /**
-     * Get applications
+     * Get sources
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getApplications()
+    public function getSources()
     {
-        return $this->applications;
+        return $this->sources;
     }
 
     /**
-     * Set city
+     * Add followed
      *
-     * @param \Datacity\PublicBundle\Entity\City $city
+     * @param \Datacity\UserBundle\Entity\User $followed
      * @return User
      */
-    public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
+    public function addFollowed(\Datacity\UserBundle\Entity\User $followed)
     {
-        $this->city = $city;
-    	$city->addUser($this);
-        
+        $this->followed[] = $followed;
+
         return $this;
     }
 
     /**
-     * Get city
+     * Remove followed
      *
-     * @return \Datacity\PublicBundle\Entity\City 
+     * @param \Datacity\UserBundle\Entity\User $followed
      */
-    public function getCity()
+    public function removeFollowed(\Datacity\UserBundle\Entity\User $followed)
     {
-        return $this->city;
+        $this->followed->removeElement($followed);
     }
 
     /**
-     * Add images
-     *
-     * @param \Datacity\PublicBundle\Entity\Image $images
-     * @return User
-     */
-    public function addImage(\Datacity\PublicBundle\Entity\Image $images)
-    {
-        $this->images[] = $images;
-        
-    	$images->setUser($this);
-        return $this;
-    }
-
-    /**
-     * Remove images
-     *
-     * @param \Datacity\PublicBundle\Entity\Image $images
-     */
-    public function removeImage(\Datacity\PublicBundle\Entity\Image $images)
-    {
-        $this->images->removeElement($images);
-    }
-
-    /**
-     * Get images
+     * Get followed
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getImages()
+    public function getFollowed()
     {
-        return $this->images;
+        return $this->followed;
+    }
+
+    /**
+     * Add followers
+     *
+     * @param \Datacity\UserBundle\Entity\User $followers
+     * @return User
+     */
+    public function addFollower(\Datacity\UserBundle\Entity\User $followers)
+    {
+        $this->followers[] = $followers;
+
+        return $this;
+    }
+
+    /**
+     * Remove followers
+     *
+     * @param \Datacity\UserBundle\Entity\User $followers
+     */
+    public function removeFollower(\Datacity\UserBundle\Entity\User $followers)
+    {
+        $this->followers->removeElement($followers);
+    }
+
+    /**
+     * Get followers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+
+    /**
+     * Add files
+     *
+     * @param \Datacity\PublicBundle\Entity\File $files
+     * @return User
+     */
+    public function addFile(\Datacity\PublicBundle\Entity\File $files)
+    {
+        $this->files[] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Datacity\PublicBundle\Entity\File $files
+     */
+    public function removeFile(\Datacity\PublicBundle\Entity\File $files)
+    {
+        $this->files->removeElement($files);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Add datasetOwned
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $datasetOwned
+     * @return User
+     */
+    public function addDatasetOwned(\Datacity\PublicBundle\Entity\Dataset $datasetOwned)
+    {
+        $this->datasetOwned[] = $datasetOwned;
+
+        return $this;
+    }
+
+    /**
+     * Remove datasetOwned
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $datasetOwned
+     */
+    public function removeDatasetOwned(\Datacity\PublicBundle\Entity\Dataset $datasetOwned)
+    {
+        $this->datasetOwned->removeElement($datasetOwned);
+    }
+
+    /**
+     * Get datasetOwned
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDatasetOwned()
+    {
+        return $this->datasetOwned;
+    }
+
+    /**
+     * Add datasetContributed
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $datasetContributed
+     * @return User
+     */
+    public function addDatasetContributed(\Datacity\PublicBundle\Entity\Dataset $datasetContributed)
+    {
+        $this->datasetContributed[] = $datasetContributed;
+
+        return $this;
+    }
+
+    /**
+     * Remove datasetContributed
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $datasetContributed
+     */
+    public function removeDatasetContributed(\Datacity\PublicBundle\Entity\Dataset $datasetContributed)
+    {
+        $this->datasetContributed->removeElement($datasetContributed);
+    }
+
+    /**
+     * Get datasetContributed
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDatasetContributed()
+    {
+        return $this->datasetContributed;
     }
 }

@@ -5,7 +5,7 @@ datacity_private_homepage:
 datacity_private_dashboard:
     pattern:  /dashboard
     defaults: { _controller: DatacityPrivateBundle:Dashboard:index }
-    
+
 datacity_private_usersmanager:
     pattern:  /usersmanager
     defaults: { _controller: DatacityPrivateBundle:UsersManager:index }
@@ -20,8 +20,24 @@ datacity_private_newsmanager:
 
 datacity_private_newsmanager_add:
     pattern:  /newsmanager/add
-    defaults: { _controller: DatacityPrivateBundle:NewsManager:add}
+    defaults: { _controller: DatacityPrivateBundle:NewsManager:add }
 
 datacity_private_newsmanager_remove:
     pattern:  /newsmanager/remove/{news_id}
     defaults: { _controller: DatacityPrivateBundle:NewsManager:remove, news_id: -1 }
+
+datacity_private_partials:
+    pattern:  /partials/{pageName}
+    defaults: { _controller: DatacityPrivateBundle:Default:partials }
+
+datacity_private_datasetmanager_delete:
+    pattern: /dataset/delete
+    defaults: { _controller: DatacityPrivateBundle:DataSet:delete }
+
+datacity_private_datasetmanager_save:
+    pattern: /dataset/save
+    defaults: { _controller: DatacityPrivateBundle:DataSet:save }
+
+datacity_private_datasetmanager_get:
+    pattern: /dataset/get/{id}
+    defaults: { _controller: DatacityPrivateBundle:DataSet:get }

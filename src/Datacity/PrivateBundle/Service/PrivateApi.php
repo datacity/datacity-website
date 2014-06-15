@@ -18,7 +18,7 @@ class PrivateApi
     	$generator = new SecureRandom();
 		$publicKey = hash('md5', $generator->nextBytes(10));
 		$privateKey = hash('md5', $generator->nextBytes(10));
-    	$request = $this->client->post('user', null, array(
+    	$request = $this->client->post('site/users/add', null, array(
     		'publicKey' => $publicKey,
     		'privateKey' => $privateKey,
     		'quota' => $quota,

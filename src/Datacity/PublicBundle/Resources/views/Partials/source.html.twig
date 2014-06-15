@@ -1,0 +1,46 @@
+<div class="span8">
+	<article>
+	{% verbatim %}
+	<div class="top-wrapper">
+		<div class="post-heading">
+			<h3>{{ source.name }}</h3>
+		</div>
+	</div>
+	<p>
+		 {{ source.desc }}
+	</p>
+	</article>
+	<div class="visualizator" data-ng-init="dataId = 's'+source.sid" ng-include="'/partials/visualizator'"></div>
+	{% endverbatim %}
+	<section data-ng-if="source.datasets" class="data-links">
+		<div class="row">
+			<div class="span8">
+				<h4>Source utilisée dans les jeux de données :</h5>
+				<div class="data-left horizontal-data-bloc" data-ng-repeat="dataset in source.datasets"
+					data-ng-click="goto(dataset)" data-ng-include="'/partials/datablochoriz'"></div>
+			</div>
+		</div>
+	</section>
+</div>
+<div class="span4">
+	<aside class="right-sidebar">
+	<div class="widget">
+		<h5 class="widgetheading">Informations :</h5>
+		{% verbatim %}
+		<ul class="folio-detail">
+			<li><label>Categorie :</label> TODO</li>
+			<li data-ng-if="source.user"><label>Auteur :</label> {{ source.user }} </li>
+			<li><label>Date de publication :</label> {{ source.date }}</li>
+			<li data-ng-if="source.lastUpdate"><label>Derniere mise à jour :</label> {{ source.lastUpdate }}</li>
+			<li data-ng-if="source.location"><label>Location :</label> {{ source.location }}</li>
+		</ul>
+		{% endverbatim %}
+	</div>
+	<div class="widget">
+		<h5 class="widgetheading">Statistiques</h5>
+		<p>
+			 TODO
+		</p>
+	</div>
+	</aside>
+</div>

@@ -8,75 +8,23 @@
 	{{ parent() }}
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 	<script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
+	{# TEMP #}
+		<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
+	{# ENDTEMP #}
 	{% javascripts
 		'js/angular-mods.js'
-	    '@DatacityPublicBundle/Resources/public/js/datacity-dataportal-app.js'
+		'js/ui-bootstrap.js'
+	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/app.js'
+	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/e2e-mock.js'
 	    %}
 	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}
 
 {% block pagecontent %}
-	<section id="content" data-ng-app="datacity.datasets">
+	<section id="content" data-ng-app="datacity.datasets.dev">
 	<div class="container">
-		<div class="row">
-			<div class="span12">
-				<form class="form-search" >
-					<input placeholder="Rechercher" type="text" class="input-medium search-query">
-					<input placeholder="Ou ?" type="text" class="input-medium search-query">
-					<button type="submit" class="btn btn-square btn-theme">Search</button>
-				</form>
-				{# Affichage des catégories de donnée #}
-				<ul class="inline">
-					<li data-ng-bind="test"></li>
-					<li>Categorie</li>
-					<li>Afficher</li>
-				</ul>
-			</div>
-			{# Affichage des données avec leur titre un apercu de leur descriptif et leur image si il y en à une #}
-			<div class="span12">
-			<div class="row">
-				<div class="span12 dataset-result">
-						<h5 class="dataset-result-title"><a href="#">This is an example of standard post format</a></h5>
-						<p>
-							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-						</p>
-						<div class="dataset-result-bottom">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</div>
-				<div class="span12 dataset-result">
-						<h5 class="dataset-result-title"><a href="#">This is an example of standard post format</a></h5>
-						<p>
-							 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-						</p>
-						<div class="dataset-result-bottom">
-							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
-								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
-								<li><i class="icon-folder-open"></i><a href="#"> Blog</a></li>
-								<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
-							</ul>
-							<a href="#" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
-						</div>
-				</div>
-
-			</div>
-			</div>
-			{# Affichage pagination #}
-			<div id="pagination" class="span12">
-				<span class="all">Page 1 of 3</span>
-				<span class="current">1</span>
-				<a href="#" class="inactive">2</a>
-				<a href="#" class="inactive">3</a>
-			</div>
-		</div>
+		<div class="row" data-ui-view></div>
 	</div>
 	</section>   
 {% endblock %}

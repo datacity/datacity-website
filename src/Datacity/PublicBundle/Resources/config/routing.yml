@@ -39,3 +39,9 @@ datacity_public_newsDetail:
 datacity_public_ajouter:
     pattern:  /ajouter
     defaults: { _controller: DatacityPublicBundle:Default:ajouter }
+
+datacity_public_partials:
+    pattern:  /partials/{pageName}
+    defaults: { _controller: DatacityPublicBundle:Default:partials }
+    requirements:
+        pageName:  \w+

@@ -1,0 +1,48 @@
+{# {% block pageTitle %}Ajout d'un jeu de données{% endblock %}
+{% block lineTitleLink %}Jeu de données{% endblock %}
+{% block pagecontent %} #}
+
+{# {% verbatim %} #}
+
+
+<div data-ng-controller="datasetController as datasetCtrl">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>Formulaire de jeu de données
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- BEGIN FORM-->
+			<form action="#" class="form-horizontal">
+				<div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Titre</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" placeholder="Enter text" value="{[{datasetCtrl.dataset.title}]}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Description</label>
+						<div class="col-md-4">
+							<div class="col-md-12">
+								<textarea class="form-control" rows="5">{[{datasetCtrl.dataset.description}]}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-actions fluid">
+					<div class="col-md-offset-3 col-md-9">
+						<button type="submit" class="btn blue">Enregister</button>
+						<button type="button" class="btn default">Supprimer</button>
+					</div>
+				</div>
+			</form>
+			<!-- END FORM-->
+		</div>
+	</div>
+</div>
+
+{# {% endverbatim %} #}
+
+{# {% endblock %} #}

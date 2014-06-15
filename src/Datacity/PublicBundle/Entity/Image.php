@@ -50,7 +50,7 @@ class Image
     private $category;
 
     /**
-     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\News", inversedBy="images")
+     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\News", inversedBy="image")
      * @ORM\JoinColumn(nullable=true)
      */
     private $news;

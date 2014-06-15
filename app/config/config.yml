@@ -73,6 +73,10 @@ assetic:
                 - %kernel.root_dir%/../vendor/mgcrea/angular-motion/angular-motion.css
                 - %kernel.root_dir%/../vendor/mgcrea/bootstrap-additions/bootstrap-additions.css
             output: css/angular-strap-dep.css
+        uibootstrap:
+            inputs:
+                - %kernel.root_dir%/../vendor/angular-ui/ui-bootstrap/ui-bootstrap-tpls-0.8.0.js
+            output: js/ui-bootstrap.js
 
 # Doctrine Configuration
 doctrine:
@@ -112,3 +116,11 @@ jms_i18n_routing:
     default_locale: fr
     locales: [en, fr]
     strategy: prefix_except_default
+
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            timestampable: true
+            blameable: true
+            sluggable: true

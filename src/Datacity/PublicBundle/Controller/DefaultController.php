@@ -104,4 +104,15 @@ class DefaultController extends Controller
 	{
 		return $this->render('DatacityPublicBundle::newsDetail.html.twig', array("news" => $news));
 	}
+
+	public function partialsAction($pageName)
+	{
+		try {
+			$response = $this->get('templating')->renderResponse('DatacityPublicBundle:Partials:' . $pageName . '.html.twig');
+			//TODO Configurer le cache HTTP ne devrais pas trop poser de probleme ici.
+			return $response;
+		} catch (\Exception $ex) {
+			throw $this->createNotFoundException('Not Found', $ex);
+		}
+	}
 }
