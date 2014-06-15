@@ -56,7 +56,7 @@ class User extends BaseUser
     private $lastname;
 
      /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="point", type="integer", length=50)
      */
@@ -240,10 +240,10 @@ class User extends BaseUser
     /**
      * Set point
      *
-     * @param \int $point
+     * @param integer $point
      * @return User
      */
-    public function setPoint(\int $point)
+    public function setPoint($point)
     {
         $this->point = $point;
 
@@ -253,7 +253,7 @@ class User extends BaseUser
     /**
      * Get point
      *
-     * @return \int 
+     * @return integer 
      */
     public function getPoint()
     {
