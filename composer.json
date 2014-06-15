@@ -106,29 +106,6 @@
                 "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js",
                 "type": "file"
             }
-<<<<<<< HEAD
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "angularjs/angular-sanitize",
-                "version": "1.2.16",
-                "dist": {
-                    "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js",
-                    "type": "file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "angular-ui/ui-router",
-                "version": "0.2.10",
-                "dist": {
-                    "url": "http://angular-ui.github.io/ui-router/release/angular-ui-router.js",
-                    "type": "file"
-                }
-=======
         }
     }, {
         "type": "package",
@@ -138,7 +115,6 @@
             "dist": {
                 "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js",
                 "type": "file"
->>>>>>> 425f4c50c41a291f1bfe115006c66a6eaab2ebe0
             }
         }
     }, {
