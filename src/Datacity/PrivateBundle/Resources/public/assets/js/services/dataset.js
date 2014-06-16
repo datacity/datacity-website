@@ -4,7 +4,8 @@
 		.factory('Dataset', ['$http', function($http) {
 			return {
 				get: function(id) {
-					return $http.get('/app_dev.php/private/dataset/get/' + id).then(function(response) {
+					return $http
+						.get('/app_dev.php/private/dataset/get/' + id).then(function(response) {
 							return response.data;
 						});
 				},
@@ -14,6 +15,12 @@
 							return response.data;
 						});
 						
+				},
+				delete: function(id) {
+					return $http
+						.delete('/app_dev.php/private/dataset/delete/' + id).then(function(response) {
+							return response.data;
+						});
 				}
 			}
 

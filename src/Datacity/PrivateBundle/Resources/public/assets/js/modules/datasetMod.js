@@ -1,7 +1,7 @@
 (function() {
 	var app = angular
-		.module('datacity.dataset', [
-			'mgcrea.ngStrap', 
+		.module('app', [
+			'mgcrea.ngStrap',
 			'ui.router'
 		])
 		.config(['$urlRouterProvider', '$stateProvider', 

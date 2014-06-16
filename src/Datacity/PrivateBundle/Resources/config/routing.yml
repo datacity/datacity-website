@@ -30,12 +30,16 @@ datacity_private_partials:
     pattern:  /partials/{pageName}
     defaults: { _controller: DatacityPrivateBundle:Default:partials }
 
+datacity_private_modals:
+    pattern: /modals/{pageName}
+    defaults: { _controller: DatacityPrivateBundle:Default:modals }
+
 datacity_private_datasetmanager_delete:
-    pattern: /dataset/delete
+    pattern: /dataset/delete/{id}
     defaults: { _controller: DatacityPrivateBundle:DataSet:delete }
 
 datacity_private_datasetmanager_save:
-    pattern: /dataset/save
+    pattern: /dataset/save/
     defaults: { _controller: DatacityPrivateBundle:DataSet:save }
 
 datacity_private_datasetmanager_get:
