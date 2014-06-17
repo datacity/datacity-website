@@ -37,33 +37,17 @@ angular
                             }
                         ]
                     },
-                })
-                .state('source', {
-                    url: '/source/:slug',
-                    templateUrl: '/partials/source',
-                    controller: 'sourceCtrl',
-                    resolve: {
-                        source: ['$stateParams', '$http',
-                            function($stateParams, $http) {
-                                return $http.get('/ajax/source/' + $stateParams.slug)
-                                    .then(function(res) {
-                                        return res.data;
-                                    });
-                            }
-                        ]
-                    },
-                })
+                });
         }
     ])
     .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets',
         function($scope, $state, $http, $datasets) {
             $scope.datasets = $datasets;
+            $scope.$watch('searchPlace', function() {
+                if ($scope.searchPlace != undefined)
+                    $scope.search();
+            });
             $scope.goto = function(dataset) {
-                if (dataset.type == 'source')
-                    $state.go('source', {
-                        slug: dataset.slug
-                    });
-                else if (dataset.type == 'dataset')
                     $state.go('dataset', {
                         slug: dataset.slug
                     });
@@ -82,26 +66,25 @@ angular
                     return addresses;
                 });
             };
+            $scope.search = function() {
+                if (!$scope.searchText && !$scope.searchPlace) {
+                    $scope.datasets = $datasets;
+                    return;
+                }
+                $http.get('/ajax/search', {
+                    params: {
+                        text: $scope.searchText,
+                        place: $scope.searchPlace
+                    }
+                }).then(function(res) {
+                    $scope.datasets = res.data;
+                });
+            }
         }
     ])
     .controller('datasetCtrl', ['$scope', '$state', 'dataset',
         function($scope, $state, $dataset) {
             $scope.dataset = $dataset;
-            $scope.goto = function(source) {
-                $state.go('source', {
-                    slug: source.slug
-                });
-            }
-        }
-    ])
-    .controller('sourceCtrl', ['$scope', '$state', 'source',
-        function($scope, $state, $source) {
-            $scope.source = $source;
-            $scope.goto = function(dataset) {
-                $state.go('dataset', {
-                    slug: dataset.slug
-                });
-            }
         }
     ])
     .controller('visualizatorCtrl', ['$scope',

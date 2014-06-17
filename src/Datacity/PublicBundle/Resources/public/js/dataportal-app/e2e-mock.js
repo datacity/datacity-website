@@ -4,16 +4,145 @@ angular
     ])
     .run(['$httpBackend',
         function($httpBackend) {
+            sources = [{
+                sid: 1,
+                name: 'Hôtels de Montpellier',
+                date: '22 Octobre 2012',
+                lastUpdate: '23 Mars 2013',
+                user: 'Datacity',
+                location: 'Montpellier',
+                couverture: 'Commune'
+            }, {
+                sid: 2,
+                name: 'Source2',
+                date: '22 Juin 2013',
+                lastUpdate: '12 Avril 2014',
+                user: 'Raphael',
+                location: 'Montpellier',
+                couverture: 'Commune'
+            }, {
+                sid: 3,
+                name: 'Source3',
+                date: '20 Juin 2013',
+                lastUpdate: '5 Janvier 2014',
+                user: 'Marc',
+                location: 'Montpellier',
+                couverture: 'Commune'
+            }, {
+                sid: 4,
+                name: 'Source4',
+                date: '17 Fevrier 2014',
+                lastUpdate: '2 Avril 2014',
+                user: 'Cyril',
+                location: 'Catalogne',
+                couverture: 'Region'
+            }, {
+                sid: 5,
+                name: 'Source5',
+                date: '15 Mars 2012',
+                lastUpdate: '1 Avril 2012',
+                user: 'Lionel',
+                location: 'Montpellier',
+                couverture: 'Commune'
+            }, {
+                sid: 6,
+                name: 'Source6',
+                date: '28 Janvier 2014',
+                lastUpdate: '3 Fevrier 2014',
+                user: 'Guillaume',
+                location: 'Toulouse',
+                couverture: 'Commune'
+            }, {
+                sid: 7,
+                name: 'Source7',
+                date: '28 Decembre 2013',
+                lastUpdate: '10 Juin 2014',
+                user: 'Cyntia',
+                location: 'Montpellier',
+                couverture: 'Commune'
+            }, {
+                sid: 8,
+                name: 'Source8',
+                date: '28 Septembre 2013',
+                lastUpdate: '12 Novembre 2013',
+                user: 'Cedric',
+                location: 'France',
+                couverture: 'Pays'
+            }, {
+                sid: 9,
+                name: 'Source9',
+                date: '28 Septembre 2013',
+                lastUpdate: '28 Septembre 2013',
+                user: 'Ryan',
+                location: 'Hérault',
+                couverture: 'Département'
+            }, {
+                sid: 10,
+                name: 'Source10',
+                date: '28 Septembre 2013',
+                user: 'User',
+                location: 'Midi-Pyrénées',
+                couverture: 'Région'
+            }, {
+                sid: 11,
+                name: 'Source11',
+                date: '13 Juillet 2012',
+                lastUpdate: '4 Avril 2013',
+                user: 'Ryan',
+                location: 'Midi-Pyrénées',
+                couverture: 'Région'
+            }, {
+                sid: 12,
+                name: 'Hôtels de Toulouse',
+                date: '16 Mars 2013',
+                lastUpdate: '16 Mars 2013',
+                user: 'Datacity',
+                location: 'Toulouse',
+                couverture: 'Commune'
+            }, {
+                sid: 13,
+                name: 'Hôtels de Paris',
+                date: '17 Mars 2013',
+                lastUpdate: '17 Mars 2013',
+                user: 'Datacity',
+                location: 'Paris',
+                couverture: 'Commune'
+            }, {
+                sid: 14,
+                name: 'Hôtels de Bordeaux',
+                date: '19 Mars 2013',
+                lastUpdate: '19 Mars 2013',
+                user: 'Datacity',
+                location: 'Bordeaux',
+                couverture: 'Commune'
+            }, {
+                sid: 15,
+                name: 'Hôtels de Nantes',
+                date: '22 Mars 2013',
+                lastUpdate: '2 Avril 2013',
+                user: 'Datacity',
+                location: 'Nantes',
+                couverture: 'Commune'
+            }, {
+                sid: 16,
+                name: 'SourceE',
+                date: '20 Fevrier 2014',
+                lastUpdate: '20 Fevrier 2014',
+                user: 'Cyril',
+                location: 'Espagne',
+                couverture: 'Pays'
+            }];
             datasets = [{
-                slug: 'dataset-1',
+                slug: 'hotels-de-france',
                 did: 1,
-                name: 'Dataset1',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
+                name: 'Hôtels de France',
+                desc: 'Curabitur accumsan ligula quis ante tristique viverra. Fusce nec mauris tortor. Integer quis vulputate felis. Maecenas ultrices in felis ut tempus. Nunc feugiat adipiscing pellentesque. Duis laoreet, arcu nec egestas posuere, ligula velit vehicula sem, at tristique neque mi vel libero. Pellentesque augue metus, ultrices pellentesque vehicula ut, euismod at massa. Curabitur quis libero dignissim, luctus urna eu, accumsan ligula. Duis in felis a odio ultricies dignissim vel non lectus. Nulla at aliquet tellus, ut dictum diam. Vestibulum quam magna, mollis sit amet quam at, ultricies imperdiet sapien. Morbi viverra porttitor nisl, eget scelerisque dolor vestibulum ac. Aliquam sed quam vel nisi vehicula pharetra. Praesent euismod sapien sed diam imperdiet, a interdum lacus placerat.',
                 date: '9 Mars 2013',
                 lastUpdate: '23 Mars 2014',
-                user: 'Admin',
-                location: 'France',
-                type: 'dataset'
+                user: 'Datacity',
+                location: 'Montpellier, Toulouse, Paris, Bordeaux, Nantes',
+                couverture: 'Commune',
+                sources: [sources[0], sources[11], sources[12], sources[13], sources[14]]
             }, {
                 slug: 'dataset-2',
                 did: 2,
@@ -21,8 +150,9 @@ angular
                 desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
                 lastUpdate: '12 Avril 2014',
                 user: 'Raphael',
-                location: 'France',
-                type: 'dataset'
+                location: 'Montpellier',
+                couverture: 'Commune',
+                sources: [sources[1]]
             }, {
                 slug: 'dataset-3',
                 did: 3,
@@ -30,8 +160,9 @@ angular
                 desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
                 lastUpdate: '5 Janvier 2014',
                 user: 'Marc',
-                location: 'France',
-                type: 'dataset'
+                location: 'Montpellier',
+                couverture: 'Commune',
+                sources: [sources[2]]
             }, {
                 slug: 'dataset-4',
                 did: 4,
@@ -40,18 +171,20 @@ angular
                 date: '2 Avril 2014',
                 lastUpdate: '2 Avril 2014',
                 user: 'Cyril',
-                location: 'Espagne',
-                type: 'dataset'
+                location: 'Espagne, Catalogne',
+                couverture: 'Pays',
+                sources: [sources[3], sources[15]]
             }, {
-                slug: 'dataset-5',
+                slug: 'velib-de-france',
                 did: 5,
-                name: 'Dataset5',
+                name: 'Vélib de France',
                 desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
                 date: '1 Avril 2012',
                 lastUpdate: '1 Avril 2012',
                 user: 'Lionel',
                 location: 'France',
-                type: 'dataset'
+                couverture: 'Pays',
+                sources: [sources[4]]
             }, {
                 slug: 'dataset-6',
                 did: 6,
@@ -60,8 +193,9 @@ angular
                 date: '3 Fevrier 2014',
                 lastUpdate: '3 Fevrier 2014',
                 user: 'Guillaume',
-                location: 'Monde',
-                type: 'dataset'
+                location: 'France, Canada',
+                couverture: 'Monde',
+                sources: [sources[5]]
             }, {
                 slug: 'dataset-7',
                 did: 7,
@@ -71,7 +205,7 @@ angular
                 lastUpdate: '10 Juin 2014',
                 user: 'Cyntia',
                 location: 'France',
-                type: 'dataset'
+                sources: [sources[6]]
             }, {
                 slug: 'dataset-8',
                 did: 8,
@@ -81,7 +215,7 @@ angular
                 lastUpdate: '12 Novembre 2013',
                 user: 'Cedric',
                 location: 'France',
-                type: 'dataset'
+                sources: [sources[7]]
             }, {
                 slug: 'dataset-9',
                 did: 9,
@@ -91,15 +225,17 @@ angular
                 lastUpdate: '28 Septembre 2013',
                 user: 'Ryan',
                 location: 'France',
-                type: 'dataset'
+                sources: [sources[8]]
             }, {
                 slug: 'dataset-10',
                 did: 10,
                 name: 'Dataset10',
                 desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
                 date: '14 Novembre 2014',
-                location: 'France',
-                type: 'dataset'
+                user: 'User',
+                location: 'Midi-Pyrénées',
+                couverture: 'Région',
+                sources: [sources[9]]
             }, {
                 slug: 'dataset-11',
                 did: 11,
@@ -108,146 +244,21 @@ angular
                 date: '5 Aout 2012',
                 lastUpdate: '28 Septembre 2013',
                 user: 'Ryan',
-                type: 'dataset'
+                location: 'Midi-Pyrénées',
+                couverture: 'Région',
+                sources: [sources[10]]
             }];
-            sources = [{
-                slug: 'source-1',
-                sid: 1,
-                name: 'Source1',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '22 Octobre 2012',
-                lastUpdate: '23 Mars 2013',
-                user: 'Admin',
-                location: 'France',
-                type: 'source',
-                datasets: [datasets[0]]
-            }, {
-                slug: 'source-2',
-                sid: 2,
-                name: 'Source2',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '22 Juin 2013',
-                lastUpdate: '12 Avril 2014',
-                user: 'Raphael',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-3',
-                sid: 3,
-                name: 'Source3',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '20 Juin 2013',
-                lastUpdate: '5 Janvier 2014',
-                user: 'Marc',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-4',
-                sid: 4,
-                name: 'Source4',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '17 Fevrier 2014',
-                lastUpdate: '2 Avril 2014',
-                user: 'Cyril',
-                location: 'Espagne',
-                type: 'source'
-            }, {
-                slug: 'source-5',
-                sid: 5,
-                name: 'Source5',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '15 Mars 2012',
-                lastUpdate: '1 Avril 2012',
-                user: 'Lionel',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-6',
-                sid: 6,
-                name: 'Source6',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Janvier 2014',
-                lastUpdate: '3 Fevrier 2014',
-                user: 'Guillaume',
-                location: 'Monde',
-                type: 'source'
-            }, {
-                slug: 'source-7',
-                sid: 7,
-                name: 'Source7',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Decembre 2013',
-                lastUpdate: '10 Juin 2014',
-                user: 'Cyntia',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-8',
-                sid: 8,
-                name: 'Source8',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Septembre 2013',
-                lastUpdate: '12 Novembre 2013',
-                user: 'Cedric',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-9',
-                sid: 9,
-                name: 'Source9',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Septembre 2013',
-                lastUpdate: '28 Septembre 2013',
-                user: 'Ryan',
-                location: 'France',
-                type: 'source',
-                datasets: [datasets[0]]
-            }, {
-                slug: 'source-10',
-                sid: 10,
-                name: 'Source10',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Septembre 2013',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-11',
-                sid: 11,
-                name: 'Source11',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Septembre 2013',
-                lastUpdate: '28 Septembre 2013',
-                user: 'Ryan',
-                type: 'source'
-            }];
-            datasets[0].sources = [{
-                slug: 'source-1',
-                name: 'Source1',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '22 Octobre 2012',
-                lastUpdate: '23 Mars 2013',
-                user: 'Admin',
-                location: 'France',
-                type: 'source'
-            }, {
-                slug: 'source-9',
-                name: 'Source9',
-                desc: 'Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.',
-                date: '28 Septembre 2013',
-                lastUpdate: '28 Septembre 2013',
-                user: 'Ryan',
-                location: 'France',
-                type: 'source'
-            }];
-            popularDatasets = [datasets[0], datasets[3], datasets[5], sources[0]];
+            popularDatasets = [datasets[1], datasets[3], datasets[10], datasets[2], datasets[5]];
 
             $httpBackend.whenGET('/ajax/popular-datasets').respond(popularDatasets);
             for (var i = datasets.length - 1; i >= 0; i--) {
                 $httpBackend.whenGET('/ajax/dataset/' + datasets[i].slug).respond(datasets[i]);
             };
-            for (var i = sources.length - 1; i >= 0; i--) {
-                $httpBackend.whenGET('/ajax/source/' + sources[i].slug).respond(sources[i]);
-            };
+            $httpBackend.whenGET(/^\/ajax\/search\?text=V/).respond([datasets[4]]);
+            $httpBackend.whenGET(/^\/ajax\/search\?text=v/).respond([datasets[4]]);
+            $httpBackend.whenGET(/^\/ajax\/search\?text=H/).respond([datasets[0]]);
+            $httpBackend.whenGET(/^\/ajax\/search\?text=h/).respond([datasets[0]]);
+            $httpBackend.whenGET(/^\/ajax\/search\?place/).respond([datasets[0]]);
             $httpBackend.whenGET(/^\/partials\//).passThrough();
             $httpBackend.whenGET(/^http:\/\//).passThrough();
         }
