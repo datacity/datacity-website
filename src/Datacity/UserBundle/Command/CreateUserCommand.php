@@ -8,6 +8,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use FOS\UserBundle\Command\CreateUserCommand as BaseCommand;
 
+/**
+ * @Deprecated
+ */
 class CreateUserCommand extends BaseCommand
 {
 	/**

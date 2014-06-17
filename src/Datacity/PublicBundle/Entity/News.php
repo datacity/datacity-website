@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  * News
  * @ORM\Entity
  * @ORM\Table(name = "news")
- * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\NewsRepository")
  */
 class News
 {
@@ -43,7 +42,7 @@ class News
     private $title;
 
     /**
-     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="news", cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $image;

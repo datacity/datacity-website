@@ -5,10 +5,10 @@
 namespace Datacity\UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 use Datacity\PrivateBundle\Service\PrivateApi;
 
 /**
@@ -16,32 +16,21 @@ use Datacity\PrivateBundle\Service\PrivateApi;
  */
 class UserRegisteredListener implements EventSubscriberInterface
 {
-    private $privateApi;
-
-    public function __construct(PrivateApi $privateApi)
-    {
-        $this->privateApi = $privateApi;
-    }
-
     /**
      * {@inheritDoc}
      */
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::REGISTRATION_COMPLETED => 'onRegisterCompleted',
+            FOSUserEvents::REGISTRATION_SUCCESS => 'onRegisterSuccess',
         );
     }
 
-    public function onRegisterCompleted(FilterUserResponseEvent $event)
+     public function onRegisterSuccess(FormEvent $event)
     {
-        try {
-            $this->privateApi->createClient($event->getUser()->getUsernameCanonical(), '40M');
-        }
-        catch (\Exception $e)
-        {
-            //TODO Mark user was not created
-        }
-        //$event->setResponse(new RedirectResponse($url));
+        $user = $event->getForm()->getData();
+        $generator = new SecureRandom();
+        $user->genPublicKey($generator)
+             ->genPrivateKey($generator);
     }
 }

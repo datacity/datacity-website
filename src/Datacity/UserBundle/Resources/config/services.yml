@@ -7,6 +7,6 @@ services:
 
     datacity_user.registration.completed:
         class: Datacity\UserBundle\EventListener\UserRegisteredListener
-        arguments: [@datacity_private_api]
+        arguments: []
         tags:
             - { name: kernel.event_subscriber }

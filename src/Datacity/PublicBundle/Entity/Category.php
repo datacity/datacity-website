@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category
  *
+ * @ORM\Entity
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\CategoryRepository")
  */
 class Category
 {
@@ -24,7 +24,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
     
@@ -38,13 +38,150 @@ class Category
      */
     private $applications;
 
-     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="category")
-     */
-    private $sources;
-
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="categories")
      */
     private $datasets;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->datasets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $images
+     * @return Category
+     */
+    public function addImage(\Datacity\PublicBundle\Entity\Image $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $images
+     */
+    public function removeImage(\Datacity\PublicBundle\Entity\Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @return Category
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getApplications()
+    {
+        return $this->applications;
+    }
+
+    /**
+     * Add datasets
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $datasets
+     * @return Category
+     */
+    public function addDataset(\Datacity\PublicBundle\Entity\Dataset $datasets)
+    {
+        $this->datasets[] = $datasets;
+
+        return $this;
+    }
+
+    /**
+     * Remove datasets
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $datasets
+     */
+    public function removeDataset(\Datacity\PublicBundle\Entity\Dataset $datasets)
+    {
+        $this->datasets->removeElement($datasets);
+    }
+
+    /**
+     * Get datasets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDatasets()
+    {
+        return $this->datasets;
+    }
 }

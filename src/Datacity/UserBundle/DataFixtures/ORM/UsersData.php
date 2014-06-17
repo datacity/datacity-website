@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Datacity\PublicBundle\DataFixtures\ORM\ApplicationsData;
 use Datacity\PublicBundle\DataFixtures\ORM\CitiesData;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 
 class UsersData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
@@ -29,7 +30,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 	public function load(ObjectManager $manager)
 	{
 		$userManager = $this->container->get('fos_user.user_manager');
-		
+		$generator = new SecureRandom();
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Marc');
 		$userAdmin->setFirstName('Marc');
@@ -38,7 +40,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('marc.soufflet@epitech.eu');
 		$userAdmin->setCity($this->getReference("city-Montpellier"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -49,7 +53,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('marquis_c@epitech.eu');
 		$userAdmin->setCity($this->getReference("city-Montpellier"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -60,7 +66,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('hamsou_l@epitech.eu');
 		$userAdmin->setCity($this->getReference("city-Montpellier"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -71,7 +79,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('wylk@datacity.fr');
 		$userAdmin->setCity($this->getReference("city-Paris"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -82,7 +92,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('amar_r@epitech.eu');
 		$userAdmin->setCity($this->getReference("city-Montpellier"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -93,7 +105,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('legasa_r@epitech.eu');
 		$userAdmin->setCity($this->getReference("city-Montpellier"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -104,7 +118,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('cyril.morales@epitech.eu');
 		$userAdmin->setCity($this->getReference("city-Montpellier"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$userAdmin = $userManager->createUser();
@@ -115,7 +131,9 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('admin@datacity.fr');
 		$userAdmin->setCity($this->getReference("city-Paris"));
-		$userAdmin->setSuperAdmin(true) ;
+		$userAdmin->setSuperAdmin(true);
+		$userAdmin->genPublicKey($generator);
+		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		
 		$user = $userManager->createUser();
@@ -127,6 +145,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEmail('john.doe@example.com');
 		$user->addApplication($this->getReference("application-Datacity Culture"));
 		//$user->addNews($this->getReference("news-Titre1"));
+		$user->genPublicKey($generator);
+		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[0]));
 		
 		
@@ -141,6 +161,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEmail('marcel@example.com');
 		$user->addApplication($this->getReference("application-Datacity Street"));
 		//$user->addNews($this->getReference("news-Titre2"));
+		$user->genPublicKey($generator);
+		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[1]));
 				
 		
@@ -155,6 +177,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEmail('alberto@example.com');
 		$user->addApplication($this->getReference("application-Datacity Tourism"));
 		//$user->addNews($this->getReference("news-Titre3"));
+		$user->genPublicKey($generator);
+		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[2]));
 		
 		$userManager->updateUser($user);
@@ -167,6 +191,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEnabled(true);
 		$user->setEmail('francis@example.com');
 		$user->addApplication($this->getReference("application-Datacity Fiction"));
+		$user->genPublicKey($generator);
+		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[3]));
 		
 		$userManager->updateUser($user);

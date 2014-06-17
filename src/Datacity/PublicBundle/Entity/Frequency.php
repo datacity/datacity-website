@@ -1,7 +1,7 @@
 <?php
 
 namespace Datacity\PublicBundle\Entity;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,17 +24,15 @@ class Frequency
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=50, unique=true)
      */
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="icon", type="string", length=100)
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=60, unique=true)
      */
     private $icon;
-
 
     /**
      * Get id

@@ -5,6 +5,7 @@ namespace Datacity\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
  * User
@@ -58,15 +59,15 @@ class User extends BaseUser
      /**
      * @var integer
      *
-     * @ORM\Column(name="point", type="integer", length=50)
+     * @ORM\Column(name="point", type="integer")
      */
 
-    private $point;
+    private $point = 0;
 
       /**
      * @var text
      *
-     * @ORM\Column(name="description", type="text", length=500)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
 
     private $description;
@@ -74,7 +75,7 @@ class User extends BaseUser
       /**
      * @var string
      *
-     * @ORM\Column(name="public_key", type="string", length=50)
+     * @ORM\Column(name="public_key", type="string", length=50, nullable=false)
      */
 
     private $public_key;
@@ -82,7 +83,7 @@ class User extends BaseUser
       /**
      * @var string
      *
-     * @ORM\Column(name="private_key", type="string", length=50)
+     * @ORM\Column(name="private_key", type="string", length=50, nullable=false)
      */
 
     private $private_key;
@@ -90,7 +91,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook", type="string", length=50)
+     * @ORM\Column(name="facebook", type="string", length=50, nullable=true)
      */
 
     private $facebook;
@@ -98,7 +99,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="twitter", type="string", length=45)
+     * @ORM\Column(name="twitter", type="string", length=45, nullable=true)
      */
 
     private $twitter;
@@ -106,7 +107,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="langue", type="string", length=45)
+     * @ORM\Column(name="langue", type="string", length=45, nullable=true)
      */
 
     private $langue;
@@ -118,7 +119,8 @@ class User extends BaseUser
     private $applications;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", inversedBy="users", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $city;
     
@@ -165,11 +167,13 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="contributors")
      */
     private $datasetContributed;
+
     /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
         $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->news = new \Doctrine\Common\Collections\ArrayCollection();
@@ -297,6 +301,17 @@ class User extends BaseUser
     }
 
     /**
+     * Generate public_key
+     *
+     * @param SecureRandom $generator
+     * @return User
+     */
+    public function genPublicKey($generator)
+    {
+        return $this->setPublicKey(hash('md5', $generator->nextBytes(10)));
+    }
+
+    /**
      * Get public_key
      *
      * @return string 
@@ -304,6 +319,17 @@ class User extends BaseUser
     public function getPublicKey()
     {
         return $this->public_key;
+    }
+
+    /**
+     * Generate private_key
+     *
+     * @param SecureRandom $generator
+     * @return User
+     */
+    public function genPrivateKey($generator)
+    {
+        return $this->setPrivateKey(hash('md5', $generator->nextBytes(10)));
     }
 
     /**
@@ -440,7 +466,6 @@ class User extends BaseUser
     public function setCity(\Datacity\PublicBundle\Entity\City $city = null)
     {
         $this->city = $city;
-        $city->addUser($this);
         return $this;
     }
 

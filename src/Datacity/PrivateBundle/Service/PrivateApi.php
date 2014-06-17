@@ -13,6 +13,9 @@ class PrivateApi
         $this->client = $client;
     }
 
+    /**
+     * @DEPRECATED
+     */
     public function createClient($username, $quota)
     {
     	$generator = new SecureRandom();

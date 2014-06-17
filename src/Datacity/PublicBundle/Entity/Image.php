@@ -26,7 +26,7 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, unique=true)
      */
     private $url;
 
@@ -36,24 +36,12 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Application", inversedBy="images")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $application;
-    
+  
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="images")
      * @ORM\JoinColumn(nullable=true)
      */
     private $category;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\News", inversedBy="image")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $news;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="images")
@@ -122,31 +110,6 @@ class Image
     }
 
     /**
-     * Set application
-     *
-     * @param \Datacity\PublicBundle\Entity\Application $application
-     * @return Image
-     */
-   /* public function setApplication(\Datacity\PublicBundle\Entity\Application $application = null)
-    {
-        $this->application = $application;
-
-        if (isset($application))
-	        $application->addImage($this);
-        return $this;
-    }*/
-
-    /**
-     * Get application
-     *
-     * @return \Datacity\PublicBundle\Entity\Application 
-     */
-    public function getApplication()
-    {
-        return $this->application;
-    }
-
-    /**
      * Set category
      *
      * @param \Datacity\PublicBundle\Entity\Category $category
@@ -171,26 +134,6 @@ class Image
         return $this->category;
     }
 
-     public function setNews(\Datacity\PublicBundle\Entity\Category $category = null)
-    {
-        $this->news = $news;
-    
-        if (isset($news))
-            $news->addImage($this);
-        return $this;
-    }
-
-    /**
-     * Get News
-     *
-     * @return \Datacity\PublicBundle\Entity\News 
-     */
-    public function getNews()
-    {
-        return $this->news;
-    }
-
-
     /**
      * Constructor
      */
@@ -199,29 +142,6 @@ class Image
         $this->application = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    /**
-     * Add application
-     *
-     * @param \Datacity\PublicBundle\Entity\Application $application
-     * @return Image
-     */
-    public function addApplication(\Datacity\PublicBundle\Entity\Application $application)
-    {
-        $this->application[] = $application;
-    
-        return $this;
-    }
-
-    /**
-     * Remove application
-     *
-     * @param \Datacity\PublicBundle\Entity\Application $application
-     */
-    public function removeApplication(\Datacity\PublicBundle\Entity\Application $application)
-    {
-        $this->application->removeElement($application);
-    }
-
     /**
      * Set user
      *

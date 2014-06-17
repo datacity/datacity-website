@@ -29,24 +29,11 @@ class DSource
     private $title;
 
     /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=228, unique=true)
-     */
-    private $slug;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="sid", type="integer")
+     * @var string
+     * L'id utilise pour la correspondance avec l'api
+     * @ORM\Column(name="sid", type="string", length=100)
      */
     private $sid;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
 
     /**
      * @var decimal
@@ -76,56 +63,42 @@ class DSource
      *
      * @ORM\Column(name="download_nb", type="integer")
      */
-    private $downloadNb;
+    private $downloadNb = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="useful_nb", type="integer")
      */
-    private $usefulNb;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="visited_nb", type="integer")
-     */
-    private $visitedNb;
+    private $usefulNb = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="undesirable_nb", type="integer")
      */
-    private $undesirableNb;
+    private $undesirableNb = 0;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date_begin", type="datetime")
+     * @ORM\Column(name="date_begin", type="date", nullable=true)
      */
     private $dateBegin;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date_end", type="datetime")
+     * @ORM\Column(name="date_end", type="date", nullable=true)
      */
     private $dateEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="referency", type="string", length=45)
+     * @ORM\Column(name="link", type="string", length=200)
      */
-    private $referency;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="license", type="string", length=45)
-     */
-    private $license;
+    private $link;
 
      /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
@@ -143,24 +116,394 @@ class DSource
     private $coverageTerritory;
 
      /**
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="sources")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $creator;
 
+     /**
+     * Une source ne peut et dois etre dans un seul dataset.
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Dataset", inversedBy="sources")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $dataset;
+
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="sources")
+     * Get id
+     *
+     * @return integer 
      */
-    private $category;
+    public function getId()
+    {
+        return $this->id;
+    }
 
-     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="sources")
-     * @ORM\JoinColumn(nullable=true)
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return DSource
      */
-    private $datasets;
+    public function setTitle($title)
+    {
+        $this->title = $title;
 
-     /**
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Tag", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
      */
-    private $tag;
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set sid
+     *
+     * @param string $sid
+     * @return DSource
+     */
+    public function setSid($sid)
+    {
+        $this->sid = $sid;
+
+        return $this;
+    }
+
+    /**
+     * Get sid
+     *
+     * @return string 
+     */
+    public function getSid()
+    {
+        return $this->sid;
+    }
+
+    /**
+     * Set size
+     *
+     * @param string $size
+     * @return DSource
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return string 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set publishedDate
+     *
+     * @param \DateTime $publishedDate
+     * @return DSource
+     */
+    public function setPublishedDate($publishedDate)
+    {
+        $this->publishedDate = $publishedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedDate
+     *
+     * @return \DateTime 
+     */
+    public function getPublishedDate()
+    {
+        return $this->publishedDate;
+    }
+
+    /**
+     * Set lastModifiedDate
+     *
+     * @param \DateTime $lastModifiedDate
+     * @return DSource
+     */
+    public function setLastModifiedDate($lastModifiedDate)
+    {
+        $this->lastModifiedDate = $lastModifiedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastModifiedDate
+     *
+     * @return \DateTime 
+     */
+    public function getLastModifiedDate()
+    {
+        return $this->lastModifiedDate;
+    }
+
+    /**
+     * Set downloadNb
+     *
+     * @param integer $downloadNb
+     * @return DSource
+     */
+    public function setDownloadNb($downloadNb)
+    {
+        $this->downloadNb = $downloadNb;
+
+        return $this;
+    }
+
+    /**
+     * Get downloadNb
+     *
+     * @return integer 
+     */
+    public function getDownloadNb()
+    {
+        return $this->downloadNb;
+    }
+
+    /**
+     * Set usefulNb
+     *
+     * @param integer $usefulNb
+     * @return DSource
+     */
+    public function setUsefulNb($usefulNb)
+    {
+        $this->usefulNb = $usefulNb;
+
+        return $this;
+    }
+
+    /**
+     * Get usefulNb
+     *
+     * @return integer 
+     */
+    public function getUsefulNb()
+    {
+        return $this->usefulNb;
+    }
+
+    /**
+     * Set undesirableNb
+     *
+     * @param integer $undesirableNb
+     * @return DSource
+     */
+    public function setUndesirableNb($undesirableNb)
+    {
+        $this->undesirableNb = $undesirableNb;
+
+        return $this;
+    }
+
+    /**
+     * Get undesirableNb
+     *
+     * @return integer 
+     */
+    public function getUndesirableNb()
+    {
+        return $this->undesirableNb;
+    }
+
+    /**
+     * Set dateBegin
+     *
+     * @param \DateTime $dateBegin
+     * @return DSource
+     */
+    public function setDateBegin($dateBegin)
+    {
+        $this->dateBegin = $dateBegin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateBegin
+     *
+     * @return \DateTime 
+     */
+    public function getDateBegin()
+    {
+        return $this->dateBegin;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param \DateTime $dateEnd
+     * @return DSource
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd
+     *
+     * @return \DateTime 
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return DSource
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set frequency
+     *
+     * @param \Datacity\PublicBundle\Entity\Frequency $frequency
+     * @return DSource
+     */
+    public function setFrequency(\Datacity\PublicBundle\Entity\Frequency $frequency = null)
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
+
+    /**
+     * Get frequency
+     *
+     * @return \Datacity\PublicBundle\Entity\Frequency 
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
+
+    /**
+     * Set place
+     *
+     * @param \Datacity\PublicBundle\Entity\Place $place
+     * @return DSource
+     */
+    public function setPlace(\Datacity\PublicBundle\Entity\Place $place = null)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * Get place
+     *
+     * @return \Datacity\PublicBundle\Entity\Place 
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * Set coverageTerritory
+     *
+     * @param \Datacity\PublicBundle\Entity\CoverageTerritory $coverageTerritory
+     * @return DSource
+     */
+    public function setCoverageTerritory(\Datacity\PublicBundle\Entity\CoverageTerritory $coverageTerritory = null)
+    {
+        $this->coverageTerritory = $coverageTerritory;
+
+        return $this;
+    }
+
+    /**
+     * Get coverageTerritory
+     *
+     * @return \Datacity\PublicBundle\Entity\CoverageTerritory 
+     */
+    public function getCoverageTerritory()
+    {
+        return $this->coverageTerritory;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \Datacity\UserBundle\Entity\User $creator
+     * @return DSource
+     */
+    public function setCreator(\Datacity\UserBundle\Entity\User $creator)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \Datacity\UserBundle\Entity\User 
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Set dataset
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $dataset
+     * @return DSource
+     */
+    public function setDataset(\Datacity\PublicBundle\Entity\Dataset $dataset)
+    {
+        $this->dataset = $dataset;
+
+        return $this;
+    }
+
+    /**
+     * Get dataset
+     *
+     * @return \Datacity\PublicBundle\Entity\Dataset 
+     */
+    public function getDataset()
+    {
+        return $this->dataset;
+    }
 }
