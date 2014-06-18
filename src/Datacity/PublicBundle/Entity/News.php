@@ -56,7 +56,7 @@ class News
 
     public function __construct()
     {
-    $this->date = new \Datetime('now', new \DateTimeZone('Europe/Dublin'));
+    $this->date = new \Datetime('now', new \DateTimeZone('Europe/France'));
     
     }    
 
