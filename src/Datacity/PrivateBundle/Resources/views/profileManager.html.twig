@@ -1,0 +1,15 @@
+{% extends 'DatacityPrivateBundle:Template:privatetemplate.html.twig' %}
+{% block pageTitle %}Gestion du profil{% endblock %}
+{% block lineTitleLink %}Gestion du profil{% endblock %}
+{% block pagecontent %}
+
+<h3>Cedric la tapete</h3>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+	<script type="text/javascript">
+		$("#nav-profilemanager").addClass("active");
+	</script>
+{% endblock %}

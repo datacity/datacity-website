@@ -26,6 +26,10 @@ datacity_private_newsmanager_remove:
     pattern:  /newsmanager/remove/{news_id}
     defaults: { _controller: DatacityPrivateBundle:NewsManager:remove, news_id: -1 }
 
+datacity_private_profilemanager:
+    pattern:  /profilemanager
+    defaults: { _controller: DatacityPrivateBundle:ProfileManager:index }
+
 datacity_private_partials:
     pattern:  /partials/{pageName}
     defaults: { _controller: DatacityPrivateBundle:Default:partials }
