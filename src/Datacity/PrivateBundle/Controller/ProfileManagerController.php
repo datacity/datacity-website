@@ -8,7 +8,11 @@ class ProfileManagerController extends Controller
 {
     public function indexAction()
     {
-    	$response = $this->render('DatacityPrivateBundle::profileManager.html.twig');
+    	$user = $this->get('security.context')->getToken()->getUser();
+
+    	$response = $this->render('DatacityPrivateBundle::profileManager.html.twig', array('user' => $user));
     	return $response;
     }
+
+
 }

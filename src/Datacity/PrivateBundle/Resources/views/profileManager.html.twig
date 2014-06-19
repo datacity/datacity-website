@@ -55,7 +55,7 @@
 									<div class="col-md-9">
 										<div class="row">
 											<div class="col-md-8 profile-info">
-												<h1>John Doe</h1>
+												<h1>{{ user.firstname }}</h1>
 												<p>
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
 												</p>
@@ -324,6 +324,12 @@
 												<li>
 													<a href="#tab_1_22" data-toggle="tab">Sources</a>
 												</li>
+												<li>
+													<a href="#tab_1_33" data-toggle="tab">Réutilisation</a>
+												</li>
+												<li>
+													<a href="#tab_1_44" data-toggle="tab">Contribution</a>
+												</li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane active" id="tab_1_11">
@@ -372,7 +378,7 @@
 														<div class="col-md-12">
 															<div class="add-portfolio">
 																<span>
-																	%x% sources mises en ligne
+																	1 sources mises en ligne
 																</span>
 																<a href="#" class="btn icn-only green">Ajouter une nouvelle source <i class="m-icon-swapright m-icon-white"></i></a>
 															</div>
@@ -382,32 +388,32 @@
 													<div class="row portfolio-block">
 														<div class="col-md-5">
 															<div class="portfolio-text">
-																<img src="assets/img/profile/portfolio/logo_metronic.jpg" alt=""/>
+																<img src="{{ asset('/bundles/datacityprivate/assets/img/question_mark.png') }}" alt=""/>
 																<div class="portfolio-text-info">
-																	<h4>Metronic - Responsive Template</h4>
+																	<h4>Cinema_Montpellier</h4>
 																	<p>
-																		Lorem ipsum dolor sit consectetuer adipiscing elit.
+																		Liste des cinemas sur Montpellier
 																	</p>
 																</div>
 															</div>
 														</div>
 														<div class="col-md-5 portfolio-stat">
 															<div class="portfolio-info">
-																 Today Sold
+																 Notation
 																<span>
-																	187
+																	17.9/20
 																</span>
 															</div>
 															<div class="portfolio-info">
-																 Total Sold
+																 Téléchargement
 																<span>
 																	1789
 																</span>
 															</div>
 															<div class="portfolio-info">
-																 Earns
+																 Taille
 																<span>
-																	$37.240
+																	20 Mo
 																</span>
 															</div>
 														</div>
@@ -424,6 +430,13 @@
 													<!--end row-->
 												</div>
 												<!--tab-pane-->
+												<div class="tab-pane" id="tab_1_33">
+													<span > Reutilisation </span>
+												</div>
+												<!--tab-pane-->
+												<div class="tab-pane" id="tab_1_44">
+													<span > Contribution </span>
+												</div>
 											</div>
 										</div>
 							</div>
