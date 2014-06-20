@@ -5,30 +5,28 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\CoverageTerritory;
+use Datacity\PublicBundle\Form\CoverageTerritoryType;
+use Datacity\PublicBundle\Form\CoverageTerritoryEditType;
 
 
-class TagController extends Controller
+class coverageTerritoryController extends Controller
 {
     public function indexAction()
     {
     	$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:CoverageTerritory")->findAll();	
 
-    	$response = $this->render('DatacityPublicBundle::coverageTerritory.html.twig', array('tag' => $coverageTerritory));
+    	$response = $this->render('DatacityPublicBundle::coverageTerritory.html.twig', array('coverageTerritory' => $coverageTerritory));
     	return $response;
     }
 
     // ADD ACTION
    public function addAction()
     {
-    // On crée un objet Tag
+    // On crée un objet coverageTerritory
     $coverageTerritory = new CoverageTerritory();
 
-
     
-    $form = $this->createFormBuilder($coverageTerritory)
-                 ->add('name',        'name')
-                 ->add('level',        'level')
-                 ->getForm();
+    $form = $this->createForm(new CoverageTerrytoriType, $coverageTerritory);
 
     // On récupère la requête
     $request = $this->get('request');
@@ -60,10 +58,10 @@ class TagController extends Controller
      public function removeAction($coverageTerritory_id)
     {
         if ($coverageTerritory_id != -1) {
-            $coverageTerritory = $this->getDoctrine()->getRepository("DatacityPublicBundle:Tag")->find($coverageTerritory_id); 
+            $coverageTerritory = $this->getDoctrine()->getRepository("DatacityPublicBundle:coverageTerritory")->find($coverageTerritory_id); 
             $name = $coverageTerritory->getName();
             $em = $this->getDoctrine()->getManager();
-            $em->remove($tag);
+            $em->remove($coverageTerritory);
             $em->flush();
 
             //return "Name" . $coverageTerritory_id . " deleted";
@@ -76,6 +74,31 @@ class TagController extends Controller
 
       public function updateAction()
     {
+
+    $form = $this->createForm(new CoverageTerritoryEditType(), $coverageTerritory);
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre le coverageTerritory
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($coverageTerritory);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'coverageTerritory bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_coverageTerritory'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::AddCoverageTerritory.html.twig', array(
+      'form'    => $form->createView(),
+      'coverageTerritory' => $coverageTerritory
+    ));
     }
 
 }

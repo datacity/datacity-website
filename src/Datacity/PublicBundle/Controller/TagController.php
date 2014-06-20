@@ -5,6 +5,10 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\Tag;
+use Datacity\PublicBundle\Form\TagType;
+use Datacity\PublicBundle\Form\TagEditType;
+
+
 
 
 class TagController extends Controller
@@ -24,10 +28,7 @@ class TagController extends Controller
     $tag = new Tag();
 
 
-    
-    $form = $this->createFormBuilder($tag)
-                 ->add('name',        'name')
-                 ->getForm();
+    $form = $this->createForm(new TagType, $tag);
 
     // On récupère la requête
     $request = $this->get('request');
@@ -75,6 +76,30 @@ class TagController extends Controller
 
       public function updateAction()
     {
+        $form = $this->createForm(new TagEditType(), $tag);
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre le tag
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($tag);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'Tag bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_tag'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::AddTag.html.twig', array(
+      'form'    => $form->createView(),
+      'tag' => $tag
+    ));
     }
 
 }

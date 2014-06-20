@@ -5,6 +5,9 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\City;
+use Datacity\PublicBundle\Form\CityType;
+use Datacity\PublicBundle\Form\CityEditType;
+
 
 
 class CityController extends Controller
@@ -24,26 +27,16 @@ class CityController extends Controller
     $city = new City();
 
 
-    
-    $form = $this->createFormBuilder($city)
-                 ->add('name',        'name')
-                 ->getForm();
+    $form = $this->createForm(new CityType, $city);
 
-    // On récupère la requête
     $request = $this->get('request');
-
-    // On vérifie qu'elle est de type POST
     if ($request->getMethod() == 'POST') {
-      
-      $form->bind($request);
+    $form->bind($request);
 
-      // On vérifie que les valeurs entrées sont correctes
-      if ($form->isValid()) {
-        // On l'enregistre notre objet $city dans la base de données
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($city);
-        $em->flush();
-
+    if ($form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($city);
+      $em->flush();
     
     // On redirige vers la page de visualisation de la city nouvellement créé
     return $this->redirect($this->generateUrl('datacity_public_city'), 301);    
@@ -75,6 +68,31 @@ class CityController extends Controller
 
       public function updateAction()
     {
+        // On utiliser le CityEditType
+    $form = $this->createForm(new CityEditType(), $city);
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre la city
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($city);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'City bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_city'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::addCity.html.twig', array(
+      'form'    => $form->createView(),
+      'city' => $city
+    ));
     }
 
 }

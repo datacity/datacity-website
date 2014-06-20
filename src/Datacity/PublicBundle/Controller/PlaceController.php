@@ -5,6 +5,8 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\Place;
+use Datacity\PublicBundle\Form\PlaceType;
+use Datacity\PublicBundle\Form\PlaceEditType;
 
 
 class PlaceController extends Controller
@@ -25,9 +27,7 @@ class PlaceController extends Controller
 
 
     
-    $form = $this->createFormBuilder($place)
-                 ->add('name',        'name')
-                 ->getForm();
+    $form = $this->createForm(new PlaceType, $city);
 
     // On récupère la requête
     $request = $this->get('request');
@@ -75,6 +75,31 @@ class PlaceController extends Controller
 
       public function updateAction()
     {
+
+    $form = $this->createForm(new PlaceEditType(), $place);
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre la city
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($place);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'Place bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_place'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::editPlace.html.twig', array(
+      'form'    => $form->createView(),
+      'place' => $place
+    ));
     }
 
 }

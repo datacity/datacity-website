@@ -4,7 +4,10 @@ namespace Datacity\PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Datacity\UserBundle\Entity\User;
 use Datacity\PublicBundle\Entity\Application;
+use Datacity\PublicBundle\Form\ApplicationType;
+use Datacity\PublicBundle\Form\ApplicationEditType;
 
 
 class ApplicationController extends Controller
@@ -24,19 +27,12 @@ class ApplicationController extends Controller
     $application = new Application();
 
 
+    // Récupère l'utilisateur courant
+    $application->setUser($this->get('security.context')->getToken()->getUser());
     
     $form = $this->createFormBuilder($application)
-                 ->add('name', 'name')
-                 ->add('url', 'url')
-                 ->add('downloaded','downloaded')
-                 ->add('description', 'description')
-                 ->add('rating', 'rating')
-                 ->add('image', 'image')
-                 ->add('city', 'city')
-                 ->add('platform', 'platform')
-                 ->add('category', 'category')
-                 ->add('user', 'user')
-                 ->getForm();
+
+                 
 
     // On récupère la requête
     $request = $this->get('request');
@@ -84,6 +80,34 @@ class ApplicationController extends Controller
 
       public function updateAction()
     {
+
+    $form = $this->createForm(new ApplicationEditType(), $application);
+
+     // Récupère l'utilisateur courant
+    $application->setUser($this->get('security.context')->getToken()->getUser());
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre le application
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($application);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'application bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_application'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::AddApplication.html.twig', array(
+      'form'    => $form->createView(),
+      'application' => $application
+    ));
     }
 
 }

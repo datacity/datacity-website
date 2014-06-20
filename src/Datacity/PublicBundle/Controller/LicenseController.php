@@ -5,6 +5,8 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\License;
+use Datacity\PublicBundle\Form\LicenseType;
+use Datacity\PublicBundle\Form\LicenseEditType;
 
 
 class LicenseController extends Controller
@@ -23,13 +25,7 @@ class LicenseController extends Controller
     // On crée un objet License
     $license = new License();
 
-
-    
-    $form = $this->createFormBuilder($license)
-                 ->add('name',        'name')
-                 ->add('description',  'description')
-                 ->add('link',     'link')
-                 ->getForm();
+     $form = $this->createForm(new LicenseType, $license);
 
     // On récupère la requête
     $request = $this->get('request');
@@ -77,6 +73,31 @@ class LicenseController extends Controller
 
       public function updateAction()
     {
+
+      $form = $this->createForm(new LicenseEditType(), $license);
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre le license
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($license);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'License bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_license'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::AddLicense.html.twig', array(
+      'form'    => $form->createView(),
+      'license' => $license
+    ));
     }
 
 }

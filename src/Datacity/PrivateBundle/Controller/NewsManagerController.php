@@ -70,4 +70,36 @@ class NewsManagerController extends Controller
         return $response;
     }
 
+    public function updateAction()
+    {
+
+    $form = $this->createForm(new NewsEditType(), $news);
+
+     // Récupère l'utilisateur courant
+    $news->setUser($this->get('security.context')->getToken()->getUser());
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre la news
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($news);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'news bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_news'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::AddNews.html.twig', array(
+      'form'    => $form->createView(),
+      'news' => $news
+    ));
+    }
+
 }

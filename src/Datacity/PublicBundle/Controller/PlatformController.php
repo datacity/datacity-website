@@ -5,6 +5,8 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\Platform;
+use Datacity\PublicBundle\Form\PlatformType;
+use Datacity\PublicBundle\Form\PlatformEditType;
 
 
 class PlatformController extends Controller
@@ -24,11 +26,7 @@ class PlatformController extends Controller
     $platform = new Platform();
 
 
-    
-    $form = $this->createFormBuilder($platform)
-                 ->add('name',        'name')
-                 ->add('version',        'versio')
-                 ->getForm();
+    $form = $this->createForm(new PlatformType, $Platform);
 
     // On récupère la requête
     $request = $this->get('request');
@@ -76,6 +74,31 @@ class PlatformController extends Controller
 
       public function updateAction()
     {
+
+    $form = $this->createForm(new PlatformEditType(), $platform);
+
+    $request = $this->getRequest();
+
+    if ($request->getMethod() == 'POST') {
+      $form->bind($request);
+
+      if ($form->isValid()) {
+        // On enregistre le platform
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($platform);
+        $em->flush();
+
+        // On définit un message flash
+        $this->get('session')->getFlashBag()->add('info', 'Platform bien modifié');
+
+        return $this->redirect($this->generateUrl('datacity_public_platform'), 301); 
+      }
+    }
+
+    return $this->render('DatacityPublicBundle::AddPlatform.html.twig', array(
+      'form'    => $form->createView(),
+      'platform' => $platform
+    ));
     }
 
 }
