@@ -5,10 +5,14 @@ var FormDropzone = function () {
         //main function to initiate the module
         init: function (router) {
           
-            Dropzone.options.myDropzone = {
+            Dropzone.options.myDropzone = {                
+                maxFilesize: 3,
+                method: "POST",
+                maxThumbnailFilesize: 3,
                 init: function() {
 
                   var listFiles = new Array();
+
 
                   this.on("addedfile", function(file) {
                     var resFiles;

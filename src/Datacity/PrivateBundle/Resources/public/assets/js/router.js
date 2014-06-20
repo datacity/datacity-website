@@ -15,7 +15,7 @@ Router.prototype = {
 
 	ajaxRequest: function(callback, ajaxUrl, httpType, dataToSend, ctype, pdata) {
 		var that = this;
-		var contentTypeDef = 'application/x-www-form-urlencoded; charset=UTF-8';
+		var contentTypeDef = 'application/x-www-form-urlencoded';
 		var processDataDef = true;
 
 		if (ctype !== "undefined") 
