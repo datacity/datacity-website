@@ -93,13 +93,6 @@ class DSource
      */
     private $dateEnd;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="link", type="string", length=200)
-     */
-    private $link;
-
      /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
      */
@@ -367,29 +360,6 @@ class DSource
     public function getDateEnd()
     {
         return $this->dateEnd;
-    }
-
-    /**
-     * Set link
-     *
-     * @param string $link
-     * @return DSource
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * Get link
-     *
-     * @return string 
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 
     /**

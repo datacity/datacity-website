@@ -11,12 +11,12 @@ class CategoriesData extends AbstractFixture implements OrderedFixtureInterface
 {
 	static public $categoriesName = array (
 			'Culture',
-			'Itinéraire',
-			'Tourisme',
-			'Évènement',
-			'Concerts',
-			'Musique',
-			'Cinémas'
+			'Santé',
+			'Transports',
+			'Alimentation',
+			'Société',
+			'Economie',
+			'Logement'
 	);
 	
 	public function load(ObjectManager $manager)

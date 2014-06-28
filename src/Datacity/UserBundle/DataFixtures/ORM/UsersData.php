@@ -44,6 +44,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Cyntia');
@@ -57,6 +58,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Lionel');
@@ -70,6 +72,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Guillaume');
@@ -83,6 +86,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Raphael');
@@ -96,6 +100,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Ryan');
@@ -109,6 +114,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Cyril');
@@ -122,6 +128,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('admin');
@@ -135,6 +142,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPublicKey($generator);
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
+		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
 		
 		$user = $userManager->createUser();
 		$user->setUsername('Johnny');
@@ -148,9 +156,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[0]));
-		
-		
 		$userManager->updateUser($user);
+		$this->addReference("user-". $user->getEmail(), $user);
 		
 		$user = $userManager->createUser();
 		$user->setUsername('Marcelony');
@@ -164,9 +171,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[1]));
-				
-		
 		$userManager->updateUser($user);
+		$this->addReference("user-". $user->getEmail(), $user);
 		
 		$user = $userManager->createUser();
 		$user->setUsername('Alberto');
@@ -180,8 +186,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[2]));
-		
 		$userManager->updateUser($user);
+		$this->addReference("user-". $user->getEmail(), $user);
 		
 		$user = $userManager->createUser();
 		$user->setUsername('Francis');
@@ -194,8 +200,8 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[3]));
-		
 		$userManager->updateUser($user);
+		$this->addReference("user-". $user->getEmail(), $user);
 	}
 	
 	public function getOrder()
