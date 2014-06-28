@@ -32,6 +32,7 @@
         "friendsofsymfony/jsrouting-bundle": "@stable",
         "jms/i18n-routing-bundle": "~1.1",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
+        "jms/serializer-bundle": "dev-master",
 
         "jquery/jquery": "1.10.*",
         "angular-ui/ui-router": "0.2.*",
