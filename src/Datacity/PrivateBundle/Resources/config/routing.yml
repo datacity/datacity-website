@@ -49,3 +49,7 @@ datacity_private_datasetmanager_save:
 datacity_private_datasetmanager_get:
     pattern: /dataset/get/{id}
     defaults: { _controller: DatacityPrivateBundle:DataSet:get }
+
+datacity_private_usermanager_get:
+    pattern: /user/get
+    defaults: { _controller: DatacityPrivateBundle:UserManager:get }

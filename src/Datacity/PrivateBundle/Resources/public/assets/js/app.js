@@ -33,7 +33,7 @@
 					}
 				})
 				.state('showUser', {
-					url: '/user/show/:id',
+					url: '/user/show/',
 					templateUrl: '/app_dev.php/private/partials/userInfo',
 					controller: 'userController'
 				});

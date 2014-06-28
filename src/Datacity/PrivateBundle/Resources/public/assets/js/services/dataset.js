@@ -1,7 +1,7 @@
 (function() {
 	angular
 		.module('app')
-		.factory('Dataset', ['$http', function($http) {
+		.factory('DatasetFactory', ['$http', function($http) {
 			return {
 				get: function(id) {
 					return $http
