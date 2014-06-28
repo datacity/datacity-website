@@ -13,6 +13,8 @@
 					DatasetFactory.get($stateParams.id).then(function(data) {
 						if (data.title)
 							$scope.dataset = data;
+						//TODO: CHARGER LES SOURCES ASSOCIEES
+						$scope.dataset.sources = DatasetFactory.populateSourcesTmp();
 					});
 				}
 				else if (operation === 'delete') {

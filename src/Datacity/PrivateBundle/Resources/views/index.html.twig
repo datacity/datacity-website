@@ -284,14 +284,19 @@ Website: http://datacity.fr
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 <script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
+{# TEMP #}
+	<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
+{# ENDTEMP #}
 
 {% javascripts
 	'js/angular-mods.js'
 	'js/angular-strap.js'
+  	'@DatacityPrivateBundle/Resources/public/assets/js/mock/e2e-mock-dataset.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/app.js'
 
 	'@DatacityPrivateBundle/Resources/public/assets/js/services/dataset.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/services/user.js'
+
 
 	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/datasetCtrl.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/userCtrl.js'

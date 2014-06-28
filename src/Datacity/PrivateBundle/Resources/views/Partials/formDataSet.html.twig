@@ -1,10 +1,3 @@
-{# {% block pageTitle %}Ajout d'un jeu de données{% endblock %}
-{% block lineTitleLink %}Jeu de données{% endblock %}
-{% block pagecontent %} #}
-
-{# {% verbatim %} #}
-
-
 <div class="portlet box blue">
 	<div class="portlet-title">
 		<div class="caption">
@@ -38,10 +31,68 @@
 				</div>
 			</div>
 		</form>
-		<!-- END FORM-->
+		<!-- END FORM-->	
+	</div>
+</div>
+<!--end add-portfolio-->
+<div class="row">
+	<div class="col-md-12">
+		<div class="add-portfolio">
+			<span>
+				Sources associées
+			</span>
+		</div>
+	</div>
+</div>
+<div class="row portfolio-block" data-ng-repeat="source in dataset.sources">
+	<div class="col-md-4">
+		<div class="portfolio-text">
+			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
+			<img ng-src="{[{source.picture || 'http://www.keenthemes.com/preview/metronic/assets/admin/pages/media/profile/logo_azteca.jpg'}]}" style="height: 80px; width: 80px" alt=""/>
+			<div class="portfolio-texnfo">
+				<h4>{[{source.title || "Pas de nom"}]}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 portfolio-stat">
+		<div class="portfolio-info">
+			Téléchargée
+			<span>
+				{[{source.downloadNb}]} fois
+			</span>
+		</div>
+		<div class="portfolio-info">
+			Taille
+			<span>
+				{[{source.size}]} Mb
+			</span>
+		</div>
+		<div class="portfolio-info">
+			Noté comme utile
+			<span>
+				{[{source.usefullNb}]} fois
+			</span>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="portfolio-btn">
+			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
+			<a data-ui-sref="showSource({id: source.id})" class="btn bigicn-only">
+				<span>
+					Voir
+				</span>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="portfolio-btn">
+			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
+			<a data-ui-sref="editSource({id: source.id})" class="btn bigicn-only">
+				<span>
+					Editer
+				</span>
+			</a>
+		</div>
 	</div>
 </div>
 
-{# {% endverbatim %} #}
-
-{# {% endblock %} #}

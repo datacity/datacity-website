@@ -8,8 +8,12 @@
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 				$stateProvider
+				.state('default', {
+                    url: '/',
+                    template: '<div>Page default</div>'
+                })
 				.state('editDS', {
-					url: '/dataset/edit/:id',
+					url: '/dataset/edit/:slug',
 					templateUrl: '/app_dev.php/private/partials/formDataSet',
 					controller: 'datasetController',
 					resolve: {
@@ -33,7 +37,7 @@
 					}
 				})
 				.state('showUser', {
-					url: '/user/show/',
+					url: '/user/show',
 					templateUrl: '/app_dev.php/private/partials/userInfo',
 					controller: 'userController'
 				});
