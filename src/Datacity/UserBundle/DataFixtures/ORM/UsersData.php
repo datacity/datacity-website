@@ -166,6 +166,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setPlainPassword('test01');
 		$user->setEnabled(true);
 		$user->setEmail('marcel@example.com');
+		$user->addFollowing($this->getReference("user-john.doe@example.com"));
 		$user->addApplication($this->getReference("application-Datacity Street"));
 		//$user->addNews($this->getReference("news-Titre2"));
 		$user->genPublicKey($generator);
