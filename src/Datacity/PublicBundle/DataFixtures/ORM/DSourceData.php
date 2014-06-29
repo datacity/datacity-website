@@ -21,7 +21,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[3])); //Mensuelle
 		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[0])); //Paris
-		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
 		$manager->persist($source);
@@ -34,7 +34,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[3])); //Mensuelle
 		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
-		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marquis_c@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
 		$manager->persist($source);
@@ -47,7 +47,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[3])); //Mensuelle
 		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[2])); //Toulouse
-		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
 		$manager->persist($source);
@@ -60,9 +60,41 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[3])); //Mensuelle
 		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[3])); //Bordeaux
-		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
+		$manager->persist($source);
+
+		//Batiments non résidentiels
+		$source = new DSource();
+		$source->setTitle('Bâtiments de Montpellier');
+		$source->setSid('5');
+		$source->setSize(0.5);
+		$source->setDownloadNb(324);
+		$source->setUsefulNb(200);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-2"));
+		$source->setLink('http://opendata.montpelliernumerique.fr/Batiments');
+		$manager->persist($source);
+
+		//Résultats des élections européennes
+		$source = new DSource();
+		$source->setTitle('Résultats des élections européennes de Montpellier');
+		$source->setSid('6');
+		$source->setSize(0.6);
+		$source->setDownloadNb(231);
+		$source->setUsefulNb(124);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-3"));
+		$source->setLink('http://opendata.montpelliernumerique.fr/Resultats-des-elections-135');
 		$manager->persist($source);
 
 		$manager->flush();

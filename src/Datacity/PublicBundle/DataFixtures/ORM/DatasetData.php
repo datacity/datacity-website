@@ -24,12 +24,48 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
 		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[2])); //Toulouse
 		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[3])); //Bordeaux
-		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$dataset->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$dataset->addContributor($this->getReference("user-marquis_c@epitech.eu"));
 		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[0])); //Culture
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[0])); //Musique
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[8])); //Evénement
+		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
+		$manager->persist($dataset);
+		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+
+		$dataset = new Dataset();
+		$dataset->setTitle('Batiments non résidentiels');
+		$dataset->setDid('2');
+		$dataset->setDescription('Cette donnée spatiale renseigne l’emplacement de l’ensemble des bâtiments non résidentiels. Il s’agit à la fois de bâtiments publics, mais aussi certaines constructions privées comme les églises.');
+		$dataset->setLink('http://www.example.com');
+		$dataset->setVisitedNb(500);
+		$dataset->setUsefulNb(242);
+		$dataset->setUndesirableNb(0);
+		$dataset->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
+		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
+		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[4])); //Société
+		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[1])); //Service public
+		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
+		$manager->persist($dataset);
+		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+
+		$dataset = new Dataset();
+		$dataset->setTitle('Résultats des élections européennes');
+		$dataset->setDid('3');
+		$dataset->setDescription('Cette donnée renseigne les résultats des élections européennes par bureau de vote pour le premier tour.');
+		$dataset->setLink('http://www.example.com');
+		$dataset->setVisitedNb(823);
+		$dataset->setUsefulNb(456);
+		$dataset->setUndesirableNb(0);
+		$dataset->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
+		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
+		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[4])); //Société
+		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[6])); //Politique
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
 		$manager->persist($dataset);
 		$this->addReference("dataset-". $dataset->getDid(), $dataset);

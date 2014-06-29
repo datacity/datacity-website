@@ -3,6 +3,7 @@
 namespace Datacity\PublicBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Dataset
@@ -18,6 +19,7 @@ class Dataset
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Exclude
      */
     private $id;
 
@@ -25,12 +27,14 @@ class Dataset
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
+     * @Serializer\Groups({"list"})
      */
     private $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
+     * @Serializer\Groups({"list"})
      */
     private $slug;
 
@@ -45,6 +49,7 @@ class Dataset
      * @var text
      *
      * @ORM\Column(name="description", type="text")
+     * @Serializer\Groups({"list"})
      */
     private $description;
 
@@ -89,6 +94,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
+     * @Serializer\Groups({"list"})
      */
     private $lastModifiedDate;
 
@@ -110,12 +116,14 @@ class Dataset
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetOwned")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $creator;
 
     /**
      * L'ensemble des lieux de chaques sources du dataset.
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Place")
+     * @Serializer\Groups({"list"})
      */
     private $places;
 
@@ -123,6 +131,7 @@ class Dataset
      * La couverture la plus grande des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $coverageTerritory;
 
@@ -130,6 +139,7 @@ class Dataset
      * La frequence la plus courte des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $frequency;
 
@@ -147,6 +157,7 @@ class Dataset
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="datasets")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $category;
 
@@ -166,6 +177,7 @@ class Dataset
      * La licence du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\License")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $license;
 

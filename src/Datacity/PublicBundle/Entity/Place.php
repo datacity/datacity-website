@@ -3,11 +3,12 @@
 namespace Datacity\PublicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Place
  *
- * @ORM\Table()
+ * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
  * @ORM\Entity
  */
 class Place
@@ -18,6 +19,7 @@ class Place
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Exclude
      */
     private $id;
 

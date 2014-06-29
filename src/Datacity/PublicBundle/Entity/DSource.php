@@ -36,6 +36,13 @@ class DSource
     private $sid;
 
     /**
+     * @var string
+     * Le liens vers le site d'origine (non renseigné si identique au dataset).
+     * @ORM\Column(name="link", type="string", length=255, nullable=true)
+     */
+    private $link;
+
+    /**
      * @var decimal
      *
      * @ORM\Column(name="size", type="decimal")
@@ -475,5 +482,28 @@ class DSource
     public function getDataset()
     {
         return $this->dataset;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return DSource
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 }
