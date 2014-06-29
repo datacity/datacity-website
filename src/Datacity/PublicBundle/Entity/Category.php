@@ -3,12 +3,14 @@
 namespace Datacity\PublicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Category
  *
  * @ORM\Entity
- * @ORM\Table()
+ * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
+ * @Serializer\ExclusionPolicy("all")
  */
 class Category
 {
@@ -25,6 +27,8 @@ class Category
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"list"})
      */
     private $name;
     

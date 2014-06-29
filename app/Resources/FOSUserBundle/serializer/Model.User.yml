@@ -1,0 +1,10 @@
+# app/Resources/FOSUserBundle/serializer/Model.User.yml
+FOS\UserBundle\Model\User:
+    exclusion_policy: ALL
+    properties:
+        username:
+            expose: true
+            groups: [list]
+        usernameCanonical:
+            expose: true
+            groups: [list]

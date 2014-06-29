@@ -95,6 +95,10 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        dql:
+            string_functions:
+                soundex: Datacity\PublicBundle\DQL\SoundexFunction
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -113,14 +117,19 @@ fos_user:
             type: datacity_user_registration
 
 jms_i18n_routing:
-    default_locale: fr
+    default_locale: %locale%
     locales: [en, fr]
     strategy: prefix_except_default
 
 stof_doctrine_extensions:
-    default_locale: fr_FR
+    default_locale: %locale%
     orm:
         default:
             timestampable: true
             blameable: true
             sluggable: true
+
+jms_serializer:
+    metadata:
+        directories:
+            - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }

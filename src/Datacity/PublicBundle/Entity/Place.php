@@ -27,6 +27,7 @@ class Place
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100, unique=true)
+     * @Serializer\Groups({"list"})
      */
     private $name;
 

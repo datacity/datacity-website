@@ -260,6 +260,7 @@ angular
             $httpBackend.whenGET(/^\/ajax\/search\?text=h/).respond([datasets[0]]);
             $httpBackend.whenGET(/^\/ajax\/search\?place/).respond([datasets[0]]);
             $httpBackend.whenGET(/^\/partials\//).passThrough();
+            $httpBackend.whenGET(/^\/api\//).passThrough();
             $httpBackend.whenGET(/^http:\/\//).passThrough();
         }
     ]);

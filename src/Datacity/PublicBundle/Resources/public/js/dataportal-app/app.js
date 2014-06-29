@@ -13,12 +13,9 @@ angular
                     templateUrl: '/partials/datasetlist',
                     controller: 'homeCtrl',
                     resolve: {
-                        datasets: ['$http',
-                            function($http) {
-                                return $http.get('/ajax/popular-datasets')
-                                    .then(function(res) {
-                                        return res.data;
-                                    });
+                        datasets: ['DatasetFactory',
+                            function(DatasetFactory) {
+                                return DatasetFactory.getPopularDatasets();
                             }
                         ]
                     },
@@ -40,55 +37,49 @@ angular
                 });
         }
     ])
-    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets',
-        function($scope, $state, $http, $datasets) {
-            $scope.datasets = $datasets;
+    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory',
+        function($scope, $state, $http, datasets, DatasetFactory) {
+            $scope.datasets = datasets;
             $scope.$watch('searchPlace', function() {
                 if ($scope.searchPlace != undefined)
                     $scope.search();
             });
             $scope.goto = function(dataset) {
-                    $state.go('dataset', {
-                        slug: dataset.slug
-                    });
+                $state.go('dataset', {
+                    slug: dataset.slug
+                });
             }
             $scope.getLocation = function(val) {
-                return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+                return $http.get(Routing.generate('datacity_public_api_place'), {
                     params: {
-                        address: val,
-                        sensor: false
+                        q: val
                     }
                 }).then(function(res) {
-                    var addresses = [];
+                    var places = [];
                     angular.forEach(res.data.results, function(item) {
-                        addresses.push(item.formatted_address);
+                        places.push(item.name);
                     });
-                    return addresses;
+                    return places;
                 });
             };
             $scope.search = function() {
                 if (!$scope.searchText && !$scope.searchPlace) {
-                    $scope.datasets = $datasets;
+                    $scope.datasets = datasets;
                     return;
                 }
-                $http.get('/ajax/search', {
-                    params: {
-                        text: $scope.searchText,
-                        place: $scope.searchPlace
-                    }
-                }).then(function(res) {
-                    $scope.datasets = res.data;
+                DatasetFactory.searchDatasets($scope.searchText, $scope.searchPlace).then(function(data) {
+                    $scope.datasets = data;
                 });
             }
         }
     ])
     .controller('datasetCtrl', ['$scope', '$state', 'dataset',
-        function($scope, $state, $dataset) {
-            $scope.dataset = $dataset;
+        function($scope, $state, dataset) {
+            $scope.dataset = dataset;
         }
     ])
     .controller('visualizatorCtrl', ['$scope',
         function($scope) {
-            
+
         }
     ]);
