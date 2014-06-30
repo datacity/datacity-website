@@ -55,7 +55,7 @@
             "version": "1.2.16",
             "dist": {
                 "type": "file",
-                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js",
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js",
                 "reference": null,
                 "shasum": null
             },
