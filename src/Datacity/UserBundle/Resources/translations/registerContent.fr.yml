@@ -1,0 +1,6 @@
+register.intro: Créez un compte, <strong>c'est gratuit !</strong>
+register.description: >
+    Datacity est un projet qui offre plusieurs fonctionnalités dans le domaine de l'Open Data. 
+    Il analyse et centralise les besoins des collectivités territoriales grâce à l'exploitation de données libres,
+    et les met à disposition par une interface de programmation (API).
+    DataCity offre également un portail applicatif extensible et malléable à la demande des services publics.

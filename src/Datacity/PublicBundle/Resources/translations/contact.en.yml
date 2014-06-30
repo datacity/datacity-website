@@ -1,0 +1,11 @@
+contact.howto: Contact us by <strong>filling the form below</strong>
+contact.success: Your message has been sent ! Thank you
+contact.submit: Submit
+contact.required: Please fill all required form field, thanks!
+contact.fullname: Enter your full name
+contact.mail: Enter your email address
+contact.message: Your message here...
+contact.subject: Enter your subject
+contact.characters: Please enter at least 4 chars
+contact.validmail: Please enter a valid email
+contact.askcontent: Please write your message

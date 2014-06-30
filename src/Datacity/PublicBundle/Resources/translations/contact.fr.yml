@@ -1,0 +1,11 @@
+contact.howto: Contactez nous, pour cela <strong>remplissez le formulaire ci dessous</strong>
+contact.success: Votre message a bien été envoyé ! Merci
+contact.submit: Envoyer
+contact.required: Merci de remplir les champs requis
+contact.fullname: Votre nom complet
+contact.mail: Votre adresse e-mail
+contact.message: Votre message...
+contact.subject: Votre sujet
+contact.characters: 4 caracteres minimum
+contact.validmail: Merci d'entrer une adresse mail valide
+contact.askcontent: Merci d'écrire votre message
