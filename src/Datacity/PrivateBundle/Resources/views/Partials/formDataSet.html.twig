@@ -1,7 +1,7 @@
 <div class="portlet box blue">
 	<div class="portlet-title">
 		<div class="caption">
-			<i class="fa fa-reorder"></i>Formulaire de jeu de données
+			<i class="fa fa-reorder"></i>Editer mon jeu de données
 		</div>
 	</div>
 	<div class="portlet-body form">
@@ -44,6 +44,7 @@
 		</div>
 	</div>
 </div>
+<!-- BEGIN sources list attributed related to the dataset-->
 <div class="row portfolio-block" data-ng-repeat="source in dataset.sources">
 	<div class="col-md-4">
 		<div class="portfolio-text">
@@ -96,3 +97,18 @@
 	</div>
 </div>
 
+<div class="row portfolio-block">
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-4">
+		<div class="portfolio-btn">
+			<a data-ui-sref="addSource({id: source.id})" class="btn bigicn-only">
+				<span>
+					Ajouter une source
+				</span>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
