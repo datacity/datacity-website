@@ -1,7 +1,7 @@
 <?php
 
 namespace Datacity\UserBundle\Entity;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Util\SecureRandom;
  * User
  *
  * @ORM\Table(name="datacity_user")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Datacity\UserBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -113,6 +113,38 @@ class User extends BaseUser
     private $langue;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="occupation", type="string", length=100, nullable=true)
+     */
+
+    private $occupation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="about", type="text", nullable=true)
+     */
+
+    private $about;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="website_url", type="string", length=255, nullable=true)
+     */
+
+    private $websiteUrl;
+
+    /**
+     * @var \Date
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="join_date", type="date")
+     */
+    private $joinDate;
+
+    /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"remove", "persist"})
      */
 
@@ -146,10 +178,10 @@ class User extends BaseUser
      *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
      *      )
      */
-    private $followed;
+    private $following;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="followed")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="following")
      */
     private $followers;
 
@@ -612,39 +644,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add followers
-     *
-     * @param \Datacity\UserBundle\Entity\User $followers
-     * @return User
-     */
-    public function addFollower(\Datacity\UserBundle\Entity\User $followers)
-    {
-        $this->followers[] = $followers;
-
-        return $this;
-    }
-
-    /**
-     * Remove followers
-     *
-     * @param \Datacity\UserBundle\Entity\User $followers
-     */
-    public function removeFollower(\Datacity\UserBundle\Entity\User $followers)
-    {
-        $this->followers->removeElement($followers);
-    }
-
-    /**
-     * Get followers
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFollowers()
-    {
-        return $this->followers;
-    }
-
-    /**
      * Add files
      *
      * @param \Datacity\PublicBundle\Entity\File $files
@@ -741,5 +740,130 @@ class User extends BaseUser
     public function getDatasetContributed()
     {
         return $this->datasetContributed;
+    }
+
+    /**
+     * Set occupation
+     *
+     * @param string $occupation
+     * @return User
+     */
+    public function setOccupation($occupation)
+    {
+        $this->occupation = $occupation;
+
+        return $this;
+    }
+
+    /**
+     * Get occupation
+     *
+     * @return string 
+     */
+    public function getOccupation()
+    {
+        return $this->occupation;
+    }
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     * @return User
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string 
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * Set websiteUrl
+     *
+     * @param string $websiteUrl
+     * @return User
+     */
+    public function setWebsiteUrl($websiteUrl)
+    {
+        $this->websiteUrl = $websiteUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get websiteUrl
+     *
+     * @return string 
+     */
+    public function getWebsiteUrl()
+    {
+        return $this->websiteUrl;
+    }
+
+    /**
+     * Set joinDate
+     *
+     * @param \DateTime $joinDate
+     * @return User
+     */
+    public function setJoinDate($joinDate)
+    {
+        $this->joinDate = $joinDate;
+
+        return $this;
+    }
+
+    /**
+     * Get joinDate
+     *
+     * @return \DateTime 
+     */
+    public function getJoinDate()
+    {
+        return $this->joinDate;
+    }
+
+    /**
+     * Add following
+     *
+     * @param \Datacity\UserBundle\Entity\User $following
+     * @return User
+     */
+    public function addFollowing(\Datacity\UserBundle\Entity\User $following)
+    {
+        $this->following[] = $following;
+
+        return $this;
+    }
+
+    /**
+     * Remove following
+     *
+     * @param \Datacity\UserBundle\Entity\User $following
+     */
+    public function removeFollowing(\Datacity\UserBundle\Entity\User $following)
+    {
+        $this->following->removeElement($following);
+    }
+
+    /**
+     * Get following
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFollowing()
+    {
+        return $this->following;
     }
 }

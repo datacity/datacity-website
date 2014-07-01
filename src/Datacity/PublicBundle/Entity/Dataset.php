@@ -3,6 +3,7 @@
 namespace Datacity\PublicBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Dataset
@@ -18,6 +19,7 @@ class Dataset
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Exclude
      */
     private $id;
 
@@ -25,12 +27,14 @@ class Dataset
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
+     * @Serializer\Groups({"list"})
      */
     private $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
+     * @Serializer\Groups({"list"})
      */
     private $slug;
 
@@ -45,6 +49,7 @@ class Dataset
      * @var text
      *
      * @ORM\Column(name="description", type="text")
+     * @Serializer\Groups({"list"})
      */
     private $description;
 
@@ -89,6 +94,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
+     * @Serializer\Groups({"list"})
      */
     private $lastModifiedDate;
 
@@ -110,12 +116,14 @@ class Dataset
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetOwned")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $creator;
 
     /**
      * L'ensemble des lieux de chaques sources du dataset.
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Place")
+     * @Serializer\Groups({"list"})
      */
     private $places;
 
@@ -123,8 +131,17 @@ class Dataset
      * La couverture la plus grande des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $coverageTerritory;
+
+    /**
+     * La frequence la plus courte des sources du dataset.
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
+     * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
+     */
+    private $frequency;
 
     /**
      * L'ensemble des createurs de chaques sources du dataset.
@@ -138,10 +155,11 @@ class Dataset
     private $sources;
 
     /**
-     * L'ensemble des categories de chaques sources du dataset.
-     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="datasets")
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="datasets")
+     * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
-    private $categories;
+    private $category;
 
     /**
      * L'ensemble des tags de chaques sources du dataset.
@@ -159,6 +177,7 @@ class Dataset
      * La licence du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\License")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"list"})
      */
     private $license;
 
@@ -170,7 +189,6 @@ class Dataset
         $this->places = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contributors = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sources = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->columns = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -485,39 +503,6 @@ class Dataset
     }
 
     /**
-     * Add places
-     *
-     * @param \Datacity\PublicBundle\Entity\Place $places
-     * @return Dataset
-     */
-    public function addPlace(\Datacity\PublicBundle\Entity\Place $places)
-    {
-        $this->places[] = $places;
-
-        return $this;
-    }
-
-    /**
-     * Remove places
-     *
-     * @param \Datacity\PublicBundle\Entity\Place $places
-     */
-    public function removePlace(\Datacity\PublicBundle\Entity\Place $places)
-    {
-        $this->places->removeElement($places);
-    }
-
-    /**
-     * Get places
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPlaces()
-    {
-        return $this->places;
-    }
-
-    /**
      * Set coverageTerritory
      *
      * @param \Datacity\PublicBundle\Entity\CoverageTerritory $coverageTerritory
@@ -607,39 +592,6 @@ class Dataset
     }
 
     /**
-     * Add categories
-     *
-     * @param \Datacity\PublicBundle\Entity\Category $categories
-     * @return Dataset
-     */
-    public function addCategory(\Datacity\PublicBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param \Datacity\PublicBundle\Entity\Category $categories
-     */
-    public function removeCategory(\Datacity\PublicBundle\Entity\Category $categories)
-    {
-        $this->categories->removeElement($categories);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
      * Add tags
      *
      * @param \Datacity\PublicBundle\Entity\Tag $tags
@@ -726,5 +678,84 @@ class Dataset
     public function getLicense()
     {
         return $this->license;
+    }
+
+    /**
+     * Set frequency
+     *
+     * @param \Datacity\PublicBundle\Entity\Frequency $frequency
+     * @return Dataset
+     */
+    public function setFrequency(\Datacity\PublicBundle\Entity\Frequency $frequency)
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
+
+    /**
+     * Get frequency
+     *
+     * @return \Datacity\PublicBundle\Entity\Frequency 
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
+
+    /**
+     * Add places
+     *
+     * @param \Datacity\PublicBundle\Entity\Place $places
+     * @return Dataset
+     */
+    public function addPlace(\Datacity\PublicBundle\Entity\Place $places)
+    {
+        $this->places[] = $places;
+
+        return $this;
+    }
+
+    /**
+     * Remove places
+     *
+     * @param \Datacity\PublicBundle\Entity\Place $places
+     */
+    public function removePlace(\Datacity\PublicBundle\Entity\Place $places)
+    {
+        $this->places->removeElement($places);
+    }
+
+    /**
+     * Get places
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaces()
+    {
+        return $this->places;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Datacity\PublicBundle\Entity\Category $category
+     * @return Dataset
+     */
+    public function setCategory(\Datacity\PublicBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Datacity\PublicBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

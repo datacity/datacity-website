@@ -36,6 +36,13 @@ class DSource
     private $sid;
 
     /**
+     * @var string
+     * Le liens vers le site d'origine (non renseigné si identique au dataset).
+     * @ORM\Column(name="link", type="string", length=255, nullable=true)
+     */
+    private $link;
+
+    /**
      * @var decimal
      *
      * @ORM\Column(name="size", type="decimal")
@@ -92,13 +99,6 @@ class DSource
      * @ORM\Column(name="date_end", type="date", nullable=true)
      */
     private $dateEnd;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="link", type="string", length=200)
-     */
-    private $link;
 
      /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
@@ -370,29 +370,6 @@ class DSource
     }
 
     /**
-     * Set link
-     *
-     * @param string $link
-     * @return DSource
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * Get link
-     *
-     * @return string 
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
      * Set frequency
      *
      * @param \Datacity\PublicBundle\Entity\Frequency $frequency
@@ -505,5 +482,28 @@ class DSource
     public function getDataset()
     {
         return $this->dataset;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return DSource
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 }

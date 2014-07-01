@@ -3,18 +3,18 @@
 		<ul class="ver-inline-menu tabbable margin-bottom-10">
 			<li class="active">
 				<a data-toggle="tab" href="#tab_1-1">
-					<i class="fa fa-cog"></i> Personal info </a>
+					<i class="fa fa-cog"></i> Modifier Profil </a>
 					<span class="after">
 					</span>
 				</li>
 				<li>
-					<a data-toggle="tab" href="#tab_2-2"><i class="fa fa-picture-o"></i> Change Avatar</a>
+					<a data-toggle="tab" href="#tab_2-2"><i class="fa fa-picture-o"></i> Modifier Avatar</a>
 				</li>
 				<li>
-					<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Change Password</a>
+					<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Modifier Mot de passe</a>
 				</li>
 				<li>
-					<a data-toggle="tab" href="#tab_4-4"><i class="fa fa-eye"></i> Privacity Settings</a>
+					<a data-toggle="tab" href="#tab_4-4"><i class="fa fa-eye"></i> Contenu </a>
 				</li>
 			</ul>
 		</div>
@@ -23,47 +23,36 @@
 				<div id="tab_1-1" class="tab-pane active">
 					<form role="form" action="#">
 						<div class="form-group">
-							<label class="control-label">First Name</label>
+							<label class="control-label">Prenom</label>
 							<input type="text" placeholder="John" class="form-control"/>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Last Name</label>
+							<label class="control-label">Nom</label>
 							<input type="text" placeholder="Doe" class="form-control"/>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Mobile Number</label>
-							<input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
+							<label class="control-label">Activité</label>
+							<input type="text" placeholder="Développeur web" class="form-control"/>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Interests</label>
-							<input type="text" placeholder="Design, Web etc." class="form-control"/>
+							<label class="control-label">A propos</label>
+							<textarea class="form-control" rows="3" placeholder="Je suis spécialisé dans l'open data depuis son arrivée en Fance"></textarea>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Occupation</label>
-							<input type="text" placeholder="Web Developer" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label class="control-label">About</label>
-							<textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Website Url</label>
-							<input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
+							<label class="control-label">Site Web</label>
+							<input type="text" placeholder="http://datacity.fr" class="form-control"/>
 						</div>
 						<div class="margiv-top-10">
-							<a href="#" class="btn green">Save Changes</a>
-							<a href="#" class="btn default">Cancel</a>
+							<a href="#" class="btn green">Sauvegarder</a>
+							<a href="#" class="btn default">Annuler</a>
 						</div>
 					</form>
 				</div>
 				<div id="tab_2-2" class="tab-pane">
-					<p>
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-					</p>
 					<form action="#" role="form">
 						<div class="form-group">
 							<div class="thumbnail" style="width: 310px;">
-								<img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+								{# <img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt=""> #}
 							</div>
 							<div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
 								<div class="input-group input-group-fixed">
@@ -75,27 +64,15 @@
 										</span>
 									</span>
 									<span class="btn default btn-file">
-										<span class="fileupload-new">
-											<i class="fa fa-paper-clip"></i> Select file
-										</span>
-										<span class="fileupload-exists">
-											<i class="fa fa-undo"></i> Change
-										</span>
 										<input type="file" class="default"/>
 									</span>
-									<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
+									<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Supprimer</a>
 								</div>
 							</div>
-							<span class="label label-danger">
-								NOTE!
-							</span>
-							<span>
-								Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only
-							</span>
 						</div>
 						<div class="margin-top-10">
-							<a href="#" class="btn green">Submit</a>
-							<a href="#" class="btn default">Cancel</a>
+							<a href="#" class="btn green">Envoyer</a>
+							<a href="#" class="btn default">Annuler</a>
 						</div>
 					</form>
 				</div>
@@ -124,53 +101,43 @@
 						<table class="table table-bordered table-striped">
 							<tr>
 								<td>
-									Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus..
+									Autoriser tout le monde à voir mes publications
 								</td>
 								<td>
 									<label class="uniform-inline">
-										<input type="radio" name="optionsRadios1" value="option1"/>
-										Yes </label>
-										<label class="uniform-inline">
-											<input type="radio" name="optionsRadios1" value="option2" checked/>
-											No </label>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-										</td>
-										<td>
-											<label class="uniform-inline">
-												<input type="checkbox" value=""/> Yes </label>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-											</td>
-											<td>
-												<label class="uniform-inline">
-													<input type="checkbox" value=""/> Yes </label>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-												</td>
-												<td>
-													<label class="uniform-inline">
-														<input type="checkbox" value=""/> Yes </label>
-													</td>
-												</tr>
-											</table>
-											<!--end profile-settings-->
-											<div class="margin-top-10">
-												<a href="#" class="btn green">Save Changes</a>
-												<a href="#" class="btn default">Cancel</a>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-							<!--end col-md-9-->
+										<input type="checkbox" value=""/> Oui 
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Autoriser mes abonnés à voir mes publications
+								</td>
+								<td>
+									<label class="uniform-inline">
+										<input type="checkbox" value=""/> Oui 
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Autoriser mes abonnements à voir mes publications
+								</td>
+								<td>
+									<label class="uniform-inline">
+										<input type="checkbox" value=""/> Oui 
+									</label>
+								</td>
+							</tr>
+						</table>
+						<!--end profile-settings-->
+						<div class="margin-top-10">
+							<a href="#" class="btn green">Enregistrer</a>
+							<a href="#" class="btn default">Quitter</a>
 						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--end col-md-9-->
+	</div>

@@ -1,36 +1,34 @@
 <div class="row profile">
-				<div class="col-md-12">
-					<!--BEGIN TABS-->
-					<div class="tabbable tabbable-custom tabbable-full-width" data-ng-controller="panelController as panel">
-						<ul class="nav nav-tabs">
-							<li ng-class="{active: panel.isSelected(1)}">
-								<a data-ng-click="panel.selectTab(1)" data-toggle="tab">Vue d'ensemble</a>
-							</li>
-							<li ng-class="{active: panel.isSelected(2)}">
-								<a data-ng-click="panel.selectTab(2)" data-toggle="tab">Paramètres du compte</a>
-							</li>
-							<li ng-class="{active: panel.isSelected(3)}">
-								<a data-ng-click="panel.selectTab(3)" data-toggle="tab">Publications</a>
-							</li>
-							{# <li>
-								<a href="#tab_1_6" data-toggle="tab">Help</a>
-							</li> #}
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane" data-ng-class="{active: panel.isSelected(1)}" data-ng-show="panel.isSelected(1)" data-ng-include="'/app_dev.php/private/partials/userOverview'">
-								
-							</div>
-							<!--tab_1_2-->
-							<div class="tab-pane" data-ng-class="{active: panel.isSelected(2)}" data-ng-show="panel.isSelected(2)" data-ng-include="'/app_dev.php/private/partials/userAccount'">
-								
-							</div>
-							<!--end tab-pane-->
-							<div class="tab-pane" data-ng-class="{active: panel.isSelected(3)}" data-ng-show="panel.isSelected(3)" data-ng-include="'/app_dev.php/private/partials/userPublications'">
-								
-							</div>
-							<!--end tab-pane-->
-						</div>
-					</div>
-					<!--END TABS-->
+	<div class="col-md-12">
+		<!--BEGIN TABS-->
+		<div class="tabbable tabbable-custom tabbable-full-width" data-ng-controller="panelController as panel">
+			<ul class="nav nav-tabs">
+				<li ng-class="{active: panel.isSelected(1)}">
+					<a data-ng-click="panel.selectTab(1)" data-toggle="tab">Vue d'ensemble</a>
+				</li>
+				<li ng-class="{active: panel.isSelected(2)}">
+					<a data-ng-click="panel.selectTab(2)" data-toggle="tab">Paramètres du compte</a>
+				</li>
+				<li ng-class="{active: panel.isSelected(3)}">
+					<a data-ng-click="panel.selectTab(3)" data-toggle="tab">Publications</a>
+				</li>
+				
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(1)}" data-ng-show="panel.isSelected(1)" data-ng-include="'/app_dev.php/private/partials/userOverview'">
+					
 				</div>
+				<!--tab_1_2-->
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(2)}" data-ng-show="panel.isSelected(2)" data-ng-include="'/app_dev.php/private/partials/userAccount'">
+					
+				</div>
+				<!--end tab-pane-->
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(3)}" data-ng-show="panel.isSelected(3)" data-ng-include="'/app_dev.php/private/partials/userPublications'">
+					
+				</div>
+				<!--end tab-pane-->
 			</div>
+		</div>
+		<!--END TABS-->
+	</div>
+</div>

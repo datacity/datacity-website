@@ -1,4 +1,6 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+{% trans_default_domain "appDetail" %}
+
 {# Ici, on configure les parametre de base de la page #}
 {% block title %}Datacity -- Portail Applicatif{% endblock %}
 {% block pagetitle %}Portail Applicatif{% endblock %}
@@ -39,17 +41,17 @@
 						<h5 class="widgetheading">Informations</h5>
 						{# On genere ci-dessous le panel droit contenant les details de l'application en cour de visualisation #}
 						<ul class="folio-detail">
-							<li><label>Categories :</label>  {% for cat in appli.getCategories() %}{{ cat.getName() }} {% endfor %}</li>
+							<li><label>{{ 'categories'|trans }} :</label>  {% for cat in appli.getCategories() %}{{ cat.getName() }} {% endfor %}</li>
 							<li><label>Client :</label> {{ appli.getUser().getUsername() }}</li>
-							<li><label>Plateformes :</label> {% for platform in appli.getPlatforms() %}{{ platform.getName() }} {% endfor %}</li>
-							<li><label>Téléchargements :</label> {{ appli.getDownloaded() }}</li>
-							<li><label>Project URL :</label><a href="#"> {{ appli.getUrl() }}</a></li>
+							<li><label>{{ 'platform'|trans }} :</label> {% for platform in appli.getPlatforms() %}{{ platform.getName() }} {% endfor %}</li>
+							<li><label>{{'downloads'|trans }} :</label> {{ appli.getDownloaded() }}</li>
+							<li><label>{{ 'project.link'|trans }} :</label><a href="#"> {{ appli.getUrl() }}</a></li>
 						</ul>
 					</div>
 					<div class="widget">
 						<h5 class="widgetheading">Sources</h5>
 						<p>
-							Toutes les données de cette application sont générées depuis des sources OpenData.
+							{{ 'sources.info'|trans }}.
 						</p>
 					</div>
 					</aside>

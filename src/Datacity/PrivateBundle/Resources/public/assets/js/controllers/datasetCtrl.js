@@ -1,8 +1,8 @@
 (function() {
 	angular
 		.module('app')
-		.controller('datasetController', ['$scope', '$stateParams', '$modal', '$log', 'Dataset', 'operation',
-			function($scope, $stateParams, $modal, $log, Dataset, operation) {
+		.controller('datasetController', ['$scope', '$stateParams', '$modal', '$log', 'DatasetFactory', 'operation',
+			function($scope, $stateParams, $modal, $log, DatasetFactory, operation) {
 				$scope.dataset = {};
 
 				// Route operations
@@ -10,13 +10,15 @@
 					$scope.noDelete = true;
 				}
 				else if (operation === 'edit') {
-					Dataset.get($stateParams.id).then(function(data) {
+					DatasetFactory.get($stateParams.id).then(function(data) {
 						if (data.title)
 							$scope.dataset = data;
+						//TODO: CHARGER LES SOURCES ASSOCIEES
+						$scope.dataset.sources = DatasetFactory.populateSourcesTmp();
 					});
 				}
 				else if (operation === 'delete') {
-					Dataset.delete($stateParams.id).then(function(response) {
+					DatasetFactory.delete($stateParams.id).then(function(response) {
 						console.log(response);
 					});
 				}
@@ -24,13 +26,13 @@
 				$scope.submit = function() {
 					console.log($scope.dataset);
 					if (operation === 'create' || operation === 'edit')
-						Dataset.post($scope.dataset).then(function(response) {
+						DatasetFactory.post($scope.dataset).then(function(response) {
 							console.log(response);
 						});
 				}
 				$scope.delete = function() {
 					console.log($scope.dataset);
-					Dataset.delete($stateParams.id).then(function(response) {
+					DatasetFactory.delete($stateParams.id).then(function(response) {
 						console.log(response);
 					});
 				}

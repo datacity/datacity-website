@@ -1,5 +1,5 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
-
+{% trans_default_domain "news" %}
 
 {% block title %}Datacity -- Page des news{% endblock %}
 {% block pagetitle %}Les News{% endblock %}
@@ -15,12 +15,12 @@
 				<div class="widget">
 					<form class="form-search">
 						<input placeholder="Type something" type="text" class="input-medium search-query">
-						<button type="submit" class="btn btn-square btn-theme">Search</button>
+						<button type="submit" class="btn btn-square btn-theme">{{ 'search'|trans }}</button>
 					</form>
 				</div>
 				{# Affichage des catégories #}
 				<div class="widget">
-					<h5 class="widgetheading">Categories</h5>
+					<h5 class="widgetheading">{{ 'categories'|trans }}</h5>
 					<ul class="cat">
 					{# Parcours de la liste des catégories envoyés par le controlleur #}
 					{% for categories in categories %}
@@ -29,7 +29,7 @@
 					</ul>
 				</div>
 				<div class="widget">
-					<h5 class="widgetheading">Tags populaires</h5>
+					<h5 class="widgetheading">{{ 'tags.popular'|trans }}</h5>
 					<ul class="tags">
 					{% for categories in categories %}
 						<li><a href="#">{{ categories.getName() }}</a></li>

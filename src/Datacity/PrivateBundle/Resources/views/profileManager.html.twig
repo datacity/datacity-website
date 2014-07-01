@@ -35,48 +35,40 @@
 												<a href="#" class="profile-edit">edit</a>
 											</li>
 											<li>
-												<a href="#">Projects</a>
-											</li>
-											<li>
 												<a href="#">Messages
-												<span>
-													3
-												</span>
+													<span>3</span>
 												</a>
 											</li>
 											<li>
-												<a href="#">Friends</a>
+												<a href="#">Abonnements
+													<span>2</span>
+												</a>
+												
 											</li>
 											<li>
-												<a href="#">Settings</a>
+												<a href="#">Abonnés
+													<span>1</span>
+												</a>
+												
 											</li>
 										</ul>
 									</div>
 									<div class="col-md-9">
 										<div class="row">
 											<div class="col-md-8 profile-info">
-												<h1>{{ user.firstname }}</h1>
+												<h1>{{ user.firstname }} {{ user.lastname }}</h1>
 												<p>
-													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
+													{{ user.description }}
 												</p>
 												<p>
 													<a href="#">www.mywebsite.com</a>
 												</p>
 												<ul class="list-inline">
 													<li>
-														<i class="fa fa-map-marker"></i> Spain
+														<i class="fa fa-map-marker"></i> {{ user.city }}
 													</li>
 													<li>
 														<i class="fa fa-calendar"></i> 18 Jan 1982
-													</li>
-													<li>
-														<i class="fa fa-briefcase"></i> Design
-													</li>
-													<li>
-														<i class="fa fa-star"></i> Top Seller
-													</li>
-													<li>
-														<i class="fa fa-heart"></i> BASE Jumping
 													</li>
 												</ul>
 											</div>
@@ -153,7 +145,7 @@
 												<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Change Password</a>
 											</li>
 											<li>
-												<a data-toggle="tab" href="#tab_4-4"><i class="fa fa-eye"></i> Privacity Settings</a>
+												<a data-toggle="tab" href="#tab_4-4"><i class="fa fa-eye"></i> Website Settings</a>
 											</li>
 										</ul>
 									</div>
@@ -163,27 +155,15 @@
 												<form role="form" action="#">
 													<div class="form-group">
 														<label class="control-label">First Name</label>
-														<input type="text" placeholder="John" class="form-control"/>
+														<input type="text" placeholder="{{ user.firstname }}" class="form-control"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">Last Name</label>
-														<input type="text" placeholder="Doe" class="form-control"/>
-													</div>
-													<div class="form-group">
-														<label class="control-label">Mobile Number</label>
-														<input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
-													</div>
-													<div class="form-group">
-														<label class="control-label">Interests</label>
-														<input type="text" placeholder="Design, Web etc." class="form-control"/>
-													</div>
-													<div class="form-group">
-														<label class="control-label">Occupation</label>
-														<input type="text" placeholder="Web Developer" class="form-control"/>
+														<input type="text" placeholder="{{ user.lastname }}" class="form-control"/>
 													</div>
 													<div class="form-group">
 														<label class="control-label">About</label>
-														<textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+														<textarea class="form-control" rows="3" placeholder="{{ user.description }}"></textarea>
 													</div>
 													<div class="form-group">
 														<label class="control-label">Website Url</label>
@@ -197,7 +177,6 @@
 											</div>
 											<div id="tab_2-2" class="tab-pane">
 												<p>
-													Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
 												</p>
 												<form action="#" role="form">
 													<div class="form-group">
@@ -325,10 +304,10 @@
 													<a href="#tab_1_22" data-toggle="tab">Sources</a>
 												</li>
 												<li>
-													<a href="#tab_1_33" data-toggle="tab">Réutilisation</a>
+													<a href="#tab_1_44" data-toggle="tab">Contribution</a>
 												</li>
 												<li>
-													<a href="#tab_1_44" data-toggle="tab">Contribution</a>
+													<a href="#tab_1_33" data-toggle="tab">Applications</a>
 												</li>
 											</ul>
 											<div class="tab-content">
@@ -341,7 +320,7 @@
 																<i class="fa fa-briefcase"></i> Company
 															</th>
 															<th class="hidden-xs">
-																<i class="fa fa-question"></i> Descrition
+																<i class="fa fa-question"></i> Description
 															</th>
 															<th>
 																<i class="fa fa-bookmark"></i> Amount
@@ -431,7 +410,7 @@
 												</div>
 												<!--tab-pane-->
 												<div class="tab-pane" id="tab_1_33">
-													<span > Reutilisation </span>
+													<span > Applications </span>
 												</div>
 												<!--tab-pane-->
 												<div class="tab-pane" id="tab_1_44">

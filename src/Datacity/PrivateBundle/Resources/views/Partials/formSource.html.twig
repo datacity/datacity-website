@@ -1,0 +1,25 @@
+{# Création de la source + datatable + databinding etc.. #}
+<div class="row profile">
+	<div class="col-md-12">
+		<!--BEGIN TABS-->
+		<div class="tabbable tabbable-custom tabbable-full-width" data-ng-controller="panelController as panel">
+			<ul class="nav nav-tabs">
+				<li ng-class="{active: panel.isSelected(1)}">
+					<a data-ng-click="panel.selectTab(1)" data-toggle="tab">Métadonnées</a>
+				</li>
+				<li ng-class="{active: panel.isSelected(2)}">
+					<a data-ng-click="panel.selectTab(2)" data-toggle="tab">Gestion de source</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(1)}" data-ng-show="panel.isSelected(1)" data-ng-include="'/app_dev.php/private/partials/sourceMeta'">
+				</div>
+
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(2)}" data-ng-show="panel.isSelected(2)" data-ng-include="'/app_dev.php/private/partials/sourceManager'">
+				</div>
+				<!--end tab-pane-->
+			</div>
+		</div>
+		<!--END TABS-->
+	</div>
+</div>

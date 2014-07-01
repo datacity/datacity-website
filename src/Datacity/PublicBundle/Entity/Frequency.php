@@ -1,14 +1,15 @@
 <?php
 
 namespace Datacity\PublicBundle\Entity;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Frequency
  *
- * @ORM\Table()
+ * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
  * @ORM\Entity
+ * @Serializer\ExclusionPolicy("all")
  */
 class Frequency
 {
@@ -25,14 +26,28 @@ class Frequency
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=50, unique=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"list"})
      */
     private $name;
 
     /**
-     * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(length=60, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="icon", type="string", length=60, unique=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"list"})
      */
     private $icon;
+
+    /**
+     * @var integer
+     *
+     * Utile pour trouver la frequence la plus importante
+     * lors de la determination de la frequence d'un jeux de donnee.
+     * @ORM\Column(name="level", type="integer", unique=true)
+     */
+    private $level;
 
     /**
      * Get id
@@ -88,5 +103,28 @@ class Frequency
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return Frequency
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }

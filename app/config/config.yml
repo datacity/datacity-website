@@ -73,6 +73,14 @@ assetic:
                 - %kernel.root_dir%/../vendor/mgcrea/angular-motion/angular-motion.css
                 - %kernel.root_dir%/../vendor/mgcrea/bootstrap-additions/bootstrap-additions.css
             output: css/angular-strap-dep.css
+        angularnggrid: 
+            inputs: 
+            - %kernel.root_dir%/../vendor/angular-ui/ng-grid-script/ng-grid.js
+            output: js/ng-grid.js
+        angularnggridcss:
+            inputs:
+                - %kernel.root_dir%/../vendor/angular-ui/ng-grid-style/ng-grid.css
+            output: css/ng-grid.css
         uibootstrap:
             inputs:
                 - %kernel.root_dir%/../vendor/angular-ui/ui-bootstrap/ui-bootstrap-tpls-0.8.0.js
@@ -95,6 +103,10 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        dql:
+            string_functions:
+                soundex: Datacity\PublicBundle\DQL\SoundexFunction
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -113,14 +125,19 @@ fos_user:
             type: datacity_user_registration
 
 jms_i18n_routing:
-    default_locale: fr
+    default_locale: %locale%
     locales: [en, fr]
     strategy: prefix_except_default
 
 stof_doctrine_extensions:
-    default_locale: fr_FR
+    default_locale: %locale%
     orm:
         default:
             timestampable: true
             blameable: true
             sluggable: true
+
+jms_serializer:
+    metadata:
+        directories:
+            - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }
