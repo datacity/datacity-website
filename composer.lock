@@ -4,8 +4,30 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c08f4c6ee6a923065b6d4372631cc60",
+    "hash": "4066158d86495eb9fdc3d46d6c3edcff",
     "packages": [
+        {
+            "name": "angular-ui/ng-grid-script",
+            "version": "2.0.11",
+            "dist": {
+                "type": "file",
+                "url": "http://angular-ui.github.io/ng-grid/lib/ng-grid.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "angular-ui/ng-grid-style",
+            "version": "2.0.11",
+            "dist": {
+                "type": "file",
+                "url": "http://angular-ui.github.io/ng-grid/css/ng-grid.css",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "angular-ui/ui-bootstrap",
             "version": "0.8.0",

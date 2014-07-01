@@ -2,11 +2,12 @@
 	var app = angular
 		.module('app', [
 			'mgcrea.ngStrap',
-			'ui.router'
+			'ui.router',
+			'ngGrid'
 		])
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
-				$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 				$stateProvider
 				.state('default', {
                     url: '/',

@@ -4,9 +4,55 @@
 		.controller('sourceController', ['$scope', '$stateParams', '$modal', '$log', 'SourceFactory', 'operation',
 			function($scope, $stateParams, $modal, $log, SourceFactory, operation) {
 				$scope.source = {};
-				$scope.meta = {};
-				// Route operations
 				
+				   $scope.columns1 = [{field: 'name', displayName: 'Name'}, {field:'age', displayName:'Age'}];
+    				$scope.columns2 = [{field: 'name', displayName: 'New Name'}, {field:'age', displayName:'New Age'},{field:'pin', displayName:'Pin'}];
+  
+    $scope.pagingOptions = {
+        pageSizes: [3, 10, 20],
+        pageSize: 3,
+        totalServerItems: 0,
+        currentPage: 1
+    };
+    
+    $scope.activateFilter = function() {
+    var name = $scope.filterName || null;
+    var age = ($scope.filterAge) ? $scope.filterAge.toString() : null;
+    if (!name && !age) name='';
+    
+    $scope.myData = angular.copy($scope.originalDataSet, []);
+    $scope.myData = $scope.myData.filter( function(item) {
+      return (item.name.indexOf(name)>-1 || item.age.toString().indexOf(age) > -1);
+    });
+  };
+
+
+    $scope.columnsSelected = $scope.columns1;
+    $scope.myData = [{name: "Moroni", age: 50},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34}];  
+    $scope.gridOptions = { 
+        data: 'myData',
+  	    columnDefs: 'columnsSelected',
+  	    enableCellSelection: true,
+        enableRowSelection: false,
+        enableCellEditOnFocus: true,
+        filterOptions: {filterText: '', useExternalFilter: true},
+        showFilter: true,
+        enablePaging: true,
+        pagingOptions: $scope.pagingOptions,
+        showColumnMenu: true,
+        showFooter: true
+      
+    };
+    
+    $scope.update_columns = function($event) { 
+      
+      $scope.columnsSelected = $scope.columns2;
+    }
+
 				if (operation === 'create') {
 					// Ici on check s'il existe déjà une source liée à ce dataset. Si c'est le cas, on charge les métadatas liés à ce dataset. 
 					// Pas l'id par contre étant donné qu'un nouvel id sera créé par la suite 

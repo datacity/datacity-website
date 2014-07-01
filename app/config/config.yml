@@ -73,6 +73,14 @@ assetic:
                 - %kernel.root_dir%/../vendor/mgcrea/angular-motion/angular-motion.css
                 - %kernel.root_dir%/../vendor/mgcrea/bootstrap-additions/bootstrap-additions.css
             output: css/angular-strap-dep.css
+        angularnggrid: 
+            inputs: 
+            - %kernel.root_dir%/../vendor/angular-ui/ng-grid-script/ng-grid.js
+            output: js/ng-grid.js
+        angularnggridcss:
+            inputs:
+                - %kernel.root_dir%/../vendor/angular-ui/ng-grid-style/ng-grid.css
+            output: css/ng-grid.css
         uibootstrap:
             inputs:
                 - %kernel.root_dir%/../vendor/angular-ui/ui-bootstrap/ui-bootstrap-tpls-0.8.0.js

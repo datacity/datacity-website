@@ -44,7 +44,9 @@
         "mgcrea/angular-strap-tpl": "~2.0",
         "mgcrea/angular-motion": "~1.0",
         "mgcrea/bootstrap-additions": "~1.0",
-        "angular-ui/ui-bootstrap": "0.8.0"
+        "angular-ui/ui-bootstrap": "0.8.0",
+        "angular-ui/ng-grid-style" : "2.0.11",
+        "angular-ui/ng-grid-script" : "2.0.11"
     },
     "scripts": {
         "post-install-cmd": [
@@ -165,6 +167,26 @@
             "version": "1.0",
             "dist": {
                 "url": "https://raw.githubusercontent.com/mgcrea/bootstrap-additions/master/dist/bootstrap-additions.css",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angular-ui/ng-grid-style",
+            "version": "2.0.11",
+            "dist": {
+                "url": "http://angular-ui.github.io/ng-grid/css/ng-grid.css",
+                "type": "file"
+            }
+        }
+    }, {
+        "type": "package",
+        "package": {
+            "name": "angular-ui/ng-grid-script",
+            "version": "2.0.11",
+            "dist": {
+                "url": "http://angular-ui.github.io/ng-grid/lib/ng-grid.js",
                 "type": "file"
             }
         }

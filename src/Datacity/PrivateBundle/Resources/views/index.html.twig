@@ -23,6 +23,7 @@ Website: http://datacity.fr
 	{% block stylesheets %}
 	{% stylesheets
 	'css/angular-strap-dep.css'
+	'css/ng-grid.css'
 	'bundles/datacityprivate/assets/plugins/font-awesome/css/font-awesome.min.css'
 	'bundles/datacityprivate/assets/plugins/bootstrap/css/bootstrap.min.css'
 	'bundles/datacityprivate/assets/plugins/uniform/css/uniform.default.css'
@@ -286,11 +287,13 @@ Website: http://datacity.fr
 <script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 {# TEMP #}
 	<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 {# ENDTEMP #}
 
 {% javascripts
 	'js/angular-mods.js'
 	'js/angular-strap.js'
+	'js/ng-grid.js'
   	'@DatacityPrivateBundle/Resources/public/assets/js/mock/e2e-mock-dataset.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/app.js'
 
