@@ -65,14 +65,6 @@ class User extends BaseUser
     private $point = 0;
 
       /**
-     * @var text
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-
-    private $description;
-
-      /**
      * @var string
      *
      * @ORM\Column(name="public_key", type="string", length=50, nullable=false)
@@ -157,9 +149,9 @@ class User extends BaseUser
     private $city;
     
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image")
      */
-    private $images;
+    private $profileImg;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
@@ -207,7 +199,6 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->news = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sources = new \Doctrine\Common\Collections\ArrayCollection();
         $this->followed = new \Doctrine\Common\Collections\ArrayCollection();
@@ -294,29 +285,6 @@ class User extends BaseUser
     public function getPoint()
     {
         return $this->point;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return User
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -512,39 +480,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add images
-     *
-     * @param \Datacity\PublicBundle\Entity\Image $images
-     * @return User
-     */
-    public function addImage(\Datacity\PublicBundle\Entity\Image $images)
-    {
-        $this->images[] = $images;
-        $images->setUser($this);
-        return $this;
-    }
-
-    /**
-     * Remove images
-     *
-     * @param \Datacity\PublicBundle\Entity\Image $images
-     */
-    public function removeImage(\Datacity\PublicBundle\Entity\Image $images)
-    {
-        $this->images->removeElement($images);
-    }
-
-    /**
-     * Get images
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
      * Add news
      *
      * @param \Datacity\PublicBundle\Entity\News $news
@@ -608,39 +543,6 @@ class User extends BaseUser
     public function getSources()
     {
         return $this->sources;
-    }
-
-    /**
-     * Add followed
-     *
-     * @param \Datacity\UserBundle\Entity\User $followed
-     * @return User
-     */
-    public function addFollowed(\Datacity\UserBundle\Entity\User $followed)
-    {
-        $this->followed[] = $followed;
-
-        return $this;
-    }
-
-    /**
-     * Remove followed
-     *
-     * @param \Datacity\UserBundle\Entity\User $followed
-     */
-    public function removeFollowed(\Datacity\UserBundle\Entity\User $followed)
-    {
-        $this->followed->removeElement($followed);
-    }
-
-    /**
-     * Get followed
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFollowed()
-    {
-        return $this->followed;
     }
 
     /**
@@ -865,5 +767,61 @@ class User extends BaseUser
     public function getFollowing()
     {
         return $this->following;
+    }
+
+    /**
+     * Set profileImg
+     *
+     * @param \Datacity\PublicBundle\Entity\Image $profileImg
+     * @return User
+     */
+    public function setProfileImg(\Datacity\PublicBundle\Entity\Image $profileImg = null)
+    {
+        $this->profileImg = $profileImg;
+
+        return $this;
+    }
+
+    /**
+     * Get profileImg
+     *
+     * @return \Datacity\PublicBundle\Entity\Image 
+     */
+    public function getProfileImg()
+    {
+        return $this->profileImg;
+    }
+
+    /**
+     * Add followers
+     *
+     * @param \Datacity\UserBundle\Entity\User $followers
+     * @return User
+     */
+    public function addFollower(\Datacity\UserBundle\Entity\User $followers)
+    {
+        $this->followers[] = $followers;
+
+        return $this;
+    }
+
+    /**
+     * Remove followers
+     *
+     * @param \Datacity\UserBundle\Entity\User $followers
+     */
+    public function removeFollower(\Datacity\UserBundle\Entity\User $followers)
+    {
+        $this->followers->removeElement($followers);
+    }
+
+    /**
+     * Get followers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
     }
 }

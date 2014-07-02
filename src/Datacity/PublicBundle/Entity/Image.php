@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Image
- *@ORM\Entity
- *@ORM\HasLifecycleCallbacks
+ *
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\ImageRepository")
  */
 class Image
 {
@@ -42,12 +42,6 @@ class Image
      * @ORM\JoinColumn(nullable=true)
      */
     private $category;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="images")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $user;
 
     private $file;
 
@@ -142,29 +136,6 @@ class Image
         $this->application = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    /**
-     * Set user
-     *
-     * @param \Datacity\UserBundle\Entity\User $user
-     * @return Image
-     */
-    public function setUser(\Datacity\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-    
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Datacity\UserBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
     public function getFile()
     {
         return $this->file;
