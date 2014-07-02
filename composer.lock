@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4066158d86495eb9fdc3d46d6c3edcff",
+    "hash": "ba498da798741fd75ddef6675f196def",
     "packages": [
         {
             "name": "angular-ui/ng-grid-script",
@@ -74,10 +74,10 @@
         },
         {
             "name": "angularjs/angular-sanitize",
-            "version": "1.2.16",
+            "version": "1.2.17",
             "dist": {
                 "type": "file",
-                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js",
+                "url": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js",
                 "reference": null,
                 "shasum": null
             },
