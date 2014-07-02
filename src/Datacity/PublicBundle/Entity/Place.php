@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Place
  *
- * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
+ * @ORM\Table()
  * @ORM\Entity
  */
 class Place
@@ -27,7 +27,7 @@ class Place
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100, unique=true)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $name;
 

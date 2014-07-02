@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * License
  *
- * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
+ * @ORM\Table()
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
  */
@@ -28,7 +28,7 @@ class License
      *
      * @ORM\Column(name="name", type="string", length=200, unique=true)
      * @Serializer\Expose
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $name;
 

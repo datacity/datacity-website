@@ -3,12 +3,14 @@
 namespace Datacity\PublicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Tag
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @Serializer\ExclusionPolicy("all")
  */
 class Tag
 {
@@ -25,6 +27,8 @@ class Tag
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45, unique=true)
+     * @Serializer\Expose
+     * @Serializer\Groups({"datasetShow"})
      */
     private $name;
 

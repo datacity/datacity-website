@@ -25,12 +25,9 @@ angular
                     templateUrl: '/partials/dataset',
                     controller: 'datasetCtrl',
                     resolve: {
-                        dataset: ['$stateParams', '$http',
-                            function($stateParams, $http) {
-                                return $http.get('/ajax/dataset/' + $stateParams.slug)
-                                    .then(function(res) {
-                                        return res.data;
-                                    });
+                        dataset: ['$stateParams', 'DatasetFactory',
+                            function($stateParams, DatasetFactory) {
+                                return DatasetFactory.getDataset($stateParams.slug);
                             }
                         ]
                     },

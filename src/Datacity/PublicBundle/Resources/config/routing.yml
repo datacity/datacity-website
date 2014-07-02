@@ -1,50 +1,42 @@
 datacity_public_homepage:
     pattern:  /
-    defaults: { _controller: DatacityPublicBundle:Default:home }
-    
-datacity_public_portalpage:
-    pattern:  /portal
-    defaults: { _controller: DatacityPublicBundle:Default:portal }
-    
-datacity_public_appDetail:
-    pattern:  /detail/{id}
-    defaults: { _controller: DatacityPublicBundle:Default:appDetail, id: 0 }
-    
+    defaults: { _controller: DatacityPublicBundle:Page:home }
+
+datacity_public_partials:
+    pattern:  /partials/{pageName}
+    defaults: { _controller: DatacityPublicBundle:Page:partials }
+    requirements:
+        pageName:  \w+
+
+datacity_public_contactpage:
+    pattern:  /contact
+    defaults: { _controller: DatacityPublicBundle:Page:contact }
+
 datacity_public_documentationpage:
     pattern:  /documentation
-    defaults: { _controller: DatacityPublicBundle:Default:documentation }
+    defaults: { _controller: DatacityPublicBundle:Page:documentation }
+
+datacity_public_portalpage:
+    pattern:  /app
+    defaults: { _controller: DatacityPublicBundle:App:portal }
+
+datacity_public_appDetail:
+    pattern:  /app/{id}
+    defaults: { _controller: DatacityPublicBundle:App:appDetail, id: 0 }
     
+datacity_public_news:
+    pattern:  /news
+    defaults: { _controller: DatacityPublicBundle:News:news }
+   
+datacity_public_newsDetail:
+    pattern:  /news/{id}
+    defaults: { _controller: DatacityPublicBundle:News:newsDetail, id: 0 }
+
 datacity_public_dataviewpage:
     pattern:  /dataview
     defaults:
         _controller: FrameworkBundle:Template:template
         template: 'DatacityPublicBundle::dataview.html.twig'
-
-datacity_public_contactpage:
-    pattern:  /contact
-    defaults: { _controller: DatacityPublicBundle:Default:contact }
-    
-datacity_public_initdb:
-    pattern:  /initdb
-    defaults: { _controller: DatacityPublicBundle:Default:initdb }
-    
-datacity_public_news:
-    pattern:  /news
-    defaults: { _controller: DatacityPublicBundle:Default:news }
-   
-datacity_public_newsDetail:
-    pattern:  /newsdetail/{id}
-    defaults: { _controller: DatacityPublicBundle:Default:newsDetail, id: 0 }
-
-datacity_public_ajouter:
-    pattern:  /ajouter
-    defaults: { _controller: DatacityPublicBundle:Default:ajouter }
-
-datacity_public_partials:
-    pattern:  /partials/{pageName}
-    defaults: { _controller: DatacityPublicBundle:Default:partials }
-    requirements:
-        pageName:  \w+
 
 datacity_public_api_search:
     pattern:  /api/search
@@ -67,5 +59,11 @@ datacity_public_api_search_list:
 datacity_public_api_search_popular:
     pattern:  /api/popular
     defaults: { _controller: DatacityPublicBundle:SearchApi:popular }
+    options:
+        expose: true
+
+datacity_public_api_dataset_show:
+    pattern:  /api/dataset/{slug}
+    defaults: { _controller: DatacityPublicBundle:DatasetApi:show }
     options:
         expose: true

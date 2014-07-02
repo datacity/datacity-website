@@ -27,16 +27,15 @@
 				{% verbatim %}
 				<div class="row">
 					<div class="span8" data-ng-repeat="source in dataset.sources">
-						<h5 class="horizontal-data-bloc-title">{{ source.name }}</h5>
+						<h5 class="horizontal-data-bloc-title">{{ source.title }}</h5>
 						<div class="horizontal-data-bloc-bottom">
 							<ul class="meta-post">
 								<li><i class="icon-file-alt"></i> Source</li>
-								<li><a tooltip='Date de publication'><i class="icon-calendar"></i> {{ source.date }}</a></li>
-								<li><a tooltip='Auteur'><i class="icon-user"></i> {{ source.user }}</a></li>
-								<li><a tooltip='Localisation'><i class="icon-pushpin"></i> {{ source.location }}</a></li>
-								<li><a tooltip='Couverture'><i class="icon-globe"></i> {{ source.couverture }}</a></li>
-								<li><a tooltip='Licence'><i class="icon-tag"></i> OpenData</a></li>
-
+								<li><a tooltip='Date de publication'><i class="icon-calendar"></i> {{ source.published_date }}</a></li>
+								<li><a tooltip='Auteur'><i class="icon-user"></i> {{ source.creator.username }}</a></li>
+								<li><a tooltip='Localisation'><i class="icon-pushpin"></i> {{ source.place.name }}</a></li>
+								<li><a tooltip='Couverture'><i class="icon-globe"></i> {{ source.coverage_territory.name }}</a></li>
+								<li><a tooltip='Licence'><i class="icon-tag"></i> {{ source.license.name }}</a></li>
 							</ul>
 							<a href="" class="pull-right">Télécharger <i class="icon-download-alt"></i></a>
 						</div>
@@ -54,13 +53,13 @@
 		<h5 class="widgetheading">Informations :</h5>
 		{% verbatim %}
 		<ul class="folio-detail">
-			<li><label>Categorie :</label> TODO</li>
-			<li><label>Auteur :</label> {{ dataset.user }} </li>
+			<li><label>Categorie :</label> {{ dataset.category }}</li>
+			<li><label>Auteur :</label> {{ dataset.user.username }} </li>
 			<li><label>Date de publication :</label> {{ dataset.date }}</li>
-			<li data-ng-if="dataset.lastUpdate"><label>Derniere mise à jour :</label> {{ dataset.lastUpdate }}</li>
+			<li><label>Derniere mise à jour :</label> {{ dataset.lastUpdate }}</li>
 			<li><label>Localisation :</label> {{ dataset.location }}</li>
 			<li><label>Couverture :</label> {{ dataset.couverture }}</li>
-			<li><label>License :</label> OpenData</li>
+			<li><label>License :</label> {{ dataset.license }}</li>
 		</ul>
 		{% endverbatim %}
 	</div>

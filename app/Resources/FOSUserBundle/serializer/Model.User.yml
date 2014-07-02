@@ -4,7 +4,7 @@ FOS\UserBundle\Model\User:
     properties:
         username:
             expose: true
-            groups: [list]
+            groups: [list, datasetShow]
         usernameCanonical:
             expose: true
-            groups: [list]
+            groups: [list, datasetShow]

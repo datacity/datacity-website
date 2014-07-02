@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Frequency
  *
- * @ORM\Table(indexes={@ORM\Index(name="name_idx", columns={"name"})})
+ * @ORM\Table()
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
  */
@@ -27,7 +27,7 @@ class Frequency
      *
      * @ORM\Column(name="name", type="string", length=50, unique=true)
      * @Serializer\Expose
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $name;
 
@@ -36,7 +36,7 @@ class Frequency
      *
      * @ORM\Column(name="icon", type="string", length=60, unique=true)
      * @Serializer\Expose
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $icon;
 

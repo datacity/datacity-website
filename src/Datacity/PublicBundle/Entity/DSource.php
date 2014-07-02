@@ -3,6 +3,7 @@
 namespace Datacity\PublicBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Source
@@ -25,6 +26,7 @@ class DSource
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $title;
 
@@ -32,6 +34,7 @@ class DSource
      * @var string
      * L'id utilise pour la correspondance avec l'api
      * @ORM\Column(name="sid", type="string", length=100)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $sid;
 
@@ -39,6 +42,7 @@ class DSource
      * @var string
      * Le liens vers le site d'origine (non renseigné si identique au dataset).
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $link;
 
@@ -46,6 +50,7 @@ class DSource
      * @var decimal
      *
      * @ORM\Column(name="size", type="decimal")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $size;
 
@@ -54,6 +59,7 @@ class DSource
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="published_date", type="date")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $publishedDate;
 
@@ -62,6 +68,7 @@ class DSource
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $lastModifiedDate;
 
@@ -69,6 +76,7 @@ class DSource
      * @var integer
      *
      * @ORM\Column(name="download_nb", type="integer")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $downloadNb = 0;
 
@@ -76,6 +84,7 @@ class DSource
      * @var integer
      *
      * @ORM\Column(name="useful_nb", type="integer")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $usefulNb = 0;
 
@@ -83,6 +92,7 @@ class DSource
      * @var integer
      *
      * @ORM\Column(name="undesirable_nb", type="integer")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $undesirableNb = 0;
 
@@ -90,6 +100,7 @@ class DSource
      * @var \Date
      *
      * @ORM\Column(name="date_begin", type="date", nullable=true)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $dateBegin;
 
@@ -97,21 +108,25 @@ class DSource
      * @var \Date
      *
      * @ORM\Column(name="date_end", type="date", nullable=true)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $dateEnd;
 
      /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $frequency;
 
      /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Place")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $place;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $coverageTerritory;
 
@@ -119,6 +134,7 @@ class DSource
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="sources")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $creator;
 

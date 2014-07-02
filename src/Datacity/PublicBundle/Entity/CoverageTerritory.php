@@ -28,7 +28,7 @@ class CoverageTerritory
      *
      * @ORM\Column(name="name", type="string", length=100, unique=true)
      * @Serializer\Expose
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $name;
 

@@ -27,7 +27,7 @@ class Dataset
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $title;
 
@@ -42,6 +42,7 @@ class Dataset
      * @var string
      * L'id utilise pour la correspondance avec l'api
      * @ORM\Column(name="did", type="string", length=100)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $did;
 
@@ -49,7 +50,7 @@ class Dataset
      * @var text
      *
      * @ORM\Column(name="description", type="text")
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $description;
 
@@ -57,6 +58,7 @@ class Dataset
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=200)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $link;
 
@@ -64,6 +66,7 @@ class Dataset
      * @var integer
      *
      * @ORM\Column(name="useful_nb", type="integer")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $usefulNb = 0;
 
@@ -71,6 +74,7 @@ class Dataset
      * @var integer
      *
      * @ORM\Column(name="visited_nb", type="integer")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $visitedNb = 0;
 
@@ -78,6 +82,7 @@ class Dataset
      * @var integer
      *
      * @ORM\Column(name="undesirable_nb", type="integer")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $undesirableNb = 0;
 
@@ -86,6 +91,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creation_date", type="date")
+     * @Serializer\Groups({"datasetShow"}) 
      */
     private $creationDate;
 
@@ -94,7 +100,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $lastModifiedDate;
 
@@ -102,6 +108,7 @@ class Dataset
      * @var \Date
      *
      * @ORM\Column(name="date_begin", type="date", nullable=true)
+     * @Serializer\Groups({"datasetShow"}) 
      */
     private $dateBegin;
 
@@ -109,6 +116,7 @@ class Dataset
      * @var \Date
      *
      * @ORM\Column(name="date_end", type="date", nullable=true)
+     * @Serializer\Groups({"datasetShow"}) 
      */
     private $dateEnd;
 
@@ -116,14 +124,14 @@ class Dataset
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetOwned")
      * @ORM\JoinColumn(nullable=false)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $creator;
 
     /**
      * L'ensemble des lieux de chaques sources du dataset.
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Place")
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $places;
 
@@ -131,7 +139,7 @@ class Dataset
      * La couverture la plus grande des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
      * @ORM\JoinColumn(nullable=false)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $coverageTerritory;
 
@@ -139,31 +147,34 @@ class Dataset
      * La frequence la plus courte des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
      * @ORM\JoinColumn(nullable=false)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $frequency;
 
     /**
      * L'ensemble des createurs de chaques sources du dataset.
      * @ORM\ManyToMany(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="datasetContributed")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $contributors;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="dataset")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $sources;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="datasets")
      * @ORM\JoinColumn(nullable=false)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $category;
 
     /**
      * L'ensemble des tags de chaques sources du dataset.
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Tag")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $tags;
 
@@ -177,7 +188,7 @@ class Dataset
      * La licence du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\License")
      * @ORM\JoinColumn(nullable=false)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $license;
 

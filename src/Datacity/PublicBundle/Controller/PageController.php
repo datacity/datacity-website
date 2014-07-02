@@ -3,15 +3,8 @@
 namespace Datacity\PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Datacity\PublicBundle\Entity\Application;
-use Datacity\PublicBundle\Entity\Image;
-use Datacity\PublicBundle\Entity\City;
-use Datacity\PublicBundle\Entity\Platform;
-use Datacity\PublicBundle\Entity\Category;
-use Datacity\PublicBundle\Entity\News;
 
-
-class DefaultController extends Controller
+class PageController extends Controller
 {
 	// Controlleur de la page Home: page statique actuellement,
 	// on affiche donc seulement la page d'accueil twig sans donnees dynamiques.
@@ -31,29 +24,6 @@ class DefaultController extends Controller
 		return $response;
 	}
 	
-	
-	// Controlleur du portail applicatif. Ici nous recuperons les entites qui sont en DB pour generer le contenu
-	// de notre portail applicatif. (On importe ici la liste de toutes les villes et applications).
-	public function portalAction()
-	{
-		$em = $this->getDoctrine()->getManager();
-		
-		$cities = $this->getDoctrine()->getRepository("DatacityPublicBundle:City")->findAll();	
-		$applications = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application")->findAll();
-		
-		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
-		return $response;
-	}
-	
-	// Controlleur pour la page de detail des applications: in ID est passe en parametre a ce controlleur via la route "detail"
-	// Cette ID correspond au numero dans l'URL datacity.fr/detail/1 (1 = id)
-	// Ici, on recupere l'application desiree pour generer sont contenu dynamiquement depuis la page twig.
-	// Si aucune aplication n'existe avec cet ID, une exception est generee.
-	public function appDetailAction(Application $app)
-	{		
-		$response = $this->render('DatacityPublicBundle::appDetail.html.twig', array("appli" => $app));
-		return $response;
-	}
 	//Page de documentation
 	public function documentationAction()
 	{
@@ -79,30 +49,6 @@ class DefaultController extends Controller
 		$docCategoriesContent = array("Categorie 1" => $cat1, "Categorie 2" => $cat2, "Categorie 3" => $cat3);
 		$response = $this->render('DatacityPublicBundle::documentation.html.twig', array("docCategories" => $docCategories, "docCategoriesContent" => $docCategoriesContent));
 		return $response;
-	}
-	
-	// Controller de la page News
-	// Dans ce controller nous récupérons également l'ensemble des catégories car nous avons besoins de les réafficher sur la page de news.
-	public function newsAction()
-	{
-		
-		$em = $this->getDoctrine()->getManager();
-		//Récupération des catégory qui sont en base
-		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
-		$categories = $categories->findAll();
-		
-		// Récupération des news qui sont en base
-		$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News");
-		$news = $news->findAll();
-		
-		//Redirection vers la page news en envoyant le tableau de news et de categories initialisé précédement.
-		$response = $this->render('DatacityPublicBundle::news.html.twig', array('news' => $news, 'categories' => $categories));
-		return $response;
-	}
-	
-	public function newsDetailAction(News $news)
-	{
-		return $this->render('DatacityPublicBundle::newsDetail.html.twig', array("news" => $news));
 	}
 
 	public function partialsAction($pageName)
