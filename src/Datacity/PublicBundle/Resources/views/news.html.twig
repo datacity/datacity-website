@@ -18,24 +18,6 @@
 						<button type="submit" class="btn btn-square btn-theme">{{ 'search'|trans }}</button>
 					</form>
 				</div>
-				{# Affichage des catégories #}
-				<div class="widget">
-					<h5 class="widgetheading">{{ 'categories'|trans }}</h5>
-					<ul class="cat">
-					{# Parcours de la liste des catégories envoyés par le controlleur #}
-					{% for categories in categories %}
-						<li><i class="icon-angle-right"></i><a href="#">{{ categories.getName() }}</a><span> ({{ categories.getNb_article() }})</span></li>
-					{% endfor %}
-					</ul>
-				</div>
-				<div class="widget">
-					<h5 class="widgetheading">{{ 'tags.popular'|trans }}</h5>
-					<ul class="tags">
-					{% for categories in categories %}
-						<li><a href="#">{{ categories.getName() }}</a></li>
-					{% endfor %}
-					</ul>
-				</div>
 				</aside>
 			{# Affichage des news #}
 			</div>

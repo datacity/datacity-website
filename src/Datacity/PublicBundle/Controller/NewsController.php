@@ -13,16 +13,14 @@ class NewsController extends Controller
 	{
 		
 		$em = $this->getDoctrine()->getManager();
-		//Récupération des catégory qui sont en base
-		$categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");
-		$categories = $categories->findAll();
+		
 		
 		// Récupération des news qui sont en base
 		$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News");
 		$news = $news->findAll();
 		
 		//Redirection vers la page news en envoyant le tableau de news et de categories initialisé précédement.
-		$response = $this->render('DatacityPublicBundle::news.html.twig', array('news' => $news, 'categories' => $categories));
+		$response = $this->render('DatacityPublicBundle::news.html.twig', array('news' => $news));
 		return $response;
 	}
 	
