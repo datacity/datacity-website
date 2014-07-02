@@ -53,3 +53,11 @@ datacity_private_datasetmanager_get:
 datacity_private_usermanager_get:
     pattern: /user/get
     defaults: { _controller: DatacityPrivateBundle:UserManager:get }
+    options:
+        expose: true
+
+datacity_private_usermanager_post:
+    pattern: /user/post
+    defaults: { _controller: DatacityPrivateBundle:UserManager:post }
+    options:
+        expose: true

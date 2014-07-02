@@ -12,7 +12,20 @@ class UserManagerController extends Controller
     	$user = $this->get('security.context')->getToken()->getUser();
     	$firstName = $user->getFirstName();
     	$lastName = $user->getLastName();
-    	$response = new JsonResponse(array('firstName' => $firstName, 'lastName' => $lastName));
+    	$point = $user->getPoint();
+    	$about = $user->getAbout();
+    	$joinDate = $user->getJoinDate();
+    	$city = $user->getCity();
+    	$website = $user->getWebsiteUrl();
+    	$response = new JsonResponse(array('firstName' => $firstName, 'lastName' => $lastName, 
+    		'point' => $point, 'about' => $about, 'website' => $website, 'joinDate' => $joinDate, 'city' => $city));
     	return $response;
+    }
+
+    public function postAction()
+    {
+    	//Enregistrer l'utilisateur en bdd et renvoyer une reponse
+    	$response = new JsonResponse(array('action' => 'success'));
+        return $response;
     }
 }

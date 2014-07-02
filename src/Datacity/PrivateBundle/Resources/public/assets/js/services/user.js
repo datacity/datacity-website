@@ -5,7 +5,13 @@
 			return {
 				getUserFromSession: function() {
 					return $http
-						.get('/app_dev.php/private/user/get').then(function(response) {
+						.get(Routing.generate('datacity_private_usermanager_get')).then(function(response) {
+							return response.data;
+						});
+				},
+				updateUser: function(user) {
+					return $http
+						.post(Routing.generate('datacity_private_usermanager_post'), user).then(function(response) {
 							return response.data;
 						});
 				},

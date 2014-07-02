@@ -1,0 +1,46 @@
+<div class="row">
+	<div data-ng-controller="panelController as panel">
+		<ul class="list-unstyled profile-nav col-md-3">
+			<li>
+				<img src="http://raphael-amar.com/blog/file/2014/06/datacity.png" class="img-responsive" alt=""/>
+				<a class="profile-edit">Éditer</a>
+			</li>
+			<hr/>
+			<li ng-class="{active: panel.isSubSelected(1)}">
+				<a data-ng-click="panel.selectSubTab(1)" data-toggle="tab">
+					<i class="fa fa-user"></i> Profil
+				</a>
+			</li>
+			<li ng-class="{active: panel.isSubSelected(2)}">
+				<a data-ng-click="panel.selectSubTab(2)" data-toggle="tab">
+					 Abonnements
+					<span>
+						32
+					</span>
+				</a>
+			</li>
+			<li ng-class="{active: panel.isSubSelected(3)}">
+				<a data-ng-click="panel.selectSubTab(3)" data-toggle="tab">
+					 Abonnés
+					<span>
+						40
+					</span>			
+				</a>
+			</li>
+		</ul>
+		<div>
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(1)}" data-ng-show="panel.isSubSelected(1)" data-ng-include="'/app_dev.php/private/partials/userOverview'">
+				
+			</div>
+			<!--tab_1_2-->
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(2)}" data-ng-show="panel.isSubSelected(2)" data-ng-include="'/app_dev.php/private/partials/userFollowed'">
+				
+			</div>
+			<!--end tab-pane-->
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(3)}" data-ng-show="panel.isSubSelected(3)" data-ng-include="'/app_dev.php/private/partials/userFollowers'">
+				
+			</div>
+			<!--end tab-pane-->
+		</div>
+	</div>
+</div>

@@ -13,37 +13,34 @@
 				<li>
 					<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Modifier Mot de passe</a>
 				</li>
-				<li>
-					<a data-toggle="tab" href="#tab_4-4"><i class="fa fa-eye"></i> Contenu </a>
-				</li>
 			</ul>
 		</div>
 		<div class="col-md-9">
 			<div class="tab-content">
 				<div id="tab_1-1" class="tab-pane active">
-					<form role="form" action="#">
+					<form role="form" ng-submit="updateUser()">
 						<div class="form-group">
 							<label class="control-label">Prenom</label>
-							<input type="text" placeholder="John" class="form-control"/>
+							<input type="text" ng-model="user.firstName" placeholder="Votre prénom" class="form-control"/>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Nom</label>
-							<input type="text" placeholder="Doe" class="form-control"/>
+							<input type="text" ng-model="user.lastName" placeholder="Votre nom" class="form-control"/>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Activité</label>
-							<input type="text" placeholder="Développeur web" class="form-control"/>
+							<input type="text" placeholder="Votre activité (Ex: Développeur web)" class="form-control"/>
 						</div>
 						<div class="form-group">
 							<label class="control-label">A propos</label>
-							<textarea class="form-control" rows="3" placeholder="Je suis spécialisé dans l'open data depuis son arrivée en Fance"></textarea>
+							<textarea class="form-control" rows="3" ng-model="user.about" placeholder="A propos de vous (Ex: Je suis spécialisé dans l'open data depuis son arrivée en France)"></textarea>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Site Web</label>
-							<input type="text" placeholder="http://datacity.fr" class="form-control"/>
+							<input type="text" ng-model="user.website" placeholder="Votre site internet" class="form-control"/>
 						</div>
 						<div class="margiv-top-10">
-							<a href="#" class="btn green">Sauvegarder</a>
+							<input type="submit" value="Sauvegarder" class="btn green"/>
 							<a href="#" class="btn default">Annuler</a>
 						</div>
 					</form>
@@ -93,47 +90,6 @@
 						<div class="margin-top-10">
 							<a href="#" class="btn green">Change Password</a>
 							<a href="#" class="btn default">Cancel</a>
-						</div>
-					</form>
-				</div>
-				<div id="tab_4-4" class="tab-pane">
-					<form action="#" class="">
-						<table class="table table-bordered table-striped">
-							<tr>
-								<td>
-									Autoriser tout le monde à voir mes publications
-								</td>
-								<td>
-									<label class="uniform-inline">
-										<input type="checkbox" value=""/> Oui 
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Autoriser mes abonnés à voir mes publications
-								</td>
-								<td>
-									<label class="uniform-inline">
-										<input type="checkbox" value=""/> Oui 
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Autoriser mes abonnements à voir mes publications
-								</td>
-								<td>
-									<label class="uniform-inline">
-										<input type="checkbox" value=""/> Oui 
-									</label>
-								</td>
-							</tr>
-						</table>
-						<!--end profile-settings-->
-						<div class="margin-top-10">
-							<a href="#" class="btn green">Enregistrer</a>
-							<a href="#" class="btn default">Quitter</a>
 						</div>
 					</form>
 				</div>

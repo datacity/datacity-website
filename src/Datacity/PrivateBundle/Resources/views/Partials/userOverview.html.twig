@@ -1,104 +1,71 @@
-<div class="row">
-	<div class="col-md-3">
-		<ul class="list-unstyled profile-nav">
-			<li>
-				<img src="http://raphael-amar.com/blog/file/2014/06/datacity.png" class="img-responsive" alt=""/>
-				<a href="#" class="profile-edit">éditer</a>
-			</li>
-			<hr/>
-			<li class="active">
-				<a data-toggle="tab" href="#tab_0-1">
-					<i class="fa fa-user"></i> Abonnements
-					<span>
-						32
-					</span>
-				</a>
-			</li>
-			<li>
-				<a data-toggle="tab" href="#tab_0-2">
-					<i class="fa fa-users-o"></i> Abonnés
-					<span>
-						40
-					</span>			
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="col-md-9">
-		<div class="row">
-			<div class="col-md-8 profile-info">
-				<h1>{[{user.firstName || "Hubert"}]} {[{user.lastName || "Bill"}]}</h1>
-				<p>
-					Je n'ai pas encore de description malheureusement.
-				</p>
-				<p>
-					<a href="#">{[{user.website || "www.mywebsite.com"}]}</a>
-				</p>
-				<ul class="list-inline">
-					<li>
-						<i class="fa fa-map-marker"></i> {[{user.city.name || "France" }]}
-					</li>
-					<li>
-						<i class="fa fa-calendar"></i> {[{user.created || "18 Janvier 1982" }]}
-					</li>
-					<li>
-						<i class="fa fa-briefcase"></i> {[{user.activity || "Développeur FreeLance"}]}
-					</li>
-					<li>
-						<i class="fa fa-heart"></i> {[{user.points || "12345"}]} Points
-					</li>
-				</ul>
-			</div>
-			<!--end col-md-8-->
-			<div class="col-md-4">
-				<div class="portlet sale-summary">
-					<div class="portlet-title">
-						<div class="caption">
-							Bilan des activités
-						</div>
-						<div class="tools">
-						</div>
+{% verbatim %}
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-8 profile-info">
+			<h1>{{user.firstName || "Hubert"}} {{user.lastName || "Bill"}}</h1>
+			<p>
+				{{user.description || "Aucune description"}}
+			</p>
+			<p>
+				<a href="#">{{user.website || "www.mywebsite.com"}}</a>
+			</p>
+			<ul class="list-inline">
+				<li>
+					<i class="fa fa-map-marker"></i> {{user.city || "France" }}
+				</li>
+				<li>
+					<i class="fa fa-calendar"></i> {{user.joinDate.date || "18 Janvier 1982" }}
+				</li>
+				<li>
+					<i class="fa fa-briefcase"></i> {{user.activity || "Développeur FreeLance"}}
+				</li>
+				<li>
+					<i class="fa fa-heart"></i> {{user.point || "12345"}} Point(s)
+				</li>
+			</ul>
+		</div>
+		<!--end col-md-8-->
+		<div class="col-md-4">
+			<div class="portlet sale-summary">
+				<div class="portlet-title">
+					<div class="caption">
+						Bilan des activités
 					</div>
-					<div class="portlet-body">
-						<ul class="list-unstyled">
-							<li>
-								<span class="sale-info">
-									Jeux de données créés aujourd'hui<i class="fa fa-img-up"></i>
-								</span>
-								<span class="sale-num">
-									4
-								</span>
-							</li>
-							<li>
-								<span class="sale-info">
-									Sources créés aujourd'hui<i class="fa fa-img-down"></i>
-								</span>
-								<span class="sale-num">
-									5
-								</span>
-							</li>
-							<li>
-								<span class="sale-info">
-									Sources téléchargées ajourd'hui
-								</span>
-								<span class="sale-num">
-									11
-								</span>
-							</li>
-							<li>
-								<span class="sale-info">
-									Total des sources créés
-								</span>
-								<span class="sale-num">
-									20
-								</span>
-							</li>
-						</ul>
+					<div class="tools">
 					</div>
 				</div>
+				<div class="portlet-body">
+					<ul class="list-unstyled">
+						<li>
+							<span class="sale-info">
+								Point(s)<i class="fa fa-img-up"></i>
+							</span>
+							<span class="sale-num">
+								4
+							</span>
+						</li>
+						<li>
+							<span class="sale-info">
+								Moyenne des notations<i class="fa fa-img-down"></i>
+							</span>
+							<span class="sale-num">
+								50%
+							</span>
+						</li>
+						<li>
+							<span class="sale-info">
+								Total des sources créés
+							</span>
+							<span class="sale-num">
+								20
+							</span>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<!--end col-md-4-->
 		</div>
-		<!--end row-->
+		<!--end col-md-4-->
 	</div>
+	<!--end row-->
 </div>
+{% endverbatim %}
