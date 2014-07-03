@@ -23,6 +23,26 @@ class PageController extends Controller
 		$response = $this->render('DatacityPublicBundle::contact.html.twig');
 		return $response;
 	}
+
+	public function talkaboutusAction()
+	{
+		$response = $this->render('DatacityPublicBundle::talkaboutus.html.twig');
+		return $response;
+	}
+
+	public function conditionAction()
+	{
+		$response = $this->render('DatacityPublicBundle::condition.html.twig');
+		return $response;
+	}
+
+	public function privacypolicyAction()
+	{
+		$response = $this->render('DatacityPublicBundle::privacypolicy.html.twig');
+		return $response;
+	}
+
+
 	
 	//Page de documentation
 	public function documentationAction()
