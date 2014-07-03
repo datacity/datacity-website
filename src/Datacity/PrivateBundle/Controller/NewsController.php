@@ -9,13 +9,13 @@ use Datacity\PrivateBundle\Entity\NewsType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
-class NewsManagerController extends Controller
+class NewsController extends Controller
 {
     public function indexAction()
     {
     	$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News")->findAll();	
 
-    	$response = $this->render('DatacityPrivateBundle::newsManager.html.twig', array('news' => $news));
+    	$response = $this->render('DatacityPrivateBundle::news.html.twig', array('news' => $news));
     	return $response;
     }
 
@@ -43,7 +43,7 @@ class NewsManagerController extends Controller
 
     
     // On redirige vers la page de visualisation de l'article nouvellement créé
-    return $this->redirect($this->generateUrl('datacity_private_newsmanager'), 301);    
+    return $this->redirect($this->generateUrl('datacity_private_news'), 301);    
       }
     }
 

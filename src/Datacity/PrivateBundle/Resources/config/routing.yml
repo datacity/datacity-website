@@ -14,17 +14,17 @@ datacity_private_usersmanager_remove:
     pattern:  /usersmanager/remove/{user_id}
     defaults: { _controller: DatacityPrivateBundle:UsersManager:remove, user_id: -1 }
 
-datacity_private_newsmanager:
-    pattern:  /newsmanager
-    defaults: { _controller: DatacityPrivateBundle:NewsManager:index }
+datacity_private_news:
+    pattern:  /news
+    defaults: { _controller: DatacityPrivateBundle:News:index }
 
-datacity_private_newsmanager_add:
-    pattern:  /newsmanager/add
-    defaults: { _controller: DatacityPrivateBundle:NewsManager:add }
+datacity_private_news_add:
+    pattern:  /news/add
+    defaults: { _controller: DatacityPrivateBundle:News:add }
 
-datacity_private_newsmanager_remove:
-    pattern:  /newsmanager/remove/{news_id}
-    defaults: { _controller: DatacityPrivateBundle:NewsManager:remove, news_id: -1 }
+datacity_private_news_remove:
+    pattern:  /news/remove/{news_id}
+    defaults: { _controller: DatacityPrivateBundle:News:remove, news_id: -1 }
 
 datacity_private_profilemanager:
     pattern:  /profilemanager

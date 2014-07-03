@@ -16,7 +16,7 @@
 							
 						</div>
 						<div class="portlet-body form">
-							<form action="{{path('datacity_private_newsmanager_add')}}" method="post" {{ form_enctype(form) }}>
+							<form action="{{path('datacity_private_news_add')}}" method="post" {{ form_enctype(form) }}>
 								<div class="form-body">
 									<div class="form-group">
 										<label>{{ form_label(form.title, "Titre") }}</label>
@@ -50,6 +50,6 @@
 {% block javascripts %}
 {{ parent() }}
 	<script type="text/javascript">
-		$("#nav-newsmanager").addClass("active");
+		$("#nav-news").addClass("active");
 	</script>
 {% endblock %}

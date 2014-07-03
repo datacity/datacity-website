@@ -4,7 +4,7 @@
 {% block pagecontent %}
 
 
-<a href="{{ path('datacity_private_newsmanager_add') }}" class="btn btn-lg green">Ajouter une actualité <i class="fa fa-plus"></i></a><br><br>
+<a href="{{ path('datacity_private_news_add') }}" class="btn btn-lg green">Ajouter une actualité <i class="fa fa-plus"></i></a><br><br>
 <!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
 						<div class="portlet-title">
@@ -89,12 +89,12 @@
 {% block javascripts %}
 {{ parent() }}
 	<script type="text/javascript">
-		$("#nav-newsmanager").addClass("active");
+		$("#nav-news").addClass("active");
 		function deleteNews(id) {
 		$.ajax({
 		    type: 'POST',  
 		    dataType: 'json',                  
-		    url: "{{ path('datacity_private_newsmanager_remove') }}/" + id,
+		    url: "{{ path('datacity_private_news_remove') }}/" + id,
 		    success: function(response) {
 		        $("#row-news-" + response['id']).fadeOut(300, function() { $(this).remove(); });
 		      }
