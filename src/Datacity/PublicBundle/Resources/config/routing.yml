@@ -17,8 +17,8 @@ datacity_public_portalpage:
     defaults: { _controller: DatacityPublicBundle:App:portal }
 
 datacity_public_appDetail:
-    pattern:  /app/{id}
-    defaults: { _controller: DatacityPublicBundle:App:appDetail, id: 0 }
+    pattern:  /app/{slug}
+    defaults: { _controller: DatacityPublicBundle:App:appDetail }
 
 datacity_public_producerpage:
     pattern:  /producer
