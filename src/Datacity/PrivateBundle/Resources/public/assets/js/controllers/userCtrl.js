@@ -7,8 +7,8 @@
 				
 				 UserFactory.getUserFromSession().then(function(data) {
 				 	$scope.user = data;
+					$scope.user.datasets = UserFactory.populateDatasetTmp();				 	
 				 });
-				 $scope.user.datasets = UserFactory.populateDatasetTmp();
 				/*UserFactory.populate().then(function(data) {
 					console.log(data);
 					$scope.user.datasets = data;
