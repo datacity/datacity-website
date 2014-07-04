@@ -1,3 +1,4 @@
+{% verbatim %}
 <div class="row">
 	<div class="col-md-8">
 		<div class="add-portfolio">
@@ -68,11 +69,11 @@
 	<div class="col-md-4">
 		<div class="portfolio-text">
 			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
-			<img ng-src="{[{dataset.picture || 'http://www.keenthemes.com/preview/metronic/assets/admin/pages/media/profile/logo_azteca.jpg'}]}" style="height: 80px; width: 80px" alt=""/>
+			<img ng-src="{{dataset.picture || 'http://www.keenthemes.com/preview/metronic/assets/admin/pages/media/profile/logo_azteca.jpg'}}" style="height: 80px; width: 80px" alt=""/>
 			<div class="portfolio-texnfo">
-				<h4>{[{dataset.title || "Pas de nom"}]}</h4>
+				<h4>{{dataset.title || "Pas de nom"}}</h4>
 				<p>
-					{[{dataset.description  || "Pas de description" | limitTo:42}]}
+					{{dataset.description  || "Pas de description" | limitTo:42}}
 				</p>
 			</div>
 		</div>
@@ -81,13 +82,13 @@
 		<div class="portfolio-info">
 			Visité
 			<span>
-				{[{dataset.visitedNb}]} fois
+				{{dataset.visitedNb}} fois
 			</span>
 		</div>
 		<div class="portfolio-info">
 			Noté comme utile
 			<span>
-				{[{dataset.usefullNb}]} fois
+				{{dataset.usefullNb}} fois
 			</span>
 		</div>
 	</div>
@@ -103,3 +104,5 @@
 	</div>
 </div>
 <!--end row-->
+{% endverbatim %}
+

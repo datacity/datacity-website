@@ -3,55 +3,135 @@
 		.module('app')
 		.controller('sourceController', ['$scope', '$stateParams', '$modal', '$log', 'SourceFactory', 'operation',
 			function($scope, $stateParams, $modal, $log, SourceFactory, operation) {
-				$scope.source = {};
 				
-				   $scope.columns1 = [{field: 'name', displayName: 'Name'}, {field:'age', displayName:'Age'}];
-    				$scope.columns2 = [{field: 'name', displayName: 'New Name'}, {field:'age', displayName:'New Age'},{field:'pin', displayName:'Pin'}];
-  
-    $scope.pagingOptions = {
-        pageSizes: [3, 10, 20],
-        pageSize: 3,
-        totalServerItems: 0,
-        currentPage: 1
-    };
-    
-    $scope.activateFilter = function() {
-    var name = $scope.filterName || null;
-    var age = ($scope.filterAge) ? $scope.filterAge.toString() : null;
-    if (!name && !age) name='';
-    
-    $scope.myData = angular.copy($scope.originalDataSet, []);
-    $scope.myData = $scope.myData.filter( function(item) {
-      return (item.name.indexOf(name)>-1 || item.age.toString().indexOf(age) > -1);
-    });
-  };
+				var globalData;
+			    $scope.filterOptions = {
+			        filterText: '',
+			
+			    };
+
+		   	    $scope.totalServerItems = 0;
+			    $scope.pagingOptions = {
+			        pageSizes: [20, 50, 100],
+			        pageSize: 20,
+			        currentPage: 1
+			    };  
+			    $scope.setPagingData = function(data, page, pageSize){	
+			        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+			        $scope.myData = pagedData;
+			        $scope.totalServerItems = data.length;
+			        if (!$scope.$$phase) {
+			            $scope.$apply();
+			        }
+			    };
+			    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+			    	if (!globalData)
+			    		return;
+			        setTimeout(function () {
+			            var data;
+			            if (searchText) {
+			                var ft = searchText.toLowerCase();
+			               	data = globalData.filter(function(item) {
+			                	return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+			                });		               
+			            } else {
+			        		data = globalData;
+			        		$scope.setPagingData(data, page, pageSize);
+			            }
+			        }, 100);
+			    };
+				
+			    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+				
+			    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+			        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+			          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+			        }
+			    }, true);
+			    $scope.$watch('filterOptions', function (newVal, oldVal) {
+			        if (newVal !== oldVal) {
+			          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+			        }
+			    }, true);
 
 
-    $scope.columnsSelected = $scope.columns1;
-    $scope.myData = [{name: "Moroni", age: 50},
-                     {name: "Tiancum", age: 43},
-                     {name: "Jacob", age: 27},
-                     {name: "Nephi", age: 29},
-                     {name: "Enos", age: 34}];  
-    $scope.gridOptions = { 
-        data: 'myData',
-  	    columnDefs: 'columnsSelected',
-  	    enableCellSelection: true,
-        enableRowSelection: false,
-        enableCellEditOnFocus: true,
-        filterOptions: {filterText: '', useExternalFilter: true},
-        showFilter: true,
-        enablePaging: true,
-        pagingOptions: $scope.pagingOptions,
-        showColumnMenu: true,
-        showFooter: true
-      
-    };
-    
-    $scope.update_columns = function($event) { 
-      
-      $scope.columnsSelected = $scope.columns2;
-    }
+			    $scope.columnsSelected = [];
+
+
+			    // On charge les données depuis le serveur. Ce chargement se fait au moment où on upload 
+			    // un fichier. Le serveur renvoi donc le fichier parsé. A partir de cela on extrait la première ligne du tableau 
+			    // afin de définir nos colones 
+			     $scope.myData = [];
+
+                //$scope.columns1 = [{field: 'name', displayName: 'Name'}, {field:'age', displayName:'Age'}];
+			    //$scope.columns2 = [{field: 'name', displayName: 'New Name'}, {field:'age', displayName:'New Age'},{field:'pin', displayName:'Pin'}];
+			    //$scope.columnSelected = $scope.columns1;
+
+			    $scope.gridOptions = { 
+			        data: 'myData',
+			  	    columnDefs: 'columnSelected',      
+			   		filterOptions: $scope.filterOptions,
+			   		i18n: 'fr',
+			   		enableCellSelection: true,
+        			enableRowSelection: false,
+        			/*enableCellEditOnFocus: true,*/
+			   		showFilter: true,
+			      	enablePaging: true,
+			      	jqueryUITheme: true,
+			        totalServerItems:'totalServerItems',
+        			pagingOptions: $scope.pagingOptions,
+			        showColumnMenu: true,
+			        enableColumnResize: true,
+			        enableColumnReordering: true,
+			        showFooter: true
+			    };
+			    
+			    $scope.update_columns = function($event) {
+			      $scope.columnsSelected = $scope.columns2;
+			    }
+
+				$scope.source = {};
+
+      			var fileUploaded = function(response) {
+      				var data = response.data.data;
+      				if (data.files && data.files[0].path) {
+      					$scope.path = data.files[0].path;
+      				}
+      			}
+      			$scope.getJSON = function() {
+      				SourceFactory.getParsedFile($scope.path).then(function(result) {
+	      				//$scope.myData = result.data.data;
+	      				
+	      				//console.log(Object.key());
+	      				$scope.columnSelected = [];
+	      				//console.log(Object.keys(result.data.data[0]));
+
+	      				var keys = Object.keys(result.data.data[0]);
+	      				var column = [];
+	      				angular.forEach(keys, function(item, index) {
+	      					column.push(
+	      						{
+	      							field: item,
+	      							displayName: item.replace('/\W/g', '_'),
+	      							minWidth: 150,
+	      							width: '20%',
+	      							maxWidth: 350,
+	      							/*enableCellEdit: true*/
+	      						});
+	      				});
+	      				$scope.columnSelected = column;
+	      				$scope.myData = result.data.data;
+	      				$scope.displayTable = true;
+	      				globalData = result.data.data;
+	      				console.log(result.data.data.length);
+	      				$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+	      			});
+      			}
+
+				$scope.onFileSelect = function($files) {
+      					var file = $files[0];
+      					$scope.upload = SourceFactory.postFile(file, fileUploaded).then(fileUploaded);
+			    }
 
 				if (operation === 'create') {
 					// Ici on check s'il existe déjà une source liée à ce dataset. Si c'est le cas, on charge les métadatas liés à ce dataset. 

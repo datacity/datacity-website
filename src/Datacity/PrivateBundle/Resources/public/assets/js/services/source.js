@@ -1,7 +1,7 @@
 (function() {
 	angular
 		.module('app')
-		.factory('SourceFactory', ['$http', function($http) {
+		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
 			return {
 				get: function(id) {
 					return $http
@@ -22,6 +22,31 @@
 							return response.data;
 						});
 				},
+				getParsedFile: function(path) {										
+					return $http(
+						{
+							method: 'GET',
+							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',
+							header: {'Content-Type': 'application/x-www-form-urlencoded;', 'Accept': 'text/html,application/json ,*/*;'}
+						}).success(function(response) {
+							console.log(response);
+							return response.data;
+							//return response.data;
+						}).error(function(message) {
+							console.log(message);
+						});
+				},
+				postFile: function(file, callback) {
+					return $upload.upload(
+						{
+						   	url: 'http://localhost:4567/users/delkje555/files/add',
+						    method: 'POST', 
+							file: file,
+						})
+					.success(function(response) {
+						return response.data;
+					});
+				}
 			}
 		}]);
 })();

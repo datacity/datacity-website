@@ -1,4 +1,6 @@
 <?php
+
+namespace Datacity\PublicBundle\Form;
 namespace Datacity\PrivateBundle\Entity;
 
 use Symfony\Component\Form\FormBuilderInterface;

@@ -21,7 +21,7 @@ Website: http://datacity.fr
 	<meta name="MobileOptimized" content="320">
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	{% block stylesheets %}
-	{% stylesheets
+   	{% stylesheets
 	'css/angular-strap-dep.css'
 	'css/ng-grid.css'
 	'bundles/datacityprivate/assets/plugins/font-awesome/css/font-awesome.min.css'
@@ -30,24 +30,19 @@ Website: http://datacity.fr
 
 	'bundles/datacityprivate/assets/plugins/dropzone/css/dropzone.css'
 	'bundles/datacityprivate/assets/plugins/dropzone/css/basic.css'
-	'bundles/datacityprivate/assets/plugins/gritter/css/jquery.gritter.css'
-	'bundles/datacityprivate/assets/plugins/bootstrap-datepicker/css/datepicker.css'
-	'bundles/datacityprivate/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
-	'bundles/datacityprivate/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css'
-	'bundles/datacityprivate/assets/plugins/jqvmap/jqvmap/jqvmap.css'
-	'bundles/datacityprivate/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
+
 
 	'bundles/datacityprivate/assets/css/style-metronic.css'
 	'bundles/datacityprivate/assets/css/style.css'
 	'bundles/datacityprivate/assets/css/style-responsive.css'
 	'bundles/datacityprivate/assets/css/plugins.css'
 	'bundles/datacityprivate/assets/css/pages/tasks.css'
-	'bundles/datacityprivate/assets/css/pages/search.css'
-	'bundles/datacityprivate/assets/css/pages/profile.css'
 	'bundles/datacityprivate/assets/css/themes/default.css'
 	'bundles/datacityprivate/assets/css/custom.css'
 	'bundles/datacityprivate/assets/css/autocomplete-jquery-ui.css'
 	'bundles/datacityprivate/assets/css/dashboard.css'
+	
+	'bundles/datacityprivate/assets/css/pages/profile.css'
 
 	'bundles/datacityprivate/assets/plugins/select2/select2_metro.css'
 	'bundles/datacityprivate/assets/plugins/data-tables/DT_bootstrap.css'
@@ -57,7 +52,17 @@ Website: http://datacity.fr
 	<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
 	{% endblock %}
+	{# 
 
+	'bundles/datacityprivate/assets/plugins/gritter/css/jquery.gritter.css'
+	'bundles/datacityprivate/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
+	'bundles/datacityprivate/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css'
+	'bundles/datacityprivate/assets/plugins/jqvmap/jqvmap/jqvmap.css'
+	'bundles/datacityprivate/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
+	#}
+
+ 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/overcast/jquery-ui.css" />
+ 
 	<link rel="shortcut icon" href="{{ asset('bundles/datacitypublic/ico/favicon.png') }}" />
 </head>
 <!-- END HEAD -->
@@ -288,10 +293,47 @@ Website: http://datacity.fr
 <script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 {# TEMP #}
 	<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://angular-file-upload.appspot.com/js/angular-file-upload-shim.js"></script> 
+	<script src="http://angular-file-upload.appspot.com/js/angular-file-upload.js"></script> 
+	
+	{# '@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/uniform/jquery.uniform.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/jquery.vmap.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.resize.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.pulsate.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/moment.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/daterangepicker.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
+'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/select2/select2.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/jquery.dataTables.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/DT_bootstrap.js' #}
+
+
 {# ENDTEMP #}
 
 {% javascripts
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-migrate-1.2.1.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap/js/bootstrap.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
+
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.blockui.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.cokie.min.js'
+
+
 	'js/angular-mods.js'
 	'js/angular-strap.js'
 	'js/ng-grid.js'
@@ -309,37 +351,12 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/sourceCtrl.js'
 	
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-migrate-1.2.1.min.js'
+	
+	
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap/js/bootstrap.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
-
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.blockui.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.cokie.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/uniform/jquery.uniform.min.js'
-
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/jquery.vmap.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.resize.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.pulsate.min.js'
-
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/moment.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/daterangepicker.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
+	
 
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
 
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
@@ -352,9 +369,7 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/js/datatable.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/router.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/select2/select2.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/jquery.dataTables.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/DT_bootstrap.js'
+	
 	%}
 	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
@@ -363,13 +378,13 @@ Website: http://datacity.fr
 	<script>
 	jQuery(document).ready(function() {
 
-   		//App.init(); // initlayout and core plugins
-   		//Index.init();
+   		App.init(); // initlayout and core plugins
+   		Index.init();
 
-   		//var router = new Router("{{ datacity_api_url }}");
-   		//FormDropzone.init(router);
-   		//new UploadDataBox("files", $('.uploadedFiles'), router);
-   		//var databiding = new DataBinding(router);
+   		var router = new Router("{{ datacity_api_url }}");
+   		FormDropzone.init(router);
+   		new UploadDataBox("files", $('.uploadedFiles'), router);
+   		var databiding = new DataBinding(router);
 	});
 	</script>
 	<!-- END JAVASCRIPTS -->

@@ -27,7 +27,7 @@ var FormDropzone = function () {
                     var formData = new FormData();
                     if (formData)
                       formData.append("files[]", file);
-                    router.postRemoteFiles(onUploadDone, {"data": formData});
+                    //router.postRemoteFiles(onUploadDone, {"data": formData});
 
                     listFiles.push(file);
                   
@@ -68,7 +68,7 @@ var FormDropzone = function () {
                       $.each(resFiles, function(index, item) {
                         if (item.name === file.name) {
                           deleteFile = item;
-                          router.deleteRemoteFile(onDeleteDone, {"path": item.path});
+                          //router.deleteRemoteFile(onDeleteDone, {"path": item.path});
                         }
                       });
 

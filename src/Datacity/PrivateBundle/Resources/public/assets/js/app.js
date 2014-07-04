@@ -3,7 +3,8 @@
 		.module('app', [
 			'mgcrea.ngStrap',
 			'ui.router',
-			'ngGrid'
+			'ngGrid',
+			'angularFileUpload'
 		])
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
