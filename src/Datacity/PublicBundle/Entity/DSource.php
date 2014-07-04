@@ -146,6 +146,13 @@ class DSource
     private $dataset;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Producer")
+     * @Serializer\Groups({"list", "datasetShow"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $producer;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -521,5 +528,28 @@ class DSource
     public function getLink()
     {
         return $this->link;
+    }
+
+    /**
+     * Set producer
+     *
+     * @param \Datacity\UserBundle\Entity\Producer $producer
+     * @return DSource
+     */
+    public function setProducer(\Datacity\PublicBundle\Entity\Producer $producer)
+    {
+        $this->producer = $producer;
+
+        return $this;
+    }
+
+    /**
+     * Get producer
+     *
+     * @return \Datacity\UserBundle\Entity\Producer 
+     */
+    public function getProducer()
+    {
+        return $this->producer;
     }
 }

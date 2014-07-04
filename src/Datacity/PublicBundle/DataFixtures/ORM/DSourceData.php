@@ -24,6 +24,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Source2');
@@ -37,6 +38,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marquis_c@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Source3');
@@ -50,6 +52,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Source4');
@@ -63,6 +66,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$source->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$source->setDataset($this->getReference("dataset-1"));
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 
 		//Batiments non résidentiels
@@ -79,6 +83,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-2"));
 		$source->setLink('http://opendata.montpelliernumerique.fr/Batiments');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[1])); //Territoire Montpellier Numérique
 		$manager->persist($source);
 
 		//Résultats des élections européennes
@@ -95,6 +100,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-3"));
 		$source->setLink('http://opendata.montpelliernumerique.fr/Resultats-des-elections-135');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[1])); //Territoire Montpellier Numérique
 		$manager->persist($source);
 
 		//Omnis iste
@@ -111,6 +117,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-4"));
 		$source->setLink('http://www.example.com');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Aenean molestie');
@@ -125,6 +132,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-4"));
 		$source->setLink('http://www.example.com');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Sed eu leo sed');
@@ -139,6 +147,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-4"));
 		$source->setLink('http://www.example.com');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 
 		$manager->flush();
@@ -146,6 +155,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 	
 	public function getOrder()
 	{
-		return 16;
+		return 17;
 	}
 }
