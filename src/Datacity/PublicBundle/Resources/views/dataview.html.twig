@@ -10,22 +10,18 @@
 	<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 	<script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
-	{# TEMP #}
-		<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
-	{# ENDTEMP #}
 	{% javascripts
 		'js/angular-mods.js'
 		'js/ui-bootstrap.js'
 	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/app.js'
 	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/services.js'
-	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/e2e-mock.js'
 	    %}
 	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}
 
 {% block pagecontent %}
-	<section id="content" data-ng-app="datacity.datasets.dev">
+	<section id="content" data-ng-app="datacity.datasets">
 	<div class="container">
 		<div class="row" data-ui-view></div>
 	</div>
