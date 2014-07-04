@@ -97,32 +97,7 @@ Website: http://datacity.fr
 							<a href="extra_profile.html"><i class="fa fa-user"></i> Mon Profile</a>
 						</li>
 						<li>
-							<a href="page_calendar.html"><i class="fa fa-calendar"></i> Mon Calendrier</a>
-						</li>
-						<li>
-							<a href="inbox.html"><i class="fa fa-envelope"></i> Mes mails
-								<span class="badge badge-danger">
-									3
-								</span>
-							</a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-tasks"></i> Mes taches
-								<span class="badge badge-success">
-									7
-								</span>
-							</a>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							<a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i> Plein écran</a>
-						</li>
-						<li>
-							<a href="extra_lock.html"><i class="fa fa-lock"></i> Ecran de vérouillage</a>
-						</li>
-						<li>
-							<a href="login.html"><i class="fa fa-key"></i> Déconnexion</a>
+							<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
 						</li>
 					</ul>
 				</li>
