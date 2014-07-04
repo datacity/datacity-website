@@ -2,7 +2,7 @@
 
 
 namespace Datacity\PublicBundle\Entity;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 use Datacity\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,8 +22,14 @@ class News
      */
     private $id;
 
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=228, unique=true)
+     */
+    private $slug;
+
      /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="news", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="news")
      */
     private $user;
 
@@ -49,15 +55,13 @@ class News
     
     /**
     * @var datetime $date
-    *
+    * @Gedmo\Timestampable(on="create")
     * @ORM\Column(name="date", type="datetime")
     */
     private $date;
 
     public function __construct()
     {
-    $this->date = new \Datetime('now', new \DateTimeZone('Europe/Paris'));
-    
     }    
 
     /**
@@ -159,41 +163,52 @@ class News
     public function getDate()
     {
         return $this->date;
-    }
+    }    
 
-   public function addImage(\Datacity\PublicBundle\Entity\Image $image)
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return News
+     */
+    public function setSlug($slug)
     {
-        $this->image[] = $image;
-    
+        $this->slug = $slug;
+
         return $this;
     }
 
     /**
-     * Remove image
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set image
      *
      * @param \Datacity\PublicBundle\Entity\Image $image
+     * @return News
      */
-    public function removeImage(\Datacity\PublicBundle\Entity\Image $image)
+    public function setImage(\Datacity\PublicBundle\Entity\Image $image = null)
     {
-        $this->image->removeElement($image);
+        $this->image = $image;
+
+        return $this;
     }
 
     /**
      * Get image
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Datacity\PublicBundle\Entity\Image 
      */
     public function getImage()
     {
         return $this->image;
     }
-    public function setImage($image)
-    {
-        $this->image = $image;
-    
-        return $this;
-    }
-
-    
-
 }
