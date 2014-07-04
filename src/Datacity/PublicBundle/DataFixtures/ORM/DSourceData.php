@@ -106,7 +106,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUsefulNb(0);
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
-		$source->addPlace($this->getReference('place-' . PlaceData::$placeName[7])); //France
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[7])); //France
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-4"));
@@ -120,7 +120,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
-		$source->addPlace($this->getReference('place-' . PlaceData::$placeName[8])); //Canada
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[8])); //Canada
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-4"));
@@ -134,7 +134,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setUsefulNb(2);
 		$source->setUndesirableNb(0);
 		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
-		$source->addPlace($this->getReference('place-' . PlaceData::$placeName[9])); //Allemagne
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[9])); //Allemagne
 		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
 		$source->setCreator($this->getReference("user-admin@datacity.fr"));
 		$source->setDataset($this->getReference("dataset-4"));
