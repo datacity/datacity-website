@@ -97,6 +97,50 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setLink('http://opendata.montpelliernumerique.fr/Resultats-des-elections-135');
 		$manager->persist($source);
 
+		//Omnis iste
+		$source = new DSource();
+		$source->setTitle('Praesent euismod');
+		$source->setSid('7');
+		$source->setSize(0.8);
+		$source->setDownloadNb(12);
+		$source->setUsefulNb(0);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
+		$source->addPlace($this->getReference('place-' . PlaceData::$placeName[7])); //France
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-4"));
+		$source->setLink('http://www.example.com');
+		$manager->persist($source);
+		$source = new DSource();
+		$source->setTitle('Aenean molestie');
+		$source->setSid('8');
+		$source->setSize(1.2);
+		$source->setDownloadNb(15);
+		$source->setUsefulNb(1);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
+		$source->addPlace($this->getReference('place-' . PlaceData::$placeName[8])); //Canada
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-4"));
+		$source->setLink('http://www.example.com');
+		$manager->persist($source);
+		$source = new DSource();
+		$source->setTitle('Sed eu leo sed');
+		$source->setSid('9');
+		$source->setSize(1.1);
+		$source->setDownloadNb(23);
+		$source->setUsefulNb(2);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
+		$source->addPlace($this->getReference('place-' . PlaceData::$placeName[9])); //Allemagne
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-4"));
+		$source->setLink('http://www.example.com');
+		$manager->persist($source);
+
 		$manager->flush();
 	}
 	

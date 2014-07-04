@@ -148,6 +148,38 @@ class DataColumnsData extends AbstractFixture implements OrderedFixtureInterface
 		$data->setDataset($this->getReference('dataset-3'));
 		$manager->persist($data);
 
+		//Omnis iste
+		$data = new DataColumns();
+		$data->setName('Position');
+		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[0])); //GeoPoint
+		$data->setDataset($this->getReference('dataset-4'));
+		$manager->persist($data);
+		$data = new DataColumns();
+		$data->setName('Nom');
+		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[1])); //Texte
+		$data->setDataset($this->getReference('dataset-4'));
+		$manager->persist($data);
+		$data = new DataColumns();
+		$data->setName('Date');
+		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[3])); //Date
+		$data->setDataset($this->getReference('dataset-4'));
+		$manager->persist($data);
+		$data = new DataColumns();
+		$data->setName('Adresse');
+		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[4])); //Adresse
+		$data->setDataset($this->getReference('dataset-4'));
+		$manager->persist($data);
+		$data = new DataColumns();
+		$data->setName('Durée en jours');
+		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[2])); //Nombre
+		$data->setDataset($this->getReference('dataset-4'));
+		$manager->persist($data);
+		$data = new DataColumns();
+		$data->setName('Commune');
+		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[1])); //Texte
+		$data->setDataset($this->getReference('dataset-4'));
+		$manager->persist($data);
+
 		$manager->flush();
 	}
 	

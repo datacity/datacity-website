@@ -70,6 +70,28 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->persist($dataset);
 		$this->addReference("dataset-". $dataset->getDid(), $dataset);
 
+		$dataset = new Dataset();
+		$dataset->setTitle('Omnis iste');
+		$dataset->setDid('4');
+		$dataset->setDescription('Sed eu leo sed purus tempus tincidunt id a dui. Duis volutpat eros nec ipsum rutrum vehicula. Proin viverra elit non sodales lobortis. Pellentesque vitae felis ac ligula pharetra laoreet non et dui. In nec eros nec mi egestas hendrerit. Nulla facilisi. Quisque scelerisque tortor non urna tempus, nec sagittis ligula rutrum. Aliquam rutrum id felis in interdum. Morbi consectetur urna nec est convallis, ut ornare leo cursus. Curabitur nec nulla sed magna bibendum hendrerit. Proin est sapien, condimentum at sagittis id, pharetra sit amet lectus. Nunc in molestie odio.');
+		$dataset->setLink('http://www.example.com');
+		$dataset->setVisitedNb(354);
+		$dataset->setUsefulNb(2);
+		$dataset->setUndesirableNb(0);
+		$dataset->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
+		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[7])); //France
+		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[8])); //Canada
+		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[9])); //Allemagne
+		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
+		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
+		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[2])); //Transports
+		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[1])); //Service public
+		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[2])); //Vélo
+		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[3])); //Voiture
+		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[1])); //Licence2
+		$manager->persist($dataset);
+		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+
 		$manager->flush();
 	}
 	
