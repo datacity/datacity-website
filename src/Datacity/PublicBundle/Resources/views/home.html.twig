@@ -144,7 +144,7 @@
 							<li class="item-thumbs span3 {{ appl.city.name }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
 							<h5>{{ appl.name }}</h5>
 							<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'id' : appl.id }) }}">
+							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'slug' : appl.slug }) }}">
 							<span class="overlay-img"></span>
 							<span class="overlay-img-thumb font-icon-plus"></span>
 							</a>
