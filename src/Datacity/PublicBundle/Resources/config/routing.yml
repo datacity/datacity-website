@@ -68,10 +68,6 @@ datacity_public_api_dataset_show:
     options:
         expose: true
 
-datacity_public_talkaboutus:
-    pattern:  /talkaboutus
-    defaults: { _controller: DatacityPublicBundle:Page:talkaboutus }
-
 datacity_public_condition:
     pattern:  /condition
     defaults: { _controller: DatacityPublicBundle:Page:condition }
