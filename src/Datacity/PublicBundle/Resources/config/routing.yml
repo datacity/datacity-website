@@ -12,10 +12,6 @@ datacity_public_contactpage:
     pattern:  /contact
     defaults: { _controller: DatacityPublicBundle:Page:contact }
 
-datacity_public_documentationpage:
-    pattern:  /documentation
-    defaults: { _controller: DatacityPublicBundle:Page:documentation }
-
 datacity_public_portalpage:
     pattern:  /app
     defaults: { _controller: DatacityPublicBundle:App:portal }
