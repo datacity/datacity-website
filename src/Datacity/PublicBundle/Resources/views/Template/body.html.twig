@@ -77,17 +77,10 @@
 					<div class="navigation">
 						<nav>
 						<ul class="nav topnav">
-							<li class="active">
-								<a href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a>
-							</li>
-							<li class="dropdown">
-								<a>{{ 'menu.service'|trans }}<i class="icon-angle-down"></i></a>
-								<ul class="dropdown-menu">
-								<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
-								<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
-								<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
-							</ul>
-							</li>
+							<li><a href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a></li>
+							<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
+							<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
+							<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
 							<li><a href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
 						</ul>
 						</nav>
