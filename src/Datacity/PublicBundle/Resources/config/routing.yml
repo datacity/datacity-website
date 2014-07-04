@@ -19,7 +19,15 @@ datacity_public_portalpage:
 datacity_public_appDetail:
     pattern:  /app/{id}
     defaults: { _controller: DatacityPublicBundle:App:appDetail, id: 0 }
-    
+
+datacity_public_producerpage:
+    pattern:  /producer
+    defaults: { _controller: DatacityPublicBundle:Producer:list }
+
+datacity_public_producer_detail:
+    pattern:  /producer/{slug}
+    defaults: { _controller: DatacityPublicBundle:Producer:show }
+
 datacity_public_news:
     pattern:  /news
     defaults: { _controller: DatacityPublicBundle:News:news }

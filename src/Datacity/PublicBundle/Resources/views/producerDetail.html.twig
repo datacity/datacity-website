@@ -1,0 +1,49 @@
+{% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+{% trans_default_domain "producerDetail" %}
+
+{# Ici, on configure les parametre de base de la page #}
+{% block title %}Datacity -- Producteur{% endblock %}
+{% block pagetitle %}Producteur{% endblock %}
+{% block pagename %}Producteur{% endblock %}
+{% block pagecontent %}
+	<section id="content">
+		<div class="container">
+			<div class="row">
+				<div class="span8">
+					<article>
+					<div class="top-wrapper">
+						<div class="post-heading">
+							{# On recupere ici le nom de l'applciation en cour de visualisation #}
+							<h3><a href="#">{{ producer.name }}</a></h3>
+						</div>
+						<!-- start flexslider -->
+						<div class="flexslider">
+							<ul class="slides">
+							<li>
+								<img src="{{ producer.image.url }}" alt="{{ producer.image.alt }}" />
+							</li>
+							</ul>
+						</div>
+						<!-- end flexslider -->
+					</div>
+					<p>
+						{# On recupere et insere ci-dessous la description de l'application en cour de visualisation #}		
+						 {{ producer.description }}
+					</p>
+					</article>
+				</div>
+				<div class="span4">
+					<aside class="right-sidebar">
+					<div class="widget">
+						<h5 class="widgetheading">Informations</h5>
+						{# On genere ci-dessous le panel droit contenant les details de l'application en cour de visualisation #}
+						<ul class="folio-detail">
+							<li><label>{{ 'link'|trans }} :</label> <a href="{{ producer.link }}">{{ producer.link }}</a></li>
+						</ul>
+					</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section> 
+{% endblock %}

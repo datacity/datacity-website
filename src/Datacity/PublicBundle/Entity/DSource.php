@@ -40,7 +40,7 @@ class DSource
 
     /**
      * @var string
-     * Le liens vers le site d'origine (non renseigné si identique au dataset).
+     * Le lien vers le site d'origine (non renseigné si identique au dataset).
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      * @Serializer\Groups({"datasetShow"})
      */

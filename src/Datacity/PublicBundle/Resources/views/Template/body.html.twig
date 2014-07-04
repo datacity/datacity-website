@@ -47,8 +47,8 @@
 	<div class="container ">
 		<!-- hidden top area toggle link -->
 		<div id="header-hidden-link">
-			<a href="{{ path(app.request.attributes.get('_route'), {"_locale": "fr"}) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_fr.jpg') }}" alt="fr" /></a>
-			<a href="{{ path(app.request.attributes.get('_route'), {"_locale": "en"}) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_uk.jpg') }}" alt="en" /></a>
+			<a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "fr"})) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_fr.jpg') }}" alt="fr" /></a>
+			<a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "en"})) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_uk.jpg') }}" alt="en" /></a>
 		</div>
 		<!-- end toggle link -->
 		<div class="row nomargin">
@@ -81,6 +81,7 @@
 							<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
 							<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
 							<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
+							<li><a href="{{ path('datacity_public_producerpage') }}">{{ 'menu.producers'|trans }}</a></li>
 							<li><a href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
 						</ul>
 						</nav>

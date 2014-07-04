@@ -26,7 +26,7 @@ class Producer
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=200)
      * @Serializer\Expose
      * @Serializer\Groups({"datasetShow"})
      */
@@ -35,7 +35,7 @@ class Producer
     /**
      * @var string
      * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=228, unique=true)
      * @Serializer\Expose
      * @Serializer\Groups({"datasetShow"})
      */
@@ -49,9 +49,17 @@ class Producer
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=255, unique=true)
+     */
+    private $link;
+
+    /**
      * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image")
      * @Serializer\Expose
      * @Serializer\Groups({"datasetShow"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $image;
 
@@ -155,5 +163,28 @@ class Producer
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return Producer
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 }
