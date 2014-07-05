@@ -45,7 +45,7 @@
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
 					resolve: {
-						operation: function() {return 'add'}
+						operation: function() {return 'create'}
 					}
 				})
 				.state('editSource', {

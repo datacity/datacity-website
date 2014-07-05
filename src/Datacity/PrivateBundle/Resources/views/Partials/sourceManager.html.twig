@@ -1,13 +1,15 @@
 {% verbatim %}
 <!-- File Uploader -->
-<input type="file" ng-file-select="onFileSelect($files)" >
+<input data-ng-if="operation = create" type="file" ng-file-select="onFileSelect($files)" >
 <hr/>
 <button class="btn btn-primary" ng-click="getJSON()">Upload</button>
 <hr/>
 
 <!-- END File Uploader -->
-
-<div data-ng-if="displayTable" class="gridStyle" ng-grid="gridOptions"></div>
+<div class="row">
+	<div class="col-md-8" data-ng-if="displayTable" class="gridStyle" ng-grid="gridOptions"/>
+	<div class="col-md-4" ></div>
+</div>
 <!--<button type="button" ng-click="update_columns($event)">Change Columns</button>-->
 <!--<div> {{myData}}</div>-->
  {% endverbatim %}

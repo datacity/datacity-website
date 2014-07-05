@@ -3,6 +3,8 @@
 		.module('app')
 		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
 			return {
+
+				
 				get: function(id) {
 					return $http
 						.get('/app_dev.php/private/source/get/' + id).then(function(response) {
@@ -36,7 +38,7 @@
 							console.log(message);
 						});
 				},
-				postFile: function(file, callback) {
+				postFile: function(file) {
 					return $upload.upload(
 						{
 						   	url: 'http://localhost:4567/users/delkje555/files/add',
@@ -46,6 +48,50 @@
 					.success(function(response) {
 						return response.data;
 					});
+				},
+				/**
+				 * [getExistingData renvoi les métadonnées et le databinding lié à une source déjà existante. S'il y a plus d'une source, on prend compte de la dernière source créée en date
+				 * Si on ne trouve aucune source, on renvoi 
+				 * @param  {string} idDataset [récuperer les sources qui sont contenues dans le dataset : idDataset]
+				 * @return {Object}           [Object.dataModel => le shéma de structure, Object.metadata => Les meta liées à la source]
+				 */
+				getExistingData: function(idDataset) {
+					return $http
+						.get('/app_dev.php/private/source/getExisting/' + idDataset).then(function(response) {
+							return response.data;
+						});
+				},
+
+				getExistingDataPopulateExemple: function(idDataset, empty) {
+					if (empty)
+						return null;
+					else
+					return {
+						dataModel: [{
+							column: "nom"
+						}, {
+							column: "téléphone"
+						}, {
+							column: "age"
+						}],
+						metadata: {
+							title: 'Ma source de test',
+							link: 'http://datacity.fr',
+							//On charge toutes les instances de la table place mais on charge juste le champ name
+							place: [{id: '1', name: 'Montpellier'},{id: '2', name: 'Lunel'}, {id: '3', name: 'Paris'}],
+							dateBegin: new Date('2012'),
+							dateEnd: new Date('2014'),
+							// On charge toutes les instances de la table frequency mais on charge juste le champ name et id
+							frequency: [{id: '1', name: 'Mensuelle'}, {id: '2', name: 'Semestrielle'}, {id: '3', name: 'Temps réel'}],
+							// On charge toutes les instances de la table coverage territory mais on charge juste le champ name
+							coverageTerritory: [{id: '1', name: 'Canton'}, {id: '2', name: 'Commune'}, {id: '3', name: 'Département'}],
+							// On charge toutes les instances de la table licence mais on charge juste le champ name
+							licence: [{id: '1', name: 'Open Data Commons Attribution Licence'}, {id: '2', name: 'Licence Ouverte'}, {id: '3', name: 'Creative Commons Attribution'}],
+							// On charge toutes les instances de la table category mais on charge juste le champ name
+							category: [{id: '1', name: 'Culture'}, {id: '2', name: 'Société'}, {id: '3', name: 'Santé et Social'}]
+
+						}
+					};
 				}
 			}
 		}]);
