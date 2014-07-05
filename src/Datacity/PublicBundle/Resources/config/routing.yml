@@ -60,12 +60,6 @@ datacity_public_api_search_list:
     options:
         expose: true
 
-datacity_public_api_search_popular:
-    pattern:  /api/popular
-    defaults: { _controller: DatacityPublicBundle:SearchApi:popular }
-    options:
-        expose: true
-
 datacity_public_api_dataset_show:
     pattern:  /api/dataset/{slug}
     defaults: { _controller: DatacityPublicBundle:DatasetApi:show }

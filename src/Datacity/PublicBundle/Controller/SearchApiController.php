@@ -17,14 +17,6 @@ class SearchApiController extends Controller
         $licence = json_decode($request->query->get('licenses'));
         $frequency = json_decode($request->query->get('frequencies'));
 
-        //Ne devrais pas arriver (uniquement si la requete est faite a la main)
-        if (!$text && !$place)
-        {
-            $response = new Response();
-            $response->setStatusCode(400);
-            return $response;
-        }
-
         $qb = $this->getDoctrine()->getRepository('DatacityPublicBundle:Dataset')->createQueryBuilder('d');
 
         if ($text)
@@ -60,6 +52,8 @@ class SearchApiController extends Controller
                 ->andWhere($qb->expr()->in('freq.name', ':frequency'))
                 ->setParameter('frequency', $frequency);
         }
+        
+        $qb->orderBy('d.visitedNb', 'DESC');
         //TODO KnpPaginatorBundle 
         $response = new Response();
         $results = $qb->getQuery()->getResult();
@@ -110,22 +104,6 @@ class SearchApiController extends Controller
         //10 min de mise en cache, cela dit pour cette requete de ce type une validation est bien plus adaptee...
         $response->setSharedMaxAge(600);
         $response->setMaxAge(600);
-        return $response;
-    }
-
-    public function popularAction(Request $request)
-    {
-        $qb = $this->getDoctrine()->getRepository('DatacityPublicBundle:Dataset')->createQueryBuilder('d');
-
-        $qb->orderBy('d.visitedNb', 'DESC');
-        //TODO KnpPaginatorBundle
-        
-        $response = new Response();
-        $results = $qb->getQuery()->getResult();
-        $serializer = $this->get('jms_serializer');
-        $response->setContent('{"results":' . $serializer->serialize($results,
-                            'json', SerializationContext::create()->setGroups(array('list'))) . '}');
-        $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
 }

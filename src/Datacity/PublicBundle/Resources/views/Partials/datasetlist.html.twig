@@ -1,8 +1,8 @@
 <div class="span12">
 	<form class="form-search" >
-		<input data-ng-model="searchText" placeholder="Rechercher" type="text" class="input-medium search-query">
+		<input data-ng-model="text" placeholder="Rechercher" type="text" class="input-medium search-query">
 		<input data-typeahead="address for address in getLocation($viewValue)" data-typeahead-loading="loadingLocations"
-			data-ng-model="searchPlace" placeholder="Ou ?" type="text" class="input-medium search-query"
+			data-ng-model="place" placeholder="Ou ?" type="text" class="input-medium search-query"
 			data-typeahead-editable='false'>
 		<i ng-show="loadingLocations" class="icon-refresh"></i>
 		<p>Catégorie</p>

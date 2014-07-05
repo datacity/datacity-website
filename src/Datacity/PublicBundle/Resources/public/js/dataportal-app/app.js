@@ -55,7 +55,9 @@ angular
             $scope.licenses = filters.licenses;
             $scope.frequencies = filters.frequencies;
             var timer = false;
-            $scope.$watch('searchText', function(){
+            $scope.$watch('text', function(a, b) {
+                if (a === b)
+                    return;
                 if (timer) {
                     $timeout.cancel(timer)
                 }  
@@ -63,16 +65,24 @@ angular
                     $scope.search();
                 }, 500)
             });
-            $scope.$watch('categories', function() {
+            $scope.$watch('categories', function(a, b) {
+                if (a === b)
+                    return;
                 $scope.search();
             }, true);
-            $scope.$watch('licenses', function() {
+            $scope.$watch('licenses', function(a, b) {
+                if (a === b)
+                    return;
                 $scope.search();
             }, true);
-            $scope.$watch('frequencies', function() {
+            $scope.$watch('frequencies', function(a, b) {
+                if (a === b)
+                    return;
                 $scope.search();
             }, true);
-            $scope.$watch('searchPlace', function() {
+            $scope.$watch('place', function(a, b) {
+                if (a === b)
+                    return;
                 $scope.search();
             });
             $scope.goto = function(dataset) {
@@ -82,6 +92,7 @@ angular
             }
             $scope.getLocation = function(val) {
                 return $http.get(Routing.generate('datacity_public_api_place'), {
+                    ignoreLoadingBar: true,
                     params: {
                         q: val
                     }
@@ -94,13 +105,9 @@ angular
                 });
             };
             $scope.search = function() {
-                if (!$scope.searchText && !$scope.searchPlace) {
-                    $scope.datasets = datasets;
-                    return;
-                }
                 DatasetFactory.searchDatasets({
-                    text: $scope.searchText,
-                    place: $scope.searchPlace,
+                    text: $scope.text,
+                    place: $scope.place,
                     categories: $scope.categories,
                     licenses: $scope.licenses,
                     frequencies: $scope.frequencies

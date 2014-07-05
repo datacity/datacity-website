@@ -43,7 +43,7 @@
                 };
                 return {
                     getPopularDatasets: function() {
-                        return parseDatasets($http.get(Routing.generate('datacity_public_api_search_popular')));
+                        return parseDatasets($http.get(Routing.generate('datacity_public_api_search')));
                     },
                     searchDatasets: function(filters) {
                         filters.categories = keepSelectedFilter(filters.categories);
