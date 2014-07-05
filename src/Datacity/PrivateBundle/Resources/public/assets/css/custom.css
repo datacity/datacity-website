@@ -73,12 +73,6 @@
   	max-width: 100%;
 }
 
-.follow-btn {
-	position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
 .col-md-7-5 {
 	width: 62.7%;
 	min-height: 1px;
@@ -109,6 +103,16 @@
 .follow-img {
 	max-height: 100%;
   	max-width: 100%;
+}
+
+.follow-info i {
+	color: #4d90fe;
+}
+
+.follow-btn {
+	position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 hr.fancy-line { 
@@ -143,7 +147,30 @@ body, hr.fancy-line:after {
 	border-collapse: separate;
 }
 
+.profile-table > .nav-tabs > li > a {
+	line-height: 1;
+}
+
 .gridStyle {
     width: 1400px; 
     height: 500px
+}
+
+.dataset-actions {
+	margin-top: 50px;
+}
+
+.custom-color {
+	color: white;
+	background-color: #d84a38;
+}
+
+.custom-color.active {
+	color: white;
+	background-color: #35aa47;
+}
+
+.custom-color:active, .custom-color:hover {
+	color: white;
+	background-color: #1D943B;
 }

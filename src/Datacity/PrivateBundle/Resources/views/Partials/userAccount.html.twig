@@ -2,98 +2,91 @@
 	<div class="col-md-3">
 		<ul class="ver-inline-menu tabbable margin-bottom-10">
 			<li class="active">
-				<a data-toggle="tab" href="#tab_1-1">
-					<i class="fa fa-cog"></i> Modifier Profil </a>
-					<span class="after">
-					</span>
-				</li>
-				<li>
-					<a data-toggle="tab" href="#tab_2-2"><i class="fa fa-picture-o"></i> Modifier Avatar</a>
-				</li>
-				<li>
-					<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Modifier Mot de passe</a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-9">
-			<div class="tab-content">
-				<div id="tab_1-1" class="tab-pane active">
-					<form role="form" ng-submit="updateUser()">
-						<div class="form-group">
-							<label class="control-label">Prenom</label>
-							<input type="text" ng-model="user.firstName" placeholder="Votre prénom" class="form-control"/>
+			<a data-toggle="tab" href="#tab_1-1">
+				<i class="fa fa-cog"></i> Modifier Profil </a>
+				<span class="after">
+				</span>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#tab_2-2"><i class="fa fa-picture-o"></i> Modifier Avatar</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Modifier Mot de passe</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<div class="tab-content">
+			<div id="tab_1-1" class="tab-pane active">
+				<form role="form" ng-submit="updateUser()">
+					<div class="form-group">
+						<label class="control-label">Prenom</label>
+						<input type="text" ng-model="user.firstName" placeholder="Votre prénom" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Nom</label>
+						<input type="text" ng-model="user.lastName" placeholder="Votre nom" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Activité</label>
+						<input type="text" placeholder="Votre activité (Ex: Développeur web)" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">A propos</label>
+						<textarea class="form-control" rows="3" ng-model="user.about" placeholder="A propos de vous (Ex: Je suis spécialisé dans l'open data depuis son arrivée en France)"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Site Web</label>
+						<input type="text" ng-model="user.website" placeholder="Votre site internet" class="form-control"/>
+					</div>
+					<div class="margiv-top-10">
+						<input type="submit" value="Sauvegarder" class="btn green"/>
+						<input class="btn default" type="reset" value="Annuler"/>
+					</div>
+				</form>
+			</div>
+			<div id="tab_2-2" class="tab-pane">
+				<form role="form" ng-submit="uploadImage()">
+					<div class="form-group">
+						<div class="thumbnail" style="width: 200px;">
+							<img id="thumbnail-preview" src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="Image Preview"/>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Nom</label>
-							<input type="text" ng-model="user.lastName" placeholder="Votre nom" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Activité</label>
-							<input type="text" placeholder="Votre activité (Ex: Développeur web)" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label class="control-label">A propos</label>
-							<textarea class="form-control" rows="3" ng-model="user.about" placeholder="A propos de vous (Ex: Je suis spécialisé dans l'open data depuis son arrivée en France)"></textarea>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Site Web</label>
-							<input type="text" ng-model="user.website" placeholder="Votre site internet" class="form-control"/>
-						</div>
-						<div class="margiv-top-10">
-							<input type="submit" value="Sauvegarder" class="btn green"/>
-							<a href="#" class="btn default">Annuler</a>
-						</div>
-					</form>
-				</div>
-				<div id="tab_2-2" class="tab-pane">
-					<form action="#" role="form">
-						<div class="form-group">
-							<div class="thumbnail" style="width: 310px;">
-								{# <img src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt=""> #}
-							</div>
-							<div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
-								<div class="input-group input-group-fixed">
-									<span class="input-group-btn">
-										<span class="uneditable-input">
-											<i class="fa fa-file fileupload-exists"></i>
-											<span class="fileupload-preview">
-											</span>
-										</span>
-									</span>
-									<span class="btn default btn-file">
-										<input type="file" class="default"/>
-									</span>
-									<a href="#" class="btn red fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Supprimer</a>
-								</div>
+						<div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
+							<div class="input-group input-group-fixed">
+								<span class="btn default btn-file">
+									<input id="upload-input" type="file" ng-file-select="onImageSelect($files)" class="default"/>
+								</span>
+								<input ng-click="deleteImage()" class="btn red fileupload-exists" type="reset" value="Supprimer"/>
 							</div>
 						</div>
-						<div class="margin-top-10">
-							<a href="#" class="btn green">Envoyer</a>
-							<a href="#" class="btn default">Annuler</a>
-						</div>
-					</form>
-				</div>
-				<div id="tab_3-3" class="tab-pane">
-					<form action="#">
-						<div class="form-group">
-							<label class="control-label">Current Password</label>
-							<input type="password" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label class="control-label">New Password</label>
-							<input type="password" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Re-type New Password</label>
-							<input type="password" class="form-control"/>
-						</div>
-						<div class="margin-top-10">
-							<a href="#" class="btn green">Change Password</a>
-							<a href="#" class="btn default">Cancel</a>
-						</div>
-					</form>
-				</div>
+					</div>
+					<div class="margin-top-10">
+						<input type="submit" value="Envoyer" class="btn green"/>
+						<input ng-click="deleteImage()" class="btn default" type="reset" value="Annuler" />
+					</div>
+				</form>
+			</div>
+			<div id="tab_3-3" class="tab-pane">
+				<form action="#">
+					<div class="form-group">
+						<label class="control-label">Current Password</label>
+						<input type="password" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">New Password</label>
+						<input type="password" class="form-control"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Re-type New Password</label>
+						<input type="password" class="form-control"/>
+					</div>
+					<div class="margin-top-10">
+						<a href="#" class="btn green">Change Password</a>
+						<input class="btn default" type="reset" value="Annuler" />
+					</div>
+				</form>
 			</div>
 		</div>
-		<!--end col-md-9-->
 	</div>
+	<!--end col-md-9-->
+</div>
