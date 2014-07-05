@@ -76,7 +76,7 @@
 						}],
 						metadata: {
 							title: 'Ma source de test',
-							link: 'http://datacity.fr',
+							link: 'http://datacity.fr/fileTest.csv',
 							//On charge toutes les instances de la table place mais on charge juste le champ name
 							place: [{id: '1', name: 'Montpellier'},{id: '2', name: 'Lunel'}, {id: '3', name: 'Paris'}],
 							dateBegin: new Date('2012'),
@@ -88,7 +88,7 @@
 							// On charge toutes les instances de la table licence mais on charge juste le champ name
 							licence: [{id: '1', name: 'Open Data Commons Attribution Licence'}, {id: '2', name: 'Licence Ouverte'}, {id: '3', name: 'Creative Commons Attribution'}],
 							// On charge toutes les instances de la table category mais on charge juste le champ name
-							category: [{id: '1', name: 'Culture'}, {id: '2', name: 'Société'}, {id: '3', name: 'Santé et Social'}]
+							categories: [{id: '1', name: 'Culture'}, {id: '2', name: 'Société'}, {id: '3', name: 'Santé et Social'}]
 
 						}
 					};

@@ -4,6 +4,7 @@
 			'mgcrea.ngStrap',
 			'ui.router',
 			'ngGrid',
+			'ngSanitize',
 			'angularFileUpload'
 		])
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
