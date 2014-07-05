@@ -1,18 +1,44 @@
 <div class="span12">
 	<form class="form-search" >
-		<input data-ng-model="searchText" placeholder="Rechercher" type="text" class="input-medium search-query" data-ng-change="search()">
+		<input data-ng-model="searchText" placeholder="Rechercher" type="text" class="input-medium search-query">
 		<input data-typeahead="address for address in getLocation($viewValue)" data-typeahead-loading="loadingLocations"
 			data-ng-model="searchPlace" placeholder="Ou ?" type="text" class="input-medium search-query"
 			data-typeahead-editable='false'>
 		<i ng-show="loadingLocations" class="icon-refresh"></i>
+		<p>Catégorie</p>
+		<div
+		    data-multi-select
+		    data-input-model="categories"
+		    data-button-label="name"
+		    data-item-label="name"
+		    data-tick-property="selected"
+		    data-max-labels="1"
+		    data-helper-elements="all none"
+		>
+		</div>
+		<p>License</p>
+		<div
+		    data-multi-select
+		    data-input-model="licenses"
+		    data-button-label="name"
+		    data-item-label="name"
+		    data-tick-property="selected"
+		    data-max-labels="1"
+		    data-helper-elements="all none"
+		>
+		</div>
+		<p>Fréquence</p>
+		<div
+		    data-multi-select
+		    data-input-model="frequencies"
+		    data-button-label="name"
+		    data-item-label="name"
+		    data-tick-property="selected"
+		    data-max-labels="1"
+		    data-helper-elements="all none"
+		>
+		</div>
 	</form>
-	{# Affichage des catégories de donnée #}
-	{% verbatim %}
-	<ul class="inline">
-		<li>Categorie</li>
-		<li>Afficher</li>
-	</ul>
-	{% endverbatim %}
 </div>
 {# Affichage des données avec leur titre un apercu de leur descriptif et leur image si il y en a une #}
 <div class="span12">

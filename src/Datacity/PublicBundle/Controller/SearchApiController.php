@@ -13,9 +13,9 @@ class SearchApiController extends Controller
     {
         $text = $request->query->get('text');
         $place = $request->query->get('place');
-        $category = $request->query->get('category');
-        $licence = $request->query->get('licence');
-        $frequency = $request->query->get('frequency');
+        $category = json_decode($request->query->get('categories'));
+        $licence = json_decode($request->query->get('licenses'));
+        $frequency = json_decode($request->query->get('frequencies'));
 
         //Ne devrais pas arriver (uniquement si la requete est faite a la main)
         if (!$text && !$place)
@@ -43,21 +43,21 @@ class SearchApiController extends Controller
         if ($category)
         {
             $qb->leftJoin('d.category', 'cat')
-                ->andWhere($qb->expr()->eq('cat.name', ':category'))
+                ->andWhere($qb->expr()->in('cat.name', ':category'))
                 ->setParameter('category', $category);
         }
 
         if ($licence)
         {
             $qb->leftJoin('d.licence', 'lic')
-                ->andWhere($qb->expr()->eq('lic.name', ':licence'))
+                ->andWhere($qb->expr()->in('lic.name', ':licence'))
                 ->setParameter('licence', $licence);
         }
 
         if ($frequency)
         {
             $qb->leftJoin('d.frequency', 'freq')
-                ->andWhere($qb->expr()->eq('freq.name', ':frequency'))
+                ->andWhere($qb->expr()->in('freq.name', ':frequency'))
                 ->setParameter('frequency', $frequency);
         }
         //TODO KnpPaginatorBundle 
@@ -100,9 +100,9 @@ class SearchApiController extends Controller
         $licenses = $this->getDoctrine()->getRepository("DatacityPublicBundle:License")->findAll();
         $frequencies = $this->getDoctrine()->getRepository("DatacityPublicBundle:Frequency")->findAll();
         $serializer = $this->get('jms_serializer');
-        $results = '{"results":[{"categories":'. $serializer->serialize($categories, 'json') .
-                    '},{"licenses":' . $serializer->serialize($licenses, 'json') .
-                    '},{"frequencies": ' . $serializer->serialize($frequencies, 'json') . '}]}';
+        $results = '{"results":{"categories":'. $serializer->serialize($categories, 'json') .
+                    ',"licenses":' . $serializer->serialize($licenses, 'json') .
+                    ',"frequencies": ' . $serializer->serialize($frequencies, 'json') . '}}';
         $response = new Response();
         $response->setContent($results);
         $response->headers->set('Content-Type', 'application/json');

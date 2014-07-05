@@ -1,7 +1,9 @@
 angular
     .module('datacity.datasets', [
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'multi-select',
+        'angular-loading-bar'
     ])
     .config(['$urlRouterProvider', '$stateProvider',
         function($urlRouterProvider, $stateProvider) {
@@ -16,6 +18,18 @@ angular
                         datasets: ['DatasetFactory',
                             function(DatasetFactory) {
                                 return DatasetFactory.getPopularDatasets();
+                            }
+                        ],
+                        filters: ['$http',
+                            function($http) {
+                                return $http.get(Routing.generate('datacity_public_api_search_list')).then(function(res) {
+                                    angular.forEach(res.data.results, function(item) {
+                                        angular.forEach(item, function(data) {
+                                            data.selected = true;
+                                        });
+                                    });
+                                    return res.data.results;
+                                });
                             }
                         ]
                     },
@@ -34,12 +48,32 @@ angular
                 });
         }
     ])
-    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory',
-        function($scope, $state, $http, datasets, DatasetFactory) {
+    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory', 'filters', '$timeout',
+        function($scope, $state, $http, datasets, DatasetFactory, filters, $timeout) {
             $scope.datasets = datasets;
-            $scope.$watch('searchPlace', function() {
-                if ($scope.searchPlace != undefined)
+            $scope.categories = filters.categories;
+            $scope.licenses = filters.licenses;
+            $scope.frequencies = filters.frequencies;
+            var timer = false;
+            $scope.$watch('searchText', function(){
+                if (timer) {
+                    $timeout.cancel(timer)
+                }  
+                timer = $timeout(function() {
                     $scope.search();
+                }, 500)
+            });
+            $scope.$watch('categories', function() {
+                $scope.search();
+            }, true);
+            $scope.$watch('licenses', function() {
+                $scope.search();
+            }, true);
+            $scope.$watch('frequencies', function() {
+                $scope.search();
+            }, true);
+            $scope.$watch('searchPlace', function() {
+                $scope.search();
             });
             $scope.goto = function(dataset) {
                 $state.go('dataset', {
@@ -64,7 +98,13 @@ angular
                     $scope.datasets = datasets;
                     return;
                 }
-                DatasetFactory.searchDatasets($scope.searchText, $scope.searchPlace).then(function(data) {
+                DatasetFactory.searchDatasets({
+                    text: $scope.searchText,
+                    place: $scope.searchPlace,
+                    categories: $scope.categories,
+                    licenses: $scope.licenses,
+                    frequencies: $scope.frequencies
+                }).then(function(data) {
                     $scope.datasets = data;
                 });
             }

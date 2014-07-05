@@ -81,10 +81,17 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/angular-ui/ng-grid-style/ng-grid.css
             output: css/ng-grid.css
-        uibootstrap:
+        datasetsearchmod:
             inputs:
                 - %kernel.root_dir%/../vendor/angular-ui/ui-bootstrap/ui-bootstrap-tpls-0.8.0.js
-            output: js/ui-bootstrap.js
+                - %kernel.root_dir%/../vendor/isteven/angular-multi-select/angular-multi-select.js
+                - %kernel.root_dir%/../vendor/chieffancypants/angular-loading-bar/loading-bar.js
+            output: js/datasetsearchmod.js
+        datasetsearchmodcss:
+            inputs:
+                - %kernel.root_dir%/../vendor/isteven/angular-multi-select-style/angular-multi-select.css
+                - %kernel.root_dir%/../vendor/chieffancypants/angular-loading-bar-style/loading-bar.css
+            output: css/datasetsearchmod.css
 
 # Doctrine Configuration
 doctrine:
