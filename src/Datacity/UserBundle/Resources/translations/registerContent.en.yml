@@ -1,0 +1,7 @@
+register.intro: Create your account <strong>for free !</strong>
+datacity.description: > #FIXME Innacurate translation
+    Datacity is a project which offers several features in the domain of Open Data. 
+    It analyzes and centralizes the needs for regions thanks to the exploitation of free data,
+    and expose these by an application programming interface (API).
+    DataCity also offers a stretchable and moldable application portal on request of public services.
+register.submit: Register
