@@ -10,6 +10,7 @@
 						});
 				},
 				updateUser: function(user) {
+					//TODO : FAIRE LA GESTION D'ERREUR 
 					return $http
 						.post(Routing.generate('datacity_private_usermanager_post'), user).then(function(response) {
 							return response.data;
@@ -26,6 +27,13 @@
 					.success(function(response) {
 						return response.data;
 					});
+				},
+				updatePassword: function(user) {
+					//TODO : FAIRE LA GESTION D'ERREUR 
+					return $http
+						.post(Routing.generate('datacity_private_usermanager_updatepassword'), user).then(function(response) {
+							return response.data;
+						});
 				},
 				/**
 				 * [addDataset en cours de construction]

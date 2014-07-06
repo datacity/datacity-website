@@ -160,6 +160,11 @@ body, hr.fancy-line:after {
 	margin-top: 50px;
 }
 
+.custom-blue {
+	color: white;
+	background-color: #169ef4;
+}
+
 .custom-color {
 	color: white;
 	background-color: #d84a38;

@@ -67,3 +67,9 @@ datacity_private_usermanager_uploadimage:
     defaults: { _controller: DatacityPrivateBundle:UserManager:uploadimage }
     options:
         expose: true
+
+datacity_private_usermanager_updatepassword:
+    pattern: /user/changepassword
+    defaults: { _controller: DatacityPrivateBundle:UserManager:updatepassword }
+    options:
+        expose: true

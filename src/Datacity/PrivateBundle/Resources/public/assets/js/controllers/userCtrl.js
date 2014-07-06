@@ -4,7 +4,6 @@
 		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory',
 			function($scope, $stateParams, $modal, $log, UserFactory) {
 				$scope.user = {};
-				$scope.collapsed = true;
 				//$scope.imageUpload = 'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
 				var image;
 
@@ -61,6 +60,18 @@
 				 		//TODO: MESSAGE D'ERREUR
 				 	}
 				}
+
+				$scope.updatePassword = function () {
+					if ($scope.user.newPassword == $scope.user.confirmPassword) {
+			        	var userUpdated = $scope.user;
+				        UserFactory.updatePassword(userUpdated).then(function(data) {
+					 		console.log(data);
+					 	});
+				 	} else {
+				 		console.log('error');
+				 		//TODO : Erreur, le nouveau mot de passe est different de la verification
+				 	}
+			    }
 				
 				$scope.updateUser = function () {
 			        var userUpdated = $scope.user;

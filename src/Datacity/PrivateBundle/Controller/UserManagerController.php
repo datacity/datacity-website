@@ -37,4 +37,31 @@ class UserManagerController extends Controller
         $response = new JsonResponse(array('action' => 'success'));
         return $response;
     }
+
+    public function updatepasswordAction()
+    {
+        $request = $this->get('request');
+
+        if ($request->getMethod() == 'POST') {
+            $user = $request->get('user', 'valeur par défaut si bar est inexistant');
+        }
+
+        //Enregistrer l'utilisateur grace au userManager et renvoyer une reponse | Envoyé en methode POST
+        // $encoder_service = $this->get('security.encoder_factory');
+        // $encoder = $encoder_service->getEncoder($user);
+        // $encoded_pass = $encoder->encodePassword($password, $user->getSalt());
+
+        // if ($encoded_pass == user.oldPassword) {
+        //     $userManager = $this->get('fos_user.user_manager');
+        //     $user = $userManager->createUser();
+        //     //Appliquer le nouveau mot de passe et update le user
+        //     $user->setPlainPassword($pass);
+        //     $userManager->updateUser($user);
+        // }
+            // On définit un message flash
+        // $this->get('session')->getFlashBag()->add('info', 'Mot de passe modifié');
+
+        $response = new JsonResponse(array('action' => 'success'));
+        return $response;
+    }
 }
