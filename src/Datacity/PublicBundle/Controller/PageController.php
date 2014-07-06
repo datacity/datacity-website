@@ -11,8 +11,8 @@ class PageController extends Controller
 	public function homeAction()
 	{
 		$applications = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application")->findAll();
-		
-		$response = $this->render('DatacityPublicBundle::home.html.twig', array('applis' => $applications));
+		$news = $this->getDoctrine()->getRepository("DatacityPublicBundle:News")->findAll();
+		$response = $this->render('DatacityPublicBundle::home.html.twig', array('applis' => $applications, 'news' => $news));
 		return $response;
 	}
 	

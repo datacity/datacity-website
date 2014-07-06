@@ -130,6 +130,48 @@
 		</div> #}
 		<!-- end divider -->
 		<!-- Portfolio Projects -->
+
+
+		<div class="row marginbot30">
+		<div class="span12">
+		<h4 class="heading"><strong>Datacity</strong> actualité<span></span></h4>
+		
+		{% set i = 0 %}
+		{% for news in news %}
+		{% if i % 2 == 0 %}
+		<div class="row">
+		{% endif %}
+			<div class="span6">
+				<div class="wrapper">
+					<div class="testimonial">
+						{% if news.image != null %}
+							<center><img src="{{ news.image.webPath }}" class="img-circle bordered" alt="" style="max-width: 550px; max-height: 120px;"></center>
+						{% endif %}
+						<h4 class="name">
+							{{ news.getTitle() }}
+						</h4>
+						<p class="text">
+							<i class="icon-quote-left icon-48"></i>{{ news.getMessage() }}
+						</p>
+						<span class="author_date" style="font-weight: bold;">Par {{ news.getUser().getUsername()}} le {{ news.getDate() | date('d-m-Y H:i') }}</span>
+					</div>
+				</div>
+			</div>
+		{% if i % 2 != 0 %}
+		</div>
+		{% endif %}
+		{% set i = i + 1 %}
+		{% endfor %}
+		</div>
+		</div>
+		<!-- divider -->
+		<div class="row">
+			<div class="span12">
+				<div class="solidline">
+				</div>
+			</div>
+		</div>
+		<!-- end divider -->
 		<div class="row">
 			<div class="span12">
 				<h4 class="heading">{{ 'apps.new'|trans|raw }}</h4>
@@ -149,7 +191,7 @@
 							<span class="overlay-img-thumb font-icon-plus"></span>
 							</a>
 							<!-- Thumb Image and Description -->
-							<img src="{{ appl.images[0].url }}" alt="{{ appl.description }} ">
+							<center><img src="{{ appl.images[0].url }}" alt="{{ appl.description }}" style="max-height: 200px; width: auto;"></center>
 							</li>
 							
 							{% endfor %}
@@ -159,31 +201,7 @@
 			</div>
 		</div>
 		<!-- End Portfolio Projects -->
-		<!-- divider -->
-		<div class="row">
-			<div class="span12">
-				<div class="solidline">
-				</div>
-			</div>
-		</div>
-		<!-- end divider -->
-		<div class="row">
-			<div class="span12">
-				<h4>{{ 'partner'|trans|raw }}</h4>
-				<ul id="mycarousel" class="jcarousel-skin-tango recent-jcarousel clients">
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client1.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-					<li>
-					<a href="#">
-					<img src="{{ asset('bundles/datacitypublic/img/dummies/clients/client2.png') }}" class="client-logo" alt="" />
-					</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+
 	</div>
 	</section>    
 {% endblock %}

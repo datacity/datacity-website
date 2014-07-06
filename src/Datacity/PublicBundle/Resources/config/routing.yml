@@ -31,7 +31,7 @@ datacity_public_producer_detail:
 datacity_public_news:
     pattern:  /news
     defaults: { _controller: DatacityPublicBundle:News:news }
-   
+
 datacity_public_newsDetail:
     pattern:  /news/{id}
     defaults: { _controller: DatacityPublicBundle:News:newsDetail, id: 0 }
@@ -79,4 +79,8 @@ datacity_public_condition:
 datacity_public_privacypolicy:
     pattern:  /privacypolicy
     defaults: { _controller: DatacityPublicBundle:Page:privacypolicy }
+
+datacity_public_talkaboutus:
+    pattern:  /privacypolicy
+    defaults: { _controller: DatacityPublicBundle:Page:talkaboutus }
 

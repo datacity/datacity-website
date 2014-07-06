@@ -12,8 +12,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 	static public $imagesUrl = array (
 			'http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg',
 			'http://senseable.mit.edu/copenhagenwheel/pix_urbanData/data_02.jpg',
-			'http://www.clandoustphotography.co.uk/images/banner_bridges1.jpg',
-			'http://www.giornalettismo.com/wp-content/uploads/2012/12/screen-shot-2012-12-12-at-11-13-53-pm-770x310.png',
+			'http://img15.hostingpics.net/pics/693213detail.png',
+			'http://img15.hostingpics.net/pics/996548accueil.png',
 			'http://fr.rotterdam.info/data/offer/offerid1005/large/City-Racing-Rotterdam---Bavaria-City-Racing-133882027806.jpg',
 			'http://wamu.org/sites/wamu.org/files/styles/headline_landscape/public/images/attach/08.02.13news-flickr-ocean-city.jpg?itok=gDxBsSWI',
 			'http://us.123rf.com/400wm/400/400/tribalium123/tribalium1231210/tribalium123121000126/15686858-bombe-vieux-commencent-a-exploser-explosion-de-bandes-dessinees-bombe-style-ancien.jpg',
@@ -29,8 +29,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 		$alt = array (
 				'Premiere image Culture',
 				'Seconde image Culture',
-				'Premiere image Street',
-				'Seconde image Street',
+				'ERP Montpellier detail',
+				'ERP Montpellier accueil',
 				'Premiere image Tourisme',
 				'Seconde image Tourisme',
 				'Premiere image ic',

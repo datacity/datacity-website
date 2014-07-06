@@ -22,7 +22,7 @@
 							{# On genere ci-dessous la galerie d'images de l'application en cour de visualisation #}
 							{% for image in appli.getImages() %}
 								<li>
-									<img src="{{ image.getUrl() }}" alt="{{ image.getAlt() }}" />
+									<img src="{{ image.getUrl() }}" alt="{{ image.getAlt() }}" style="max-height: 400px; width:auto;margin:auto;"/>
 								</li>
 							{% endfor %}
 							</ul>

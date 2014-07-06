@@ -151,7 +151,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setPlainPassword('test00');
 		$user->setEnabled(true);
 		$user->setEmail('john.doe@example.com');
-		$user->addApplication($this->getReference("application-Datacity Culture"));
+		$user->addApplication($this->getReference("application-ERP Montpellier"));
 		//$user->addNews($this->getReference("news-Titre1"));
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
@@ -159,50 +159,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userManager->updateUser($user);
 		$this->addReference("user-". $user->getEmail(), $user);
 		
-		$user = $userManager->createUser();
-		$user->setUsername('Marcelony');
-		$user->setFirstName('Dupond');
-		$user->setLastName('Marcel');
-		$user->setPlainPassword('test01');
-		$user->setEnabled(true);
-		$user->setEmail('marcel@example.com');
-		$user->addFollowing($this->getReference("user-john.doe@example.com"));
-		$user->addApplication($this->getReference("application-Datacity Street"));
-		//$user->addNews($this->getReference("news-Titre2"));
-		$user->genPublicKey($generator);
-		$user->genPrivateKey($generator);
-		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[1]));
-		$userManager->updateUser($user);
-		$this->addReference("user-". $user->getEmail(), $user);
-		
-		$user = $userManager->createUser();
-		$user->setUsername('Alberto');
-		$user->setFirstName('Lico');
-		$user->setLastName('Albert');
-		$user->setPlainPassword('test02');
-		$user->setEnabled(true);
-		$user->setEmail('alberto@example.com');
-		$user->addApplication($this->getReference("application-Datacity Tourism"));
-		//$user->addNews($this->getReference("news-Titre3"));
-		$user->genPublicKey($generator);
-		$user->genPrivateKey($generator);
-		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[2]));
-		$userManager->updateUser($user);
-		$this->addReference("user-". $user->getEmail(), $user);
-		
-		$user = $userManager->createUser();
-		$user->setUsername('Francis');
-		$user->setFirstName('Toneau');
-		$user->setLastName('Francois');
-		$user->setPlainPassword('test03');
-		$user->setEnabled(true);
-		$user->setEmail('francis@example.com');
-		$user->addApplication($this->getReference("application-Datacity Fiction"));
-		$user->genPublicKey($generator);
-		$user->genPrivateKey($generator);
-		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[3]));
-		$userManager->updateUser($user);
-		$this->addReference("user-". $user->getEmail(), $user);
+	
 	}
 	
 	public function getOrder()
