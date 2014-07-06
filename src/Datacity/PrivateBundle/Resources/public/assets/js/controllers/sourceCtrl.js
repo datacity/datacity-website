@@ -10,6 +10,7 @@
 				
 				// VARIABLES COMMUNES A TOUTES LES OPERATIONS (edit, create, delete)
 				// ----------------------------------------
+				 $scope.date = ""
 				var globalData;
 			    $scope.filterOptions = {
 			        filterText: '',
@@ -19,8 +20,8 @@
 			        pageSizes: [20, 50, 100],
 			        pageSize: 20,
 			        currentPage: 1
-			    };  
-
+			    };
+			 
 			    $scope.columnsSelected = [];
  				$scope.myData = [];
  				$scope.gridOptions = { 
@@ -42,7 +43,6 @@
 			        enableColumnReordering: true,
 			        showFooter: true
 			    };
-			    $scope.operation = operation;
 				$scope.source = {};
 				//-----------------------------------------
 
@@ -172,7 +172,9 @@
 					}
 					if (result.metadata)
 						$scope.meta = result.metadata;
-					console.log($scope.meta);
+					
+					
+					
 
 					/*SourceFactory.getExistingData($stateParams.datasetId, false).then(function(result) {
 						if (result.dataModel) {

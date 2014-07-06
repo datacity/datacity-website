@@ -1,6 +1,7 @@
 {% verbatim %}
 <!-- File Uploader -->
-<input data-ng-if="operation = create" type="file" ng-file-select="onFileSelect($files)" >
+
+<input type="file" ng-file-select="onFileSelect($files)" >
 <hr/>
 <button class="btn btn-primary" ng-click="getJSON()">Upload</button>
 <hr/>

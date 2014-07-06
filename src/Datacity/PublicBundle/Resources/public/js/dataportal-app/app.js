@@ -1,7 +1,9 @@
 angular
     .module('datacity.datasets', [
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'multi-select',
+        'angular-loading-bar'
     ])
     .config(['$urlRouterProvider', '$stateProvider',
         function($urlRouterProvider, $stateProvider) {
@@ -16,6 +18,18 @@ angular
                         datasets: ['DatasetFactory',
                             function(DatasetFactory) {
                                 return DatasetFactory.getPopularDatasets();
+                            }
+                        ],
+                        filters: ['$http',
+                            function($http) {
+                                return $http.get(Routing.generate('datacity_public_api_search_list')).then(function(res) {
+                                    angular.forEach(res.data.results, function(item) {
+                                        angular.forEach(item, function(data) {
+                                            data.selected = true;
+                                        });
+                                    });
+                                    return res.data.results;
+                                });
                             }
                         ]
                     },
@@ -34,12 +48,42 @@ angular
                 });
         }
     ])
-    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory',
-        function($scope, $state, $http, datasets, DatasetFactory) {
+    .controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory', 'filters', '$timeout',
+        function($scope, $state, $http, datasets, DatasetFactory, filters, $timeout) {
             $scope.datasets = datasets;
-            $scope.$watch('searchPlace', function() {
-                if ($scope.searchPlace != undefined)
+            $scope.categories = filters.categories;
+            $scope.licenses = filters.licenses;
+            $scope.frequencies = filters.frequencies;
+            var timer = false;
+            $scope.$watch('text', function(a, b) {
+                if (a === b)
+                    return;
+                if (timer) {
+                    $timeout.cancel(timer)
+                }  
+                timer = $timeout(function() {
                     $scope.search();
+                }, 500)
+            });
+            $scope.$watch('categories', function(a, b) {
+                if (a === b)
+                    return;
+                $scope.search();
+            }, true);
+            $scope.$watch('licenses', function(a, b) {
+                if (a === b)
+                    return;
+                $scope.search();
+            }, true);
+            $scope.$watch('frequencies', function(a, b) {
+                if (a === b)
+                    return;
+                $scope.search();
+            }, true);
+            $scope.$watch('place', function(a, b) {
+                if (a === b)
+                    return;
+                $scope.search();
             });
             $scope.goto = function(dataset) {
                 $state.go('dataset', {
@@ -48,6 +92,7 @@ angular
             }
             $scope.getLocation = function(val) {
                 return $http.get(Routing.generate('datacity_public_api_place'), {
+                    ignoreLoadingBar: true,
                     params: {
                         q: val
                     }
@@ -60,11 +105,13 @@ angular
                 });
             };
             $scope.search = function() {
-                if (!$scope.searchText && !$scope.searchPlace) {
-                    $scope.datasets = datasets;
-                    return;
-                }
-                DatasetFactory.searchDatasets($scope.searchText, $scope.searchPlace).then(function(data) {
+                DatasetFactory.searchDatasets({
+                    text: $scope.text,
+                    place: $scope.place,
+                    categories: $scope.categories,
+                    licenses: $scope.licenses,
+                    frequencies: $scope.frequencies
+                }).then(function(data) {
                     $scope.datasets = data;
                 });
             }

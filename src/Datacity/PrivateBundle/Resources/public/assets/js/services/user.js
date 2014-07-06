@@ -1,7 +1,7 @@
 (function() {
 	angular
 		.module('app')
-		.factory('UserFactory', ['$http', function($http) {
+		.factory('UserFactory', ['$http', '$upload', function($http, $upload) {
 			return {
 				getUserFromSession: function() {
 					return $http
@@ -15,7 +15,18 @@
 							return response.data;
 						});
 				},
-
+				uploadImage: function(image) {
+					return $upload.upload(
+						{
+						   	url: Routing.generate('datacity_private_usermanager_uploadimage'),
+						    method: 'POST', 
+							file: image,
+						})
+					//TODO : FAIRE LA GESTION D'ERREUR 
+					.success(function(response) {
+						return response.data;
+					});
+				},
 				/**
 				 * [addDataset en cours de construction]
 				 * @param {Object} dataset

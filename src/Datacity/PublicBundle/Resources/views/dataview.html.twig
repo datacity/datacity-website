@@ -12,7 +12,7 @@
 	<script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 	{% javascripts
 		'js/angular-mods.js'
-		'js/ui-bootstrap.js'
+		'js/datasetsearchmod.js'
 	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/app.js'
 	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/services.js'
 	    %}
@@ -23,7 +23,11 @@
 {% block pagecontent %}
 	<section id="content" data-ng-app="datacity.datasets">
 	<div class="container">
-		<div class="row" data-ui-view></div>
+		<div class="row" data-ui-view>
+			<div class="span12">
+			      <p class="text-center">Chargement...</p>
+			</div>
+		</div>
 	</div>
 	</section>   
 {% endblock %}

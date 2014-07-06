@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ef56f1e24ba49c9d0ede1230ead353cb",
+    "hash": "0ed997a8e9536a91058e44f785604e27",
     "packages": [
         {
             "name": "angular-ui/ng-grid-script",
@@ -140,6 +140,28 @@
                 "bootstrap"
             ],
             "time": "2013-04-12 23:57:05"
+        },
+        {
+            "name": "chieffancypants/angular-loading-bar",
+            "version": "0.4.3",
+            "dist": {
+                "type": "file",
+                "url": "https://raw.githubusercontent.com/chieffancypants/angular-loading-bar/master/build/loading-bar.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "chieffancypants/angular-loading-bar-style",
+            "version": "0.4.3",
+            "dist": {
+                "type": "file",
+                "url": "https://github.com/chieffancypants/angular-loading-bar/raw/master/build/loading-bar.css",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "doctrine/annotations",
@@ -1226,6 +1248,28 @@
                 "parameters management"
             ],
             "time": "2013-12-07 10:10:39"
+        },
+        {
+            "name": "isteven/angular-multi-select",
+            "version": "1.2.0",
+            "dist": {
+                "type": "file",
+                "url": "https://github.com/isteven/angular-multi-select/raw/master/angular-multi-select.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "isteven/angular-multi-select-style",
+            "version": "1.2.0",
+            "dist": {
+                "type": "file",
+                "url": "https://github.com/isteven/angular-multi-select/raw/master/angular-multi-select.css",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2915,16 +2959,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.15.1",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed"
+                "reference": "8ce37115802e257a984a82d38254884085060024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1fb5784662f438d7d96a541e305e28b812e2eeed",
-                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
+                "reference": "8ce37115802e257a984a82d38254884085060024",
                 "shasum": ""
             },
             "require": {
@@ -2933,7 +2977,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.16-dev"
                 }
             },
             "autoload": {
@@ -2968,7 +3012,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-02-13 10:19:29"
+            "time": "2014-07-05 12:19:05"
         },
         {
             "name": "twitter/bootstrap",

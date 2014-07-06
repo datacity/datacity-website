@@ -31,16 +31,26 @@
                     });
                     return array;
                 };
+                var keepSelectedFilter = function(data) {
+                    var array = [];
+                    angular.forEach(data, function(item) {
+                        if (item.selected)
+                            array.push(item.name);
+                    });
+                    if (array.length === data.length)
+                        return undefined;
+                    return JSON.stringify(array);
+                };
                 return {
                     getPopularDatasets: function() {
-                        return parseDatasets($http.get(Routing.generate('datacity_public_api_search_popular')));
+                        return parseDatasets($http.get(Routing.generate('datacity_public_api_search')));
                     },
-                    searchDatasets: function(searchText, searchPlace) {
+                    searchDatasets: function(filters) {
+                        filters.categories = keepSelectedFilter(filters.categories);
+                        filters.licenses = keepSelectedFilter(filters.licenses);
+                        filters.frequencies = keepSelectedFilter(filters.frequencies);
                         return parseDatasets($http.get(Routing.generate('datacity_public_api_search'), {
-                            params: {
-                                text: searchText,
-                                place: searchPlace
-                            }
+                            params: filters
                         }));
                     },
                     getDataset: function(slug) {
