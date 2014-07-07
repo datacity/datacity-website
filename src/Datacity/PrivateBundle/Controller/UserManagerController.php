@@ -40,40 +40,26 @@ class UserManagerController extends Controller
 
     public function updatepasswordAction()
     {
-        // $request = $this->get('request');
-
-        // $firstName = "NULLEU";
-
-        // if ($request->getMethod() == 'POST') {
-        //     $user = $request->get('user', 'valeur par défaut si bar est inexistant');
-        //     $firstName = $user.firstname;
-        // }
-
-        $params = array();
         $content = $this->get("request")->getContent();
-        if (!empty($content))
-        {
-            $params = json_decode($content); // 2nd param to get as array
+        if (!empty($content)) {
+            $params = json_decode($content);
         }
 
-        //Enregistrer l'utilisateur grace au userManager et renvoyer une reponse | Envoyé en methode POST
-        // $encoder_service = $this->get('security.encoder_factory');
-        // $encoder = $encoder_service->getEncoder($user);
-        // $encoded_pass = $encoder->encodePassword($password, $user->getSalt());
+        $user = $this->get('security.context')->getToken()->getUser();
+        $encoder_service = $this->get('security.encoder_factory');
+        $encoder = $encoder_service->getEncoder($user);
+        $encoded_pass = $encoder->encodePassword($params->oldPassword, $user->getSalt());
 
-        // if ($encoded_pass == user.oldPassword) {
-        //     $userManager = $this->get('fos_user.user_manager');
-        //     $user = $userManager->createUser();
-        //     //Appliquer le nouveau mot de passe et update le user
-        //     $user->setPlainPassword($pass);
-        //     $userManager->updateUser($user);
-        // }
-            // On définit un message flash
-        // $this->get('session')->getFlashBag()->add('info', 'Mot de passe modifié');
+        if ($encoded_pass == $user->getPassword()) {
+            $userManager = $this->get('fos_user.user_manager');
+            //Applique le nouveau mot de passe et update le user
+            $user->setPlainPassword($params->newPassword);
+            $userManager->updateUser($user);
+            $response = new JsonResponse(array('action' => 'success'));
+        } else {
+            $response = new JsonResponse(array('action' => 'failure'));
+        }
 
-        echo $params.firstName;
-
-        $response = new JsonResponse(array('action' => 'success'));
         return $response;
     }
 }

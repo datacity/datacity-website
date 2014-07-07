@@ -4,6 +4,7 @@
 		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory',
 			function($scope, $stateParams, $modal, $log, UserFactory) {
 				$scope.user = {};
+				$scope.passwords = {};
 				//$scope.imageUpload = 'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
 				var image;
 
@@ -62,9 +63,10 @@
 				}
 
 				$scope.updatePassword = function () {
-					if ($scope.user.newPassword == $scope.user.confirmPassword) {
-			        	var userUpdated = $scope.user;
-				        UserFactory.updatePassword(userUpdated).then(function(data) {
+					console.log($scope.passwords);
+					if ($scope.passwords.newPassword == $scope.passwords.confirmPassword) {
+			        	var userPasswords = $scope.passwords;
+				        UserFactory.updatePassword(userPasswords).then(function(data) {
 					 		console.log(data);
 					 	});
 				 	} else {

@@ -70,15 +70,15 @@
 				<form ng-submit="updatePassword()">
 					<div class="form-group">
 						<label class="control-label">Mot de passe actuel</label>
-						<input type="password" ng-model="user.oldPassword" class="form-control"/>
+						<input type="password" ng-model="passwords.oldPassword" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Nouveau mot de passe</label>
-						<input type="password" ng-model="user.newPassword" class="form-control"/>
+						<input type="password" ng-model="passwords.newPassword" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Verification du nouveau mot de passe</label>
-						<input type="password" ng-model="user.confirmPassword" class="form-control"/>
+						<input type="password" ng-model="passwords.confirmPassword" class="form-control"/>
 					</div>
 					<div class="margin-top-10">
 						<input type="submit" value="Changer le mot de passe" class="btn green"/>
