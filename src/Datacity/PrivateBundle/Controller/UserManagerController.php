@@ -40,10 +40,20 @@ class UserManagerController extends Controller
 
     public function updatepasswordAction()
     {
-        $request = $this->get('request');
+        // $request = $this->get('request');
 
-        if ($request->getMethod() == 'POST') {
-            $user = $request->get('user', 'valeur par défaut si bar est inexistant');
+        // $firstName = "NULLEU";
+
+        // if ($request->getMethod() == 'POST') {
+        //     $user = $request->get('user', 'valeur par défaut si bar est inexistant');
+        //     $firstName = $user.firstname;
+        // }
+
+        $params = array();
+        $content = $this->get("request")->getContent();
+        if (!empty($content))
+        {
+            $params = json_decode($content); // 2nd param to get as array
         }
 
         //Enregistrer l'utilisateur grace au userManager et renvoyer une reponse | Envoyé en methode POST
@@ -60,6 +70,8 @@ class UserManagerController extends Controller
         // }
             // On définit un message flash
         // $this->get('session')->getFlashBag()->add('info', 'Mot de passe modifié');
+
+        echo $params.firstName;
 
         $response = new JsonResponse(array('action' => 'success'));
         return $response;
