@@ -7,7 +7,7 @@
                     return promise.then(function(res) {
                         var datasets = [];
                         angular.forEach(res.data.results, function(item) {
-                            var locations = toSimpleArray('name', item.places);
+                            var locations = item.places.map(function(e) { return e.name });
                             datasets.push({
                                 slug: item.slug,
                                 name: item.title,
@@ -24,19 +24,8 @@
                         return datasets;
                     });
                 };
-                var toSimpleArray = function(attr, data) {
-                    var array = [];
-                    angular.forEach(data, function(item) {
-                        array.push(item[attr]);
-                    });
-                    return array;
-                };
                 var keepSelectedFilter = function(data) {
-                    var array = [];
-                    angular.forEach(data, function(item) {
-                        if (item.selected)
-                            array.push(item.name);
-                    });
+                    var array = data.filter(function(item) {return item.selected === true;}).map(function(e) {return e.name});
                     if (array.length === data.length)
                         return undefined;
                     return JSON.stringify(array);
@@ -57,7 +46,7 @@
                         return $http.get(Routing.generate('datacity_public_api_dataset_show', { slug: slug })).then(function(res) {
                             var dataset;
                             var item = res.data.results;
-                            var locations = toSimpleArray('name', item.places);
+                            var locations = item.places.map(function(e) { return e.name });
                             dataset = {
                                 name: item.title,
                                 desc: item.description,
