@@ -42,10 +42,10 @@ Website: http://datacity.fr
 	'bundles/datacityprivate/assets/css/custom.css'
 	'bundles/datacityprivate/assets/css/autocomplete-jquery-ui.css'
 	'bundles/datacityprivate/assets/css/dashboard.css'
-	
 	'bundles/datacityprivate/assets/css/pages/profile.css'
 
 	'bundles/datacityprivate/assets/plugins/select2/select2_metro.css'
+	'bundles/datacityprivate/assets/plugins/bootstrap-toastr/toastr.min.css'
 	'bundles/datacityprivate/assets/plugins/data-tables/DT_bootstrap.css'
 
 	filter='cssrewrite'
@@ -178,7 +178,7 @@ Website: http://datacity.fr
 						</a>
 					</li>
  				<li id="nav-profilemanager" class="start">
-						<a href="{{ path('datacity_private_profilemanager') }}">
+						<a href="#/user/show">
 							<i class="fa fa-gear"></i>
 							<span class="title">
 								Gestion du profil
@@ -331,12 +331,14 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/js/directives/datepicker.js'	
 
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-toastr/toastr.min.js'
 
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
 
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/ui-toastr.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/databinding.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
