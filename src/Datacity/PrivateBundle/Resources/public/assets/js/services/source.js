@@ -68,11 +68,14 @@
 					else
 					return {
 						dataModel: [{
-							column: "nom"
+							name: "nom",
+							type: "text"
 						}, {
-							column: "téléphone"
+							name: "téléphone",
+							type: "text"
 						}, {
-							column: "age"
+							name: "age",
+							type: "number"
 						}],
 						metadata: {
 							title: 'Ma source de test',

@@ -353,18 +353,14 @@ Website: http://datacity.fr
 
 	<script>
 	jQuery(document).ready(function() {
-		$('.date-picker').datepicker({
-           	     autoclose: true
-        });
-        console.log("on rentre dans jquery");
-
+ 		App.init();
    		/*App.init(); // initlayout and core plugins
-   		Index.init();
+   		Index.init();*/
 
    		var router = new Router("{{ datacity_api_url }}");
-   		FormDropzone.init(router);
-   		new UploadDataBox("files", $('.uploadedFiles'), router);
-   		var databiding = new DataBinding(router);*/
+   		//FormDropzone.init(router);
+   		//new UploadDataBox("files", $('.uploadedFiles'), router);
+   		var databiding = new DataBinding(router);
 	});
 	</script>
 	<!-- END JAVASCRIPTS -->

@@ -179,3 +179,7 @@ body, hr.fancy-line:after {
 	color: white;
 	background-color: #1D943B;
 }
+
+.gridStyle {
+	height: 600px;
+}

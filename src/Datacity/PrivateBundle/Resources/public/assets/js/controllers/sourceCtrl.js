@@ -126,13 +126,18 @@
       				if (data.files && data.files[0].path) {
       					$scope.path = data.files[0].path;
       				}
-      			}
+      			};
 
       			//Gestionnaire d'upload. On appelle ensuite le callback pour récupérer le retour de l'api
 				$scope.onFileSelect = function($files) {
       					var file = $files[0];
       					$scope.upload = SourceFactory.postFile(file).then(fileUploaded);
+			    };
+
+			    $scope.categorySelected= function(color) {
+			    	$scope.selectedColor = color;
 			    }
+
 
 
 				if (operation === 'create') {
