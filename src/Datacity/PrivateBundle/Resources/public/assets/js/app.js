@@ -42,7 +42,7 @@
 				})
 				//Operations liées aux sources
 				.state('addSource', {
-					url: '/source/add',
+					url: '/source/add/:datasetId',
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
 					resolve: {
@@ -50,7 +50,7 @@
 					}
 				})
 				.state('editSource', {
-					url: '/source/edit/:id',
+					url: '/source/edit/:datasetId/:id',
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
 					resolve: {

@@ -12,6 +12,9 @@
 						});
 				},
 				post: function(idDataset, source) {
+					console.log("Source En cours de post!");
+					console.log(idDataset);
+					console.log(source);
 					return $http
 						.post('/app_dev.php/private/source/save/' + idDataset, source).then(function(response) {
 							return response.data;

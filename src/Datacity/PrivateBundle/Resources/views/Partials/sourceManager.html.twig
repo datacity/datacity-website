@@ -3,7 +3,7 @@
 
 <input type="file" ng-file-select="onFileSelect($files)" >
 <hr/>
-<button class="btn btn-primary" ng-click="getJSON()">Upload</button>
+<button class="btn blue" ng-click="getJSON()">Upload</button>
 <hr/>
 
 <!-- END File Uploader -->
@@ -24,9 +24,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="input-group">
-							<input id="inputModel" type="text" class="form-control">
+							<input data-ng-model="inputModel" type="text" data-ng-enter="addCategoryModel(inputModel)" class="form-control">
 							<span class="input-group-btn">
-								<button ng-click="addCategoryModel" class="btn blue" type="button">Ajouter au modèle</button>
+								<button data-ng-click="addCategoryModel(inputModel)"  class="btn blue" type="button">Ajouter au modèle</button>
 							</span>
 						</div>
 						<!-- /input-group -->
@@ -40,7 +40,7 @@
 							<div style="line-height: 20%;">
 								<br/>
 							</div>
-							<button class="btn blue" data-ng-style="{'background-color': column.color}" style="color: white;" type="button" data-ng-click="categorySelected(column.color)">{{column.name | uppercase}}</button>
+							<button class="btn blue" data-ng-style="{'background-color': column.color}" style="color: white;" type="button" data-ng-click="categorySelected(column)">{{column.name | uppercase}}</button>
 						</div>
 
 					</div>
@@ -48,6 +48,7 @@
 				</div>
 				<hr/>
 				Couleur choisie: <span data-ng-style="{'background-color': selectedColor}" class="boxColored">&nbsp;</span>
+				SCOPE DATABINDING : {{databinding}}
 			</div>
 		</div>
 

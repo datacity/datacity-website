@@ -97,7 +97,7 @@
 	<div class="col-md-1">
 		<div class="portfolio-btn">
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="editSource({id: source.id})" class="btn bigicn-only">
+			<a data-ui-sref="editSource({datasetId: dataset.id, id: source.id})" class="btn bigicn-only">
 				<span>
 					Editer
 				</span>
@@ -111,9 +111,10 @@
 	</div>
 	<div class="col-md-4">
 		<div class="portfolio-btn">
-			<a data-ui-sref="addSource({id: source.id})" class="btn bigicn-only">
+			<a data-ui-sref="addSource({datasetId: dataset.id})" class="btn bigicn-only">
 				<span>
 					Ajouter une source
+					{{dataset.id}}
 				</span>
 			</a>
 		</div>

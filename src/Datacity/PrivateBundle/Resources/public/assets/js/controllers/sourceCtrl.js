@@ -11,6 +11,8 @@
 				// VARIABLES COMMUNES A TOUTES LES OPERATIONS (edit, create, delete)
 				// ----------------------------------------
 				 $scope.date = ""
+				 $scope.databinding = [];
+
 				var globalData;
 			    $scope.filterOptions = {
 			        filterText: '',
@@ -45,6 +47,52 @@
 			    };
 				$scope.source = {};
 				//-----------------------------------------
+
+
+				//Template HEADER
+				
+				var myHeaderCellTemplate = 
+				"<div class=\"ngHeaderSortColumn {{col.headerClass}}\" ng-style=\"{'cursor': col.cursor, 'background-color': col.backgroundColor, 'color': col.color}\" ng-class=\"{ 'ngSorted': !col.noSortVisible() }\">\r" +
+		    "\n" +
+		    "    <div ng-click=\"col.sort($event); bindModelToCol(col)\" ng-class=\"'colt' + col.index\" class=\"ngHeaderText\">{{col.displayName}}</div>\r" +
+		    "\n" +
+		    "    <div class=\"ngSortButtonDown\" ng-click=\"col.sort($event)\" ng-show=\"col.showSortButtonDown()\"></div>\r" +
+		    "\n" +
+		    "    <div class=\"ngSortButtonUp\" ng-click=\"col.sort($event)\" ng-show=\"col.showSortButtonUp()\"></div>\r" +
+		    "\n" +
+		    "    <div class=\"ngSortPriority\">{{col.sortPriority}}</div>\r" +
+		    "\n" +
+		    "    <div ng-class=\"{ ngPinnedIcon: col.pinned, ngUnPinnedIcon: !col.pinned }\" ng-click=\"togglePin(col)\" ng-show=\"col.pinnable\"></div>\r" +
+		    "\n" +
+		    	"</div>\r" +
+		    "\n" +
+		    	"<div ng-show=\"col.resizable\" class=\"ngHeaderGrip\" ng-click=\"col.gripClick($event)\" ng-mousedown=\"col.gripOnMouseDown($event)\"></div>\r" +
+		    "\n"
+
+		    	// Fonction appelée à chaques fois que lon clique sur une colone de la datatable
+		    	$scope.bindModelToCol = function(col) {
+		    		if (col.backgroundColor === $scope.selectedColor) {
+		    			col.backgroundColor = "#DDDDDD";
+		    			col.color = "#444444";
+		    			$scope.databinding.remove(col.field);
+		    		}
+		    		else {
+		    			col.backgroundColor = $scope.selectedColor;
+		    			col.color = 'white';
+		    			$scope.databinding.push({
+		    				from: col.field,
+		    				to: $scope.selectedName
+		    			});
+		    		}
+	    		}
+				
+				$scope.databinding.remove = function(column) {
+					angular.forEach($scope.databinding, function(data, index) {
+						if (data.from === column) {
+							$scope.databinding.splice(index, 1);
+						}
+					});
+				}
 
 				//GESTION DE LA PAGINATION
 				//-----------------------------------------------------
@@ -85,6 +133,7 @@
 			    }, true);
 			    //---------------------------------------------------------
 	    
+
 	    
 			    $scope.update_columns = function($event) {
 			    	//TODO: Ajouter l'implémentation du rajout de colone de façon dynamique
@@ -105,9 +154,10 @@
 	      						{
 	      							field: item,
 	      							displayName: item.replace('/\W/g', '_'),
-	      							minWidth: 150,
-	      							width: '20%',
-	      							maxWidth: 350,
+	      							minWidth: 110,
+	      							width: '15%',
+	      							maxWidth: 250,
+	      							headerCellTemplate: myHeaderCellTemplate
 	      							/*enableCellEdit: true*/
 	      						});
 	      				});
@@ -134,11 +184,28 @@
       					$scope.upload = SourceFactory.postFile(file).then(fileUploaded);
 			    };
 
-			    $scope.categorySelected= function(color) {
-			    	$scope.selectedColor = color;
+			    //Appellé pour remplir le carré de couleur avec la couleur sélectionnée
+			    $scope.categorySelected = function(column) {
+			    	if ($scope.selectedColor === column.color) {
+			    		$scope.selectedColor = "white";
+			    		$scope.selectedName = column.name;
+			    	}
+			    	else {
+			    		$scope.selectedColor = column.color;
+			    		$scope.selectedName = column.name;			    		
+			    	}
 			    }
 
-
+				// Appellé a chaque fois que l'on veut rajouter une catégorie dans le modèle.
+				// inputModel je pense que je n'ai pas besoin d'expliquer ^^
+			    $scope.addCategoryModel = function(inputModel) {
+			    	$scope.dataModel.push(
+			    		{
+			    			name: inputModel,
+			    			color: getRandomColor()
+			    		}
+			    	);
+			    }
 
 				if (operation === 'create') {
 					//TODO:
@@ -212,19 +279,23 @@
 
 				}
 
-				$scope.addCategory = function() {
-					// Disponible dans le cas où on est sur opération create et qu'il n'y a pas de source précédemment uploadés
-					
-				}
-				$scope.submit = function() {
-					// Ajout des métadatas liés à la source
+				$scope.submitSource = function() {
+
 					// Lors de la validation, pour cette version on envoi l'ensemble du json à l'api avec le databinding comme dans la version master
 					// Avec en + quelques méta qui nous permettront de rajouter des données dans la source. + slug source
-
+					// ON envoi les reste des metas à symfony pour la BDD
 					// Pendant l'envoi à l'api, celle-ci renvoi la route pour accéder aux données. 
 					// Cette route est rajoutée aux métadonnées pendant l'envoi à doctrine
 					// Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.
-					SourceFactory.post($stateParams.datasetId, $scope.source).then(function(response) {
+					
+
+					var result = {
+						metadata: $scope.meta,
+						databinding: $scope.databinding,
+						data: $scope.myData
+					}
+
+					SourceFactory.post($stateParams.datasetId, result).then(function(response) {
 							console.log(response);
 					});
 				}

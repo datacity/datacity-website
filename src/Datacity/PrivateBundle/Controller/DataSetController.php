@@ -13,7 +13,7 @@ class DataSetController extends Controller
         return $response;
     }
     public function getAction($id) {
-    	$response = new JsonResponse(array('title' => 'Mon api marche', 'description' => "je suis une description de test avant de charger dynamiquement les données dont jai besoin"));
+    	$response = new JsonResponse(array('id' => '456fddgdd', 'title' => 'Mon api marche', 'description' => "je suis une description de test avant de charger dynamiquement les données dont jai besoin"));
         return $response;
     	// LOAD FROM DOCTRINE THE DATASET AND SEND IT TON THE RETURN	
     }

@@ -10,9 +10,11 @@
 					$scope.noDelete = true;
 				}
 				else if (operation === 'edit') {
+					console.log($stateParams);
 					DatasetFactory.get($stateParams.id).then(function(data) {
 						if (data.title)
 							$scope.dataset = data;
+						console.log($scope.dataset);
 						//TODO: CHARGER LES SOURCES ASSOCIEES
 						$scope.dataset.sources = DatasetFactory.populateSourcesTmp();
 					});

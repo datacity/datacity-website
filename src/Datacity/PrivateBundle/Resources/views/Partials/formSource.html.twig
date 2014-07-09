@@ -1,5 +1,10 @@
 {# Création de la source + datatable + databinding etc.. #}
 <div class="row profile">
+	<div class="col-md-10">
+	</div>
+	<div class="col-md-2">
+		<button data-ng-click="submitSource()" class="btn red"><i class="fa fa-cloud"></i> Publier la source</button>
+	</div>
 	<div class="col-md-12">
 		<!--BEGIN TABS-->
 		<div class="tabbable tabbable-custom tabbable-full-width" data-ng-controller="panelController as panel">
@@ -8,7 +13,7 @@
 					<a data-ng-click="panel.selectTab(1)" data-toggle="tab">Gestion de source</a>
 				</li>
 				<li ng-class="{active: panel.isSelected(2)}">
-					<a data-ng-click="panel.selectTab(2)" data-toggle="tab">MétadonnéesG</a>
+					<a data-ng-click="panel.selectTab(2)" data-toggle="tab">Métadonnées</a>
 				</li>
 			</ul>
 			<div class="tab-content">
