@@ -2,39 +2,57 @@
 
 namespace Datacity\PrivateBundle\Controller;
 
+use Datacity\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use JMS\Serializer\SerializationContext;
 
 class UserManagerController extends Controller
 {
     public function getAction()
     {
-        //Recuperer l'utilisateur, le serialiser et l'envoyer (JSON)
-    	$user = $this->get('security.context')->getToken()->getUser();
-    	$firstName = $user->getFirstName();
-    	$lastName = $user->getLastName();
-    	$point = $user->getPoint();
-    	$about = $user->getAbout();
-    	$joinDate = $user->getJoinDate();
-    	$city = $user->getCity();
-    	$website = $user->getWebsiteUrl();
-        $profileImg = $user->getProfileImg();
-    	$response = new JsonResponse(array('firstName' => $firstName, 'lastName' => $lastName, 
-    		'point' => $point, 'about' => $about, 'website' => $website, 'joinDate' => $joinDate, 'city' => $city, 'img' => $profileImg));
-    	return $response;
-    }
-
-    public function postAction()
-    {
-    	//Enregistrer l'utilisateur en bdd et renvoyer une reponse | Envoyé en methode POST
-    	$response = new JsonResponse(array('action' => 'success'));
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        $response = new JsonResponse();
+        $serializer = $this->get('jms_serializer');
+        $response->setContent('{"user":' . $serializer->serialize($user,
+                            'json') . '}');
+        $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
-
-    public function uploadimageAction()
+    
+    public function postAction()
     {
-        //Enregistrer l'image en bdd et renvoyer une reponse (avec l'image) | Envoyé en methode POST
-        $response = new JsonResponse(array('action' => 'success'));
+        $content = $this->get("request")->getContent();
+
+        if (!empty($content)) {
+            //$serializer = SerializerBuilder::create()->build();
+            $serializer = $this->get('jms_serializer');
+            $user = $serializer->deserialize($content, 'Datacity\UserBundle\Entity\User', 'json');
+            
+            $userManager = $this->get('fos_user.user_manager');
+            $userManager->updateUser($user);
+            
+            $response = new JsonResponse(array('action' => 'success'));
+        } else {
+            $response = new JsonResponse(array('action' => 'failure'));
+        }
+        return $response;
+    }
+    
+    public function uploadImageAction()
+    {
+        // $content = $this->get("request")->getContent();
+        // if (!empty($content)) {
+        //     $params = json_decode($content);
+        // }
+        // $uploaddir = '/var/www/uploads/';
+        // $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+
+        // if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
+        //     $response = new JsonResponse(array('action' => 'success')); 
+        // else 
+            $response = new JsonResponse(array('action' => 'failure'));
         return $response;
     }
 

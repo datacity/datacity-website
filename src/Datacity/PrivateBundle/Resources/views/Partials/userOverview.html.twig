@@ -2,25 +2,22 @@
 <div class="col-md-9">
 	<div class="row">
 		<div class="col-md-8 profile-info">
-			<h1>{{user.firstName || "Hubert"}} {{user.lastName || "Bill"}}</h1>
+			<h1>{{user.firstname || "Prénom"}} {{user.lastname || "Nom"}}</h1>
 			<p>
-				{{user.description || "Aucune description"}}
+				{{user.about || "Aucune description"}}
 			</p>
 			<p>
-				<a href="#">{{user.website || "www.mywebsite.com"}}</a>
+				<a href="#">{{user.websiteUrl || "Aucun site web"}}</a>
 			</p>
 			<ul class="list-inline">
 				<li>
 					<i class="fa fa-map-marker"></i> {{user.city || "France" }}
 				</li>
 				<li>
-					<i class="fa fa-calendar"></i> {{user.joinDate.date || "18 Janvier 1982" }}
+					<i class="fa fa-calendar"></i> {{user.join_date || "01/09/2014" }}
 				</li>
 				<li>
-					<i class="fa fa-briefcase"></i> {{user.activity || "Développeur FreeLance"}}
-				</li>
-				<li>
-					<i class="fa fa-heart"></i> {{user.point || "12345"}} Point(s)
+					<i class="fa fa-briefcase"></i> {{user.occupation || "Aucune activité"}}
 				</li>
 			</ul>
 		</div>
@@ -41,7 +38,7 @@
 								Point(s)<i class="fa fa-img-up"></i>
 							</span>
 							<span class="sale-num">
-								4
+								{{user.point || 0}}
 							</span>
 						</li>
 						<li>
