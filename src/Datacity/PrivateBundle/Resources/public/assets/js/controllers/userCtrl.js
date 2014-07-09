@@ -5,6 +5,20 @@
 			function($scope, $stateParams, $modal, $log, UserFactory) {
 				$scope.user = {};
 				$scope.passwords = {};
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "positionClass": "toast-top-full-width",
+                    "onclick": null,
+                    "showDuration": "1000",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
 				//$scope.imageUpload = 'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
 				var image;
 
@@ -53,12 +67,14 @@
 						$scope.user.img = UserFactory.uploadImage(image).then(function(data) {
 							//TODO: A changer en fonction de ce qu'on recevra en retour du controller
 							//+ gestion d'erreur et message de validation
+                            toastr.success("Votre nouvel avatar est en ligne !", "Image chargée avec succès !");
 					 		if (data.config.file) {
 					 			showImg(data.config.file);
 					        }
 					 	});
 				 	} else {
-				 		//TODO: MESSAGE D'ERREUR
+				 		//MESSAGE D'ERREUR
+                        toastr.error("Merci de contacter un administrateur ou de réessayer ultérieurement", "Une erreur est survenue ! :O");
 				 	}
 				}
 
@@ -73,20 +89,6 @@
 					 		console.log(data);
 					 	});
 				 	} else {
-				 		toastr.options = {
-						  "closeButton": true,
-						  "debug": false,
-						  "positionClass": "toast-top-full-width",
-						  "onclick": null,
-						  "showDuration": "1000",
-						  "hideDuration": "1000",
-						  "timeOut": "5000",
-						  "extendedTimeOut": "1000",
-						  "showEasing": "swing",
-						  "hideEasing": "linear",
-						  "showMethod": "fadeIn",
-						  "hideMethod": "fadeOut"
-						}
 						$scope.passwordChange.pw1.$setValidity("newPassword", false);
                         $scope.passwordChange.pw2.$setValidity("confirmedPassword", false);
 				 		toastr.error("Les champs du nouveau mot de passe et de sa vérification doivent être identiques.", "Erreur lors de la vérification du mot de passe");
@@ -99,22 +101,8 @@
 
 			        UserFactory.updateUser(userUpdated).then(function(data) {
 				 		console.log(data);
+                        toastr.success("Vos nouvelles informations sont en ligne !", "Profil mis à jour !");
 				 	});
 			    }
 		}]);
-    angular.module('userProfile.directives', [])
-        .directive('pwCheck', [function () {
-            return {
-                require: 'ngModel',
-                link: function (scope, elem, attrs, ctrl) {
-                    var firstPassword = '#' + attrs.pwCheck;
-                    elem.add(firstPassword).on('keyup', function () {
-                        scope.$apply(function () {
-                            var v = elem.val()===$(firstPassword).val();
-                            ctrl.$setValidity('pwmatch', v);
-                        });
-                    });
-                }
-            }
-        }]);
 })();

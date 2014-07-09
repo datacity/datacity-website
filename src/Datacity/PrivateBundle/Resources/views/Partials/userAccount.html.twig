@@ -1,3 +1,6 @@
+{% block pageTitle %}Gestion du profil{% endblock %}
+{% block lineTitleLink %}Gestion du profil{% endblock %}
+
 <div class="row profile-account">
 	<div class="col-md-3">
 		<ul class="ver-inline-menu tabbable margin-bottom-10">
@@ -20,7 +23,7 @@
 			<div id="tab_1-1" class="tab-pane active">
 				<form name="userChange" role="form" ng-submit="updateUser()">
 					<div class="form-group">
-						<label class="control-label">Prenom</label>
+						<label class="control-label">Prénom</label>
 						<input type="text" ng-model="user.firstName" placeholder="Votre prénom" class="form-control" required/>
 					</div>
 					<div class="form-group">
