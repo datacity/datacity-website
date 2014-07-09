@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Util\SecureRandom;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * User
@@ -21,6 +22,7 @@ class User extends BaseUser
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Serializer\Annotation\Type("integer")
      */
     protected $id;
 
@@ -28,6 +30,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50)
+     * @JMS\Serializer\Annotation\Type("string")
      * 
      * @Assert\NotBlank(message="Entrez votre prénom.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -44,6 +47,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=50)
+     * @JMS\Serializer\Annotation\Type("string")
      * 
      * @Assert\NotBlank(message="Entrez votre nom.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -60,6 +64,7 @@ class User extends BaseUser
      * @var integer
      *
      * @ORM\Column(name="point", type="integer")
+     * @JMS\Serializer\Annotation\Type("integer")
      */
 
     private $point = 0;
@@ -68,6 +73,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="public_key", type="string", length=50, nullable=false)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $public_key;
@@ -76,6 +82,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="private_key", type="string", length=50, nullable=false)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $private_key;
@@ -84,6 +91,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="facebook", type="string", length=50, nullable=true)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $facebook;
@@ -92,6 +100,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=45, nullable=true)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $twitter;
@@ -100,6 +109,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="langue", type="string", length=45, nullable=true)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $langue;
@@ -108,6 +118,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="occupation", type="string", length=100, nullable=true)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $occupation;
@@ -116,6 +127,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="about", type="text", nullable=true)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $about;
@@ -124,6 +136,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="website_url", type="string", length=255, nullable=true)
+     * @JMS\Serializer\Annotation\Type("string")
      */
 
     private $websiteUrl;
@@ -133,11 +146,13 @@ class User extends BaseUser
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="join_date", type="date")
+     * @JMS\Serializer\Annotation\Type("DateTime")
      */
     private $joinDate;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"remove", "persist"})
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Application")
      */
 
     private $applications;
@@ -145,21 +160,25 @@ class User extends BaseUser
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\City")
      */
     private $city;
     
     /**
      * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image")
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Image")
      */
     private $profileImg;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\News")
      */
     private $news;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="creator", cascade={"persist"})
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\DSource")
      */
     private $sources;
 
@@ -169,26 +188,33 @@ class User extends BaseUser
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
      *      )
+     * @JMS\Serializer\Annotation\Type("Datacity\UserBundle\Entity\User")
+     * @MaxDepth(1)
      */
     private $following;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="following")
+     * @JMS\Serializer\Annotation\Type("Datacity\UserBundle\Entity\User")
+     * @MaxDepth(1)
      */
     private $followers;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\File", mappedBy="user", cascade={"persist"})
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\File")
      */
     private $files;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="creator")
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Dataset")
      */
     private $datasetOwned;
 
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="contributors")
+     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Dataset")
      */
     private $datasetContributed;
 

@@ -33,7 +33,8 @@
 				};
 				
 				 UserFactory.getUserFromSession().then(function(data) {
-				 	$scope.user = data;
+				 	$scope.user = data.user;
+				 	console.log(data);
 					$scope.user.datasets = UserFactory.populateDatasetTmp();
 				 });
 				/*UserFactory.populate().then(function(data) {
@@ -70,6 +71,8 @@
                             toastr.success("Votre nouvel avatar est en ligne !", "Image chargée avec succès !");
 					 		if (data.config.file) {
 					 			showImg(data.config.file);
+					 			$scope.user.profileImg = image;
+					        	console.log($scope.user);
 					        }
 					 	});
 				 	} else {
@@ -80,7 +83,9 @@
 
 				$scope.updatePassword = function () {
 					console.log($scope.passwords);
-					if ($scope.passwords.newPassword == $scope.passwords.confirmPassword) {
+					if ($scope.passwords.newPassword && $scope.passwords.oldPassword
+						&& $scope.passwords.confirmPassword 
+						&& $scope.passwords.newPassword == $scope.passwords.confirmPassword) {
 			        	var userPasswords = $scope.passwords;
                         $scope.passwordChange.pw1.$setValidity("newPassword", true);
                         $scope.passwordChange.pw2.$setValidity("confirmedPassword", true);
@@ -91,8 +96,7 @@
 				 	} else {
 						$scope.passwordChange.pw1.$setValidity("newPassword", false);
                         $scope.passwordChange.pw2.$setValidity("confirmedPassword", false);
-				 		toastr.error("Les champs du nouveau mot de passe et de sa vérification doivent être identiques.", "Erreur lors de la vérification du mot de passe");
-				 		console.log('error');
+				 		toastr.error("Les champs doivent etre complétés. Le nouveau mot de passe et sa vérification doivent être identiques.", "Erreur lors de la vérification du mot de passe");
 				 	}
 			    }
 				
