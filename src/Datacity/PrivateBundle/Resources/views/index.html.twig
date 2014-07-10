@@ -177,7 +177,7 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
- 				<li id="nav-profilemanager" class="start">
+ 				<li id="nav-profilemanager" class="start" ui-sref-active="active">
 						<a href="#/user/show">
 							<i class="fa fa-gear"></i>
 							<span class="title">
@@ -202,9 +202,9 @@ Website: http://datacity.fr
 					</div>
 
 					<div class="col-lg-11">
-						<h3 class="page-title">
-							{% block pageTitle %}Tableau de bord <small>Configurez vos donnée</small>{% endblock %}
-						</h3>
+						<h3 class="page-title" ><div ng-bind="pageTitle">Espace utilisateur</div>
+                            <small><div ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</div></small>
+                        </h3>
 					</div>
 
 

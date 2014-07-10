@@ -7,11 +7,23 @@
 			'ngSanitize',
 			'angularFileUpload'
 		])
+        .run(['$rootScope', '$state', '$stateParams',
+            function ($rootScope,   $state,   $stateParams) {
+                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+                    if (toState.title && toState.description) {
+                        $rootScope.pageTitle = toState.title;
+                        $rootScope.pageDescription = toState.description;
+                    }
+                });
+            }
+        ])
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 				$stateProvider
 				.state('default', {
+                    title: 'Espace utilisateur',
+                    description: 'Accedez à vos informations et aux outils DataCity',
                     url: '/',
                     template: '<div>Page default</div>'
                 })
@@ -59,9 +71,11 @@
 				})
 				//Operations liées à l'utilisateur
 				.state('showUser', {
+                    title: 'Votre Profil',
+                    description: 'Changez vos informations personnelles',
 					url: '/user/show',
 					templateUrl: '/app_dev.php/private/partials/userInfo',
 					controller: 'userController'
 				});
-	}]);
+	    }]);
 })();
