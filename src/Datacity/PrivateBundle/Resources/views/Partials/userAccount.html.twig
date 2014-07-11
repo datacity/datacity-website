@@ -21,23 +21,23 @@
 				<form name="userChange" role="form" ng-submit="updateUser()">
 					<div class="form-group">
 						<label class="control-label">Prénom</label>
-						<input type="text" ng-model="user.firstname" placeholder="Votre prénom" class="form-control" required/>
+						<input type="text" ng-model="userInfos.firstname" placeholder="Votre prénom" class="form-control" required/>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Nom</label>
-						<input type="text" ng-model="user.lastname" placeholder="Votre nom" class="form-control" required/>
+						<input type="text" ng-model="userInfos.lastname" placeholder="Votre nom" class="form-control" required/>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Activité</label>
-						<input type="text" ng-model="user.occupation" placeholder="Votre activité (Ex: Développeur web)" class="form-control"/>
+						<input type="text" ng-model="userInfos.occupation" placeholder="Votre activité (Ex: Développeur web)" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label class="control-label">A propos</label>
-						<textarea class="form-control" rows="3" ng-model="user.about" placeholder="A propos de vous (Ex: Je suis spécialisé dans l'open data depuis son arrivée en France)"></textarea>
+						<textarea class="form-control" rows="3" ng-model="userInfos.about" placeholder="A propos de vous (Ex: Je suis spécialisé dans l'open data depuis son arrivée en France)"></textarea>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Site Web</label>
-						<input type="url" name="homepage" ng-model="user.websiteUrl" placeholder="Votre site internet" class="form-control"/>
+						<input type="url" name="homepage" ng-model="userInfos.websiteUrl" placeholder="Votre site internet" class="form-control"/>
 					</div>
 					<div class="margiv-top-10">
 						<input type="submit" ng-show="userChange.$valid" value="Sauvegarder" class="btn green"/>
@@ -66,7 +66,7 @@
 					</div>
 				</form>
 			</div>
-			<div id="tab_3-3" class="tab-pane">
+			<div ng-controller="userController" id="tab_3-3" class="tab-pane">
 				<form id="passwordChange" name="passwordChange" ng-submit="updatePassword()" novalidate>
 					<div class="form-group">
 						<label class="control-label">Mot de passe actuel</label>

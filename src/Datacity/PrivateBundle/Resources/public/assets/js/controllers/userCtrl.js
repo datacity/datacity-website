@@ -5,6 +5,9 @@
 			function($scope, $stateParams, $modal, $log, UserFactory) {
 				$scope.user = {};
 				$scope.passwords = {};
+				$scope.userInfos = {};
+				$scope.imageUpload = {};//'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
+				var image;
                 toastr.options = {
                     "closeButton": true,
                     "debug": false,
@@ -19,22 +22,21 @@
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-				//$scope.imageUpload = 'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
-				var image;
+				
 
 				//TODO: A changer en fonction du champ image du user
-				var showImg = function (img) {
-		 			var reader = new FileReader();
+				// var showImg = function (img) {
+		 	// 		var reader = new FileReader();
 
-		            reader.onload = function (e) {
-		                jQuery('#profileImg').attr('src', e.target.result);
-		            }
-		            reader.readAsDataURL(img);
-				};
+		  //           reader.onload = function (e) {
+		  //               jQuery('#profileImg').attr('src', e.target.result);
+		  //           }
+		  //           reader.readAsDataURL(img);
+				// };
 				
 				 UserFactory.getUserFromSession().then(function(data) {
 				 	$scope.user = data.user;
-				 	console.log(data);
+				 	//console.log(data);
 					$scope.user.datasets = UserFactory.populateDatasetTmp();
 				 });
 				/*UserFactory.populate().then(function(data) {
@@ -50,7 +52,8 @@
 			            reader.onload = function (e) {
 			            	jQuery('#thumbnail-preview').attr('src', e.target.result);
 			            	//Ne se met pas a jour ...
-			            	//$scope.imageUpload = e.target.result;
+			            	$scope.imageUpload.img_url = e.target.result;
+			            	$scope.imageUpload.img_name = image.name;
 			            }
 			            reader.readAsDataURL(image);
 			        }
@@ -65,14 +68,18 @@
 			    //TODO: Changer les "Then"
 				$scope.uploadImage = function () {
 					if (image) {
-						$scope.user.img = UserFactory.uploadImage(image).then(function(data) {
-							//TODO: A changer en fonction de ce qu'on recevra en retour du controller
-							//+ gestion d'erreur et message de validation
-                            toastr.success("Votre nouvel avatar est en ligne !", "Image chargée avec succès !");
-					 		if (data.config.file) {
-					 			showImg(data.config.file);
-					 			$scope.user.profileImg = image;
-					        	console.log($scope.user);
+
+						// $scope.user.profileImg = $scope.imageUpload;
+						console.log($scope.imageUpload);
+						UserFactory.uploadImage(image).then(function(data) {
+                            console.log(data);
+					 		if (data.action == "success") {
+					 			//jQuery('#profileImg').attr('src', $scope.imageUpload);
+					 			//$scope.user.profileImg = $scope.imageUpload;
+					        	//console.log($scope.imageUpload);
+					        	toastr.success("Votre nouvel avatar est en ligne !", "Image chargée avec succès");
+					        } else {
+					        	toastr.error("Merci de contacter un administrateur ou de réessayer ultérieurement", "Une erreur est survenue ! :O");
 					        }
 					 	});
 				 	} else {
@@ -91,7 +98,6 @@
                         $scope.passwordChange.pw2.$setValidity("confirmedPassword", true);
 				        UserFactory.updatePassword(userPasswords).then(function(data) {
                             toastr.success("Utilisez votre nouveau mot de passe à la prochaine connexion", "Mot de passe modifié !");
-					 		console.log(data);
 					 	});
 				 	} else {
 						$scope.passwordChange.pw1.$setValidity("newPassword", false);
@@ -101,10 +107,7 @@
 			    }
 				
 				$scope.updateUser = function () {
-			        var userUpdated = $scope.user;
-
-			        UserFactory.updateUser(userUpdated).then(function(data) {
-				 		console.log(data);
+			        UserFactory.updateUser($scope.userInfos).then(function(data) {
                         toastr.success("Vos nouvelles informations sont en ligne !", "Profil mis à jour !");
 				 	});
 			    }

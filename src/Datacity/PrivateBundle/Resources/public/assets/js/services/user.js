@@ -9,27 +9,28 @@
 							return response.data;
 						});
 				},
-				updateUser: function(user) {
-					//TODO : FAIRE LA GESTION D'ERREUR 
+				updateUser: function(userinfos) {
 					return $http
-						.post(Routing.generate('datacity_private_usermanager_post'), user).then(function(response) {
+						.post(Routing.generate('datacity_private_usermanager_post'), userinfos).then(function(response) {
 							return response.data;
 						});
 				},
 				uploadImage: function(image) {
-					return $upload.upload(
-						{
-						   	url: Routing.generate('datacity_private_usermanager_uploadimage'),
-						    method: 'POST', 
-							file: image,
-						})
-					//TODO : FAIRE LA GESTION D'ERREUR 
-					.success(function(response) {
-						return response.data;
-					});
+					console.log(image);
+					return $http
+						.post(Routing.generate('datacity_private_usermanager_uploadimage'), image).then(function(response) {
+							return response.data;
+						});
+					// return $upload.upload({
+					// 	   	url: Routing.generate('datacity_private_usermanager_uploadimage'),
+					// 	    method: 'POST', 
+					// 		file: image
+
+					// 	}).then(function(response) {
+					// 		return response.data;
+					// 	});
 				},
 				updatePassword: function(user) {
-					//TODO : FAIRE LA GESTION D'ERREUR 
 					return $http
 						.post(Routing.generate('datacity_private_usermanager_updatepassword'), user).then(function(response) {
 							return response.data;
