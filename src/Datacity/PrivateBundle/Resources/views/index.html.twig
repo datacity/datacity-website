@@ -213,11 +213,11 @@ Website: http://datacity.fr
 						<ul class="page-breadcrumb breadcrumb">
 							<li>
 								<i class="fa fa-home"></i>
-								<a href="{{ path('datacity_private_homepage') }}">Accueil</a>
+								<a ng-href="{{ path('datacity_private_homepage') }}">Accueil</a>
 								<i class="fa fa-angle-right"></i>
 							</li>
 							<li>
-								<a href="#">{% block lineTitleLink %}Tableau de bord{% endblock %}</a>
+								<a data-ng-href="pageUrl" ng-bind="pageTitle"></a>
 							</li>
 							<li class="pull-right">
 								<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">

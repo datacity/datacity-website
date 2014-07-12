@@ -13,6 +13,7 @@
                     if (toState.title && toState.description) {
                         $rootScope.pageTitle = toState.title;
                         $rootScope.pageDescription = toState.description;
+                        $rootScope.pageUrl = toState.url;
                     }
                 });
             }
@@ -29,6 +30,8 @@
                 })
                 //Operations liées aux dataset.
 				.state('editDS', {
+                    title: 'Edition',
+                    description: 'Editer vos jeux de données',
 					url: '/dataset/edit/:slug',
 					templateUrl: '/app_dev.php/private/partials/formDataSet',
 					controller: 'datasetController',
@@ -37,6 +40,8 @@
 					}
 				})
 				.state('addDS', {
+                    title: 'Ajout',
+                    description: 'Ajouter un jeu de données',
 					url: '/dataset/add',
 					templateUrl: '/app_dev.php/private/partials/formDataSet',
 					controller: 'datasetController',
@@ -46,6 +51,8 @@
 
 				})
 				.state('deleteDS', {
+                    title: 'Suppression',
+                    description: 'Suppression de jeux de données',
 					url: '/dataset/delete/:id',
 					controller: 'datasetController',
 					resolve: {
@@ -54,6 +61,8 @@
 				})
 				//Operations liées aux sources
 				.state('addSource', {
+                    title: 'Ajout',
+                    description: 'Ajouter une source',
 					url: '/source/add/:datasetId',
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
@@ -62,6 +71,8 @@
 					}
 				})
 				.state('editSource', {
+                    title: 'Edition',
+                    description: 'Editer vos sources',
 					url: '/source/edit/:datasetId/:id',
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
