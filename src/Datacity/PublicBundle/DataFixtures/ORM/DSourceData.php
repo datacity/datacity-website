@@ -15,7 +15,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Source1');
 		$source->setSid('1');
-		$source->setSize(3.1);
 		$source->setDownloadNb(132);
 		$source->setUsefulNb(5);
 		$source->setUndesirableNb(0);
@@ -29,7 +28,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Source2');
 		$source->setSid('2');
-		$source->setSize(2.1);
 		$source->setDownloadNb(54);
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
@@ -43,7 +41,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Source3');
 		$source->setSid('3');
-		$source->setSize(1.5);
 		$source->setDownloadNb(34);
 		$source->setUsefulNb(3);
 		$source->setUndesirableNb(0);
@@ -57,7 +54,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Source4');
 		$source->setSid('4');
-		$source->setSize(0.8);
 		$source->setDownloadNb(10);
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
@@ -73,7 +69,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Bâtiments de Montpellier');
 		$source->setSid('5');
-		$source->setSize(0.5);
 		$source->setDownloadNb(324);
 		$source->setUsefulNb(200);
 		$source->setUndesirableNb(0);
@@ -90,7 +85,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Résultats des élections européennes de Montpellier');
 		$source->setSid('6');
-		$source->setSize(0.6);
 		$source->setDownloadNb(231);
 		$source->setUsefulNb(124);
 		$source->setUndesirableNb(0);
@@ -107,7 +101,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Praesent euismod');
 		$source->setSid('7');
-		$source->setSize(0.8);
 		$source->setDownloadNb(12);
 		$source->setUsefulNb(0);
 		$source->setUndesirableNb(0);
@@ -122,7 +115,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Aenean molestie');
 		$source->setSid('8');
-		$source->setSize(1.2);
 		$source->setDownloadNb(15);
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
@@ -137,7 +129,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source = new DSource();
 		$source->setTitle('Sed eu leo sed');
 		$source->setSid('9');
-		$source->setSize(1.1);
 		$source->setDownloadNb(23);
 		$source->setUsefulNb(2);
 		$source->setUndesirableNb(0);
@@ -152,7 +143,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
 		return 17;

@@ -52,9 +52,9 @@ class SearchApiController extends Controller
                 ->andWhere($qb->expr()->in('freq.name', ':frequency'))
                 ->setParameter('frequency', $frequency);
         }
-        
+
         $qb->orderBy('d.visitedNb', 'DESC');
-        //TODO KnpPaginatorBundle 
+        //TODO KnpPaginatorBundle
         $response = new Response();
         $results = $qb->getQuery()->getResult();
         $serializer = $this->get('jms_serializer');
@@ -93,10 +93,12 @@ class SearchApiController extends Controller
         $categories = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category")->findAll();
         $licenses = $this->getDoctrine()->getRepository("DatacityPublicBundle:License")->findAll();
         $frequencies = $this->getDoctrine()->getRepository("DatacityPublicBundle:Frequency")->findAll();
+        $coverage = $this->getDoctrine()->getRepository("DatacityPublicBundle:CoverageTerritory")->findAll();
         $serializer = $this->get('jms_serializer');
         $results = '{"results":{"categories":'. $serializer->serialize($categories, 'json') .
                     ',"licenses":' . $serializer->serialize($licenses, 'json') .
-                    ',"frequencies": ' . $serializer->serialize($frequencies, 'json') . '}}';
+                    ',"frequencies": ' . $serializer->serialize($frequencies, 'json') .
+                    ',"coverageTerritory": ' . $serializer->serialize($coverage, 'json') . '}}';
         $response = new Response();
         $response->setContent($results);
         $response->headers->set('Content-Type', 'application/json');

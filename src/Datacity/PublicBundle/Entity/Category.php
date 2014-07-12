@@ -31,7 +31,7 @@ class Category
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $name;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="category", cascade={"persist","remove"})
      */
@@ -43,24 +43,18 @@ class Category
     private $applications;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="category")
-     */
-    private $datasets;
-    
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->applications = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->datasets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +77,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -116,7 +110,7 @@ class Category
     /**
      * Get images
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImages()
     {
@@ -149,43 +143,10 @@ class Category
     /**
      * Get applications
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getApplications()
     {
         return $this->applications;
-    }
-
-    /**
-     * Add datasets
-     *
-     * @param \Datacity\PublicBundle\Entity\Dataset $datasets
-     * @return Category
-     */
-    public function addDataset(\Datacity\PublicBundle\Entity\Dataset $datasets)
-    {
-        $this->datasets[] = $datasets;
-
-        return $this;
-    }
-
-    /**
-     * Remove datasets
-     *
-     * @param \Datacity\PublicBundle\Entity\Dataset $datasets
-     */
-    public function removeDataset(\Datacity\PublicBundle\Entity\Dataset $datasets)
-    {
-        $this->datasets->removeElement($datasets);
-    }
-
-    /**
-     * Get datasets
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDatasets()
-    {
-        return $this->datasets;
     }
 }

@@ -27,7 +27,7 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$dataset->setCreator($this->getReference("user-marc.soufflet@epitech.eu"));
 		$dataset->addContributor($this->getReference("user-marquis_c@epitech.eu"));
-		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[0])); //Culture
+		$dataset->addCategory($this->getReference('category-' . CategoriesData::$categoriesName[0])); //Culture
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[0])); //Musique
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[8])); //Evénement
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
@@ -46,7 +46,7 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
 		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
-		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[4])); //Société
+		$dataset->addCategory($this->getReference('category-' . CategoriesData::$categoriesName[4])); //Société
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[1])); //Service public
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
 		$manager->persist($dataset);
@@ -64,7 +64,7 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
 		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
 		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
-		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[4])); //Société
+		$dataset->addCategory($this->getReference('category-' . CategoriesData::$categoriesName[4])); //Société
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[6])); //Politique
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
 		$manager->persist($dataset);
@@ -84,7 +84,7 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[9])); //Allemagne
 		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[3])); //Pays
 		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
-		$dataset->setCategory($this->getReference('category-' . CategoriesData::$categoriesName[2])); //Transports
+		$dataset->addCategory($this->getReference('category-' . CategoriesData::$categoriesName[2])); //Transports
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[1])); //Service public
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[2])); //Vélo
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[3])); //Voiture
@@ -94,7 +94,7 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
 		return 15;

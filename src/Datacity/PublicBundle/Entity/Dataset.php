@@ -165,7 +165,7 @@ class Dataset
     private $sources;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="datasets")
+     * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category")
      * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
@@ -748,22 +748,32 @@ class Dataset
     }
 
     /**
-     * Set category
+     * Add category
      *
      * @param \Datacity\PublicBundle\Entity\Category $category
      * @return Dataset
      */
-    public function setCategory(\Datacity\PublicBundle\Entity\Category $category)
+    public function addCategory(\Datacity\PublicBundle\Entity\Category $category)
     {
-        $this->category = $category;
+        $this->category[] = $category;
 
         return $this;
     }
 
     /**
+     * Remove category
+     *
+     * @param \Datacity\PublicBundle\Entity\Category $category
+     */
+    public function removeCategory(\Datacity\PublicBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
      * Get category
      *
-     * @return \Datacity\PublicBundle\Entity\Category 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCategory()
     {

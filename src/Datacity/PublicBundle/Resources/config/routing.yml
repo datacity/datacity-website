@@ -54,7 +54,7 @@ datacity_public_api_place:
     options:
         expose: true
 
-datacity_public_api_search_list:
+datacity_public_api_filter_list:
     pattern:  /api/searchlistfilter
     defaults: { _controller: DatacityPublicBundle:SearchApi:searchListFilter }
     options:

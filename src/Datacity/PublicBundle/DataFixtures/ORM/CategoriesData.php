@@ -18,20 +18,20 @@ class CategoriesData extends AbstractFixture implements OrderedFixtureInterface
 			'Economie',
 			'Logement'
 	);
-	
+
 	public function load(ObjectManager $manager)
 	{
 		foreach (self::$categoriesName as $i => $name)
 		{
 			$cat = new Category();
-			$cat->setName($name); 
+			$cat->setName($name);
 			$manager->persist($cat);
 			$this->getReference('image-'.md5(ImagesData::$imagesUrl[$i]))->setCategory($cat);
 			$this->addReference('category-'.$name, $cat);
     	}
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
 		return 1;

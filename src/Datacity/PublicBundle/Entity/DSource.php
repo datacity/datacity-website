@@ -47,14 +47,6 @@ class DSource
     private $link;
 
     /**
-     * @var decimal
-     *
-     * @ORM\Column(name="size", type="decimal")
-     * @Serializer\Groups({"datasetShow"})
-     */
-    private $size;
-
-    /**
      * @var \Date
      *
      * @Gedmo\Timestampable(on="create")
@@ -155,7 +147,7 @@ class DSource
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -178,7 +170,7 @@ class DSource
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -201,34 +193,11 @@ class DSource
     /**
      * Get sid
      *
-     * @return string 
+     * @return string
      */
     public function getSid()
     {
         return $this->sid;
-    }
-
-    /**
-     * Set size
-     *
-     * @param string $size
-     * @return DSource
-     */
-    public function setSize($size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return string 
-     */
-    public function getSize()
-    {
-        return $this->size;
     }
 
     /**
@@ -247,7 +216,7 @@ class DSource
     /**
      * Get publishedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPublishedDate()
     {
@@ -270,7 +239,7 @@ class DSource
     /**
      * Get lastModifiedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastModifiedDate()
     {
@@ -293,7 +262,7 @@ class DSource
     /**
      * Get downloadNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getDownloadNb()
     {
@@ -316,7 +285,7 @@ class DSource
     /**
      * Get usefulNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getUsefulNb()
     {
@@ -339,7 +308,7 @@ class DSource
     /**
      * Get undesirableNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getUndesirableNb()
     {
@@ -362,7 +331,7 @@ class DSource
     /**
      * Get dateBegin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateBegin()
     {
@@ -385,7 +354,7 @@ class DSource
     /**
      * Get dateEnd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateEnd()
     {
@@ -408,7 +377,7 @@ class DSource
     /**
      * Get frequency
      *
-     * @return \Datacity\PublicBundle\Entity\Frequency 
+     * @return \Datacity\PublicBundle\Entity\Frequency
      */
     public function getFrequency()
     {
@@ -431,7 +400,7 @@ class DSource
     /**
      * Get place
      *
-     * @return \Datacity\PublicBundle\Entity\Place 
+     * @return \Datacity\PublicBundle\Entity\Place
      */
     public function getPlace()
     {
@@ -454,7 +423,7 @@ class DSource
     /**
      * Get coverageTerritory
      *
-     * @return \Datacity\PublicBundle\Entity\CoverageTerritory 
+     * @return \Datacity\PublicBundle\Entity\CoverageTerritory
      */
     public function getCoverageTerritory()
     {
@@ -477,7 +446,7 @@ class DSource
     /**
      * Get creator
      *
-     * @return \Datacity\UserBundle\Entity\User 
+     * @return \Datacity\UserBundle\Entity\User
      */
     public function getCreator()
     {
@@ -500,7 +469,7 @@ class DSource
     /**
      * Get dataset
      *
-     * @return \Datacity\PublicBundle\Entity\Dataset 
+     * @return \Datacity\PublicBundle\Entity\Dataset
      */
     public function getDataset()
     {
@@ -523,7 +492,7 @@ class DSource
     /**
      * Get link
      *
-     * @return string 
+     * @return string
      */
     public function getLink()
     {
@@ -546,7 +515,7 @@ class DSource
     /**
      * Get producer
      *
-     * @return \Datacity\UserBundle\Entity\Producer 
+     * @return \Datacity\UserBundle\Entity\Producer
      */
     public function getProducer()
     {
