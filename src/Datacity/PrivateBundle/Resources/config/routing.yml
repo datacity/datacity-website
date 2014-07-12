@@ -23,8 +23,12 @@ datacity_private_news_add:
     defaults: { _controller: DatacityPrivateBundle:News:add }
 
 datacity_private_news_remove:
-    pattern:  /news/remove/{news_id}
-    defaults: { _controller: DatacityPrivateBundle:News:remove, news_id: -1 }
+    pattern:  /news/{slug}
+    requirements:
+        _method: DELETE
+    defaults: { _controller: DatacityPrivateBundle:News:remove }
+    options:
+        expose: true
 
 datacity_private_profilemanager:
     pattern:  /profilemanager

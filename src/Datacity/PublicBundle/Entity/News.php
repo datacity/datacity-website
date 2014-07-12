@@ -52,7 +52,7 @@ class News
      * @ORM\JoinColumn(nullable=true)
      */
     private $image;
-    
+
     /**
     * @var datetime $date
     * @Gedmo\Timestampable(on="create")
@@ -62,12 +62,12 @@ class News
 
     public function __construct()
     {
-    }    
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +83,7 @@ class News
     public function setUser(\Datacity\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -91,7 +91,7 @@ class News
     /**
      * Get user
      *
-     * @return string 
+     * @return string
      */
     public function getUser()
     {
@@ -107,14 +107,14 @@ class News
     public function setMessage($message)
     {
         $this->message = $message;
-    
+
         return $this;
     }
 
     /**
      * Get message
      *
-     * @return string 
+     * @return string
      */
     public function getMessage()
     {
@@ -130,14 +130,14 @@ class News
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -163,7 +163,7 @@ class News
     public function getDate()
     {
         return $this->date;
-    }    
+    }
 
 
     /**
@@ -182,7 +182,7 @@ class News
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -205,7 +205,7 @@ class News
     /**
      * Get image
      *
-     * @return \Datacity\PublicBundle\Entity\Image 
+     * @return \Datacity\PublicBundle\Entity\Image
      */
     public function getImage()
     {

@@ -50,10 +50,10 @@
 										{{ new.message |slice(0, 100)}}...
 										{% else %}
 										{{new.message}}
-										{% endif %}	
+										{% endif %}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteNews({{ new.getId() }}, '{{ new.getTitle()|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteNews('{{ new.slug }}', '{{ new.getTitle()|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -90,20 +90,20 @@
 {{ parent() }}
 	<script type="text/javascript">
 		$("#nav-news").addClass("active");
-		function deleteNews(id) {
+		function deleteNews(slug) {
 		$.ajax({
-		    type: 'POST',  
-		    dataType: 'json',                  
-		    url: "{{ path('datacity_private_news_remove') }}/" + id,
+		    type: 'DELETE',
+		    dataType: 'json',
+		    url: Routing.generate('datacity_private_news_remove', { slug: slug }),
 		    success: function(response) {
 		        $("#row-news-" + response['id']).fadeOut(300, function() { $(this).remove(); });
 		      }
 		  });
 		}
-	function setDeleteNews(id, title) {
-		$("#buttonDeleteNews").attr("onClick", "deleteNews(" + id + ");")
+	function setDeleteNews(slug, title) {
+		$("#buttonDeleteNews").attr("onClick", "deleteNews('" + slug + "');")
 		$("#newsToDeleteTitle").html(title);
-		
+
 	}
 	</script>
 {% endblock %}
