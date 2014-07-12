@@ -75,8 +75,8 @@ class SearchApiController extends Controller
             return $response;
         }
         $qb = $this->getDoctrine()->getRepository('DatacityPublicBundle:Place')->createQueryBuilder('p');
-        $qb->where('SOUNDEX(p.name) = SOUNDEX(:place)')
-            ->orWhere($qb->expr()->like('p.name', ':place'))
+        $qb->//where('SOUNDEX(p.name) = SOUNDEX(:place)')
+            ->where($qb->expr()->like('p.name', ':place'))
             ->setParameter('place', $place.'%')
             ->setMaxResults(10);
         $response = new Response();
