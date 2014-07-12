@@ -16,7 +16,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Titre <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Titre" ng-model="meta.title">
+								<input type="text" class="form-control" placeholder="Titre" ng-model="metaSelected.title">
 							</div>
 						</div>
 					</div>
@@ -24,8 +24,9 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Couverture téritoriale <strong style="color:red;">*</strong></label>
+
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="meta.selectedCategory" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la couverture territoriale" ng-options="coverage.id as coverage.name for coverage in meta.coverageTerritory" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.coverageTerritory" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la couverture territoriale" ng-options="coverage.id as coverage.name for coverage in meta.coverageTerritory" bs-select>
 								</button>
 							</div>
 						</div>
@@ -38,7 +39,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Catégories <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="meta.selectedCategory" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="Choisissez la catégorie" ng-options="category.id as category.name for category in meta.categories" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.category" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="Choisissez la catégorie" ng-options="category.id as category.name for category in meta.categories" bs-select>
 								</button>
 							</div>
 						</div>
@@ -48,7 +49,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Fréquence</label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="meta.selectedFrequency" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la fréquence de mise à jour" ng-options="frequency.id as frequency.name for frequency in meta.frequency" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.frequency" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la fréquence de mise à jour" ng-options="frequency.id as frequency.name for frequency in meta.frequencies" bs-select>
 								</button>								
 							</div>
 						</div>
@@ -57,11 +58,11 @@
 				</div>
 				<!--/row-->
 				<div class="row">
-					<div class="col-md-6">
+					 <div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Licence <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="meta.selectedLicence" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="licence.id as licence.name for licence in meta.licence" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.id as license.name for license in meta.licenses" bs-select>
 								</button>
 							</div>
 						</div>
@@ -72,7 +73,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Lien</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Lien du fichier où provient la source" ng-model="meta.link">
+								<input type="text" class="form-control" placeholder="Lien du fichier d'où provient la source" ng-model="metaSelected.link">
 								<span data-ng-if="submitEvent && meta.link" class="help-block">
 									Champ obligatoire						
 								</span>
@@ -81,6 +82,20 @@
 					</div>
 					<!--/span-->
 				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation </label><strong style="color:red;">*</strong></label>
+							<div class="col-md-9">
+    							<input type="text" class="form-control" ng-model="metaSelected.location" ng-options="address for address in getLocation($viewValue)" placeholder="Quelle localisation est concernée par votre source ?" bs-typeahead>
+							</div>
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+
+
 				<!--/row-->
 				
 				<h3 class="form-section">Détails de la source</h3>
@@ -90,7 +105,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Données depuis le</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" ng-model="meta.dateBegin" data-date-viewmode="years" datepicker />
+								<input type="text" class="form-control" ng-model="metaSelected.dateBegin" data-date-viewmode="years" datepicker />
 							</div>
 						</div>
 					</div>
@@ -98,7 +113,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Jusqu'à</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" ng-model="meta.dateEnd" data-date-viewmode="years" datepicker />
+								<input type="text" class="form-control" ng-model="metaSelected.dateEnd" data-date-viewmode="years" datepicker />
 							</div>
 						</div>
 					</div>

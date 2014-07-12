@@ -36,11 +36,18 @@
 					<div id="categoryModelContainer" class="block">
 						<hr/>
 						<p> Categories: </p>
-						<div data-ng-repeat="column in dataModel">
-							<div style="line-height: 20%;">
-								<br/>
+						<div class="row">
+							<div class="col-md-10">
+								<div data-ng-repeat="column in dataModel">
+									<div style="line-height: 20%;">
+										<br/>
+									</div>
+									<button class="btn blue" data-ng-style="{'background-color': column.color}" style="color: white;" type="button" data-ng-click="categorySelected(column)">{{column.name | uppercase}}</button>
+									<button class="btn red" data-ng-click="deleteColumn(column)"><i class="fa fa-times"></i></button>
+								</div>
 							</div>
-							<button class="btn blue" data-ng-style="{'background-color': column.color}" style="color: white;" type="button" data-ng-click="categorySelected(column)">{{column.name | uppercase}}</button>
+							<div class="col-md-4">
+							</div>
 						</div>
 
 					</div>

@@ -10,12 +10,14 @@
 				
 				// VARIABLES COMMUNES A TOUTES LES OPERATIONS (edit, create, delete)
 				// ----------------------------------------
-				 $scope.date = ""
-				 $scope.databinding = [];
+				$scope.date = ""
+				$scope.databinding = [];
+				$scope.metaSelected = {};
 
 				var globalData;
 			    $scope.filterOptions = {
 			        filterText: '',
+			        useExternalFilter: true
 			    };
 		   	    $scope.totalServerItems = 0;
 			    $scope.pagingOptions = {
@@ -113,7 +115,8 @@
 			                var ft = searchText.toLowerCase();
 			               	data = globalData.filter(function(item) {
 			                	return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
-			                });		               
+			                });
+			        		$scope.setPagingData(data, page, pageSize);
 			            } else {
 			        		data = globalData;
 			        		$scope.setPagingData(data, page, pageSize);
@@ -133,7 +136,6 @@
 			    }, true);
 			    //---------------------------------------------------------
 	    
-
 	    
 			    $scope.update_columns = function($event) {
 			    	//TODO: Ajouter l'implémentation du rajout de colone de façon dynamique
@@ -154,9 +156,7 @@
 	      						{
 	      							field: item,
 	      							displayName: item.replace('/\W/g', '_'),
-	      							minWidth: 110,
-	      							width: '15%',
-	      							maxWidth: 250,
+	      							width: 120,
 	      							headerCellTemplate: myHeaderCellTemplate
 	      							/*enableCellEdit: true*/
 	      						});
@@ -196,6 +196,26 @@
 			    	}
 			    }
 
+			    $scope.deleteColumn = function(column) {
+			    	angular.forEach($scope.dataModel, function(item, index) {
+			    		if (item.name === column.name) {
+			    			console.log("on enter here");
+			    			console.log(index);
+			    			$scope.dataModel.slice(index, 1);
+			    			console.log($scope.dataModel);
+			    		}
+			    	});
+			    }
+
+			    $scope.getLocation = function(val) {
+			    	console.log(val);
+			    	var res = SourceFactory.getExistingLocations(val).then(function(results) {
+			    		return results;
+			    	});
+			    	console.log(res);
+			    	return res;
+			    }
+
 				// Appellé a chaque fois que l'on veut rajouter une catégorie dans le modèle.
 				// inputModel je pense que je n'ai pas besoin d'expliquer ^^
 			    $scope.addCategoryModel = function(inputModel) {
@@ -233,7 +253,8 @@
 					// On met ce databinding dans $scope.databinding et on attribue une couleur random dans le html
 
 					//TMP : Changer par getExistingData
-					
+
+
 					var result = SourceFactory.getExistingDataPopulateExemple($stateParams.datasetId, false);
 					if (result.dataModel) {
 						$scope.dataModel = result.dataModel;
@@ -242,9 +263,25 @@
 							$scope.dataModel[index].color = getRandomColor();
 						});
 					}
-					if (result.metadata)
-						$scope.meta = result.metadata;
+					/*if (result.metadata)
+						$scope.meta = result.metadata;*/
 					
+					SourceFactory.getExistingMetaData().then(function(results) {
+						console.log(results);
+						if (results)
+							$scope.meta = results;
+						console.log($scope.meta);
+					});
+
+					SourceFactory.getExistingDatasetModel($stateParams.slugDataset).then(function(results) {
+						if (!results)
+							return false;
+						$scope.dataModel = results;
+						angular.forEach($scope.dataModel, function(item, index) {
+							$scope.dataModel[index].color = getRandomColor();
+						})
+						console.log($scope.dataModel);
+					});
 					
 					
 
@@ -290,12 +327,13 @@
 					
 
 					var result = {
-						metadata: $scope.meta,
+						metadata: $scope.metaSelected,
+						dataModel : $scope.dataModel,
 						databinding: $scope.databinding,
-						data: $scope.myData
+						data: globalData
 					}
 
-					SourceFactory.post($stateParams.datasetId, result).then(function(response) {
+					SourceFactory.post($stateParams.slugDataset, result).then(function(response) {
 							console.log(response);
 					});
 				}

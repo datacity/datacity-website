@@ -21,7 +21,7 @@ Website: http://datacity.fr
 	<meta name="MobileOptimized" content="320">
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	{% block stylesheets %}
-   	{% stylesheets
+	{% stylesheets
 	'css/angular-strap-dep.css'
 	'css/ng-grid.css'
 	'bundles/datacityprivate/assets/plugins/font-awesome/css/font-awesome.min.css'
@@ -62,7 +62,7 @@ Website: http://datacity.fr
 	'bundles/datacityprivate/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
 	#}
 
- 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/overcast/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/overcast/jquery-ui.css" />
 
 	<link rel="shortcut icon" href="{{ asset('bundles/datacitypublic/ico/favicon.png') }}" />
 </head>
@@ -89,7 +89,7 @@ Website: http://datacity.fr
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<!-- <img alt="" src="assets/img/avatar1_small.jpg"/> -->
 						<span class="username">
-{# 							{{ app.user.username }} #}
+							{# 							{{ app.user.username }} #}
 						</span>
 						<i class="fa fa-angle-down"></i>
 					</a>
@@ -177,7 +177,7 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
- 				<li id="nav-profilemanager" class="start" ui-sref-active="active">
+					<li id="nav-profilemanager" class="start" ui-sref-active="active">
 						<a href="#/user/show">
 							<i class="fa fa-gear"></i>
 							<span class="title">
@@ -203,8 +203,8 @@ Website: http://datacity.fr
 
 					<div class="col-lg-11">
 						<h3 class="page-title" ><div ng-bind="pageTitle">Espace utilisateur</div>
-                            <small><div ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</div></small>
-                        </h3>
+							<small><div ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</div></small>
+						</h3>
 					</div>
 
 
@@ -267,9 +267,10 @@ Website: http://datacity.fr
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 <script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 {# TEMP #}
-	<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
-	<script src="http://angular-file-upload.appspot.com/js/angular-file-upload-shim.js"></script>
-	<script src="http://angular-file-upload.appspot.com/js/angular-file-upload.js"></script>
+
+<script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
+<script src="http://angular-file-upload.appspot.com/js/angular-file-upload-shim.js"></script> 
+<script src="http://angular-file-upload.appspot.com/js/angular-file-upload.js"></script> 
 
 	{# '@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/uniform/jquery.uniform.min.js'
@@ -288,17 +289,21 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/moment.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/daterangepicker.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
-'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/select2/select2.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/jquery.dataTables.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/DT_bootstrap.js' #}
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/DT_bootstrap.js' 
+	'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/databinding.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/datatable.js'#}
 
+	{# ENDTEMP #}
 
-{# ENDTEMP #}
-
-{% javascripts
+	{% javascripts
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-migrate-1.2.1.min.js'
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
@@ -314,7 +319,7 @@ Website: http://datacity.fr
 	'js/angular-mods.js'
 	'js/angular-strap.js'
 	'js/ng-grid.js'
-  	'@DatacityPrivateBundle/Resources/public/assets/js/mock/e2e-mock-dataset.js'
+	'@DatacityPrivateBundle/Resources/public/assets/js/mock/e2e-mock-dataset.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/app.js'
 
 	'@DatacityPrivateBundle/Resources/public/assets/js/services/dataset.js'
@@ -330,19 +335,17 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/assets/js/directives/datepicker.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/directives/events.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
+	
 	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-toastr/toastr.min.js'
 
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
+	
 	'@DatacityPrivateBundle/Resources/public/assets/scripts/ui-toastr.js'
 	'@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/databinding.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/datatable.js'
+	
 	'@DatacityPrivateBundle/Resources/public/assets/js/router.js'
 
 
@@ -353,15 +356,15 @@ Website: http://datacity.fr
 
 	<script>
 	jQuery(document).ready(function() {
- 		App.init();
+		App.init();
    		/*App.init(); // initlayout and core plugins
    		Index.init();*/
 
-   		var router = new Router("{{ datacity_api_url }}");
+   		//var router = new Router("{{ datacity_api_url }}");
    		//FormDropzone.init(router);
    		//new UploadDataBox("files", $('.uploadedFiles'), router);
-   		var databiding = new DataBinding(router);
-	});
+   		//var databiding = new DataBinding(router);
+   	});
 	</script>
 	<!-- END JAVASCRIPTS -->
 </body>
