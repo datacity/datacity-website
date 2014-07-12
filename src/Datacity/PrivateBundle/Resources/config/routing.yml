@@ -64,6 +64,12 @@ datacity_private_datasetmanager_get:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:DataSet:get }
 
+datacity_private_source_post:
+    pattern: /dataset/{slug}/source/
+    requirements:
+        _method: POST
+    defaults: { _controller: DatacityPrivateBundle:Source:save }
+
 datacity_private_usermanager_get:
     pattern: /user
     defaults: { _controller: DatacityPrivateBundle:UserManager:get }

@@ -11,6 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Entity
  * @ORM\Table()
  * @Serializer\ExclusionPolicy("all")
+ * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\CategoryRepository")
  */
 class Category
 {
