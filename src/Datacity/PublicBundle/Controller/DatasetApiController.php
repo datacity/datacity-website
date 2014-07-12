@@ -30,4 +30,15 @@ class DatasetApiController extends Controller
     {
 
     }
+
+    public function getModelAction(Dataset $dataset)
+    {
+        $dataColumns = $dataset->getColumns();
+
+        $response = new Response();
+        $serializer = $this->get('jms_serializer');
+        $response->setContent('{"results":' . $serializer->serialize($dataColumns, 'json') . '}');
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 }

@@ -3,12 +3,14 @@
 namespace Datacity\PublicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * DataColumns
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @Serializer\ExclusionPolicy("all")
  */
 class DataColumns
 {
@@ -25,12 +27,14 @@ class DataColumns
      * @var string
      * Unique=false afin d'autoriser plusieurs nom avec des types differends
      * @ORM\Column(name="name", type="string", length=50, unique=false)
+     * @Serializer\Expose
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\DataColumnsType")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Expose
      */
     private $type;
 
@@ -43,7 +47,7 @@ class DataColumns
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +70,7 @@ class DataColumns
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -89,7 +93,7 @@ class DataColumns
     /**
      * Get type
      *
-     * @return \Datacity\PublicBundle\Entity\DataColumnsType 
+     * @return \Datacity\PublicBundle\Entity\DataColumnsType
      */
     public function getType()
     {
@@ -112,7 +116,7 @@ class DataColumns
     /**
      * Get dataset
      *
-     * @return \Datacity\PublicBundle\Entity\Dataset 
+     * @return \Datacity\PublicBundle\Entity\Dataset
      */
     public function getDataset()
     {

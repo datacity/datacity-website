@@ -66,6 +66,12 @@ datacity_public_api_dataset_show:
     options:
         expose: true
 
+datacity_public_api_dataset_model:
+    pattern:  /api/dataset/{slug}/model
+    defaults: { _controller: DatacityPublicBundle:DatasetApi:getModel }
+    options:
+        expose: true
+
 datacity_public_condition:
     pattern:  /condition
     defaults: { _controller: DatacityPublicBundle:Page:condition }
@@ -75,6 +81,6 @@ datacity_public_privacypolicy:
     defaults: { _controller: DatacityPublicBundle:Page:privacypolicy }
 
 datacity_public_talkaboutus:
-    pattern:  /privacypolicy
+    pattern:  /talkaboutus
     defaults: { _controller: DatacityPublicBundle:Page:talkaboutus }
 
