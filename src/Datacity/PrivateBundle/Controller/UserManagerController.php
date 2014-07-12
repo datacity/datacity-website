@@ -23,7 +23,6 @@ class UserManagerController extends Controller
 
     public function postAction()
     {
-<<<<<<< HEAD
         $request = $this->get('request');
         if ($request->isMethod('POST')) {
             $content = $request->getContent();
@@ -43,19 +42,6 @@ class UserManagerController extends Controller
             } else {
                 $response = new JsonResponse(array('action' => 'failure'));
             }
-=======
-        $content = $this->get("request")->getContent();
-
-        if (!empty($content)) {
-            //$serializer = SerializerBuilder::create()->build();
-            $serializer = $this->get('jms_serializer');
-            $user = $serializer->deserialize($content, 'Datacity\UserBundle\Entity\User', 'json');
-
-            $userManager = $this->get('fos_user.user_manager');
-            $userManager->updateUser($user);
-
-            $response = new JsonResponse(array('action' => 'success'));
->>>>>>> DSource : Suppression size; Dataset : support multiple categorie; Filtre de recherche : ajout corevageTerritory; + Divers modifs
         } else {
             $response = new JsonResponse(array('action' => 'failure'));
         }
@@ -86,15 +72,9 @@ class UserManagerController extends Controller
         // $uploadfile = $uploaddir . basename($_FILES['file']['name']);
 
         // if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
-<<<<<<< HEAD
-        //     $response = new JsonResponse(array('action' => 'success')); 
-        // else 
-        //     $response = new JsonResponse(array('action' => 'failure'));
-=======
         //     $response = new JsonResponse(array('action' => 'success'));
         // else
             $response = new JsonResponse(array('action' => 'failure'));
->>>>>>> DSource : Suppression size; Dataset : support multiple categorie; Filtre de recherche : ajout corevageTerritory; + Divers modifs
         return $response;
     }
 
