@@ -17,7 +17,7 @@
                                 locations: locations,
                                 couverture: item.coverage_territory.name,
                                 frequency: item.frequency,
-                                category: item.category.name,
+                                categories: item.categories,
                                 license: item.license.name
                             });
                         });
@@ -46,7 +46,6 @@
                         return $http.get(Routing.generate('datacity_public_api_dataset_show', { slug: slug })).then(function(res) {
                             var dataset;
                             var item = res.data.results;
-                            var locations = item.places.map(function(e) { return e.name });
                             dataset = {
                                 name: item.title,
                                 desc: item.description,
@@ -55,10 +54,10 @@
                                 date: item.creation_date,
                                 lastUpdate: item.last_modified_date,
                                 user: item.creator,
-                                locations: locations,
+                                locations: item.places,
                                 couverture: item.coverage_territory.name,
                                 frequency: item.frequency,
-                                category: item.category.name,
+                                categories: item.categories,
                                 license: item.license.name
                             };
                             return dataset;

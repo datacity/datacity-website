@@ -91,7 +91,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creation_date", type="date")
-     * @Serializer\Groups({"datasetShow"}) 
+     * @Serializer\Groups({"datasetShow"})
      */
     private $creationDate;
 
@@ -108,7 +108,7 @@ class Dataset
      * @var \Date
      *
      * @ORM\Column(name="date_begin", type="date", nullable=true)
-     * @Serializer\Groups({"datasetShow"}) 
+     * @Serializer\Groups({"datasetShow"})
      */
     private $dateBegin;
 
@@ -116,7 +116,7 @@ class Dataset
      * @var \Date
      *
      * @ORM\Column(name="date_end", type="date", nullable=true)
-     * @Serializer\Groups({"datasetShow"}) 
+     * @Serializer\Groups({"datasetShow"})
      */
     private $dateEnd;
 
@@ -169,7 +169,7 @@ class Dataset
      * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
-    private $category;
+    private $categories;
 
     /**
      * L'ensemble des tags de chaques sources du dataset.
@@ -180,7 +180,7 @@ class Dataset
 
     /**
      * Les colonnes du dataset.
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset", fetch="EXTRA_LAZY")
      */
     private $columns;
 
@@ -207,7 +207,7 @@ class Dataset
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -230,7 +230,7 @@ class Dataset
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -253,7 +253,7 @@ class Dataset
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -276,7 +276,7 @@ class Dataset
     /**
      * Get did
      *
-     * @return string 
+     * @return string
      */
     public function getDid()
     {
@@ -299,7 +299,7 @@ class Dataset
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -322,7 +322,7 @@ class Dataset
     /**
      * Get link
      *
-     * @return string 
+     * @return string
      */
     public function getLink()
     {
@@ -345,7 +345,7 @@ class Dataset
     /**
      * Get usefulNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getUsefulNb()
     {
@@ -368,7 +368,7 @@ class Dataset
     /**
      * Get visitedNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getVisitedNb()
     {
@@ -391,7 +391,7 @@ class Dataset
     /**
      * Get undesirableNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getUndesirableNb()
     {
@@ -414,7 +414,7 @@ class Dataset
     /**
      * Get creationDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreationDate()
     {
@@ -437,7 +437,7 @@ class Dataset
     /**
      * Get lastModifiedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastModifiedDate()
     {
@@ -460,7 +460,7 @@ class Dataset
     /**
      * Get dateBegin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateBegin()
     {
@@ -483,7 +483,7 @@ class Dataset
     /**
      * Get dateEnd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateEnd()
     {
@@ -506,7 +506,7 @@ class Dataset
     /**
      * Get creator
      *
-     * @return \Datacity\UserBundle\Entity\User 
+     * @return \Datacity\UserBundle\Entity\User
      */
     public function getCreator()
     {
@@ -529,7 +529,7 @@ class Dataset
     /**
      * Get coverageTerritory
      *
-     * @return \Datacity\PublicBundle\Entity\CoverageTerritory 
+     * @return \Datacity\PublicBundle\Entity\CoverageTerritory
      */
     public function getCoverageTerritory()
     {
@@ -562,7 +562,7 @@ class Dataset
     /**
      * Get contributors
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContributors()
     {
@@ -595,7 +595,7 @@ class Dataset
     /**
      * Get sources
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSources()
     {
@@ -628,7 +628,7 @@ class Dataset
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
@@ -661,7 +661,7 @@ class Dataset
     /**
      * Get columns
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getColumns()
     {
@@ -684,7 +684,7 @@ class Dataset
     /**
      * Get license
      *
-     * @return \Datacity\PublicBundle\Entity\License 
+     * @return \Datacity\PublicBundle\Entity\License
      */
     public function getLicense()
     {
@@ -707,7 +707,7 @@ class Dataset
     /**
      * Get frequency
      *
-     * @return \Datacity\PublicBundle\Entity\Frequency 
+     * @return \Datacity\PublicBundle\Entity\Frequency
      */
     public function getFrequency()
     {
@@ -755,7 +755,7 @@ class Dataset
      */
     public function addCategory(\Datacity\PublicBundle\Entity\Category $category)
     {
-        $this->category[] = $category;
+        $this->categories[] = $category;
 
         return $this;
     }
@@ -767,16 +767,16 @@ class Dataset
      */
     public function removeCategory(\Datacity\PublicBundle\Entity\Category $category)
     {
-        $this->category->removeElement($category);
+        $this->categories->removeElement($category);
     }
 
     /**
      * Get category
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategory()
+    public function getCategories()
     {
-        return $this->category;
+        return $this->categories;
     }
 }
