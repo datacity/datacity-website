@@ -208,11 +208,11 @@
 			    }
 
 			    $scope.getLocation = function(val) {
-			    	console.log(val);
+			    	if (!val)
+			    		return null;
 			    	var res = SourceFactory.getExistingLocations(val).then(function(results) {
 			    		return results;
 			    	});
-			    	console.log(res);
 			    	return res;
 			    }
 
@@ -330,7 +330,7 @@
 						metadata: $scope.metaSelected,
 						dataModel : $scope.dataModel,
 						databinding: $scope.databinding,
-						data: globalData
+						jsonData: globalData
 					}
 
 					SourceFactory.post($stateParams.slugDataset, result).then(function(response) {

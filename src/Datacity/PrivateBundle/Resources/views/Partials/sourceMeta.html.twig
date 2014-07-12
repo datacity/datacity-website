@@ -26,7 +26,7 @@
 							<label class="control-label col-md-3">Couverture téritoriale <strong style="color:red;">*</strong></label>
 
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.coverageTerritory" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la couverture territoriale" ng-options="coverage.id as coverage.name for coverage in meta.coverageTerritory" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.coverageTerritory" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la couverture territoriale" ng-options="coverage.name as coverage.name for coverage in meta.coverageTerritory" bs-select>
 								</button>
 							</div>
 						</div>
@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Catégories <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.category" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="Choisissez la catégorie" ng-options="category.id as category.name for category in meta.categories" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.category" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="Choisissez la catégorie" ng-options="category.name as category.name for category in meta.categories" bs-select>
 								</button>
 							</div>
 						</div>
@@ -49,7 +49,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Fréquence</label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.frequency" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la fréquence de mise à jour" ng-options="frequency.id as frequency.name for frequency in meta.frequencies" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.frequency" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la fréquence de mise à jour" ng-options="frequency.name as frequency.name for frequency in meta.frequencies" bs-select>
 								</button>								
 							</div>
 						</div>
@@ -62,7 +62,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Licence <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.id as license.name for license in meta.licenses" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in meta.licenses" bs-select>
 								</button>
 							</div>
 						</div>
@@ -86,7 +86,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation </label><strong style="color:red;">*</strong></label>
+							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation  </label><strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
     							<input type="text" class="form-control" ng-model="metaSelected.location" ng-options="address for address in getLocation($viewValue)" placeholder="Quelle localisation est concernée par votre source ?" bs-typeahead>
 							</div>
