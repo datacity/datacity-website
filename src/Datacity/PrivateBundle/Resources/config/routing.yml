@@ -69,6 +69,8 @@ datacity_private_source_post:
     requirements:
         _method: POST
     defaults: { _controller: DatacityPrivateBundle:Source:save }
+    options:
+        expose: true
 
 datacity_private_usermanager_get:
     pattern: /user
