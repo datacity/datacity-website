@@ -81,11 +81,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select'
                     q: val
                 }
             }).then(function(res) {
-                var places = [];
-                angular.forEach(res.data.results, function(item) {
-                    places.push(item.name);
-                });
-                return places;
+                return res.data.results.map(function(item) { return item.name });
             });
         };
         $scope.search = function() {
