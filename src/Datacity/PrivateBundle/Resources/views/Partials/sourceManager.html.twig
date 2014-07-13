@@ -23,7 +23,7 @@
 			<div class="portlet-body">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="input-group">
+						<div ng-show="noDataModel" class="input-group">
 							<input data-ng-model="inputModel" type="text" data-ng-enter="addCategoryModel(inputModel)" class="form-control">
 							<span class="input-group-btn">
 								<button data-ng-click="addCategoryModel(inputModel)"  class="btn blue" type="button">Ajouter au modèle</button>
@@ -43,7 +43,7 @@
 										<br/>
 									</div>
 									<button class="btn blue" data-ng-style="{'background-color': column.color}" style="color: white;" type="button" data-ng-click="categorySelected(column)">{{column.name | uppercase}}</button>
-									<button class="btn red" data-ng-click="deleteColumn(column)"><i class="fa fa-times"></i></button>
+									<button ng-show="noDataModel" class="btn red" data-ng-click="deleteColumn(column)"><i class="fa fa-times"></i></button>
 								</div>
 							</div>
 							<div class="col-md-4">

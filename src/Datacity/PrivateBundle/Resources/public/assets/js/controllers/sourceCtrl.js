@@ -13,6 +13,7 @@
 				$scope.date = ""
 				$scope.databinding = [];
 				$scope.metaSelected = {};
+				$scope.slugDataset = $stateParams.slugDataset;
 
 				var globalData;
 			    $scope.filterOptions = {
@@ -196,16 +197,22 @@
 			    	}
 			    }
 
+				Array.prototype.remove = function(from, to) {
+  					var rest = this.slice((to || from) + 1 || this.length);
+  					this.length = from < 0 ? this.length + from : from;
+  					return this.push.apply(this, rest);
+				};
+
+				//Supression d'une colone sur la partie databinding
 			    $scope.deleteColumn = function(column) {
 			    	angular.forEach($scope.dataModel, function(item, index) {
 			    		if (item.name === column.name) {
-			    			console.log("on enter here");
-			    			console.log(index);
-			    			$scope.dataModel.slice(index, 1);
-			    			console.log($scope.dataModel);
+			    			$scope.dataModel.remove(index);
 			    		}
 			    	});
 			    }
+
+			    
 
 			    $scope.getLocation = function(val) {
 			    	if (!val)
@@ -255,14 +262,14 @@
 					//TMP : Changer par getExistingData
 
 
-					var result = SourceFactory.getExistingDataPopulateExemple($stateParams.datasetId, false);
+					/*var result = SourceFactory.getExistingDataPopulateExemple($stateParams.datasetId, false);
 					if (result.dataModel) {
 						$scope.dataModel = result.dataModel;
 						$scope.fixedModel = true;
 						angular.forEach($scope.dataModel, function(item, index) {
 							$scope.dataModel[index].color = getRandomColor();
 						});
-					}
+					}*/
 					/*if (result.metadata)
 						$scope.meta = result.metadata;*/
 					
@@ -270,17 +277,19 @@
 						console.log(results);
 						if (results)
 							$scope.meta = results;
-						console.log($scope.meta);
 					});
 
 					SourceFactory.getExistingDatasetModel($stateParams.slugDataset).then(function(results) {
-						if (!results)
+						//results = null;
+						if (!results) {
+							$scope.noDataModel = true;
+							console.log($scope.noDataModel);
 							return false;
+						}
 						$scope.dataModel = results;
 						angular.forEach($scope.dataModel, function(item, index) {
 							$scope.dataModel[index].color = getRandomColor();
 						})
-						console.log($scope.dataModel);
 					});
 					
 					
@@ -326,14 +335,16 @@
 					// Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.
 					
 
-					var result = {
+					var resultMeta = {
 						metadata: $scope.metaSelected,
-						dataModel : $scope.dataModel,
+						dataModel : $scope.dataModel
+					}
+					var resultApi = {
 						databinding: $scope.databinding,
 						jsonData: globalData
 					}
 
-					SourceFactory.post($stateParams.slugDataset, result).then(function(response) {
+					SourceFactory.post($stateParams.slugDataset, resultMeta, resultApi).then(function(response) {
 							console.log(response);
 					});
 				}

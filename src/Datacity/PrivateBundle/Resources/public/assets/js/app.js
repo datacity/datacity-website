@@ -32,7 +32,7 @@
 				.state('editDS', {
                     title: 'Edition',
                     description: 'Editer vos jeux de données',
-					url: '/dataset/edit/:slug',
+					url: '/dataset/edit/:slugDataset',
 					templateUrl: '/app_dev.php/private/partials/formDataSet',
 					controller: 'datasetController',
 					resolve: {
@@ -53,7 +53,7 @@
 				.state('deleteDS', {
                     title: 'Suppression',
                     description: 'Suppression de jeux de données',
-					url: '/dataset/delete/:id',
+					url: '/dataset/delete/:slugDataset',
 					controller: 'datasetController',
 					resolve: {
 						operation: function() {return 'delete'}
@@ -63,7 +63,7 @@
 				.state('addSource', {
                     title: 'Ajout',
                     description: 'Ajouter une source',
-					url: '/source/add/:datasetId',
+					url: '/source/add/:slugDataset',
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
 					resolve: {
@@ -73,7 +73,7 @@
 				.state('editSource', {
                     title: 'Edition',
                     description: 'Editer vos sources',
-					url: '/source/edit/:datasetId/:id',
+					url: '/source/edit/:slugDataset/:id',
 					templateUrl: '/app_dev.php/private/partials/formSource',
 					controller: 'sourceController',
 					resolve: {

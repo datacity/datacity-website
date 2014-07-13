@@ -11,7 +11,7 @@
 				}
 				else if (operation === 'edit') {
 					console.log($stateParams);
-					DatasetFactory.get($stateParams.id).then(function(data) {
+					DatasetFactory.get($stateParams.slugDataset).then(function(data) {
 						if (data.title)
 							$scope.dataset = data;
 						console.log($scope.dataset);
@@ -20,7 +20,7 @@
 					});
 				}
 				else if (operation === 'delete') {
-					DatasetFactory.delete($stateParams.id).then(function(response) {
+					DatasetFactory.delete($stateParams.slugDataset).then(function(response) {
 						console.log(response);
 					});
 				}
@@ -34,7 +34,7 @@
 				}
 				$scope.delete = function() {
 					console.log($scope.dataset);
-					DatasetFactory.delete($stateParams.id).then(function(response) {
+					DatasetFactory.delete($stateParams.slugDataset).then(function(response) {
 						console.log(response);
 					});
 				}
