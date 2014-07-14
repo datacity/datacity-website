@@ -32,7 +32,7 @@
 				.state('editDS', {
                     title: 'Edition',
                     description: 'Editer vos jeux de données',
-					url: '/dataset/edit/:slugDataset',
+					url: '/dataset/edit/:slug',
 					templateUrl: '/app_dev.php/private/partials/formDataSet',
 					controller: 'datasetController',
 					resolve: {

@@ -14,6 +14,7 @@
 				$scope.databinding = [];
 				$scope.metaSelected = {};
 				$scope.slugDataset = $stateParams.slugDataset;
+				console.log("SLUG DATASET : " + $stateParams.slugDataset);
 
 				var globalData;
 			    $scope.filterOptions = {
@@ -286,6 +287,7 @@
 							console.log($scope.noDataModel);
 							return false;
 						}
+						$scope.noDataModel = false;
 						$scope.dataModel = results;
 						angular.forEach($scope.dataModel, function(item, index) {
 							$scope.dataModel[index].color = getRandomColor();
@@ -333,11 +335,10 @@
 					// Pendant l'envoi à l'api, celle-ci renvoi la route pour accéder aux données. 
 					// Cette route est rajoutée aux métadonnées pendant l'envoi à doctrine
 					// Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.
-					
-
-					var resultMeta = {
-						metadata: $scope.metaSelected,
-						dataModel : $scope.dataModel
+					var resultMeta = {};
+					resultMeta.metadata = $scope.metaSelected;
+					if ($scope.noDataModel) {
+						resultMeta.dataModel = $scope.dataModel;
 					}
 					var resultApi = {
 						databinding: $scope.databinding,

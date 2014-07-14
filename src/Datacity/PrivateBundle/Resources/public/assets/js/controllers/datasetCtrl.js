@@ -10,17 +10,13 @@
 					$scope.noDelete = true;
 				}
 				else if (operation === 'edit') {
-					console.log($stateParams);
-					DatasetFactory.get($stateParams.slugDataset).then(function(data) {
-						if (data.title)
-							$scope.dataset = data;
-						console.log($scope.dataset);
+					DatasetFactory.get($stateParams.slug).then(function(data) {
+						$scope.dataset = data;
 						//TODO: CHARGER LES SOURCES ASSOCIEES
-						$scope.dataset.sources = DatasetFactory.populateSourcesTmp();
 					});
 				}
 				else if (operation === 'delete') {
-					DatasetFactory.delete($stateParams.slugDataset).then(function(response) {
+					DatasetFactory.delete($stateParams.slug).then(function(response) {
 						console.log(response);
 					});
 				}
@@ -34,7 +30,7 @@
 				}
 				$scope.delete = function() {
 					console.log($scope.dataset);
-					DatasetFactory.delete($stateParams.slugDataset).then(function(response) {
+					DatasetFactory.delete($stateParams.slug).then(function(response) {
 						console.log(response);
 					});
 				}

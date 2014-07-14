@@ -35,6 +35,7 @@ class Dataset
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
      * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"datasetShow"})
      */
     private $slug;
 

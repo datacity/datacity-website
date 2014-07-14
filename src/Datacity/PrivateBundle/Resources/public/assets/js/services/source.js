@@ -2,9 +2,7 @@
 	angular
 		.module('app')
 		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
-			return {
-
-				
+			return {	
 				get: function(id) {
 					return $http
 						.get('/app_dev.php/private/source/get/' + id).then(function(response) {
@@ -12,23 +10,19 @@
 						});
 				},
 				post: function(slugDataset, sourceMeta, sourceApi) {
-					console.log(sourceMeta);
-					console.log(sourceApi);
 					if (sourceMeta.metadata.title) {
 						var sourceSlug = sourceMeta.metadata.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
 						sourceMeta.metadata.sid = sourceSlug;
 					}
-					//TODO: Renvoyer par le bon slug du dataset
-					slugDataset = 'resultats-des-elections-europeennes';
 					return $http({
 						method: 'POST',
 						contentType:false,
         				processData: false,
         				data: sourceApi,
-						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/resultats-des-elections-europeennes/source/' + sourceSlug + '/upload'
+						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + slugDataset '/source/' + sourceSlug + '/upload'
 					}).then(function(response) {
 						return $http.post(Routing.generate('datacity_private_source_post', {slug: slugDataset}), sourceMeta).then(function(response) {
-							return response.data;														
+							return response.data;
 						});
 					});
 				},
@@ -86,7 +80,7 @@
 				},
 				getExistingDatasetModel: function(slugDataset) {
 					return $http
-						.get(Routing.generate('datacity_public_api_dataset_model', {slug: 'resultats-des-elections-europeennes'})).then(function(response) {
+						.get(Routing.generate('datacity_public_api_dataset_model', {slug: slugDataset})).then(function(response) {
 							return response.data.results;
 						});
 
