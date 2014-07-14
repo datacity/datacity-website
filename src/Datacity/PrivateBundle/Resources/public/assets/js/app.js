@@ -87,6 +87,12 @@
 					url: '/user/show',
 					templateUrl: '/app_dev.php/private/partials/userInfo',
 					controller: 'userController'
-				});
+				})
+                    .state("showUser.mainView", { url: "/mainView", templateUrl: "/app_dev.php/private/partials/mainViewTab",
+                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                    .state("showUser.settings", { url: "/settings", templateUrl: "/app_dev.php/private/partials/settingsTab",
+                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                    .state("showUser.publications", { url: "/publications", templateUrl: "/app_dev.php/private/partials/publicationsTab",
+                                                    title: 'Votre Profil', description: 'Changez vos informations personnelles'});
 	    }]);
 })();

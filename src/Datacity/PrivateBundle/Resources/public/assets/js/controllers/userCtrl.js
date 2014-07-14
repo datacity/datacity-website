@@ -1,8 +1,8 @@
 (function() {
 	angular
 		.module('app')
-		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory',
-			function($scope, $stateParams, $modal, $log, UserFactory) {
+		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory', '$state',
+			function($scope, $stateParams, $modal, $log, UserFactory, $state) {
 				$scope.user = {};
 				$scope.passwords = {};
 				$scope.userInfos = {};
@@ -22,7 +22,26 @@
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-				
+
+                $scope.tabs = [
+                    { heading: "Vue d'ensemble", route:"showUser.mainView", active:false },
+                    { heading: "Paramètres du compte", route:"showUser.settings", active:false },
+                    { heading: "Publications", route:"showUser.publications", active:false },
+                ];
+
+                $scope.go = function(route){
+                    $state.go(route);
+                };
+
+                $scope.active = function(route){
+                    return $state.is(route);
+                };
+
+                $scope.$on("$stateChangeSuccess", function() {
+                    $scope.tabs.forEach(function(tab) {
+                        tab.active = $scope.active(tab.route);
+                    });
+                });
 
 				//TODO: A changer en fonction du champ image du user
 				// var showImg = function (img) {
