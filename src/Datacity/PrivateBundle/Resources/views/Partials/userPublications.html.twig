@@ -10,7 +10,7 @@
 	</div>
 </div>
 <!--end add-portfolio-->
-<div class="row portfolio-block" data-ng-repeat="dataset in user.datasets">
+<div class="row portfolio-block" data-ng-repeat="dataset in user.dataset_owned">
 	<div class="col-md-4">
 		<div class="portfolio-text">
 			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
@@ -27,13 +27,13 @@
 		<div class="portfolio-info">
 			Visité
 			<span>
-				{{dataset.visitedNb}} fois
+				{{dataset.visited_nb}} fois
 			</span>
 		</div>
 		<div class="portfolio-info">
 			Noté comme utile
 			<span>
-				{{dataset.usefullNb}} fois
+				{{dataset.useful_nb}} fois
 			</span>
 		</div>
 	</div>
