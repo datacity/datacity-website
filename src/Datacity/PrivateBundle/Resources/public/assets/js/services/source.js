@@ -19,7 +19,7 @@
 						contentType:false,
         				processData: false,
         				data: sourceApi,
-						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + slugDataset '/source/' + sourceSlug + '/upload'
+						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + slugDataset + '/source/' + sourceSlug + '/upload'
 					}).then(function(response) {
 						return $http.post(Routing.generate('datacity_private_source_post', {slug: slugDataset}), sourceMeta).then(function(response) {
 							return response.data;

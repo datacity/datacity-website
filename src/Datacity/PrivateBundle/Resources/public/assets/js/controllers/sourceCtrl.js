@@ -5,16 +5,14 @@
 (function() {
 	angular
 		.module('app')
-		.controller('sourceController', ['$scope', '$stateParams', '$modal', '$log', 'SourceFactory', 'operation',
-			function($scope, $stateParams, $modal, $log, SourceFactory, operation) {
+		.controller('sourceController', ['$scope', '$state', '$stateParams', '$modal', '$log', 'SourceFactory', 'operation',
+			function($scope, $state, $stateParams, $modal, $log, SourceFactory, operation) {
 				
 				// VARIABLES COMMUNES A TOUTES LES OPERATIONS (edit, create, delete)
 				// ----------------------------------------
-				$scope.date = ""
 				$scope.databinding = [];
 				$scope.metaSelected = {};
 				$scope.slugDataset = $stateParams.slugDataset;
-				console.log("SLUG DATASET : " + $stateParams.slugDataset);
 
 				var globalData;
 			    $scope.filterOptions = {
@@ -198,7 +196,7 @@
 			    	}
 			    }
 
-				Array.prototype.remove = function(from, to) {
+				Array.prototype.removeIt = function(from, to) {
   					var rest = this.slice((to || from) + 1 || this.length);
   					this.length = from < 0 ? this.length + from : from;
   					return this.push.apply(this, rest);
@@ -208,12 +206,10 @@
 			    $scope.deleteColumn = function(column) {
 			    	angular.forEach($scope.dataModel, function(item, index) {
 			    		if (item.name === column.name) {
-			    			$scope.dataModel.remove(index);
+			    			$scope.dataModel.removeIt(index);
 			    		}
 			    	});
 			    }
-
-			    
 
 			    $scope.getLocation = function(val) {
 			    	if (!val)
@@ -259,23 +255,8 @@
 					// Pas l'id par contre étant donné qu'un nouvel id sera créé par la suite
 					// On charge également le databinding de cette source ou du dataset (dans le cas où on a fait la transposition du databing dans le dataset)
 					// On met ce databinding dans $scope.databinding et on attribue une couleur random dans le html
-
-					//TMP : Changer par getExistingData
-
-
-					/*var result = SourceFactory.getExistingDataPopulateExemple($stateParams.datasetId, false);
-					if (result.dataModel) {
-						$scope.dataModel = result.dataModel;
-						$scope.fixedModel = true;
-						angular.forEach($scope.dataModel, function(item, index) {
-							$scope.dataModel[index].color = getRandomColor();
-						});
-					}*/
-					/*if (result.metadata)
-						$scope.meta = result.metadata;*/
-					
+	
 					SourceFactory.getExistingMetaData().then(function(results) {
-						console.log(results);
 						if (results)
 							$scope.meta = results;
 					});
@@ -284,7 +265,6 @@
 						//results = null;
 						if (!results) {
 							$scope.noDataModel = true;
-							console.log($scope.noDataModel);
 							return false;
 						}
 						$scope.noDataModel = false;
@@ -293,26 +273,7 @@
 							$scope.dataModel[index].color = getRandomColor();
 						})
 					});
-					
-					
-
-					/*SourceFactory.getExistingData($stateParams.datasetId, false).then(function(result) {
-						if (result.dataModel) {
-							$scope.dataModel = result.dataModel;
-							$scope.fixedModel = true;
-							angular.forEach($scope.dataModel, function(item, index) {
-								$scope.dataModel[index].color = getRandomColor();
-							});
-						}
-						if (result.metadata)
-							$scope.meta = result.metadata;
-						console.log($scope.meta);
-					});*/
-					//--------------------------------------------------------------------------------------------------------------
-
-
-					
-					
+					//--------------------------------------------------------------------------------------------------------------		
 								
 				}
 				else if (operation === 'edit') {
@@ -329,12 +290,18 @@
 
 				$scope.submitSource = function() {
 
-					// Lors de la validation, pour cette version on envoi l'ensemble du json à l'api avec le databinding comme dans la version master
-					// Avec en + quelques méta qui nous permettront de rajouter des données dans la source. + slug source
-					// ON envoi les reste des metas à symfony pour la BDD
-					// Pendant l'envoi à l'api, celle-ci renvoi la route pour accéder aux données. 
-					// Cette route est rajoutée aux métadonnées pendant l'envoi à doctrine
-					// Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.
+					/* 	Lors de la validation, pour cette version on envoi l'ensemble du json à l'api avec le databinding comme dans la version master
+						Avec en + quelques méta qui nous permettront de rajouter des données dans la source. + slug source
+						ON envoi les reste des metas à symfony pour la BDD
+						Pendant l'envoi à l'api, celle-ci renvoi la route pour accéder aux données. 
+						Cette route est rajoutée aux métadonnées pendant l'envoi à doctrine
+					 	Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.*/
+					console.log($scope.databinding.length);
+					console.log($scope.dataModel.length);
+					if ($scope.databinding.length !== $scope.dataModel.length) {
+						alert("Vous devez associer les catégories imposées aux colones de votre table");
+						return false;
+					}
 					var resultMeta = {};
 					resultMeta.metadata = $scope.metaSelected;
 					if ($scope.noDataModel) {
@@ -346,7 +313,7 @@
 					}
 
 					SourceFactory.post($stateParams.slugDataset, resultMeta, resultApi).then(function(response) {
-							console.log(response);
+							$state.go('editDS', {slug: $stateParams.slugDataset});
 					});
 				}
 			}]);

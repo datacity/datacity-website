@@ -77,22 +77,12 @@
 			</span>
 		</div>
 	</div>
-	<div class="col-md-1">
+	<div class="col-md-2">
 		<div class="portfolio-btn">
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="showSource({id: source.id})" class="btn bigicn-only">
+			<a data-ng-href="Routing.generate('')" class="btn bigicn-only">
 				<span>
 					Voir
-				</span>
-			</a>
-		</div>
-	</div>
-	<div class="col-md-1">
-		<div class="portfolio-btn">
-			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="editSource({slugDataset: dataset.slug, id: source.id})" class="btn bigicn-only">
-				<span>
-					Editer
 				</span>
 			</a>
 		</div>
