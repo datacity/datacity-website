@@ -74,7 +74,7 @@ datacity_private_source_post:
 
 datacity_private_user_get:
     pattern: /user
-    defaults: { _controller: DatacityPrivateBundle:UserManager:get }
+    defaults: { _controller: DatacityPrivateBundle:User:get }
     requirements:
         _method:  GET
     options:
