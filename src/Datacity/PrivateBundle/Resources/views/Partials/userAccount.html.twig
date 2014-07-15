@@ -1,94 +1,17 @@
+{% verbatim %}
 <div class="row profile-account">
 	<div class="col-md-3">
-		<ul class="ver-inline-menu tabbable margin-bottom-10">
-			<li class="active">
-			<a data-toggle="tab" href="#tab_1-1">
-				<i class="fa fa-cog"></i> Modifier Profil </a>
-				<span class="after">
-				</span>
-			</li>
-			<li>
-				<a data-toggle="tab" href="#tab_2-2"><i class="fa fa-picture-o"></i> Modifier Avatar</a>
-			</li>
-			<li>
-				<a data-toggle="tab" href="#tab_3-3"><i class="fa fa-lock"></i> Modifier Mot de passe</a>
-			</li>
-		</ul>
+        <ul class="ver-inline-menu tabbable margin-bottom-10">
+            <li ng-repeat="i in settingsTabs" data-ng-class="{active:i.active}">
+                <a data-ng-click="go(i.route)" data-toggle="tab"><i class="fa fa-cog"></i>{{i.heading}}</a><span class="after"></span>
+            </li>
+        </ul>
 	</div>
 	<div class="col-md-9">
 		<div class="tab-content">
-			<div id="tab_1-1" class="tab-pane active">
-				<form name="userChange" role="form" ng-submit="updateUser()">
-					<div class="form-group">
-						<label class="control-label">Prénom</label>
-						<input type="text" ng-model="userInfos.firstname" placeholder="Votre prénom" class="form-control" required/>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Nom</label>
-						<input type="text" ng-model="userInfos.lastname" placeholder="Votre nom" class="form-control" required/>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Activité</label>
-						<input type="text" ng-model="userInfos.occupation" placeholder="Votre activité (Ex: Développeur web)" class="form-control"/>
-					</div>
-					<div class="form-group">
-						<label class="control-label">A propos</label>
-						<textarea class="form-control" rows="3" ng-model="userInfos.about" placeholder="A propos de vous (Ex: Je suis spécialisé dans l'open data depuis son arrivée en France)"></textarea>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Site Web</label>
-						<input type="url" name="homepage" ng-model="userInfos.websiteUrl" placeholder="Votre site internet" class="form-control"/>
-					</div>
-					<div class="margiv-top-10">
-						<input type="submit" ng-show="userChange.$valid" value="Sauvegarder" class="btn green"/>
-						<input class="btn default" type="reset" value="Annuler"/>
-					</div>
-				</form>
-			</div>
-			<div id="tab_2-2" class="tab-pane">
-				<form role="form" ng-submit="uploadImage()">
-					<div class="form-group">
-						<div class="thumbnail" style="width: 200px;">
-							<img id="thumbnail-preview" src="http://www.placehold.it/310x170/EFEFEF/AAAAAA&amp;text=no+image" alt="Image Preview"/>
-						</div>
-						<div class="margin-top-10 fileupload fileupload-new" data-provides="fileupload">
-							<div class="input-group input-group-fixed">
-								<span class="btn default btn-file">
-									<input id="upload-input" type="file" ng-file-select="onImageSelect($files)" class="default"/>
-								</span>
-								<input ng-click="deleteImage()" class="btn red fileupload-exists" type="reset" value="Supprimer"/>
-							</div>
-						</div>
-					</div>
-					<div class="margin-top-10">
-						<input type="submit" value="Envoyer" class="btn green"/>
-						<input ng-click="deleteImage()" class="btn default" type="reset" value="Annuler" />
-					</div>
-				</form>
-			</div>
-			<div id="tab_3-3" class="tab-pane">
-				<form id="passwordChange" name="passwordChange" ng-submit="updatePassword()" novalidate>
-					<div class="form-group">
-						<label class="control-label">Mot de passe actuel</label>
-						<input type="password" ng-model="passwords.oldPassword" class="form-control" required/>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Nouveau mot de passe</label>
-						<input name="pw1" id="pw1" type="password" ng-model="passwords.newPassword" class="form-control" required/>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Verification du nouveau mot de passe</label>
-						<input name="pw2" id="pw2" type="password" ng-model="passwords.confirmPassword" class="form-control" required/>
-                        <span ng-show="passwordChange.pw2.$dirty && !passwordChange.pw2.$valid">Les deux champs doivent etre identiques !</span>
-					</div>
-					<div class="margin-top-10">
-						<div></div>
-						<input type="submit" value="Changer le mot de passe" class="btn green"/>
-						<input class="btn default" type="reset" value="Annuler" />
-					</div>
-				</form>
-			</div>
+            <div ui-view></div>
 		</div>
 	</div>
 	<!--end col-md-9-->
 </div>
+{% endverbatim %}

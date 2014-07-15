@@ -26,7 +26,13 @@
                 $scope.tabs = [
                     { heading: "Vue d'ensemble", route:"showUser.mainView", active:false },
                     { heading: "Paramètres du compte", route:"showUser.settings", active:false },
-                    { heading: "Publications", route:"showUser.publications", active:false },
+                    { heading: "Publications", route:"showUser.publications", active:false }
+                ];
+
+                $scope.settingsTabs = [
+                    { heading: "Modifier Profil", route:"showUser.settings.profileSettings", active:false },
+                    { heading: "Modifier Avatar", route:"showUser.settings.pictureSettings", active:false },
+                    { heading: "Modifier mot de passe", route:"showUser.settings.passwordSettings", active:false }
                 ];
 
                 $scope.go = function(route){
@@ -40,6 +46,10 @@
                 $scope.$on("$stateChangeSuccess", function() {
                     $scope.tabs.forEach(function(tab) {
                         tab.active = $scope.active(tab.route);
+                    });
+
+                    $scope.settingsTabs.forEach(function(settingsTab) {
+                        settingsTab.active = $scope.active(settingsTab.route);
                     });
                 });
 
