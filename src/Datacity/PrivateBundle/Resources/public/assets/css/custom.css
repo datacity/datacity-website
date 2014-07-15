@@ -118,6 +118,14 @@
     right: 10px;
 }
 
+.grade-info-down i {
+	color: #d84a38;
+}
+
+.grade-info-up i {
+	color: #35aa47;
+}
+
 hr.fancy-line { 
     border: 0; 
     height: 1px;
