@@ -9,9 +9,16 @@
 							return response.data.results;
 						});
 				},
+				getLicences: function() {
+					return $http
+						.get(Routing.generate('datacity_public_api_filter_list')).then(function(response) {
+							console.log(response.data);
+							return response.data.results;
+						})
+				},
 				post: function(dataset) {
 					return $http
-						.post('/app_dev.php/private/dataset/save/', dataset).then(function(response) {
+						.post(Routing.generate('datacity_private_dataset_save'), dataset).then(function(response) {
 							return response.data;
 						});
 				},

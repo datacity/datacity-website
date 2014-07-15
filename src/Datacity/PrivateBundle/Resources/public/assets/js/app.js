@@ -21,13 +21,8 @@
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+				$urlRouterProvider.otherwise('/user/show/mainView');
 				$stateProvider
-				.state('default', {
-                    title: 'Espace utilisateur',
-                    description: 'Accedez à vos informations et aux outils DataCity',
-                    url: '/',
-                    template: '<div>Page default</div>'
-                })
                 //Operations liées aux dataset.
 				.state('editDS', {
                     title: 'Edition',
@@ -92,6 +87,7 @@
                                                 title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings", { url: "/settings", templateUrl: "/app_dev.php/private/partials/userAccount",
                                                 title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+<<<<<<< HEAD
                     .state("showUser.publications", { url: "/publications", templateUrl: "/app_dev.php/private/partials/userPublications",
                                                     title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings.profileSettings", { url: "/profile", templateUrl: "/app_dev.php/private/partials/profileTab",
@@ -100,5 +96,10 @@
                                                 title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings.passwordSettings", { url: "/password", templateUrl: "/app_dev.php/private/partials/passwordTab",
                                                 title: 'Votre Profil', description: 'Changez vos informations personnelles'});
+=======
+                    .state("showUser.publications", { url: "/publications", templateUrl: "/app_dev.php/private/partials/publicationsTab",
+                                                    title: 'Votre Profil', description: 'Changez vos informations personnelles'});
+
+>>>>>>> 61cbbbdef3e8125c783bd5c84c1db220a49e7c6e
 	    }]);
 })();

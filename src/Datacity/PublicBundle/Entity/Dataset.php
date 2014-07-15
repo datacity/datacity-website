@@ -34,34 +34,17 @@ class Dataset
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
-     * @Serializer\Groups({"list"})
-     * @Serializer\Groups({"datasetShow"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $slug;
 
     /**
-     * @var string
-     * L'id utilise pour la correspondance avec l'api
-     * @ORM\Column(name="did", type="string", length=100)
-     * @Serializer\Groups({"datasetShow"})
-     */
-    private $did;
-
-    /**
      * @var text
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="link", type="string", length=200)
-     * @Serializer\Groups({"datasetShow"})
-     */
-    private $link;
 
     /**
      * @var integer
@@ -139,7 +122,6 @@ class Dataset
     /**
      * La couverture la plus grande des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
-     * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $coverageTerritory;
@@ -147,7 +129,6 @@ class Dataset
     /**
      * La frequence la plus courte des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
-     * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $frequency;
@@ -262,29 +243,6 @@ class Dataset
     }
 
     /**
-     * Set did
-     *
-     * @param string $did
-     * @return Dataset
-     */
-    public function setDid($did)
-    {
-        $this->did = $did;
-
-        return $this;
-    }
-
-    /**
-     * Get did
-     *
-     * @return string
-     */
-    public function getDid()
-    {
-        return $this->did;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -305,29 +263,6 @@ class Dataset
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set link
-     *
-     * @param string $link
-     * @return Dataset
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * Get link
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 
     /**

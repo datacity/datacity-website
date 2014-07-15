@@ -58,16 +58,15 @@
 				</div>
 				<!--/row-->
 				<div class="row">
-					 <div class="col-md-6">
+					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Licence <strong style="color:red;">*</strong></label>
+							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation  </label><strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in meta.licenses" bs-select>
-								</button>
+    							<input type="text" class="form-control" ng-model="metaSelected.location" ng-options="address for address in getLocation($viewValue)" placeholder="Quelle localisation est concernée par votre source ?" bs-typeahead>
 							</div>
 						</div>
 					</div>
-
+					
 					<!--/span-->
 					<div class="col-md-6">
 						<div class="form-group">
@@ -82,21 +81,6 @@
 					</div>
 					<!--/span-->
 				</div>
-
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation  </label><strong style="color:red;">*</strong></label>
-							<div class="col-md-9">
-    							<input type="text" class="form-control" ng-model="metaSelected.location" ng-options="address for address in getLocation($viewValue)" placeholder="Quelle localisation est concernée par votre source ?" bs-typeahead>
-							</div>
-						</div>
-					</div>
-					<!--/span-->
-				</div>
-
-
-				<!--/row-->
 				
 				<h3 class="form-section">Détails de la source</h3>
 				<!--/row-->

@@ -49,7 +49,6 @@
                             dataset = {
                                 name: item.title,
                                 desc: item.description,
-                                did: item.did,
                                 sources: item.sources,
                                 date: item.creation_date,
                                 lastUpdate: item.last_modified_date,

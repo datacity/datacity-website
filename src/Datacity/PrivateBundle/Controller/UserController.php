@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use JMS\Serializer\SerializationContext;
 
-class UserManagerController extends Controller
+class UserController extends Controller
 {
     public function getAction()
     {

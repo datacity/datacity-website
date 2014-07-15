@@ -27,6 +27,6 @@ class DefaultController extends Controller
             return $response;
         } catch (\Exception $ex) {
             throw $this->createNotFoundException();
-        }        
+        }
     }
 }

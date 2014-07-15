@@ -10,11 +10,18 @@
 		<form ng-submit="submit()" class="form-horizontal">
 			<div class="form-body">
 				<div class="form-group">
-					<label class="col-md-2 control-label">Titre</label>
+					<label class="col-md-2 control-label">Titre <strong style="color:red;">*</strong></label>
 					<div class="col-md-8">
 						<input data-ng-model="dataset.title" type="text" class="form-control" placeholder="Indiquez un titre" value="{{dataset.title}}">
 					</div>
 
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Licence <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in dataset.licenses" bs-select>
+						</button>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label">Description</label>
@@ -22,16 +29,13 @@
 						<textarea data-ng-model="dataset.description" class="form-control" placeholder="Entrez une description" rows="5">{{dataset.description}}</textarea>
 					</div>
 				</div>
-			</div>
-			<label class="col-md-2 control-label">Visibilité</label>
-			<div class="clearfix col-md-9">
-                <div class="form-group">
-                    <select class="form-control">
-                        <option>Autoriser tout le monde à voir mes publications</option>
-                        <option>Autoriser mes abonnés/abonnements à voir mes publications</option>
-                        <option>N'autoriser personne à voir mes publications</option>
-                    </select>
-                </div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Visibilité</label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.selectedVisibility" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la visibilité" ng-options="visibility for visibility in dataset.visibility" bs-select>
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="form-actions fluid dataset-actions">
 				<div class="col-md-offset-3 col-md-9">
@@ -57,7 +61,7 @@
 	<div class="col-md-4">
 		<div class="portfolio-text">
 			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
-			<img ng-src="{{source.picture || 'http://www.keenthemes.com/preview/metronic/assets/admin/pages/media/profile/logo_azteca.jpg'}}" style="height: 80px; width: 80px" alt=""/>
+			<img ng-src="{{source.picture || 'http://lorempixel.com/80/80/city/'}}" style="height: 80px; width: 80px" alt=""/>
 			<div class="portfolio-texnfo">
 				<h4>{{source.title || "Pas de nom"}}</h4>
 			</div>
@@ -77,22 +81,12 @@
 			</span>
 		</div>
 	</div>
-	<div class="col-md-1">
+	<div class="col-md-2">
 		<div class="portfolio-btn">
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="showSource({id: source.id})" class="btn bigicn-only">
+			<a data-ng-href="{{ dataset.link }}" class="btn bigicn-only">
 				<span>
 					Voir
-				</span>
-			</a>
-		</div>
-	</div>
-	<div class="col-md-1">
-		<div class="portfolio-btn">
-			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="editSource({slugDataset: dataset.slug, id: source.id})" class="btn bigicn-only">
-				<span>
-					Editer
 				</span>
 			</a>
 		</div>

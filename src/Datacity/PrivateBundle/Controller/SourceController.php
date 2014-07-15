@@ -28,9 +28,9 @@ class SourceController extends Controller
                 !isset($params->metadata->coverageTerritory) || !isset($params->metadata->category))
                 return $this->thereIsAProblemHere();
 
+            //FIXME setSlug here
             $source = new DSource();
             $source->setTitle($params->metadata->title);
-            $source->setSid($params->metadata->sid);
             if (isset($params->metadata->link))
                 $source->setLink($params->metadata->link);
 
