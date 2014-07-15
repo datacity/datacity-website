@@ -1,49 +1,52 @@
-{% extends 'DatacityPrivateBundle:Template:privatetemplate.html.twig' %}
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
 {% block pageTitle %}Gestion des Actualités{% endblock %}
-{% block lineTitleLink %}Gestion des Actualités{% endblock %}
+{% block lineTitleLink %}
+<a href="#">Gestion des Actualités</a>
+{% endblock %}
+
 {% block pagecontent %}
 
 <h3></h3>
 
 <div class="row">
-				<div class="col-md-12 ">
-					<!-- BEGIN SAMPLE FORM PORTLET-->
-					<div class="portlet box green">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-reorder"></i>Formulaire d'ajout d'actualité
-							</div>
-							
-						</div>
-						<div class="portlet-body form">
-							<form action="{{path('datacity_private_news_add')}}" method="post" {{ form_enctype(form) }}>
-								<div class="form-body">
-									<div class="form-group">
-										<label>{{ form_label(form.title, "Titre") }}</label>
-										 {{ form_errors(form.title) }}
-										{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										<label>{{ form_label(form.message, "Contenu") }}</label>
-										 {{ form_errors(form.message) }}
-										{{ form_widget(form.message, {'attr': {'class': 'form-control', 'style': 'resize: none; height:200px'}}) }}
-										
-									</div>
-									<div class="form-group">
-										<label>{{ form_label(form.image, "Télécharger une image") }}</label>
-										 {{ form_errors(form.image) }}
-										{{ form_widget(form.image) }}
-									</div>
-									{{ form_rest(form) }}
-								</div>
-								<div class="form-actions">
-									<center><input type="submit" class="btn green" value = "Ajouter l'actualité"></center>	
-								</div>
-
-  							</form>	
-						</div>
-					</div>
+	<div class="col-md-12 ">
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>Formulaire d'ajout d'actualité
 				</div>
+
+			</div>
+			<div class="portlet-body form">
+				<form action="{{path('datacity_private_news_add')}}" method="post" {{ form_enctype(form) }}>
+					<div class="form-body">
+						<div class="form-group">
+							<label>{{ form_label(form.title, "Titre") }}</label>
+							 {{ form_errors(form.title) }}
+							{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+						</div>
+						<div class="form-group">
+							<label>{{ form_label(form.message, "Contenu") }}</label>
+							 {{ form_errors(form.message) }}
+							{{ form_widget(form.message, {'attr': {'class': 'form-control', 'style': 'resize: none; height:200px'}}) }}
+
+						</div>
+						<div class="form-group">
+							<label>{{ form_label(form.image, "Télécharger une image") }}</label>
+							 {{ form_errors(form.image) }}
+							{{ form_widget(form.image) }}
+						</div>
+						{{ form_rest(form) }}
+					</div>
+					<div class="form-actions">
+						<center><input type="submit" class="btn green" value = "Ajouter l'actualité"></center>
+					</div>
+
+					</form>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
 

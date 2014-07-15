@@ -1,6 +1,9 @@
-{% extends 'DatacityPrivateBundle:Template:privatetemplate.html.twig' %}
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
 {% block pageTitle %}Gestion d'utilisateurs{% endblock %}
-{% block lineTitleLink %}Gestion d'utilisateurs{% endblock %}
+{% block lineTitleLink %}
+<a href="#">Gestion d'utilisateurs</a>
+{% endblock %}
+
 {% block pagecontent %}
 					<!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
@@ -42,7 +45,7 @@
 										{{ user.getApplications().count() }}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteUser({{ user.getId() }}, '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteUser('{{ user.usernameCanonical }}', '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -76,18 +79,18 @@
 {{ parent() }}
 <script type="text/javascript">
 	$("#nav-usersmanager").addClass("active");
-	function deleteUser(id) {
+	function deleteUser(usernameCanonical) {
 		$.ajax({
-		    type: 'POST',  
-		    dataType: 'json',                  
-		    url: "{{ path('datacity_private_usersmanager_remove') }}/" + id,
+		    type: 'DELETE',
+		    dataType: 'json',
+		    url: Routing.generate('datacity_private_adminusers_remove', { usernameCanonical: usernameCanonical }),
 		    success: function(response) {
 		        $("#row-user-" + response['id']).fadeOut(300, function() { $(this).remove(); });
 		      }
 		  });
 		}
-	function setDeleteUser(id, name) {
-		$("#buttonDeleteUser").attr("onClick", "deleteUser(" + id + ");")
+	function setDeleteUser(usernameCanonical, name) {
+		$("#buttonDeleteUser").attr("onClick", "deleteUser('" + usernameCanonical + "');")
 		$("#userToDeleteName").html(name);
 	}
 </script>
