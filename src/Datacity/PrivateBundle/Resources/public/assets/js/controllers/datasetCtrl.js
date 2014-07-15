@@ -17,9 +17,10 @@
 					$scope.noDelete = true;
 				}
 				else if (operation === 'edit') {
-					DatasetFactory.get($stateParams.slug).then(function(data) {						
+					DatasetFactory.get($stateParams.slug).then(function(data) {
 						console.log(data);
 						$scope.dataset = data;
+						$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + data.slug;
 						$scope.dataset.license = data.license.name;
 						$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
 									'Autoriser mes abonnés/abonnements à voir mes publications',

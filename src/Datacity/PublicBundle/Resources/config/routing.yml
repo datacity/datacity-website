@@ -41,6 +41,8 @@ datacity_public_dataviewpage:
     defaults:
         _controller: FrameworkBundle:Template:template
         template: 'DatacityPublicBundle::dataview.html.twig'
+    options:
+        expose: true
 
 datacity_public_api_search:
     pattern:  /api/search
