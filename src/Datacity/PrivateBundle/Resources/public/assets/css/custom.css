@@ -68,9 +68,17 @@
 	width: 200px;
 }
 
-.profile-img {
+.profile-img, .application-img, .follow-img {
 	max-height: 100%;
   	max-width: 100%;
+}
+
+.mobile-icon {
+	font-size: 25px;
+}
+
+.application-info-opt i {
+	color: #78ccf8;
 }
 
 .col-md-7-5 {
@@ -96,13 +104,8 @@
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
 }
 
-.follow-img-container {
+.follow-img-container, .application-img-container {
 	width: 120px;
-}
-
-.follow-img {
-	max-height: 100%;
-  	max-width: 100%;
 }
 
 .follow-info i {
