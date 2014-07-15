@@ -46,20 +46,20 @@ datacity_private_modals:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:Default:modals }
 
-datacity_private_datasetmanager_delete:
+datacity_private_dataset_delete:
     pattern: /dataset/{id}
     requirements:
         _method:  DELETE
     defaults: { _controller: DatacityPrivateBundle:DataSet:delete }
 
-datacity_private_datasetmanager_save:
+datacity_private_dataset_save:
     pattern: /dataset/
     requirements:
         _method:  POST
     defaults: { _controller: DatacityPrivateBundle:DataSet:save }
 
-datacity_private_datasetmanager_get:
-    pattern: /dataset/{id}
+datacity_private_dataset_get:
+    pattern: /dataset/{slug}
     requirements:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:DataSet:get }

@@ -32,14 +32,6 @@ class DSource
 
     /**
      * @var string
-     * L'id utilise pour la correspondance avec l'api
-     * @ORM\Column(name="sid", type="string", length=100)
-     * @Serializer\Groups({"datasetShow"})
-     */
-    private $sid;
-
-    /**
-     * @var string
      * Le lien vers le site d'origine (non renseigné si identique au dataset).
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      * @Serializer\Groups({"datasetShow"})
@@ -175,29 +167,6 @@ class DSource
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set sid
-     *
-     * @param string $sid
-     * @return DSource
-     */
-    public function setSid($sid)
-    {
-        $this->sid = $sid;
-
-        return $this;
-    }
-
-    /**
-     * Get sid
-     *
-     * @return string
-     */
-    public function getSid()
-    {
-        return $this->sid;
     }
 
     /**

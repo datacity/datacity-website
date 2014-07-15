@@ -11,12 +11,12 @@
 		 {{ dataset.desc }}
 	</p>
 	</article>
-	<div class="visualizator" data-ng-init="dataId = 'd'+dataset.did">
+	<div class="visualizator">
 		<div data-tabset>
 		    <div data-tab data-heading="Tableau">
 				<div class="gridStyle" ng-grid="gridOptions">
 		        </div>
-		    	TODO Should load [{{dataId}}]
+		    	TODO Should load [{{dataset.slug}}]
 		    </div>
 		    <div data-tab data-heading="Graphique">
 		      TODO
