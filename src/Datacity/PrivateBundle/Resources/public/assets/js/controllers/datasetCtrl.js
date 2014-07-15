@@ -4,23 +4,6 @@
 		.controller('datasetController', ['$scope', '$stateParams', '$state', '$modal', '$log', 'DatasetFactory', 'operation',
 			function($scope, $stateParams, $state, $modal, $log, DatasetFactory, operation) {
 				$scope.dataset = {};
-
-				if (operation === 'create') {
-					$scope.noDelete = true;
-				}
-				else if (operation === 'edit') {
-					DatasetFactory.get($stateParams.slug).then(function(data) {
-						console.log(data);
-						$scope.dataset = data;
-						//TODO: CHARGER LES SOURCES ASSOCIEES
-					});
-				}
-				else if (operation === 'delete') {
-					DatasetFactory.delete($stateParams.slug).then(function(response) {
-						console.log(response);
-					});
-				}
-
 				$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
 									'Autoriser mes abonnés/abonnements à voir mes publications',
 									'N\'autoriser personne à voir mes publications'];
@@ -29,6 +12,29 @@
 				DatasetFactory.getLicences().then(function(data) {
 					$scope.dataset.licenses = data.licenses;
 				});
+
+				if (operation === 'create') {
+					$scope.noDelete = true;
+				}
+				else if (operation === 'edit') {
+					DatasetFactory.get($stateParams.slug).then(function(data) {						
+						console.log(data);
+						$scope.dataset = data;
+						$scope.dataset.license = data.license.name;
+						$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
+									'Autoriser mes abonnés/abonnements à voir mes publications',
+									'N\'autoriser personne à voir mes publications'];
+						DatasetFactory.getLicences().then(function(data) {
+							$scope.dataset.licenses = data.licenses;
+						});
+					});
+				}
+				else if (operation === 'delete') {
+					DatasetFactory.delete($stateParams.slug).then(function(response) {
+						console.log(response);
+					});
+				}
+
 				//Form Events
 				$scope.submit = function() {
 					var result = {

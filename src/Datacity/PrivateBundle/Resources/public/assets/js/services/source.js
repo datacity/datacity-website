@@ -12,7 +12,7 @@
 				post: function(slugDataset, sourceMeta, sourceApi) {
 					if (sourceMeta.metadata.title) {
 						var sourceSlug = sourceMeta.metadata.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
-						sourceMeta.metadata.sid = sourceSlug;
+						sourceMeta.metadata.slug = sourceSlug;
 					}
 					return $http({
 						method: 'POST',
@@ -81,7 +81,7 @@
 				getExistingDatasetModel: function(slugDataset) {
 					return $http
 						.get(Routing.generate('datacity_public_api_dataset_model', {slug: slugDataset})).then(function(response) {
-							return response.data.results;
+							return response.results;
 						});
 
 				},

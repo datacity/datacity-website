@@ -21,13 +21,8 @@
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+				$urlRouterProvider.otherwise('/user/show/mainView');
 				$stateProvider
-				.state('default', {
-                    title: 'Espace utilisateur',
-                    description: 'Accedez à vos informations et aux outils DataCity',
-                    url: '/',
-                    template: '<div>Page default</div>'
-                })
                 //Operations liées aux dataset.
 				.state('editDS', {
                     title: 'Edition',
@@ -94,5 +89,6 @@
                                                 title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.publications", { url: "/publications", templateUrl: "/app_dev.php/private/partials/publicationsTab",
                                                     title: 'Votre Profil', description: 'Changez vos informations personnelles'});
+
 	    }]);
 })();

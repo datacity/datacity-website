@@ -13,6 +13,7 @@
 				$scope.databinding = [];
 				$scope.metaSelected = {};
 				$scope.slugDataset = $stateParams.slugDataset;
+				$scope.dataModel = [];
 
 				var globalData;
 			    $scope.filterOptions = {
@@ -262,6 +263,7 @@
 					});
 
 					SourceFactory.getExistingDatasetModel($stateParams.slugDataset).then(function(results) {
+						console.log(results);
 						//results = null;
 						if (!results) {
 							$scope.noDataModel = true;
