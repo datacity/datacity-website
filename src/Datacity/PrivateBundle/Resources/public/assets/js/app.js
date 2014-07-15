@@ -84,22 +84,16 @@
 					controller: 'userController'
 				})
                     .state("showUser.mainView", { url: "/mainView", templateUrl: "/app_dev.php/private/partials/userOverviewTab",
-                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings", { url: "/settings", templateUrl: "/app_dev.php/private/partials/userAccount",
-                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'})
-<<<<<<< HEAD
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.publications", { url: "/publications", templateUrl: "/app_dev.php/private/partials/userPublications",
-                                                    title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings.profileSettings", { url: "/profile", templateUrl: "/app_dev.php/private/partials/profileTab",
-                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings.pictureSettings", { url: "/picture", templateUrl: "/app_dev.php/private/partials/pictureTab",
-                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
                     .state("showUser.settings.passwordSettings", { url: "/password", templateUrl: "/app_dev.php/private/partials/passwordTab",
-                                                title: 'Votre Profil', description: 'Changez vos informations personnelles'});
-=======
-                    .state("showUser.publications", { url: "/publications", templateUrl: "/app_dev.php/private/partials/publicationsTab",
-                                                    title: 'Votre Profil', description: 'Changez vos informations personnelles'});
-
->>>>>>> 61cbbbdef3e8125c783bd5c84c1db220a49e7c6e
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'});
 	    }]);
 })();
