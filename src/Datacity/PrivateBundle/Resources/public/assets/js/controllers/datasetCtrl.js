@@ -1,16 +1,16 @@
 (function() {
 	angular
 		.module('app')
-		.controller('datasetController', ['$scope', '$stateParams', '$modal', '$log', 'DatasetFactory', 'operation',
-			function($scope, $stateParams, $modal, $log, DatasetFactory, operation) {
+		.controller('datasetController', ['$scope', '$stateParams', '$state', '$modal', '$log', 'DatasetFactory', 'operation',
+			function($scope, $stateParams, $state, $modal, $log, DatasetFactory, operation) {
 				$scope.dataset = {};
 
-				// Route operations
 				if (operation === 'create') {
 					$scope.noDelete = true;
 				}
 				else if (operation === 'edit') {
 					DatasetFactory.get($stateParams.slug).then(function(data) {
+						console.log(data);
 						$scope.dataset = data;
 						//TODO: CHARGER LES SOURCES ASSOCIEES
 					});
@@ -20,13 +20,31 @@
 						console.log(response);
 					});
 				}
+
+				$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
+									'Autoriser mes abonnés/abonnements à voir mes publications',
+									'N\'autoriser personne à voir mes publications'];
+
+				// Route operations
+				DatasetFactory.getLicences().then(function(data) {
+					$scope.dataset.licenses = data.licenses;
+				});
 				//Form Events
 				$scope.submit = function() {
-					console.log($scope.dataset);
+					var result = {
+						license: $scope.dataset.license,
+						description: $scope.dataset.description,
+						title: $scope.dataset.title,
+						visibility: $scope.dataset.selectedVisibility
+					}
+					console.log(result);
 					if (operation === 'create' || operation === 'edit')
-						DatasetFactory.post($scope.dataset).then(function(response) {
+						DatasetFactory.post(result).then(function(response) {
 							console.log(response);
+							if (operation === 'create')
+								$state.go('editDS', {slug: response.result});
 						});
+
 				}
 				$scope.delete = function() {
 					console.log($scope.dataset);
@@ -41,6 +59,5 @@
   				$scope.showModal = function() {
     				confirmDeleteModal.$promise.then(confirmDeleteModal.show);
   				};
-
 		}]);
 })();

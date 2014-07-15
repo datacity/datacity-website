@@ -57,6 +57,8 @@ datacity_private_dataset_save:
     requirements:
         _method:  POST
     defaults: { _controller: DatacityPrivateBundle:DataSet:save }
+    options:
+        expose: true
 
 datacity_private_dataset_get:
     pattern: /dataset/{slug}

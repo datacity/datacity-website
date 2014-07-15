@@ -5,6 +5,7 @@ namespace Datacity\PrivateBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Datacity\PublicBundle\Entity\Dataset;
+use Symfony\Component\HttpFoundation\Request;
 
 class DataSetController extends Controller
 {
@@ -12,7 +13,7 @@ class DataSetController extends Controller
         return new JsonResponse(array('error' => $error), 400);
     }
 
-    public function saveAction() {
+    public function saveAction(Request $request) {
         $content = $request->getContent();
         if (!empty($content)) {
             $params = json_decode($content);
@@ -32,9 +33,10 @@ class DataSetController extends Controller
                 return $this->thereIsAProblemHere('Unknown license "' . $params->license .'"');
             $dataset->setLicense($license);
 
+            $em = $this->getDoctrine()->getManager();
             $em->persist($dataset);
             $em->flush();
-            $response = new JsonResponse(array('action' => 'success'));
+            $response = new JsonResponse(array('result' => $dataset->getSlug()));
         } else {
             return $this->thereIsAProblemHere();
         }

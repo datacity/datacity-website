@@ -123,7 +123,6 @@ class Dataset
     /**
      * La couverture la plus grande des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
-     * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $coverageTerritory;
@@ -131,7 +130,6 @@ class Dataset
     /**
      * La frequence la plus courte des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
-     * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $frequency;

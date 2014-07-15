@@ -10,11 +10,18 @@
 		<form ng-submit="submit()" class="form-horizontal">
 			<div class="form-body">
 				<div class="form-group">
-					<label class="col-md-2 control-label">Titre</label>
+					<label class="col-md-2 control-label">Titre <strong style="color:red;">*</strong></label>
 					<div class="col-md-8">
 						<input data-ng-model="dataset.title" type="text" class="form-control" placeholder="Indiquez un titre" value="{{dataset.title}}">
 					</div>
 
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Licence <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in dataset.licenses" bs-select>
+						</button>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label">Description</label>
@@ -22,16 +29,13 @@
 						<textarea data-ng-model="dataset.description" class="form-control" placeholder="Entrez une description" rows="5">{{dataset.description}}</textarea>
 					</div>
 				</div>
-			</div>
-			<label class="col-md-2 control-label">Visibilité</label>
-			<div class="clearfix col-md-9">
-                <div class="form-group">
-                    <select class="form-control">
-                        <option>Autoriser tout le monde à voir mes publications</option>
-                        <option>Autoriser mes abonnés/abonnements à voir mes publications</option>
-                        <option>N'autoriser personne à voir mes publications</option>
-                    </select>
-                </div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Visibilité</label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.selectedVisibility" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la visibilité" ng-options="visibility for visibility in dataset.visibility" bs-select>
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="form-actions fluid dataset-actions">
 				<div class="col-md-offset-3 col-md-9">

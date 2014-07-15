@@ -5,7 +5,7 @@
 			return {
 				getUserFromSession: function() {
 					return $http
-						.get(Routing.generate('datacity_private_usermanager_get')).then(function(response) {
+						.get(Routing.generate('datacity_private_user_get')).then(function(response) {
 							console.log("on fait un get sur le user");
 							return response.data;
 
