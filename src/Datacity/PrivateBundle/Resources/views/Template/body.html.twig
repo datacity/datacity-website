@@ -147,7 +147,7 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>  #}
-					<li id="nav-dashboard" class="start">
+					<li id="nav-dashboard" class="start {% if app.request.attributes.get('_route') == 'datacity_private_homepage' %}active{% endif %}">
 						<a href="{{ path('datacity_private_homepage') }}">
 							<i class="fa fa-home"></i>
 							<span class="title">
@@ -157,7 +157,7 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
-					<li id="nav-usersmanager" class="start">
+					<li id="nav-adminusers" class="start {% if app.request.attributes.get('_route') == 'datacity_private_adminusers' %}active{% endif %}">
 						<a href="{{ path('datacity_private_adminusers') }}">
 							<i class="fa fa-user"></i>
 							<span class="title">
@@ -167,7 +167,7 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
-					<li id="nav-newsmanager" class="start">
+					<li id="nav-news" class="start {% if app.request.attributes.get('_route') starts with 'datacity_private_news' %}active{% endif %}">
 						<a href="{{ path('datacity_private_news') }}">
 							<i class="fa fa-file-text"></i>
 							<span class="title">
