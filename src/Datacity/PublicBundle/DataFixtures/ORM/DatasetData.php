@@ -14,7 +14,6 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset = new Dataset();
 		$dataset->setTitle('Concerts en France'); //I have no idea
 		$dataset->setDescription('Pellentesque vel auctor nisl. Integer cursus quam quam, ut cursus urna eleifend vel. Integer dictum, sem eu dapibus mollis, enim augue pulvinar magna, vel eleifend arcu neque eu ligula. Etiam molestie lacus quis tortor vestibulum, eget iaculis velit hendrerit. Aenean vitae mi faucibus, vehicula tortor a, scelerisque sem. Nullam molestie auctor justo, in euismod eros ullamcorper in. Suspendisse vel diam tellus. In at rutrum mi. Curabitur fermentum orci ac bibendum tristique. Cras tempor sem eu egestas tristique. Etiam consectetur imperdiet tortor, a dictum arcu congue a. Vestibulum tristique vestibulum leo, vel tempor orci. Phasellus ullamcorper mattis diam.');
-		$dataset->setLink('http://www.example.com');
 		$dataset->setVisitedNb(300);
 		$dataset->setUsefulNb(42);
 		$dataset->setUndesirableNb(0);
@@ -31,12 +30,11 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[8])); //Evénement
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
 		$manager->persist($dataset);
-		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+		$this->addReference("dataset-1", $dataset);
 
 		$dataset = new Dataset();
 		$dataset->setTitle('Batiments non résidentiels');
 		$dataset->setDescription('Cette donnée spatiale renseigne l’emplacement de l’ensemble des bâtiments non résidentiels. Il s’agit à la fois de bâtiments publics, mais aussi certaines constructions privées comme les églises.');
-		$dataset->setLink('http://www.example.com');
 		$dataset->setVisitedNb(500);
 		$dataset->setUsefulNb(242);
 		$dataset->setUndesirableNb(0);
@@ -48,12 +46,11 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[1])); //Service public
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
 		$manager->persist($dataset);
-		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+		$this->addReference("dataset-2", $dataset);
 
 		$dataset = new Dataset();
 		$dataset->setTitle('Résultats des élections européennes');
 		$dataset->setDescription('Cette donnée renseigne les résultats des élections européennes par bureau de vote pour le premier tour.');
-		$dataset->setLink('http://www.example.com');
 		$dataset->setVisitedNb(823);
 		$dataset->setUsefulNb(456);
 		$dataset->setUndesirableNb(0);
@@ -65,12 +62,11 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[6])); //Politique
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
 		$manager->persist($dataset);
-		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+		$this->addReference("dataset-3", $dataset);
 
 		$dataset = new Dataset();
 		$dataset->setTitle('Omnis iste');
 		$dataset->setDescription('Sed eu leo sed purus tempus tincidunt id a dui. Duis volutpat eros nec ipsum rutrum vehicula. Proin viverra elit non sodales lobortis. Pellentesque vitae felis ac ligula pharetra laoreet non et dui. In nec eros nec mi egestas hendrerit. Nulla facilisi. Quisque scelerisque tortor non urna tempus, nec sagittis ligula rutrum. Aliquam rutrum id felis in interdum. Morbi consectetur urna nec est convallis, ut ornare leo cursus. Curabitur nec nulla sed magna bibendum hendrerit. Proin est sapien, condimentum at sagittis id, pharetra sit amet lectus. Nunc in molestie odio.');
-		$dataset->setLink('http://www.example.com');
 		$dataset->setVisitedNb(354);
 		$dataset->setUsefulNb(2);
 		$dataset->setUndesirableNb(0);
@@ -86,7 +82,7 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[3])); //Voiture
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[1])); //Licence2
 		$manager->persist($dataset);
-		$this->addReference("dataset-". $dataset->getDid(), $dataset);
+		$this->addReference("dataset-4", $dataset);
 
 		$manager->flush();
 	}
