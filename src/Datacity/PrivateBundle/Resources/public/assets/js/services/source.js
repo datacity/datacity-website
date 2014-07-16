@@ -4,10 +4,6 @@
 		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
 			return {	
 				get: function(id) {
-					return $http
-						.get('/app_dev.php/private/source/get/' + id).then(function(response) {
-							return response.data;
-						});
 				},
 				post: function(slugDataset, sourceMeta, sourceApi) {
 					if (sourceMeta.metadata.title) {
@@ -81,9 +77,8 @@
 				getExistingDatasetModel: function(slugDataset) {
 					return $http
 						.get(Routing.generate('datacity_public_api_dataset_model', {slug: slugDataset})).then(function(response) {
-							return response.results;
+							return response.data.results;
 						});
-
 				},
 				getExistingDataPopulateExemple: function(idDataset, empty) {
 					if (empty)
