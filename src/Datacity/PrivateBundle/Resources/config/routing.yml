@@ -37,6 +37,8 @@ datacity_private_partials:
     requirements:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:Default:partials }
+    options:
+        expose: true
 
 datacity_private_modals:
     pattern: /modals/{pageName}

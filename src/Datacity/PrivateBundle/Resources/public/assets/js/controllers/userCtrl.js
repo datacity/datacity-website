@@ -6,6 +6,13 @@
 				$scope.user = {};
 				$scope.passwords = {};
 				$scope.userInfos = {};
+				$scope.template = {};
+
+				$scope.template.userOverview = Routing.generate('datacity_private_partials', {pageName: 'userOverview'});
+				$scope.template.userFollowed = Routing.generate('datacity_private_partials', {pageName: 'userFollowed'});
+				$scope.template.userFollowers = Routing.generate('datacity_private_partials', {pageName: 'userFollowers'});
+
+
 				$scope.imageUpload = {};//'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
 				var image;
                 toastr.options = {

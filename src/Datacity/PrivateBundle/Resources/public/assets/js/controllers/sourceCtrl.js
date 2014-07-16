@@ -14,6 +14,9 @@
 				$scope.metaSelected = {};
 				$scope.slugDataset = $stateParams.slugDataset;
 				$scope.dataModel = [];
+				$scope.template = {};
+				$scope.template.sourceManager = Routing.generate('datacity_private_partials', {pageName: 'sourceManager'});
+				$scope.template.sourceMeta = Routing.generate('datacity_private_partials', {pageName: 'sourceMeta'});
 
 				var globalData;
 			    $scope.filterOptions = {
@@ -300,10 +303,6 @@
 						Pendant l'envoi à l'api, celle-ci renvoi la route pour accéder aux données. 
 						Cette route est rajoutée aux métadonnées pendant l'envoi à doctrine
 					 	Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.*/
-					if ($scope.databinding.length !== $scope.dataModel.length) {
-						alert("Vous devez associer les catégories imposées aux colones de votre table");
-						return false;
-					}
 					var resultMeta = {};
 					resultMeta.metadata = $scope.metaSelected;
 					if ($scope.noDataModel) {
