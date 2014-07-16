@@ -5,7 +5,9 @@
 <small><div ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</div></small>
 {% endblock %}
 {% block lineTitleLink %}
-<a data-ng-href="pageUrl" ng-bind="pageTitle"></a>
+    {% verbatim %}
+<a data-ng-href="./#{{ pageUrl }}" ng-bind="pageTitle"></a>
+    {% endverbatim %}
 {% endblock %}
 
 {% block pagecontent %}
