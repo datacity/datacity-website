@@ -5,7 +5,8 @@
 			'ui.router',
 			'ngGrid',
 			'ngSanitize',
-			'angularFileUpload'
+			'angularFileUpload',
+			'angular-loading-bar'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {
