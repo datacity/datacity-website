@@ -65,9 +65,8 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$this->addReference("dataset-3", $dataset);
 
 		$dataset = new Dataset();
-		$dataset->setTitle('Omnis iste');
-		$dataset->setDescription('Sed eu leo sed purus tempus tincidunt id a dui. Duis volutpat eros nec ipsum rutrum vehicula. Proin viverra elit non sodales lobortis. Pellentesque vitae felis ac ligula pharetra laoreet non et dui. In nec eros nec mi egestas hendrerit. Nulla facilisi. Quisque scelerisque tortor non urna tempus, nec sagittis ligula rutrum. Aliquam rutrum id felis in interdum. Morbi consectetur urna nec est convallis, ut ornare leo cursus. Curabitur nec nulla sed magna bibendum hendrerit. Proin est sapien, condimentum at sagittis id, pharetra sit amet lectus. Nunc in molestie odio.');
-		$dataset->setVisitedNb(354);
+		$dataset->setTitle('Restaurants');
+		$dataset->setDescription('Publication des données OpenStreetMap à titre expérimental. Cette donnée renseigne l’emplacement des restaurants à Montpellier. Cette donnée n’est pas une donnée institutionnelle issue des services de la Ville, il s’agit d’une donnée citoyenne extraite d’OpenStreetMap. Pour rappel il ne s’agit pas de données métiers, de fait le référentiel utilisé pour la collecte et le stockage ne sont pas du ressort de la ville, mais d’OpenStreetMap. Ceci implique aussi que les données mises à disposition ne sont pas exhaustives, il peut manquer des éléments. Vous êtes ensuite libre de vous engager ou pas à rendre ces bases les plus complètes possible. Enfin, la licence de réutilisation des données n’est pas la même que celle qui encadre les données de la Ville de Montpellier. Alors que les données issues des services sont sous Licence Ouverte, les données issues d’OpenStreetMap sont encadrées par la Licence ODbL. Elles sont donc mises à disposition sur ce portail sous leur licence d’origine.');		$dataset->setVisitedNb(354);
 		$dataset->setUsefulNb(2);
 		$dataset->setUndesirableNb(0);
 		$dataset->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
