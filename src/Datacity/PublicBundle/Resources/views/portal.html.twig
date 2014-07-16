@@ -36,22 +36,17 @@
 						<li class="item-thumbs span4 {{ appl.city.name }} prs-pagination-item prs-pagination-item-{{ currentPagination }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
 						<h5>{{ appl.name }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'slug' : appl.slug }) }}">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
+						<a class="fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'slug' : appl.slug }) }}">
+						<img style="width: 370px; height:166px;" src="{{ appl.images[0].url }}" alt="{{ appl.description }}">
 						</a>
 						<!-- Thumb Image and Description -->
-						<img style="width: 370px; height:166px;" src="{{ appl.images[0].url }}" alt="{{ appl.description }}">
 						</li>
 						{% set x = x + 1 %}
 						{% if x % 2 == 0 %}
 							{% set currentPagination = currentPagination + 1 %}
 						{% endif %}
 					{% endfor %}
-						
-						
 					</ul>
-					<center><div style='clear: both;' id="prs-pagination-bar" data-current-pagination='1'><a class='prs-pagination-changepage-prev'>Prev</a>{% for i in 1..(x / nbPaginationDisplay) %} <a data-changepage='{{ i }}' class='prs-pagination-changepage'>{{ i }}</a> {% endfor %} <a class='prs-pagination-changepage-next'>Next</a></div></center>
 					</section>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 <a href="#" class="pull-right"><i class="icon-angle-left"></i> Retour</a>
 <div class="span8">
-	<article>
+	<article id="dataset">
 	{% verbatim %}
 	<div class="top-wrapper">
 		<div class="post-heading">
@@ -14,9 +14,9 @@
 	<div class="visualizator">
 		<div data-tabset>
 		    <div data-tab data-heading="Tableau">
-				<div class="gridStyle" ng-grid="gridOptions">
+				<div data-ng-if="datasetData.length > 0" class="gridStyle" style="height: 600px" ng-grid="gridOptions">
 		        </div>
-		    	TODO Should load [{{dataset.slug}}]
+		        <span data-ng-if="datasetData.length === 0">Aucune donnée disponible</span>
 		    </div>
 		    <div data-tab data-heading="Graphique">
 		      TODO
@@ -70,11 +70,13 @@
 		</ul>
 		{% endverbatim %}
 	</div>
+	{% verbatim %}
 	<div class="widget">
 		<h5 class="widgetheading">Statistiques</h5>
 		<p>
-			 TODO
+			{{ dataset.visited_nb }}
 		</p>
 	</div>
+	{% endverbatim %}
 	</aside>
 </div>

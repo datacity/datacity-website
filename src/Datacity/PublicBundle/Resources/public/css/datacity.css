@@ -27,6 +27,10 @@
 	margin-bottom: 40px;
 }
 
+article#dataset {
+	margin-bottom: 10px;
+}
+
 /* ui-bootstrap stuff */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 

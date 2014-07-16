@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Dataset
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\DatasetRepository")
  */
 class Dataset
 {

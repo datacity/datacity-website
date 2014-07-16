@@ -103,15 +103,15 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select'
 ]).controller('datasetCtrl', ['$scope', '$state', 'dataset', '$http', 'apiUrl',
     function($scope, $state, dataset, $http, apiUrl) {
         $scope.dataset = dataset;
-        $http.get(apiUrl + '/users/something/dataset/' + dataset.did + '/download').then(function(res) {
-            console.log(res);
+        $http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
+            $scope.datasetData = res.data.data;
         });
         var pagingOptions = {
             pageSizes: [20, 50, 100],
             pageSize: 20,
             currentPage: 1
         };
-        var datasetData = [];
+        $scope.datasetData = [];
         $scope.gridOptions = {
             data: 'datasetData',
             i18n: 'fr',

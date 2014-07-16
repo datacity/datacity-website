@@ -77,12 +77,12 @@
 					<div class="navigation">
 						<nav>
 						<ul class="nav topnav">
-							<li><a href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a></li>
-							<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
-							<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
-							<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
-							<li><a href="{{ path('datacity_public_producerpage') }}">{{ 'menu.producers'|trans }}</a></li>
-							<li><a href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_homepage' %}active{% endif %}"><a href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_dataviewpage' %}active{% endif %}"><a href="{{ path('datacity_public_dataviewpage') }}"><strong>{{ 'menu.datatable'|trans }}</strong></a></li>
+							<li class="{% if app.request.attributes.get('_route') starts with 'datacity_public_app' %}active{% endif %}"><a href="{{ path('datacity_public_appportalpage') }}">{{ 'menu.app'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_news' %}active{% endif %}"><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') starts with 'datacity_public_producer' %}active{% endif %}"><a href="{{ path('datacity_public_producerpage') }}">{{ 'menu.producers'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_contactpage' %}active{% endif %}"><a href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
 						</ul>
 						</nav>
 					</div>
@@ -100,7 +100,7 @@
 				<div class="widget">
 					<h5 class="widgetheading">{{ 'footer.browse'|trans }}</h5>
 					<ul class="link-list">
-						<li><a href="{{ path('datacity_public_portalpage') }}">{{ 'menu.app'|trans }}</a></li>
+						<li><a href="{{ path('datacity_public_appportalpage') }}">{{ 'menu.app'|trans }}</a></li>
 						<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
 						<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
 					</ul>

@@ -12,7 +12,7 @@ datacity_public_contactpage:
     pattern:  /contact
     defaults: { _controller: DatacityPublicBundle:Page:contact }
 
-datacity_public_portalpage:
+datacity_public_appportalpage:
     pattern:  /app
     defaults: { _controller: DatacityPublicBundle:App:portal }
 

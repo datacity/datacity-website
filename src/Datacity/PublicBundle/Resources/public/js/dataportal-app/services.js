@@ -8,6 +8,9 @@
                         var datasets = [];
                         angular.forEach(res.data.results, function(item) {
                             var locations = item.places.map(function(e) { return e.name });
+                            var coverage_territory = null;
+                            if (item.coverage_territory != undefined)
+                                coverage_territory = item.coverage_territory.name;
                             datasets.push({
                                 slug: item.slug,
                                 name: item.title,
@@ -15,7 +18,7 @@
                                 lastUpdate: item.last_modified_date,
                                 user: item.creator.username,
                                 locations: locations,
-                                couverture: item.coverage_territory.name,
+                                couverture: coverage_territory,
                                 frequency: item.frequency,
                                 categories: item.categories,
                                 license: item.license.name
@@ -47,6 +50,7 @@
                             var dataset;
                             var item = res.data.results;
                             dataset = {
+                                slug: item.slug,
                                 name: item.title,
                                 desc: item.description,
                                 sources: item.sources,
@@ -54,11 +58,15 @@
                                 lastUpdate: item.last_modified_date,
                                 user: item.creator,
                                 locations: item.places,
-                                couverture: item.coverage_territory.name,
                                 frequency: item.frequency,
                                 categories: item.categories,
-                                license: item.license.name
+                                license: item.license.name,
+                                visited_nb: item.visited_nb,
+                                undesirable_nb: item.undesirable_nb,
+                                useful_nb: item.useful_nb
                             };
+                            if (item.coverage_territory != undefined)
+                                dataset.couverture = item.coverage_territory.name;
                             return dataset;
                         });
                     }
