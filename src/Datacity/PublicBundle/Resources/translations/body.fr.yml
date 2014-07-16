@@ -1,8 +1,8 @@
 menu:
    home: Accueil
-   app: Portail applicatif
-   news: News
-   datatable: Tableau de données
+   app: Applications
+   news: Actualités
+   datatable: Les données
    doc: Documentation
    contact: Contact
    service: Nos services
