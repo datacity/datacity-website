@@ -91,7 +91,7 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[1])); //Territoire Montpellier Numérique
 		$manager->persist($source);
 
-		//Omnis iste
+		//Restaurants
 		$source = new DSource();
 		$source->setTitle('Praesent euismod');
 		$source->setDownloadNb(12);

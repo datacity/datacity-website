@@ -148,7 +148,7 @@ class DataColumnsData extends AbstractFixture implements OrderedFixtureInterface
 		$data->setDataset($this->getReference('dataset-3'));
 		$manager->persist($data);
 
-		//Omnis iste
+		//Restaurants
 		$data = new DataColumns();
 		$data->setName('Position');
 		$data->setType($this->getReference('datacolumnstype-' . DataColumnsTypeData::$dataColumnsTypeName[0])); //GeoPoint
@@ -182,7 +182,7 @@ class DataColumnsData extends AbstractFixture implements OrderedFixtureInterface
 
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
 		return 16;
