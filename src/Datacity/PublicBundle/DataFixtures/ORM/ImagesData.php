@@ -21,7 +21,9 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 			'http://www.data.gouv.fr/img/logo.png',
 			'http://opendata.montpelliernumerique.fr/IMG/siteon0.png?1390241326',
 			'http://datarmor.cotesdarmor.fr/image/layout_set_logo?img_id=11509&t=1404490687738',
-			'http://localhost/bundles/datacitypublic/img/logo2.png'
+			'http://localhost/bundles/datacitypublic/img/logo2.png',
+			'https://lh3.ggpht.com/b3MqhCznkcveipm9R3HfHNXhP688l2y6cf7mzqyRwaWkYd6kAraS2GEf5qNjqZ36di3r=h900-rw',
+			'https://lh3.ggpht.com/0iQmYkXeQ_J6ojDYH3m3bq8x1tj1Dr4FHYiETF4iHIt5_60JFGRgcj0gJm7V8axATuNe=h900-rw'
 	);
 	
 	public function load(ObjectManager $manager)
@@ -38,7 +40,9 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 				'data.gouv.fr',
 				'Montpellier Numérique',
 				'Dat\'Armor',
-				'Datacity'
+				'Datacity',
+				'ooZoo main',
+				'ooZoo second'
 		);
 		
 		foreach (self::$imagesUrl as $i => $url)

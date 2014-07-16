@@ -63,7 +63,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Lionel');
 		$userAdmin->setFirstName('Lionel');
-		$userAdmin->setLastName('s\'hamsoul');
+		$userAdmin->setLastName('Hamsou');
 		$userAdmin->setPlainPassword('lionelAdmin');
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('hamsou_l@epitech.eu');
@@ -91,7 +91,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Raphael');
 		$userAdmin->setFirstName('Raphael');
-		$userAdmin->setLastName('En Amar <3');
+		$userAdmin->setLastName('Amar');
 		$userAdmin->setPlainPassword('raphaelAdmin');
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('amar_r@epitech.eu');
@@ -119,7 +119,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Cyril');
 		$userAdmin->setFirstName('Cyril');
-		$userAdmin->setLastName('pas le Morales');
+		$userAdmin->setLastName('Morales');
 		$userAdmin->setPlainPassword('cyrilAdmin');
 		$userAdmin->setEnabled(true);
 		$userAdmin->setEmail('cyril.morales@epitech.eu');
@@ -152,6 +152,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setEnabled(true);
 		$user->setEmail('john.doe@example.com');
 		$user->addApplication($this->getReference("application-ERP Montpellier"));
+		$user->addApplication($this->getReference("application-OoZoo"));
 		//$user->addNews($this->getReference("news-Titre1"));
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
