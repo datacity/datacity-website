@@ -29,7 +29,6 @@
 			        pageSize: 20,
 			        currentPage: 1
 			    };
-			 
 			    $scope.columnsSelected = [];
  				$scope.myData = [];
  				$scope.gridOptions = { 
@@ -91,7 +90,6 @@
 		    			});
 		    		}
 	    		}
-				
 				$scope.databinding.remove = function(column) {
 					angular.forEach($scope.databinding, function(data, index) {
 						if (data.from === column) {
@@ -200,17 +198,17 @@
 			    	}
 			    }
 
-				Array.prototype.removeIt = function(from, to) {
-  					var rest = this.slice((to || from) + 1 || this.length);
-  					this.length = from < 0 ? this.length + from : from;
-  					return this.push.apply(this, rest);
-				};
+			    var removeIt = function(array, from, to) {
+  					var rest = array.slice((to || from) + 1 || array.length);
+  					array.length = from < 0 ? array.length + from : from;
+  					return array.push.apply(array, rest);
+			    }
 
 				//Supression d'une colone sur la partie databinding
 			    $scope.deleteColumn = function(column) {
 			    	angular.forEach($scope.dataModel, function(item, index) {
 			    		if (item.name === column.name) {
-			    			$scope.dataModel.removeIt(index);
+			    			removeIt($scope.dataModel, index);
 			    		}
 			    	});
 			    }
@@ -267,9 +265,7 @@
 					});
 
 					SourceFactory.getExistingDatasetModel($stateParams.slugDataset).then(function(results) {
-						console.log(results);
-						//results = null;
-						if (!results) {
+						if (!results || results.length === 0) {
 							$scope.noDataModel = true;
 							return false;
 						}
@@ -293,8 +289,6 @@
 				else if (operation === 'delete') {
 
 				}
-				console.log($scope.dataModel);
-
 				$scope.submitSource = function() {
 
 					/* 	Lors de la validation, pour cette version on envoi l'ensemble du json à l'api avec le databinding comme dans la version master

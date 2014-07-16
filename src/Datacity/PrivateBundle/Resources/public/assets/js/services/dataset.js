@@ -12,7 +12,6 @@
 				getLicences: function() {
 					return $http
 						.get(Routing.generate('datacity_public_api_filter_list')).then(function(response) {
-							console.log(response.data);
 							return response.data.results;
 						})
 				},

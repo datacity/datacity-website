@@ -104,11 +104,10 @@
 			    //TODO: Changer les "Then"
 				$scope.uploadImage = function () {
 					if (image) {
-
 						// $scope.user.profileImg = $scope.imageUpload;
-						console.log($scope.imageUpload);
+			
 						UserFactory.uploadImage(image).then(function(data) {
-                            console.log(data);
+                        
 					 		if (data.action == "success") {
 					 			//jQuery('#profileImg').attr('src', $scope.imageUpload);
 					 			//$scope.user.profileImg = $scope.imageUpload;

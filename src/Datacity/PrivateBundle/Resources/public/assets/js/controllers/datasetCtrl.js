@@ -18,7 +18,6 @@
 				}
 				else if (operation === 'edit') {
 					DatasetFactory.get($stateParams.slug).then(function(data) {
-						console.log(data);
 						$scope.dataset = data;
 						$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + data.slug;
 						$scope.dataset.license = data.license.name;
@@ -44,17 +43,14 @@
 						title: $scope.dataset.title,
 						visibility: $scope.dataset.selectedVisibility
 					}
-					console.log(result);
 					if (operation === 'create' || operation === 'edit')
 						DatasetFactory.post(result).then(function(response) {
-							console.log(response);
 							if (operation === 'create')
 								$state.go('editDS', {slug: response.result});
 						});
 
 				}
 				$scope.delete = function() {
-					console.log($scope.dataset);
 					DatasetFactory.delete($stateParams.slug).then(function(response) {
 						console.log(response);
 					});
