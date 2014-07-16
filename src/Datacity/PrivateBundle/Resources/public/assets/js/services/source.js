@@ -32,8 +32,7 @@
 					return $http(
 						{
 							method: 'GET',
-							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',
-							header: {'Content-Type': 'application/x-www-form-urlencoded;', 'Accept': 'text/html,application/json ,*/*;'}
+							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',							
 						}).success(function(response) {
 							//console.log(response);
 							return response.data;
