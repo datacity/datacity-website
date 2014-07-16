@@ -24,7 +24,7 @@
 				},
 				delete: function(id) {
 					return $http
-						.delete('/app_dev.php/private/dataset/delete/' + id).then(function(response) {
+						.delete(Routing.generate('datacity_private_dataset_delete', {id: id})).then(function(response) {
 							return response.data;
 						});
 				}

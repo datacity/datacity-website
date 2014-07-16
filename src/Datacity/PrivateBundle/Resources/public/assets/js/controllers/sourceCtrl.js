@@ -227,6 +227,7 @@
 			    	$scope.dataModel.push(
 			    		{
 			    			name: inputModel,
+			    			type: 'Texte',
 			    			color: getRandomColor()
 			    		}
 			    	);
@@ -289,6 +290,7 @@
 				else if (operation === 'delete') {
 
 				}
+				console.log($scope.dataModel);
 
 				$scope.submitSource = function() {
 
@@ -298,8 +300,6 @@
 						Pendant l'envoi à l'api, celle-ci renvoi la route pour accéder aux données. 
 						Cette route est rajoutée aux métadonnées pendant l'envoi à doctrine
 					 	Une fois que la source a été envoyée à l'api et a doctrine, on switch sur le visualiseur de donnée côté client.*/
-					console.log($scope.databinding.length);
-					console.log($scope.dataModel.length);
 					if ($scope.databinding.length !== $scope.dataModel.length) {
 						alert("Vous devez associer les catégories imposées aux colones de votre table");
 						return false;
