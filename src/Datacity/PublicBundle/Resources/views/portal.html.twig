@@ -37,7 +37,7 @@
 						<h5>{{ appl.name }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 						<a class="fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'slug' : appl.slug }) }}">
-						<img style="width: 370px; height:166px;" src="{{ appl.images[0].url }}" alt="{{ appl.description }}">
+						<img style="max-height: 200px; width: auto;" src="{{ appl.images[0].url }}" alt="{{ appl.description }}" >
 						</a>
 						<!-- Thumb Image and Description -->
 						</li>
