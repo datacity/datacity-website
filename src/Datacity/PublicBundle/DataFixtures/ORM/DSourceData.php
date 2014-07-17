@@ -132,6 +132,21 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
 		$manager->persist($source);
 
+		//Zoo
+		$source = new DSource();
+		$source->setTitle('Zoo');
+		$source->setDownloadNb(55);
+		$source->setUsefulNb(2);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-5"));
+		$source->setLink('http://opendata.montpelliernumerique.fr/Zoo');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[1])); //Territoire Montpellier Numérique
+		$manager->persist($source);
+
 		$manager->flush();
 	}
 

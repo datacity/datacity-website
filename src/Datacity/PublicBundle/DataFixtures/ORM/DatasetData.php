@@ -66,7 +66,8 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 
 		$dataset = new Dataset();
 		$dataset->setTitle('Restaurants');
-		$dataset->setDescription('Publication des données OpenStreetMap à titre expérimental. Cette donnée renseigne l’emplacement des restaurants à Montpellier. Cette donnée n’est pas une donnée institutionnelle issue des services de la Ville, il s’agit d’une donnée citoyenne extraite d’OpenStreetMap. Pour rappel il ne s’agit pas de données métiers, de fait le référentiel utilisé pour la collecte et le stockage ne sont pas du ressort de la ville, mais d’OpenStreetMap. Ceci implique aussi que les données mises à disposition ne sont pas exhaustives, il peut manquer des éléments. Vous êtes ensuite libre de vous engager ou pas à rendre ces bases les plus complètes possible. Enfin, la licence de réutilisation des données n’est pas la même que celle qui encadre les données de la Ville de Montpellier. Alors que les données issues des services sont sous Licence Ouverte, les données issues d’OpenStreetMap sont encadrées par la Licence ODbL. Elles sont donc mises à disposition sur ce portail sous leur licence d’origine.');		$dataset->setVisitedNb(354);
+		$dataset->setDescription('Publication des données OpenStreetMap à titre expérimental. Cette donnée renseigne l’emplacement des restaurants à Montpellier. Cette donnée n’est pas une donnée institutionnelle issue des services de la Ville, il s’agit d’une donnée citoyenne extraite d’OpenStreetMap. Pour rappel il ne s’agit pas de données métiers, de fait le référentiel utilisé pour la collecte et le stockage ne sont pas du ressort de la ville, mais d’OpenStreetMap. Ceci implique aussi que les données mises à disposition ne sont pas exhaustives, il peut manquer des éléments. Vous êtes ensuite libre de vous engager ou pas à rendre ces bases les plus complètes possible. Enfin, la licence de réutilisation des données n’est pas la même que celle qui encadre les données de la Ville de Montpellier. Alors que les données issues des services sont sous Licence Ouverte, les données issues d’OpenStreetMap sont encadrées par la Licence ODbL. Elles sont donc mises à disposition sur ce portail sous leur licence d’origine.');
+		$dataset->setVisitedNb(354);
 		$dataset->setUsefulNb(2);
 		$dataset->setUndesirableNb(0);
 		$dataset->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[1])); //Quotidienne
@@ -82,6 +83,22 @@ class DatasetData extends AbstractFixture implements OrderedFixtureInterface
 		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[1])); //Licence2
 		$manager->persist($dataset);
 		$this->addReference("dataset-4", $dataset);
+
+		$dataset = new Dataset();
+		$dataset->setTitle('Zoo');
+		$dataset->setDescription('Cette donnée est composée d’un fichier renseignant les points de vue des enclos ainsi que de deux inventaires. Un premier exhaustif, il renseigne tous les animaux présents sur le site y compris dans la serre amazonienne. Et un second fichier, qui renseigne une partie des espèces végétales visibles dans le parc zoologique et dans la serre amazonienne. La géolocalisation des enclos est en cours de réalisation.');
+		$dataset->setVisitedNb(42);
+		$dataset->setUsefulNb(2);
+		$dataset->setUndesirableNb(0);
+		$dataset->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$dataset->addPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$dataset->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commune
+		$dataset->setCreator($this->getReference("user-admin@datacity.fr"));
+		$dataset->addCategory($this->getReference('category-' . CategoriesData::$categoriesName[7])); //Environnement
+		$dataset->addTag($this->getReference('tag-' . TagData::$tagName[1])); //Service public
+		$dataset->setLicense($this->getReference('license-' . LicenseData::$licenseName[0])); //Licence Ouverte
+		$manager->persist($dataset);
+		$this->addReference("dataset-5", $dataset);
 
 		$manager->flush();
 	}

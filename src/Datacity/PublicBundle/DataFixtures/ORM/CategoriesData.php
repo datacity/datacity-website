@@ -16,7 +16,8 @@ class CategoriesData extends AbstractFixture implements OrderedFixtureInterface
 			'Alimentation',
 			'Société',
 			'Economie',
-			'Logement'
+			'Logement',
+			'Environnement'
 	);
 
 	public function load(ObjectManager $manager)

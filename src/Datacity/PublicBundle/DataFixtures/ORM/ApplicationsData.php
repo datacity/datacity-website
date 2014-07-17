@@ -31,7 +31,6 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);
 
-
 		$application = new Application();
 		$application->setName('OoZoo');
 		$application->setUrl("https://oozoo.montpellier.fr/");
@@ -43,6 +42,7 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[1])); //Android
 		$application->addImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[12])));
 		$application->addImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[13])));
+		$application->setDataset($this->getReference('dataset-5'));
 		$application->setUser($this->getReference("user-john.doe@example.com"));
 		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);

@@ -157,8 +157,6 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[0]));
 		$userManager->updateUser($user);
 		$this->addReference("user-". $user->getEmail(), $user);
-
-
 	}
 
 	public function getOrder()
