@@ -74,8 +74,14 @@
 	<div class="widget">
 		<h5 class="widgetheading">Statistiques</h5>
 		<p>
-			{{ dataset.visited_nb }}
+			Nombre de vues : {{ dataset.visited_nb }}
 		</p>
+	</div>
+	<div class="widget">
+		<h5 class="widgetheading">Applications</h5>
+		<ul class="folio-detail">
+			<li data-ng-repeat="app in dataset.applications"><a data-ng-href="{{ app.url }}">{{ app.name }}</a></li>
+		</ul>
 	</div>
 	{% endverbatim %}
 	</aside>

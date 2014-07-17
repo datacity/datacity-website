@@ -18,15 +18,15 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 	 * @var ContainerInterface
 	 */
 	private $container;
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public function setContainer(ContainerInterface $container = null) {
 		$this->container = $container;
 	}
-	
-	
+
+
 	public function load(ObjectManager $manager)
 	{
 		$userManager = $this->container->get('fos_user.user_manager');
@@ -45,7 +45,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Cyntia');
 		$userAdmin->setFirstName('Cyntia');
@@ -59,7 +59,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Lionel');
 		$userAdmin->setFirstName('Lionel');
@@ -73,7 +73,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Guillaume');
 		$userAdmin->setFirstName('Guillaume');
@@ -87,7 +87,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Raphael');
 		$userAdmin->setFirstName('Raphael');
@@ -101,7 +101,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Ryan');
 		$userAdmin->setFirstName('Ryan');
@@ -115,7 +115,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('Cyril');
 		$userAdmin->setFirstName('Cyril');
@@ -129,7 +129,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$userAdmin = $userManager->createUser();
 		$userAdmin->setUsername('admin');
 		$userAdmin->setFirstName('Administrateur');
@@ -143,7 +143,7 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$userAdmin->genPrivateKey($generator);
 		$userManager->updateUser($userAdmin);
 		$this->addReference("user-". $userAdmin->getEmail(), $userAdmin);
-		
+
 		$user = $userManager->createUser();
 		$user->setUsername('Johnny');
 		$user->setFirstName('John');
@@ -151,18 +151,16 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 		$user->setPlainPassword('test00');
 		$user->setEnabled(true);
 		$user->setEmail('john.doe@example.com');
-		$user->addApplication($this->getReference("application-ERP Montpellier"));
-		$user->addApplication($this->getReference("application-OoZoo"));
 		//$user->addNews($this->getReference("news-Titre1"));
 		$user->genPublicKey($generator);
 		$user->genPrivateKey($generator);
 		$user->setCity($this->getReference("city-" . CitiesData::$citiesName[0]));
 		$userManager->updateUser($user);
 		$this->addReference("user-". $user->getEmail(), $user);
-		
-	
+
+
 	}
-	
+
 	public function getOrder()
 	{
 		return 8;

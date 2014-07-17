@@ -175,6 +175,13 @@ class Dataset
     private $license;
 
     /**
+     * Les applications du dataset.
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="dataset")
+     * @Serializer\Groups({"datasetShow"})
+     */
+    private $applications;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -714,5 +721,38 @@ class Dataset
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @return Dataset
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

@@ -19,6 +19,8 @@ datacity_public_appportalpage:
 datacity_public_appDetail:
     pattern:  /app/{slug}
     defaults: { _controller: DatacityPublicBundle:App:appDetail }
+    options:
+        expose: true
 
 datacity_public_producerpage:
     pattern:  /producer

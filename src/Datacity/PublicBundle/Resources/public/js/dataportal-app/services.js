@@ -49,6 +49,13 @@
                         return $http.get(Routing.generate('datacity_public_api_dataset_show', { slug: slug })).then(function(res) {
                             var dataset;
                             var item = res.data.results;
+                            var applications = [];
+                            angular.forEach(item.applications, function(app) {
+                                applications.push({
+                                    url: Routing.generate('datacity_public_appDetail', {slug: app.slug}),
+                                    name: app.name
+                                });
+                            });
                             dataset = {
                                 slug: item.slug,
                                 name: item.title,
@@ -63,7 +70,8 @@
                                 license: item.license.name,
                                 visited_nb: item.visited_nb,
                                 undesirable_nb: item.undesirable_nb,
-                                useful_nb: item.useful_nb
+                                useful_nb: item.useful_nb,
+                                applications: applications
                             };
                             if (item.coverage_territory != undefined)
                                 dataset.couverture = item.coverage_territory.name;

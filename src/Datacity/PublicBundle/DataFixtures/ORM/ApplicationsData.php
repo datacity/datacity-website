@@ -26,6 +26,8 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[3])); //Blackberry
 		$application->addImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[2])));
 		$application->addImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[3])));
+		$application->setDataset($this->getReference('dataset-2'));
+		$application->setUser($this->getReference("user-john.doe@example.com"));
 		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);
 
@@ -41,13 +43,14 @@ class ApplicationsData extends AbstractFixture implements OrderedFixtureInterfac
 		$application->addPlatform($this->getReference('platform-'.PlatformsData::$platformName[1])); //Android
 		$application->addImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[12])));
 		$application->addImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[13])));
+		$application->setUser($this->getReference("user-john.doe@example.com"));
 		$this->addReference("application-". $application->getName(), $application);
 		$manager->persist($application);
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
-		return 6;
+		return 18;
 	}
 }
