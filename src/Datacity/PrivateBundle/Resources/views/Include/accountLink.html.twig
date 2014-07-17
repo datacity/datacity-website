@@ -1,9 +1,9 @@
 {# Called by DatacityPublicBundle:Template:body.html.twig:93 #}
-{# DRAFT #}
+{% trans_default_domain "accountLink" %}
 <div class="headnav">
 	<ul>
 		<li>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</li>
-		<li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
+		<li><a href="{{ path('datacity_private_homepage') }}">{{ 'account'|trans }}</a></li>
 		<li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
 	</ul>
 </div>
