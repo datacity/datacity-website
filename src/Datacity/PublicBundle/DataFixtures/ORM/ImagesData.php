@@ -5,9 +5,12 @@ namespace Datacity\PublicBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Datacity\PublicBundle\Entity\Image;
+use Datacity\PublicBundle\Uploadable\FixtureImageInfo;
 
-class ImagesData extends AbstractFixture implements OrderedFixtureInterface
+class ImagesData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 	static public $imagesUrl = array (
 			'http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg',
@@ -23,7 +26,17 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 			'http://datarmor.cotesdarmor.fr/image/layout_set_logo?img_id=11509&t=1404490687738',
 			'http://localhost/bundles/datacitypublic/img/logo2.png'
 	);
-	
+
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
 	public function load(ObjectManager $manager)
 	{
 		$alt = array (
@@ -40,18 +53,20 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 				'Dat\'Armor',
 				'Datacity'
 		);
-		
+
+		$uploadableManager = $this->container->get('stof_doctrine_extensions.uploadable.manager');
+
 		foreach (self::$imagesUrl as $i => $url)
 		{
 			$image = new Image();
-			$image->setUrl($url);
 			$image->setAlt($alt[$i]);
+			$uploadableManager->markEntityToUpload($image, new FixtureImageInfo($url));
 			$manager->persist($image);
 			$this->addReference('image-'.md5($url), $image);
     	}
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
 		return 0;

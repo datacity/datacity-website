@@ -34,7 +34,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="category", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Image", mappedBy="category", cascade={"remove"})
      */
     private $images;
 
