@@ -14,7 +14,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		//Concerts en France
 		$source = new DSource();
 		$source->setTitle('Source1');
-		$source->setSid('1');
 		$source->setDownloadNb(132);
 		$source->setUsefulNb(5);
 		$source->setUndesirableNb(0);
@@ -27,7 +26,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Source2');
-		$source->setSid('2');
 		$source->setDownloadNb(54);
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
@@ -40,7 +38,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Source3');
-		$source->setSid('3');
 		$source->setDownloadNb(34);
 		$source->setUsefulNb(3);
 		$source->setUndesirableNb(0);
@@ -53,7 +50,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Source4');
-		$source->setSid('4');
 		$source->setDownloadNb(10);
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
@@ -68,7 +64,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		//Batiments non résidentiels
 		$source = new DSource();
 		$source->setTitle('Bâtiments de Montpellier');
-		$source->setSid('5');
 		$source->setDownloadNb(324);
 		$source->setUsefulNb(200);
 		$source->setUndesirableNb(0);
@@ -84,7 +79,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		//Résultats des élections européennes
 		$source = new DSource();
 		$source->setTitle('Résultats des élections européennes de Montpellier');
-		$source->setSid('6');
 		$source->setDownloadNb(231);
 		$source->setUsefulNb(124);
 		$source->setUndesirableNb(0);
@@ -97,10 +91,9 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[1])); //Territoire Montpellier Numérique
 		$manager->persist($source);
 
-		//Omnis iste
+		//Restaurants
 		$source = new DSource();
 		$source->setTitle('Praesent euismod');
-		$source->setSid('7');
 		$source->setDownloadNb(12);
 		$source->setUsefulNb(0);
 		$source->setUndesirableNb(0);
@@ -114,7 +107,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Aenean molestie');
-		$source->setSid('8');
 		$source->setDownloadNb(15);
 		$source->setUsefulNb(1);
 		$source->setUndesirableNb(0);
@@ -128,7 +120,6 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$manager->persist($source);
 		$source = new DSource();
 		$source->setTitle('Sed eu leo sed');
-		$source->setSid('9');
 		$source->setDownloadNb(23);
 		$source->setUsefulNb(2);
 		$source->setUndesirableNb(0);
@@ -139,6 +130,21 @@ class DSourceData extends AbstractFixture implements OrderedFixtureInterface
 		$source->setDataset($this->getReference("dataset-4"));
 		$source->setLink('http://www.example.com');
 		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[3])); //Datacity
+		$manager->persist($source);
+
+		//Zoo
+		$source = new DSource();
+		$source->setTitle('Zoo');
+		$source->setDownloadNb(55);
+		$source->setUsefulNb(2);
+		$source->setUndesirableNb(0);
+		$source->setFrequency($this->getReference('frequency-' . FrequencyData::$frequencyName[4])); //Annuelle
+		$source->setPlace($this->getReference('place-' . PlaceData::$placeName[1])); //Montpellier
+		$source->setCoverageTerritory($this->getReference('coverageterritory-' . CoverageTerritoryData::$ctName[0])); //Commnune
+		$source->setCreator($this->getReference("user-admin@datacity.fr"));
+		$source->setDataset($this->getReference("dataset-5"));
+		$source->setLink('http://opendata.montpelliernumerique.fr/Zoo');
+		$source->setProducer($this->getReference('producer-' . ProducerData::$prodName[1])); //Territoire Montpellier Numérique
 		$manager->persist($source);
 
 		$manager->flush();

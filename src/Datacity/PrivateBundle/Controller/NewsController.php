@@ -28,7 +28,13 @@ class NewsController extends Controller
         // Récupère l'utilisateur courant
         $news->setUser($this->get('security.context')->getToken()->getUser());
 
-        $form = $this->createForm(new NewsType, $news);
+        //$form = $this->createForm(new NewsType, $news);
+        $form = $this->createFormBuilder($news)
+            ->add('title')
+            ->add('message')
+            ->add('file', 'file')
+            ->getForm()
+        ;
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
@@ -36,9 +42,10 @@ class NewsController extends Controller
 
         if ($form->isValid()) {
           $em = $this->getDoctrine()->getManager();
-          //$em->persist($news->getImage());
           $em->persist($news);
-          //
+          $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
+          $uploadableManager->markEntityToUpload($news, $news->getImage());
+
           $em->flush();
 
 

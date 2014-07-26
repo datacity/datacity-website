@@ -14,7 +14,8 @@ class CategoryRepository extends EntityRepository
 {
 	public function getCount()
 	{
-		return $this->createQueryBuilder('c')->select($qb->expr()->count('c'))
+		$qb = $this->createQueryBuilder('c');
+		return $qb->select($qb->expr()->count('c'))
 				->getQuery()
 				->getSingleScalarResult();
 	}

@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Dataset
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\DatasetRepository")
  */
 class Dataset
 {
@@ -34,33 +34,17 @@ class Dataset
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $slug;
 
     /**
-     * @var string
-     * L'id utilise pour la correspondance avec l'api
-     * @ORM\Column(name="did", type="string", length=100)
-     * @Serializer\Groups({"datasetShow"})
-     */
-    private $did;
-
-    /**
      * @var text
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="link", type="string", length=200)
-     * @Serializer\Groups({"datasetShow"})
-     */
-    private $link;
 
     /**
      * @var integer
@@ -91,7 +75,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creation_date", type="date")
-     * @Serializer\Groups({"datasetShow"}) 
+     * @Serializer\Groups({"datasetShow"})
      */
     private $creationDate;
 
@@ -108,7 +92,7 @@ class Dataset
      * @var \Date
      *
      * @ORM\Column(name="date_begin", type="date", nullable=true)
-     * @Serializer\Groups({"datasetShow"}) 
+     * @Serializer\Groups({"datasetShow"})
      */
     private $dateBegin;
 
@@ -116,7 +100,7 @@ class Dataset
      * @var \Date
      *
      * @ORM\Column(name="date_end", type="date", nullable=true)
-     * @Serializer\Groups({"datasetShow"}) 
+     * @Serializer\Groups({"datasetShow"})
      */
     private $dateEnd;
 
@@ -138,7 +122,6 @@ class Dataset
     /**
      * La couverture la plus grande des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\CoverageTerritory")
-     * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $coverageTerritory;
@@ -146,7 +129,6 @@ class Dataset
     /**
      * La frequence la plus courte des sources du dataset.
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Frequency")
-     * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $frequency;
@@ -169,7 +151,7 @@ class Dataset
      * @ORM\JoinColumn(nullable=false)
      * @Serializer\Groups({"list", "datasetShow"})
      */
-    private $category;
+    private $categories;
 
     /**
      * L'ensemble des tags de chaques sources du dataset.
@@ -180,7 +162,7 @@ class Dataset
 
     /**
      * Les colonnes du dataset.
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset", fetch="EXTRA_LAZY")
      */
     private $columns;
 
@@ -191,6 +173,13 @@ class Dataset
      * @Serializer\Groups({"list", "datasetShow"})
      */
     private $license;
+
+    /**
+     * Les applications du dataset.
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="dataset")
+     * @Serializer\Groups({"datasetShow"})
+     */
+    private $applications;
 
     /**
      * Constructor
@@ -207,7 +196,7 @@ class Dataset
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -230,7 +219,7 @@ class Dataset
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -253,34 +242,11 @@ class Dataset
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set did
-     *
-     * @param string $did
-     * @return Dataset
-     */
-    public function setDid($did)
-    {
-        $this->did = $did;
-
-        return $this;
-    }
-
-    /**
-     * Get did
-     *
-     * @return string 
-     */
-    public function getDid()
-    {
-        return $this->did;
     }
 
     /**
@@ -299,34 +265,11 @@ class Dataset
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set link
-     *
-     * @param string $link
-     * @return Dataset
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * Get link
-     *
-     * @return string 
-     */
-    public function getLink()
-    {
-        return $this->link;
     }
 
     /**
@@ -345,7 +288,7 @@ class Dataset
     /**
      * Get usefulNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getUsefulNb()
     {
@@ -368,7 +311,7 @@ class Dataset
     /**
      * Get visitedNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getVisitedNb()
     {
@@ -391,7 +334,7 @@ class Dataset
     /**
      * Get undesirableNb
      *
-     * @return integer 
+     * @return integer
      */
     public function getUndesirableNb()
     {
@@ -414,7 +357,7 @@ class Dataset
     /**
      * Get creationDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreationDate()
     {
@@ -437,7 +380,7 @@ class Dataset
     /**
      * Get lastModifiedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastModifiedDate()
     {
@@ -460,7 +403,7 @@ class Dataset
     /**
      * Get dateBegin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateBegin()
     {
@@ -483,7 +426,7 @@ class Dataset
     /**
      * Get dateEnd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateEnd()
     {
@@ -506,7 +449,7 @@ class Dataset
     /**
      * Get creator
      *
-     * @return \Datacity\UserBundle\Entity\User 
+     * @return \Datacity\UserBundle\Entity\User
      */
     public function getCreator()
     {
@@ -529,7 +472,7 @@ class Dataset
     /**
      * Get coverageTerritory
      *
-     * @return \Datacity\PublicBundle\Entity\CoverageTerritory 
+     * @return \Datacity\PublicBundle\Entity\CoverageTerritory
      */
     public function getCoverageTerritory()
     {
@@ -562,7 +505,7 @@ class Dataset
     /**
      * Get contributors
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContributors()
     {
@@ -595,7 +538,7 @@ class Dataset
     /**
      * Get sources
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSources()
     {
@@ -628,7 +571,7 @@ class Dataset
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
@@ -661,7 +604,7 @@ class Dataset
     /**
      * Get columns
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getColumns()
     {
@@ -684,7 +627,7 @@ class Dataset
     /**
      * Get license
      *
-     * @return \Datacity\PublicBundle\Entity\License 
+     * @return \Datacity\PublicBundle\Entity\License
      */
     public function getLicense()
     {
@@ -707,7 +650,7 @@ class Dataset
     /**
      * Get frequency
      *
-     * @return \Datacity\PublicBundle\Entity\Frequency 
+     * @return \Datacity\PublicBundle\Entity\Frequency
      */
     public function getFrequency()
     {
@@ -755,7 +698,7 @@ class Dataset
      */
     public function addCategory(\Datacity\PublicBundle\Entity\Category $category)
     {
-        $this->category[] = $category;
+        $this->categories[] = $category;
 
         return $this;
     }
@@ -767,16 +710,49 @@ class Dataset
      */
     public function removeCategory(\Datacity\PublicBundle\Entity\Category $category)
     {
-        $this->category->removeElement($category);
+        $this->categories->removeElement($category);
     }
 
     /**
      * Get category
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategory()
+    public function getCategories()
     {
-        return $this->category;
+        return $this->categories;
+    }
+
+    /**
+     * Add applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     * @return Dataset
+     */
+    public function addApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications[] = $applications;
+
+        return $this;
+    }
+
+    /**
+     * Remove applications
+     *
+     * @param \Datacity\PublicBundle\Entity\Application $applications
+     */
+    public function removeApplication(\Datacity\PublicBundle\Entity\Application $applications)
+    {
+        $this->applications->removeElement($applications);
+    }
+
+    /**
+     * Get applications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }

@@ -2,43 +2,25 @@
 	angular
 		.module('app')
 		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
-			return {
-
-				
+			return {	
 				get: function(id) {
-					return $http
-						.get('/app_dev.php/private/source/get/' + id).then(function(response) {
-							return response.data;
-						});
 				},
-				post: function(slugDataset, source) {
-					console.log(source);
-					if (source.metadata.title) {
-						var sourceSlug = source.metadata.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
-						source.metadata.sid = sourceSlug;
+				post: function(slugDataset, sourceMeta, sourceApi) {
+					if (sourceMeta.metadata.title) {
+						var sourceSlug = sourceMeta.metadata.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
+						sourceMeta.metadata.slug = sourceSlug;
 					}
-					//console.log(JSON.stringify(source));
-					var sourceApi = {
-						jsonData: source.jsonData,
-						databinding: source.databinding
-					};
-					slugDataset = 'resultats-des-elections-europeennes';
 					return $http({
 						method: 'POST',
 						contentType:false,
         				processData: false,
         				data: sourceApi,
-						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/resultats-des-elections-europeennes/source/' + sourceSlug + '/upload'
+						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + slugDataset + '/source/' + sourceSlug + '/upload'
 					}).then(function(response) {
-						return $http.post(Routing.generate('datacity_private_source_post', {slug: slugDataset}), source).then(function(response) {
-							console.log(response);														
+						return $http.post(Routing.generate('datacity_private_source_post', {slug: slugDataset}), sourceMeta).then(function(response) {
+							return response.data;
 						});
 					});
-					/*
-					return $http
-						.post(Routing.generate('datacity_private_source_post', {slug: slugDataset}), source).then(function(response) {
-							return response.data;
-						});*/
 				},
 				delete: function(id) {
 					return $http
@@ -50,10 +32,9 @@
 					return $http(
 						{
 							method: 'GET',
-							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',
-							header: {'Content-Type': 'application/x-www-form-urlencoded;', 'Accept': 'text/html,application/json ,*/*;'}
+							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',							
 						}).success(function(response) {
-							console.log(response);
+							//console.log(response);
 							return response.data;
 							//return response.data;
 						}).error(function(message) {
@@ -94,10 +75,9 @@
 				},
 				getExistingDatasetModel: function(slugDataset) {
 					return $http
-						.get(Routing.generate('datacity_public_api_dataset_model', {slug: 'resultats-des-elections-europeennes'})).then(function(response) {
+						.get(Routing.generate('datacity_public_api_dataset_model', {slug: slugDataset})).then(function(response) {
 							return response.data.results;
 						});
-
 				},
 				getExistingDataPopulateExemple: function(idDataset, empty) {
 					if (empty)

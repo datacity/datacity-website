@@ -8,6 +8,9 @@
                         var datasets = [];
                         angular.forEach(res.data.results, function(item) {
                             var locations = item.places.map(function(e) { return e.name });
+                            var coverage_territory = null;
+                            if (item.coverage_territory != undefined)
+                                coverage_territory = item.coverage_territory.name;
                             datasets.push({
                                 slug: item.slug,
                                 name: item.title,
@@ -15,9 +18,9 @@
                                 lastUpdate: item.last_modified_date,
                                 user: item.creator.username,
                                 locations: locations,
-                                couverture: item.coverage_territory.name,
+                                couverture: coverage_territory,
                                 frequency: item.frequency,
-                                category: item.category.name,
+                                categories: item.categories,
                                 license: item.license.name
                             });
                         });
@@ -46,21 +49,32 @@
                         return $http.get(Routing.generate('datacity_public_api_dataset_show', { slug: slug })).then(function(res) {
                             var dataset;
                             var item = res.data.results;
-                            var locations = item.places.map(function(e) { return e.name });
+                            var applications = [];
+                            angular.forEach(item.applications, function(app) {
+                                applications.push({
+                                    url: Routing.generate('datacity_public_appDetail', {slug: app.slug}),
+                                    name: app.name
+                                });
+                            });
                             dataset = {
+                                slug: item.slug,
                                 name: item.title,
                                 desc: item.description,
-                                did: item.did,
                                 sources: item.sources,
                                 date: item.creation_date,
                                 lastUpdate: item.last_modified_date,
                                 user: item.creator,
-                                locations: locations,
-                                couverture: item.coverage_territory.name,
+                                locations: item.places,
                                 frequency: item.frequency,
-                                category: item.category.name,
-                                license: item.license.name
+                                categories: item.categories,
+                                license: item.license.name,
+                                visited_nb: item.visited_nb,
+                                undesirable_nb: item.undesirable_nb,
+                                useful_nb: item.useful_nb,
+                                applications: applications
                             };
+                            if (item.coverage_territory != undefined)
+                                dataset.couverture = item.coverage_territory.name;
                             return dataset;
                         });
                     }

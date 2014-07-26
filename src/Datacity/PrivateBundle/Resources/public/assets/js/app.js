@@ -5,7 +5,8 @@
 			'ui.router',
 			'ngGrid',
 			'ngSanitize',
-			'angularFileUpload'
+			'angularFileUpload',
+			'angular-loading-bar'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {
@@ -21,19 +22,14 @@
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+				$urlRouterProvider.otherwise('/user/show/mainView');
 				$stateProvider
-				.state('default', {
-                    title: 'Espace utilisateur',
-                    description: 'Accedez à vos informations et aux outils DataCity',
-                    url: '/',
-                    template: '<div>Page default</div>'
-                })
                 //Operations liées aux dataset.
 				.state('editDS', {
                     title: 'Edition',
                     description: 'Editer vos jeux de données',
 					url: '/dataset/edit/:slug',
-					templateUrl: '/app_dev.php/private/partials/formDataSet',
+					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formDataSet'}),
 					controller: 'datasetController',
 					resolve: {
 						operation: function() {return 'edit'}
@@ -43,7 +39,7 @@
                     title: 'Ajout',
                     description: 'Ajouter un jeu de données',
 					url: '/dataset/add',
-					templateUrl: '/app_dev.php/private/partials/formDataSet',
+					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formDataSet'}),
 					controller: 'datasetController',
 					resolve: {
 						operation: function() {return 'create'}
@@ -53,7 +49,7 @@
 				.state('deleteDS', {
                     title: 'Suppression',
                     description: 'Suppression de jeux de données',
-					url: '/dataset/delete/:id',
+					url: '/dataset/delete/:slugDataset',
 					controller: 'datasetController',
 					resolve: {
 						operation: function() {return 'delete'}
@@ -63,8 +59,8 @@
 				.state('addSource', {
                     title: 'Ajout',
                     description: 'Ajouter une source',
-					url: '/source/add/:datasetId',
-					templateUrl: '/app_dev.php/private/partials/formSource',
+					url: '/source/add/:slugDataset',
+					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formSource'}),
 					controller: 'sourceController',
 					resolve: {
 						operation: function() {return 'create'}
@@ -73,8 +69,8 @@
 				.state('editSource', {
                     title: 'Edition',
                     description: 'Editer vos sources',
-					url: '/source/edit/:datasetId/:id',
-					templateUrl: '/app_dev.php/private/partials/formSource',
+					url: '/source/edit/:slugDataset/:id',
+					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formSource'}),
 					controller: 'sourceController',
 					resolve: {
 						operation: function() {return 'edit'}
@@ -85,8 +81,24 @@
                     title: 'Votre Profil',
                     description: 'Changez vos informations personnelles',
 					url: '/user/show',
-					templateUrl: '/app_dev.php/private/partials/userInfo',
+					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userInfo'}),
 					controller: 'userController'
-				});
+				})
+                .state("showUser.mainView", { 
+                	url: "/mainView",
+                	templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userOverviewTab'}),
+                    title: 'Votre Profil', 
+                    description: 'Changez vos informations personnelles'
+                })
+                .state("showUser.settings", { url: "/settings", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userAccount'}),
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                .state("showUser.publications", { url: "/publications", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userPublications'}),
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                    .state("showUser.settings.profileSettings", { url: "/profile", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'profileTab'}),
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                    .state("showUser.settings.pictureSettings", { url: "/picture", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'pictureTab'}),
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
+                    .state("showUser.settings.passwordSettings", { url: "/password", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'passwordTab'}),
+                        title: 'Votre Profil', description: 'Changez vos informations personnelles'});
 	    }]);
 })();

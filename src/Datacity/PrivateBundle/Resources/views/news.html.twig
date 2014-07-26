@@ -1,4 +1,4 @@
-{% extends 'DatacityPrivateBundle:Template:privatetemplate.html.twig' %}
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
 {% block pageTitle %}Gestion des Actualités{% endblock %}
 {% block lineTitleLink %}Gestion des Actualités{% endblock %}
 {% block pagecontent %}
@@ -89,7 +89,6 @@
 {% block javascripts %}
 {{ parent() }}
 	<script type="text/javascript">
-		$("#nav-news").addClass("active");
 		function deleteNews(slug) {
 		$.ajax({
 		    type: 'DELETE',

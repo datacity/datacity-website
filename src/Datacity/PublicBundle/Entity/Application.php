@@ -1,6 +1,7 @@
 <?php
 
 namespace Datacity\PublicBundle\Entity;
+use JMS\Serializer\Annotation as Serializer;
 use Datacity\UserBundle\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,6 +27,7 @@ class Application
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=200)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $name;
 
@@ -33,9 +35,10 @@ class Application
      * @var string
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=228, unique=true)
+     * @Serializer\Groups({"datasetShow"})
      */
     private $slug;
-    
+
     /**
      * @var string
      *
@@ -49,14 +52,14 @@ class Application
      * @ORM\Column(name="downloaded", type="integer")
      */
     private $downloaded;
-    
+
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=500)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
-    
+
     /**
      * @var integer
      *
@@ -68,26 +71,32 @@ class Application
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Image", cascade={"persist","remove"})
      */
     private $images;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", cascade={"persist"})
      */
     private $city;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", inversedBy="applications", cascade={"persist"})
      */
     private $platforms;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="applications", cascade={"persist"})
      */
     private $categories;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="applications", cascade={"persist"})
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Dataset", inversedBy="applications")
+     */
+    private $dataset;
+
     /**
      * Constructor
      */
@@ -101,7 +110,7 @@ class Application
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -124,7 +133,7 @@ class Application
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -147,7 +156,7 @@ class Application
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -170,7 +179,7 @@ class Application
     /**
      * Get downloaded
      *
-     * @return integer 
+     * @return integer
      */
     public function getDownloaded()
     {
@@ -193,7 +202,7 @@ class Application
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -216,7 +225,7 @@ class Application
     /**
      * Get rating
      *
-     * @return integer 
+     * @return integer
      */
     public function getRating()
     {
@@ -249,7 +258,7 @@ class Application
     /**
      * Get images
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImages()
     {
@@ -272,7 +281,7 @@ class Application
     /**
      * Get city
      *
-     * @return \Datacity\PublicBundle\Entity\City 
+     * @return \Datacity\PublicBundle\Entity\City
      */
     public function getCity()
     {
@@ -305,7 +314,7 @@ class Application
     /**
      * Get platforms
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPlatforms()
     {
@@ -338,7 +347,7 @@ class Application
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -361,7 +370,7 @@ class Application
     /**
      * Get user
      *
-     * @return \Datacity\UserBundle\Entity\User 
+     * @return \Datacity\UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -384,10 +393,33 @@ class Application
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set dataset
+     *
+     * @param \Datacity\PublicBundle\Entity\Dataset $dataset
+     * @return Application
+     */
+    public function setDataset(\Datacity\PublicBundle\Entity\Dataset $dataset = null)
+    {
+        $this->dataset = $dataset;
+
+        return $this;
+    }
+
+    /**
+     * Get dataset
+     *
+     * @return \Datacity\PublicBundle\Entity\Dataset
+     */
+    public function getDataset()
+    {
+        return $this->dataset;
     }
 }

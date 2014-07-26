@@ -16,7 +16,7 @@ class CoverageTerritoryData extends AbstractFixture implements OrderedFixtureInt
 			'Pays',
 			'Monde'
 	);
-	
+
 	public function load(ObjectManager $manager)
 	{
 		foreach (self::$ctName as $i => $name)
@@ -29,7 +29,7 @@ class CoverageTerritoryData extends AbstractFixture implements OrderedFixtureInt
     	}
 		$manager->flush();
 	}
-	
+
 	public function getOrder()
 	{
 		return 10;

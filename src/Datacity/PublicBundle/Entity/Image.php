@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Entity
  * @ORM\Table()
- * @Gedmo\Uploadable(pathMethod="getUploadDir", allowOverwrite=true, filenameGenerator="ALPHANUMERIC")
+ * @Gedmo\Uploadable(path="/uploads/img", allowOverwrite=true, filenameGenerator="ALPHANUMERIC")
  */
 class Image
 {
@@ -152,7 +152,6 @@ class Image
     public function setSize($size)
     {
         $this->size = $size;
-
         return $this;
     }
 
@@ -187,12 +186,6 @@ class Image
     public function getCategory()
     {
         return $this->category;
-    }
-
-    public function getUploadDir()
-    {
-        // On retourne le chemin relatif vers l'image pour un navigateur
-        return __DIR__.'/../../../../web/uploads/img';
     }
 
     /**

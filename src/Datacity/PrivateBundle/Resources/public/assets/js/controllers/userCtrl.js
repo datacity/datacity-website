@@ -1,11 +1,18 @@
 (function() {
 	angular
 		.module('app')
-		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory',
-			function($scope, $stateParams, $modal, $log, UserFactory) {
+		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory', '$state',
+			function($scope, $stateParams, $modal, $log, UserFactory, $state) {
 				$scope.user = {};
 				$scope.passwords = {};
 				$scope.userInfos = {};
+				$scope.template = {};
+
+				$scope.template.userOverview = Routing.generate('datacity_private_partials', {pageName: 'userOverview'});
+				$scope.template.userFollowed = Routing.generate('datacity_private_partials', {pageName: 'userFollowed'});
+				$scope.template.userFollowers = Routing.generate('datacity_private_partials', {pageName: 'userFollowers'});
+
+
 				$scope.imageUpload = {};//'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
 				var image;
                 toastr.options = {
@@ -22,7 +29,36 @@
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-				
+
+                $scope.tabs = [
+                    { heading: "Vue d'ensemble", route:"showUser.mainView", active:false },
+                    { heading: "Paramètres du compte", route:"showUser.settings", active:false },
+                    { heading: "Publications", route:"showUser.publications", active:false }
+                ];
+
+                $scope.settingsTabs = [
+                    { heading: "Modifier Profil", route:"showUser.settings.profileSettings", active:false },
+                    { heading: "Modifier Avatar", route:"showUser.settings.pictureSettings", active:false },
+                    { heading: "Modifier mot de passe", route:"showUser.settings.passwordSettings", active:false }
+                ];
+
+                $scope.go = function(route){
+                    $state.go(route);
+                };
+
+                $scope.active = function(route){
+                    return $state.is(route);
+                };
+
+                $scope.$on("$stateChangeSuccess", function() {
+                    $scope.tabs.forEach(function(tab) {
+                        tab.active = $scope.active(tab.route);
+                    });
+
+                    $scope.settingsTabs.forEach(function(settingsTab) {
+                        settingsTab.active = $scope.active(settingsTab.route);
+                    });
+                });
 
 				//TODO: A changer en fonction du champ image du user
 				// var showImg = function (img) {
@@ -37,7 +73,7 @@
 				 UserFactory.getUserFromSession().then(function(data) {
 				 	$scope.user = data.user;
 				 	//console.log(data);
-					$scope.user.datasets = UserFactory.populateDatasetTmp();
+					//$scope.user.datasets = UserFactory.populateDatasetTmp();
 				 });
 				/*UserFactory.populate().then(function(data) {
 					console.log(data);
@@ -68,11 +104,10 @@
 			    //TODO: Changer les "Then"
 				$scope.uploadImage = function () {
 					if (image) {
-
 						// $scope.user.profileImg = $scope.imageUpload;
-						console.log($scope.imageUpload);
+			
 						UserFactory.uploadImage(image).then(function(data) {
-                            console.log(data);
+                        
 					 		if (data.action == "success") {
 					 			//jQuery('#profileImg').attr('src', $scope.imageUpload);
 					 			//$scope.user.profileImg = $scope.imageUpload;

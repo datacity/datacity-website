@@ -10,11 +10,18 @@
 		<form ng-submit="submit()" class="form-horizontal">
 			<div class="form-body">
 				<div class="form-group">
-					<label class="col-md-2 control-label">Titre</label>
+					<label class="col-md-2 control-label">Titre <strong style="color:red;">*</strong></label>
 					<div class="col-md-8">
 						<input data-ng-model="dataset.title" type="text" class="form-control" placeholder="Indiquez un titre" value="{{dataset.title}}">
 					</div>
 
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Licence <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in dataset.licenses" bs-select>
+						</button>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label">Description</label>
@@ -22,24 +29,13 @@
 						<textarea data-ng-model="dataset.description" class="form-control" placeholder="Entrez une description" rows="5">{{dataset.description}}</textarea>
 					</div>
 				</div>
-			</div>
-			<label class="col-md-2 control-label">Visibilité</label>
-			<div class="clearfix col-md-9">
-                <div class="form-group">
-                    <select class="form-control">
-                        <option>Autoriser tout le monde à voir mes publications</option>
-                        <option>Autoriser mes abonnés/abonnements à voir mes publications</option>
-                        <option>N'autoriser personne à voir mes publications</option>
-                    </select>
-                </div>
-				<!--<div class="btn-group visibility-radio" data-toggle="buttons">
-					<label class="btn custom-color active">
-					<input type="radio" class="toggle"> Autoriser tout le monde à voir mes publications </label>
-					<label class="btn custom-color">
-					<input type="radio" class="toggle"> Autoriser mes abonnés/abonnements à voir mes publications </label>
-					<label class="btn custom-color">
-					<input type="radio" class="toggle"> N'autoriser personne à voir mes publications </label>
-				</div>-->
+				<div class="form-group">
+					<label class="col-md-2 control-label">Visibilité</label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.selectedVisibility" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la visibilité" ng-options="visibility for visibility in dataset.visibility" bs-select>
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="form-actions fluid dataset-actions">
 				<div class="col-md-offset-3 col-md-9">
@@ -51,6 +47,7 @@
 	</div>
 </div>
 <!--end add-portfolio-->
+<hr />
 <div class="row">
 	<div class="col-md-12">
 		<div class="add-portfolio">
@@ -65,7 +62,7 @@
 	<div class="col-md-4">
 		<div class="portfolio-text">
 			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
-			<img ng-src="{{source.picture || 'http://www.keenthemes.com/preview/metronic/assets/admin/pages/media/profile/logo_azteca.jpg'}}" style="height: 80px; width: 80px" alt=""/>
+			<img ng-src="{{source.picture || 'http://lorempixel.com/80/80/city/'}}" style="height: 80px; width: 80px" alt=""/>
 			<div class="portfolio-texnfo">
 				<h4>{{source.title || "Pas de nom"}}</h4>
 			</div>
@@ -75,38 +72,22 @@
 		<div class="portfolio-info">
 			Téléchargée
 			<span>
-				{{source.downloadNb}} fois
-			</span>
-		</div>
-		<div class="portfolio-info">
-			Taille
-			<span>
-				{{source.size}} Mb
+				{{source.download_nb}} fois
 			</span>
 		</div>
 		<div class="portfolio-info">
 			Noté comme utile
 			<span>
-				{{source.usefullNb}} fois
+				{{source.useful_nb}} fois
 			</span>
 		</div>
 	</div>
-	<div class="col-md-1">
+	<div class="col-md-2">
 		<div class="portfolio-btn">
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="showSource({id: source.id})" class="btn bigicn-only">
+			<a data-ng-href="{{ dataset.link }}" class="btn bigicn-only">
 				<span>
 					Voir
-				</span>
-			</a>
-		</div>
-	</div>
-	<div class="col-md-1">
-		<div class="portfolio-btn">
-			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="editSource({datasetId: dataset.id, id: source.id})" class="btn bigicn-only">
-				<span>
-					Editer
 				</span>
 			</a>
 		</div>
@@ -118,10 +99,130 @@
 	</div>
 	<div class="col-md-4">
 		<div class="portfolio-btn">
-			<a data-ui-sref="addSource({datasetId: dataset.id})" class="btn bigicn-only">
+			<a data-ui-sref="addSource({slugDataset: dataset.slug})" class="btn bigicn-only">
 				<span>
 					Ajouter une source
 					{{dataset.id}}
+				</span>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
+<hr />
+<div class="row booking-results">
+	<div class="col-md-12">
+		<div class="add-portfolio">
+			<span>
+				<i class="fa fa-mobile-phone mobile-icon"></i> Applications associées
+			</span>
+		</div>
+	</div>
+	<!-- <div class="col-md-6">
+		<div class="booking-result">
+			<div class="booking-img">
+				<div class="application-img-container">
+					<img class="application-img" id="application-img" src="http://raphael-amar.com/blog/file/2014/06/datacity.png" alt=""/>
+				</div>
+			</div>
+			<div class="booking-info">
+				<h2><a href="#">Le maïs transgenique, c'est magique !</a></h2>
+				<ul class="stars list-inline">
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star-o"></i>
+					</li>
+					<li>
+						<i class="fa fa-star-o"></i>
+					</li>
+				</ul>
+				<p>
+					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum. <a href="#">En savoir plus ...</a>
+				</p>
+			</div>
+		</div>
+		<ul class="list-inline application-info-opt">
+			<li>
+				<i class="fa fa-money"></i> $3.49 (iOS) / Gratuit (Android)
+			</li>
+			<li>
+				<i class="fa fa-apple"></i> iOS
+			</li>
+			<li>
+				<i class="fa fa-android"></i> Android
+			</li>
+			<li>
+				<i class="fa fa-user"></i> José Bové
+			</li>
+			<li>
+				<i class="fa fa-calendar"></i> 15/07/1675
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<div class="booking-result">
+			<div class="booking-img">
+				<div class="application-img-container">
+					<img class="application-img" id="application-img" src="https://lh4.googleusercontent.com/-j-HUmZQ5lxQ/AAAAAAAAAAI/AAAAAAAAAAA/TQLUtDjlDMo/photo.jpg" alt=""/>
+				</div>
+			</div>
+			<div class="booking-info">
+				<h2><a href="#">Aaah... Les poules</a></h2>
+				<ul class="stars list-inline">
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+					<li>
+						<i class="fa fa-star"></i>
+					</li>
+				</ul>
+				<p>
+					J'aime les poules. <a href="#">En savoir plus ...</a>
+				</p>
+			</div>
+		</div>
+		<ul class="list-inline application-info-opt">
+			<li>
+				<i class="fa fa-money"></i> Gratuit
+			</li>
+			<li>
+				<i class="fa fa-android"></i> Android
+			</li>
+			<li>
+				<i class="fa fa-user"></i> Raphael
+			</li>
+			<li>
+				<i class="fa fa-calendar"></i> 15/07/2013
+			</li>
+		</ul>
+	</div> -->
+</div>
+<div class="row portfolio-block">
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-4">
+		<div class="portfolio-btn">
+			<a class="btn bigicn-only">
+				<span>
+					Ajouter une application
 				</span>
 			</a>
 		</div>

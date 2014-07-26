@@ -31,7 +31,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="firstname", type="string", length=50)
      * @JMS\Serializer\Annotation\Type("string")
-     * 
+     *
      * @Assert\NotBlank(message="Entrez votre prénom.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
@@ -48,7 +48,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="lastname", type="string", length=50)
      * @JMS\Serializer\Annotation\Type("string")
-     * 
+     *
      * @Assert\NotBlank(message="Entrez votre nom.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
@@ -156,14 +156,14 @@ class User extends BaseUser
      */
 
     private $applications;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\City")
      */
     private $city;
-    
+
     /**
      * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image")
      * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Image")
@@ -237,7 +237,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -260,7 +260,7 @@ class User extends BaseUser
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -283,7 +283,7 @@ class User extends BaseUser
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -306,7 +306,7 @@ class User extends BaseUser
     /**
      * Get point
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoint()
     {
@@ -340,7 +340,7 @@ class User extends BaseUser
     /**
      * Get public_key
      *
-     * @return string 
+     * @return string
      */
     public function getPublicKey()
     {
@@ -374,7 +374,7 @@ class User extends BaseUser
     /**
      * Get private_key
      *
-     * @return string 
+     * @return string
      */
     public function getPrivateKey()
     {
@@ -397,7 +397,7 @@ class User extends BaseUser
     /**
      * Get facebook
      *
-     * @return string 
+     * @return string
      */
     public function getFacebook()
     {
@@ -420,7 +420,7 @@ class User extends BaseUser
     /**
      * Get twitter
      *
-     * @return string 
+     * @return string
      */
     public function getTwitter()
     {
@@ -443,7 +443,7 @@ class User extends BaseUser
     /**
      * Get langue
      *
-     * @return string 
+     * @return string
      */
     public function getLangue()
     {
@@ -476,7 +476,7 @@ class User extends BaseUser
     /**
      * Get applications
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getApplications()
     {
@@ -498,7 +498,7 @@ class User extends BaseUser
     /**
      * Get city
      *
-     * @return \Datacity\PublicBundle\Entity\City 
+     * @return \Datacity\PublicBundle\Entity\City
      */
     public function getCity()
     {
@@ -531,7 +531,7 @@ class User extends BaseUser
     /**
      * Get news
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNews()
     {
@@ -564,7 +564,7 @@ class User extends BaseUser
     /**
      * Get sources
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSources()
     {
@@ -597,7 +597,7 @@ class User extends BaseUser
     /**
      * Get files
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFiles()
     {
@@ -630,7 +630,7 @@ class User extends BaseUser
     /**
      * Get datasetOwned
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDatasetOwned()
     {
@@ -663,7 +663,7 @@ class User extends BaseUser
     /**
      * Get datasetContributed
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDatasetContributed()
     {
@@ -686,7 +686,7 @@ class User extends BaseUser
     /**
      * Get occupation
      *
-     * @return string 
+     * @return string
      */
     public function getOccupation()
     {
@@ -709,7 +709,7 @@ class User extends BaseUser
     /**
      * Get about
      *
-     * @return string 
+     * @return string
      */
     public function getAbout()
     {
@@ -732,7 +732,7 @@ class User extends BaseUser
     /**
      * Get websiteUrl
      *
-     * @return string 
+     * @return string
      */
     public function getWebsiteUrl()
     {
@@ -755,7 +755,7 @@ class User extends BaseUser
     /**
      * Get joinDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getJoinDate()
     {
@@ -788,7 +788,7 @@ class User extends BaseUser
     /**
      * Get following
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFollowing()
     {
@@ -811,7 +811,7 @@ class User extends BaseUser
     /**
      * Get profileImg
      *
-     * @return \Datacity\PublicBundle\Entity\Image 
+     * @return \Datacity\PublicBundle\Entity\Image
      */
     public function getProfileImg()
     {
@@ -844,7 +844,7 @@ class User extends BaseUser
     /**
      * Get followers
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFollowers()
     {

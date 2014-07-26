@@ -12,13 +12,15 @@ datacity_public_contactpage:
     pattern:  /contact
     defaults: { _controller: DatacityPublicBundle:Page:contact }
 
-datacity_public_portalpage:
+datacity_public_appportalpage:
     pattern:  /app
     defaults: { _controller: DatacityPublicBundle:App:portal }
 
 datacity_public_appDetail:
     pattern:  /app/{slug}
     defaults: { _controller: DatacityPublicBundle:App:appDetail }
+    options:
+        expose: true
 
 datacity_public_producerpage:
     pattern:  /producer
@@ -41,6 +43,8 @@ datacity_public_dataviewpage:
     defaults:
         _controller: FrameworkBundle:Template:template
         template: 'DatacityPublicBundle::dataview.html.twig'
+    options:
+        expose: true
 
 datacity_public_api_search:
     pattern:  /api/search

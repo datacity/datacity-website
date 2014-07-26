@@ -1,6 +1,6 @@
 <a href="#" class="pull-right"><i class="icon-angle-left"></i> Retour</a>
 <div class="span8">
-	<article>
+	<article id="dataset">
 	{% verbatim %}
 	<div class="top-wrapper">
 		<div class="post-heading">
@@ -11,9 +11,13 @@
 		 {{ dataset.desc }}
 	</p>
 	</article>
-	<div class="visualizator" data-ng-init="dataId = 'd'+dataset.did">
-		<div data-tabset data-ng-controller="visualizatorCtrl">
-		    <div data-tab data-heading="Tableau">TODO Should load [{{dataId}}]</div>
+	<div class="visualizator">
+		<div data-tabset>
+		    <div data-tab data-heading="Tableau">
+				<div data-ng-if="datasetData.length > 0" class="gridStyle" style="height: 600px" ng-grid="gridOptions">
+		        </div>
+		        <span data-ng-if="datasetData.length === 0">Aucune donnée disponible</span>
+		    </div>
 		    <div data-tab data-heading="Graphique">
 		      TODO
 		    </div>
@@ -27,7 +31,11 @@
 				{% verbatim %}
 				<div class="row">
 					<div class="span8" data-ng-repeat="source in dataset.sources">
-						<h5 class="horizontal-data-bloc-title">{{ source.producer.name }} -- {{ source.title }}</h5>
+						<h5 class="horizontal-data-bloc-title">{{ source.title }}</h5>
+						<p>
+							Producteur : {{ source.producer.name }}</br>
+							<span data-ng-if="source.link">Lien de la source : <a href="{{ source.link }}">{{ source.link }}</a></span>
+						</p>
 						<div class="horizontal-data-bloc-bottom">
 							<ul class="meta-post">
 								<li><i class="icon-file-alt"></i> Source</li>
@@ -35,7 +43,6 @@
 								<li><a tooltip='Auteur'><i class="icon-user"></i> {{ source.creator.username }}</a></li>
 								<li><a tooltip='Localisation'><i class="icon-pushpin"></i> {{ source.place.name }}</a></li>
 								<li><a tooltip='Couverture'><i class="icon-globe"></i> {{ source.coverage_territory.name }}</a></li>
-								<li><a tooltip='Licence'><i class="icon-tag"></i> {{ source.license.name }}</a></li>
 							</ul>
 							<a href="" class="pull-right">Télécharger <i class="icon-download-alt"></i></a>
 						</div>
@@ -53,21 +60,29 @@
 		<h5 class="widgetheading">Informations :</h5>
 		{% verbatim %}
 		<ul class="folio-detail">
-			<li><label>Categorie :</label> {{ dataset.category }}</li>
+			<li><label>Categorie(s) :</label> <span data-ng-repeat="cat in dataset.categories">{{ cat.name }}<span data-ng-if="!$last">, </span></span></li>
 			<li><label>Auteur :</label> {{ dataset.user.username }} </li>
 			<li><label>Date de publication :</label> {{ dataset.date }}</li>
 			<li><label>Derniere mise à jour :</label> {{ dataset.lastUpdate }}</li>
-			<li><label>Localisation :</label> {{ dataset.location }}</li>
+			<li><label>Localisation :</label> <span data-ng-repeat="loc in dataset.locations">{{ loc.name }}<span data-ng-if="!$last">, </span></span></li>
 			<li><label>Couverture :</label> {{ dataset.couverture }}</li>
 			<li><label>License :</label> {{ dataset.license }}</li>
 		</ul>
 		{% endverbatim %}
 	</div>
+	{% verbatim %}
 	<div class="widget">
 		<h5 class="widgetheading">Statistiques</h5>
 		<p>
-			 TODO
+			Nombre de vues : {{ dataset.visited_nb }}
 		</p>
 	</div>
+	<div class="widget">
+		<h5 class="widgetheading">Applications</h5>
+		<ul class="folio-detail">
+			<li data-ng-repeat="app in dataset.applications"><a data-ng-href="{{ app.url }}">{{ app.name }}</a></li>
+		</ul>
+	</div>
+	{% endverbatim %}
 	</aside>
 </div>

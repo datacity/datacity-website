@@ -7,7 +7,7 @@
 					<!-- <img class="profile-img" ng-show="user.img" src="user.img" alt=""> -->
 					<img class="profile-img" id="profileImg" src="http://raphael-amar.com/blog/file/2014/06/datacity.png" alt=""/>
 				</div>
-				<a class="profile-edit">Éditer</a>
+				<a class="profile-edit" data-ng-href="./#/user/show/settings/picture">Éditer</a>
 			</li>
 			<hr/>
 			<li ng-class="{active: panel.isSubSelected(1)}">
@@ -19,7 +19,7 @@
 				<a data-ng-click="panel.selectSubTab(2)" data-toggle="tab">
 					 Abonnements
 					<span>
-						32
+						2
 					</span>
 				</a>
 			</li>
@@ -27,22 +27,22 @@
 				<a data-ng-click="panel.selectSubTab(3)" data-toggle="tab">
 					 Abonnés
 					<span>
-						40
-					</span>			
+						2
+					</span>
 				</a>
 			</li>
 		</ul>
 		<div>
-			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(1)}" data-ng-show="panel.isSubSelected(1)" data-ng-include="'/app_dev.php/private/partials/userOverview'">
-				
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(1)}" data-ng-show="panel.isSubSelected(1)" data-ng-include="template.userOverview">
+
 			</div>
 			<!--tab_1_2-->
-			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(2)}" data-ng-show="panel.isSubSelected(2)" data-ng-include="'/app_dev.php/private/partials/userFollowed'">
-				
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(2)}" data-ng-show="panel.isSubSelected(2)" data-ng-include="template.userFollowed">
+
 			</div>
 			<!--end tab-pane-->
-			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(3)}" data-ng-show="panel.isSubSelected(3)" data-ng-include="'/app_dev.php/private/partials/userFollowers'">
-				
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(3)}" data-ng-show="panel.isSubSelected(3)" data-ng-include="template.userFollowers">
+
 			</div>
 			<!--end tab-pane-->
 		</div>

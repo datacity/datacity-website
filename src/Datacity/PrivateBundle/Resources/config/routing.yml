@@ -2,17 +2,17 @@ datacity_private_homepage:
     pattern:  /
     defaults: { _controller: DatacityPrivateBundle:Default:index }
 
-datacity_private_dashboard:
-    pattern:  /dashboard
-    defaults: { _controller: DatacityPrivateBundle:Dashboard:index }
+datacity_private_adminusers:
+    pattern:  /users
+    defaults: { _controller: DatacityPrivateBundle:AdminUsers:index }
 
-datacity_private_usersmanager:
-    pattern:  /usersmanager
-    defaults: { _controller: DatacityPrivateBundle:UsersManager:index }
-
-datacity_private_usersmanager_remove:
-    pattern:  /usersmanager/remove/{user_id}
-    defaults: { _controller: DatacityPrivateBundle:UsersManager:remove, user_id: -1 }
+datacity_private_adminusers_remove:
+    pattern:  /users/{usernameCanonical}
+    requirements:
+        _method: DELETE
+    defaults: { _controller: DatacityPrivateBundle:AdminUsers:remove }
+    options:
+        expose: true
 
 datacity_private_news:
     pattern:  /news
@@ -20,6 +20,8 @@ datacity_private_news:
 
 datacity_private_news_add:
     pattern:  /news/add
+    requirements:
+        _method: GET|POST
     defaults: { _controller: DatacityPrivateBundle:News:add }
 
 datacity_private_news_remove:
@@ -30,15 +32,13 @@ datacity_private_news_remove:
     options:
         expose: true
 
-datacity_private_profilemanager:
-    pattern:  /profilemanager
-    defaults: { _controller: DatacityPrivateBundle:ProfileManager:index }
-
 datacity_private_partials:
     pattern:  /partials/{pageName}
     requirements:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:Default:partials }
+    options:
+        expose: true
 
 datacity_private_modals:
     pattern: /modals/{pageName}
@@ -46,20 +46,22 @@ datacity_private_modals:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:Default:modals }
 
-datacity_private_datasetmanager_delete:
+datacity_private_dataset_delete:
     pattern: /dataset/{id}
     requirements:
         _method:  DELETE
     defaults: { _controller: DatacityPrivateBundle:DataSet:delete }
 
-datacity_private_datasetmanager_save:
+datacity_private_dataset_save:
     pattern: /dataset/
     requirements:
         _method:  POST
     defaults: { _controller: DatacityPrivateBundle:DataSet:save }
+    options:
+        expose: true
 
-datacity_private_datasetmanager_get:
-    pattern: /dataset/{id}
+datacity_private_dataset_get:
+    pattern: /dataset/{slug}
     requirements:
         _method:  GET
     defaults: { _controller: DatacityPrivateBundle:DataSet:get }
@@ -72,33 +74,33 @@ datacity_private_source_post:
     options:
         expose: true
 
-datacity_private_usermanager_get:
+datacity_private_user_get:
     pattern: /user
-    defaults: { _controller: DatacityPrivateBundle:UserManager:get }
+    defaults: { _controller: DatacityPrivateBundle:User:get }
     requirements:
         _method:  GET
     options:
         expose: true
 
-datacity_private_usermanager_post:
+datacity_private_user_post:
     pattern: /user
-    defaults: { _controller: DatacityPrivateBundle:UserManager:post }
+    defaults: { _controller: DatacityPrivateBundle:User:post }
     requirements:
         _method:  POST
     options:
         expose: true
 
-datacity_private_usermanager_uploadimage:
+datacity_private_user_uploadimage:
     pattern: /user/uploadimage
-    defaults: { _controller: DatacityPrivateBundle:UserManager:uploadimage }
+    defaults: { _controller: DatacityPrivateBundle:User:uploadimage }
     requirements:
         _method:  POST
     options:
         expose: true
 
-datacity_private_usermanager_updatepassword:
+datacity_private_user_updatepassword:
     pattern: /user/changepassword
-    defaults: { _controller: DatacityPrivateBundle:UserManager:updatepassword }
+    defaults: { _controller: DatacityPrivateBundle:User:updatepassword }
     requirements:
         _method:  POST
     options:

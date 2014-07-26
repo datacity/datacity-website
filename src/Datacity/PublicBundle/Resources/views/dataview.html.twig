@@ -4,6 +4,16 @@
 {% block pagetitle %}Les données{% endblock %}
 {% block pagename %}Les données{% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets
+		'css/angular-mods.css'
+		'css/datasetsearchmod.css'
+	%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
 {% block javascripts %}
 	{{ parent() }}
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
@@ -29,5 +39,5 @@
 			</div>
 		</div>
 	</div>
-	</section>   
+	</section>
 {% endblock %}

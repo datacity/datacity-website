@@ -2,9 +2,9 @@
 {% trans_default_domain "appDetail" %}
 
 {# Ici, on configure les parametre de base de la page #}
-{% block title %}Datacity -- Portail Applicatif{% endblock %}
-{% block pagetitle %}Portail Applicatif{% endblock %}
-{% block pagename %}Application - Détail{% endblock %}
+{% block title %}Datacity -- Applications{% endblock %}
+{% block pagetitle %}Applications{% endblock %}
+{% block pagename %}Applications - Détail{% endblock %}
 {% block pagecontent %}
 	<section id="content">
 		<div class="container">
@@ -22,7 +22,7 @@
 							{# On genere ci-dessous la galerie d'images de l'application en cour de visualisation #}
 							{% for image in appli.getImages() %}
 								<li>
-									<img src="{{ image.getUrl() }}" alt="{{ image.getAlt() }}" style="max-height: 400px; width:auto;margin:auto;"/>
+									<img src="{{ image.path }}" alt="{{ image.alt }}" style="max-height: 400px; width:auto;margin:auto;"/>
 								</li>
 							{% endfor %}
 							</ul>
@@ -30,7 +30,7 @@
 						<!-- end flexslider -->
 					</div>
 					<p>
-						{# On recupere et insere ci-dessous la description de l'application en cour de visualisation #}		
+						{# On recupere et insere ci-dessous la description de l'application en cour de visualisation #}
 						 {{ appli.getDescription() }}
 					</p>
 					</article>
@@ -49,14 +49,12 @@
 						</ul>
 					</div>
 					<div class="widget">
-						<h5 class="widgetheading">Sources</h5>
-						<p>
-							{{ 'sources.info'|trans }}.
-						</p>
+						<h5 class="widgetheading">{{'dataset'|trans }}</h5>
+						<p><a href="{{ path('datacity_public_dataviewpage') ~ '#/dataset/' ~ appli.dataset.slug}}">{{ appli.dataset.title }}</a></li></p>
 					</div>
 					</aside>
 				</div>
 			</div>
 		</div>
-	</section> 
+	</section>
 {% endblock %}

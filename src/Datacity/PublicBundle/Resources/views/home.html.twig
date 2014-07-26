@@ -28,7 +28,6 @@
 			<p>
 				{{ 'dashboard.description'|trans }}
 			</p>
-			<a href="/private/dashboard" class="da-link">{{ 'dashboard.access'|trans }}</a>
 			<div class="da-img">
 				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/1.png') }}" alt="image01" />
 			</div>
@@ -56,7 +55,7 @@
 		</div>
 	</div>
 	</section> -->
-	
+
 	<section id="content">
 	 <div class="container">
 		{# <div class="row">
@@ -117,10 +116,10 @@
 								<a href="#">Learn more</a>
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
-			</div>  
-		</div> 
+			</div>
+		</div>
 		<!-- divider -->
 		<!-- <div class="row">
 			<div class="span12">
@@ -134,8 +133,8 @@
 
 		<div class="row marginbot30">
 		<div class="span12">
-		<h4 class="heading"><strong>Datacity</strong> actualité<span></span></h4>
-		
+		<h4 class="heading">{{ 'actu.new'|trans|raw }}</h4>
+
 		{% set i = 0 %}
 		{% for news in news %}
 		{% if i % 2 == 0 %}
@@ -178,10 +177,10 @@
 				<div class="row">
 					<section id="projects">
 						<ul id="thumbs" class="portfolio">
-						
+
 							{# Boucle for de creation des block correspondant aux 4 dernieres applications en base de donnee #}
 							{% for appl in applis %}
-									
+
 							<!-- Item Project and Filter Name -->
 							<li class="item-thumbs span3 {{ appl.city.name }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
 							<h5>{{ appl.name }}</h5>
@@ -191,9 +190,9 @@
 							<span class="overlay-img-thumb font-icon-plus"></span>
 							</a>
 							<!-- Thumb Image and Description -->
-							<center><img src="{{ appl.images[0].url }}" alt="{{ appl.description }}" style="max-height: 200px; width: auto;"></center>
+							<center><img src="{{ appl.images[0].path }}" alt="{{ appl.description }}" style="max-height: 200px; width: auto;"></center>
 							</li>
-							
+
 							{% endfor %}
 						</ul>
 					</section>
@@ -203,5 +202,5 @@
 		<!-- End Portfolio Projects -->
 
 	</div>
-	</section>    
+	</section>
 {% endblock %}

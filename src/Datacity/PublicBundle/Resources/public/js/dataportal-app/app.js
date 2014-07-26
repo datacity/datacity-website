@@ -1,4 +1,6 @@
-angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select', 'angular-loading-bar']).config(['$urlRouterProvider', '$stateProvider',
+angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select', 'angular-loading-bar', 'ngGrid'])
+    .constant('apiUrl', 'http://localhost:4567')
+    .config(['$urlRouterProvider', '$stateProvider',
     function($urlRouterProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('default', {
@@ -81,7 +83,9 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select'
                     q: val
                 }
             }).then(function(res) {
-                return res.data.results.map(function(item) { return item.name });
+                return res.data.results.map(function(item) {
+                    return item.name
+                });
             });
         };
         $scope.search = function() {
@@ -96,10 +100,31 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select'
             });
         }
     }
-]).controller('datasetCtrl', ['$scope', '$state', 'dataset',
-    function($scope, $state, dataset) {
+]).controller('datasetCtrl', ['$scope', '$state', 'dataset', '$http', 'apiUrl',
+    function($scope, $state, dataset, $http, apiUrl) {
         $scope.dataset = dataset;
+        $http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
+            $scope.datasetData = res.data.data;
+        });
+        var pagingOptions = {
+            pageSizes: [20, 50, 100],
+            pageSize: 20,
+            currentPage: 1
+        };
+        $scope.datasetData = [];
+        $scope.gridOptions = {
+            data: 'datasetData',
+            i18n: 'fr',
+            enableCellSelection: true,
+            enableRowSelection: false,
+            showFilter: true,
+            enablePaging: true,
+            jqueryUITheme: true,
+            pagingOptions: pagingOptions,
+            showColumnMenu: true,
+            enableColumnResize: true,
+            enableColumnReordering: true,
+            showFooter: true
+        };
     }
-]).controller('visualizatorCtrl', ['$scope',
-    function($scope) {}
 ]);

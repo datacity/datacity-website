@@ -13,7 +13,7 @@ class NewsType extends AbstractType
     $builder
       ->add('title', 'text')
       ->add('message', 'textarea')
-      ->add('image', new ImageType(), array('required' => false)) // Rajoutez cette ligne
+      ->add('image', new ImageType(), array('required' => false))
     ;
   }
 

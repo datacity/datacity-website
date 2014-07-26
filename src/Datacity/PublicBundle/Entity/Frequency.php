@@ -52,7 +52,7 @@ class Frequency
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -75,7 +75,7 @@ class Frequency
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -98,7 +98,7 @@ class Frequency
     /**
      * Get icon
      *
-     * @return string 
+     * @return string
      */
     public function getIcon()
     {
@@ -121,7 +121,7 @@ class Frequency
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {
