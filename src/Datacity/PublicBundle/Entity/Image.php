@@ -4,15 +4,13 @@ namespace Datacity\PublicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-//use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Image
  *
  * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
  * @ORM\Table()
- * @Gedmo\Uploadable(pathMethod="getUploadDir", allowOverwrite=true)
+ * @Gedmo\Uploadable(pathMethod="getUploadDir", allowOverwrite=true, filenameGenerator="ALPHANUMERIC")
  */
 class Image
 {
@@ -39,7 +37,14 @@ class Image
      * @Gedmo\UploadableFileName
      */
     private $name;
-  
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alt", type="string", length=255)
+     */
+    private $alt;
+
     /**
      * @ORM\Column(name="size", type="decimal")
      * @Gedmo\UploadableFileSize
@@ -53,11 +58,16 @@ class Image
      * @Gedmo\UploadableFileMimeType
      */
     private $mimeType;
-    
+
+     /**
+     * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="images")
+     */
+    private $category;
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -73,14 +83,14 @@ class Image
     public function setPath($path)
     {
         $this->path = $path;
-    
+
         return $this;
     }
 
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -96,20 +106,20 @@ class Image
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
     }
-    
+
     /**
      * Set mimeType
      *
@@ -126,95 +136,85 @@ class Image
     /**
      * Get mimeType
      *
-     * @return string 
+     * @return string
      */
     public function getMimeType()
     {
         return $this->mimeType;
     }
 
-  /**
-   * @ORM\PrePersist()
-   * @ORM\PreUpdate()
-   */
-  public function preUpload()
-  {
-    // Si jamais il n'y a pas de fichier (champ facultatif)
-    // if (null === $this->file) {
-    //   return;
-    // }
+    /**
+     * Set size
+     *
+     * @param string $size
+     * @return Image
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
 
-    // Le nom du fichier est son id, on doit juste stocker également son extension
-    // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
-    // $this->url = $this->file->guessExtension();
+        return $this;
+    }
 
-    // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
-    // $this->alt = $this->file->getClientOriginalName();
-  }
+    /**
+     * Get size
+     *
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
 
-  /**
-   * @ORM\PostPersist()
-   * @ORM\PostUpdate()
-   */
-  public function upload()
-  {
-    // Si jamais il n'y a pas de fichier (champ facultatif)
-    // if (null === $this->file) {
-    //   return;
-    // }
+    /**
+     * Set category
+     *
+     * @param \Datacity\PublicBundle\Entity\Category $category
+     * @return Image
+     */
+    public function setCategory(\Datacity\PublicBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
 
-    // Si on avait un ancien fichier, on le supprime
-    // if (null !== $this->tempFilename) {
-    //   $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
-    //   if (file_exists($oldFile)) {
-    //     unlink($oldFile);
-    //   }
-    // }
+        return $this;
+    }
 
-    // On déplace le fichier envoyé dans le répertoire de notre choix
-    // $this->file->move(
-    //   $this->getUploadRootDir(), // Le répertoire de destination
-    //   $this->id.'.'.$this->url   // Le nom du fichier à créer, ici « id.extension »
-    // );
-  }
+    /**
+     * Get category
+     *
+     * @return \Datacity\PublicBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 
-  /**
-   * @ORM\PreRemove()
-   */
-  public function preRemoveUpload()
-  {
-    // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-    // $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->url;
-  }
+    public function getUploadDir()
+    {
+        // On retourne le chemin relatif vers l'image pour un navigateur
+        return __DIR__.'/../../../../web/uploads/img';
+    }
 
-  /**
-   * @ORM\PostRemove()
-   */
-  public function removeUpload()
-  {
-    // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
-    // if (file_exists($this->tempFilename)) {
-      // On supprime le fichier
-    //   unlink($this->tempFilename);
-    // }
-  }
+    /**
+     * Set alt
+     *
+     * @param string $alt
+     * @return Image
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
 
-  public function getUploadDir()
-  {
-    // On retourne le chemin relatif vers l'image pour un navigateur
-    return 'uploads/img';
-  }
+        return $this;
+    }
 
-  protected function getUploadRootDir()
-  {
-    // On retourne le chemin relatif vers l'image pour notre code PHP
-    return __DIR__.'/../../../../web/'.$this->getUploadDir();
-  }
-
-  public function getWebPath()
-  {
-    // return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
-  }
-
-
+    /**
+     * Get alt
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
 }
