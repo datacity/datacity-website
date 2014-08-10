@@ -9,7 +9,7 @@
 				$stateProvider
 				.state('editDS', {
 					url: '/dataset/edit/:id',
-					templateUrl: '/app_dev.php/private/partials/formDataSet',
+					templateUrl: 'formDataSet',
 					controller: 'datasetController',
 					resolve: {
     					//data: ['User', function(User) { return User.new(); }],
@@ -18,7 +18,7 @@
 				})
 				.state('addDS', {
 					url: '/dataset/add',
-					templateUrl: '/app_dev.php/private/partials/formDataSet',
+					templateUrl: 'formDataSet',
 					controler: 'datasetController',
 					resolve: {
     					operation: 'create'

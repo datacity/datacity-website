@@ -33,16 +33,16 @@
 			</li>
 		</ul>
 		<div>
-			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(1)}" data-ng-show="panel.isSubSelected(1)" data-ng-include="template.userOverview">
-
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(1)}" data-ng-show="panel.isSubSelected(1)">
+				{% include 'DatacityPrivateBundle:Partials:Include/userOverview.html.twig' %}
 			</div>
 			<!--tab_1_2-->
-			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(2)}" data-ng-show="panel.isSubSelected(2)" data-ng-include="template.userFollowed">
-
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(2)}" data-ng-show="panel.isSubSelected(2)">
+				{% include 'DatacityPrivateBundle:Partials:Include/userFollowed.html.twig' %}
 			</div>
 			<!--end tab-pane-->
-			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(3)}" data-ng-show="panel.isSubSelected(3)" data-ng-include="template.userFollowers">
-
+			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(3)}" data-ng-show="panel.isSubSelected(3)">
+				{% include 'DatacityPrivateBundle:Partials:Include/userFollowers.html.twig' %}
 			</div>
 			<!--end tab-pane-->
 		</div>

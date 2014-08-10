@@ -7,7 +7,7 @@
 				<li ng-repeat="t in tabs" data-ng-class="{active:t.active}">
 					<a data-toggle="tab" data-ng-click="go(t.route)">{{t.heading}}</a>
 				</li>
-				
+
 			</ul>
 			<div class="tab-content">
                 <div ui-view></div>

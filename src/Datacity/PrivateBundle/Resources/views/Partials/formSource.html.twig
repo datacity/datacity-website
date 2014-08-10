@@ -17,10 +17,12 @@
 				</li>
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane" data-ng-class="{active: panel.isSelected(1)}" data-ng-show="panel.isSelected(1)" data-ng-include="template.sourceManager">
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(1)}" data-ng-show="panel.isSelected(1)">
+					{% include 'DatacityPrivateBundle:Partials:Include/sourceManager.html.twig' %}
 				</div>
 
-				<div class="tab-pane" data-ng-class="{active: panel.isSelected(2)}" data-ng-show="panel.isSelected(2)" data-ng-include="template.sourceMeta">
+				<div class="tab-pane" data-ng-class="{active: panel.isSelected(2)}" data-ng-show="panel.isSelected(2)">
+					{% include 'DatacityPrivateBundle:Partials:Include/sourceMeta.html.twig' %}
 				</div>
 				<!--end tab-pane-->
 			</div>

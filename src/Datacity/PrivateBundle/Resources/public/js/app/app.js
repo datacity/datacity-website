@@ -19,7 +19,40 @@
                 });
             }
         ])
-		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', 
+		.factory('$templateCache', ['$cacheFactory', '$http', '$injector', function($cacheFactory, $http, $injector) {
+		  var cache = $cacheFactory('templates');
+		  var allTplPromise;
+
+		  return {
+		    get: function(url) {
+		      var fromCache = cache.get(url);
+
+		      if (fromCache) {
+		        return fromCache;
+		      }
+
+		      if (!allTplPromise) {
+		        allTplPromise = $http.get(Routing.generate('datacity_private_partials')).then(function(response) {
+		          $injector.get('$compile')(response.data);
+		          return response;
+		        });
+		      }
+
+		      return allTplPromise.then(function(response) {
+		        return {
+		          status: response.status,
+		          config: { ignoreLoadingBar: false }, //trick for the loading bar
+		          data: cache.get(url)
+		        };
+		      });
+		    },
+
+		    put: function(key, value) {
+		      cache.put(key, value);
+		    }
+		  };
+		}])
+		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider',
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 				$urlRouterProvider.otherwise('/user/show/mainView');
@@ -29,7 +62,7 @@
                     title: 'Edition',
                     description: 'Editer vos jeux de données',
 					url: '/dataset/edit/:slug',
-					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formDataSet'}),
+					templateUrl: 'formDataSet.html',
 					controller: 'datasetController',
 					resolve: {
 						operation: function() {return 'edit'}
@@ -39,7 +72,7 @@
                     title: 'Ajout',
                     description: 'Ajouter un jeu de données',
 					url: '/dataset/add',
-					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formDataSet'}),
+					templateUrl: 'formDataSet.html',
 					controller: 'datasetController',
 					resolve: {
 						operation: function() {return 'create'}
@@ -60,7 +93,7 @@
                     title: 'Ajout',
                     description: 'Ajouter une source',
 					url: '/source/add/:slugDataset',
-					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formSource'}),
+					templateUrl: 'formSource.html',
 					controller: 'sourceController',
 					resolve: {
 						operation: function() {return 'create'}
@@ -70,7 +103,7 @@
                     title: 'Edition',
                     description: 'Editer vos sources',
 					url: '/source/edit/:slugDataset/:id',
-					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'formSource'}),
+					templateUrl: 'formSource.html',
 					controller: 'sourceController',
 					resolve: {
 						operation: function() {return 'edit'}
@@ -81,24 +114,43 @@
                     title: 'Votre Profil',
                     description: 'Changez vos informations personnelles',
 					url: '/user/show',
-					templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userInfo'}),
+					templateUrl: 'userInfo.html',
 					controller: 'userController'
 				})
-                .state("showUser.mainView", { 
+                .state("showUser.mainView", {
                 	url: "/mainView",
-                	templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userOverviewTab'}),
-                    title: 'Votre Profil', 
+                	templateUrl: 'userOverviewTab.html',
+                    title: 'Votre Profil',
                     description: 'Changez vos informations personnelles'
                 })
-                .state("showUser.settings", { url: "/settings", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userAccount'}),
-                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
-                .state("showUser.publications", { url: "/publications", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'userPublications'}),
-                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
-                    .state("showUser.settings.profileSettings", { url: "/profile", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'profileTab'}),
-                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
-                    .state("showUser.settings.pictureSettings", { url: "/picture", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'pictureTab'}),
-                        title: 'Votre Profil', description: 'Changez vos informations personnelles'})
-                    .state("showUser.settings.passwordSettings", { url: "/password", templateUrl: Routing.generate('datacity_private_partials', {pageName: 'passwordTab'}),
-                        title: 'Votre Profil', description: 'Changez vos informations personnelles'});
+                .state("showUser.settings", {
+                	url: "/settings",
+                	templateUrl: 'userAccount.html',
+                    title: 'Votre Profil',
+                    description: 'Changez vos informations personnelles'
+                })
+                .state("showUser.publications", {
+                	url: "/publications",
+                	templateUrl: 'userPublications.html',
+                    title: 'Votre Profil',
+                    description: 'Changez vos informations personnelles'
+               	})
+                .state("showUser.settings.profileSettings", {
+                	url: "/profile",
+                	templateUrl: 'profileTab.html',
+                    title: 'Votre Profil',
+                    description: 'Changez vos informations personnelles'
+                })
+                .state("showUser.settings.pictureSettings", {
+                	url: "/picture",
+                	templateUrl: 'pictureTab.html',
+                	title: 'Votre Profil',
+                	description: 'Changez vos informations personnelles'
+                })
+                .state("showUser.settings.passwordSettings", {
+                	url: "/password",
+                	templateUrl: 'passwordTab.html',
+                    title: 'Votre Profil', description: 'Changez vos informations personnelles'
+                });
 	    }]);
 })();

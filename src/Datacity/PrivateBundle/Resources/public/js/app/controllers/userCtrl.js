@@ -6,11 +6,11 @@
 				$scope.user = {};
 				$scope.passwords = {};
 				$scope.userInfos = {};
-				$scope.template = {};
+				//$scope.template = {};
 
-				$scope.template.userOverview = Routing.generate('datacity_private_partials', {pageName: 'userOverview'});
-				$scope.template.userFollowed = Routing.generate('datacity_private_partials', {pageName: 'userFollowed'});
-				$scope.template.userFollowers = Routing.generate('datacity_private_partials', {pageName: 'userFollowers'});
+				//$scope.template.userOverview = Routing.generate('datacity_private_partials', {pageName: 'userOverview'});
+				//$scope.template.userFollowed = Routing.generate('datacity_private_partials', {pageName: 'userFollowed'});
+				//$scope.template.userFollowers = Routing.generate('datacity_private_partials', {pageName: 'userFollowers'});
 
 
 				$scope.imageUpload = {};//'http://www.placehold.it/310x170/EFEFEF/AAAAAA&text=no+image';
@@ -69,7 +69,7 @@
 		  //           }
 		  //           reader.readAsDataURL(img);
 				// };
-				
+
 				 UserFactory.getUserFromSession().then(function(data) {
 				 	$scope.user = data.user;
 				 	//console.log(data);
@@ -105,9 +105,9 @@
 				$scope.uploadImage = function () {
 					if (image) {
 						// $scope.user.profileImg = $scope.imageUpload;
-			
+
 						UserFactory.uploadImage(image).then(function(data) {
-                        
+
 					 		if (data.action == "success") {
 					 			//jQuery('#profileImg').attr('src', $scope.imageUpload);
 					 			//$scope.user.profileImg = $scope.imageUpload;
@@ -126,7 +126,7 @@
 				$scope.updatePassword = function () {
 					console.log($scope.passwords);
 					if ($scope.passwords.newPassword && $scope.passwords.oldPassword
-						&& $scope.passwords.confirmPassword 
+						&& $scope.passwords.confirmPassword
 						&& $scope.passwords.newPassword == $scope.passwords.confirmPassword) {
 			        	var userPasswords = $scope.passwords;
                         $scope.passwordChange.pw1.$setValidity("newPassword", true);
@@ -140,7 +140,7 @@
 				 		toastr.error("Les champs doivent etre complétés. Le nouveau mot de passe et sa vérification doivent être identiques.", "Erreur lors de la vérification du mot de passe");
 				 	}
 			    }
-				
+
 				$scope.updateUser = function () {
 			        UserFactory.updateUser($scope.userInfos).then(function(data) {
                         toastr.success("Vos nouvelles informations sont en ligne !", "Profil mis à jour !");

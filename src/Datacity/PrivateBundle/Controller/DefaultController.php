@@ -11,16 +11,6 @@ class DefaultController extends Controller
         return $this->render('DatacityPrivateBundle::index.html.twig');
     }
 
-    public function partialsAction($pageName)
-    {
-    	try {
-            $response = $this->render('DatacityPrivateBundle:Partials:' . $pageName . '.html.twig');
-            return $response;
-        } catch (\Exception $ex) {
-            throw $this->createNotFoundException();
-        }
-    }
-
     public function modalsAction($pageName) {
         try {
             $response = $this->render('DatacityPrivateBundle:Modals:' . $pageName . '.html.twig');
