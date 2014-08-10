@@ -24,29 +24,29 @@ Website: http://datacity.fr
 	{% stylesheets
 	'css/angular-strap-dep.css'
 	'css/angular-mods.css'
-	'bundles/datacityprivate/assets/plugins/font-awesome/css/font-awesome.min.css'
-	'bundles/datacityprivate/assets/plugins/bootstrap/css/bootstrap.min.css'
-	'bundles/datacityprivate/assets/plugins/uniform/css/uniform.default.css'
+	'bundles/datacityprivate/third-party/plugins/font-awesome/css/font-awesome.min.css'
+	'bundles/datacityprivate/third-party/plugins/bootstrap/css/bootstrap.min.css'
+	'bundles/datacityprivate/third-party/plugins/uniform/css/uniform.default.css'
 
-	'bundles/datacityprivate/assets/plugins/dropzone/css/dropzone.css'
-	'bundles/datacityprivate/assets/plugins/dropzone/css/basic.css'
-	'bundles/datacityprivate/assets/plugins/bootstrap-datepicker/css/datepicker.css'
+	'bundles/datacityprivate/third-party/plugins/dropzone/css/dropzone.css'
+	'bundles/datacityprivate/third-party/plugins/dropzone/css/basic.css'
+	'bundles/datacityprivate/third-party/plugins/bootstrap-datepicker/css/datepicker.css'
 
-	'bundles/datacityprivate/assets/css/style-metronic.css'
-	'bundles/datacityprivate/assets/css/style.css'
-	'bundles/datacityprivate/assets/css/style-responsive.css'
-	'bundles/datacityprivate/assets/css/plugins.css'
-	'bundles/datacityprivate/assets/css/pages/tasks.css'
-	'bundles/datacityprivate/assets/css/pages/search.css'
-	'bundles/datacityprivate/assets/css/themes/default.css'
-	'bundles/datacityprivate/assets/css/custom.css'
-	'bundles/datacityprivate/assets/css/autocomplete-jquery-ui.css'
-	'bundles/datacityprivate/assets/css/dashboard.css'
-	'bundles/datacityprivate/assets/css/pages/profile.css'
+	'bundles/datacityprivate/third-party/css/style-metronic.css'
+	'bundles/datacityprivate/third-party/css/style.css'
+	'bundles/datacityprivate/third-party/css/style-responsive.css'
+	'bundles/datacityprivate/third-party/css/plugins.css'
+	'bundles/datacityprivate/third-party/css/pages/tasks.css'
+	'bundles/datacityprivate/third-party/css/pages/search.css'
+	'bundles/datacityprivate/third-party/css/themes/default.css'
+	'bundles/datacityprivate/third-party/css/custom.css'
+	'bundles/datacityprivate/third-party/css/autocomplete-jquery-ui.css'
+	'bundles/datacityprivate/third-party/css/dashboard.css'
+	'bundles/datacityprivate/third-party/css/pages/profile.css'
 
-	'bundles/datacityprivate/assets/plugins/select2/select2_metro.css'
-	'bundles/datacityprivate/assets/plugins/bootstrap-toastr/toastr.min.css'
-	'bundles/datacityprivate/assets/plugins/data-tables/DT_bootstrap.css'
+	'bundles/datacityprivate/third-party/plugins/select2/select2_metro.css'
+	'bundles/datacityprivate/third-party/plugins/bootstrap-toastr/toastr.min.css'
+	'bundles/datacityprivate/third-party/plugins/data-tables/DT_bootstrap.css'
 
 	filter='cssrewrite'
 	%}
@@ -55,11 +55,11 @@ Website: http://datacity.fr
 	{% endblock %}
 	{#
 
-	'bundles/datacityprivate/assets/plugins/gritter/css/jquery.gritter.css'
-	'bundles/datacityprivate/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
-	'bundles/datacityprivate/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css'
-	'bundles/datacityprivate/assets/plugins/jqvmap/jqvmap/jqvmap.css'
-	'bundles/datacityprivate/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
+	'bundles/datacityprivate/third-party/plugins/gritter/css/jquery.gritter.css'
+	'bundles/datacityprivate/third-party/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'
+	'bundles/datacityprivate/third-party/plugins/fullcalendar/fullcalendar/fullcalendar.css'
+	'bundles/datacityprivate/third-party/plugins/jqvmap/jqvmap/jqvmap.css'
+	'bundles/datacityprivate/third-party/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css'
 	#}
 
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/overcast/jquery-ui.css" />
@@ -87,7 +87,7 @@ Website: http://datacity.fr
 				<!-- BEGIN USER LOGIN DROPDOWN -->
 				<li class="dropdown user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<!-- <img alt="" src="assets/img/avatar1_small.jpg"/> -->
+						<!-- <img alt="" src="third-party/img/avatar1_small.jpg"/> -->
 						<span class="username">
 							{# 							{{ app.user.username }} #}
 						</span>
@@ -247,8 +247,8 @@ Website: http://datacity.fr
 		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 		<!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
-<script src="assets/plugins/respond.min.js"></script>
-<script src="assets/plugins/excanvas.min.js"></script>
+<script src="third-party/plugins/respond.min.js"></script>
+<script src="third-party/plugins/excanvas.min.js"></script>
 <![endif]-->
 
 {% block javascripts %}
@@ -256,88 +256,86 @@ Website: http://datacity.fr
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 <script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
 {# TEMP #}
 
 <script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
 <script src="http://angular-file-upload.appspot.com/js/angular-file-upload-shim.js"></script>
 <script src="http://angular-file-upload.appspot.com/js/angular-file-upload.js"></script>
 
-	{# '@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/uniform/jquery.uniform.min.js'
+	{# '@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/uniform/jquery.uniform.min.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/jquery.vmap.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/flot/jquery.flot.resize.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.pulsate.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/jquery.vmap.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/flot/jquery.flot.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/flot/jquery.flot.resize.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery.pulsate.min.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/moment.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-daterangepicker/daterangepicker.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/gritter/js/jquery.gritter.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.sparkline.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/select2/select2.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/jquery.dataTables.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/data-tables/DT_bootstrap.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/dropzone/dropzone.js'
-	'@DatacityPrivateBundle/Resources/public/assets/scripts/form-dropzone.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/databinding.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/upload.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/datatable.js'#}
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-daterangepicker/moment.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-daterangepicker/daterangepicker.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/gritter/js/jquery.gritter.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/fullcalendar/fullcalendar/fullcalendar.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery.sparkline.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/select2/select2.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/data-tables/jquery.dataTables.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/data-tables/DT_bootstrap.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/dropzone/dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/scripts/form-dropzone.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/js/databinding.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/js/upload.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/js/datatable.js'#}
 
 	{# ENDTEMP #}
 
 	{% javascripts
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-1.10.2.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-migrate-1.2.1.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap/js/bootstrap.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-migrate-1.2.1.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap/js/bootstrap.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'
 
 
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.blockui.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/jquery.cokie.min.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/utils.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery.blockui.min.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery.cokie.min.js'
+	'@DatacityPrivateBundle/Resources/public/js/utils.js'
 
 	'js/angular-mods.js'
 	'js/angular-strap.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/mock/e2e-mock-dataset.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/app.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/mock/e2e-mock-dataset.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/app.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/js/services/dataset.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/services/user.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/services/source.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/services/dataset.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/services/user.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/services/source.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/datasetCtrl.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/userCtrl.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/navCtrl.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/panelCtrl.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/controllers/sourceCtrl.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/controllers/datasetCtrl.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/controllers/userCtrl.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/controllers/navCtrl.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/controllers/panelCtrl.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/controllers/sourceCtrl.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/js/directives/datepicker.js'
-	'@DatacityPrivateBundle/Resources/public/assets/js/directives/events.js'
-
-
-	'@DatacityPrivateBundle/Resources/public/assets/plugins/bootstrap-toastr/toastr.min.js'
-
-	'@DatacityPrivateBundle/Resources/public/assets/scripts/app.js'
-	'@DatacityPrivateBundle/Resources/public/assets/scripts/index.js'
-	'@DatacityPrivateBundle/Resources/public/assets/scripts/tasks.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/directives/datepicker.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/directives/events.js'
 
 
-	'@DatacityPrivateBundle/Resources/public/assets/scripts/ui-toastr.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-toastr/toastr.min.js'
 
-	'@DatacityPrivateBundle/Resources/public/assets/js/router.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/scripts/app.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/scripts/index.js'
+	'@DatacityPrivateBundle/Resources/public/third-party/scripts/tasks.js'
 
+	'@DatacityPrivateBundle/Resources/public/third-party/scripts/ui-toastr.js'
 
 	%}
+	{# '@DatacityPrivateBundle/Resources/public/js/app/router.js' #}
 	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 	{% endblock %}
