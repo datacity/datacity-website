@@ -79,6 +79,12 @@
 							return response.data.results;
 						});
 				},
+				getProducers: function() {
+					return $http
+						.get(Routing.generate('datacity_private_producers_get')).then(function(response) {
+							return response.data;
+						});
+				},
 				getExistingDataPopulateExemple: function(idDataset, empty) {
 					if (empty)
 						return null;

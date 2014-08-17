@@ -60,7 +60,35 @@
 		</div>
 
 	</div>
+	<div class="col-md-4" >
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>Producteurs
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse"></a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="clearfix">
+					<div id="categoryModelContainer" class="block">
+						<hr/>
+						<div class="form-group">
+						<div class="col-md-8">
+							<button type="button" class="btn btn-default form-control" ng-model="producers" data-html="1" data-animation="am-flip-x" placeholder="Choisissez le producteur" ng-options="producer.name as producer.name for producer in producers" bs-select>
+							</button>
+						</div>
+					</div>
 
+					</div>
+
+				</div>
+				<hr/>
+			</div>
+		</div>
+
+	</div>
 
 
 

@@ -221,6 +221,20 @@
 			    	});
 			    	return res;
 			    }
+				SourceFactory.getProducers().then(function(results) {
+						console.log(results);
+			    		$scope.producers = results.producers;
+			    	});
+			    /*$scope.getProducers = function() {
+			    	var res = SourceFactory.getProducers().then(function(results) {
+			    		$scope.producers = results;
+			    		console.log(results);
+			    		//return results;
+			    	});
+			    		console.log(res);
+
+			    	//return res;
+			    }*/
 
 				// Appellé a chaque fois que l'on veut rajouter une catégorie dans le modèle.
 				// inputModel je pense que je n'ai pas besoin d'expliquer ^^

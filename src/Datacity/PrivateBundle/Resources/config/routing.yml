@@ -76,6 +76,14 @@ datacity_private_source_post:
     options:
         expose: true
 
+datacity_private_producers_get:
+    pattern: /producers
+    defaults: { _controller: DatacityPrivateBundle:Producers:get }
+    requirements:
+        _method:  GET
+    options:
+        expose: true
+
 datacity_private_user_get:
     pattern: /user
     defaults: { _controller: DatacityPrivateBundle:User:get }
