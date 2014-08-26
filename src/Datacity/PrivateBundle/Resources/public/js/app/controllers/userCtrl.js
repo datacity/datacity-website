@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('app')
-		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory', '$state',
-			function($scope, $stateParams, $modal, $log, UserFactory, $state) {
-				$scope.user = {};
+		.controller('userController', ['$scope', '$stateParams', '$modal', '$log', 'UserFactory', '$state', 'currentUser',
+			function($scope, $stateParams, $modal, $log, UserFactory, $state, currentUser) {
+				$scope.user = currentUser;
 				$scope.passwords = {};
 				$scope.userInfos = {};
 				//$scope.template = {};
@@ -70,11 +70,6 @@
 		  //           reader.readAsDataURL(img);
 				// };
 
-				 UserFactory.getUserFromSession().then(function(data) {
-				 	$scope.user = data.user;
-				 	//console.log(data);
-					//$scope.user.datasets = UserFactory.populateDatasetTmp();
-				 });
 				/*UserFactory.populate().then(function(data) {
 					console.log(data);
 					$scope.user.datasets = data;

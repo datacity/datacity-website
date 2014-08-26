@@ -115,7 +115,14 @@
                     description: 'Changez vos informations personnelles',
 					url: '/user/show',
 					templateUrl: 'userInfo.html',
-					controller: 'userController'
+					controller: 'userController',
+					resolve: {
+						currentUser: function(UserFactory) {
+							return UserFactory.getUserFromSession().then(function(data) {
+				 				return data.user;
+				 			});
+						}
+					}
 				})
                 .state("showUser.mainView", {
                 	url: "/mainView",
