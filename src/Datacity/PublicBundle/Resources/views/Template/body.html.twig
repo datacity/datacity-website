@@ -40,7 +40,7 @@
 	<link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/datacitypublic/ico/apple-touch-icon-57-precomposed.png') }}" />
 	<link rel="shortcut icon" href="{{ asset('bundles/datacitypublic/ico/favicon.png') }}" />
 </head>
-<body>
+<body {% block bodyattr %}{% endblock %}>
 <div id="wrapper" class="boxed">
 	<!-- start header -->
 	<header>

@@ -1,5 +1,5 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
-
+{% block bodyattr %}data-ng-app="datacity.datasets"{% endblock %}
 {% block title %}Datacity -- Page de vue des données{% endblock %}
 {% block pagetitle %}Les données{% endblock %}
 {% block pagename %}Les données{% endblock %}
@@ -16,8 +16,6 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-	<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 	<script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 	{% javascripts
@@ -31,7 +29,7 @@
 {% endblock %}
 
 {% block pagecontent %}
-	<section id="content" data-ng-app="datacity.datasets">
+	<section id="content">
 	<div class="container">
 		<div class="row" data-ui-view>
 			<div class="span12">
