@@ -117,11 +117,11 @@
 					templateUrl: 'userInfo.html',
 					controller: 'userController',
 					resolve: {
-						currentUser: function(UserFactory) {
+						currentUser: ['UserFactory', function(UserFactory) {
 							return UserFactory.getUserFromSession().then(function(data) {
 				 				return data.user;
 				 			});
-						}
+						}]
 					}
 				})
                 .state("showUser.mainView", {
