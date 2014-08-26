@@ -1,0 +1,24 @@
+{
+  "name": "datacity",
+  "version": "0.1.0",
+  "main": "bower.json",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "1.10.2",
+    "angular": "~1.2.23",
+    "angular-animate": "~1.2.23",
+    "angular-sanitize": "~1.2.23",
+    "angular-ui-router": "~0.2.10",
+    "angular-strap": "~2.0.5",
+    "angular-motion": "~0.3.3",
+    "bootstrap-additions": "~0.2.3",
+    "angular-bootstrap": "0.8.0",
+    "isteven-angular-multiselect": "~2.0.1",
+    "angular-loading-bar": "~0.5.0",
+    "ng-grid": "~2.0.12"
+  }
+}

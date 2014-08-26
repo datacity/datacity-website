@@ -4,7 +4,7 @@ imports:
 
 bc_bootstrap:
     less_filter: lessphp
-    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
+    jquery_path: %kernel.root_dir%/../jsvendor/jquery/jquery.js
 
 framework:
     #esi:             ~
@@ -55,39 +55,39 @@ assetic:
     assets:
         angularmods:
             inputs:
-                - %kernel.root_dir%/../vendor/angular-ui/ui-router/angular-ui-router.js
-                - %kernel.root_dir%/../vendor/angularjs/angular-animate/angular-animate.js
-                - %kernel.root_dir%/../vendor/angularjs/angular-sanitize/angular-sanitize.js
-                - %kernel.root_dir%/../vendor/angular-ui/ng-grid-script/ng-grid.js
-                - %kernel.root_dir%/../vendor/chieffancypants/angular-loading-bar/loading-bar.js
-            output: js/angular-mods.js
+                - %kernel.root_dir%/../jsvendor/angular-ui-router/release/angular-ui-router.js
+                - %kernel.root_dir%/../jsvendor/angular-animate/angular-animate.js
+                - %kernel.root_dir%/../jsvendor/angular-sanitize/angular-sanitize.js
+                - %kernel.root_dir%/../jsvendor/ng-grid/build/ng-grid.debug.js
+                - %kernel.root_dir%/../jsvendor/angular-loading-bar/build/loading-bar.js
+            output: js/angular-mods.js #Mods d'angular utilisés dans toute nos applications angular
         angularmodscss:
             inputs:
-                - %kernel.root_dir%/../vendor/angular-ui/ng-grid-style/ng-grid.css
-                - %kernel.root_dir%/../vendor/chieffancypants/angular-loading-bar-style/loading-bar.css
+                - %kernel.root_dir%/../jsvendor/ng-grid/ng-grid.css
+                - %kernel.root_dir%/../jsvendor/angular-loading-bar/build/loading-bar.css
             output: css/angular-mods.css
         angularjs:
             inputs:
-                - %kernel.root_dir%/../vendor/angularjs/angular/angular.js
+                - %kernel.root_dir%/../jsvendor/angular/angular.js
             output: js/angular.js
         angularstrap:
             inputs:
-                - %kernel.root_dir%/../vendor/mgcrea/angular-strap/angular-strap.js
-                - %kernel.root_dir%/../vendor/mgcrea/angular-strap-tpl/angular-strap.tpl.js
+                - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.js
+                - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.tpl.js
             output: js/angular-strap.js
         angularstrapcss:
             inputs:
-                - %kernel.root_dir%/../vendor/mgcrea/angular-motion/angular-motion.css
-                - %kernel.root_dir%/../vendor/mgcrea/bootstrap-additions/bootstrap-additions.css
+                - %kernel.root_dir%/../jsvendor/angular-motion/dist/angular-motion.css
+                - %kernel.root_dir%/../jsvendor/bootstrap-additions/dist/bootstrap-additions.css
             output: css/angular-strap-dep.css
         datasetsearchmod:
             inputs:
-                - %kernel.root_dir%/../vendor/angular-ui/ui-bootstrap/ui-bootstrap-tpls-0.8.0.js
-                - %kernel.root_dir%/../vendor/isteven/angular-multi-select/angular-multi-select.js
-            output: js/datasetsearchmod.js
+                - %kernel.root_dir%/../jsvendor/angular-bootstrap/ui-bootstrap-tpls.js
+                - %kernel.root_dir%/../jsvendor/isteven-angular-multiselect/angular-multi-select.js
+            output: js/datasetsearchmod.js #Mods d'angular utilisés dans le visualiseur de donnée
         datasetsearchmodcss:
             inputs:
-                - %kernel.root_dir%/../vendor/isteven/angular-multi-select-style/angular-multi-select.css
+                - %kernel.root_dir%/../jsvendor/isteven-angular-multiselect/angular-multi-select.css
             output: css/datasetsearchmod.css
 
 # Doctrine Configuration
