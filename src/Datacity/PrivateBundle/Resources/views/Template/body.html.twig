@@ -22,10 +22,9 @@ Website: http://datacity.fr
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	{% block stylesheets %}
 	{% stylesheets
+	'css/bootstrap3stuff.css'
 	'css/angular-strap-dep.css'
 	'css/angular-mods.css'
-	'bundles/datacityprivate/third-party/plugins/font-awesome/css/font-awesome.min.css'
-	'bundles/datacityprivate/third-party/plugins/bootstrap/css/bootstrap.min.css'
 	'bundles/datacityprivate/third-party/plugins/uniform/css/uniform.default.css'
 
 	'bundles/datacityprivate/third-party/plugins/dropzone/css/dropzone.css'
@@ -296,12 +295,11 @@ Website: http://datacity.fr
 	{# ENDTEMP #}
 
 	{% javascripts
+	'../jsvendor/bootstrap/dist/js/bootstrap.js'
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-migrate-1.2.1.min.js'
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js'
-	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap/js/bootstrap.min.js'
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js'
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'
-
 
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery.blockui.min.js'
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery.cokie.min.js'

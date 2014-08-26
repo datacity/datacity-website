@@ -39,7 +39,7 @@ assetic:
     #java: /usr/bin/java
     filters:
         lessphp:
-            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
             apply_to:   "\.less$"
         cssrewrite: ~
         #closure:
@@ -89,6 +89,11 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../jsvendor/isteven-angular-multiselect/angular-multi-select.css
             output: css/datasetsearchmod.css
+        bootstrap3:
+            inputs:
+                - %kernel.root_dir%/../jsvendor/bootstrap/dist/css/bootstrap.css
+                - %kernel.root_dir%/../jsvendor/components-font-awesome/css/font-awesome.css
+            output: css/bootstrap3stuff.css
 
 # Doctrine Configuration
 doctrine:

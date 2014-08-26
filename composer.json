@@ -24,7 +24,7 @@
 
         "braincrafted/bootstrap-bundle": "1.4.*",
         "twitter/bootstrap": "2.3.*",
-        "leafo/lessphp": "0.3.9",
+        "oyejorge/less.php": "~1.5",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/data-fixtures": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
