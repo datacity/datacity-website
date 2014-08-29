@@ -84,6 +84,24 @@ datacity_private_producers_get:
     options:
         expose: true
 
+datacity_private_producer_remove:
+    pattern:  /producers/{slug}
+    requirements:
+        _method: DELETE
+    defaults: { _controller: DatacityPrivateBundle:Producers:remove }
+    options:
+        expose: true
+
+datacity_private_producers_post:
+    pattern: /producers/add
+    defaults: { _controller: DatacityPrivateBundle:Producers:post }
+    requirements:
+        _method:  GET|POST
+
+datacity_private_producers_list:
+    pattern: /producers/list
+    defaults: { _controller: DatacityPrivateBundle:Producers:list }
+
 datacity_private_user_get:
     pattern: /user
     defaults: { _controller: DatacityPrivateBundle:User:get }
