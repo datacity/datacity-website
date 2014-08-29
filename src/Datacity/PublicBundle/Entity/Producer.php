@@ -56,7 +56,7 @@ class Producer
     private $link;
 
     /**
-     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image")
+     * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image", cascade={"persist"})
      * @Serializer\Expose
      * @Serializer\Groups({"datasetShow"})
      * @ORM\JoinColumn(nullable=false)
