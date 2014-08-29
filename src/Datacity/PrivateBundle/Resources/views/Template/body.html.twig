@@ -176,6 +176,16 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
+					<li id="nav-news" class="start {% if app.request.attributes.get('_route') starts with 'datacity_private_producers_list' %}active{% endif %}">
+						<a href="{{ path('datacity_private_producers_list') }}">
+							<i class="fa fa-file-text"></i>
+							<span class="title">
+								Gestion des producteurs
+							</span>
+							<span class="selected">
+							</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>
