@@ -1,0 +1,62 @@
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
+{% block pageTitle %}Gestion des Producteurs{% endblock %}
+{% block lineTitleLink %}Gestion des Producteurs{% endblock %}
+
+{% block pagecontent %}
+
+<h3></h3>
+
+<div class="row">
+	<div class="col-md-12 ">
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>Formulaire d'ajout de producteurs
+				</div>
+
+			</div>
+			<div class="portlet-body form">
+				<form action="{{path('datacity_private_producers_post')}}" method="post" {{ form_enctype(form) }}>
+					<div class="form-body">
+						<div class="form-group">
+							<label>{{ form_label(form.name, "Nom") }}</label>
+							 {{ form_errors(form.name) }}
+							{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+						</div>
+						<div class="form-group">
+							<label>{{ form_label(form.description, "Description") }}</label>
+							 {{ form_errors(form.description) }}
+							{{ form_widget(form.description, {'attr': {'class': 'form-control', 'style': 'resize: none'}}) }}
+
+						</div>
+						<div class="form-group">
+							<label>{{ form_label(form.slug, "Slug") }}</label>
+							 {{ form_errors(form.slug) }}
+							{{ form_widget(form.slug, {'attr': {'class': 'form-control', 'style': 'resize: none'}}) }}
+
+						</div>
+						<div class="form-group">
+							<label>{{ form_label(form.link, "Lien") }}</label>
+							 {{ form_errors(form.link) }}
+							{{ form_widget(form.link, {'attr': {'class': 'form-control', 'style': 'resize: none'}}) }}
+
+						</div>
+						<div class="form-group">
+							<label>{{ form_label(form.image, "Télécharger une image") }}</label>
+							 {{ form_errors(form.image) }}
+							{{ form_widget(form.image) }}
+						</div>
+						{{ form_rest(form) }}
+					</div>
+					<div class="form-actions">
+						<center><input type="submit" class="btn green" value = "Ajouter le producteur"></center>
+					</div>
+
+					</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
