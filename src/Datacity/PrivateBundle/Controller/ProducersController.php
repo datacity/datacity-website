@@ -59,7 +59,7 @@ class ProducersController extends Controller
                  ->getForm();
 				 
     $request = $this->get('request');
-    if ($request->getMethod() == 'POST') {
+    if ($request->getMethod() == 'POST'){
     $form->bind($request);
 
     if ($form->isValid()) {
