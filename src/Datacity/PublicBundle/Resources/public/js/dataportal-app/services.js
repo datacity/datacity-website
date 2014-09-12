@@ -27,20 +27,14 @@
                         return datasets;
                     });
                 };
-                var keepSelectedFilter = function(data) {
-                    var array = data.filter(function(item) {return item.selected === true;}).map(function(e) {return e.name});
-                    if (array.length === data.length)
-                        return undefined;
-                    return JSON.stringify(array);
-                };
                 return {
                     getPopularDatasets: function() {
                         return parseDatasets($http.get(Routing.generate('datacity_public_api_search')));
                     },
                     searchDatasets: function(filters) {
-                        filters.categories = keepSelectedFilter(filters.categories);
-                        filters.licenses = keepSelectedFilter(filters.licenses);
-                        filters.frequencies = keepSelectedFilter(filters.frequencies);
+                        filters.categories = JSON.stringify(filters.categories);
+                        filters.licenses = JSON.stringify(filters.licenses);
+                        filters.frequencies = JSON.stringify(filters.frequencies);
                         return parseDatasets($http.get(Routing.generate('datacity_public_api_search'), {
                             params: filters
                         }));

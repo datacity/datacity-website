@@ -34,14 +34,14 @@ class SearchApiController extends Controller
 
         if ($category)
         {
-            $qb->leftJoin('d.category', 'cat')
+            $qb->leftJoin('d.categories', 'cat')
                 ->andWhere($qb->expr()->in('cat.name', ':category'))
                 ->setParameter('category', $category);
         }
 
         if ($licence)
         {
-            $qb->leftJoin('d.licence', 'lic')
+            $qb->leftJoin('d.license', 'lic')
                 ->andWhere($qb->expr()->in('lic.name', ':licence'))
                 ->setParameter('licence', $licence);
         }

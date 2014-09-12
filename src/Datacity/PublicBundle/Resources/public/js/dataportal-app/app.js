@@ -1,4 +1,4 @@
-angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select', 'angular-loading-bar', 'ngGrid'])
+angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2', 'angular-loading-bar', 'ngGrid'])
     .constant('apiUrl', 'http://localhost:4567')
     .config(['$urlRouterProvider', '$stateProvider',
     function($urlRouterProvider, $stateProvider) {
@@ -16,12 +16,13 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select'
                 filters: ['$http',
                     function($http) {
                         return $http.get(Routing.generate('datacity_public_api_filter_list')).then(function(res) {
-                            angular.forEach(res.data.results, function(item) {
-                                angular.forEach(item, function(data) {
-                                    data.selected = true;
+                            var data = {};
+                            angular.forEach(res.data.results, function(filter, k) {
+                                data[k] = filter.map(function(e) {
+                                  return e.name;
                                 });
                             });
-                            return res.data.results;
+                            return data;
                         });
                     }
                 ]
@@ -42,9 +43,29 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'multi-select'
 ]).controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory', 'filters', '$timeout',
     function($scope, $state, $http, datasets, DatasetFactory, filters, $timeout) {
         $scope.datasets = datasets;
-        $scope.categories = filters.categories;
-        $scope.licenses = filters.licenses;
-        $scope.frequencies = filters.frequencies;
+        $scope.list_of_string = ['tag1', 'tag2']
+        $scope.categories = [];
+        $scope.licenses = [];
+        $scope.frequencies = [];
+        $scope.selectCategories = {
+            'multiple': true,
+            'simple_tags': true,
+            'tokenSeparators': [",", " "],
+            'tags': filters.categories,
+            'placeholder': "Catégorie(s)"
+        };
+        $scope.selectLicences = {
+            'multiple': true,
+            'simple_tags': true,
+            'tags': filters.licenses,
+            'placeholder': "Licence(s)"
+        };
+        $scope.selectFrequencies = {
+            'multiple': true,
+            'simple_tags': true,
+            'tags': filters.frequencies,
+            'placeholder': "Fréquence(s)"
+        };
         var timer = false;
         $scope.$watch('text', function(a, b) {
             if (a === b) return;

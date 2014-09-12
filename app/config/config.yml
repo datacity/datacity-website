@@ -83,11 +83,12 @@ assetic:
         datasetsearchmod:
             inputs:
                 - %kernel.root_dir%/../jsvendor/angular-bootstrap/ui-bootstrap-tpls.js
-                - %kernel.root_dir%/../jsvendor/isteven-angular-multiselect/angular-multi-select.js
+                - %kernel.root_dir%/../jsvendor/select2/select2.js
+                - %kernel.root_dir%/../jsvendor/angular-ui-select2/src/select2.js
             output: js/datasetsearchmod.js #Mods d'angular utilisés dans le visualiseur de donnée
         datasetsearchmodcss:
             inputs:
-                - %kernel.root_dir%/../jsvendor/isteven-angular-multiselect/angular-multi-select.css
+                - %kernel.root_dir%/../jsvendor/select2/select2.css
             output: css/datasetsearchmod.css
         bootstrap3:
             inputs:

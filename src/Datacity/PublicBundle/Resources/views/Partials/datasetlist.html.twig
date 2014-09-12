@@ -5,39 +5,24 @@
 			data-ng-model="place" placeholder="Ou ?" type="text" class="input-medium search-query"
 			data-typeahead-editable='false'>
 		<i ng-show="loadingLocations" class="icon-refresh"></i>
-		<p>Catégorie</p>
-		<div
-		    data-multi-select
-		    data-input-model="categories"
-		    data-button-label="name"
-		    data-item-label="name"
-		    data-tick-property="selected"
-		    data-max-labels="1"
-		    data-helper-elements="all none"
-		>
-		</div>
-		<p>License</p>
-		<div
-		    data-multi-select
-		    data-input-model="licenses"
-		    data-button-label="name"
-		    data-item-label="name"
-		    data-tick-property="selected"
-		    data-max-labels="1"
-		    data-helper-elements="all none"
-		>
-		</div>
-		<p>Fréquence</p>
-		<div
-		    data-multi-select
-		    data-input-model="frequencies"
-		    data-button-label="name"
-		    data-item-label="name"
-		    data-tick-property="selected"
-		    data-max-labels="1"
-		    data-helper-elements="all none"
-		>
-		</div>
+		<input
+		    type="hidden"
+		    data-ui-select2="selectCategories"
+		    data-ng-model="categories"
+		    class="input-large search-query"
+	    >
+		<input
+		    type="hidden"
+		    data-ui-select2="selectLicences"
+		    data-ng-model="licenses"
+			class="input-large search-query"
+	    >
+		<input
+		    type="hidden"
+		    data-ui-select2="selectFrequencies"
+		    data-ng-model="frequencies"
+		    class="input-large search-query"
+	    >
 	</form>
 </div>
 {# Affichage des données avec leur titre un apercu de leur descriptif et leur image si il y en a une #}

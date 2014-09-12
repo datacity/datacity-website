@@ -17,10 +17,11 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-	<script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
+	<script>typeof angular == "undefined" && document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 	{% javascripts
 		'js/angular-mods.js'
 		'js/datasetsearchmod.js'
+		'@DatacityPublicBundle/Resources/public/js/dataportal-app/polify.js'
 	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/app.js'
 	    '@DatacityPublicBundle/Resources/public/js/dataportal-app/services.js'
 	    %}
