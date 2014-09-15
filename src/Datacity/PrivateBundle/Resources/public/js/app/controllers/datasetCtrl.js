@@ -1,33 +1,21 @@
 (function() {
 	angular
 		.module('app')
-		.controller('datasetController', ['$scope', '$stateParams', '$state', '$modal', '$log', 'DatasetFactory', 'operation',
-			function($scope, $stateParams, $state, $modal, $log, DatasetFactory, operation) {
-				$scope.dataset = {};
+		.controller('datasetController', ['$scope', '$stateParams', '$state', '$modal', '$log', 'licenses', 'dataset', 'operation',
+			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation) {
+				$scope.dataset = dataset;
 				$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
 									'Autoriser mes abonnés/abonnements à voir mes publications',
 									'N\'autoriser personne à voir mes publications'];
-
-				// Route operations
-				DatasetFactory.getLicences().then(function(data) {
-					$scope.dataset.licenses = data.licenses;
-				});
+				$scope.dataset.licenses = licenses;
 
 				if (operation === 'create') {
 					$scope.noDelete = true;
 				}
 				else if (operation === 'edit') {
-					DatasetFactory.get($stateParams.slug).then(function(data) {
-						$scope.dataset = data;
-						$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + data.slug;
-						$scope.dataset.license = data.license.name;
-						$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
-									'Autoriser mes abonnés/abonnements à voir mes publications',
-									'N\'autoriser personne à voir mes publications'];
-						DatasetFactory.getLicences().then(function(data) {
-							$scope.dataset.licenses = data.licenses;
-						});
-					});
+					$scope.dataset = dataset;
+					$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + dataset.slug;
+					$scope.dataset.license = dataset.license.name;
 				}
 				else if (operation === 'delete') {
 					DatasetFactory.delete($stateParams.slug).then(function(response) {

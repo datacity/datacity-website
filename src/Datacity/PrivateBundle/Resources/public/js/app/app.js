@@ -11,11 +11,9 @@
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {
                 $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                    if (toState.title && toState.description) {
-                        $rootScope.pageTitle = toState.title;
-                        $rootScope.pageDescription = toState.description;
-                        $rootScope.pageUrl = toState.url;
-                    }
+                    $rootScope.pageTitle = toState.title;
+                    $rootScope.pageDescription = toState.description;
+                    $rootScope.pageUrl = toState.url;
                 });
             }
         ])
@@ -55,9 +53,36 @@
 		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider',
 			function($interpolateProvider, $urlRouterProvider, $stateProvider) {
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-				$urlRouterProvider.otherwise('/user/show/mainView');
+				$urlRouterProvider.otherwise('/');
 				$stateProvider
+				//Page d'accueil utilisateur
+				.state('homeUser', {
+                    title: 'Mon compte',
+                    description: '',
+					url: '/',
+					templateUrl: 'userHome.html',
+					controller: ['$scope', '$state', function($scope, $state) {
+			        	$scope.$state = $state;
+			     	}]
+				})
                 //Operations liées aux dataset.
+				.state("datasetList", {
+                	url: "/datasets",
+                	templateUrl: 'userDatasets.html',
+                    title: 'Vos jeux de données',
+                    description: 'Ajouter/Gerer vos jeux de données',
+					controller: ['$scope', 'currentUser', function($scope, currentUser) {
+			        	$scope.user = currentUser;
+			     	}],
+					resolve: {
+						currentUser: ['UserFactory', function(UserFactory) {
+							//TODO Récuperer uniquement les jeux de données de l'user
+							return UserFactory.getUserFromSession().then(function(data) {
+				 				return data.user;
+				 			});
+						}]
+					}
+               	})
 				.state('editDS', {
                     title: 'Edition',
                     description: 'Editer vos jeux de données',
@@ -65,7 +90,13 @@
 					templateUrl: 'formDataSet.html',
 					controller: 'datasetController',
 					resolve: {
-						operation: function() {return 'edit'}
+						operation: function() {return 'edit'},
+						licenses: ['DatasetFactory', function(DatasetFactory) {
+							return DatasetFactory.getLicences();
+						}],
+						dataset: ['DatasetFactory', '$stateParams', function(DatasetFactory, $stateParams) {
+							return DatasetFactory.get($stateParams.slug);
+						}]
 					}
 				})
 				.state('addDS', {
@@ -75,9 +106,12 @@
 					templateUrl: 'formDataSet.html',
 					controller: 'datasetController',
 					resolve: {
-						operation: function() {return 'create'}
+						operation: function() {return 'create'},
+						licenses: ['DatasetFactory', function(DatasetFactory) {
+							return DatasetFactory.getLicences();
+						}],
+						dataset: function() { return {} }
 					}
-
 				})
 				.state('deleteDS', {
                     title: 'Suppression',
@@ -85,7 +119,11 @@
 					url: '/dataset/delete/:slugDataset',
 					controller: 'datasetController',
 					resolve: {
-						operation: function() {return 'delete'}
+						operation: function() {return 'delete' },
+						licenses: ['DatasetFactory', function(DatasetFactory) {
+							return DatasetFactory.getLicences();
+						}],
+						dataset: function() { return {} }
 					}
 				})
 				//Operations liées aux sources
@@ -136,12 +174,6 @@
                     title: 'Votre Profil',
                     description: 'Changez vos informations personnelles'
                 })
-                .state("showUser.publications", {
-                	url: "/publications",
-                	templateUrl: 'userPublications.html',
-                    title: 'Votre Profil',
-                    description: 'Changez vos informations personnelles'
-               	})
                 .state("showUser.settings.profileSettings", {
                 	url: "/profile",
                 	templateUrl: 'profileTab.html',

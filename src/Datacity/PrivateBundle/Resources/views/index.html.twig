@@ -1,12 +1,12 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
 {% block bodyattr %}data-ng-app="app"{% endblock %}
 {% block pageTitle %}
-<div ng-bind="pageTitle">Espace utilisateur</div>
-<small><div ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</div></small>
+<span data-ng-bind="pageTitle">Espace utilisateur</span>
+<small data-ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</small>
 {% endblock %}
 {% block lineTitleLink %}
     {% verbatim %}
-<a data-ng-href="./#{{ pageUrl }}" ng-bind="pageTitle"></a>
+<a data-ng-href="./#{{ pageUrl }}" data-ng-bind="pageTitle"></a>
     {% endverbatim %}
 {% endblock %}
 

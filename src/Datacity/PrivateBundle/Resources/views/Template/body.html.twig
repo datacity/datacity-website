@@ -196,26 +196,20 @@ Website: http://datacity.fr
 			<div class="page-content">
 				<!-- BEGIN PAGE HEADER-->
 				<div class="row">
-					<div class="col-lg-1">
-						<img src="{{ asset('bundles/datacitypublic/img/logo2.png') }}" width="55px"alt="" class="img-responsive" />
-					</div>
-
 					<div class="col-lg-11">
 						<h3 class="page-title" >
 							{% block pageTitle %}{% endblock %}
 						</h3>
 					</div>
-
-
 					<div class="col-md-12">
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 						<ul class="page-breadcrumb breadcrumb">
 							<li>
 								<i class="fa fa-home"></i>
 								<a href="{{ path('datacity_private_homepage') }}">Accueil</a>
-								<i class="fa fa-angle-right"></i>
+								<i data-ng-if="pageUrl != '/'" class="fa fa-angle-right"></i>
 							</li>
-							<li>
+							<li data-ng-if="pageUrl != '/'">
 								{% block lineTitleLink %}{% endblock %}
 							</li>
 							<li class="pull-right">
@@ -264,7 +258,7 @@ Website: http://datacity.fr
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-<script>typeof angular || document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
+<script>typeof angular == "undefined" && document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
 {# TEMP #}
