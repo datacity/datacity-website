@@ -70,22 +70,23 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../jsvendor/angular/angular.js
             output: js/angular.js
-        angularstrap:
+        angularuserapp: #Mods d'angular utilisés dans l'app utilisateur
             inputs:
                 - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.js
                 - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.tpl.js
-            output: js/angular-strap.js
-        angularstrapcss:
+                - %kernel.root_dir%/../jsvendor/angular-breadcrumb/dist/angular-breadcrumb.js
+            output: js/angularuserapp.js
+        angularuserappcss:
             inputs:
                 - %kernel.root_dir%/../jsvendor/angular-motion/dist/angular-motion.css
                 - %kernel.root_dir%/../jsvendor/bootstrap-additions/dist/bootstrap-additions.css
-            output: css/angular-strap-dep.css
-        datasetsearchmod:
+            output: css/angularuserapp.css
+        datasetsearchmod: #Mods d'angular utilisés dans le visualiseur de donnée
             inputs:
                 - %kernel.root_dir%/../jsvendor/angular-bootstrap/ui-bootstrap-tpls.js
                 - %kernel.root_dir%/../jsvendor/select2/select2.js
                 - %kernel.root_dir%/../jsvendor/angular-ui-select2/src/select2.js
-            output: js/datasetsearchmod.js #Mods d'angular utilisés dans le visualiseur de donnée
+            output: js/datasetsearchmod.js
         datasetsearchmodcss:
             inputs:
                 - %kernel.root_dir%/../jsvendor/select2/select2.css

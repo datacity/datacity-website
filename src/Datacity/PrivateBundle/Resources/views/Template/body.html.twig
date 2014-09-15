@@ -23,7 +23,7 @@ Website: http://datacity.fr
 	{% block stylesheets %}
 	{% stylesheets
 	'css/bootstrap3stuff.css'
-	'css/angular-strap-dep.css'
+	'css/angularuserapp.css'
 	'css/angular-mods.css'
 	'bundles/datacityprivate/third-party/plugins/uniform/css/uniform.default.css'
 
@@ -202,26 +202,7 @@ Website: http://datacity.fr
 						</h3>
 					</div>
 					<div class="col-md-12">
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-						<ul class="page-breadcrumb breadcrumb">
-							<li>
-								<i class="fa fa-home"></i>
-								<a href="{{ path('datacity_private_homepage') }}">Accueil</a>
-								<i data-ng-if="pageUrl != '/'" class="fa fa-angle-right"></i>
-							</li>
-							<li data-ng-if="pageUrl != '/'">
-								{% block lineTitleLink %}{% endblock %}
-							</li>
-							<li class="pull-right">
-								<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
-									<i class="fa fa-calendar"></i>
-									<span>
-									</span>
-									<i class="fa fa-angle-down"></i>
-								</div>
-							</li>
-						</ul>
-						<!-- END PAGE TITLE & BREADCRUMB-->
+						<div data-ncy-breadcrumb></div>
 					</div>
 				</div>
 				<!-- END PAGE HEADER-->
@@ -310,7 +291,7 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/js/utils.js'
 
 	'js/angular-mods.js'
-	'js/angular-strap.js'
+	'js/angularuserapp.js'
 	'@DatacityPrivateBundle/Resources/public/js/app/mock/e2e-mock-dataset.js'
 	'@DatacityPrivateBundle/Resources/public/js/app/app.js'
 

@@ -21,6 +21,7 @@
     "ng-grid": "~2.0.12",
     "bootstrap": "~3.2.0",
     "components-font-awesome": "~4.1.0",
-    "angular-ui-select2": "~0.0.5"
+    "angular-ui-select2": "~0.0.5",
+    "angular-breadcrumb": "~0.2.3"
   }
 }
