@@ -3,16 +3,25 @@
 namespace Datacity\PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\Serializer\SerializationContext;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class SearchApiController extends Controller
 {
+    const ITEM_PER_PAGE = 8;
+
     public function searchAction(Request $request)
     {
         $text = $request->query->get('text');
         $place = $request->query->get('place');
+        $page = (int)$request->query->get('page') - 1;
+        if ($page < 0)
+        {
+            return new JsonResponse(array('error' => 'Wrong page number'), 400);
+        }
         $category = json_decode($request->query->get('categories'));
         $licence = json_decode($request->query->get('licenses'));
         $frequency = json_decode($request->query->get('frequencies'));
@@ -54,12 +63,18 @@ class SearchApiController extends Controller
         }
 
         $qb->orderBy('d.visitedNb', 'DESC');
-        //TODO KnpPaginatorBundle
-        $response = new Response();
-        $results = $qb->getQuery()->getResult();
+        $qb->setFirstResult($page * self::ITEM_PER_PAGE)
+            ->setMaxResults(($page + 1) * self::ITEM_PER_PAGE);
+        $paginator = new Paginator($qb->getQuery(), $fetchJoinCollection = true);
+        $count = count($paginator);
+        $results = array();
+        foreach ($paginator as $dataset) {
+            $results[] = $dataset;
+        }
         $serializer = $this->get('jms_serializer');
+        $response = new Response();
         //https://www.owasp.org/index.php/OWASP_AJAX_Security_Guidelines#Always_return_JSON_with_an_Object_on_the_outside
-        $response->setContent('{"results":' . $serializer->serialize($results,
+        $response->setContent('{"count": '. $count .',"results":' . $serializer->serialize($results,
                             'json', SerializationContext::create()->setGroups(array('list'))) . '}');
         $response->headers->set('Content-Type', 'application/json');
         return $response;

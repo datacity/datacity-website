@@ -5,13 +5,13 @@
             function($http) {
                 var parseDatasets = function(promise) {
                     return promise.then(function(res) {
-                        var datasets = [];
+                        var datasets = {totalCount: res.data.count, list: []};
                         angular.forEach(res.data.results, function(item) {
                             var locations = item.places.map(function(e) { return e.name });
                             var coverage_territory = null;
                             if (item.coverage_territory != undefined)
                                 coverage_territory = item.coverage_territory.name;
-                            datasets.push({
+                            datasets.list.push({
                                 slug: item.slug,
                                 name: item.title,
                                 desc: item.description,
@@ -28,13 +28,15 @@
                     });
                 };
                 return {
-                    getPopularDatasets: function() {
-                        return parseDatasets($http.get(Routing.generate('datacity_public_api_search')));
+                    getPopularDatasets: function(page) {
+                        return parseDatasets($http.get(Routing.generate('datacity_public_api_search'), {
+                            params: { page: page }
+                        }));
                     },
                     searchDatasets: function(filters) {
-                        filters.categories = JSON.stringify(filters.categories);
-                        filters.licenses = JSON.stringify(filters.licenses);
-                        filters.frequencies = JSON.stringify(filters.frequencies);
+                        filters.categories = filters.categories.length == 0 ? undefined : JSON.stringify(filters.categories);
+                        filters.licenses = filters.licenses.length == 0 ? undefined : JSON.stringify(filters.licenses);
+                        filters.frequencies = filters.frequencies.length == 0 ? undefined : JSON.stringify(filters.frequencies);
                         return parseDatasets($http.get(Routing.generate('datacity_public_api_search'), {
                             params: filters
                         }));

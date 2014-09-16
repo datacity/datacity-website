@@ -28,7 +28,7 @@
 {# Affichage des données avec leur titre un apercu de leur descriptif et leur image si il y en a une #}
 <div class="span12">
 	<div class="row"><ul>
-		<div class="span12 horizontal-data-bloc" data-dir-paginate="dataset in datasets | itemsPerPage: 6" data-ng-click="goto(dataset)">
+		<div class="span12 horizontal-data-bloc" data-total-items="datasets.totalCount" data-dir-paginate="dataset in datasets.list | itemsPerPage: 8" data-ng-click="goto(dataset)">
 			{% verbatim %}
 				<h5 class="horizontal-data-bloc-title">{{ dataset.name }}</h5>
 				<p>
@@ -58,4 +58,4 @@
 	</div>
 </div>
 {# Affichage pagination #}
-<div data-dir-pagination-controls data-template-url="/partials/pagination"></div>
+<div data-dir-pagination-controls data-on-page-change="search(newPageNumber)" data-template-url="/partials/pagination"></div>

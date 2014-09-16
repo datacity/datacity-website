@@ -11,7 +11,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             resolve: {
                 datasets: ['DatasetFactory',
                     function(DatasetFactory) {
-                        return DatasetFactory.getPopularDatasets();
+                        return DatasetFactory.getPopularDatasets(1);
                     }
                 ],
                 filters: ['$http',
@@ -44,7 +44,6 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
 ]).controller('homeCtrl', ['$scope', '$state', '$http', 'datasets', 'DatasetFactory', 'filters', '$timeout',
     function($scope, $state, $http, datasets, DatasetFactory, filters, $timeout) {
         $scope.datasets = datasets;
-        $scope.list_of_string = ['tag1', 'tag2']
         $scope.categories = [];
         $scope.licenses = [];
         $scope.frequencies = [];
@@ -78,7 +77,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             }, 500)
         });
         $scope.$watch('categories', searchIfModified, true);
-        $scope.$watch('licenses',searchIfModified, true);
+        $scope.$watch('licenses', searchIfModified, true);
         $scope.$watch('frequencies', searchIfModified, true);
         $scope.$watch('place', searchIfModified, true);
         function searchIfModified(a, b) {
@@ -98,17 +97,24 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
                 }
             }).then(function(res) {
                 return res.data.results.map(function(item) {
-                    return item.name
+                    return item.name;
                 });
             });
-        };
-        $scope.search = function() {
+        }
+        var dirtytrickinordertonotcallsearchwiththeattributeonpagechange = false; //Because I can :)
+        $scope.search = function(page) {
+            if (!dirtytrickinordertonotcallsearchfirstwiththeattributeonpagechange) {
+                dirtytrickinordertonotcallsearchfirstwiththeattributeonpagechange = true;
+                return;
+            }
+            page = typeof page !== 'undefined' ? page : 1;
             DatasetFactory.searchDatasets({
                 text: $scope.text,
                 place: $scope.place,
                 categories: $scope.categories,
                 licenses: $scope.licenses,
-                frequencies: $scope.frequencies
+                frequencies: $scope.frequencies,
+                page: page
             }).then(function(data) {
                 $scope.datasets = data;
             });
