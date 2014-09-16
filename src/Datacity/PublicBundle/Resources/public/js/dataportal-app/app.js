@@ -1,4 +1,5 @@
-angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2', 'angular-loading-bar', 'ngGrid'])
+angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
+                                    'angular-loading-bar', 'ngGrid', 'angularUtils.directives.dirPagination'])
     .constant('apiUrl', 'http://localhost:4567')
     .config(['$urlRouterProvider', '$stateProvider',
     function($urlRouterProvider, $stateProvider) {
@@ -76,22 +77,14 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2', 
                 $scope.search();
             }, 500)
         });
-        $scope.$watch('categories', function(a, b) {
+        $scope.$watch('categories', searchIfModified, true);
+        $scope.$watch('licenses',searchIfModified, true);
+        $scope.$watch('frequencies', searchIfModified, true);
+        $scope.$watch('place', searchIfModified, true);
+        function searchIfModified(a, b) {
             if (a === b) return;
             $scope.search();
-        }, true);
-        $scope.$watch('licenses', function(a, b) {
-            if (a === b) return;
-            $scope.search();
-        }, true);
-        $scope.$watch('frequencies', function(a, b) {
-            if (a === b) return;
-            $scope.search();
-        }, true);
-        $scope.$watch('place', function(a, b) {
-            if (a === b) return;
-            $scope.search();
-        });
+        }
         $scope.goto = function(dataset) {
             $state.go('dataset', {
                 slug: dataset.slug

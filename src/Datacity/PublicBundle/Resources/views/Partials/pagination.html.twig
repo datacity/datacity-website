@@ -1,0 +1,13 @@
+{% verbatim %}
+<div id="pagination" class="span12" data-ng-if="1 < pages.length">
+	<span class="all">Page {{ pagination.current }} sur {{ pagination.last }}</span>
+	<span data-ng-repeat-start="pageNumber in pages track by $index" data-ng-class="{ current : pagination.current == pageNumber }"
+			data-ng-if="pagination.current == pageNumber || pageNumber == '...'">
+		{{ pageNumber }}
+	</span>
+    <a href="" data-ng-repeat-end data-ng-click="setCurrent(pageNumber)" data-ng-if="pagination.current != pageNumber && pageNumber != '...'">
+        {{ pageNumber }}
+    </a>
+</div>
+{% endverbatim %}
+{# ref : https://github.com/michaelbromley/angularUtils/blob/master/src/directives/pagination/dirPagination.tpl.html #}
