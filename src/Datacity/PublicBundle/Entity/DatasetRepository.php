@@ -26,7 +26,7 @@ class DatasetRepository extends EntityRepository
                 return true;
             }
         );
-        return $this->addCategoriesByName($dataset, $categoriesNames);
+        return $this->addCategoriesByName($dataset, $cats);
 	}
 
 	public function addCategoriesByName(&$dataset, $categoriesNames)
