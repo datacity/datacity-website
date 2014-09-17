@@ -86,17 +86,14 @@ Website: http://datacity.fr
 			<ul class="nav navbar-nav pull-right">
 				<!-- BEGIN USER LOGIN DROPDOWN -->
 				<li class="dropdown user">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<!-- <img alt="" src="third-party/img/avatar1_small.jpg"/> -->
 						<span class="username">
-							{# 							{{ app.user.username }} #}
+							{{ app.user.username }}
 						</span>
 						<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu">
-						<li>
-							<a href="extra_profile.html"><i class="fa fa-user"></i> Mon Profile</a>
-						</li>
 						<li>
 							<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
 						</li>
@@ -123,19 +120,6 @@ Website: http://datacity.fr
 						<div class="sidebar-toggler hidden-phone">
 						</div>
 						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-					</li>
-					<li class="sidebar-search-wrapper">
-						<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-						<form class="sidebar-search" action="extra_search.html" method="POST">
-							<div class="form-container">
-								<div class="input-box">
-									<a href="javascript:;" class="remove"></a>
-									<input type="text" placeholder="Recherche..."/>
-									<input type="button" class="submit" value=" "/>
-								</div>
-							</div>
-						</form>
-						<!-- END RESPONSIVE QUICK SEARCH FORM -->
 					</li>
 					{#  <li class="start" data-ng-repeat="nav in navCtrl.elements">
 						<a href="{[{nav.link}]}">

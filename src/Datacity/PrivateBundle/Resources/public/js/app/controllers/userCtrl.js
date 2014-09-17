@@ -45,17 +45,13 @@
                     $state.go(route);
                 };
 
-                $scope.active = function(route){
-                    return $state.is(route);
-                };
-
                 $scope.$on("$stateChangeSuccess", function() {
                     $scope.tabs.forEach(function(tab) {
-                        tab.active = $scope.active(tab.route);
+                        tab.active = $state.is(tab.route) || $state.includes(tab.route);
                     });
 
                     $scope.settingsTabs.forEach(function(settingsTab) {
-                        settingsTab.active = $scope.active(settingsTab.route);
+                        settingsTab.active = $state.is(settingsTab.route);
                     });
                 });
 
