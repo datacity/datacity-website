@@ -1,8 +1,9 @@
 (function() {
 	angular
 		.module('app')
-		.controller('datasetController', ['$scope', '$stateParams', '$state', '$modal', '$log', 'licenses', 'dataset', 'operation',
-			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation) {
+		.controller('datasetController', ['$scope', '$stateParams', '$state',
+				'$modal', '$log', 'licenses', 'dataset', 'operation', 'DatasetFactory',
+			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation, DatasetFactory) {
 				$scope.dataset = dataset;
 				$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
 									'Autoriser mes abonnés/abonnements à voir mes publications',
