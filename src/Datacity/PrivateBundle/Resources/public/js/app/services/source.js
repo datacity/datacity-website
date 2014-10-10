@@ -2,7 +2,7 @@
 	angular
 		.module('app')
 		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
-			return {	
+			return {
 				get: function(id) {
 				},
 				post: function(slugDataset, sourceMeta, sourceApi) {
@@ -28,11 +28,11 @@
 							return response.data;
 						});
 				},
-				getParsedFile: function(path) {										
+				getParsedFile: function(path) {
 					return $http(
 						{
 							method: 'GET',
-							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',							
+							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',
 						}).success(function(response) {
 							//console.log(response);
 							return response.data;
@@ -45,7 +45,7 @@
 					return $upload.upload(
 						{
 						   	url: 'http://localhost:4567/users/delkje555/files/add',
-						    method: 'POST', 
+						    method: 'POST',
 							file: file,
 						})
 					.success(function(response) {
@@ -54,7 +54,7 @@
 				},
 				/**
 				 * [getExistingData renvoi les métadonnées et le databinding lié à une source déjà existante. S'il y a plus d'une source, on prend compte de la dernière source créée en date
-				 * Si on ne trouve aucune source, on renvoi 
+				 * Si on ne trouve aucune source, on renvoi
 				 * @param  {string} idDataset [récuperer les sources qui sont contenues dans le dataset : idDataset]
 				 * @return {Object}           [Object.dataModel => le shéma de structure, Object.metadata => Les meta liées à la source]
 				 */

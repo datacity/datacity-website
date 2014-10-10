@@ -12,6 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class DatasetRepository extends EntityRepository
 {
+    private function addCategoriesByName(&$dataset, $categoriesNames)
+    {
+        $catRep = $this->getEntityManager()->getRepository('DatacityPublicBundle:Category');
+        foreach ($categoriesNames as $cat) {
+            $category = $catRep->findOneByName($cat);
+            if (!$category)
+                return $category;
+            $dataset->addCategory($category);
+        }
+        return null;
+    }
+
+    // Retourne le nom de la catégorie si un nom est inconnu sinon null
 	public function addUniqueCategoriesByName(&$dataset, $categoriesNames)
 	{
 		$currentCategories = $dataset->getCategories();
@@ -27,40 +40,6 @@ class DatasetRepository extends EntityRepository
             }
         );
         return $this->addCategoriesByName($dataset, $cats);
-	}
-
-	public function addCategoriesByName(&$dataset, $categoriesNames)
-	{
-        $catRep = $this->getEntityManager()->getRepository('DatacityPublicBundle:Category');
-        foreach ($categoriesNames as $cat) {
-            $category = $catRep->findOneByName($cat);
-            if (!$category)
-                return $category;
-            $dataset->addCategory($category);
-        }
-        return null;
-	}
-
-	public function addUniquePlace(&$dataset, $place)
-	{
-		//TODO May need improvement
-		$currentPlaces = $dataset->getPlaces();
-        foreach ($currentPlaces as $p) {
-            if ($p->getId() === $place->getId())
-                return null;
-        }
-        $dataset->addPlace($place);
-	}
-
-	public function addUniqueContrib(&$dataset, $contrib)
-	{
-		//TODO May need improvement
-		$currentContrib = $dataset->getContributors();
-        foreach ($currentContrib as $c) {
-            if ($c->getId() === $contrib->getId())
-                return null;
-        }
-        $dataset->addContributor($contrib);
 	}
 
 	public function setLowestFrequency(&$dataset, $freq)

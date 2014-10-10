@@ -3,22 +3,21 @@
 	<div class="col-md-12">
 		<div class="add-portfolio">
 			<span>
-				Jeux de données ajoutés
+				Vos jeux de données
 			</span>
-			<a ui-route data-ui-sref="addDS" class="btn icn-only green">Ajoutez un nouveau Projet <i class="m-icon-swapright m-icon-white"></i></a>
+			<a ui-route data-ui-sref="addDS" class="btn icn-only green">Créez un nouveau jeux de données  <i class="m-icon-swapright m-icon-white"></i></a>
 		</div>
 	</div>
 </div>
 <!--end add-portfolio-->
-<div class="row portfolio-block" data-ng-repeat="dataset in user.dataset_owned">
+<div class="row portfolio-block" data-ng-repeat="dataset in datasets">
 	<div class="col-md-4">
 		<div class="portfolio-text">
-			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
-			<img ng-src="{{dataset.picture || 'http://www.keenthemes.com/preview/metronic/assets/admin/pages/media/profile/logo_azteca.jpg'}}" style="height: 80px; width: 80px;" alt=""/>
+			<img ng-src="{{dataset.picture || 'http://localhost/bundles/datacitypublic/img/logo2.png'}}" style="height: 80px; width: 80px;" alt=""/>
 			<div class="portfolio-texnfo">
-				<h4>{{dataset.title || "Pas de nom"}}</h4>
+				<h4>{{dataset.title}}</h4>
 				<p>
-					{{dataset.description  || "Pas de description" | limitTo:42}}
+					{{dataset.description | limitTo:42}}...
 				</p>
 			</div>
 		</div>

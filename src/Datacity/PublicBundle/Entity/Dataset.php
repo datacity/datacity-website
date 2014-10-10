@@ -27,14 +27,14 @@ class Dataset
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
-     * @Serializer\Groups({"list", "datasetShow"})
+     * @Serializer\Groups({"list", "datasetShow", "userList"})
      */
     private $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
-     * @Serializer\Groups({"list", "datasetShow"})
+     * @Serializer\Groups({"list", "datasetShow", "userList"})
      */
     private $slug;
 
@@ -42,7 +42,7 @@ class Dataset
      * @var text
      *
      * @ORM\Column(name="description", type="text", nullable=true)
-     * @Serializer\Groups({"list", "datasetShow"})
+     * @Serializer\Groups({"list", "datasetShow", "userList"})
      */
     private $description;
 
@@ -50,7 +50,7 @@ class Dataset
      * @var integer
      *
      * @ORM\Column(name="useful_nb", type="integer")
-     * @Serializer\Groups({"datasetShow"})
+     * @Serializer\Groups({"datasetShow", "userList"})
      */
     private $usefulNb = 0;
 
@@ -58,7 +58,7 @@ class Dataset
      * @var integer
      *
      * @ORM\Column(name="visited_nb", type="integer")
-     * @Serializer\Groups({"datasetShow"})
+     * @Serializer\Groups({"datasetShow", "userList"})
      */
     private $visitedNb = 0;
 
@@ -84,7 +84,7 @@ class Dataset
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
-     * @Serializer\Groups({"list", "datasetShow"})
+     * @Serializer\Groups({"list", "datasetShow", "userList"})
      */
     private $lastModifiedDate;
 

@@ -53,7 +53,8 @@ class SourceController extends Controller
                 $em->persist($place);
             }
             $source->setPlace($place);
-            $datasetRepo->addUniquePlace($dataset, $place);
+            if (!$dataset->getPlaces()->contains($place))
+                $dataset->addPlace($place);
 
             $coverage = $this->getDoctrine()->getRepository("DatacityPublicBundle:CoverageTerritory")->findOneByName($params->metadata->coverageTerritory);
             if (!$coverage)
@@ -61,7 +62,9 @@ class SourceController extends Controller
             $source->setCoverageTerritory($coverage);
             $datasetRepo->setBiggestCoverageTerritory($dataset, $coverage);
 
-            $datasetRepo->addUniqueContrib($dataset, $this->getUser());
+            $user = $this->getUser();
+            if ($dataset->getCreator()->getId() !== $user->getId() && !$dataset->getContributors()->contains($user))
+                $dataset->addContributor($user);
 
             $source->setDataset($dataset);
             $catRepo = $this->getDoctrine()->getRepository("DatacityPublicBundle:Category");

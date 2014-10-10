@@ -10,6 +10,12 @@
 
 						});
 				},
+				getUserDatasets: function(offset) {
+					return $http
+						.get(Routing.generate('datacity_private_dataset_get', {offset: 0})).then(function(response) {
+							return response.data.results;
+						});
+				},
 				updateUser: function(userinfos) {
 					return $http
 						.post(Routing.generate('datacity_private_usermanager_post'), userinfos).then(function(response) {

@@ -80,16 +80,13 @@
 						description: 'Ajouter/Gerer vos jeux de données',
 					},
                 	url: "/datasets",
-                	templateUrl: 'userDatasets.html',
-					controller: ['$scope', 'currentUser', function($scope, currentUser) {
-			        	$scope.user = currentUser;
+                	templateUrl: 'datasets.html',
+					controller: ['$scope', 'datasets', function($scope, datasets) {
+			        	$scope.datasets = datasets;
 			     	}],
 					resolve: {
-						currentUser: ['UserFactory', function(UserFactory) {
-							//TODO Récuperer uniquement les jeux de données de l'user
-							return UserFactory.getUserFromSession().then(function(data) {
-				 				return data.user;
-				 			});
+						datasets: ['UserFactory', function(UserFactory) {
+							return UserFactory.getUserDatasets();
 						}]
 					}
                	})

@@ -63,6 +63,15 @@ datacity_private_dataset_save:
         expose: true
 
 datacity_private_dataset_get:
+    pattern: /dataset/{offset}
+    requirements:
+        _method:  GET
+        offset: \d+
+    defaults: { _controller: DatacityPrivateBundle:DataSet:get }
+    options:
+        expose: true
+
+datacity_private_dataset_get:
     pattern: /dataset/{slug}
     requirements:
         _method:  GET
