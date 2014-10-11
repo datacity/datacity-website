@@ -7,7 +7,8 @@
 			'ngSanitize',
 			'angularFileUpload',
 			'angular-loading-bar',
-			'ncy-angular-breadcrumb'
+			'ncy-angular-breadcrumb',
+			'infinite-scroll'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {
@@ -81,12 +82,10 @@
 					},
                 	url: "/datasets",
                 	templateUrl: 'datasets.html',
-					controller: ['$scope', 'datasets', function($scope, datasets) {
-			        	$scope.datasets = datasets;
-			     	}],
+					controller: 'datasetListController',
 					resolve: {
-						datasets: ['UserFactory', function(UserFactory) {
-							return UserFactory.getUserDatasets();
+						datasets: ['DatasetFactory', function(DatasetFactory) {
+							return DatasetFactory.getAll();
 						}]
 					}
                	})

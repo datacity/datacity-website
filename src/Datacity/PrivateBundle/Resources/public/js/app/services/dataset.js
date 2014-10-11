@@ -9,6 +9,13 @@
 							return response.data.results;
 						});
 				},
+				getAll: function(offset) {
+					offset = typeof offset !== 'undefined' ? offset : 0;
+					return $http
+						.get(Routing.generate('datacity_private_dataset_get', {offset: offset})).then(function(response) {
+							return response.data.results;
+						});
+				},
 				getLicences: function() {
 					return $http
 						.get(Routing.generate('datacity_public_api_filter_list')).then(function(response) {

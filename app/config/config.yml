@@ -75,6 +75,7 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.js
                 - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.tpl.js
                 - %kernel.root_dir%/../jsvendor/angular-breadcrumb/dist/angular-breadcrumb.js
+                - %kernel.root_dir%/../jsvendor/ngInfiniteScroll/build/ng-infinite-scroll.js
             output: js/angularuserapp.js
         angularuserappcss:
             inputs:

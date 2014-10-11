@@ -1,6 +1,25 @@
 (function() {
 	angular
 		.module('app')
+		.constant('ITEM_PER_REQUEST', 8)
+		.controller('datasetListController', ['$scope', 'datasets', 'DatasetFactory', 'ITEM_PER_REQUEST',
+			function($scope, datasets, DatasetFactory, ITEM_PER_REQUEST) {
+				$scope.scrollDisabled = false;
+				var offset = 0;
+	        	$scope.datasets = datasets;
+	        	$scope.addDatasets = function() {
+	        		$scope.scrollDisabled = true;
+	        		offset = offset + ITEM_PER_REQUEST;
+	        		DatasetFactory.getAll(offset).then(function(data) {
+	        			if (data.length === 0) {
+	        				$scope.scrollDisabled = true;
+	        				return;
+	        			}
+	        			$scope.scrollDisabled = data.length < ITEM_PER_REQUEST;
+				    	$scope.datasets = $scope.datasets.concat(data);
+	        		});
+	        	}
+	    }])
 		.controller('datasetController', ['$scope', '$stateParams', '$state',
 				'$modal', '$log', 'licenses', 'dataset', 'operation', 'DatasetFactory',
 			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation, DatasetFactory) {

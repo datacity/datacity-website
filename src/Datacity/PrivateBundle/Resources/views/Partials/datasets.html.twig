@@ -10,6 +10,10 @@
 	</div>
 </div>
 <!--end add-portfolio-->
+<div data-infinite-scroll="addDatasets()"
+	data-infinite-scroll-distance=0
+	data-infinite-scroll-disabled='scrollDisabled'
+	data-infinite-scroll-immediate-check='false'>
 <div class="row portfolio-block" data-ng-repeat="dataset in datasets">
 	<div class="col-md-4">
 		<div class="portfolio-text">
@@ -46,6 +50,7 @@
 			</a>
 		</div>
 	</div>
+</div>
 </div>
 <!--end row-->
 {% endverbatim %}
