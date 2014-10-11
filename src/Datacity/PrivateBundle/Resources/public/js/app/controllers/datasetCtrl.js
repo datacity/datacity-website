@@ -1,7 +1,7 @@
 (function() {
 	angular
 		.module('app')
-		.constant('ITEM_PER_REQUEST', 8)
+		.constant('ITEM_PER_REQUEST', 12)
 		.controller('datasetListController', ['$scope', 'datasets', 'DatasetFactory', 'ITEM_PER_REQUEST',
 			function($scope, datasets, DatasetFactory, ITEM_PER_REQUEST) {
 				$scope.scrollDisabled = false;

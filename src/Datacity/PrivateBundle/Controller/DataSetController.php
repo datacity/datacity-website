@@ -11,7 +11,7 @@ use JMS\Serializer\SerializationContext;
 
 class DataSetController extends Controller
 {
-    const ITEM_PER_REQUEST = 8;
+    const ITEM_PER_REQUEST = 12;
 
     private function thereIsAProblemHere($error = 'failure') {
         return new JsonResponse(array('error' => $error), 400);
