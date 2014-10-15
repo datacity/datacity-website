@@ -31,14 +31,14 @@
                 }
 
                 $scope.tabs = [
-                    { heading: "Vue d'ensemble", route:"showUser.mainView", active:false },
-                    { heading: "Paramètres du compte", route:"showUser.settings", active:false }
+                    { heading: "Vue d'ensemble", route:"profile.mainView", active:false },
+                    { heading: "Paramètres du compte", route:"profile.settings", active:false }
                 ];
 
                 $scope.settingsTabs = [
-                    { heading: "Modifier Profil", route:"showUser.settings.profileSettings", active:false },
-                    { heading: "Modifier Avatar", route:"showUser.settings.pictureSettings", active:false },
-                    { heading: "Modifier mot de passe", route:"showUser.settings.passwordSettings", active:false }
+                    { heading: "Modifier Profil", route:"profile.settings.profileSettings", active:false },
+                    { heading: "Modifier Avatar", route:"profile.settings.pictureSettings", active:false },
+                    { heading: "Modifier mot de passe", route:"profile.settings.passwordSettings", active:false }
                 ];
 
                 $scope.go = function(route){

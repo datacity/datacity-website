@@ -68,7 +68,7 @@
 						description: '',
 					},
 					url: "/",
-					templateUrl: 'userHome.html',
+					templateUrl: 'index.html',
 					controller: ['$scope', '$state', function($scope, $state) {
 			        	$scope.$state = $state;
 			     	}]
@@ -174,15 +174,15 @@
 					}
 				})
 				//Operations liées à l'utilisateur
-				.state('showUser', {
+				.state('profile', {
 					data: {
 						ncyBreadcrumbLabel: 'Profil',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
 					},
 					abstract: true,
-					url: '/user/show',
-					templateUrl: 'userInfo.html',
+					url: '/profile',
+					templateUrl: 'profile.html',
 					controller: 'userController',
 					resolve: {
 						currentUser: ['UserFactory', function(UserFactory) {
@@ -192,51 +192,51 @@
 						}]
 					}
 				})
-                .state("showUser.mainView", {
+                .state("profile.mainView", {
                 	url: "/mainView",
-                	templateUrl: 'userOverviewTab.html',
+                	templateUrl: 'profileOverviewIndex.html',
 					data: {
 						ncyBreadcrumbLabel: "Profil",
 						title: 'Votre Profil',
 						description: 'Informations personnelles',
 					},
                 })
-                .state("showUser.settings", {
+                .state("profile.settings", {
                 	url: "/settings",
-                	templateUrl: 'userAccount.html',
+                	templateUrl: 'profileSettingsIndex.html',
 					data: {
 						ncyBreadcrumbLabel: 'Paramètres',
-						ncyBreadcrumbParent: 'showUser.mainView',
+						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
 					},
                 })
-                .state("showUser.settings.profileSettings", {
+                .state("profile.settings.profileSettings", {
                 	url: "/profile",
-                	templateUrl: 'profileTab.html',
+                	templateUrl: 'profileSettingsUserTab.html',
 					data: {
 						ncyBreadcrumbLabel: 'Edition',
-						ncyBreadcrumbParent: 'showUser.mainView',
+						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
 					},
                 })
-                .state("showUser.settings.pictureSettings", {
+                .state("profile.settings.pictureSettings", {
                 	url: "/picture",
-                	templateUrl: 'pictureTab.html',
+                	templateUrl: 'profileSettingsPictureTab.html',
 					data: {
 						ncyBreadcrumbLabel: 'Image',
-						ncyBreadcrumbParent: 'showUser.mainView',
+						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
 					},
                 })
-                .state("showUser.settings.passwordSettings", {
+                .state("profile.settings.passwordSettings", {
                 	url: "/password",
-                	templateUrl: 'passwordTab.html',
+                	templateUrl: 'profileSettingsPasswordTab.html',
 					data: {
 						ncyBreadcrumbLabel: 'Mot de passe',
-						ncyBreadcrumbParent: 'showUser.mainView',
+						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
 					},

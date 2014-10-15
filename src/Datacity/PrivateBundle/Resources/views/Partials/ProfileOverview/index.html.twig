@@ -7,7 +7,7 @@
 					<!-- <img class="profile-img" ng-show="user.img" src="user.img" alt=""> -->
 					<img class="profile-img" id="profileImg" src="http://raphael-amar.com/blog/file/2014/06/datacity.png" alt=""/>
 				</div>
-				<a class="profile-edit" data-ng-href="./#/user/show/settings/picture">Éditer</a>
+				<a class="profile-edit" data-ui-sref="profile.settings.pictureSettings">Éditer</a>
 			</li>
 			<hr/>
 			<li ng-class="{active: panel.isSubSelected(1)}">
@@ -34,15 +34,15 @@
 		</ul>
 		<div>
 			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(1)}" data-ng-show="panel.isSubSelected(1)">
-				{% include 'DatacityPrivateBundle:Partials:Include/userOverview.html.twig' %}
+				{% include 'DatacityPrivateBundle:Partials:ProfileOverview/profileTab.html.twig' %}
 			</div>
 			<!--tab_1_2-->
 			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(2)}" data-ng-show="panel.isSubSelected(2)">
-				{% include 'DatacityPrivateBundle:Partials:Include/userFollowed.html.twig' %}
+				{% include 'DatacityPrivateBundle:Partials:ProfileOverview/followedTab.html.twig' %}
 			</div>
 			<!--end tab-pane-->
 			<div class="tab-pane" data-ng-class="{active: panel.isSubSelected(3)}" data-ng-show="panel.isSubSelected(3)">
-				{% include 'DatacityPrivateBundle:Partials:Include/userFollowers.html.twig' %}
+				{% include 'DatacityPrivateBundle:Partials:ProfileOverview/followersTab.html.twig' %}
 			</div>
 			<!--end tab-pane-->
 		</div>
