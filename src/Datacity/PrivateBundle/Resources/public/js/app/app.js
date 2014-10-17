@@ -148,7 +148,7 @@
 				.state('addSource', {
 					data: {
 						ncyBreadcrumbLabel: 'Ajout de source',
-						ncyBreadcrumbParent: 'datasetList', //https://github.com/ncuillery/angular-breadcrumb/issues/32#event-155972344
+						ncyBreadcrumbParent: 'datasetList', //https://github.com/ncuillery/angular-breadcrumb/issues/48
 						title: 'Source',
 						description: 'Ajouter une source',
 					},
@@ -162,7 +162,7 @@
 				.state('editSource', {
 					data: {
 						ncyBreadcrumbLabel: 'Edition de source',
-						ncyBreadcrumbParent: 'datasetList', //https://github.com/ncuillery/angular-breadcrumb/issues/32#event-155972344
+						ncyBreadcrumbParent: 'datasetList', //https://github.com/ncuillery/angular-breadcrumb/issues/48
 						title: 'Edition',
 						description: 'Editer une source',
 					},
