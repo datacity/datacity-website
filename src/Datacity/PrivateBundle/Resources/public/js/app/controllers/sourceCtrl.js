@@ -5,14 +5,14 @@
 (function() {
 	angular
 		.module('app')
-		.controller('sourceController', ['$scope', '$state', '$stateParams', '$modal', '$log', 'SourceFactory', 'operation',
-			function($scope, $state, $stateParams, $modal, $log, SourceFactory, operation) {
+		.controller('sourceController', ['$scope', '$state', '$stateParams', '$modal', '$log', 'SourceFactory', 'sourceOperation', 'datasetSlug',
+			function($scope, $state, $stateParams, $modal, $log, SourceFactory, sourceOperation, datasetSlug) {
 
 				// VARIABLES COMMUNES A TOUTES LES OPERATIONS (edit, create, delete)
 				// ----------------------------------------
 				$scope.databinding = [];
 				$scope.metaSelected = {};
-				$scope.slugDataset = $stateParams.slugDataset;
+				$scope.slugDataset = datasetSlug;
 				$scope.dataModel = [];
 				//$scope.template = {};
 				//$scope.template.sourceManager = Routing.generate('datacity_private_partials', {pageName: 'sourceManager'});
@@ -222,7 +222,6 @@
 			    	return res;
 			    }
 				SourceFactory.getProducers().then(function(results) {
-						console.log(results);
 			    		$scope.producers = results.producers;
 			    	});
 			    /*$scope.getProducers = function() {
@@ -248,7 +247,7 @@
 			    	);
 			    }
 
-				if (operation === 'create') {
+				if (sourceOperation === 'create') {
 					//TODO:
 					//---------------------------------------------------------------------------------------------------------
 					// On a ici un formulaire multi upload qui permettra de rajouter plusieurs fichiers dans une source.
@@ -278,7 +277,7 @@
 							$scope.meta = results;
 					});
 
-					SourceFactory.getExistingDatasetModel($stateParams.slugDataset).then(function(results) {
+					SourceFactory.getExistingDatasetModel(datasetSlug).then(function(results) {
 						if (!results || results.length === 0) {
 							$scope.noDataModel = true;
 							return false;
@@ -292,7 +291,7 @@
 					//--------------------------------------------------------------------------------------------------------------
 
 				}
-				else if (operation === 'edit') {
+				else if (sourceOperation === 'edit') {
 					// On va charger a partir de l'id de la source les métadonnées mais également la datatable
 					// Appel à doctrine donc et a partir de cela on va rechercher le slug
 					// et faire un appel un api a partir de la route qui va choper le contenu d'une source
@@ -300,7 +299,7 @@
 					// Pour ce qui est du modèle, il n'est pour l'instant pas remodifiable dans cette étape donc pas d'affichage de bloc avec le modèle
 					// Le formulaire d'upload du fichier ne s'affiche pas dans cette partie
 				}
-				else if (operation === 'delete') {
+				else if (sourceOperation === 'delete') {
 
 				}
 				$scope.submitSource = function() {
@@ -321,8 +320,8 @@
 						jsonData: globalData
 					}
 
-					SourceFactory.post($stateParams.slugDataset, resultMeta, resultApi).then(function(response) {
-							$state.go('editDS', {slug: $stateParams.slugDataset});
+					SourceFactory.post(datasetSlug, resultMeta, resultApi).then(function(response) {
+							$state.go('editDS', {slug: datasetSlug}, {reload: true});
 					});
 				}
 			}]);

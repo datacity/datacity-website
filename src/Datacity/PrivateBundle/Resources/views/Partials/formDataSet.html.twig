@@ -19,7 +19,7 @@
 				<div class="form-group">
 					<label class="control-label col-md-2">Licence <strong style="color:red;">*</strong></label>
 					<div class="col-md-8">
-						<button type="button" class="btn btn-default form-control" ng-model="dataset.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in dataset.licenses" bs-select>
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.license.name" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in dataset.licenses" bs-select>
 						</button>
 					</div>
 				</div>
@@ -99,10 +99,9 @@
 	</div>
 	<div class="col-md-4">
 		<div class="portfolio-btn">
-			<a data-ui-sref="addSource({slugDataset: dataset.slug})" class="btn bigicn-only">
+			<a data-ui-sref="editDS.addSource" class="btn bigicn-only">
 				<span>
 					Ajouter une source
-					{{dataset.id}}
 				</span>
 			</a>
 		</div>

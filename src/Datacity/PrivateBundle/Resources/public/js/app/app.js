@@ -63,9 +63,11 @@
 				//Page d'accueil utilisateur
 				.state('homeUser', {
 					data: {
-						ncyBreadcrumbLabel: 'Accueil',
 						title: 'Mon compte',
 						description: '',
+					},
+					ncyBreadcrumb: {
+					    label: 'Accueil'
 					},
 					url: "/",
 					templateUrl: 'index.html',
@@ -76,9 +78,11 @@
                 //Operations liées aux dataset.
 				.state("datasetList", {
 					data: {
-						ncyBreadcrumbLabel: 'Jeux de données',
 						title: 'Vos jeux de données',
 						description: 'Ajouter/Gerer vos jeux de données',
+					},
+					ncyBreadcrumb: {
+					    label: 'Jeux de données'
 					},
                 	url: "/datasets",
                 	templateUrl: 'datasets.html',
@@ -91,10 +95,12 @@
                	})
 				.state('editDS', {
 					data: {
-						ncyBreadcrumbLabel: 'Edition',
-						ncyBreadcrumbParent: 'datasetList',
 						title: 'Edition',
 						description: 'Editer vos jeux de données',
+					},
+					ncyBreadcrumb: {
+					    label: 'Edition',
+					    parent: 'datasetList'
 					},
 					url: '/dataset/edit/:slug',
 					templateUrl: 'formDataSet.html',
@@ -106,15 +112,20 @@
 						}],
 						dataset: ['DatasetFactory', '$stateParams', function(DatasetFactory, $stateParams) {
 							return DatasetFactory.get($stateParams.slug);
-						}]
+						}],
+					    datasetSlug: ['$stateParams', function($stateParams){
+					        return $stateParams.slug;
+					    }]
 					}
 				})
 				.state('addDS', {
 					data: {
-						ncyBreadcrumbLabel: 'Ajout',
-						ncyBreadcrumbParent: 'datasetList',
 						title: 'Ajout',
 						description: 'Ajouter un jeu de données',
+					},
+					ncyBreadcrumb: {
+					    label: 'Ajout',
+					    parent: 'datasetList'
 					},
 					url: '/dataset/add',
 					templateUrl: 'formDataSet.html',
@@ -127,12 +138,15 @@
 						dataset: function() { return {} }
 					}
 				})
+				//Inutilisé
 				.state('deleteDS', {
 					data: {
-						ncyBreadcrumbLabel: 'Suppression',
-						ncyBreadcrumbParent: 'datasetList',
 						title: 'Suppression',
 						description: 'Suppression de jeux de données',
+					},
+					ncyBreadcrumb: {
+					    label: 'Suppression',
+					    parent: 'datasetList'
 					},
 					url: '/dataset/delete/:slugDataset',
 					controller: 'datasetController',
@@ -145,40 +159,53 @@
 					}
 				})
 				//Operations liées aux sources
-				.state('addSource', {
+				.state('editDS.addSource', {
 					data: {
-						ncyBreadcrumbLabel: 'Ajout de source',
-						ncyBreadcrumbParent: 'datasetList', //https://github.com/ncuillery/angular-breadcrumb/issues/48
 						title: 'Source',
 						description: 'Ajouter une source',
 					},
-					url: '/source/add/:slugDataset',
-					templateUrl: 'formSource.html',
-					controller: 'sourceController',
+					ncyBreadcrumb: {
+					    label: 'Ajout de source'
+					},
+					url: '/source/add/',
+				    views: {
+				        '@' : {
+				            controller: 'sourceController',
+				        	templateUrl: 'formSource.html'
+				        }
+				    },
 					resolve: {
-						operation: function() {return 'create'}
+						sourceOperation: function() {return 'create'}
 					}
 				})
-				.state('editSource', {
+				//Inutilisé
+				.state('editDS.editSource', {
 					data: {
-						ncyBreadcrumbLabel: 'Edition de source',
-						ncyBreadcrumbParent: 'datasetList', //https://github.com/ncuillery/angular-breadcrumb/issues/48
 						title: 'Edition',
 						description: 'Editer une source',
 					},
-					url: '/source/edit/:slugDataset/:id',
-					templateUrl: 'formSource.html',
-					controller: 'sourceController',
+					ncyBreadcrumb: {
+					        label: 'Edition de source'
+					},
+					url: '/source/edit/:id',
+				    views: {
+				        '@' : {
+				            controller: 'sourceController',
+				        	templateUrl: 'formSource.html'
+				        }
+				    },
 					resolve: {
-						operation: function() {return 'edit'}
+						sourceOperation: function() {return 'edit'}
 					}
 				})
 				//Operations liées à l'utilisateur
 				.state('profile', {
 					data: {
-						ncyBreadcrumbLabel: 'Profil',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
+					},
+					ncyBreadcrumb: {
+						label: 'Profil'
 					},
 					abstract: true,
 					url: '/profile',
@@ -196,49 +223,59 @@
                 	url: "/mainView",
                 	templateUrl: 'profileOverviewIndex.html',
 					data: {
-						ncyBreadcrumbLabel: "Profil",
 						title: 'Votre Profil',
 						description: 'Informations personnelles',
+					},
+					ncyBreadcrumb: {
+					    label: 'Profil'
 					},
                 })
                 .state("profile.settings", {
                 	url: "/settings",
                 	templateUrl: 'profileSettingsIndex.html',
 					data: {
-						ncyBreadcrumbLabel: 'Paramètres',
-						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
+					},
+					ncyBreadcrumb: {
+				        label: 'Paramètres',
+				        parent: 'profile.mainView'
 					},
                 })
                 .state("profile.settings.profileSettings", {
                 	url: "/profile",
                 	templateUrl: 'profileSettingsUserTab.html',
 					data: {
-						ncyBreadcrumbLabel: 'Edition',
-						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
+					},
+					ncyBreadcrumb: {
+				        label: 'Edition',
+				        parent: 'profile.mainView'
 					},
                 })
                 .state("profile.settings.pictureSettings", {
                 	url: "/picture",
                 	templateUrl: 'profileSettingsPictureTab.html',
 					data: {
-						ncyBreadcrumbLabel: 'Image',
-						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
+					},
+					ncyBreadcrumb: {
+				        label: 'Image',
+				        parent: 'profile.mainView'
 					},
                 })
                 .state("profile.settings.passwordSettings", {
                 	url: "/password",
                 	templateUrl: 'profileSettingsPasswordTab.html',
 					data: {
-						ncyBreadcrumbLabel: 'Mot de passe',
-						ncyBreadcrumbParent: 'profile.mainView',
 						title: 'Votre Profil',
 						description: 'Changez vos informations personnelles',
+					},
+					ncyBreadcrumb: {
+				        label: 'Mot de passe',
+				        parent: 'profile.mainView'
 					},
                 });
 	    }]);

@@ -22,8 +22,8 @@
     "bootstrap": "~3.2.0",
     "components-font-awesome": "~4.1.0",
     "angular-ui-select2": "~0.0.5",
-    "angular-breadcrumb": "~0.2.3",
     "angular-utils-pagination": "~0.2.5",
-    "ngInfiniteScroll": "https://github.com/caustique/ngInfiniteScroll.git#~1.1.2"
+    "ngInfiniteScroll": "https://github.com/caustique/ngInfiniteScroll.git#~1.1.2",
+    "angular-breadcrumb": "v0.3.x"
   }
 }

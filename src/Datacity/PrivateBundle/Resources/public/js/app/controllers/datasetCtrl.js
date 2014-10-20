@@ -35,7 +35,6 @@
 				else if (operation === 'edit') {
 					$scope.dataset = dataset;
 					$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + dataset.slug;
-					$scope.dataset.license = dataset.license.name;
 				}
 				else if (operation === 'delete') {
 					DatasetFactory.delete($stateParams.slug).then(function(response) {
@@ -66,9 +65,9 @@
 
 				// Custom Modal
 				$scope.confirm = $scope.delete;
- 				var confirmDeleteModal = $modal({animation: 'am-fade-and-scale', placement: 'center', scope: $scope, template: '/app_dev.php/private/modals/modal', title: 'Confirmation', content: 'Voulez vous vraiment supprimmer ce jeu de donnée? Cela entraînera la suppression de toutes les sources associées.', show: false});
-  				$scope.showModal = function() {
-    				confirmDeleteModal.$promise.then(confirmDeleteModal.show);
-  				};
+ 				//var confirmDeleteModal = $modal({animation: 'am-fade-and-scale', placement: 'center', scope: $scope, template: '/app_dev.php/private/modals/modal', title: 'Confirmation', content: 'Voulez vous vraiment supprimmer ce jeu de donnée? Cela entraînera la suppression de toutes les sources associées.', show: false});
+  				//$scope.showModal = function() {
+    			//	confirmDeleteModal.$promise.then(confirmDeleteModal.show);
+  				//};
 		}]);
 })();
