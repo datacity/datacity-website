@@ -41,7 +41,7 @@
 				//Form Events
 				$scope.submit = function() {
 					var result = {
-						license: $scope.dataset.license,
+						license: $scope.dataset.license.name,
 						description: $scope.dataset.description,
 						title: $scope.dataset.title,
 						visibility: $scope.dataset.selectedVisibility

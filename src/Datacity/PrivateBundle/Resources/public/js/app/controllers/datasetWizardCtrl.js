@@ -56,7 +56,7 @@
 							}).error(function(data, status, headers, config) {
 								file.status = status;
 							});
-						}, 500);
+						}, 1000);
 
 					}).error(function(data, status, headers, config) {
 						file.status = status;
@@ -238,6 +238,18 @@
 				$scope.$parent.canContinue = function() {
 					return $scope.filesData.length > 0;
 				};
+
+				$scope.droppedRegroup = function(data, evt) {
+					console.log(evt);
+					if (!angular.element(evt.event.target).hasClass('wizard-add-combi'))
+						return;
+					$scope.combinedColumns.push([data]);
+				};
+
+				$scope.droppedTableRegroup = function(data, evt) {
+					console.log('small');
+					console.log(evt);
+				}
 			}])
 		.controller('datasetWizardStep2Controller', ['$scope', '$state', '$filter', 'ngTableParams',
 			function($scope, $state, $filter, ngTableParams) {
@@ -249,6 +261,8 @@
 				};
 				$scope.$parent.continueButton = function() { $state.go('wizardDS.step3') };
 				$scope.$parent.canContinue = function() { return true; };
+
+				console.log($scope.$parent.sourceData.datas);
 
 			    $scope.tableParams = new ngTableParams({
 			        page: 1,

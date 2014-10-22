@@ -11,7 +11,8 @@
 			'ncy-angular-breadcrumb',
 			'infinite-scroll',
 			'ngTable',
-			'ngTableResizableColumns'
+			'ngTableResizableColumns',
+			'ngDraggable'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {

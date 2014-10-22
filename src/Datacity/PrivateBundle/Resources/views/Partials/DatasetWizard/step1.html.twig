@@ -39,6 +39,9 @@
 				</div>
 				<div class="portlet-body">
 					<div class="row">
+						<div data-ng-if="filesData.length === 0" class="col-md-12 text-center">
+							<p>Ajoutez au moins un fichier.</p>
+						</div>
 						<div data-ng-repeat="fileData in filesData" class="col-md-3">
 							<div class="table-scrollable wizard-columns">
 								<table class="table table-hover">
@@ -50,7 +53,8 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr data-ng-repeat="col in fileData.columns">
+										<tr data-ng-repeat="col in fileData.columns" class="draggable" data-ng-drag="true"
+											data-ng-drag-data="{fileName: '{{fileData.fileName}}', column: '{{col}}'}">
 											<td>
 												{{ col }}
 											</td>
@@ -62,15 +66,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="portlet box blue">
-				<div class="portlet-title">
-					<div class="caption">
+			<div class="wizard-add-combi portlet box blue" data-ng-drop="true" ng-drop-success="droppedRegroup($data,$event)">
+				<div class="wizard-add-combi portlet-title">
+					<div class="wizard-add-combi caption">
 						<i class="fa fa-fa-file-text-o"></i>Regroupement par champs
 					</div>
 				</div>
-				<div class="portlet-body">
-					<div class="row">
-						<div data-ng-repeat="combinedColumn in combinedColumns" class="col-md-3">
+				<div class="wizard-add-combi portlet-body">
+					<div class="wizard-add-combi row">
+						<div data-ng-if="combinedColumns.length === 0" class="col-md-12 text-center wizard-add-combi">
+							<p class="wizard-add-combi">Ajoutez ici les champs à combiner.</p>
+						</div>
+						<div data-ng-drop="true" ng-drop-success="droppedTableRegroup($data,$event)" data-ng-repeat="combinedColumn in combinedColumns" class="col-md-3">
 							<div class="table-scrollable wizard-columns">
 								<table class="table table-hover">
 									<thead>

@@ -9,6 +9,7 @@ set :app_path,    "app"
 
 set :repository,  "git@github.com:Wykks/Datacity.git"
 set :scm,         :git
+set :branch,      "dev"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
 
 set :deploy_via, :remote_cache
