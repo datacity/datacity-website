@@ -34,3 +34,14 @@ set :dump_assetic_assets, true
 set :assets_symlinks, true
 # Be more verbose by uncommenting the following line
 # logger.level = Logger::MAX_LEVEL
+
+before 'symfony:composer:install', 'symfony:bower:install'
+
+namespace :symfony do
+      namespace :bower do
+      desc '[internal] Run the bower install'
+      task :install do
+          invoke_command "cd #{latest_release} && bower install", :via => run_method
+      end
+    end
+end
