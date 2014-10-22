@@ -24,6 +24,9 @@
     "angular-ui-select2": "~0.0.5",
     "angular-utils-pagination": "~0.2.5",
     "ngInfiniteScroll": "https://github.com/caustique/ngInfiniteScroll.git#~1.1.2",
-    "angular-breadcrumb": "v0.3.x"
+    "angular-breadcrumb": "v0.3.x",
+    "ng-file-upload": "~1.6.12",
+    "ng-table": "~0.3.3",
+    "ng-table-resizable-columns": "https://github.com/esvit/ng-table-resizable-columns.git"
   }
 }

@@ -28,11 +28,7 @@
 									'Autoriser mes abonnés/abonnements à voir mes publications',
 									'N\'autoriser personne à voir mes publications'];
 				$scope.dataset.licenses = licenses;
-
-				if (operation === 'create') {
-					$scope.noDelete = true;
-				}
-				else if (operation === 'edit') {
+				if (operation === 'edit') {
 					$scope.dataset = dataset;
 					$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + dataset.slug;
 				}

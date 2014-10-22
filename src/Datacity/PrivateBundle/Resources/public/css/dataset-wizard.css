@@ -1,0 +1,68 @@
+.wizard-dropzone {
+	min-height: 60px;
+}
+
+.wizard-dropzone.dragover {
+	background-color: #AABCAA;
+}
+
+.wizard-dropzone.dragover-err {
+	background-color: #BCAAAA;
+}
+
+.dropzone .dz-preview .dz-details {
+	text-align: center;
+}
+
+.wizard-dropzone .file-icon {
+	font-size: 50px;
+}
+
+.wizard-controls-step1 {
+	margin-top: 7px;
+}
+
+.wizard-controls-step2 {
+	margin-bottom: 8px;
+}
+
+.wizard-columns-list {
+	margin-top: 7px;
+}
+
+.wizard-columns {
+	height: 300px;
+	overflow-y: auto;
+}
+
+.table thead tr th {
+	font-weight: 700;
+}
+
+.dropzone.dz-clickable {
+	cursor: default;
+}
+
+.dropzone.dz-clickable button {
+	cursor: pointer;
+}
+
+.wizard-table {
+	overflow-x: auto;
+	display: block;
+}
+
+.rc-handle-container {
+  position: relative; }
+
+.rc-handle {
+  position: absolute;
+  width: 7px;
+  cursor: ew-resize;
+  margin-left: -3px;
+  z-index: 2; }
+
+table.rc-table-resizing {
+  cursor: ew-resize; }
+  table.rc-table-resizing thead, table.rc-table-resizing thead > th, table.rc-table-resizing thead > th > a {
+    cursor: ew-resize; }

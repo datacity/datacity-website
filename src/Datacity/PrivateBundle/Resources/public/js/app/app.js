@@ -5,10 +5,13 @@
 			'ui.router',
 			'ngGrid',
 			'ngSanitize',
+			'ngAnimate',
 			'angularFileUpload',
 			'angular-loading-bar',
 			'ncy-angular-breadcrumb',
-			'infinite-scroll'
+			'infinite-scroll',
+			'ngTable',
+			'ngTableResizableColumns'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {
@@ -51,8 +54,11 @@
 		    }
 		  };
 		}])
-		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', '$breadcrumbProvider',
-			function($interpolateProvider, $urlRouterProvider, $stateProvider, $breadcrumbProvider) {
+		.config(['$interpolateProvider', '$urlRouterProvider', '$stateProvider', '$breadcrumbProvider', '$modalProvider',
+			function($interpolateProvider, $urlRouterProvider, $stateProvider, $breadcrumbProvider, $modalProvider) {
+				angular.extend($modalProvider.defaults, {
+					html: true
+				});
 				//$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 				$urlRouterProvider.otherwise('/');
 				$breadcrumbProvider.setOptions({
@@ -157,6 +163,61 @@
 						}],
 						dataset: function() { return {} }
 					}
+				})
+				//Dataset Wizard
+				.state('wizardDS', {
+					ncyBreadcrumb: {
+					    label: 'Création',
+					    parent: 'datasetList'
+					},
+					data: {
+						title: 'Nouveau jeux de donnée',
+						description: '',
+					},
+					abstract: true,
+					url: '/dataset/wizard',
+					templateUrl: 'datasetWizardBase.html',
+					controller: 'datasetWizardController'
+				})
+				.state('wizardDS.step1', {
+					ncyBreadcrumb: {
+					    label: 'Création'
+					},
+					url: '/1',
+					templateUrl: 'datasetWizardStep1.html',
+					controller: 'datasetWizardStep1Controller'
+				})
+				.state('wizardDS.step2', {
+					ncyBreadcrumb: {
+					    label: 'Création'
+					},
+					url: '/2',
+					templateUrl: 'datasetWizardStep2.html',
+					controller: 'datasetWizardStep2Controller'
+				})
+				.state('wizardDS.step3', {
+					ncyBreadcrumb: {
+					    label: 'Création'
+					},
+					url: '/3',
+					templateUrl: 'datasetWizardStep3.html',
+					controller: 'datasetWizardStep3Controller'
+				})
+				.state('wizardDS.step4', {
+					ncyBreadcrumb: {
+					    label: 'Création'
+					},
+					url: '/3',
+					templateUrl: 'datasetWizardStep4.html',
+					controller: 'datasetWizardStep4Controller'
+				})
+				.state('wizardDS.step5', {
+					ncyBreadcrumb: {
+					    label: 'Création'
+					},
+					url: '/3',
+					templateUrl: 'datasetWizardStep5.html',
+					controller: 'datasetWizardStep5Controller'
 				})
 				//Operations liées aux sources
 				.state('editDS.addSource', {

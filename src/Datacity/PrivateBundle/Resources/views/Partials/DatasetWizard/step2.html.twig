@@ -1,0 +1,31 @@
+{% verbatim %}
+<div class="row wizard-controls-step2">
+	<div class="col-md-12">
+		<button data-placement="center" data-bs-modal="addColModal" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter une colonne</button>
+		<button type="button" class="btn blue"><i class="fa fa-cogs"></i> Appliquer une expression régulière</button>
+	</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+	<table ng-table="tableParams" show-filter="true" class="wizard-table table ng-table-resizable-columns ng-table-rowselected table-bordered" data-resizable-columns-id="myTable">
+		<thead>
+	        <tr>
+		        <th data-ng-repeat="column in $parent.sourceData.columns" data-resizable-column-id="{{ column }}"
+		        class="text-center sortable" ng-class="{
+		                'sort-asc': tableParams.isSortBy(column, 'asc'),
+		                'sort-desc': tableParams.isSortBy(column, 'desc')
+		              }"
+		            ng-click="sortTable(column)">
+		            {{column}}
+		        </th>
+	        </tr>
+	    </thead>
+	    <tr ng-repeat="item in $data">
+	        <td ng-repeat="column in $parent.sourceData.columns" data-sortable="'{{ column }}'" data-filter="filterTable(column)">
+	            {{item[column]}}
+	        </td>
+	    </tr>
+	</table>
+</div>
+</div>
+{% endverbatim %}

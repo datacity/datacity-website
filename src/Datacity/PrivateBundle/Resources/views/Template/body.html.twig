@@ -25,7 +25,6 @@ Website: http://datacity.fr
 	'css/bootstrap3stuff.css'
 	'css/angularuserapp.css'
 	'css/angular-mods.css'
-	'bundles/datacityprivate/css/datacity.css'
 	'bundles/datacityprivate/third-party/plugins/uniform/css/uniform.default.css'
 
 	'bundles/datacityprivate/third-party/plugins/dropzone/css/dropzone.css'
@@ -47,6 +46,9 @@ Website: http://datacity.fr
 	'bundles/datacityprivate/third-party/plugins/select2/select2_metro.css'
 	'bundles/datacityprivate/third-party/plugins/bootstrap-toastr/toastr.min.css'
 	'bundles/datacityprivate/third-party/plugins/data-tables/DT_bootstrap.css'
+
+	'bundles/datacityprivate/css/datacity.css'
+	'bundles/datacityprivate/css/dataset-wizard.css'
 
 	filter='cssrewrite'
 	%}
@@ -221,17 +223,16 @@ Website: http://datacity.fr
 <![endif]-->
 
 {% block javascripts %}
+<script src="{{ asset('js/angular-file-upload-shim.min.js') }}"></script>
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-<script>typeof angular == "undefined" && document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script>typeof angular == "undefined" && document.write('<script src="{{ asset('js/angular.js') }}"><\/script>')</script>
 {# TEMP #}
 
-<script src="https://code.angularjs.org/1.2.23/angular-mocks.js"></script>
-<script src="http://angular-file-upload.appspot.com/js/angular-file-upload-shim.js"></script>
-<script src="http://angular-file-upload.appspot.com/js/angular-file-upload.js"></script>
+<script src="https://code.angularjs.org/1.2.26/angular-mocks.js"></script>
 
 	{# '@DatacityPrivateBundle/Resources/public/third-party/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
 	'@DatacityPrivateBundle/Resources/public/third-party/plugins/uniform/jquery.uniform.min.js'
@@ -289,6 +290,7 @@ Website: http://datacity.fr
 	'@DatacityPrivateBundle/Resources/public/js/app/controllers/navCtrl.js'
 	'@DatacityPrivateBundle/Resources/public/js/app/controllers/panelCtrl.js'
 	'@DatacityPrivateBundle/Resources/public/js/app/controllers/sourceCtrl.js'
+	'@DatacityPrivateBundle/Resources/public/js/app/controllers/datasetWizardCtrl.js'
 
 	'@DatacityPrivateBundle/Resources/public/js/app/directives/datepicker.js'
 	'@DatacityPrivateBundle/Resources/public/js/app/directives/events.js'

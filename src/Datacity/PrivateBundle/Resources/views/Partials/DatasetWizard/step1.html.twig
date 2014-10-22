@@ -1,0 +1,108 @@
+{% verbatim %}
+<div data-ng-if="!$parent.sourceData">
+	<form data-ng-file-drag-over-class="dragOverClass($event)" data-ng-file-drop="onFileSelect($files)" class="dropzone dz-clickable wizard-dropzone">
+	<div data-ng-repeat="file in fileUp"
+		data-ng-class="{'dz-success': file.status === -1, 'dz-error': file.status >= 0}"
+		class="dz-preview dz-file-preview dz-processing">
+		<div class="dz-details">
+			<div class="dz-filename">
+				<span>{{ file.data.name }}</span>
+			</div>
+			<div class="dz-size">
+				<strong>{{ bytesToSize(file.data.size).value }}</strong> {{ bytesToSize(file.data.size).m }}
+			</div>
+			<span><i class="fa fa-file-o file-icon"></i></span>
+		</div>
+		<div class="dz-progress">
+			<span class="dz-upload" style="width:{{file.progress}}%"></span>
+		</div>
+		<div class="dz-success-mark"><span>✔</span></div>
+		<div class="dz-error-mark"><span>✘</span></div>
+		<div class="dz-error-message"><span>Un erreur est survenue ({{ file.status }})</span></div>
+		<button data-ng-if="file.status >= -1" data-ng-click="removeFile($index)" class="btn btn-sm btn-block">Supprimer</button>
+		<button data-ng-if="file.status === -2" data-ng-click="abortUpload($index)" class="btn btn-sm btn-block">Annuler</button>
+	</div>
+	</form>
+	<div class="row wizard-controls-step1">
+		<div class="col-md-12">
+			<button data-ng-file-select="onFileSelect($files)" data-multiple="true" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter un ou des fichiers</button>
+			<button data-ng-click="removeAllFile()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les fichiers</button>
+		</div>
+	</div>
+	<div class="row wizard-columns-list">
+		<div class="col-md-12">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-fa-file-text-o"></i>Champs contenus dans les fichiers
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="row">
+						<div data-ng-repeat="fileData in filesData" class="col-md-3">
+							<div class="table-scrollable wizard-columns">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>
+												{{ fileData.fileName }}
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="col in fileData.columns">
+											<td>
+												{{ col }}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-fa-file-text-o"></i>Regroupement par champs
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="row">
+						<div data-ng-repeat="combinedColumn in combinedColumns" class="col-md-3">
+							<div class="table-scrollable wizard-columns">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>
+												Fichier
+											</th>
+											<th>
+												Champ
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="col in combinedColumn">
+											<td>
+												{{ col.fileName }}
+											</td>
+											<td>
+												{{ col.column }}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div data-ng-if="$parent.sourceData">
+	<h4>Apercu</h4>
+</div>
+{% endverbatim %}

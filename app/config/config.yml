@@ -60,11 +60,14 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/angular-sanitize/angular-sanitize.js
                 - %kernel.root_dir%/../jsvendor/ng-grid/build/ng-grid.debug.js
                 - %kernel.root_dir%/../jsvendor/angular-loading-bar/build/loading-bar.js
+                - %kernel.root_dir%/../jsvendor/ng-table/ng-table.js
+                - %kernel.root_dir%/../jsvendor/ng-table-resizable-columns/ng-table-resizable-columns.src.js
             output: js/angular-mods.js #Mods d'angular utilisés dans toute nos applications angular
         angularmodscss:
             inputs:
                 - %kernel.root_dir%/../jsvendor/ng-grid/ng-grid.css
                 - %kernel.root_dir%/../jsvendor/angular-loading-bar/build/loading-bar.css
+                - %kernel.root_dir%/../jsvendor/ng-table/ng-table.css
             output: css/angular-mods.css
         angularjs:
             inputs:
@@ -76,6 +79,7 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/angular-strap/dist/angular-strap.tpl.js
                 - %kernel.root_dir%/../jsvendor/angular-breadcrumb/dist/angular-breadcrumb.js
                 - %kernel.root_dir%/../jsvendor/ngInfiniteScroll/build/ng-infinite-scroll.js
+                - %kernel.root_dir%/../jsvendor/ng-file-upload/angular-file-upload.js
             output: js/angularuserapp.js
         angularuserappcss:
             inputs:
@@ -98,6 +102,10 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/bootstrap/dist/css/bootstrap.css
                 - %kernel.root_dir%/../jsvendor/components-font-awesome/css/font-awesome.css
             output: css/bootstrap3stuff.css
+        fileuploadshim:
+            inputs:
+                - %kernel.root_dir%/../jsvendor/ng-file-upload/angular-file-upload-shim.js
+            output: js/angular-file-upload-shim.min.js
 
 # Doctrine Configuration
 doctrine:

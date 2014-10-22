@@ -1283,7 +1283,7 @@ Modal header close button fix
 
 .modal-backdrop, 
 .modal-backdrop.fade.in {
-  background-color: #333 !important;
+ /* background-color: #333 !important; */ /* WORKAROUND DATACITY */
 }
 
 /* fix: content shifting to the right on modal open due to scrollbar closed */

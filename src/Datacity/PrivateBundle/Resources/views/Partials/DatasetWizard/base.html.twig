@@ -1,0 +1,73 @@
+{% verbatim %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="portlet box blue" id="form_wizard_1">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-gift"></i> Création d'un jeux de donnée - <span class="step-title">
+					étape {{ step }} sur 5 </span>
+				</div>
+			</div>
+			<div class="portlet-body form">
+					<div class="form-wizard">
+						<div class="form-body">
+							<ul class="nav nav-pills nav-justified steps">
+								<li data-ng-class="{active: step === '1'}">
+									<a class="step">
+									<span class="number">
+									1 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Ajout de fichiers & Regroupement </span>
+									</a>
+								</li>
+								<li data-ng-class="{active: step === '2'}">
+									<a class="step">
+									<span class="number">
+									2 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Edition des données </span>
+									</a>
+								</li>
+								<li data-ng-class="{active: step === '3'}">
+									<a class="step active">
+									<span class="number">
+									3 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Sélection des colonnes </span>
+									</a>
+								</li>
+								<li data-ng-class="{active: step === '4'}">
+									<a class="step">
+									<span class="number">
+									4 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Métadonnées </span>
+									</a>
+								</li>
+								<li data-ng-class="{active: step === '5'}">
+									<a class="step">
+									<span class="number">
+									5 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Envoi & confirmation </span>
+									</a>
+								</li>
+							</ul>
+							<div id="bar" class="progress progress-striped" role="progressbar">
+								<div class="progress-bar progress-bar-success" style="width: {{wizardProgress}}%;">
+								</div>
+							</div>
+							<div class="tab-content" data-ui-view>
+							</div>
+						</div>
+						<div class="form-actions right">
+							<button data-ng-click="backButton()" data-ng-if="backButton" type="button" class="btn default"><i class="fa fa-arrow-circle-left"></i> Retour</button>
+							<button data-ng-click="continueButton()" data-ng-if="continueButton" data-ng-class="{disabled: !canContinue()}" type="submit" class="btn blue">Continuer <i class="fa fa-arrow-circle-right"></i></button>
+							<button data-ng-click="endButton()" data-ng-if="endButton" type="submit" class="btn green">Terminer <i class="fa fa-check"></i></button>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endverbatim %}
