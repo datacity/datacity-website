@@ -4,7 +4,7 @@ imports:
 
 bc_bootstrap:
     less_filter: lessphp
-    jquery_path: %kernel.root_dir%/../jsvendor/jquery/jquery.js
+    jquery_path: %kernel.root_dir%/../jsvendor/jquery/dist/jquery.js
 
 framework:
     #esi:             ~
@@ -80,6 +80,7 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/angular-breadcrumb/dist/angular-breadcrumb.js
                 - %kernel.root_dir%/../jsvendor/ngInfiniteScroll/build/ng-infinite-scroll.js
                 - %kernel.root_dir%/../jsvendor/ng-file-upload/angular-file-upload.js
+                - %kernel.root_dir%/../jsvendor/angular-dragdrop/src/angular-dragdrop.js
             output: js/angularuserapp.js
         angularuserappcss:
             inputs:
