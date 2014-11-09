@@ -126,6 +126,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
         $http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
             $scope.datasetData = res.data.data;
         });
+		alert($scope.datasetData);
         var pagingOptions = {
             pageSizes: [20, 50, 100],
             pageSize: 20,
@@ -146,5 +147,28 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             enableColumnReordering: true,
             showFooter: true
         };
+      $scope.refine_array = [{'facet':'', 'value':''}];
+      $scope.facets=['update','date','publish'];
+      $scope.addRow = function(new_facet){
+      $scope.facets.push(new_facet);
+      $scope.new_facets = '';
+};
+$scope.deleteRow = function(item) {
+var index = $scope.facets.indexOf(item);
+$scope.facets.splice(index, 1);
+};
+$scope.addRefine = function(option_refine, value_refine){
+if (option_refine != "facettes" && value_refine)
+//if ($scope.refine_array.length == 1){
+$scope.refine_array.splice(0, 0, {'facet':option_refine, 'value':value_refine});
+//	}
+//else {
+//$scope.refine_array.push({'facet':option_refine, 'value':value_refine});
+//	}
+};
+$scope.addExclude = function(option_exclude, value_exclude){
+if (option_exclude != "facettes" && value_exclude)
+  ;
+};
     }
 ]);
