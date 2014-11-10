@@ -126,7 +126,6 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
         $http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
             $scope.datasetData = res.data.data;
         });
-		alert($scope.datasetData);
         var pagingOptions = {
             pageSizes: [20, 50, 100],
             pageSize: 20,
