@@ -163,6 +163,7 @@ class Dataset
     /**
      * Les colonnes du dataset.
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset", fetch="EXTRA_LAZY")
+     * @Serializer\Groups({"datasetShow"})
      */
     private $columns;
 

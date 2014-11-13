@@ -28,6 +28,7 @@ class DataColumns
      * Unique=false afin d'autoriser plusieurs nom avec des types differends
      * @ORM\Column(name="name", type="string", length=50, unique=false)
      * @Serializer\Expose
+     * @Serializer\Groups({"datasetShow"})
      */
     private $name;
 
@@ -35,6 +36,7 @@ class DataColumns
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\DataColumnsType")
      * @ORM\JoinColumn(nullable=false)
      * @Serializer\Expose
+     * @Serializer\Groups({"datasetShow"})
      */
     private $type;
 

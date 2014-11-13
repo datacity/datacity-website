@@ -28,6 +28,7 @@ class DataColumnsType
      *
      * @ORM\Column(name="name", type="string", length=100, unique=true)
      * @Serializer\Expose
+     * @Serializer\Groups({"datasetShow"})
      */
     private $name;
 
