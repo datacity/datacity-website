@@ -1,0 +1,28 @@
+{% verbatim %}
+<div class="row">
+<div class="col-md-12">
+	<h3>Aperçu final</h3>
+	<table ng-table="tableParams" show-filter="true" class="wizard-table table ng-table-resizable-columns ng-table-rowselected table-bordered" data-resizable-columns-id="myTable">
+		<thead>
+	        <tr>
+		        <th data-ng-repeat="column in sourceDataFinalColumns" data-resizable-column-id="{{ column }}"
+		        class="text-center sortable" ng-class="{
+		                'sort-asc': tableParams.isSortBy(column, 'asc'),
+		                'sort-desc': tableParams.isSortBy(column, 'desc')
+		              }"
+		            ng-click="sortTable(column)">
+		            {{column}}
+		        </th>
+	        </tr>
+	    </thead>
+	    <tr ng-repeat="item in $data">
+	        <td ng-repeat="column in sourceDataFinalColumns" data-sortable="'{{ column }}'" data-filter="filterTable(column)">
+	            {{item[column]}}
+	        </td>
+	    </tr>
+	</table>
+	<p class="text-center" data-ng-if="!$parent.canEnd">Envoi en cours...</p>
+	<a data-ng-if="$parent.canEnd" href="{{ datasetLink }}" class="btn green btn-block">Voir le jeu de donnée</a>
+</div>
+</div>
+{% endverbatim %}

@@ -30,7 +30,7 @@
 	cursor: move;
 }
 
-.drag-enter .portlet-body.wizard-add-combi {
+.on-drag-hover > .actual-drag-hover {
    border: 2px dashed #000000;
 }
 

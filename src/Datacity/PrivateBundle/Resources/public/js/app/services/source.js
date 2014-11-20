@@ -1,3 +1,4 @@
+//DEPRECATED
 (function() {
 	angular
 		.module('app')

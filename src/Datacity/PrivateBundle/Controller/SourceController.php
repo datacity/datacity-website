@@ -27,11 +27,10 @@ class SourceController extends Controller
             if (!isset($params->metadata) || !isset($params->metadata->title) ||
                 !isset($params->metadata->frequency) || !isset($params->metadata->location) ||
                 !isset($params->metadata->coverageTerritory) || !isset($params->metadata->category))
-                return $this->thereIsAProblemHere();
+                return $this->thereIsAProblemHere('Missing metadata');
 
             $em = $this->getDoctrine()->getManager();
 
-            //FIXME setSlug here
             $source = new DSource();
             $source->setTitle($params->metadata->title);
             if (isset($params->metadata->link))
@@ -105,6 +104,7 @@ class SourceController extends Controller
             }
 
             $em->flush();
+            //TODO Return Slug (et donc ajouter un champ slug dans l'entite)
             $response = new JsonResponse(array('action' => 'success'));
         } else {
             return $this->thereIsAProblemHere();

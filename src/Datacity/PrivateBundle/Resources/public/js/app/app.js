@@ -12,7 +12,7 @@
 			'infinite-scroll',
 			'ngTable',
 			'ngTableResizableColumns',
-			'ngDraggable'
+			'ang-drag-drop'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {
@@ -208,15 +208,20 @@
 					ncyBreadcrumb: {
 					    label: 'Création'
 					},
-					url: '/3',
+					url: '/4',
 					templateUrl: 'datasetWizardStep4.html',
-					controller: 'datasetWizardStep4Controller'
+					controller: 'datasetWizardStep4Controller',
+					resolve: {
+						filterList: ['$http', function($http) {
+							return $http.get(Routing.generate('datacity_public_api_filter_list'));
+						}]
+					}
 				})
 				.state('wizardDS.step5', {
 					ncyBreadcrumb: {
 					    label: 'Création'
 					},
-					url: '/3',
+					url: '/5',
 					templateUrl: 'datasetWizardStep5.html',
 					controller: 'datasetWizardStep5Controller'
 				})

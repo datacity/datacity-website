@@ -33,7 +33,7 @@
 									<span class="number">
 									3 </span>
 									<span class="desc">
-									<i class="fa fa-check"></i> Sélection des colonnes </span>
+									<i class="fa fa-check"></i> Sélection des champs </span>
 									</a>
 								</li>
 								<li data-ng-class="{active: step === '4'}">
@@ -63,7 +63,7 @@
 						<div class="form-actions right">
 							<button data-ng-click="backButton()" data-ng-if="backButton" type="button" class="btn default"><i class="fa fa-arrow-circle-left"></i> Retour</button>
 							<button data-ng-click="continueButton()" data-ng-if="continueButton" data-ng-class="{disabled: !canContinue()}" type="submit" class="btn blue">Continuer <i class="fa fa-arrow-circle-right"></i></button>
-							<button data-ng-click="endButton()" data-ng-if="endButton" type="submit" class="btn green">Terminer <i class="fa fa-check"></i></button>
+							<button data-ng-click="endButton()" data-ng-if="endButton" data-ng-class="{disabled: !canEnd}" type="submit" class="btn green">Terminer <i class="fa fa-check"></i></button>
 						</div>
 					</div>
 			</div>

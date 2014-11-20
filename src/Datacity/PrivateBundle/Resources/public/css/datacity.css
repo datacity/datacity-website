@@ -1,1 +1,28 @@
 a { cursor: pointer; }
+
+/* On veux toujours un fond un peu transparent sur les modals */
+.modal-backdrop {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.panel-caption {
+	float: left;
+	display: inline-block;
+	font-size: 18px;
+	line-height: 18px;
+	font-weight: 300;
+}
+
+.panel-tools {
+	float: right;
+	display: inline-block;
+}
+
+.panel-special {
+	min-height: 38px;
+	padding-right: 5px;
+}
+
+.panel-tools > .editIcon {
+	margin-right: 5px;
+}

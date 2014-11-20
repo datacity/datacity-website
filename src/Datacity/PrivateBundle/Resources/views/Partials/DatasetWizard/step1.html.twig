@@ -1,115 +1,105 @@
 {% verbatim %}
-<div data-ng-if="!$parent.sourceData">
-	<form data-ng-file-drag-over-class="dragOverClass($event)" data-ng-file-drop="onFileSelect($files)" class="dropzone dz-clickable wizard-dropzone">
-	<div data-ng-repeat="file in fileUp"
-		data-ng-class="{'dz-success': file.status === -1, 'dz-error': file.status >= 0}"
-		class="dz-preview dz-file-preview dz-processing">
-		<div class="dz-details">
-			<div class="dz-filename">
-				<span>{{ file.data.name }}</span>
-			</div>
-			<div class="dz-size">
-				<strong>{{ bytesToSize(file.data.size).value }}</strong> {{ bytesToSize(file.data.size).m }}
-			</div>
-			<span><i class="fa fa-file-o file-icon"></i></span>
+<form data-ng-file-drag-over-class="dragOverClass($event)" data-ng-file-drop="onFileSelect($files)" class="dropzone dz-clickable wizard-dropzone">
+<div data-ng-repeat="file in fileUp"
+	data-ng-class="{'dz-success': file.status === -1, 'dz-error': file.status >= 0}"
+	class="dz-preview dz-file-preview dz-processing">
+	<div class="dz-details">
+		<div class="dz-filename">
+			<span>{{ file.data.name }}</span>
 		</div>
-		<div class="dz-progress">
-			<span class="dz-upload" style="width:{{file.progress}}%"></span>
+		<div class="dz-size">
+			<strong>{{ bytesToSize(file.data.size).value }}</strong> {{ bytesToSize(file.data.size).m }}
 		</div>
-		<div class="dz-success-mark"><span>✔</span></div>
-		<div class="dz-error-mark"><span>✘</span></div>
-		<div class="dz-error-message"><span>Un erreur est survenue ({{ file.status }})</span></div>
-		<button data-ng-if="file.status >= -1" data-ng-click="removeFile($index)" class="btn btn-sm btn-block">Supprimer</button>
-		<button data-ng-if="file.status === -2" data-ng-click="abortUpload($index)" class="btn btn-sm btn-block">Annuler</button>
+		<span><i class="fa fa-file-o file-icon"></i></span>
 	</div>
-	</form>
-	<div class="row wizard-controls-step1">
-		<div class="col-md-12">
-			<button data-ng-file-select="onFileSelect($files)" data-multiple="true" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter un ou des fichiers</button>
-			<button data-ng-click="removeAllFile()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les fichiers</button>
-		</div>
+	<div class="dz-progress">
+		<span class="dz-upload" style="width:{{file.progress}}%"></span>
 	</div>
-	<div class="row wizard-columns-list">
-		<div class="col-md-12">
-			<div class="portlet box blue">
-				<div class="portlet-title">
-					<div class="caption">
-						<i class="fa fa-fa-file-text-o"></i>Champs contenus dans les fichiers
-					</div>
-				</div>
-				<div class="portlet-body">
-					<div class="row">
-						<div data-ng-if="filesData.length === 0" class="col-md-12 text-center">
-							<p>Ajoutez au moins un fichier.</p>
-						</div>
-						<div data-ng-repeat="fileData in filesData" class="col-md-3">
-							<div class="table-scrollable wizard-columns">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>
-												{{ fileData.fileName }}
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr data-ng-repeat="col in fileData.columns" class="draggable" data-ng-drag="true"
-											data-ng-drag-data="{fileName: '{{fileData.fileName}}', column: '{{col}}'}">
-											<td>
-												{{ col }}
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="wizard-add-combi portlet box blue" data-ng-drop="true" ng-drop-success="droppedRegroup($data,$event)">
-				<div class="wizard-add-combi portlet-title">
-					<div class="wizard-add-combi caption">
-						<i class="fa fa-fa-file-text-o"></i>Regroupement par champs
-					</div>
-				</div>
-				<div class="wizard-add-combi portlet-body">
-					<div class="wizard-add-combi row">
-						<div data-ng-if="combinedColumns.length === 0" class="col-md-12 text-center wizard-add-combi">
-							<p class="wizard-add-combi">Ajoutez ici les champs à combiner.</p>
-						</div>
-						<div data-ng-drop="true" ng-drop-success="droppedTableRegroup($data,$event)" data-ng-repeat="combinedColumn in combinedColumns" class="col-md-3">
-							<div class="table-scrollable wizard-columns">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>
-												Fichier
-											</th>
-											<th>
-												Champ
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr data-ng-repeat="col in combinedColumn">
-											<td>
-												{{ col.fileName }}
-											</td>
-											<td>
-												{{ col.column }}
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="dz-success-mark"><span>✔</span></div>
+	<div class="dz-error-mark"><span>✘</span></div>
+	<div class="dz-error-message"><span>Un erreur est survenue ({{ file.status }})</span></div>
+	<button data-ng-if="file.status >= -1" data-ng-click="removeFile($index)" class="btn btn-sm btn-block">Supprimer</button>
+	<button data-ng-if="file.status === -2" data-ng-click="abortUpload($index)" class="btn btn-sm btn-block">Annuler</button>
+</div>
+</form>
+<div class="row wizard-controls-step1">
+	<div class="col-md-12">
+		<button data-ng-file-select="onFileSelect($files)" data-multiple="true" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter un ou des fichiers</button>
+		<button data-ng-click="removeAllFile()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les fichiers</button>
 	</div>
 </div>
-<div data-ng-if="$parent.sourceData">
-	<h4>Apercu</h4>
+<div class="row wizard-columns-list">
+	<div class="col-md-12">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-fa-file-text-o"></i>Champs contenus dans les fichiers
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="row">
+					<div data-ng-if="filesData.length === 0" class="col-md-12 text-center">
+						<p>Ajoutez au moins un fichier.</p>
+					</div>
+					<div class="col-md-3" data-ng-repeat="fileData in filesData">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								<h3 class="panel-title">{{ fileData.fileName }}</h3>
+							</div>
+							<ul class="list-group wizard-columns">
+								<li data-ng-repeat="col in fileData.columns"
+								class="list-group-item draggable"
+								data-ui-draggable="true"
+								data-drag="{fileName: '{{fileData.fileName}}', column: '{{col}}'}">
+									 {{ col }}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wizard-add-combi portlet box blue" data-ui-on-Drop="droppedRegroup($event, $data)">
+			<div class="wizard-add-combi portlet-title">
+				<div class="wizard-add-combi caption">
+					<i class="fa fa-fa-file-text-o"></i>Regroupement par champs
+				</div>
+			</div>
+			<div class="wizard-add-combi portlet-body actual-drag-hover">
+				<div class="wizard-add-combi row">
+					<div data-ng-if="combinedColumns.length === 0" class="col-md-12 text-center wizard-add-combi">
+						<p class="wizard-add-combi">Ajoutez ici les champs à combiner.</p>
+					</div>
+					<div data-ng-repeat="combinedColumn in combinedColumns" class="col-md-3"
+						data-ui-on-Drop="droppedTableRegroup($event, $data, $index)">
+						<div class="table-scrollable wizard-columns actual-drag-hover">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>
+											Fichier
+										</th>
+										<th>
+											Champ
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="col in combinedColumn">
+										<td>
+											{{ col.fileName }}
+										</td>
+										<td>
+											{{ col.column }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endverbatim %}

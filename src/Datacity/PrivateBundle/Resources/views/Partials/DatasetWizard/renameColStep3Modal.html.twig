@@ -1,0 +1,26 @@
+<div class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+	<button type="button" class="close" ng-click="$hide()">&times;</button>
+	<h4 class="modal-title">Renommer le champ</h4>
+</div>
+<div class="modal-body">
+	<form action="" class="form-horizontal">
+		<div class="form-body">
+			<div class="form-group">
+				<label class="control-label col-md-3">Nom du champ <strong style="color:red;">*</strong></label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" data-ng-model="content">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-ng-click="$hide()">Annuler</button>
+	<button type="button" class="btn btn-primary" data-ng-click="confirmRenameModal($hide, content)">Confirmer</button>
+</div>
+</div>
+</div>
+</div>

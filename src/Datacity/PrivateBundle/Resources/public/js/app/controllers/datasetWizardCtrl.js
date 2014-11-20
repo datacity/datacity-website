@@ -144,12 +144,13 @@
 					        break;
 					    }
 					}
-					$scope.combinedColumns = $scope.combinedColumns.filter(function (item) {
-						item = item.filter(function (val) {
+					for (var i = $scope.combinedColumns.length - 1; i >= 0; i--) {
+						$scope.combinedColumns[i] = $scope.combinedColumns[i].filter(function (val) {
 							return val.fileName !== $scope.fileUp[$index].data.name;
 						});
-						return item.length !== 1;
-					});
+						if ($scope.combinedColumns[i].length === 0)
+							$scope.combinedColumns.splice(i, 1);
+					};
 					$scope.fileUp.splice($index, 1);
 				};
 
@@ -194,6 +195,9 @@
 
 				function combineFilesAndShow() {
 					$scope.$parent.canContinue = function(){return false};
+					$scope.combinedColumns = $scope.combinedColumns.filter(function (item) {
+						return item.length > 1;
+					});
 					if ($scope.combinedColumns.length === 0) {
 						takeFirstFileAndGo();
 						return;
@@ -201,14 +205,9 @@
 					for (var i = 0, len = $scope.combinedColumns.length; i < len; i++) {
 
 					}
-					$scope.$parent.wizardProgress = 25;
+
 					$scope.$parent.sourceData = $scope.filesData[0]; //TMP
-					$scope.$parent.canContinue = function() { return $scope.filesData.length > 0; };
-					$scope.$parent.backButton = function() {
-						$scope.$parent.sourceData = null
-						$scope.$parent.wizardProgress = 15;
-						$scope.$parent.backButton = null;
-					};
+					$state.go('wizardDS.step2');
 				};
 
 				function takeFirstFileAndGo() {
@@ -218,7 +217,7 @@
 
 				$scope.continueModal = function(hide) {
 					hide();
-					combineFilesAndShow();
+					$timeout(combineFilesAndShow, 100);
 				};
 
 				$scope.$parent.continueButton = function() {
@@ -239,30 +238,52 @@
 					return $scope.filesData.length > 0;
 				};
 
-				$scope.droppedRegroup = function(data, evt) {
-					console.log(evt);
-					if (!angular.element(evt.event.target).hasClass('wizard-add-combi'))
-						return;
+				$scope.droppedRegroup = function(evt, data) {
+					for (var i = $scope.combinedColumns.length - 1; i >= 0; i--) {
+						$scope.combinedColumns[i] = $scope.combinedColumns[i].filter(function (val) {
+							return !(val.fileName === data.fileName &&
+								val.column === data.column);
+						});
+						if ($scope.combinedColumns[i].length === 0)
+							$scope.combinedColumns.splice(i, 1);
+					};
 					$scope.combinedColumns.push([data]);
 				};
 
-				$scope.droppedTableRegroup = function(data, evt) {
-					console.log('small');
-					console.log(evt);
+				$scope.droppedTableRegroup = function(evt, data, index) {
+					for (var i = $scope.combinedColumns.length - 1; i >= 0; i--) {
+						if (i === index) {
+							for (var j = $scope.combinedColumns[i].length - 1; j >= 0; j--) {
+								if ($scope.combinedColumns[i][j].fileName === data.fileName) {
+									$scope.combinedColumns[i].splice(j, 1);
+									break;
+								}
+							}
+							$scope.combinedColumns[i].push(data);
+							continue;
+						}
+						$scope.combinedColumns[i] = $scope.combinedColumns[i].filter(function (val) {
+							return !(val.fileName === data.fileName &&
+								val.column === data.column);
+						});
+						if ($scope.combinedColumns[i].length === 0)
+							$scope.combinedColumns.splice(i, 1);
+					};
 				}
 			}])
 		.controller('datasetWizardStep2Controller', ['$scope', '$state', '$filter', 'ngTableParams',
 			function($scope, $state, $filter, ngTableParams) {
+				if (!$scope.$parent.sourceData) {
+					$state.go('wizardDS.step1');
+				}
 				$scope.$parent.wizardProgress = 40;
 				$scope.$parent.step = '2';
 				$scope.$parent.backButton = function() {
-					$scope.$parent.sourceData = null; //On reset ici, inutile d'afficher l'apercu.
+					$scope.$parent.sourceData = null;
 					$state.go('wizardDS.step1');
 				};
 				$scope.$parent.continueButton = function() { $state.go('wizardDS.step3') };
 				$scope.$parent.canContinue = function() { return true; };
-
-				console.log($scope.$parent.sourceData.datas);
 
 			    $scope.tableParams = new ngTableParams({
 			        page: 1,
@@ -299,44 +320,256 @@
 				  "content": "TODO"
 				};
 			}])
-		.controller('datasetWizardStep3Controller', ['$scope', '$state',
-			function($scope, $state) {
+		.controller('datasetWizardStep3Controller', ['$scope', '$state', '$modal',
+			function($scope, $state, $modal) {
+				if (!$scope.$parent.sourceData) {
+					$state.go('wizardDS.step1');
+				}
 				$scope.$parent.wizardProgress = 60;
 				$scope.$parent.step = '3';
-				$scope.$parent.backButton = function() { $state.go('wizardDS.step2'); };
-				$scope.$parent.continueButton = function() { $state.go('wizardDS.step4') };
+				$scope.$parent.backButton = function() {
+					$scope.$parent.sourceDataFinal = null;
+					$state.go('wizardDS.step2');
+				};
 				$scope.$parent.canContinue = function() {
-					return true; //TODO Demande au moins 1 binding.
+					return $scope.finalColumns.length > 0;
 				};
 
-				console.log('todo step3');
-				console.log($scope.$parent.sourceData);
+				$scope.finalColumns = [];
+
+				$scope.tryAddColumn = function(evt, data) {
+					$scope.currentCol = data;
+					$scope.currentIndex = -1; //Workaround pour passer facilement l'index...
+					$modal({template: 'datasetWizardRenameColStep3Modal.html',
+						placement: 'center',
+						content: data,
+						scope: $scope,
+						animation: '',
+						show: true});
+				};
+
+				$scope.confirmRenameModal = function(hide, currentColTitle) {
+					c = currentColTitle.toString();
+					if (c === "")
+						return;
+					hide();
+					if ($scope.currentIndex === -1)
+						$scope.addColumn(c);
+					else
+						$scope.renameColTitle(c);
+				}
+
+				$scope.addColumn = function(currentColTitle) {
+					for (var i = $scope.finalColumns.length - 1; i >= 0; i--) {
+						$scope.finalColumns[i].oldColumns = $scope.finalColumns[i].oldColumns.filter(function (val) {
+							return val !== $scope.currentCol;
+						});
+						if ($scope.finalColumns[i].oldColumns.length === 0)
+							$scope.finalColumns.splice(i, 1);
+					};
+					$scope.finalColumns.push({title: currentColTitle, oldColumns: [$scope.currentCol]});
+				}
+
+				$scope.combineColumn = function(evt, data, index) {
+					for (var i = $scope.finalColumns.length - 1; i >= 0; i--) {
+						$scope.finalColumns[i].oldColumns = $scope.finalColumns[i].oldColumns.filter(function (val) {
+							return val !== data;
+						});
+						if (i === index) {
+							$scope.finalColumns[index].oldColumns.push(data);
+							continue;
+						}
+						if ($scope.finalColumns[i].oldColumns.length === 0)
+							$scope.finalColumns.splice(i, 1);
+					};
+				};
+
+				$scope.tryCopyCol = function() {
+					if ($scope.finalColumns.length > 0) {
+						$modal({template: 'datasetWizardCopyColStep3Modal.html',
+							placement: 'center',
+							scope: $scope,
+							animation: '',
+							show: true});
+					}
+					else
+						$scope.copyCol();
+				};
+
+				$scope.copyCol = function(hide) {
+					if (hide)
+						hide();
+					$scope.finalColumns = $scope.$parent.sourceData.columns.map(function(item) {
+						return {title: item, oldColumns: [item]};
+					});
+				}
+
+				$scope.removeAllCol = function() {
+					$scope.finalColumns = [];
+				};
+
+				$scope.editColTitle = function(index) {
+					$scope.currentIndex = index;
+					$modal({template: 'datasetWizardRenameColStep3Modal.html',
+						placement: 'center',
+						content: $scope.finalColumns[index].title,
+						scope: $scope,
+						animation: '',
+						show: true});
+				};
+
+				$scope.renameColTitle = function(newTitle) {
+					$scope.finalColumns[$scope.currentIndex].title = newTitle;
+				}
+
+				$scope.removeCol = function(index) {
+					$scope.finalColumns.splice(index, 1);
+				};
+
+				function subPrepareNewColumnName(item) {
+					for (var i = 0, len = $scope.finalColumns.length; i < len; i++) {
+						for (var j = 0, lenn = $scope.finalColumns[i].oldColumns.length; j < lenn; j++) {
+							if (item === $scope.finalColumns[i].oldColumns[j])
+								return {oldName: item, title: $scope.finalColumns[i].title }
+						}
+					}
+					return false;
+				}
+
+				function prepareNewColumnName() {
+					var newColumnName = [];
+					for (var k = 0, len = $scope.$parent.sourceData.columns.length; k < len; k++) {
+						var tmp = subPrepareNewColumnName($scope.$parent.sourceData.columns[k]);
+						if (tmp)
+							newColumnName.push(tmp);
+					};
+					return newColumnName;
+				}
+
+				function processNewColumns(newColumnsNames) {
+					$scope.$parent.sourceDataFinal = $scope.$parent.sourceData.datas.map(function(line) {
+						var newLine = {};
+						for (i = 0, len = newColumnsNames.length; i < len; i++) {
+							if (newLine[newColumnsNames[i].title])
+								newLine[newColumnsNames[i].title] = newLine[newColumnsNames[i].title] +
+																" " + line[newColumnsNames[i].oldName];
+																//TODO support de differents separateurs
+							else
+								newLine[newColumnsNames[i].title] = line[newColumnsNames[i].oldName];
+						}
+						return newLine;
+					});
+				}
+
+				$scope.$parent.continueButton = function() {
+					var newColumnsNames = prepareNewColumnName();
+					//TODO Check ici si identique
+					processNewColumns(newColumnsNames);
+					$state.go('wizardDS.step4');
+				};
 			}])
-		.controller('datasetWizardStep4Controller', ['$scope', '$state',
-			function($scope, $state) {
+		.controller('datasetWizardStep4Controller', ['$scope', '$state', 'filterList', '$http',
+			function($scope, $state, filterList, $http) {
+				if (!$scope.$parent.sourceDataFinal) {
+					$state.go('wizardDS.step1');
+				}
 				$scope.$parent.wizardProgress = 80;
 				$scope.$parent.step = '4';
 				$scope.$parent.backButton = function() { $state.go('wizardDS.step3'); };
 				$scope.$parent.continueButton = function() { $state.go('wizardDS.step5') };
 				$scope.$parent.canContinue = function() {
-					return true; //TODO Check champs obligatoires
+					return true; //FIXME VERIFIER LES CHAMPS REQUIS !
 				};
 				$scope.$parent.endButton = null;
 
-				console.log('todo step4');
-				console.log($scope.$parent.sourceData);
+				$scope.filterList = filterList.data.results;
+				$scope.dvisibility = ['Autoriser tout le monde à voir mes publications',
+					'Autoriser mes abonnés/abonnements à voir mes publications',
+					'N\'autoriser personne à voir mes publications'];
+			    $scope.getLocation = function(val) {
+			    	if (!val)
+			    		return null;
+					return $http.get(Routing.generate('datacity_public_api_place'), {
+                		ignoreLoadingBar: true,
+                		params: {
+                    		q: val
+                		}}).then(function(res) {
+                			return res.data.results.map(function(item) { return item.name });
+                	});
+			    }
 			}])
-		.controller('datasetWizardStep5Controller', ['$scope', '$state',
-			function($scope, $state) {
+		.controller('datasetWizardStep5Controller', ['$scope', '$state', '$filter', 'ngTableParams', 'DatasetFactory', '$http',
+			function($scope, $state, $filter, ngTableParams, DatasetFactory, $http) {
+				if (!$scope.$parent.sourceDataFinal) {
+					$state.go('wizardDS.step1');
+				}
 				$scope.$parent.wizardProgress = 100;
 				$scope.$parent.step = '5';
-				$scope.$parent.backButton = function() { $state.go('wizardDS.step4'); };
+				$scope.$parent.backButton = null;
 				$scope.$parent.continueButton = null;
+
+				$scope.sourceDataFinalColumns = Object.keys($scope.$parent.sourceDataFinal[0]);
+
+			    $scope.tableParams = new ngTableParams({
+			        page: 1,
+			        count: 10
+			    }, {
+			        total: $scope.$parent.sourceDataFinal.length,
+			        getData: function($defer, params) {
+			            var filteredData = params.filter() ?
+			                    $filter('filter')($scope.$parent.sourceDataFinal, params.filter()) :
+			                    $scope.$parent.sourceDataFinal;
+			            var orderedData = params.sorting() ?
+			                    $filter('orderBy')(filteredData, params.orderBy()) :
+			                    $scope.$parent.sourceDataFinal;
+
+			            params.total(orderedData.length);
+			            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+			        }
+			    });
+
+			    $scope.sortTable = function(name) {
+			    	var obj = {};
+			    	obj[name] = $scope.tableParams.isSortBy(name, 'asc') ? 'desc' : 'asc';
+			    	$scope.tableParams.sorting(obj);
+			    }
+
+			    $scope.filterTable = function(name) {
+			    	var obj = {};
+			    	obj[name] = 'text';
+			    	return obj;
+			    }
+
 				$scope.$parent.endButton = function() {
-					//TODO Enjoy
+					$state.go('datasetList');
 				};
 
-				console.log('todo step5');
-				console.log($scope.$parent.sourceData);
+				$scope.$parent.canEnd = false;
+				DatasetFactory.post($scope.$parent.meta.dataset).then(function(data) {
+					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + data.result;
+					var sourceSlug = $scope.$parent.meta.source.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
+					//TRICK pour l'ancienne API
+					var databinding = $scope.sourceDataFinalColumns.map(function(item) {
+						return { from: item, to: item };
+					});
+					//ENDTRICK
+					$http({
+						method: 'POST',
+						contentType: false,
+        				processData: false,
+        				data: {databinding: databinding,
+        					jsonData: $scope.$parent.sourceDataFinal},
+						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + data.result + '/source/' + sourceSlug + '/upload'
+					}).then(function(response) {
+						//TODO Support d'erreur
+						var tmp = {metadata: $scope.$parent.meta.source,
+								dataModel: $scope.sourceDataFinalColumns.map(function(item) {
+									return {name: item, type: "Texte"};
+								})}
+						$http.post(Routing.generate('datacity_private_source_post', {slug: data.result}), tmp).then(function() {
+							$scope.$parent.canEnd = true;
+						});
+					});
+				});
 			}])
 })();
