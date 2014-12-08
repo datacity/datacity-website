@@ -67,7 +67,8 @@
                                 visited_nb: item.visited_nb,
                                 undesirable_nb: item.undesirable_nb,
                                 useful_nb: item.useful_nb,
-                                applications: applications
+                                applications: applications,
+                                columns: item.columns
                             };
                             if (item.coverage_territory != undefined)
                                 dataset.couverture = item.coverage_territory.name;
