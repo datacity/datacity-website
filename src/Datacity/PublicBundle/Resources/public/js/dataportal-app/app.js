@@ -146,28 +146,76 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             enableColumnReordering: true,
             showFooter: true
         };
-      $scope.refine_array = [{'facet':'', 'value':''}];
-      $scope.facets=['update','date','publish'];
-      $scope.addRow = function(new_facet){
-      $scope.facets.push(new_facet);
-      $scope.new_facets = '';
-};
-$scope.deleteRow = function(item) {
-var index = $scope.facets.indexOf(item);
-$scope.facets.splice(index, 1);
-};
-$scope.addRefine = function(option_refine, value_refine){
-if (option_refine != "facettes" && value_refine)
-//if ($scope.refine_array.length == 1){
-$scope.refine_array.splice(0, 0, {'facet':option_refine, 'value':value_refine});
-//	}
-//else {
-//$scope.refine_array.push({'facet':option_refine, 'value':value_refine});
-//	}
-};
-$scope.addExclude = function(option_exclude, value_exclude){
-if (option_exclude != "facettes" && value_exclude)
-  ;
-};
+      $scope.urlSocialNetwork = "http://localhost/dataview#/dataset/" + dataset.slug;
+        $scope.refine_array = [{'facet':'', 'value':''}];
+        $scope.exclude_array = [{'facet':'', 'value':''}];
+        $scope.facetsName=[];
+        $scope.value_refine='';
+        $scope.facets=[];
+        var facetsUrl='';
+        for (var i=0; i< /*$scope.dataset.columns.length*/4;i++){
+            $scope.facets.push($scope.dataset.columns[i].name);
+            $scope.facetsName.splice(1, 0, {'name':$scope.dataset.columns[i].name});
+            facetsUrl += "&facet=" + $scope.dataset.columns[i].name;
+        }
+        $scope.url = "/api/search?dataset=" + dataset.slug + facetsUrl;
+        $scope.addRow = function()
+        {
+
+            $scope.facets.push($scope.new_facet);
+            $scope.facetsName.splice($scope.facetsName.length, 0, {'name':$scope.new_facet});
+            $scope.new_facet = '';
+        };
+        $scope.deleteRow = function(item) 
+        {
+            var index = $scope.facets.indexOf(item);
+            $scope.facets.splice(index, 1);
+            $scope.facetsName.splice(index, 1);
+        };
+        $scope.addFilter = function(option_refine, value_refine, type)
+        {
+            if (option_refine.value != "facettes" && value_refine)
+            {
+                if (type == "refine")
+                    $scope.refine_array.splice($scope.refine_array.length, 1, {'facet':option_refine.name, 'value':value_refine.title});
+                else if (type=="exclude")
+                    $scope.exclude_array.splice($scope.exclude_array.length, 1, {'facet':option_refine.name, 'value':value_refine.title});
+            }
+            this.facet='';
+            this.value_refine.title=''; 
+        };
+        $scope.deleteRefine = function(index)
+        {
+            $scope.refine_array.splice(index, 1);
+
+        }
+        $scope.deleteExclude = function(index){
+            $scope.exclude_array.splice(index, 1);
+        };
+        $scope.updateUrl = function() {
+            $scope.url = "/api/search?dataset=" + dataset.slug ;
+            facetsUrl = "";
+            refine="";
+            exclude="";
+            
+            if ($scope.q)
+            $scope.url +=   "&" + "q=" + $scope.q;
+            if ($scope.col_nb)
+            $scope.url = $scope.url + "&" + "rows=" + $scope.col_nb;
+            if ($scope.first_res)
+            $scope.url = $scope.url + "&" +  "start=" + $scope.first_res;
+            for (var i=0; i< $scope.facets.length && $scope.facets[i] != 'undefined';i++){
+                facetsUrl += "&facet=" + $scope.facets[i];
+            }
+            for (var j=1;j<$scope.refine_array.length;j++){
+                refine += "&refine." + $scope.refine_array[j].facet + "=" + $scope.refine_array[j].value;
+            }
+            for (var k=1;k<$scope.exclude_array.length;k++){
+                exclude += "&exclude." + $scope.exclude_array[k].facet + "=" + $scope.exclude_array[k].value;
+            }
+            $scope.url += facetsUrl;
+            $scope.url += refine;
+            $scope.url += exclude;
+        }
     }
 ]);
