@@ -4,25 +4,147 @@
 	{% verbatim %}
 	<div class="top-wrapper">
 		<div class="post-heading">
+		<iframe src="//www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%2Fdataview%23%2Fdataset%2Fresultats-des-elections-europeennes&amp;width&amp;layout=icon_link&amp;appId=317673251768041" scrolling="no" frameborder="0" style="height:20px;width:100px;margin-bottom:-8px;border:none; overflow:hidden;" allowTransparency="true"></iframe>
+		<a class="twitter-share-button"
+  		href="https://twitter.com/share"
+  		>
+			Tweet
+		</a>
 			<h3>{{ dataset.name }}</h3>
 		</div>
 	</div>
+
 	<p>
 		 {{ dataset.desc }}
 	</p>
 	</article>
+	<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="./#tableau" data-toggle="tab">Tableau</a></li>
+        <li><a href="./#graphique" data-toggle="tab">Graphique</a></li>
+        <li><a href="./#api" data-toggle="tab">API</a></li>
+     </ul>
 	<div class="visualizator">
-		<div data-tabset>
-		    <div data-tab data-heading="Tableau">
-				<div data-ng-if="datasetData.length > 0" class="gridStyle" style="height: 600px" ng-grid="gridOptions">
+		<div id="my-tab-content" class="tab-content">
+			<div class="tab-pane active" id="tableau">
+            	<div data-ng-if="datasetData.length > 0" class="gridStyle" style="height: 600px" ng-grid="gridOptions">
 		        </div>
 		        <span data-ng-if="datasetData.length === 0">Aucune donnée disponible</span>
-		    </div>
-		    <div data-tab data-heading="Graphique">
-		      TODO
-		    </div>
+        	</div>
+
+        	<div class="tab-pane" id="graphique">
+            	TODO
+        	</div>
+
+			<div ng-click='updateUrl()' class="tab-pane" id="api">
+		    	<form  class="form-horizontal" style="width:550px;">
+					<div class="form-body">
+						<label style="margin-left:-15px;" class="col-md-2 control-label">jeu de données  <strong style="color:red;"></strong></label>
+						<div class="row portfolio-block">
+							<div class="col-md-2">
+								<span style="margin-left:10px;"> {{dataset.name}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-2" style="margin-left:-15px;">q  <strong style="color:red;"></strong></label>
+						<div class="col-md-3">
+							<input type="text" ng-model="q" name="q" style="width:250px;margin-left:10px;" class="form-control" placeholder="recherche plein texte">
+						</div>
+					</div><br/>
+					<div class="form-group">
+						<label class="col-md-2 control-label" style="margin-left:-15px;">colonnes  </label>
+						<div class="col-md-2">
+							<input type="text" ng-model="col_nb" name="col_nb" style="width:250px; margin-left:10px;" class="form-control" placeholder="nombre de colonnes retournées"/>
+						</div>
+					</div><br/>
+					<div class="form-group">
+						<label class="control-label col-md-2" style="margin-left:-15px;">commencement  <strong style="color:red;"></strong></label>
+						<div class="col-md-2">
+							<input type="text" ng-model="first_res" name="first_res" style="width:250px;margin-left:10px;" class="form-control" placeholder="index du premier résultat retourné">
+						</div>
+					</div><br/>
+					<div class="form-group">
+						<div class="portlet-body">
+							<div class="table-responsive" style="width:400px;margin-top:20px;" >
+								<table class="table table-striped table-bordered table-advance table-hover" ng-table="facets_table">
+									<thead>
+										<tr>
+											<th>
+												<i></i> Facettes
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="facet in facets">
+											<td >
+												{{facet}}
+											</td>
+											<td style="width:50px" ng-click='deleteRow(facet)'>
+											<button data-toggle="modal" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div style="margin-left:20px;">
+						<div class="col-md-2" >
+							<input type="text" name="new_facet" class="form-control" ng-model="new_facet">
+							<button ng-click='addRow()' class="btn btn-lg green">ajouter une facette <i class="fa fa-plus"></i></button>
+						</div><br/>
+					</div>
+					<div style="margin-top:35px;">
+						<div style="margin-top:20px;" class="portlet-body" >
+							<label class="control-label col-md-2" style="margin-left:-110px;margin-right:5px;">affiner </label>
+							<div ng-repeat="ref in refine_array" style="margin-bottom:5px;">
+								<div data-ng-if="$index > 0">
+						 			<select style="margin-left:55px;">
+										<option selected="selected" style=" display: none;">{{ref.facet}}</option>
+									<select />
+									<input type="text" value={{ref.value}} name="current_value_refine" ng-class="" style="width:100px;margin-left:10px;" class="form-control">
+									<button data-toggle="modal" ng-click='deleteRefine($index)' class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</button>
+								</div>
+								<div data-ng-if="$index == 0">
+									<select ng-options="facet.name for facet in facetsName" ng-model="facet">
+   										<option selected="selected" style="display:none" value="">facettes</option>
+									</select>
+									<input  type="text" ng-model="value_refine.title" value="" name="value_refine.title" ng-class="" style="width:100px;margin-left:10px;" class="form-control" placeholder="valeur">
+									<button ng-click='addFilter(facet, value_refine, "refine")' class="btn btn-lg green">ajouter filtre <i class="fa fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+						<div style="margin-top:20px;" class="portlet-body" >
+							<label class="control-label col-md-2" style="margin-left:-110px;margin-right:5px;">exclure </label>
+							<div ng-repeat="ref in exclude_array" style="margin-bottom:5px;">
+								<div data-ng-if="$index > 0">
+						 			<select  style="margin-left:55px;">
+										<option selected="selected" style=" display: none;">{{ref.facet}}</option>
+									<select />
+									<input type="text" value={{ref.value}} name="current_value_refine" ng-class="" style="width:100px;margin-left:10px;" class="form-control">
+									<button data-toggle="modal" ng-click='deleteExclude($index)' class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</button>
+								</div>
+								<div data-ng-if="$index == 0">
+									<select ng-options="facet.name for facet in facetsName" ng-model="facet">
+   										<option selected="selected" style="display:none" value="">facettes</option>
+									</select>
+									<input  type="text" ng-model="value_refine.title" value="" name="value_refine.title" ng-class="" style="width:100px;margin-left:10px;" class="form-control" placeholder="valeur">
+									<button ng-click='addFilter(facet, value_refine, "exclude")' class="btn btn-lg green">ajouter filtre <i class="fa fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+						<div style="font-size:12px;color:#1E90FF;margin-left:25px;margin-top:35px;">
+						
+							{{url}}
+						
+						</div>
+						<div class="col-md-offset-3 col-md-9" style="margin-top:30px;">
+							<button type="submit" class="btn blue">Enregistrer</button>
+						</div>
+					</div>
+				</form>
+			</div> 
 		</div>
-	</div>
 	{% endverbatim %}
 	<section data-ng-if="dataset.sources" class="data-links">
 		<div class="row">
@@ -85,4 +207,9 @@
 	</div>
 	{% endverbatim %}
 	</aside>
+	<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script> 
 </div>
