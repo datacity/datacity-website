@@ -30,6 +30,8 @@ set :writable_dirs,     ["app/cache", "app/logs"]
 #set(:user)              { "#{spec_user}" }
 set :permission_method, :acl
 
+ssh_options[:forward_agent] = true
+
 set :dump_assetic_assets, true
 set :assets_symlinks, true
 # Be more verbose by uncommenting the following line
@@ -41,7 +43,9 @@ namespace :symfony do
       namespace :bower do
       desc '[internal] Run the bower install'
       task :install do
-          invoke_command "cd #{latest_release} && bower install", :via => run_method
+        capifony_pretty_print "--> Installing Bower dependencies"
+        invoke_command "cd #{latest_release} && bower install", :via => run_method
+        capifony_puts_ok
       end
     end
 end
