@@ -271,65 +271,17 @@
 					};
 				}
 			}])
-		.controller('datasetWizardStep2Controller', ['$scope', '$state', '$filter', 'ngTableParams',
-			function($scope, $state, $filter, ngTableParams) {
+		.controller('datasetWizardStep2Controller', ['$scope', '$state', '$modal',
+			function($scope, $state, $modal) {
 				if (!$scope.$parent.sourceData) {
 					$state.go('wizardDS.step1');
+					return;
 				}
 				$scope.$parent.wizardProgress = 40;
 				$scope.$parent.step = '2';
 				$scope.$parent.backButton = function() {
 					$scope.$parent.sourceData = null;
 					$state.go('wizardDS.step1');
-				};
-				$scope.$parent.continueButton = function() { $state.go('wizardDS.step3') };
-				$scope.$parent.canContinue = function() { return true; };
-
-			    $scope.tableParams = new ngTableParams({
-			        page: 1,
-			        count: 10
-			    }, {
-			        total: $scope.$parent.sourceData.datas.length,
-			        getData: function($defer, params) {
-			            var filteredData = params.filter() ?
-			                    $filter('filter')($scope.$parent.sourceData.datas, params.filter()) :
-			                    $scope.$parent.sourceData.datas;
-			            var orderedData = params.sorting() ?
-			                    $filter('orderBy')(filteredData, params.orderBy()) :
-			                    $scope.$parent.sourceData.datas;
-
-			            params.total(orderedData.length);
-			            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-			        }
-			    });
-
-			    $scope.sortTable = function(name) {
-			    	var obj = {};
-			    	obj[name] = $scope.tableParams.isSortBy(name, 'asc') ? 'desc' : 'asc';
-			    	$scope.tableParams.sorting(obj);
-			    }
-
-			    $scope.filterTable = function(name) {
-			    	var obj = {};
-			    	obj[name] = 'text';
-			    	return obj;
-			    }
-
-			    $scope.addColModal = {
-				  "title": "Ajout d'une colonne",
-				  "content": "TODO"
-				};
-			}])
-		.controller('datasetWizardStep3Controller', ['$scope', '$state', '$modal',
-			function($scope, $state, $modal) {
-				if (!$scope.$parent.sourceData) {
-					$state.go('wizardDS.step1');
-				}
-				$scope.$parent.wizardProgress = 60;
-				$scope.$parent.step = '3';
-				$scope.$parent.backButton = function() {
-					$scope.$parent.sourceDataFinal = null;
-					$state.go('wizardDS.step2');
 				};
 				$scope.$parent.canContinue = function() {
 					return $scope.finalColumns.length > 0;
@@ -340,7 +292,7 @@
 				$scope.tryAddColumn = function(evt, data) {
 					$scope.currentCol = data;
 					$scope.currentIndex = -1; //Workaround pour passer facilement l'index...
-					$modal({template: 'datasetWizardRenameColStep3Modal.html',
+					$modal({template: 'datasetWizardRenameColStep2Modal.html',
 						placement: 'center',
 						content: data,
 						scope: $scope,
@@ -386,7 +338,7 @@
 
 				$scope.tryCopyCol = function() {
 					if ($scope.finalColumns.length > 0) {
-						$modal({template: 'datasetWizardCopyColStep3Modal.html',
+						$modal({template: 'datasetWizardCopyColStep2Modal.html',
 							placement: 'center',
 							scope: $scope,
 							animation: '',
@@ -410,7 +362,7 @@
 
 				$scope.editColTitle = function(index) {
 					$scope.currentIndex = index;
-					$modal({template: 'datasetWizardRenameColStep3Modal.html',
+					$modal({template: 'datasetWizardRenameColStep2Modal.html',
 						placement: 'center',
 						content: $scope.finalColumns[index].title,
 						scope: $scope,
@@ -430,7 +382,7 @@
 					for (var i = 0, len = $scope.finalColumns.length; i < len; i++) {
 						for (var j = 0, lenn = $scope.finalColumns[i].oldColumns.length; j < lenn; j++) {
 							if (item === $scope.finalColumns[i].oldColumns[j])
-								return {oldName: item, title: $scope.finalColumns[i].title }
+								return {oldName: item, newName: $scope.finalColumns[i].title }
 						}
 					}
 					return false;
@@ -450,12 +402,12 @@
 					$scope.$parent.sourceDataFinal = $scope.$parent.sourceData.datas.map(function(line) {
 						var newLine = {};
 						for (i = 0, len = newColumnsNames.length; i < len; i++) {
-							if (newLine[newColumnsNames[i].title])
-								newLine[newColumnsNames[i].title] = newLine[newColumnsNames[i].title] +
+							if (newLine[newColumnsNames[i].newName])
+								newLine[newColumnsNames[i].newName] = newLine[newColumnsNames[i].newName] +
 																" " + line[newColumnsNames[i].oldName];
 																//TODO support de differents separateurs
 							else
-								newLine[newColumnsNames[i].title] = line[newColumnsNames[i].oldName];
+								newLine[newColumnsNames[i].newName] = line[newColumnsNames[i].oldName];
 						}
 						return newLine;
 					});
@@ -465,7 +417,64 @@
 					var newColumnsNames = prepareNewColumnName();
 					//TODO Check ici si identique
 					processNewColumns(newColumnsNames);
-					$state.go('wizardDS.step4');
+					$state.go('wizardDS.step3');
+				};
+			}])
+		.controller('datasetWizardStep3Controller', ['$scope', '$state', '$filter', 'ngTableParams',
+			function($scope, $state, $filter, ngTableParams) {
+				if (!$scope.$parent.sourceDataFinal) {
+					$state.go('wizardDS.step1');
+					return;
+				}
+				$scope.$parent.wizardProgress = 60;
+				$scope.$parent.step = '3';
+				$scope.$parent.backButton = function() {
+					$scope.$parent.sourceDataFinal = null;
+					$state.go('wizardDS.step2');
+				};
+				$scope.$parent.continueButton = function() { $state.go('wizardDS.step4') };
+				$scope.$parent.canContinue = function() { return true; };
+
+				$scope.sourceDataCurrentColumns = Object.keys($scope.$parent.sourceDataFinal[0]);
+				//Il n'y a pas forcement une colonne unique,
+				//du coup angular genere un hashKey lors du ng-repeat. Ref : track by (ng-repeat)
+				//Pour le moment, on l'enleve a la main...
+				if ($scope.sourceDataCurrentColumns[$scope.sourceDataCurrentColumns.length - 1] == "$$hashKey")
+					$scope.sourceDataCurrentColumns.pop();
+
+			    $scope.tableParams = new ngTableParams({
+			        page: 1,
+			        count: 10
+			    }, {
+			        total: $scope.$parent.sourceDataFinal.length,
+			        getData: function($defer, params) {
+			            var filteredData = params.filter() ?
+			                    $filter('filter')($scope.$parent.sourceDataFinal, params.filter()) :
+			                    $scope.$parent.sourceDataFinal;
+			            var orderedData = params.sorting() ?
+			                    $filter('orderBy')(filteredData, params.orderBy()) :
+			                    $scope.$parent.sourceDataFinal;
+
+			            params.total(orderedData.length);
+			            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+			        }
+			    });
+
+			    $scope.sortTable = function(name) {
+			    	var obj = {};
+			    	obj[name] = $scope.tableParams.isSortBy(name, 'asc') ? 'desc' : 'asc';
+			    	$scope.tableParams.sorting(obj);
+			    }
+
+			    $scope.filterTable = function(name) {
+			    	var obj = {};
+			    	obj[name] = 'text';
+			    	return obj;
+			    }
+
+			    $scope.addColModal = {
+				  "title": "Ajout d'une colonne",
+				  "content": "TODO"
 				};
 			}])
 		.controller('datasetWizardStep4Controller', ['$scope', '$state', 'filterList', '$http',

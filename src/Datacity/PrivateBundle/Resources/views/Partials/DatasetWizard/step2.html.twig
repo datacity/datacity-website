@@ -1,31 +1,64 @@
 {% verbatim %}
-<div class="row wizard-controls-step2">
-	<div class="col-md-12">
-		<button data-placement="center" data-bs-modal="addColModal" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter une colonne</button>
-		<button type="button" class="btn blue"><i class="fa fa-cogs"></i> Appliquer une expression régulière</button>
-	</div>
-</div>
 <div class="row">
-<div class="col-md-12">
-	<table ng-table="tableParams" show-filter="true" class="wizard-table table ng-table-resizable-columns ng-table-rowselected table-bordered" data-resizable-columns-id="myTable">
-		<thead>
-	        <tr>
-		        <th data-ng-repeat="column in $parent.sourceData.columns" data-resizable-column-id="{{ column }}"
-		        class="text-center sortable" ng-class="{
-		                'sort-asc': tableParams.isSortBy(column, 'asc'),
-		                'sort-desc': tableParams.isSortBy(column, 'desc')
-		              }"
-		            ng-click="sortTable(column)">
-		            {{column}}
-		        </th>
-	        </tr>
-	    </thead>
-	    <tr ng-repeat="item in $data">
-	        <td ng-repeat="column in $parent.sourceData.columns" data-sortable="'{{ column }}'" data-filter="filterTable(column)">
-	            {{item[column]}}
-	        </td>
-	    </tr>
-	</table>
-</div>
+	<div class="col-md-12">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-fa-file-text-o"></i>Champs de votre source
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="row">
+					<div class="col-md-3 draggable" data-ng-repeat="col in $parent.sourceData.columns"
+						data-ui-draggable="true"
+						data-drag="col">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">{{ col }}</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<button data-ng-click="tryCopyCol()" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Copier tout les champs</button>
+		<button data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les champs</button>
+	</div>
+	<div class="col-md-12 wizard-columns-list">
+		<div class="wizard-add-combi portlet box blue" data-ui-on-Drop="tryAddColumn($event, $data)">
+			<div class="wizard-add-combi portlet-title">
+				<div class="wizard-add-combi caption">
+					<i class="fa fa-fa-file-text-o"></i>Champs de votre jeux de donnée
+				</div>
+			</div>
+			<div class="wizard-add-combi portlet-body actual-drag-hover">
+				<div class="wizard-add-combi row">
+					<div data-ng-if="finalColumns.length === 0" class="col-md-12 text-center wizard-add-combi">
+						<p class="wizard-add-combi">Ajoutez ici les champs que vous voulez ajouter au jeux de donnée.</p>
+					</div>
+					<div class="col-md-3" data-ng-repeat="columns in finalColumns"
+						data-ui-on-Drop="combineColumn($event, $data, $index)">
+						<div class="panel panel-default actual-drag-hover">
+							<div class="panel-heading panel-special">
+								<div class="panel-title panel-caption">{{ columns.title }}</div>
+								<div class="panel-tools">
+									<a data-ng-click="editColTitle($index)" class="editIcon"><i class="fa fa-pencil-square-o"></i></a>
+									<a data-ng-click="removeCol($index)"><i class="fa fa-times"></i></a>
+								</div>
+							</div>
+							<ul class="list-group">
+								<li data-ng-repeat="col in columns.oldColumns"
+									class="list-group-item">
+									 {{ col }}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endverbatim %}
