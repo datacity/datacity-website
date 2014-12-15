@@ -9,6 +9,12 @@
 				$scope.canContinue = function(){return false};
 				$scope.sourceData = null;
 				$scope.wizardMode = wizardMode;
+				if ($scope.wizardMode === 'dataset') {
+					$scope.statePrefix = 'wizardDS.';
+				}
+				else if ($scope.wizardMode === 'source') {
+					$scope.statePrefix = 'editDS.wizardS.';
+				}
 			}])
 		.controller('datasetWizardStep1Controller', ['$scope', '$upload', '$http', '$timeout', '$q', '$state', '$modal', '$filter', 'ngTableParams',
 			function($scope, $upload, $http, $timeout, $q, $state, $modal, $filter, ngTableParams) {
@@ -208,12 +214,12 @@
 					}
 
 					$scope.$parent.sourceData = $scope.filesData[0]; //TMP
-					$state.go('wizardDS.step2');
+					$state.go($scope.statePrefix + 'step2');
 				};
 
 				function takeFirstFileAndGo() {
 					$scope.$parent.sourceData = $scope.filesData[0];
-					$state.go('wizardDS.step2');
+					$state.go($scope.statePrefix + 'step2');
 				}
 
 				$scope.continueModal = function(hide) {
@@ -223,7 +229,7 @@
 
 				$scope.$parent.continueButton = function() {
 					if ($scope.$parent.sourceData) {
-						$state.go('wizardDS.step2');
+						$state.go($scope.statePrefix + 'step2');
 						return;
 					}
 					if ($scope.filesData.length === 1) {
@@ -272,25 +278,36 @@
 					};
 				}
 			}])
-		.controller('datasetWizardStep2Controller', ['$scope', '$state', '$modal',
-			function($scope, $state, $modal) {
+		.controller('datasetWizardStep2Controller', ['$scope', '$state', '$modal', 'datasetModel',
+			function($scope, $state, $modal, datasetModel) {
 				if (!$scope.$parent.sourceData) {
-					$state.go('wizardDS.step1');
+					$state.go($scope.statePrefix + 'step1');
 					return;
 				}
 				$scope.$parent.wizardProgress = 40;
 				$scope.$parent.step = '2';
 				$scope.$parent.backButton = function() {
 					$scope.$parent.sourceData = null;
-					$state.go('wizardDS.step1');
+					$state.go($scope.statePrefix + 'step1');
 				};
+				//Trick pour le mode source, on désactive le bouton continue si on pas bind au moins 1 champ.
+				$scope.atLeastOneBinding = false;
 				$scope.$parent.canContinue = function() {
-					return $scope.finalColumns.length > 0;
+					return $scope.finalColumns.length > 0 && $scope.atLeastOneBinding;
 				};
 
-				$scope.finalColumns = [];
+				if ($scope.$parent.wizardMode === 'dataset')
+					$scope.finalColumns = []; //Struct : [ {title: '', inDataset: bool, oldColumns: ['', ''] } ]
+				else if ($scope.$parent.wizardMode === 'source') {
+					$scope.finalColumns = datasetModel.map(function(item) {
+						return { title: item.name, inDataset: true, oldColumns: [] };
+					})
+				}
 
 				$scope.tryAddColumn = function(evt, data) {
+					//On ne peux pas ajouter de colonne en mode source (du moins pour le moment...)
+					if ($scope.$parent.wizardMode !== 'dataset')
+						return;
 					$scope.currentCol = data;
 					$scope.currentIndex = -1; //Workaround pour passer facilement l'index...
 					$modal({template: 'datasetWizardRenameColStep2Modal.html',
@@ -317,10 +334,11 @@
 						$scope.finalColumns[i].oldColumns = $scope.finalColumns[i].oldColumns.filter(function (val) {
 							return val !== $scope.currentCol;
 						});
-						if ($scope.finalColumns[i].oldColumns.length === 0)
+						if ($scope.finalColumns[i].oldColumns.length === 0 && !$scope.finalColumns[i].inDataset)
 							$scope.finalColumns.splice(i, 1);
 					};
-					$scope.finalColumns.push({title: currentColTitle, oldColumns: [$scope.currentCol]});
+					$scope.finalColumns.push({title: currentColTitle, inDataset: false, oldColumns: [$scope.currentCol]});
+					$scope.atLeastOneBinding = true;
 				}
 
 				$scope.combineColumn = function(evt, data, index) {
@@ -332,9 +350,10 @@
 							$scope.finalColumns[index].oldColumns.push(data);
 							continue;
 						}
-						if ($scope.finalColumns[i].oldColumns.length === 0)
+						if ($scope.finalColumns[i].oldColumns.length === 0 && !$scope.finalColumns[i].inDataset)
 							$scope.finalColumns.splice(i, 1);
 					};
+					$scope.atLeastOneBinding = true;
 				};
 
 				$scope.tryCopyCol = function() {
@@ -353,12 +372,19 @@
 					if (hide)
 						hide();
 					$scope.finalColumns = $scope.$parent.sourceData.columns.map(function(item) {
-						return {title: item, oldColumns: [item]};
+						return {title: item, inDataset: false, oldColumns: [item]};
 					});
 				}
 
 				$scope.removeAllCol = function() {
-					$scope.finalColumns = [];
+					if ($scope.$parent.wizardMode === 'dataset')
+						$scope.finalColumns = [];
+					else if ($scope.$parent.wizardMode === 'source') {
+						//FIXME OK pour le moment, a revoir lorsque l'on pourra ajouter des champs...
+						for (var i = 0, len = $scope.finalColumns.length; i < len; i++) {
+							$scope.finalColumns[i].oldColumns = [];
+						}
+					}
 				};
 
 				$scope.editColTitle = function(index) {
@@ -414,26 +440,56 @@
 					});
 				}
 
+				function checkIfAllSet() {
+					var notSet = $scope.finalColumns.filter(function(item) {
+						return item.inDataset && !item.oldColumns.length;
+					});
+					if (notSet.length) {
+						var str = "";
+						for (var i = 0, len = notSet.length; i < len; i++) {
+							str += '<li>' + notSet[i].title +'</li>';
+						}
+						$modal({template: 'datasetWizardConfirmNotAllSetStep2Modal.html',
+							placement: 'center',
+							content: str,
+							scope: $scope,
+							animation: '',
+							show: true});
+						return false;
+					}
+					return true;
+				}
+
+				$scope.continueModal = function(hide) {
+					hide();
+					$scope.ignoreCheckAllSet = true;
+					$scope.$parent.continueButton();
+				}
+
 				$scope.$parent.continueButton = function() {
+					if ($scope.$parent.wizardMode === 'source' && !$scope.ignoreCheckAllSet) {
+						if (!checkIfAllSet())
+							return;
+					}
 					var newColumnsNames = prepareNewColumnName();
 					//TODO Check ici si identique
 					processNewColumns(newColumnsNames);
-					$state.go('wizardDS.step3');
+					$state.go($scope.statePrefix + 'step3');
 				};
 			}])
 		.controller('datasetWizardStep3Controller', ['$scope', '$state', '$filter', 'ngTableParams',
 			function($scope, $state, $filter, ngTableParams) {
 				if (!$scope.$parent.sourceDataFinal) {
-					$state.go('wizardDS.step1');
+					$state.go($scope.statePrefix + 'step1');
 					return;
 				}
 				$scope.$parent.wizardProgress = 60;
 				$scope.$parent.step = '3';
 				$scope.$parent.backButton = function() {
 					$scope.$parent.sourceDataFinal = null;
-					$state.go('wizardDS.step2');
+					$state.go($scope.statePrefix + 'step2');
 				};
-				$scope.$parent.continueButton = function() { $state.go('wizardDS.step4') };
+				$scope.$parent.continueButton = function() { $state.go($scope.statePrefix + 'step4') };
 				$scope.$parent.canContinue = function() { return true; };
 
 				$scope.sourceDataCurrentColumns = Object.keys($scope.$parent.sourceDataFinal[0]);
@@ -481,12 +537,12 @@
 		.controller('datasetWizardStep4Controller', ['$scope', '$state', 'filterList', '$http',
 			function($scope, $state, filterList, $http) {
 				if (!$scope.$parent.sourceDataFinal) {
-					$state.go('wizardDS.step1');
+					$state.go($scope.statePrefix + 'step1');
 				}
 				$scope.$parent.wizardProgress = 80;
 				$scope.$parent.step = '4';
-				$scope.$parent.backButton = function() { $state.go('wizardDS.step3'); };
-				$scope.$parent.continueButton = function() { $state.go('wizardDS.step5') };
+				$scope.$parent.backButton = function() { $state.go($scope.statePrefix + 'step3'); };
+				$scope.$parent.continueButton = function() { $state.go($scope.statePrefix + 'step5') };
 				$scope.$parent.canContinue = function() {
 					return true; //FIXME VERIFIER LES CHAMPS REQUIS !
 				};
@@ -508,10 +564,11 @@
                 	});
 			    }
 			}])
-		.controller('datasetWizardStep5Controller', ['$scope', '$state', '$filter', 'ngTableParams', 'DatasetFactory', '$http',
-			function($scope, $state, $filter, ngTableParams, DatasetFactory, $http) {
+		.controller('datasetWizardStep5Controller', ['$scope', '$state', '$filter', 'ngTableParams',
+													'DatasetFactory', '$http', 'datasetSlug',
+			function($scope, $state, $filter, ngTableParams, DatasetFactory, $http, datasetSlug) {
 				if (!$scope.$parent.sourceDataFinal) {
-					$state.go('wizardDS.step1');
+					$state.go($scope.statePrefix + 'step1');
 				}
 				$scope.$parent.wizardProgress = 100;
 				$scope.$parent.step = '5';
@@ -519,6 +576,9 @@
 				$scope.$parent.continueButton = null;
 
 				$scope.sourceDataFinalColumns = Object.keys($scope.$parent.sourceDataFinal[0]);
+				//Meme chose que au dessus puisque c'est un copié collé tout moche...
+				if ($scope.sourceDataFinalColumns[$scope.sourceDataFinalColumns.length - 1] == "$$hashKey")
+					$scope.sourceDataFinalColumns.pop();
 
 			    $scope.tableParams = new ngTableParams({
 			        page: 1,
@@ -554,9 +614,8 @@
 					$state.go('datasetList');
 				};
 
-				$scope.$parent.canEnd = false;
-				DatasetFactory.post($scope.$parent.meta.dataset).then(function(data) {
-					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + data.result;
+				function postSource(actualDatasetSlug) {
+					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + actualDatasetSlug;
 					var sourceSlug = $scope.$parent.meta.source.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
 					//TRICK pour l'ancienne API
 					var databinding = $scope.sourceDataFinalColumns.map(function(item) {
@@ -569,17 +628,34 @@
         				processData: false,
         				data: {databinding: databinding,
         					jsonData: $scope.$parent.sourceDataFinal},
-						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + data.result + '/source/' + sourceSlug + '/upload'
+						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + actualDatasetSlug + '/source/' + sourceSlug + '/upload'
 					}).then(function(response) {
 						//TODO Support d'erreur
-						var tmp = {metadata: $scope.$parent.meta.source,
-								dataModel: $scope.sourceDataFinalColumns.map(function(item) {
-									return {name: item, type: "Texte"};
-								})}
-						$http.post(Routing.generate('datacity_private_source_post', {slug: data.result}), tmp).then(function() {
+						var tmp = {};
+						tmp.metadata = $scope.$parent.meta.source;
+						if ($scope.wizardMode === 'dataset') {
+							tmp.dataModel = $scope.sourceDataFinalColumns.map(function(item) {
+								return {name: item, type: "Texte"}; //TODO Support type
+							});
+						}
+						$http.post(Routing.generate('datacity_private_source_post', {slug: actualDatasetSlug}), tmp).then(function() {
 							$scope.$parent.canEnd = true;
 						});
 					});
-				});
-			}])
+				}
+
+				function postDataset() {
+					DatasetFactory.post($scope.$parent.meta.dataset).then(function(data) {
+						postSource(data.result);
+					});
+				}
+
+				$scope.$parent.canEnd = false;
+				if ($scope.wizardMode === 'dataset') {
+					postDataset();
+				}
+				else if ($scope.wizardMode === 'source') {
+					postSource(datasetSlug);
+				}
+		}])
 })();

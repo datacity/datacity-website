@@ -23,8 +23,9 @@
 		</div>
 	</div>
 	<div class="col-md-12">
-		<button data-ng-click="tryCopyCol()" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Copier tout les champs</button>
-		<button data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les champs</button>
+		<button data-ng-if="$parent.wizardMode === 'dataset'" data-ng-click="tryCopyCol()" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Copier tout les champs</button>
+		<button data-ng-if="$parent.wizardMode === 'dataset'" data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les champs</button>
+		<button data-ng-if="$parent.wizardMode === 'source'" data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> Réinitialiser tout les champs</button>
 	</div>
 	<div class="col-md-12 wizard-columns-list">
 		<div class="wizard-add-combi portlet box blue" data-ui-on-Drop="tryAddColumn($event, $data)">
@@ -44,8 +45,13 @@
 							<div class="panel-heading panel-special">
 								<div class="panel-title panel-caption">{{ columns.title }}</div>
 								<div class="panel-tools">
-									<a data-ng-click="editColTitle($index)" class="editIcon"><i class="fa fa-pencil-square-o"></i></a>
-									<a data-ng-click="removeCol($index)"><i class="fa fa-times"></i></a>
+									<a data-ng-if="!columns.inDataset" data-ng-click="editColTitle($index)" class="editIcon"><i class="fa fa-pencil-square-o"></i></a>
+									<a data-ng-if="!columns.inDataset" data-ng-click="removeCol($index)"><i class="fa fa-times"></i></a>
+									<i data-bs-tooltip data-title="Présent dans le jeu de donnée"
+										data-ng-if="columns.inDataset"
+										data-placement="right"
+										class="fa fa-hdd-o">
+									</i>
 								</div>
 							</div>
 							<ul class="list-group">

@@ -197,7 +197,12 @@
 					},
 					url: '/2',
 					templateUrl: 'datasetWizardStep2.html',
-					controller: 'datasetWizardStep2Controller'
+					controller: 'datasetWizardStep2Controller',
+					resolve: {
+						datasetModel: function() {
+							return []; //Support mode source
+						}
+					}
 				})
 				.state('wizardDS.step3', {
 					ncyBreadcrumb: {
@@ -226,9 +231,14 @@
 					},
 					url: '/5',
 					templateUrl: 'datasetWizardStep5.html',
-					controller: 'datasetWizardStep5Controller'
+					controller: 'datasetWizardStep5Controller',
+					resolve: {
+						datasetSlug: function() {
+							return []; //Support mode source
+						}
+					}
 				})
-				//Operations liées aux sources
+				//Operations liées aux sources ANCIEN SYSTEME
 				.state('editDS.addSource', {
 					data: {
 						title: 'Source',
@@ -248,24 +258,84 @@
 						sourceOperation: function() {return 'create'}
 					}
 				})
-				//Inutilisé
-				.state('editDS.editSource', {
+				//Operations liées aux sources NOUVEAU SYSTEME
+				.state('editDS.wizardS', {
 					data: {
-						title: 'Edition',
-						description: 'Editer une source',
+						title: 'Source',
+						description: 'Ajouter une source',
 					},
 					ncyBreadcrumb: {
-					        label: 'Edition de source'
+					    label: 'Ajout de source'
 					},
-					url: '/source/edit/:id',
+					abstract: true,
+					url: '/source/new', //COHABITATION ANCIEN SYSTEME
 				    views: {
 				        '@' : {
-				            controller: 'sourceController',
-				        	templateUrl: 'formSource.html'
+				            controller: 'datasetWizardController',
+				        	templateUrl: 'datasetWizardBase.html'
 				        }
 				    },
 					resolve: {
-						sourceOperation: function() {return 'edit'}
+						wizardMode: function() { return 'source' }
+					}
+				})
+				.state('editDS.wizardS.step1', {
+					ncyBreadcrumb: {
+					    label: 'Ajout de source'
+					},
+					url: '/1',
+					templateUrl: 'datasetWizardStep1.html',
+					controller: 'datasetWizardStep1Controller'
+				})
+				.state('editDS.wizardS.step2', {
+					ncyBreadcrumb: {
+					    label: 'Ajout de source'
+					},
+					url: '/2',
+					templateUrl: 'datasetWizardStep2.html',
+					controller: 'datasetWizardStep2Controller',
+					resolve: {
+						datasetModel: ['$http', 'datasetSlug', function($http, datasetSlug) {
+							return $http
+								.get(Routing.generate('datacity_public_api_dataset_model',
+										{slug: datasetSlug})).then(function(response) {
+									return response.data.results;
+								});
+						}]
+					}
+				})
+				.state('editDS.wizardS.step3', {
+					ncyBreadcrumb: {
+					    label: 'Ajout de source'
+					},
+					url: '/3',
+					templateUrl: 'datasetWizardStep3.html',
+					controller: 'datasetWizardStep3Controller'
+				})
+				.state('editDS.wizardS.step4', {
+					ncyBreadcrumb: {
+					    label: 'Ajout de source'
+					},
+					url: '/4',
+					templateUrl: 'datasetWizardStep4.html',
+					controller: 'datasetWizardStep4Controller',
+					resolve: {
+						filterList: ['$http', function($http) {
+							return $http.get(Routing.generate('datacity_public_api_filter_list'));
+						}]
+					}
+				})
+				.state('editDS.wizardS.step5', {
+					ncyBreadcrumb: {
+					    label: 'Ajout de source'
+					},
+					url: '/5',
+					templateUrl: 'datasetWizardStep5.html',
+					controller: 'datasetWizardStep5Controller',
+					resolve: {
+						datasetSlug: ['datasetSlug', function(datasetSlug) {
+							return datasetSlug;
+						}]
 					}
 				})
 				//Operations liées à l'utilisateur
