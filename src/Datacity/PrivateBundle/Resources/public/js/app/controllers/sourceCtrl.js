@@ -2,6 +2,7 @@
  * Require :
  * 	- utils.js (fichier présent dans privateBundle/js/utils.js)
  */
+//DEPRECATED
 (function() {
 	angular
 		.module('app')

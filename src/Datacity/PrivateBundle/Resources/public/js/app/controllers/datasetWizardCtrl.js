@@ -1,13 +1,14 @@
 (function() {
 	angular
 		.module('app')
-		.controller('datasetWizardController' , ['$scope',
-			function($scope) {
+		.controller('datasetWizardController' , ['$scope', 'wizardMode',
+			function($scope, wizardMode) {
 				$scope.continueButton = null;
 				$scope.backButton = null;
 				$scope.endButton = null;
 				$scope.canContinue = function(){return false};
 				$scope.sourceData = null;
+				$scope.wizardMode = wizardMode;
 			}])
 		.controller('datasetWizardStep1Controller', ['$scope', '$upload', '$http', '$timeout', '$q', '$state', '$modal', '$filter', 'ngTableParams',
 			function($scope, $upload, $http, $timeout, $q, $state, $modal, $filter, ngTableParams) {

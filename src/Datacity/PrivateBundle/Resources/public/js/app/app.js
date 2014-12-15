@@ -178,7 +178,10 @@
 					abstract: true,
 					url: '/dataset/wizard',
 					templateUrl: 'datasetWizardBase.html',
-					controller: 'datasetWizardController'
+					controller: 'datasetWizardController',
+					resolve: {
+						wizardMode: function() { return 'dataset' }
+					}
 				})
 				.state('wizardDS.step1', {
 					ncyBreadcrumb: {
