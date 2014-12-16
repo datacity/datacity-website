@@ -24,15 +24,15 @@ class SourceController extends Controller
             if (!$params)
                 return $this->thereIsAProblemHere();
 
-            if (!isset($params->metadata) || !isset($params->metadata->title) ||
-                !isset($params->metadata->frequency) || !isset($params->metadata->location) ||
+            if (!isset($params->metadata) || !isset($params->metadata->frequency) ||
+                !isset($params->metadata->location) ||
                 !isset($params->metadata->coverageTerritory) || !isset($params->metadata->category))
                 return $this->thereIsAProblemHere('Missing metadata');
 
             $em = $this->getDoctrine()->getManager();
 
             $source = new DSource();
-            $source->setTitle($params->metadata->title);
+            $source->setTitle("Remove this"); //FIXME
             if (isset($params->metadata->link))
                 $source->setLink($params->metadata->link);
 
