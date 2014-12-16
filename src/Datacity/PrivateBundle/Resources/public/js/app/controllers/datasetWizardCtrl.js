@@ -617,7 +617,7 @@
 
 				function postSource(actualDatasetSlug) {
 					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + actualDatasetSlug;
-					var sourceSlug = $scope.$parent.meta.source.title.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-');
+					var sourceSlug = actualDatasetSlug.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-') + new Date().getTime(); //TMP
 					//TRICK pour l'ancienne API
 					var databinding = $scope.sourceDataFinalColumns.map(function(item) {
 						return { from: item, to: item };
