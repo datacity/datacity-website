@@ -23,10 +23,10 @@ class DSource
     private $id;
 
     /**
+     * DEPRECATED A enlever sooon
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
-     * @Serializer\Groups({"datasetShow"})
      */
     private $title;
 

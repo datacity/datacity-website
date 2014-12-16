@@ -66,7 +66,7 @@
 			<!-- TODO: Remove le Css et la taille de l'image. Rajouter dans l'entite la fonction qui va piocher une image en fonction d'une catégorie du dataset -->
 			<img ng-src="{{source.picture || 'http://lorempixel.com/80/80/city/'}}" style="height: 80px; width: 80px" alt=""/>
 			<div class="portfolio-texnfo">
-				<h4>{{source.title || "Pas de nom"}}</h4>
+				<h4>#{{ $index + 1 }} {{source.producer.name }}</h4>
 			</div>
 		</div>
 	</div>
