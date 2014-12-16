@@ -101,12 +101,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
                 });
             });
         }
-        var dirtytrickinordertonotcallsearchwiththeattributeonpagechange = false; //Because I can :)
         $scope.search = function(page) {
-            if (!dirtytrickinordertonotcallsearchwiththeattributeonpagechange) {
-                dirtytrickinordertonotcallsearchwiththeattributeonpagechange = true;
-                return;
-            }
             page = typeof page !== 'undefined' ? page : 1;
             DatasetFactory.searchDatasets({
                 text: $scope.text,
