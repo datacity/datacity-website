@@ -374,6 +374,7 @@
 					$scope.finalColumns = $scope.$parent.sourceData.columns.map(function(item) {
 						return {title: item, inDataset: false, oldColumns: [item]};
 					});
+					$scope.atLeastOneBinding = true;
 				}
 
 				$scope.removeAllCol = function() {
