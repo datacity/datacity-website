@@ -1,0 +1,118 @@
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
+{% block pageTitle %}Gestion des Applications{% endblock %}
+{% block lineTitleLink %}Gestion des Applications{% endblock %}
+{% block pagecontent %}
+
+
+<a href="{{ path('datacity_private_applications_post') }}" class="btn btn-lg green">Ajouter une application <i class="fa fa-plus"></i></a><br><br>
+<!-- BEGIN SAMPLE TABLE PORTLET-->
+					<div class="portlet">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-bell-o"></i>Table des applications ({{applications|length}} applications enregistrés)
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-advance table-hover">
+								<thead>
+								<tr>
+									<th>
+										<i class="fa fa-user"></i> Nom
+									</th>
+									<th class="hidden-xs">
+										<i class="fa fa-bookmark"></i> Description
+									</th>
+									<th class="hidden-xs">
+										<i class="fa fa-bookmark"></i> Ville
+									</th>
+									<th class="hidden-xs">
+										<i class="fa fa-bookmark"></i> Lien
+									</th>
+									<th>
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for application in applications %}
+									<tr id="row-news-{{application.getId()}}">
+									<td class="highlight">
+										<div class="success">
+										</div>
+										<a href="../../app/{{application.slug}}">{{ application.name }}</a>
+									</td>
+									<td class="hidden-xs">
+										{% if application.description |length > 150 %}
+										{{ application.description |slice(0, 150)}}...
+										{% else %}
+										{{ application.description}}
+										{% endif %}
+									</td>
+									<td>
+										{% if application.city.name |length > 100 %}
+										{{ application.city.name |slice(0, 100)}}...
+										{% else %}
+										{{application.city.name}}
+										{% endif %}
+									</td>
+									<td>
+										{% if application.url |length > 100 %}
+										{{ application.url |slice(0, 100)}}...
+										{% else %}
+										<a href="{{application.url}}">{{application.url}}</a>
+										{% endif %}
+									</td>
+									<td>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+									</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+									<h4 class="modal-title">Suppression d'une application</h4>
+								</div>
+								<div class="modal-body">
+									 Attention ! Vous êtes sur le point de supprimer l'application <span id='applicationToDeleteName'></span>.<br/>Merci de confirmer votre action.
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn default" data-dismiss="modal">Close</button>
+									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- END SAMPLE TABLE PORTLET-->
+
+
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+	<script type="text/javascript">
+		function deleteNews(slug) {
+		$.ajax({
+		    type: 'DELETE',
+		    dataType: 'json',
+		    url: Routing.generate('datacity_private_news_remove', { slug: slug }),
+		    success: function(response) {
+		        $("#row-news-" + response['id']).fadeOut(300, function() { $(this).remove(); });
+		      }
+		  });
+		}
+	function setDeleteNews(slug, title) {
+		$("#buttonDeleteNews").attr("onClick", "deleteNews('" + slug + "');")
+		$("#newsToDeleteTitle").html(title);
+
+	}
+	</script>
+{% endblock %}
