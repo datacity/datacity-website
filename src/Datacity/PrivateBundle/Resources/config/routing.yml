@@ -142,3 +142,11 @@ datacity_private_user_updatepassword:
         _method:  POST
     options:
         expose: true
+
+datacity_private_applications_list:
+    pattern: /applications/list
+    defaults: {_controller: DatacityPrivateBundle:Applications:list}
+
+datacity_private_applications_post:
+    pattern: /applications/add
+    defaults: {_controller: DatacityPrivateBundle:Applications:post}
