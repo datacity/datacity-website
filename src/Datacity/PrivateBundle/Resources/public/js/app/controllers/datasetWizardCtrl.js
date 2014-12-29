@@ -16,8 +16,8 @@
 					$scope.statePrefix = 'editDS.wizardS.';
 				}
 			}])
-		.controller('datasetWizardStep1Controller', ['$scope', '$upload', '$http', '$timeout', '$q', '$state', '$modal', '$filter', 'ngTableParams',
-			function($scope, $upload, $http, $timeout, $q, $state, $modal, $filter, ngTableParams) {
+		.controller('datasetWizardStep1Controller', ['$scope', '$upload', '$http', '$timeout', '$q', '$state', '$modal', '$filter', 'ngTableParams', 'apiUrl',
+			function($scope, $upload, $http, $timeout, $q, $state, $modal, $filter, ngTableParams, apiUrl) {
 				$scope.fileUp = [];
 				$scope.filesData = [];
 				$scope.combinedColumns = [];
@@ -44,7 +44,7 @@
 
 				function uploadFile(file) {
 					$upload.upload({
-						url: 'http://localhost:4567/users/delkje555/files/add',
+						url: apiUrl + '/users/delkje555/files/add',
 						method: 'POST',
 						file: file.data,
 						ignoreLoadingBar: true,
@@ -56,7 +56,7 @@
 							{
 								method: 'GET',
 								ignoreLoadingBar: true,
-								url: 'http://localhost:4567/users/delkje555/files/' + data.data.files[0].path + '/parse'
+								url: apiUrl + '/users/delkje555/files/' + data.data.files[0].path + '/parse'
 							}).success(function(response) {
 								regroupAndAddFileData(response.data, file);
 								file.status = -1;
@@ -566,8 +566,8 @@
 			    }
 			}])
 		.controller('datasetWizardStep5Controller', ['$scope', '$state', '$filter', 'ngTableParams',
-													'DatasetFactory', '$http', 'datasetSlug',
-			function($scope, $state, $filter, ngTableParams, DatasetFactory, $http, datasetSlug) {
+													'DatasetFactory', '$http', 'datasetSlug', 'apiUrl',
+			function($scope, $state, $filter, ngTableParams, DatasetFactory, $http, datasetSlug, apiUrl) {
 				if (!$scope.$parent.sourceDataFinal) {
 					$state.go($scope.statePrefix + 'step1');
 				}
@@ -629,7 +629,7 @@
         				processData: false,
         				data: {databinding: databinding,
         					jsonData: $scope.$parent.sourceDataFinal},
-						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + actualDatasetSlug + '/source/' + sourceSlug + '/upload'
+						url: apiUrl + '/users/dlkjdlkjjd/dataset/' + actualDatasetSlug + '/source/' + sourceSlug + '/upload'
 					}).then(function(response) {
 						//TODO Support d'erreur
 						var tmp = {};

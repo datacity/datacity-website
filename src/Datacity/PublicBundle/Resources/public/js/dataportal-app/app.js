@@ -1,6 +1,6 @@
 angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
                                     'angular-loading-bar', 'ngGrid', 'angularUtils.directives.dirPagination'])
-    .constant('apiUrl', 'http://localhost:4567')
+    .constant('apiUrl', datacityParams.apiUrl)
     .config(['$urlRouterProvider', '$stateProvider',
     function($urlRouterProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/');
@@ -141,7 +141,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             enableColumnReordering: true,
             showFooter: true
         };
-        $scope.urlSocialNetwork = "http://localhost/dataview#/dataset/" + dataset.slug;
+        $scope.urlSocialNetwork = document.location.toString().toLowerCase();
         $scope.refine_array = [{'facet':'', 'value':''}];
         $scope.exclude_array = [{'facet':'', 'value':''}];
         $scope.facetsName = [];

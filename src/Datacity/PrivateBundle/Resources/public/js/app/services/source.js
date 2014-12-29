@@ -2,7 +2,7 @@
 (function() {
 	angular
 		.module('app')
-		.factory('SourceFactory', ['$http', '$upload', function($http, $upload) {
+		.factory('SourceFactory', ['$http', '$upload', 'apiUrl', function($http, $upload, apiUrl) {
 			return {
 				get: function(id) {
 				},
@@ -16,7 +16,7 @@
 						contentType:false,
         				processData: false,
         				data: sourceApi,
-						url: 'http://localhost:4567/users/dlkjdlkjjd/dataset/' + slugDataset + '/source/' + sourceSlug + '/upload'
+						url: apiUrl + '/users/dlkjdlkjjd/dataset/' + slugDataset + '/source/' + sourceSlug + '/upload'
 					}).then(function(response) {
 						return $http.post(Routing.generate('datacity_private_source_post', {slug: slugDataset}), sourceMeta).then(function(response) {
 							return response.data;
@@ -33,7 +33,7 @@
 					return $http(
 						{
 							method: 'GET',
-							url: 'http://localhost:4567/users/delkje555/files/' + path + '/parse',
+							url: apiUrl + '/users/delkje555/files/' + path + '/parse',
 						}).success(function(response) {
 							//console.log(response);
 							return response.data;
@@ -45,7 +45,7 @@
 				postFile: function(file) {
 					return $upload.upload(
 						{
-						   	url: 'http://localhost:4567/users/delkje555/files/add',
+						   	url: apiUrl + '/users/delkje555/files/add',
 						    method: 'POST',
 							file: file,
 						})

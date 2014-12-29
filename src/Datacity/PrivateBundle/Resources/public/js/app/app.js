@@ -22,6 +22,7 @@
                 });
             }
         ])
+        .constant('apiUrl', datacityParams.apiUrl)
 		.factory('$templateCache', ['$cacheFactory', '$http', '$injector', function($cacheFactory, $http, $injector) {
 		  var cache = $cacheFactory('templates');
 		  var allTplPromise;
