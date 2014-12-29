@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Platform
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Datacity\PublicBundle\Entity\PlatformRepository")
+ * @ORM\Entity
  */
 class Platform
 {
