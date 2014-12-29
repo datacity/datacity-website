@@ -41,27 +41,29 @@
 						<label style="margin-left:-15px;" class="col-md-2 control-label">jeu de données  <strong style="color:red;"></strong></label>
 						<div class="row portfolio-block">
 							<div class="col-md-2">
-								<span style="margin-left:10px;"> {{dataset.name}}</span>
+								<span style="margin-left:10px;margin-top:10px;padding-top:5px;font-weight:bold"> {{dataset.name}}</span>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-2" style="margin-left:-15px;">q  <strong style="color:red;"></strong></label>
+						<label class="control-label col-md-2" style="margin-left:-15px;">recherche  <strong style="color:red;"></strong></label>
 						<div class="col-md-3">
 							<input type="text" ng-model="q" name="q" style="width:250px;margin-left:10px;" class="form-control" placeholder="recherche plein texte">
 						</div>
 					</div><br/>
 					<div class="form-group">
-						<label class="col-md-2 control-label" style="margin-left:-15px;">colonnes  </label>
+						<label class="col-md-2 control-label" style="margin-left:-15px;">résultats  </label>
 						<div class="col-md-2">
-							<input type="text" ng-model="col_nb" name="col_nb" style="width:250px; margin-left:10px;" class="form-control" placeholder="nombre de colonnes retournées"/>
+							<input type="text" ng-model="col_nb" name="col_nb" style="width:250px; margin-left:10px;" class="form-control" placeholder="10"/>
 						</div>
+						<span style="margin-left:160px;font-size:12px;">nombre de résultats retournés</span>
 					</div><br/>
 					<div class="form-group">
-						<label class="control-label col-md-2" style="margin-left:-15px;">commencement  <strong style="color:red;"></strong></label>
+						<label class="control-label col-md-2" style="margin-left:-15px;">index <strong style="color:red;"></strong></label>
 						<div class="col-md-2">
-							<input type="text" ng-model="first_res" name="first_res" style="width:250px;margin-left:10px;" class="form-control" placeholder="index du premier résultat retourné">
+							<input type="text" ng-model="first_res" name="first_res" style="width:250px;margin-left:10px;" class="form-control" placeholder="0">
 						</div>
+						<span style="margin-left:160px;font-size:12px;">index du premier résultat</span>
 					</div><br/>
 					<div class="form-group">
 						<div class="portlet-body">
@@ -133,17 +135,17 @@
 								</div>
 							</div>
 						</div>
-						<div style="font-size:12px;color:#1E90FF;margin-left:25px;margin-top:35px;">
-
+						<div style="background-color:#D1D9D9;font-size:12px;color:#1E90FF;padding-left:25px;margin-top:35px;">
+						<a>
 							{{url}}
-
+						</a>
 						</div>
-						<div class="col-md-offset-3 col-md-9" style="margin-top:30px;">
+						<!--<div class="col-md-offset-3 col-md-9" style="margin-top:30px;">
 							<button type="submit" class="btn blue">Enregistrer</button>
-						</div>
+						</div>-->
 					</div>
 				</form>
-			</div>
+			</div> 
 		</div>
 	{% endverbatim %}
 	<section data-ng-if="dataset.sources" class="data-links">
@@ -153,12 +155,14 @@
 				{% verbatim %}
 				<div class="row">
 					<div class="span8" data-ng-repeat="source in dataset.sources">
-						<h5 class="horizontal-data-bloc-title">#{{ $index + 1 }} {{ source.producer.name }}</h5>
+						<h5 class="horizontal-data-bloc-title">{{ source.title }}</h5>
 						<p>
+							Producteur : {{ source.producer.name }}</br>
 							<span data-ng-if="source.link">Lien de la source : <a href="{{ source.link }}">{{ source.link }}</a></span>
 						</p>
 						<div class="horizontal-data-bloc-bottom">
 							<ul class="meta-post">
+								<li><i class="icon-file-alt"></i> Source</li>
 								<li><a tooltip='Date de publication'><i class="icon-calendar"></i> {{ source.published_date }}</a></li>
 								<li><a tooltip='Auteur'><i class="icon-user"></i> {{ source.creator.username }}</a></li>
 								<li><a tooltip='Localisation'><i class="icon-pushpin"></i> {{ source.place.name }}</a></li>
@@ -209,5 +213,5 @@
     jQuery(document).ready(function ($) {
         $('#tabs').tab();
     });
-</script>
+</script> 
 </div>
