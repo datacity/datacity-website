@@ -153,7 +153,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             $scope.facetsName.splice(1, 0, {'name':$scope.dataset.columns[i].name});
             facetsUrl += "&facet=" + $scope.dataset.columns[i].name;
         }
-        $scope.url = "/api/search?dataset=" + dataset.slug + facetsUrl;
+        $scope.url = "/api/search?dataset=" + dataset.slug + "&" + 'rows=10' + facetsUrl;
         $scope.addRow = function() {
             $scope.facets.push($scope.new_facet);
             $scope.facetsName.splice($scope.facetsName.length, 0, {'name': $scope.new_facet });
@@ -191,6 +191,8 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
                 $scope.url += "&" + "q=" + $scope.q;
             if ($scope.col_nb)
                 $scope.url = $scope.url + "&" + "rows=" + $scope.col_nb;
+            else if (!($scope.col_nb))
+                $scope.url = $scope.url + "&" + "rows=10";
             if ($scope.first_res)
                 $scope.url = $scope.url + "&" +  "start=" + $scope.first_res;
             for (var i=0; i< $scope.facets.length && $scope.facets[i] != 'undefined';i++) {
