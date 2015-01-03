@@ -381,9 +381,11 @@
 					if ($scope.$parent.wizardMode === 'dataset')
 						$scope.finalColumns = [];
 					else if ($scope.$parent.wizardMode === 'source') {
-						//FIXME OK pour le moment, a revoir lorsque l'on pourra ajouter des champs...
-						for (var i = 0, len = $scope.finalColumns.length; i < len; i++) {
-							$scope.finalColumns[i].oldColumns = [];
+						for (var i = $scope.finalColumns.length - 1; i >= 0; i--) {
+							if ($scope.finalColumns[i].inDataset)
+								$scope.finalColumns[i].oldColumns = [];
+							else
+								$scope.finalColumns[i].splice(i, 1);
 						}
 					}
 				};
