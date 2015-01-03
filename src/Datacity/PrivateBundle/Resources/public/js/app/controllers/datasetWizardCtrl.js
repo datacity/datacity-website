@@ -1,8 +1,8 @@
 (function() {
 	angular
 		.module('app')
-		.controller('datasetWizardController' , ['$scope', 'wizardMode',
-			function($scope, wizardMode) {
+		.controller('datasetWizardController' , ['$scope', 'wizardMode', 'currentUser',
+			function($scope, wizardMode, currentUser) {
 				$scope.continueButton = null;
 				$scope.backButton = null;
 				$scope.endButton = null;
@@ -15,6 +15,8 @@
 				else if ($scope.wizardMode === 'source') {
 					$scope.statePrefix = 'editDS.wizardS.';
 				}
+				$scope.currentUser = currentUser;
+				$scope.meta = {dataset: {}, source: {}};
 			}])
 		.controller('datasetWizardStep1Controller', ['$scope', '$upload', '$http', '$timeout', '$q', '$state', '$modal', '$filter', 'ngTableParams', 'apiUrl',
 			function($scope, $upload, $http, $timeout, $q, $state, $modal, $filter, ngTableParams, apiUrl) {
@@ -44,27 +46,17 @@
 
 				function uploadFile(file) {
 					$upload.upload({
-						url: apiUrl + '/users/delkje555/files/add',
+						url: apiUrl + '/parse',
 						method: 'POST',
 						file: file.data,
 						ignoreLoadingBar: true,
-						timeout: file.canceller.promise
-					}).success(function(data, status, headers, config) {
-						//CE TIMEOUT/GET EST TEMPORAIRE, POUR FONCTIONNER AVEC LA VERSION COURANTE DE L'API
-						$timeout(function() {
-							$http(
-							{
-								method: 'GET',
-								ignoreLoadingBar: true,
-								url: apiUrl + '/users/delkje555/files/' + data.data.files[0].path + '/parse'
-							}).success(function(response) {
-								regroupAndAddFileData(response.data, file);
-								file.status = -1;
-							}).error(function(data, status, headers, config) {
-								file.status = status;
-							});
-						}, 1000);
-
+						timeout: file.canceller.promise,
+						headers: {
+							'public_key': $scope.$parent.currentUser.public_key
+						}
+					}).success(function(response, status, headers, config) {
+						regroupAndAddFileData(response.data, file);
+						file.status = -1;
 					}).error(function(data, status, headers, config) {
 						file.status = status;
 					}).progress(function(evt) {
@@ -210,7 +202,7 @@
 						return;
 					}
 					for (var i = 0, len = $scope.combinedColumns.length; i < len; i++) {
-
+						//TODO CombineFile
 					}
 
 					$scope.$parent.sourceData = $scope.filesData[0]; //TMP
@@ -619,25 +611,23 @@
 
 				function postSource(actualDatasetSlug) {
 					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + actualDatasetSlug;
-					var sourceSlug = actualDatasetSlug.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-') + new Date().getTime(); //TMP
-					//TRICK pour l'ancienne API
-					var databinding = $scope.sourceDataFinalColumns.map(function(item) {
-						return { from: item, to: item };
-					});
-					//ENDTRICK
+					var sourceSlug = actualDatasetSlug.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-') + new Date().getTime(); //TMP En attendant l'api...
 					$http({
 						method: 'POST',
 						contentType: false,
         				processData: false,
-        				data: {databinding: databinding,
-        					jsonData: $scope.$parent.sourceDataFinal},
-						url: apiUrl + '/users/dlkjdlkjjd/dataset/' + actualDatasetSlug + '/source/' + sourceSlug + '/upload'
+        				data: $scope.$parent.sourceDataFinal,
+						url: apiUrl + '/' + actualDatasetSlug + '/' + sourceSlug,
+						headers: {
+							'public_key': $scope.$parent.currentUser.public_key,
+							'private_key': $scope.$parent.currentUser.private_key,
+						}
 					}).then(function(response) {
 						//TODO Support d'erreur
 						var tmp = {};
 						tmp.metadata = $scope.$parent.meta.source;
 						if ($scope.wizardMode === 'dataset') {
-							tmp.dataModel = $scope.sourceDataFinalColumns.map(function(item) {
+							tmp.dataModel = $scope.sourceDataFinalColumns.map(function(item) { //TMP En attendant l'api (support model)...
 								return {name: item, type: "Texte"}; //TODO Support type
 							});
 						}

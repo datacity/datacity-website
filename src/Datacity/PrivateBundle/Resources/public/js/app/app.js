@@ -163,7 +163,7 @@
 						licenses: ['DatasetFactory', function(DatasetFactory) {
 							return DatasetFactory.getLicences();
 						}],
-						dataset: function() { return {} }
+						dataset: function() { return {} },
 					}
 				})
 				//Dataset Wizard
@@ -181,7 +181,12 @@
 					templateUrl: 'datasetWizardBase.html',
 					controller: 'datasetWizardController',
 					resolve: {
-						wizardMode: function() { return 'dataset' }
+						wizardMode: function() { return 'dataset' },
+						currentUser: ['UserFactory', function(UserFactory) {
+							return UserFactory.getUserFromSession().then(function(data) {
+				 				return data.user;
+				 			});
+						}]
 					}
 				})
 				.state('wizardDS.step1', {
@@ -277,7 +282,12 @@
 				        }
 				    },
 					resolve: {
-						wizardMode: function() { return 'source' }
+						wizardMode: function() { return 'source' },
+						currentUser: ['UserFactory', function(UserFactory) {
+							return UserFactory.getUserFromSession().then(function(data) {
+				 				return data.user;
+				 			});
+						}]
 					}
 				})
 				.state('editDS.wizardS.step1', {
@@ -298,7 +308,7 @@
 					resolve: {
 						datasetModel: ['$http', 'datasetSlug', function($http, datasetSlug) {
 							return $http
-								.get(Routing.generate('datacity_public_api_dataset_model',
+								.get(Routing.generate('datacity_public_api_dataset_model', //FIXME En attente de l'api, ancienne methode.
 										{slug: datasetSlug})).then(function(response) {
 									return response.data.results;
 								});
