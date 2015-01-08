@@ -1,0 +1,18 @@
+formDataSet.editdataset: Editer mon jeu de données
+formDataSet.title: Titre
+formDataSet.titlePlaceholder: Indiquez un titre
+formDataSet.licence: Licence
+formDataSet.choiceLicence: Choisissez la licence
+formDataSet.descPlaceholder: Entrez une description
+formDataSet.choiceVisibility: Choisissez la visibilité
+formDataSet.visibility: Visibilité
+formDataSet.save: Enregistrer
+formDataSet.delete: Supprimer
+formDataSet.relatedsources: Sources associées
+formDataSet.downloaded: Téléchargée
+formDataSet.useful: Noté comme utile
+formDataSet.see: Voir
+formDataSet.times: fois
+formDataSet.addSource: Ajouter une source
+formDataSet.addApplication: Ajouter une application
+formDataSet.relatedApplications: Applications associées

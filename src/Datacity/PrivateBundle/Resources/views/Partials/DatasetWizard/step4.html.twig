@@ -1,43 +1,44 @@
+{% trans_default_domain "datasetWizard" %}
 <form action="#" class="form-horizontal">
 	<div class="form-body">
 		<div data-ng-if="$parent.wizardMode === 'dataset'">
-			<h3 class="form-section">Information sur le jeux de donnée</h3>
+			<h3 class="form-section">{{ 'datasetWizard.datasetInfo'|trans }}</h3>
 			<div class="form-group">
-				<label class="col-md-2 control-label">Titre <strong style="color:red;">*</strong></label>
+				<label class="col-md-2 control-label">{{ 'datasetWizard.title'|trans }} <strong style="color:red;">*</strong></label>
 				<div class="col-md-8">
-					<input data-ng-model="$parent.meta.dataset.title" type="text" class="form-control" placeholder="Indiquez un titre">
+					<input data-ng-model="$parent.meta.dataset.title" type="text" class="form-control" placeholder="{{ 'datasetWizard.titlePlaceholder'|trans }}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-2">Licence <strong style="color:red;">*</strong></label>
+				<label class="control-label col-md-2">{{ 'datasetWizard.licence'|trans }} <strong style="color:red;">*</strong></label>
 				<div class="col-md-8">
-					<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.dataset.license" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in filterList.licenses" bs-select>
+					<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.dataset.license" data-html="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.choiceLicence'|trans }}" ng-options="license.name as license.name for license in filterList.licenses" bs-select>
 					</button>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">Description</label>
 				<div class="col-md-8">
-					<textarea data-ng-model="$parent.meta.dataset.description" class="form-control" placeholder="Entrez une description" rows="5"></textarea>
+					<textarea data-ng-model="$parent.meta.dataset.description" class="form-control" placeholder="{{ 'datasetWizard.descPlaceholder'|trans }}" rows="5"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">Visibilité</label>
+				<label class="col-md-2 control-label">{{ 'datasetWizard.visibility'|trans }}</label>
 				<div class="col-md-8">
-					<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.dataset.visibility" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la visibilité" ng-options="visibility for visibility in dvisibility" bs-select>
+					<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.dataset.visibility" data-html="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.choiceVisibility'|trans }}" ng-options="visibility for visibility in dvisibility" bs-select>
 					</button>
 				</div>
 			</div>
 		</div>
-		<h3 class="form-section">Information sur la source</h3>
+		<h3 class="form-section">{{ 'datasetWizard.sourceInfo'|trans }}</h3>
 		<div class="row">
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3">Couverture térritoriale <strong style="color:red;">*</strong></label>
+					<label class="control-label col-md-3">{{ 'datasetWizard.teritory'|trans }} <strong style="color:red;">*</strong></label>
 
 					<div class="col-md-9">
-						<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.source.coverageTerritory" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la couverture territoriale" ng-options="coverage.name as coverage.name for coverage in filterList.coverageTerritory" bs-select>
+						<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.source.coverageTerritory" data-html="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.teritoryCover'|trans }}" ng-options="coverage.name as coverage.name for coverage in filterList.coverageTerritory" bs-select>
 						</button>
 					</div>
 				</div>
@@ -48,9 +49,9 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3">Catégories <strong style="color:red;">*</strong></label>
+					<label class="control-label col-md-3">{{ 'datasetWizard.cat'|trans }} <strong style="color:red;">*</strong></label>
 					<div class="col-md-9">
-						<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.source.category" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="Choisissez la catégorie" ng-options="category.name as category.name for category in filterList.categories" bs-select>
+						<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.source.category" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.selectCat'|trans }}" ng-options="category.name as category.name for category in filterList.categories" bs-select>
 						</button>
 					</div>
 				</div>
@@ -58,9 +59,9 @@
 			<!--/span-->
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3">Fréquence</label>
+					<label class="control-label col-md-3">{{ 'datasetWizard.freq'|trans }}</label>
 					<div class="col-md-9">
-						<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.source.frequency" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la fréquence de mise à jour" ng-options="frequency.name as frequency.name for frequency in filterList.frequencies" bs-select>
+						<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.source.frequency" data-html="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.selectFreq'|trans }}" ng-options="frequency.name as frequency.name for frequency in filterList.frequencies" bs-select>
 						</button>
 					</div>
 				</div>
@@ -71,9 +72,9 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation  </label><strong style="color:red;">*</strong></label>
+					<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> {{ 'datasetWizard.loc'|trans }}  </label><strong style="color:red;">*</strong></label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" ng-model="$parent.meta.source.location" ng-options="address for address in getLocation($viewValue)" placeholder="Quelle localisation est concernée par votre source ?" bs-typeahead>
+						<input type="text" class="form-control" ng-model="$parent.meta.source.location" ng-options="address for address in getLocation($viewValue)" placeholder="{{ 'datasetWizard.selectLoc'|trans }}" bs-typeahead>
 					</div>
 				</div>
 			</div>
@@ -81,11 +82,11 @@
 			<!--/span-->
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3">Lien</label>
+					<label class="control-label col-md-3">{{ 'datasetWizard.link'|trans }}</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" placeholder="Lien du fichier d'où provient la source" ng-model="$parent.meta.source.link">
+						<input type="text" class="form-control" placeholder="{{ 'datasetWizard.selectLink'|trans }}" ng-model="$parent.meta.source.link">
 						<span data-ng-if="submitEvent && meta.link" class="help-block">
-							Champ obligatoire
+							{{ 'datasetWizard.mandatoryField'|trans }}
 						</span>
 					</div>
 				</div>
@@ -93,12 +94,12 @@
 			<!--/span-->
 		</div>
 
-		<h3 class="form-section">Détails de la source</h3>
+		<h3 class="form-section">{{ 'datasetWizard.sourceDetail'|trans }}</h3>
 		<!--/row-->
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3">Données depuis le</label>
+					<label class="control-label col-md-3">{{ 'datasetWizard.dataSince'|trans }}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="$parent.meta.source.dateBegin" data-date-viewmode="years" datepicker />
 					</div>
@@ -106,7 +107,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-3">Jusqu'à</label>
+					<label class="control-label col-md-3">{{ 'datasetWizard.until'|trans }}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" ng-model="$parent.meta.source.dateEnd" data-date-viewmode="years" datepicker />
 					</div>

@@ -1,3 +1,4 @@
+{% trans_default_domain "datasetWizard" %}
 {% verbatim %}
 <form data-ng-file-drag-over-class="dragOverClass($event)" data-ng-file-drop="onFileSelect($files)" class="dropzone dz-clickable wizard-dropzone">
 <div data-ng-repeat="file in fileUp"
@@ -17,15 +18,15 @@
 	</div>
 	<div class="dz-success-mark"><span>✔</span></div>
 	<div class="dz-error-mark"><span>✘</span></div>
-	<div class="dz-error-message"><span>Un erreur est survenue ({{ file.status }})</span></div>
-	<button data-ng-if="file.status >= -1" data-ng-click="removeFile($index)" class="btn btn-sm btn-block">Supprimer</button>
-	<button data-ng-if="file.status === -2" data-ng-click="abortUpload($index)" class="btn btn-sm btn-block">Annuler</button>
+	<div class="dz-error-message"><span>{% endverbatim %}{{ 'datasetWizard.error'|trans }}{% verbatim %} ({{ file.status }})</span></div>
+	<button data-ng-if="file.status >= -1" data-ng-click="removeFile($index)" class="btn btn-sm btn-block">{% endverbatim %}{{ 'datasetWizard.delete'|trans }}{% verbatim %}</button>
+	<button data-ng-if="file.status === -2" data-ng-click="abortUpload($index)" class="btn btn-sm btn-block">{% endverbatim %}{{ 'datasetWizard.cancel'|trans }}{% verbatim %}</button>
 </div>
 </form>
 <div class="row wizard-controls-step1">
 	<div class="col-md-12">
-		<button data-ng-file-select="onFileSelect($files)" data-multiple="true" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter un ou des fichiers</button>
-		<button data-ng-click="removeAllFile()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les fichiers</button>
+		<button data-ng-file-select="onFileSelect($files)" data-multiple="true" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> {% endverbatim %}{{ 'datasetWizard.addFiles'|trans }}{% verbatim %}</button>
+		<button data-ng-click="removeAllFile()" type="button" class="btn red"><i class="fa fa-times"></i> {% endverbatim %}{{ 'datasetWizard.deleteAll'|trans }}{% verbatim %}</button>
 	</div>
 </div>
 <div class="row wizard-columns-list">
@@ -33,13 +34,13 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-fa-file-text-o"></i>Champs contenus dans les fichiers
+					<i class="fa fa-fa-file-text-o"></i>{% endverbatim %}{{ 'datasetWizard.fieldIn'|trans }}{% verbatim %}
 				</div>
 			</div>
 			<div class="portlet-body">
 				<div class="row">
 					<div data-ng-if="filesData.length === 0" class="col-md-12 text-center">
-						<p>Ajoutez au moins un fichier.</p>
+						<p>{% endverbatim %}{{ 'datasetWizard.add'|trans }}{% verbatim %}.</p>
 					</div>
 					<div class="col-md-3" data-ng-repeat="fileData in filesData">
 						<div class="panel panel-success">
@@ -62,13 +63,13 @@
 		<div class="wizard-add-combi portlet box blue" data-ui-on-Drop="droppedRegroup($event, $data)">
 			<div class="wizard-add-combi portlet-title">
 				<div class="wizard-add-combi caption">
-					<i class="fa fa-fa-file-text-o"></i>Regroupement par champs
+					<i class="fa fa-fa-file-text-o"></i>{% endverbatim %}{{ 'datasetWizard.fieldRegroup'|trans }}{% verbatim %}
 				</div>
 			</div>
 			<div class="wizard-add-combi portlet-body actual-drag-hover">
 				<div class="wizard-add-combi row">
 					<div data-ng-if="combinedColumns.length === 0" class="col-md-12 text-center wizard-add-combi">
-						<p class="wizard-add-combi">Ajoutez ici les champs à combiner.</p>
+						<p class="wizard-add-combi">{% endverbatim %}{{ 'datasetWizard.fieldCombine'|trans }}{% verbatim %}.</p>
 					</div>
 					<div data-ng-repeat="combinedColumn in combinedColumns" class="col-md-3"
 						data-ui-on-Drop="droppedTableRegroup($event, $data, $index)">
@@ -77,10 +78,10 @@
 								<thead>
 									<tr>
 										<th>
-											Fichier
+											{% endverbatim %}{{ 'datasetWizard.file'|trans }}{% verbatim %}
 										</th>
 										<th>
-											Champ
+											{% endverbatim %}{{ 'datasetWizard.field'|trans }}{% verbatim %}
 										</th>
 									</tr>
 								</thead>

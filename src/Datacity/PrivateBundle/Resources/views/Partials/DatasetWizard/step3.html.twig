@@ -1,8 +1,9 @@
+{% trans_default_domain "datasetWizard" %}
 {% verbatim %}
 <div class="row wizard-controls-step3">
 	<div class="col-md-12">
-		<button data-placement="center" data-bs-modal="addColModal" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Ajouter une colonne</button>
-		<button type="button" class="btn blue"><i class="fa fa-cogs"></i> Appliquer une expression régulière</button>
+		<button data-placement="center" data-bs-modal="addColModal" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> {% endverbatim %}{{ 'datasetWizard.addColumn'|trans }}{% verbatim %}</button>
+		<button type="button" class="btn blue"><i class="fa fa-cogs"></i> {% endverbatim %}{{ 'datasetWizard.addRegExp'|trans }}{% verbatim %}</button>
 	</div>
 </div>
 <div class="row">

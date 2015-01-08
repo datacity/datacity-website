@@ -1,0 +1,19 @@
+profileSettings.oldPassword: Actual password
+profileSettings.newPassword: New password
+profileSettings.verificationPassword: New password verification
+profileSettings.errorPassword: Both fields should be identical !
+profileSettings.changePassword: Change password
+profileSettings.send: Send
+profileSettings.delete: Delete
+profileSettings.firstname: Firstname
+profileSettings.yourFirstname: Your firstname
+profileSettings.lastname: Lastname
+profileSettings.yourLastname: Your lastname
+profileSettings.activity: Activity
+profileSettings.yourActivity: Your activity
+profileSettings.about: About
+profileSettings.yourAbout: About you
+profileSettings.website: Website
+profileSettings.yourWebsite: Your website
+profileSettings.save: Save
+profileSettings.cancel: Cancel

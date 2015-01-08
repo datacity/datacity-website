@@ -1,7 +1,8 @@
+{% trans_default_domain "datasetWizard" %}
 {% verbatim %}
 <div class="row">
 <div class="col-md-12">
-	<h3>Aperçu final</h3>
+	<h3>{% endverbatim %}{{ 'datasetWizard.final'|trans }}{% verbatim %}</h3>
 	<table ng-table="tableParams" show-filter="true" class="wizard-table table ng-table-resizable-columns ng-table-rowselected table-bordered" data-resizable-columns-id="myTable">
 		<thead>
 	        <tr>
@@ -21,8 +22,8 @@
 	        </td>
 	    </tr>
 	</table>
-	<p class="text-center" data-ng-if="!$parent.canEnd">Envoi en cours...</p>
-	<a data-ng-if="$parent.canEnd" href="{{ datasetLink }}" class="btn green btn-block">Voir le jeu de donnée</a>
+	<p class="text-center" data-ng-if="!$parent.canEnd">{% endverbatim %}{{ 'datasetWizard.inProgress'|trans }}{% verbatim %}</p>
+	<a data-ng-if="$parent.canEnd" href="{{ datasetLink }}" class="btn green btn-block">{% endverbatim %}{{ 'datasetWizard.showDataset'|trans }}{% verbatim %}</a>
 </div>
 </div>
 {% endverbatim %}

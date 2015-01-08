@@ -1,0 +1,26 @@
+formSource.publish: Publier la source
+formSource.sourceManage: Gestion de source
+formSource.sourceDesc: Description de la source
+formSource.teritory: Couverture térritoriale
+formSource.teritoryCover: Choisissez la couverture territoriale
+formSource.selectCat: Choisissez la catégorie
+formSource.title: Titre
+formSource.freq: Fréquence
+formSource.selectFreq: Choisissez la fréquence de mise à jour
+formSource.loc: Localisation
+formSource.selectLoc: Quelle localisation est concernée par votre source ?
+formSource.link: Lien
+formSource.selectLink: Lien du fichier d'où provient la source
+formSource.field: Champ obligatoire
+formSource.sourceDetail: Détails de la source
+formSource.dataSince: Données depuis le
+formSource.until: Jusqu'à
+formSource.sourceManageOf: Gestion d'une source
+formSource.metadata: Métadonnées
+formSource.model: Modèles
+formSource.upload: Télécharger vers le serveur
+formSource.cat: Catégories
+formSource.addModel: Ajouter au modèle
+formSource.colorPicked: Couleur choisie
+formSource.producers: Producteurs
+formSource.selectProducers: Choisissez le producteur

@@ -1,0 +1,62 @@
+datasetWizard.step: Step
+datasetWizard.over5: of 5
+datasetWizard.addFiles: Adding files & Grouping
+datasetWizard.fieldSelec: Selecting fields
+datasetWizard.dataModif: Editing Data
+datasetWizard.metadata: Metadata
+datasetWizard.send: Send & confirmation
+datasetWizard.back: Back
+datasetWizard.next: Next
+datasetWizard.ok: Finish
+datasetWizard.error: An error occured
+datasetWizard.delete: Delete
+datasetWizard.cancel: Cancel
+datasetWizard.deleteAll: Delete all files
+datasetWizard.addAll: Add one or more files
+datasetWizard.fieldIn: Fields contained in files
+datasetWizard.add: Add at least a file
+datasetWizard.fieldRegroup: Regroup by field
+datasetWizard.fieldCombine: Add here fields to combine
+datasetWizard.file: File
+datasetWizard.field: Field
+datasetWizard.warn: Warning
+datasetWizard.filesNotIn: The following files are not included
+datasetWizard.continue: Continue
+datasetWizard.fieldOfSource: Fields of your source
+datasetWizard.copyFields: Copy all fields
+datasetWizard.deleteFields: Delete all fields
+datasetWizard.clearFields: Clear all fields
+datasetWizard.fieldOfDataset: Fields of your dataset
+datasetWizard.addFields: Here add all the fields you want to add to the dataset.
+datasetWizard.replaceFields: This action will replace the created fields, confirm ?
+datasetWizard.renameField: Rename field ?
+datasetWizard.nameField: Name of field
+datasetWizard.filesNotAssoc: The following files are not associated
+datasetWizard.addColumn: Add a column
+datasetWizard.addRegExp: Apply a regular expression
+datasetWizard.title: Title
+datasetWizard.titlePlaceholder: Type a title
+datasetWizard.licence: License
+datasetWizard.choiceLicence: Select the license
+datasetWizard.descPlaceholder: Enter a description
+datasetWizard.choiceVisibility: Select the visibility
+datasetWizard.visibility: Visibility
+datasetWizard.cat: Categories
+datasetWizard.teritory: Territorial coverage
+datasetWizard.teritoryCover: Select the territorial coverage
+datasetWizard.selectCat: Select the category
+datasetWizard.freq: Frequency
+datasetWizard.selectFreq: Select the update frequency
+datasetWizard.loc: Location
+datasetWizard.selectLoc: Which location is concerned by your source ?
+datasetWizard.link: Link
+datasetWizard.selectLink: Link of the file originating from the source
+datasetWizard.mandatoryField: Required field
+datasetWizard.sourceDetail: Source details
+datasetWizard.dataSince: Data from
+datasetWizard.until: To
+datasetWizard.sourceInfo: Information about the source
+datasetWizard.datasetInfo: Information about the dataset
+datasetWizard.final: Final view
+datasetWizard.inProgress: Sending...
+datasetWizard.showDataset: View the dataset

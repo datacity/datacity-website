@@ -1,10 +1,11 @@
+{% trans_default_domain "datasetWizard" %}
 {% verbatim %}
 <div class="row">
 	<div class="col-md-12">
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-fa-file-text-o"></i>Champs de votre source
+					<i class="fa fa-fa-file-text-o"></i>{% endverbatim %}{{ 'datasetWizard.fieldOfSource'|trans }}{% verbatim %}
 				</div>
 			</div>
 			<div class="portlet-body">
@@ -23,21 +24,21 @@
 		</div>
 	</div>
 	<div class="col-md-12">
-		<button data-ng-if="$parent.wizardMode === 'dataset'" data-ng-click="tryCopyCol()" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> Copier tout les champs</button>
-		<button data-ng-if="$parent.wizardMode === 'dataset'" data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> Supprimer tout les champs</button>
-		<button data-ng-if="$parent.wizardMode === 'source'" data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> Réinitialiser tout les champs</button>
+		<button data-ng-if="$parent.wizardMode === 'dataset'" data-ng-click="tryCopyCol()" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> {% endverbatim %}{{ 'datasetWizard.copyFields'|trans }}{% verbatim %}</button>
+		<button data-ng-if="$parent.wizardMode === 'dataset'" data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> {% endverbatim %}{{ 'datasetWizard.deleteFields'|trans }}{% verbatim %}</button>
+		<button data-ng-if="$parent.wizardMode === 'source'" data-ng-click="removeAllCol()" type="button" class="btn red"><i class="fa fa-times"></i> {% endverbatim %}{{ 'datasetWizard.clearFields'|trans }}{% verbatim %}</button>
 	</div>
 	<div class="col-md-12 wizard-columns-list">
 		<div class="wizard-add-combi portlet box blue" data-ui-on-Drop="tryAddColumn($event, $data)">
 			<div class="wizard-add-combi portlet-title">
 				<div class="wizard-add-combi caption">
-					<i class="fa fa-fa-file-text-o"></i>Champs de votre jeux de donnée
+					<i class="fa fa-fa-file-text-o"></i>{% endverbatim %}{{ 'datasetWizard.fieldOfDataset'|trans }}{% verbatim %}
 				</div>
 			</div>
 			<div class="wizard-add-combi portlet-body actual-drag-hover">
 				<div class="wizard-add-combi row">
 					<div data-ng-if="finalColumns.length === 0" class="col-md-12 text-center wizard-add-combi">
-						<p class="wizard-add-combi">Ajoutez ici les champs que vous voulez ajouter au jeux de donnée.</p>
+						<p class="wizard-add-combi">{% endverbatim %}{{ 'datasetWizard.addFields'|trans }}{% verbatim %}</p>
 					</div>
 					<div class="col-md-3" data-ng-repeat="columns in finalColumns"
 						data-ui-on-Drop="combineColumn($event, $data, $index)">

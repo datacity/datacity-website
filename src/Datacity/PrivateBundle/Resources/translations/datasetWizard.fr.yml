@@ -1,0 +1,62 @@
+datasetWizard.step: Étape
+datasetWizard.over5: sur 5
+datasetWizard.addFiles: Ajout de fichiers & Regroupement
+datasetWizard.fieldSelec: Sélection des champs
+datasetWizard.dataModif: Édition des données
+datasetWizard.metadata: Métadonnées
+datasetWizard.send: Envoi & confirmation
+datasetWizard.back: Retour
+datasetWizard.next: Continuer
+datasetWizard.ok: Terminer
+datasetWizard.error: Une erreur est survenue
+datasetWizard.delete: Supprimer
+datasetWizard.cancel: Annuler
+datasetWizard.deleteAll: Supprimer tout les fichiers
+datasetWizard.addAll: Ajouter un ou des fichiers
+datasetWizard.fieldIn: Champs contenus dans les fichiers
+datasetWizard.add: Ajoutez au moins un fichier
+datasetWizard.fieldRegroup: Regroupement par champs
+datasetWizard.fieldCombine: Ajoutez ici les champs à combiner
+datasetWizard.file: Fichier
+datasetWizard.field: Champ
+datasetWizard.warn: Attention
+datasetWizard.filesNotIn: Les fichiers suivants ne seront pas inclus
+datasetWizard.continue: Continuer
+datasetWizard.fieldOfSource: Champs de votre source
+datasetWizard.copyFields: Copier tout les champs
+datasetWizard.deleteFields: Supprimer tout les champs
+datasetWizard.clearFields: Réinitialiser tout les champs
+datasetWizard.fieldOfDataset: Champs de votre jeux de donnée
+datasetWizard.addFields: Ajoutez ici les champs que vous voulez ajouter au jeu de donnée.
+datasetWizard.replaceFields: Cette action remplacera les champs crées, confirmer ?
+datasetWizard.renameField: Renommer le champ ?
+datasetWizard.nameField: Nom du champ
+datasetWizard.filesNotAssoc: Les champs suivants n'ont pas été associés
+datasetWizard.addColumn: Ajouter une colonne
+datasetWizard.addRegExp: Appliquer une expression régulière
+datasetWizard.title: Titre
+datasetWizard.titlePlaceholder: Indiquez un titre
+datasetWizard.licence: Licence
+datasetWizard.choiceLicence: Choisissez la licence
+datasetWizard.descPlaceholder: Entrez une description
+datasetWizard.choiceVisibility: Choisissez la visibilité
+datasetWizard.visibility: Visibilité
+datasetWizard.freq: Fréquence
+datasetWizard.selectFreq: Choisissez la fréquence de mise à jour
+datasetWizard.loc: Localisation
+datasetWizard.selectLoc: Quelle localisation est concernée par votre source ?
+datasetWizard.link: Lien
+datasetWizard.selectLink: Lien du fichier d'où provient la source
+datasetWizard.mandatoryField: Champ obligatoire
+datasetWizard.sourceDetail: Détails de la source
+datasetWizard.dataSince: Données depuis le
+datasetWizard.until: Jusqu'à
+datasetWizard.teritory: Couverture térritoriale
+datasetWizard.teritoryCover: Choisissez la couverture territoriale
+datasetWizard.selectCat: Choisissez la catégorie
+datasetWizard.cat: Catégories
+datasetWizard.sourceInfo: Information sur la source
+datasetWizard.datasetInfo: Information sur le jeux de donnée
+datasetWizard.final: Aperçu final
+datasetWizard.inProgress: Envoi en cours...
+datasetWizard.showDataset: Voir le jeu de donnée

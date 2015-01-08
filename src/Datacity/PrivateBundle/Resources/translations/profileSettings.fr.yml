@@ -1,0 +1,19 @@
+profileSettings.oldPassword: Mot de passe actuel
+profileSettings.newPassword: Nouveau mot de passe
+profileSettings.verificationPassword: Verification du nouveau mot de passe
+profileSettings.errorPassword: Les deux champs doivent etre identiques !
+profileSettings.changePassword: Changer le mot de passe
+profileSettings.cancel: Annuler
+profileSettings.send: Envoyer
+profileSettings.delete: Supprimer
+profileSettings.firstname: Prénom
+profileSettings.yourFirstname: Votre prénom
+profileSettings.lastname: Nom
+profileSettings.yourLastname: Votre nom
+profileSettings.activity: Activité
+profileSettings.yourActivity: Votre activité
+profileSettings.about: À propos
+profileSettings.yourAbout: À propos de vous
+profileSettings.website: Site web
+profileSettings.yourWebsite: Votre site web
+profileSettings.save: Sauvegarder

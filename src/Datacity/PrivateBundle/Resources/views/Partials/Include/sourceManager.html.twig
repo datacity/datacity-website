@@ -1,10 +1,11 @@
 {# DEPRECATED #}
+{% trans_default_domain "formSource" %}
 {% verbatim %}
 <!-- File Uploader -->
 
 <input type="file" ng-file-select="onFileSelect($files)" >
 <hr/>
-<button class="btn blue" ng-click="getJSON()">Upload</button>
+<button class="btn blue" ng-click="getJSON()">{% endverbatim %}{{ 'formSource.upload'|trans }}{% verbatim %}</button>
 <hr/>
 
 <!-- END File Uploader -->
@@ -15,7 +16,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-reorder"></i>Modèles
+					<i class="fa fa-reorder"></i>{% endverbatim %}{{ 'formSource.model'|trans }}{% verbatim %}
 				</div>
 				<div class="tools">
 					<a href="javascript:;" class="collapse"></a>
@@ -27,7 +28,7 @@
 						<div ng-show="noDataModel" class="input-group">
 							<input data-ng-model="inputModel" type="text" data-ng-enter="addCategoryModel(inputModel)" class="form-control">
 							<span class="input-group-btn">
-								<button data-ng-click="addCategoryModel(inputModel)"  class="btn blue" type="button">Ajouter au modèle</button>
+								<button data-ng-click="addCategoryModel(inputModel)"  class="btn blue" type="button">{% endverbatim %}{{ 'formSource.addModel'|trans }}{% verbatim %}</button>
 							</span>
 						</div>
 						<!-- /input-group -->
@@ -36,7 +37,7 @@
 				<div class="clearfix">
 					<div id="categoryModelContainer" class="block">
 						<hr/>
-						<p> Categories: </p>
+						<p> {% endverbatim %}{{ 'formSource.cat'|trans }}{% verbatim %}: </p>
 						<div class="row">
 							<div class="col-md-10">
 								<div data-ng-repeat="column in dataModel">
@@ -55,7 +56,7 @@
 
 				</div>
 				<hr/>
-				Couleur choisie: <span data-ng-style="{'background-color': selectedColor}" class="boxColored">&nbsp;</span>
+				{% endverbatim %}{{ 'formSource.colorPicked'|trans }}{% verbatim %}: <span data-ng-style="{'background-color': selectedColor}" class="boxColored">&nbsp;</span>
 				SCOPE DATABINDING : {{databinding}}
 			</div>
 		</div>
@@ -65,7 +66,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-reorder"></i>Producteurs
+					<i class="fa fa-reorder"></i>{% endverbatim %}{{ 'formSource.producers'|trans }}{% verbatim %}
 				</div>
 				<div class="tools">
 					<a href="javascript:;" class="collapse"></a>
@@ -77,7 +78,7 @@
 						<hr/>
 						<div class="form-group">
 						<div class="col-md-8">
-							<button type="button" class="btn btn-default form-control" ng-model="producers" data-html="1" data-animation="am-flip-x" placeholder="Choisissez le producteur" ng-options="producer.name as producer.name for producer in producers" bs-select>
+							<button type="button" class="btn btn-default form-control" ng-model="producers" data-html="1" data-animation="am-flip-x" {% endverbatim %}placeholder="{{ 'formSource.selectProducers'|trans }}"{% verbatim %} ng-options="producer.name as producer.name for producer in producers" bs-select>
 							</button>
 						</div>
 					</div>

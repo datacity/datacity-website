@@ -1,0 +1,18 @@
+formDataSet.editdataset: Edit my dataset
+formDataSet.title: Title
+formDataSet.titlePlaceholder: Type a title
+formDataSet.licence: License
+formDataSet.choiceLicence: Select the license
+formDataSet.descPlaceholder: Enter a description
+formDataSet.choiceVisibility: Select the visibility
+formDataSet.visibility: Visibility
+formDataSet.save: Save
+formDataSet.delete: Delete
+formDataSet.relatedsources: Related sources
+formDataSet.downloaded: Downloaded
+formDataSet.useful: Noted as useful
+formDataSet.see: See
+formDataSet.times: times
+formDataSet.addSource: Add a source
+formDataSet.addApplication: Add an application
+formDataSet.relatedApplications: Related Applications

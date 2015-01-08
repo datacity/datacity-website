@@ -1,12 +1,13 @@
+{% trans_default_domain "datasets" %}
 {% verbatim %}
 <div class="row">
 	<div class="col-md-12">
 		<div class="add-portfolio">
 			<span>
-				Vos jeux de données
+				{% endverbatim %}{{ 'datasets.dataset'|trans }}{% verbatim %}
 			</span>
-			<a ui-route data-ui-sref="addDS" class="btn icn-only green">Créez un nouveau jeux de données  <i class="m-icon-swapright m-icon-white"></i></a>
-			<a ui-route data-ui-sref="wizardDS.step1" class="btn icn-only blue">Créez un nouveau jeux de données (new)  <i class="m-icon-swapright m-icon-white"></i></a>
+			<a ui-route data-ui-sref="addDS" class="btn icn-only green">{% endverbatim %}{{ 'datasets.createDataset'|trans }}{% verbatim %}  <i class="m-icon-swapright m-icon-white"></i></a>
+			<a ui-route data-ui-sref="wizardDS.step1" class="btn icn-only blue">{% endverbatim %}{{ 'datasets.createDataset'|trans }}{% verbatim %} (new)  <i class="m-icon-swapright m-icon-white"></i></a>
 		</div>
 	</div>
 </div>
@@ -29,15 +30,15 @@
 	</div>
 	<div class="col-md-6 portfolio-stat">
 		<div class="portfolio-info">
-			Visité
+			{% endverbatim %}{{ 'datasets.visited'|trans }}{% verbatim %}
 			<span>
-				{{dataset.visited_nb}} fois
+				{{dataset.visited_nb}} {% endverbatim %}{{ 'datasets.times'|trans }}{% verbatim %}
 			</span>
 		</div>
 		<div class="portfolio-info">
-			Noté comme utile
+			{% endverbatim %}{{ 'datasets.useful'|trans }}{% verbatim %}
 			<span>
-				{{dataset.useful_nb}} fois
+				{{dataset.useful_nb}} {% endverbatim %}{{ 'datasets.times'|trans }}{% verbatim %}
 			</span>
 		</div>
 	</div>
@@ -46,7 +47,7 @@
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
 			<a data-ui-sref="editDS({slug: dataset.slug})" class="btn bigicn-only">
 				<span>
-					Gérer
+					{% endverbatim %}{{ 'datasets.manage'|trans }}{% verbatim %}
 				</span>
 			</a>
 		</div>

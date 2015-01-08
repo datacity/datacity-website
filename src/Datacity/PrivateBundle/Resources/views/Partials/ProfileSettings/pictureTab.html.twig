@@ -1,3 +1,4 @@
+{% trans_default_domain "profileSettings" %}
 <div id="tab_2-2" class="tab-pane">
     <form role="form" ng-submit="uploadImage()">
         <div class="form-group">
@@ -9,13 +10,13 @@
 								<span class="btn default btn-file">
 									<input id="upload-input" type="file" ng-file-select="onImageSelect($files)" class="default"/>
 								</span>
-                    <input ng-click="deleteImage()" class="btn red fileupload-exists" type="reset" value="Supprimer"/>
+                    <input ng-click="deleteImage()" class="btn red fileupload-exists" type="reset" value="{{ 'profileSettings.delete'|trans }}"/>
                 </div>
             </div>
         </div>
         <div class="margin-top-10">
-            <input type="submit" value="Envoyer" class="btn green"/>
-            <input ng-click="deleteImage()" class="btn default" type="reset" value="Annuler" />
+            <input type="submit" value="{{ 'profileSettings.send'|trans }}" class="btn green"/>
+            <input ng-click="deleteImage()" class="btn default" type="reset" value="{{ 'profileSettings.cancel'|trans }}" />
         </div>
     </form>
 </div>

@@ -1,18 +1,19 @@
+{% trans_default_domain "datasetWizard" %}
 <div class="modal" tabindex="-1" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 	<button type="button" class="close" ng-click="$hide()">&times;</button>
-	<h4 class="modal-title">Attention</h4>
+	<h4 class="modal-title">{{ 'datasetWizard.warn'|trans }}</h4>
 </div>
 <div class="modal-body" ng-show="content">
-	<p>Les fichiers suivants ne seront pas inclus : </p>
+	<p>{{ 'datasetWizard.filesNotIn'|trans }} : </p>
 	<ul data-ng-bind-html="content"></ul>
-	<p>Continuer ?</p>
+	<p>{{ 'datasetWizard.continue'|trans }} ?</p>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-default" ng-click="$hide()">Annuler</button>
-	<button type="button" class="btn btn-primary" ng-click="continueModal($hide)">Continuer</button>
+	<button type="button" class="btn btn-default" ng-click="$hide()">{{ 'datasetWizard.cancel'|trans }}</button>
+	<button type="button" class="btn btn-primary" ng-click="continueModal($hide)">{{ 'datasetWizard.next'|trans }}</button>
 </div>
 </div>
 </div>

@@ -1,33 +1,34 @@
 {# DEPRECATED #}
+{% trans_default_domain "formSource" %}
 {% verbatim %}
 
 <div class="portlet box blue">
 	<div class="portlet-title">
 		<div class="caption">
-			<i class="fa fa-reorder"></i>Gestion d'une source
+			<i class="fa fa-reorder"></i>{% endverbatim %}{{ 'formSource.sourceManageOf'|trans }}{% verbatim %}
 		</div>
 	</div>
 	<div class="portlet-body form">
 		<!-- BEGIN FORM-->
 		<form action="#" class="form-horizontal">
 			<div class="form-body">
-				<h3 class="form-section">Description de la source</h3>
+				<h3 class="form-section">{% endverbatim %}{{ 'formSource.sourceDesc'|trans }}{% verbatim %}</h3>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Titre <strong style="color:red;">*</strong></label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.title'|trans }}{% verbatim %} <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Titre" ng-model="metaSelected.title">
+								<input type="text" class="form-control" {% endverbatim %}placeholder="{{ 'formSource.title'|trans }}"{% verbatim %} ng-model="metaSelected.title">
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Couverture térritoriale <strong style="color:red;">*</strong></label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.teritory'|trans }}{% verbatim %} <strong style="color:red;">*</strong></label>
 
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.coverageTerritory" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la couverture territoriale" ng-options="coverage.name as coverage.name for coverage in meta.coverageTerritory" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.coverageTerritory" data-html="1" data-animation="am-flip-x" {% endverbatim %}placeholder="{{ 'formSource.teritoryCover'|trans }}"{% verbatim %} ng-options="coverage.name as coverage.name for coverage in meta.coverageTerritory" bs-select>
 								</button>
 							</div>
 						</div>
@@ -38,9 +39,9 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Catégories <strong style="color:red;">*</strong></label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.cat'|trans }}{% verbatim %} <strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.category" data-html="1" data-multiple="1" data-animation="am-flip-x" placeholder="Choisissez la catégorie" ng-options="category.name as category.name for category in meta.categories" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.category" data-html="1" data-multiple="1" data-animation="am-flip-x" {% endverbatim %}placeholder="{{ 'formSource.selectCat'|trans }}"{% verbatim %} ng-options="category.name as category.name for category in meta.categories" bs-select>
 								</button>
 							</div>
 						</div>
@@ -48,9 +49,9 @@
 					<!--/span-->
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Fréquence</label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.freq'|trans }}{% verbatim %}</label>
 							<div class="col-md-9">
-								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.frequency" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la fréquence de mise à jour" ng-options="frequency.name as frequency.name for frequency in meta.frequencies" bs-select>
+								<button type="button" class="btn btn-default form-control" ng-model="metaSelected.frequency" data-html="1" data-animation="am-flip-x" {% endverbatim %}placeholder="{{ 'formSource.selectFreq'|trans }}"{% verbatim %} ng-options="frequency.name as frequency.name for frequency in meta.frequencies" bs-select>
 								</button>								
 							</div>
 						</div>
@@ -61,9 +62,9 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> Localisation  </label><strong style="color:red;">*</strong></label>
+							<label class="control-label col-md-3"><label><i class="fa fa-globe"></i> {% endverbatim %}{{ 'formSource.loc'|trans }}{% verbatim %}  </label><strong style="color:red;">*</strong></label>
 							<div class="col-md-9">
-    							<input type="text" class="form-control" ng-model="metaSelected.location" ng-options="address for address in getLocation($viewValue)" placeholder="Quelle localisation est concernée par votre source ?" bs-typeahead>
+    							<input type="text" class="form-control" ng-model="metaSelected.location" ng-options="address for address in getLocation($viewValue)" {% endverbatim %}placeholder="{{ 'formSource.selectLoc'|trans }}"{% verbatim %} bs-typeahead>
 							</div>
 						</div>
 					</div>
@@ -71,11 +72,11 @@
 					<!--/span-->
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Lien</label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.link'|trans }}{% verbatim %}</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" placeholder="Lien du fichier d'où provient la source" ng-model="metaSelected.link">
+								<input type="text" class="form-control" {% endverbatim %}placeholder="{{ 'formSource.selectLink'|trans }}"{% verbatim %} ng-model="metaSelected.link">
 								<span data-ng-if="submitEvent && meta.link" class="help-block">
-									Champ obligatoire						
+									{% endverbatim %}{{ 'formSource.field'|trans }}{% verbatim %}						
 								</span>
 							</div>
 						</div>
@@ -83,12 +84,12 @@
 					<!--/span-->
 				</div>
 				
-				<h3 class="form-section">Détails de la source</h3>
+				<h3 class="form-section">{% endverbatim %}{{ 'formSource.sourceDetail'|trans }}{% verbatim %}</h3>
 				<!--/row-->
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Données depuis le</label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.dataSince'|trans }}{% verbatim %}</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" ng-model="metaSelected.dateBegin" data-date-viewmode="years" datepicker />
 							</div>
@@ -96,7 +97,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Jusqu'à</label>
+							<label class="control-label col-md-3">{% endverbatim %}{{ 'formSource.until'|trans }}{% verbatim %}</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" ng-model="metaSelected.dateEnd" data-date-viewmode="years" datepicker />
 							</div>

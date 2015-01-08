@@ -1,8 +1,9 @@
+{% trans_default_domain "formDataSet" %}
 {% verbatim %}
 <div class="portlet box blue">
 	<div class="portlet-title">
 		<div class="caption">
-			<i class="fa fa-reorder"></i>Editer mon jeu de données
+			<i class="fa fa-reorder"></i>{% endverbatim %}{{ 'formDataSet.editdataset'|trans }}{% verbatim %}
 		</div>
 	</div>
 	<div class="portlet-body form">
@@ -10,37 +11,37 @@
 		<form ng-submit="submit()" class="form-horizontal">
 			<div class="form-body">
 				<div class="form-group">
-					<label class="col-md-2 control-label">Titre <strong style="color:red;">*</strong></label>
+					<label class="col-md-2 control-label">{% endverbatim %}{{ 'formDataSet.title'|trans }}{% verbatim %} <strong style="color:red;">*</strong></label>
 					<div class="col-md-8">
-						<input data-ng-model="dataset.title" type="text" class="form-control" placeholder="Indiquez un titre" value="{{dataset.title}}">
+						<input data-ng-model="dataset.title" type="text" class="form-control" {% endverbatim %}placeholder="{{ 'formDataSet.titlePlaceholder'|trans }}"{% verbatim %} value="{{dataset.title}}">
 					</div>
 
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-2">Licence <strong style="color:red;">*</strong></label>
+					<label class="control-label col-md-2">{% endverbatim %}{{ 'formDataSet.licence'|trans }}{% verbatim %} <strong style="color:red;">*</strong></label>
 					<div class="col-md-8">
-						<button type="button" class="btn btn-default form-control" ng-model="dataset.license.name" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la licence" ng-options="license.name as license.name for license in dataset.licenses" bs-select>
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.license.name" data-html="1" data-animation="am-flip-x" {% endverbatim %}placeholder="{{ 'formDataSet.choiceLicence'|trans }}"{% verbatim %} ng-options="license.name as license.name for license in dataset.licenses" bs-select>
 						</button>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label">Description</label>
 					<div class="col-md-8">
-						<textarea data-ng-model="dataset.description" class="form-control" placeholder="Entrez une description" rows="5">{{dataset.description}}</textarea>
+						<textarea data-ng-model="dataset.description" class="form-control" {% endverbatim %}placeholder="{{ 'formDataSet.descPlaceholder'|trans }}"{% verbatim %} rows="5">{{dataset.description}}</textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-2 control-label">Visibilité</label>
+					<label class="col-md-2 control-label">{% endverbatim %}{{ 'formDataSet.visibility'|trans }}{% verbatim %}</label>
 					<div class="col-md-8">
-						<button type="button" class="btn btn-default form-control" ng-model="dataset.selectedVisibility" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la visibilité" ng-options="visibility for visibility in dataset.visibility" bs-select>
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.selectedVisibility" data-html="1" data-animation="am-flip-x" {% endverbatim %}placeholder="{{ 'formDataSet.choiceVisibility'|trans }}"{% verbatim %} ng-options="visibility for visibility in dataset.visibility" bs-select>
 						</button>
 					</div>
 				</div>
 			</div>
 			<div class="form-actions fluid dataset-actions">
 				<div class="col-md-offset-3 col-md-9">
-					<button type="submit" class="btn blue">Enregister</button>
-					<button data-ng-if="!noDelete" type="button" class="btn default" ng-click="showModal()">Supprimer</button>
+					<button type="submit" class="btn blue">{% endverbatim %}{{ 'formDataSet.save'|trans }}{% verbatim %}</button>
+					<button data-ng-if="!noDelete" type="button" class="btn default" ng-click="showModal()">{% endverbatim %}{{ 'formDataSet.delete'|trans }}{% verbatim %}</button>
 				</div>
 			</div>
 		</form>
@@ -53,7 +54,7 @@
 	<div class="col-md-12">
 		<div class="add-portfolio">
 			<span>
-				Sources associées
+				{% endverbatim %}{{ 'formDataSet.relatedsources'|trans }}{% verbatim %}
 			</span>
 		</div>
 	</div>
@@ -71,15 +72,15 @@
 	</div>
 	<div class="col-md-6 portfolio-stat">
 		<div class="portfolio-info">
-			Téléchargée
+			{% endverbatim %}{{ 'formDataSet.downloaded'|trans }}{% verbatim %}
 			<span>
-				{{source.download_nb}} fois
+				{{source.download_nb}} {% endverbatim %}{{ 'formDataSet.times'|trans }}{% verbatim %}
 			</span>
 		</div>
 		<div class="portfolio-info">
-			Noté comme utile
+			{% endverbatim %}{{ 'formDataSet.useful'|trans }}{% verbatim %}
 			<span>
-				{{source.useful_nb}} fois
+				{{source.useful_nb}} {% endverbatim %}{{ 'formDataSet.times'|trans }}{% verbatim %}
 			</span>
 		</div>
 	</div>
@@ -88,7 +89,7 @@
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
 			<a data-ng-href="{{ dataset.link }}" class="btn bigicn-only">
 				<span>
-					Voir
+					{% endverbatim %}{{ 'formDataSet.see'|trans }}{% verbatim %}
 				</span>
 			</a>
 		</div>
@@ -102,12 +103,12 @@
 		<div class="portfolio-btn">
 			<a data-ui-sref="editDS.addSource" class="btn bigicn-only">
 				<span>
-					Ajouter une source
+					{% endverbatim %}{{ 'formDataSet.addSource'|trans }}{% verbatim %}
 				</span>
 			</a>
 			<a data-ui-sref="editDS.wizardS.step1" class="btn bigicn-only">
 				<span>
-					Ajouter une source (new)
+					{% endverbatim %}{{ 'formDataSet.addSource'|trans }}{% verbatim %} (new)
 				</span>
 			</a>
 		</div>
@@ -120,7 +121,7 @@
 	<div class="col-md-12">
 		<div class="add-portfolio">
 			<span>
-				<i class="fa fa-mobile-phone mobile-icon"></i> Applications associées
+				<i class="fa fa-mobile-phone mobile-icon"></i> {% endverbatim %}{{ 'formDataSet.relatedApplications'|trans }}{% verbatim %}
 			</span>
 		</div>
 	</div>
@@ -227,7 +228,7 @@
 		<div class="portfolio-btn">
 			<a class="btn bigicn-only">
 				<span>
-					Ajouter une application
+					{% endverbatim %}{{ 'formDataSet.addApplication'|trans }}{% verbatim %}
 				</span>
 			</a>
 		</div>

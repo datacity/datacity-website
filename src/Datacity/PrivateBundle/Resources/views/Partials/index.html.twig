@@ -1,3 +1,4 @@
+{% trans_default_domain "index" %}
 {% verbatim %}
 <div class="tiles container">
 	<div class="tile bg-green" data-ng-click="$state.go('profile.mainView')">
@@ -6,7 +7,7 @@
 		</div>
 		<div class="tile-object">
 			<div class="name">
-				 Profil
+				{% endverbatim %}{{ 'index.profile'|trans }}{% verbatim %}
 			</div>
 			<div class="number">
 			</div>
@@ -18,7 +19,7 @@
 		</div>
 		<div class="tile-object">
 			<div class="name">
-				 Jeux de données
+				{% endverbatim %}{{ 'index.datasets'|trans }}{% verbatim %}
 			</div>
 			<div class="number">
 			</div>
