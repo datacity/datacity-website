@@ -1,6 +1,7 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% block pageTitle %}Gestion des Applications{% endblock %}
-{% block lineTitleLink %}Gestion des Applications{% endblock %}
+{% trans_default_domain "application" %}
+{% block pageTitle %}{{ 'application.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'application.titleLink'|trans }}{% endblock %}
 
 {% block pagecontent %}
 
@@ -12,7 +13,7 @@
 		<div class="portlet box green">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-reorder"></i>Formulaire d'ajout d'applications
+					<i class="fa fa-reorder"></i>{{ 'application.form'|trans }}
 				</div>
 
 			</div>
@@ -57,7 +58,7 @@
 						{{ form_rest(form) }}
 					</div>
 					<div class="form-actions">
-						<center><input type="submit" class="btn green" value = "Ajouter l'application"></center>
+						<center><input type="submit" class="btn green" value = "{{ 'application.add'|trans }}"></center>
 					</div>
 
 					</form>

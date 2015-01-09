@@ -1,15 +1,16 @@
+{% trans_default_domain "application" %}
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% block pageTitle %}Gestion des Applications{% endblock %}
-{% block lineTitleLink %}Gestion des Applications{% endblock %}
+{% block pageTitle %}{{ 'application.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'application.titleLink'|trans }}{% endblock %}
 {% block pagecontent %}
 
 
-<a href="{{ path('datacity_private_applications_post') }}" class="btn btn-lg green">Ajouter une application <i class="fa fa-plus"></i></a><br><br>
+<a href="{{ path('datacity_private_applications_post') }}" class="btn btn-lg green">{{ 'application.addApp'|trans }} <i class="fa fa-plus"></i></a><br><br>
 <!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bell-o"></i>Table des applications ({{applications|length}} applications enregistrés)
+								<i class="fa fa-bell-o"></i>{{ 'application.table'|trans }} ({{applications|length}} {{ 'application.added'|trans }})
 							</div>
 						</div>
 						<div class="portlet-body">
@@ -18,16 +19,16 @@
 								<thead>
 								<tr>
 									<th>
-										<i class="fa fa-user"></i> Nom
+										<i class="fa fa-user"></i> {{ 'application.name'|trans }}
 									</th>
 									<th class="hidden-xs">
 										<i class="fa fa-bookmark"></i> Description
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> Ville
+										<i class="fa fa-bookmark"></i> {{ 'application.city'|trans }}
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> Lien
+										<i class="fa fa-bookmark"></i> {{ 'application.link'|trans }}
 									</th>
 									<th>
 									</th>
@@ -63,7 +64,7 @@
 										{% endif %}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'application.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -77,14 +78,14 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-									<h4 class="modal-title">Suppression d'une application</h4>
+									<h4 class="modal-title">{{ 'application.deleteApp'|trans }}</h4>
 								</div>
 								<div class="modal-body">
-									 Attention ! Vous êtes sur le point de supprimer l'application <span id='applicationToDeleteName'></span>.<br/>Merci de confirmer votre action.
+									 {{ 'application.warn'|trans }} <span id='applicationToDeleteName'></span>.<br/>{{ 'application.confirm'|trans }}.
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn default" data-dismiss="modal">Close</button>
-									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+									<button type="button" class="btn default" data-dismiss="modal">{{ 'application.close'|trans }}</button>
+									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'application.confirmDel'|trans }}</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->

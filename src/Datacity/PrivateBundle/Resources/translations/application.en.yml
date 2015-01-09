@@ -1,0 +1,16 @@
+application.title: Applications Management
+application.titleLink: Applications Management
+application.form: Form adding applications
+application.addApp: Add the application
+application.table: Table of applications
+application.added: applications saved
+application.add: Add the application
+application.name: Name
+application.city: City
+application.link: Link
+application.delete: Delete
+application.deleteApp: Removing an application
+application.warn: Warning ! You're about to delete the application
+application.confirm: Please confirm your action
+application.close: Close
+application.confirmDel: Confirm Delete

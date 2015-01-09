@@ -1,15 +1,16 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% block pageTitle %}Gestion des Actualités{% endblock %}
-{% block lineTitleLink %}Gestion des Actualités{% endblock %}
+{% trans_default_domain "news" %}
+{% block pageTitle %}{{ 'news.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'news.titleLink'|trans }}{% endblock %}
 {% block pagecontent %}
 
 
-<a href="{{ path('datacity_private_news_add') }}" class="btn btn-lg green">Ajouter une actualité <i class="fa fa-plus"></i></a><br><br>
+<a href="{{ path('datacity_private_news_add') }}" class="btn btn-lg green">{{ 'news.add'|trans }} <i class="fa fa-plus"></i></a><br><br>
 <!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bell-o"></i>Table des actualités ({{news|length}} actualités enregistrés)
+								<i class="fa fa-bell-o"></i>{{ 'news.table'|trans }} ({{news|length}} {{ 'news.added'|trans }})
 							</div>
 						</div>
 						<div class="portlet-body">
@@ -18,13 +19,13 @@
 								<thead>
 								<tr>
 									<th>
-										<i class="fa fa-user"></i> Auteur
+										<i class="fa fa-user"></i> {{ 'news.author'|trans }}
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> Titre
+										<i class="fa fa-bookmark"></i> {{ 'news.titleNews'|trans }}
 									</th>
 									<th>
-										<i class="fa fa-briefcase"></i> Message
+										<i class="fa fa-briefcase"></i> {{ 'news.message'|trans }}
 									</th>
 									<th>
 									</th>
@@ -53,7 +54,7 @@
 										{% endif %}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteNews('{{ new.slug }}', '{{ new.getTitle()|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteNews('{{ new.slug }}', '{{ new.getTitle()|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'news.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -67,14 +68,14 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-									<h4 class="modal-title">Supression d'une actualité</h4>
+									<h4 class="modal-title">{{ 'news.deleteNews'|trans }}</h4>
 								</div>
 								<div class="modal-body">
-									 Attention ! Vous êtes sur le point de supprimer l'actualité <span id='newsToDeleteTitle'></span>.<br/>Merci de confirmer votre action.
+									 {{ 'news.warn'|trans }} <span id='newsToDeleteTitle'></span>.<br/>{{ 'news.confirm'|trans }}.
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn default" data-dismiss="modal">Close</button>
-									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+									<button type="button" class="btn default" data-dismiss="modal">{{ 'news.close'|trans }}</button>
+									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'news.confirmDel'|trans }}</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->

@@ -1,3 +1,4 @@
+{% trans_default_domain "body" %}
 <!DOCTYPE html>
 <!--
 DataCity - Responsive Admin Dashboard build with Twitter Bootstrap 3.0.3
@@ -13,7 +14,7 @@ Website: http://datacity.fr
 <!-- BEGIN HEAD -->
 <head>
 	<meta charset="utf-8"/>
-	<title>DataCity | Developer Portal</title>
+	<title>DataCity | {{ 'body.title'|trans }}</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 	<meta content="" name="description"/>
@@ -137,7 +138,7 @@ Website: http://datacity.fr
 						<a href="{{ path('datacity_private_homepage') }}">
 							<i class="fa fa-home"></i>
 							<span class="title">
-								Home
+								{{ 'body.home'|trans }}
 							</span>
 							<span class="selected">
 							</span>
@@ -147,7 +148,7 @@ Website: http://datacity.fr
 						<a href="{{ path('datacity_private_adminusers') }}">
 							<i class="fa fa-user"></i>
 							<span class="title">
-								Gestion d'utilisateurs
+								{{ 'body.users'|trans }}
 							</span>
 							<span class="selected">
 							</span>
@@ -157,7 +158,7 @@ Website: http://datacity.fr
 						<a href="{{ path('datacity_private_news') }}">
 							<i class="fa fa-file-text"></i>
 							<span class="title">
-								Gestion des actualités
+								{{ 'body.news'|trans }}
 							</span>
 							<span class="selected">
 							</span>
@@ -167,7 +168,7 @@ Website: http://datacity.fr
 						<a href="{{ path('datacity_private_producers_list') }}">
 							<i class="fa fa-file-text"></i>
 							<span class="title">
-								Gestion des producteurs
+								{{ 'body.prod'|trans }}
 							</span>
 							<span class="selected">
 							</span>
@@ -177,7 +178,7 @@ Website: http://datacity.fr
 						<a href="{{ path('datacity_private_applications_list') }}">
 							<i class="fa fa-file-text"></i>
 							<span class="title">
-								Gestion des applications
+								{{ 'body.apps'|trans }}
 							</span>
 							<span class="selected">
 							</span>
@@ -216,7 +217,7 @@ Website: http://datacity.fr
 		<!-- BEGIN FOOTER -->
 		<footer class="footer">
 			<div class="footer-inner">
-				2014 &copy; by Datacity.
+				2014 &copy; {{ 'body.by'|trans }} Datacity.
 			</div>
 			<div class="footer-tools">
 				<span class="go-top">

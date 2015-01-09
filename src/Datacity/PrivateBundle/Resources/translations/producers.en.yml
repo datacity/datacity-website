@@ -1,0 +1,15 @@
+producers.title: Producers Management
+producers.titleLink: Producers Management
+producers.table: Table of producers
+producers.added: producers saved
+producers.add: Add a producer
+producers.name: Name
+producers.link: Link
+producers.delete: Delete
+producers.deleteProd: Deleting a producer
+producers.warn: Warning ! You're about to delete the producer
+producers.confirm: Please confirm your action
+producers.close: Close
+producers.confirmDel: Confirm Delete
+producers.form: Form adding producers
+producers.addProd: Add the producer

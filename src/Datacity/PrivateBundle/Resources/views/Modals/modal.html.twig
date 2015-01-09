@@ -1,3 +1,4 @@
+{% trans_default_domain "modal" %}
 <div class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -7,8 +8,8 @@
       </div>
       <div class="modal-body" ng-bind="content"></div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="$hide()">Fermer</button>
-        <button type="button" class="btn btn-warning" ng-click="confirm(); $hide()">Confirmer</button>
+        <button type="button" class="btn btn-default" ng-click="$hide()">{{ 'modal.back'|trans }}</button>
+        <button type="button" class="btn btn-warning" ng-click="confirm(); $hide()">{{ 'modal.next'|trans }}</button>
       </div>
     </div>
   </div>

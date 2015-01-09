@@ -1,8 +1,9 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
+{% trans_default_domain "index" %}
 {% block bodyattr %}data-ng-app="app"{% endblock %}
 {% block pageTitle %}
-<span data-ng-bind="pageTitle">Espace utilisateur</span>
-<small data-ng-bind="pageDescription">Accedez à vos informations et aux outils DataCity</small>
+<span data-ng-bind="pageTitle">{{ 'index.user'|trans }}</span>
+<small data-ng-bind="pageDescription">{{ 'index.information'|trans }}</small>
 {% endblock %}
 {% block pagecontent %}
 <div data-ui-view></div>

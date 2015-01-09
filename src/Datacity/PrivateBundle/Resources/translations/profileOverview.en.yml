@@ -5,3 +5,7 @@ profileOverview.followers: Follower(s)
 profileOverview.review: Activities review
 profileOverview.rating: Average ratings
 profileOverview.sources: Total sources created
+profileOverview.follow: Follow
+profileOverview.unfollow: Unfollow
+profileOverview.since: Registered since
+profileOverview.sum: Average ratings

@@ -1,0 +1,16 @@
+users.title: Users Management
+users.titleLink: Users Management
+users.table: Table of users
+users.added: users saved
+users.add: Add a user
+users.contact: Contact
+users.city: City
+users.apps: Number of applications
+users.delete: Delete
+users.deleteUser: Deleting a user
+users.warn: Warning ! You're about to delete the user account of
+users.confirm: Please confirm your action
+users.close: Close
+users.confirmDel: Confirm Delete
+users.form: Form adding users
+users.addUser: Add the user

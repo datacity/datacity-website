@@ -1,0 +1,16 @@
+news.title: Gestion des Actualités
+news.titleLink: Gestion des Actualités
+news.table: Table des actualités
+news.added: actualités enregistrés
+news.add: Ajouter une actualité
+news.author: Auteur
+news.titleNews: Titre
+news.message: Message
+news.delete: Supprimer
+news.deleteNews: Suppression d'une actualité
+news.warn: Attention ! Vous êtes sur le point de supprimer l'actualité
+news.confirm: Merci de confirmer votre action
+news.close: Fermer
+news.confirmDel: Confirmer la suppression
+news.form: Formulaire d'ajout d'actualités
+news.addNews: Ajouter l'actualité

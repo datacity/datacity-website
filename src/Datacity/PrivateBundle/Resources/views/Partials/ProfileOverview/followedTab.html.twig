@@ -1,3 +1,4 @@
+{% trans_default_domain "profileOverview" %}
 <div class="booking-results">
 	<div class="col-md-8 followed-user">
 		<div class="booking-result">
@@ -8,7 +9,7 @@
 			</div>
 			<div class="booking-info">
 				<h2><a href="#">Here Any Title</a></h2>
-				<a class="btn dark follow-btn"><i class="fa fa-times"></i>  Se désabonner</a>
+				<a class="btn dark follow-btn"><i class="fa fa-times"></i>  {{ 'profileOverview.unfollow'|trans }}</a>
 				<ul class="list-inline follow-info">
 					<li>
 						<i class="fa fa-briefcase"></i> Developpeur
@@ -17,13 +18,13 @@
 						<i class="fa fa-map-marker"></i> Tioman, Malaysia
 					</li>
 					<li>
-						<i class="fa fa-calendar"></i> Inscrit depuis le 10-12-2004
+						<i class="fa fa-calendar"></i> {{ 'profileOverview.since'|trans }} 10-12-2004
 					</li>
 					<li>
 						<i class="fa fa-dot-circle-o"></i> 5236 Point(s)
 					</li>
 				</ul>
-				<p class="pertinence-text"> Moyenne des notations : </p>
+				<p class="pertinence-text"> {{ 'profileOverview.sum'|trans }} : </p>
 				<ul class="list-inline grade-info-up">	
 					<li>
 						<i class="fa fa-thumbs-up"></i> 50 %
@@ -45,7 +46,7 @@
 			</div>
 			<div class="booking-info">
 				<h2><a href="#">Here Any Title</a></h2>
-				<a class="btn dark follow-btn"><i class="fa fa-times"></i>  Se désabonner</a>
+				<a class="btn dark follow-btn"><i class="fa fa-times"></i>  {{ 'profileOverview.unfollow'|trans }}</a>
 				<ul class="list-inline follow-info">
 					<li>
 						<i class="fa fa-briefcase"></i> Developpeur
@@ -54,13 +55,13 @@
 						<i class="fa fa-map-marker"></i> Tioman, Malaysia
 					</li>
 					<li>
-						<i class="fa fa-calendar"></i> Inscrit depuis le 10-12-2004
+						<i class="fa fa-calendar"></i> {{ 'profileOverview.since'|trans }} 10-12-2004
 					</li>
 					<li>
 						<i class="fa fa-dot-circle-o"></i> 5236 Point(s)
 					</li>
 				</ul>
-				<p class="pertinence-text"> Moyenne des notations : </p>
+				<p class="pertinence-text"> {{ 'profileOverview.sum'|trans }} : </p>
 				<ul class="list-inline grade-info-down">	
 					<li>
 						<i class="fa fa-thumbs-down"></i> 49 %

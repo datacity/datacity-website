@@ -1,0 +1,16 @@
+application.title: Gestion des Applications
+application.titleLink: Gestion des Applications
+application.form: Formulaire d'ajout d'applications
+application.addApp: Ajouter l'application
+application.table: Table des applications
+application.added: applications enregistrés
+application.add: Ajouter l'application
+application.name: Nom
+application.city: Ville
+application.link: Lien
+application.delete: Supprimer
+application.deleteApp: Suppression d'une application
+application.warn: Attention ! Vous êtes sur le point de supprimer l'application
+application.confirm: Merci de confirmer votre action
+application.close: Fermer
+application.confirmDel: Confirmer la suppression

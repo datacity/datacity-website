@@ -1,15 +1,16 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% block pageTitle %}Gestion des Producteurs{% endblock %}
-{% block lineTitleLink %}Gestion des Producteurs{% endblock %}
+{% trans_default_domain "producers" %}
+{% block pageTitle %}{{ 'producers.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'producers.titleLink'|trans }}{% endblock %}
 {% block pagecontent %}
 
 
-<a href="{{ path('datacity_private_producers_post') }}" class="btn btn-lg green">Ajouter un producteur <i class="fa fa-plus"></i></a><br><br>
+<a href="{{ path('datacity_private_producers_post') }}" class="btn btn-lg green">{{ 'producers.add'|trans }} <i class="fa fa-plus"></i></a><br><br>
 <!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bell-o"></i>Table des producteurs ({{producers|length}} producteurs enregistrés)
+								<i class="fa fa-bell-o"></i>{{ 'producers.table'|trans }} ({{producers|length}} {{ 'producers.added'|trans }})
 							</div>
 						</div>
 						<div class="portlet-body">
@@ -18,13 +19,13 @@
 								<thead>
 								<tr>
 									<th>
-										<i class="fa fa-user"></i> Nom
+										<i class="fa fa-user"></i> {{ 'producers.name'|trans }}
 									</th>
 									<th class="hidden-xs">
 										<i class="fa fa-bookmark"></i> Description
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> Lien
+										<i class="fa fa-bookmark"></i> {{ 'producers.link'|trans }}
 									</th>
 									<th>
 									</th>
@@ -53,7 +54,7 @@
 										{% endif %}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteProducer('{{ producer.slug }}', '{{ producer.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteProducer('{{ producer.slug }}', '{{ producer.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'producers.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -67,14 +68,14 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-									<h4 class="modal-title">Suppression d'un producteur</h4>
+									<h4 class="modal-title">{{ 'producers.deleteProd'|trans }}</h4>
 								</div>
 								<div class="modal-body">
-									 Attention ! Vous êtes sur le point de supprimer le producteur <span id='producerToDeleteName'></span>.<br/>Merci de confirmer votre action.
+									 {{ 'producers.warn'|trans }} <span id='producerToDeleteName'></span>.<br/>{{ 'producers.confirm'|trans }}.
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn default" data-dismiss="modal">Close</button>
-									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+									<button type="button" class="btn default" data-dismiss="modal">{{ 'producers.close'|trans }}</button>
+									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'producers.confirmDel'|trans }}</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->
@@ -82,8 +83,6 @@
 						<!-- /.modal-dialog -->
 					</div>
 					<!-- END SAMPLE TABLE PORTLET-->
-
-
 
 {% endblock %}
 {% block javascripts %}

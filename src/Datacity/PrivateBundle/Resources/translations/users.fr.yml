@@ -1,0 +1,14 @@
+users.title: Gestion des Utilisateurs
+users.titleLink: Gestion des Utilisateurs
+users.table: Table des utilisateurs
+users.added: utilisateurs enregistrés
+users.add: Ajouter un utilisateur
+users.contact: Contact
+users.city: Ville
+users.apps: Nombre d'applications
+users.delete: Supprimer
+users.deleteUser: Suppression d'un utilisateur
+users.warn: Attention ! Vous êtes sur le point de supprimer le compte utilisateur de
+users.confirm: Merci de confirmer votre action
+users.close: Fermer
+users.confirmDel: Confirmer la suppression

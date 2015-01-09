@@ -1,13 +1,14 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% block pageTitle %}Gestion d'utilisateurs{% endblock %}
-{% block lineTitleLink %}Gestion d'utilisateurs{% endblock %}
+{% trans_default_domain "users" %}
+{% block pageTitle %}{{ 'users.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'users.titleLink'|trans }}{% endblock %}
 
 {% block pagecontent %}
 					<!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bell-o"></i>Table des utilisateurs ({{users|length}} utilisateurs enregistrés)
+								<i class="fa fa-bell-o"></i>{{ 'users.table'|trans }} ({{users|length}} {{ 'users.added'|trans }})
 							</div>
 						</div>
 						<div class="portlet-body">
@@ -16,13 +17,13 @@
 								<thead>
 								<tr>
 									<th>
-										<i class="fa fa-user"></i> Contact
+										<i class="fa fa-user"></i> {{ 'users.contact'|trans }}
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> Ville
+										<i class="fa fa-bookmark"></i> {{ 'users.city'|trans }}
 									</th>
 									<th>
-										<i class="fa fa-briefcase"></i> Nombre d'applications
+										<i class="fa fa-briefcase"></i> {{ 'users.apps'|trans }}
 									</th>
 									<th>
 									</th>
@@ -43,7 +44,7 @@
 										{{ user.getApplications().count() }}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteUser('{{ user.usernameCanonical }}', '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteUser('{{ user.usernameCanonical }}', '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'users.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -57,14 +58,14 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-									<h4 class="modal-title">Supression d'utilisateur</h4>
+									<h4 class="modal-title">{{ 'users.deleteUser'|trans }}</h4>
 								</div>
 								<div class="modal-body">
-									 Attention ! Vous êtes sur le point de supprimer le compte utilisateur de <span id='userToDeleteName'></span>.<br/>Merci de confirmer votre action.
+									 {{ 'users.warn'|trans }} <span id='userToDeleteName'></span>.<br/>{{ 'users.confirm'|trans }}.
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn default" data-dismiss="modal">Close</button>
-									<button id="buttonDeleteUser" type="button" class="btn blue" onClick="" data-dismiss="modal">Confirmer la supression</button>
+									<button type="button" class="btn default" data-dismiss="modal">{{ 'users.close'|trans }}</button>
+									<button id="buttonDeleteUser" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'users.confirmDel'|trans }}</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->
