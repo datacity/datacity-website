@@ -48,10 +48,12 @@
 							<li><label>{{ 'project.link'|trans }} :</label><a href="#"> {{ appli.getUrl() }}</a></li>
 						</ul>
 					</div>
+					{% if appli.dataset %}
 					<div class="widget">
 						<h5 class="widgetheading">{{'dataset'|trans }}</h5>
 						<p><a href="{{ path('datacity_public_dataviewpage') ~ '#/dataset/' ~ appli.dataset.slug}}">{{ appli.dataset.title }}</a></li></p>
 					</div>
+					{% endif %}
 					</aside>
 				</div>
 			</div>

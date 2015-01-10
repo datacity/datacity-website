@@ -89,6 +89,7 @@ class Application
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="applications", cascade={"persist"})
+     * @Gedmo\Blameable(on="create")
      */
     private $user;
 
