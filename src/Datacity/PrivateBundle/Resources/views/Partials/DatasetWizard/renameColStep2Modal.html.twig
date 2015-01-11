@@ -12,7 +12,8 @@
 			<div class="form-group">
 				<label class="control-label col-md-3">{{ 'datasetWizard.nameField'|trans }} <strong style="color:red;">*</strong></label>
 				<div class="col-md-9">
-					<input type="text" class="form-control" data-ng-model="content">
+					<input type="text" class="form-control" data-ng-model="content" data-focus-me="focusInputRename"
+						data-ui-keypress="{'enter':'confirmRenameModal($hide, content)'}" maxlength="17">
 				</div>
 			</div>
 		</div>

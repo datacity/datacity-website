@@ -12,7 +12,8 @@
 			'infinite-scroll',
 			'ngTable',
 			'ngTableResizableColumns',
-			'ang-drag-drop'
+			'ang-drag-drop',
+			'ui.keypress'
 		])
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope,   $state,   $stateParams) {

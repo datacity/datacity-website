@@ -54,7 +54,7 @@ assetic:
             jpegtran: { output: img/*.jpg }
     assets:
         angularmods:
-            inputs:
+            inputs: #Mods d'angular utilisés dans toute nos applications angular
                 - %kernel.root_dir%/../jsvendor/angular-ui-router/release/angular-ui-router.js
                 - %kernel.root_dir%/../jsvendor/angular-animate/angular-animate.js
                 - %kernel.root_dir%/../jsvendor/angular-sanitize/angular-sanitize.js
@@ -62,7 +62,7 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/angular-loading-bar/build/loading-bar.js
                 - %kernel.root_dir%/../jsvendor/ng-table/ng-table.js
                 - %kernel.root_dir%/../jsvendor/ng-table-resizable-columns/ng-table-resizable-columns.src.js
-            output: js/angular-mods.js #Mods d'angular utilisés dans toute nos applications angular
+            output: js/angular-mods.js
         angularmodscss:
             inputs:
                 - %kernel.root_dir%/../jsvendor/ng-grid/ng-grid.css
@@ -81,6 +81,7 @@ assetic:
                 - %kernel.root_dir%/../jsvendor/ngInfiniteScroll/build/ng-infinite-scroll.js
                 - %kernel.root_dir%/../jsvendor/ng-file-upload/angular-file-upload.js
                 - %kernel.root_dir%/../jsvendor/angular-native-dragdrop/draganddrop.js
+                - %kernel.root_dir%/../jsvendor/angular-ui-utils/keypress.js
             output: js/angularuserapp.js
         angularuserappcss:
             inputs:

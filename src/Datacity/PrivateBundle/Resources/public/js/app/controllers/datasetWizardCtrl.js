@@ -302,6 +302,7 @@
 						return;
 					$scope.currentCol = data;
 					$scope.currentIndex = -1; //Workaround pour passer facilement l'index...
+					$scope.focusInputRename = true;
 					$modal({template: 'datasetWizardRenameColStep2Modal.html',
 						placement: 'center',
 						content: data,
@@ -384,6 +385,7 @@
 
 				$scope.editColTitle = function(index) {
 					$scope.currentIndex = index;
+					$scope.focusInputRename = true;
 					$modal({template: 'datasetWizardRenameColStep2Modal.html',
 						placement: 'center',
 						content: $scope.finalColumns[index].title,
