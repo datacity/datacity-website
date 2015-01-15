@@ -50,6 +50,11 @@
 
 						</div>
 						<div class="form-group">
+							<label>{{ form_label(form.dataset, "Jeu de données") }}</label>
+							 {{ form_errors(form.dataset) }}
+							{{ form_widget(form.dataset, {'attr': {'class': 'form-control', 'style': 'resize: none; height:30px;width:250px'}}) }}
+						</div>
+						<div class="form-group">
 							<label>{{ form_label(form.images, " ") }}</label>
 							 {{ form_errors(form.images) }}
 							{{ form_widget(form.images) }}

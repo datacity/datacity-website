@@ -44,6 +44,8 @@
 										{{ user.getApplications().count() }}
 									</td>
 									<td>
+										<a  href="{{ path('datacity_private_adminusers_edit', { firstname: user.firstname }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Edit</a>
+
 										<a data-toggle="modal" href="#basic" onClick="setDeleteUser('{{ user.usernameCanonical }}', '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'users.delete'|trans }}</a>
 									</td>
 								</tr>

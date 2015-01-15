@@ -36,7 +36,7 @@
 								</thead>
 								<tbody>
 								{% for application in applications %}
-									<tr id="row-news-{{application.getId()}}">
+									<tr id="row-application-{{application.getId()}}">
 									<td class="highlight">
 										<div class="success">
 										</div>
@@ -64,7 +64,8 @@
 										{% endif %}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'application.delete'|trans }}</a>
+										<a  href="{{ path('datacity_private_applications_edit', { name: application.name }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Edit</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -85,7 +86,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn default" data-dismiss="modal">{{ 'application.close'|trans }}</button>
-									<button id="buttonDeleteNews" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'application.confirmDel'|trans }}</button>
+									<button id="buttonDeleteApplication" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'application.confirmDel'|trans }}</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->
@@ -100,19 +101,19 @@
 {% block javascripts %}
 {{ parent() }}
 	<script type="text/javascript">
-		function deleteNews(slug) {
+		function deleteApplication(slug) {
 		$.ajax({
 		    type: 'DELETE',
 		    dataType: 'json',
-		    url: Routing.generate('datacity_private_news_remove', { slug: slug }),
+		    url: Routing.generate('datacity_private_applications_remove', { slug: slug }),
 		    success: function(response) {
-		        $("#row-news-" + response['id']).fadeOut(300, function() { $(this).remove(); });
+		        $("#row-application-" + response['id']).fadeOut(300, function() { $(this).remove(); });
 		      }
 		  });
 		}
-	function setDeleteNews(slug, title) {
-		$("#buttonDeleteNews").attr("onClick", "deleteNews('" + slug + "');")
-		$("#newsToDeleteTitle").html(title);
+	function setDeleteApplication(slug, name) {
+		$("#buttonDeleteApplication").attr("onClick", "deleteApplication('" + slug + "');")
+		$("#applicationToDeleteName").html(name);
 
 	}
 	</script>
