@@ -25,7 +25,6 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			de vous présenter son site vitrine. Sur notre site vous trouverez une présentation 
 			du projet, de l'équipe et des actualités vous informant sur l'avancée du projet. Bonne visite à tous !!");
 			$news->setDate(new \DateTime('2013-12-17 17:42:54'));
-			//$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[0])));
 			$news->setUser($this->getReference("user-marc.soufflet@epitech.eu"));
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
@@ -36,7 +35,6 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			les bouchés double pour livrer une beta au plus tard fin Janvier. Nous vous tiendront informé 
 			lorsque la beta sera diposnible, n'hésitez pas à parler de DataCity autour de vous.");
 			$news->setDate(new \DateTime('2014-07-01 14:48:42'));
-			//$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[0])));
 			$news->setUser($this->getReference("user-cyril.morales@epitech.eu"));
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
@@ -61,7 +59,6 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			mais la beta devrait être disponible fin Janvier début Février. L'équipe DataCity vous souhaite 
 			de passer de bonnes fêtes de fin d'année.");
 			$news->setDate(new \DateTime('2014-12-18 18:31:22'));
-			//$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[0])));
 			$news->setUser($this->getReference("user-hamsou_l@epitech.eu"));
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
