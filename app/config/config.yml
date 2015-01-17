@@ -169,5 +169,5 @@ jms_serializer:
             - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }
 
 ornicar_apc:
-      host: %host%
+      host: "http://%host%"
       web_dir: %kernel.root_dir%/../web

@@ -17,4 +17,4 @@ parameters:
     jpegtran_path:     /usr/bin/jpegtran
 
     datacity_api_url:  http://locahost:4567
-    host:              http://localhost
+    host:              localhost
