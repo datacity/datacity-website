@@ -1,0 +1,18 @@
+tickets.title: Tickets Management
+tickets.titleLink: Tickets Management
+tickets.table: List of tickets
+tickets.added: Tickets saved
+tickets.add: Add a ticket
+tickets.title: Title
+tickets.dateTimeOpen: Opened
+tickets.statut: Statut
+tickets.author: Author
+tickets.assignedUser: Assigned to
+users.delete: Delete
+users.deleteUser: Deleting a user
+users.warn: Warning ! You're about to delete the user account of
+users.confirm: Please confirm your action
+users.close: Close
+users.confirmDel: Confirm Delete
+users.form: Form adding users
+users.addUser: Add the user

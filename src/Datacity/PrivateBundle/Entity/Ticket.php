@@ -36,9 +36,7 @@ class Ticket
     private $message;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=100)
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAuthor")
      */
     private $author;
 
@@ -56,10 +54,8 @@ class Ticket
      */
     private $dateTimeUpdate;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="assigned_user", type="string", length=100)
+     /**
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticket")
      */
     private $assignedUser;
 

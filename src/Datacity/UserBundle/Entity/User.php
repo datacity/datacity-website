@@ -176,6 +176,19 @@ class User extends BaseUser
      */
     private $news;
 
+     /**
+     * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\Ticket", mappedBy="author", cascade={"persist"})
+     * @JMS\Serializer\Annotation\Type("Datacity\PrivateBundle\Entity\Ticket")
+     */
+    private $ticketAuthor;
+
+      /**
+     * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\Ticket", mappedBy="assignedUser", cascade={"persist"})
+     * @JMS\Serializer\Annotation\Type("Datacity\PrivateBundle\Entity\Ticket")
+     */
+    private $ticketAssignedUser;
+
+
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="creator", cascade={"persist"})
      * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\DSource")
