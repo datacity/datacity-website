@@ -19,36 +19,62 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 		
 		// Construction de 3 objets news 
 
-			/*$news = new News();
-			$news->setTitle("Titre1");
-			$news->setMessage("Message1");
-			$news->setDate(new \DateTime('now'));
-			$news->setImg("http://www.businesscomputingworld.co.uk/wp-content/uploads/2012/08/Cool-City.jpg");
+			$news = new News();
+			$news->setTitle("Bienvenue");
+			$news->setMessage("L'équipe DataCity vous souhaite la bienvenue et a le plaisir 
+			de vous présenter son site vitrine. Sur notre site vous trouverez une présentation 
+			du projet, de l'équipe et des actualités vous informant sur l'avancée du projet. Bonne visite à tous !!");
+			$news->setDate(new \DateTime('2013-12-17 17:42:54'));
+			//$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[0])));
+			$news->setUser($this->getReference("user-marc.soufflet@epitech.eu"));
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
 
 			$news = new News();
-			$news->setTitle("Titre2");
-			$news->setMessage("Message2");
-			$news->setDate(new \DateTime('now'));
-			$news->setImg("http://senseable.mit.edu/copenhagenwheel/pix_urbanData/data_02.jpg");
+			$news->setTitle("L'Equipe en France");
+			$news->setMessage("Toute l'équipe de DataCity est de retour en France nous allons pourvoir mettre
+			les bouchés double pour livrer une beta au plus tard fin Janvier. Nous vous tiendront informé 
+			lorsque la beta sera diposnible, n'hésitez pas à parler de DataCity autour de vous.");
+			$news->setDate(new \DateTime('2014-07-01 14:48:42'));
+			//$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[0])));
+			$news->setUser($this->getReference("user-cyril.morales@epitech.eu"));
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
 
 			$news = new News();
-			$news->setTitle("Titre3");
-			$news->setMessage("Message3");
-			$news->setDate(new \DateTime('now'));
-			$news->setImg("http://fr.rotterdam.info/data/offer/offerid1005/large/City-Racing-Rotterdam---Bavaria-City-Racing-133882027806.jpg");
+			$news->setTitle("Forum EIP");
+			$news->setMessage(" Les vendredi 21 de 14h-18h et samedi 22 Novembre de 9h-17h, venez
+			nous rencontrer au forum EIP à l'école d'Epitech Paris. 
+			Vous pourrez découvrir le projet DataCity, son équipe ainsi que tous les autres projets
+			de notre promotion EPITECH 2015. A cette occasion nous avons réalisé un petit trailer 
+			disponible à l'adresse suivante : https://www.youtube.com/watch?v=AdPn544MSIw");
+			$news->setDate(new \DateTime('2014-10-12 11:12:44'));
+			$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[14])));
+			$news->setUser($this->getReference("user-marquis_c@epitech.eu"));
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
 
-		$manager->flush();*/
+			$news = new News();
+			$news->setTitle("Beta bientôt disponible");
+			$news->setMessage(" Une beta de Datacity sera bientôt disponible, en effet notre API est presque 
+			terminée, quant au site web nous sommes à 85% du développement. Nous n'avons pas de date précise 
+			mais la beta devrait être disponible fin Janvier début Février. L'équipe DataCity vous souhaite 
+			de passer de bonnes fêtes de fin d'année.");
+			$news->setDate(new \DateTime('2014-12-18 18:31:22'));
+			//$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[0])));
+			$news->setUser($this->getReference("user-hamsou_l@epitech.eu"));
+			$this->addReference("news-". $news->getTitle(), $news);
+			$manager->persist($news);
+
+			
+
+			
+		$manager->flush();
 	}
 	
 	// Exécution de la fixture aprés l'éxécution des 6 autres.
 	public function getOrder()
 	{
-		return 7;
+		return 8;
 	}
 }
