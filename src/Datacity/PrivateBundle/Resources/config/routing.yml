@@ -150,3 +150,9 @@ datacity_private_applications_list:
 datacity_private_applications_post:
     pattern: /applications/add
     defaults: {_controller: DatacityPrivateBundle:Applications:post}
+
+datacity_private_tickets_list:
+    pattern: /tickets
+    defaults: {_controller: DatacityPrivateBundle:Tickets:index}
+
+

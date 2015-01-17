@@ -184,6 +184,16 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
+					<li id="nav-news" class="start {% if app.request.attributes.get('_route') starts with 'datacity_private_tickets_list' %}active{% endif %}">
+						<a href="{{ path('datacity_private_tickets_list') }}">
+							<i class="fa fa-file-text"></i>
+							<span class="title">
+								{{ 'body.ticket'|trans }}
+							</span>
+							<span class="selected">
+							</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>
