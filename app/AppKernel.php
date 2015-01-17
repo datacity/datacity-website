@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Ornicar\ApcBundle\OrnicarApcBundle(),
 
 	    	//Datacity
             new Datacity\PublicBundle\DatacityPublicBundle(),
