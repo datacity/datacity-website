@@ -4,4 +4,5 @@ body.users: Gestion d'utilisateurs
 body.news: Gestion des actualités
 body.prod: Gestion des producteurs
 body.apps: Gestion des applications
+body.ticket: Gestion des tickets
 body.by: par
