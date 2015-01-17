@@ -38,6 +38,17 @@ set :assets_symlinks, true
 # logger.level = Logger::MAX_LEVEL
 
 before 'symfony:composer:install', 'symfony:bower:install'
+after "deploy", "symfony:clear_apc"
+after "deploy:rollback:cleanup", "symfony:clear_apc"
+
+namespace :symfony do
+  desc "Clear apc cache"
+  task :clear_apc do
+    capifony_pretty_print "--> Clear apc cache"
+    run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} apc:clear #{console_options}'"
+    capifony_puts_ok
+  end
+end
 
 namespace :symfony do
       namespace :bower do
