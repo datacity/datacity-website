@@ -1,14 +1,14 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% trans_default_domain "users" %}
-{% block pageTitle %}{{ 'users.title'|trans }}{% endblock %}
-{% block lineTitleLink %}{{ 'users.titleLink'|trans }}{% endblock %}
+{% trans_default_domain "tickets" %}
+{% block pageTitle %}{{ 'tickets.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'tickets.titleLink'|trans }}{% endblock %}
 
 {% block pagecontent %}
 					<!-- BEGIN SAMPLE TABLE PORTLET-->
 					<div class="portlet">
 						<div class="portlet-title">
 							<div class="caption">
-								<i class="fa fa-bell-o"></i>{{ 'users.table'|trans }} ({{users|length}} {{ 'users.added'|trans }})
+								<i class="fa fa-bell-o"></i>{{ 'tickets.table'|trans }} ({{tickets|length}} {{ 'tickets.added'|trans }})
 							</div>
 						</div>
 						<div class="portlet-body">
@@ -17,34 +17,46 @@
 								<thead>
 								<tr>
 									<th>
-										<i class="fa fa-user"></i> {{ 'users.contact'|trans }}
+										<i class="fa fa-user"></i> {{ 'tickets.title'|trans }}
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> {{ 'users.city'|trans }}
+										<i class="fa fa-bookmark"></i> {{ 'tickets.dateTimeOpen'|trans }}
 									</th>
 									<th>
-										<i class="fa fa-briefcase"></i> {{ 'users.apps'|trans }}
+										<i class="fa fa-briefcase"></i> {{ 'tickets.status'|trans }}
+									</th>
+									<th>
+										<i class="fa fa-briefcase"></i> {{ 'tickets.author'|trans }}
+									</th>
+									<th>
+										<i class="fa fa-briefcase"></i> {{ 'tickets.assignedUser'|trans }}
 									</th>
 									<th>
 									</th>
 								</tr>
 								</thead>
 								<tbody>
-								{% for user in users %}
-									<tr id="row-user-{{user.getId()}}">
+								{% for ticket in tickets %}
+									<tr id="row-user-{{ticket.getId()}}">
 									<td class="highlight">
 										<div class="success">
 										</div>
-										<a href="#">{{ user.firstname }} {{ user.lastname }}</a>
-									</td>
-									<td class="hidden-xs">
-										<!-- user.city.name -->
+										<a href="#">{{ ticket.title }} </a>
 									</td>
 									<td>
-										{{ user.getApplications().count() }}
+										{{ ticket.dateTimeOpen | date('d-m-Y H:i') }}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteUser('{{ user.usernameCanonical }}', '{{ user.getFirstname()|e('js') }} {{ user.getLastname()|e('js') }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'users.delete'|trans }}</a>
+										{{ ticket.statut }}
+									</td>
+									<td>
+										{{ ticket.author }}
+									</td>
+									<td>
+										{{ ticket.assignedUser }}
+									</td>
+									<td>
+										//Delete
 									</td>
 								</tr>
 								{% endfor %}

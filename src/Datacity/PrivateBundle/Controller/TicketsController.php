@@ -3,16 +3,16 @@
 namespace Datacity\PrivateBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Datacity\UserBundle\Entity\User;
+use Datacity\PrivateBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class TicketsController extends Controller
 {
     public function indexAction()
     {
-    	$users = $this->getDoctrine()->getRepository("DatacityUserBundle:User")->findAll();
+    	$tickets = $this->getDoctrine()->getRepository("DatacityPrivateBundle:Ticket")->findAll();
 
-    	$response = $this->render('DatacityPrivateBundle::AdminTickets.html.twig', array('users' => $users));
+    	$response = $this->render('DatacityPrivateBundle::AdminTickets.html.twig', array('tickets' => $tickets));
     	return $response;
     }
 
