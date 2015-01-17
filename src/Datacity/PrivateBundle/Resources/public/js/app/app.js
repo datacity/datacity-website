@@ -12,6 +12,7 @@
 			'infinite-scroll',
 			'ngTable',
 			'ngTableResizableColumns',
+			'ui.select2',
 			'ang-drag-drop',
 			'ui.keypress'
 		])
@@ -84,6 +85,84 @@
 			        	$scope.$state = $state;
 			     	}]
 				})
+				//Page applications des users
+               	.state("userApplications", {
+					data: {
+						title: 'Vos applications',
+						description: 'Ajouter/Gérer vos applications',
+					},
+					ncyBreadcrumb: {
+					    label: 'Applications'
+					},
+                	url: "/applications",
+                	templateUrl: 'userApplications.html',
+					controller: 'userApplicationsController',
+					resolve: {
+						applications: ['AppFactory', function(AppFactory) {
+							return AppFactory.getAll();
+						}]
+					}
+               	})
+               	.state("editApplication", {
+					data: {
+						title: 'Edition',
+						description: 'Editer vos applications',
+					},
+					ncyBreadcrumb: {
+					    label: 'Edition'
+					},
+                	url: "/application/edit/:slug",
+                	templateUrl: 'editApplication.html',
+					controller: 'applicationController',
+					resolve: {
+						operation: function() {return 'edit'},
+						categories: ['AppFactory', function(AppFactory) {
+							return AppFactory.categories();
+						}],
+						cities: ['AppFactory', function(AppFactory) {
+							return AppFactory.cities();
+						}],
+						datasets: ['AppFactory', function(AppFactory) {
+							return AppFactory.datasets();
+						}],
+						platforms: ['AppFactory', function(AppFactory) {
+							return AppFactory.platforms();
+						}],
+						application: ['AppFactory', '$stateParams', function(AppFactory, $stateParams) {
+							return AppFactory.get($stateParams.slug);
+						}]
+					}
+               	})
+               	.state("addApplication", {
+					data: {
+						title: 'Ajout',
+						description: 'Ajouter vos applications',
+					},
+					ncyBreadcrumb: {
+					    label: 'Ajout'
+					},
+                	url: "/application/addUserApplication",
+                	templateUrl: 'editApplication.html',
+					controller: 'applicationController',
+					resolve: {
+						operation: function() {return 'add'},
+						categories: ['AppFactory', function(AppFactory) {
+							return AppFactory.categories();
+						}],
+						cities: ['AppFactory', function(AppFactory) {
+							return AppFactory.cities();
+						}],
+						datasets: ['AppFactory', function(AppFactory) {
+							return AppFactory.datasets();
+						}],
+						platforms: ['AppFactory', function(AppFactory) {
+							return AppFactory.platforms();
+						}],
+						application: ['AppFactory', function(AppFactory){
+							return [];
+						}]
+					}
+               	})
                 //Operations liées aux dataset.
 				.state("datasetList", {
 					data: {

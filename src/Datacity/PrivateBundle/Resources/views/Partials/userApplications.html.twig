@@ -1,0 +1,45 @@
+{% verbatim %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="add-portfolio">
+			<span>
+				Vos applications
+			</span>
+			<a ui-route data-ui-sref="addApplication()" class="btn icn-only green">Créez une nouvelle application  <i class="m-icon-swapright m-icon-white"></i></a>
+		</div>
+	</div>
+</div>
+
+<div class="row portfolio-block" data-ng-repeat="app in applications">
+	<div class="col-md-4">
+		<div class="portfolio-text">
+			<img ng-src="{{app.picture || 'http://localhost/bundles/datacitypublic/img/logo2.png'}}" style="height: 80px; width: 80px;" alt=""/>
+			<div class="portfolio-texnfo">
+				<h4>{{app.name}}</h4>
+				<p>
+					{{app.description | limitTo:42}}...
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 portfolio-stat">
+		<div class="portfolio-info">
+			Téléchargé
+			<span>
+				{{app.downloaded}} fois
+			</span>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="portfolio-btn">
+			<a data-ui-sref="editApplication({slug:app.slug})" class="btn bigicn-only">
+				<span>
+					Modifier
+				</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+{% endverbatim %}
+

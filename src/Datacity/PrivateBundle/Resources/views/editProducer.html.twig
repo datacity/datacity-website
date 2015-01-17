@@ -1,7 +1,6 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% trans_default_domain "producers" %}
-{% block pageTitle %}{{ 'producers.title'|trans }}{% endblock %}
-{% block lineTitleLink %}{{ 'producers.titleLink'|trans }}{% endblock %}
+{% block pageTitle %}Gestion des Producteurs{% endblock %}
+{% block lineTitleLink %}Gestion des Producteurs{% endblock %}
 
 {% block pagecontent %}
 
@@ -13,12 +12,12 @@
 		<div class="portlet box green">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-reorder"></i>{{ 'producers.form'|trans }}
+					<i class="fa fa-reorder"></i>Formulaire d'édition de producteurs
 				</div>
 
 			</div>
 			<div class="portlet-body form">
-				<form action="{{path('datacity_private_producers_post')}}" method="post" {{ form_enctype(form) }}>
+				<form action="{{path('datacity_private_producers_edit', {name: form.vars.value.name})}}" method="post" {{ form_enctype(form) }}>
 					<div class="form-body">
 						<div class="form-group">
 							<label>{{ form_label(form.name, "Nom") }}</label>
@@ -45,7 +44,7 @@
 						{{ form_rest(form) }}
 					</div>
 					<div class="form-actions">
-						<center><input type="submit" class="btn green" value = "{{ 'producers.addProd'|trans }}"></center>
+						<center><input type="submit" class="btn green" value = "Editer le producteur"></center>
 					</div>
 
 					</form>

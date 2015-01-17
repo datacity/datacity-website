@@ -14,9 +14,19 @@ datacity_private_adminusers_remove:
     options:
         expose: true
 
+datacity_private_adminusers_edit:
+    pattern: /users/{firstname}
+    defaults: {_controller: DatacityPrivateBundle:AdminUsers:edit}
+    options:
+        expose: true
+
 datacity_private_news:
     pattern:  /news
     defaults: { _controller: DatacityPrivateBundle:News:index }
+
+datacity_private_news_edit:
+    pattern:  /news/edit/{title}
+    defaults: { _controller: DatacityPrivateBundle:News:edit }
 
 datacity_private_news_add:
     pattern:  /news/add
@@ -93,6 +103,12 @@ datacity_private_producers_get:
     options:
         expose: true
 
+datacity_private_producers_edit:
+    pattern: /producers/edit/{name}
+    defaults: {_controller: DatacityPrivateBundle:Producers:edit}
+    options:
+        expose: true
+
 datacity_private_producer_remove:
     pattern:  /producers/{slug}
     requirements:
@@ -155,4 +171,52 @@ datacity_private_tickets_list:
     pattern: /tickets
     defaults: {_controller: DatacityPrivateBundle:Tickets:index}
 
+
+datacity_private_applications_edit:
+    pattern: /applications/edit/{name}
+    defaults: {_controller: DatacityPrivateBundle:Applications:edit}
+    options:
+        expose: true
+
+datacity_private_applications_remove:
+    pattern:  /applications/{slug}
+    requirements:
+        _method: DELETE
+    defaults: { _controller: DatacityPrivateBundle:Applications:remove }
+    options:
+        expose: true
+
+datacity_private_applications_get_userapplications:
+    pattern: /applications/userapps
+    defaults: {_controller: DatacityPrivateBundle:Applications:getuserapplications}
+    options:
+        expose: true
+
+datacity_private_applications_get_application:
+    pattern: /application/edit/{slug}
+    defaults: {_controller: DatacityPrivateBundle:Applications:getapp}
+    options:
+        expose: true
+
+datacity_private_applications_get_app_data:
+    pattern: /application/getappdata
+    defaults: {_controller: DatacityPrivateBundle:Applications:getappdata}
+    options:
+        expose: true
+
+datacity_private_applications_post_user_app:
+    pattern: /application/postuserapp
+    requirements:
+        _method:  POST
+    defaults: {_controller: DatacityPrivateBundle:Applications:postuserapp}
+    options:
+        expose: true
+
+datacity_private_applications_delete_user_app:
+    pattern: /application/deleteuserapp
+    requirements:
+        _method:  POST
+    defaults: {_controller: DatacityPrivateBundle:Applications:deleteuserapp}
+    options:
+        expose: true
 

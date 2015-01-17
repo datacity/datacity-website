@@ -52,10 +52,9 @@ class ProducersController extends Controller
 	
 	$form = $this->createFormBuilder($producer)
                  ->add('name', 'textarea')
-                 ->add('slug','textarea')
                  ->add('description','textarea')
                  ->add('link', 'textarea')
-				 ->add('image', new ImageType())
+				         ->add('image', new ImageType())
                  ->getForm();
 				 
     $request = $this->get('request');
@@ -63,6 +62,7 @@ class ProducersController extends Controller
     $form->bind($request);
 
     if ($form->isValid()) {
+      $producer->setSlug($producer->getName());
       $em = $this->getDoctrine()->getManager();
       $em->persist($producer);
       //
@@ -76,5 +76,34 @@ class ProducersController extends Controller
             'form' => $form->createView(),
             ));
 	}
+
+  public function editAction(Producer $producer)
+  {
+  
+  $form = $this->createFormBuilder($producer)
+                 ->add('name', 'textarea')
+                 ->add('description','textarea')
+                 ->add('link', 'textarea')
+                 ->add('image', new ImageType())
+                 ->getForm();
+         
+    $request = $this->get('request');
+    if ($request->getMethod() == 'POST'){
+    $form->bind($request);
+    if ($form->isValid()) {
+      $producer->setSlug($producer->getName());
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($producer);
+      //
+      $em->flush();
+
+    
+    return $this->redirect($this->generateUrl('datacity_private_producers_list'), 301);    
+      }
+    }
+  return $this->render('DatacityPrivateBundle::editProducer.html.twig', array(
+            'form' => $form->createView(),
+            ));
+  }
 
 }

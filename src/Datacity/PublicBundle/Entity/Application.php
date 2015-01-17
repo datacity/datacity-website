@@ -27,7 +27,7 @@ class Application
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=200)
-     * @Serializer\Groups({"datasetShow"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $name;
 
@@ -35,7 +35,7 @@ class Application
      * @var string
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=228, unique=true)
-     * @Serializer\Groups({"datasetShow"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $slug;
 
@@ -43,6 +43,7 @@ class Application
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=510)
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $url;
 
@@ -50,6 +51,7 @@ class Application
      * @var integer
      *
      * @ORM\Column(name="downloaded", type="integer")
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $downloaded;
 
@@ -57,6 +59,7 @@ class Application
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $description;
 
@@ -64,37 +67,44 @@ class Application
      * @var integer
      *
      * @ORM\Column(name="rating", type="integer", nullable=true)
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $rating;
 
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Image", cascade={"persist","remove"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", cascade={"persist"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $city;
 
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Platform", inversedBy="applications", cascade={"persist"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $platforms;
 
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="applications", cascade={"persist"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $categories;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="applications", cascade={"persist"})
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      * @Gedmo\Blameable(on="create")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Dataset", inversedBy="applications")
+     * @Serializer\Groups({"datasetShow", "userApplications"})
      */
     private $dataset;
 
@@ -323,6 +333,16 @@ class Application
     }
 
     /**
+     * Remove platforms
+     *
+     *
+     */
+    public function removePlatforms()
+    {
+        $this->platforms=null;
+    }
+
+    /**
      * Add categories
      *
      * @param \Datacity\PublicBundle\Entity\Category $categories
@@ -353,6 +373,16 @@ class Application
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Remove categories
+     *
+     *
+     */
+    public function removeCategories()
+    {
+        $this->categories=null;
     }
 
     /**

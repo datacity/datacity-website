@@ -1,0 +1,72 @@
+{% verbatim %}
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>Editer mon application
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- BEGIN FORM-->
+		<form ng-submit="submit()" class="form-horizontal">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="col-md-2 control-label">Nom <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<input data-ng-model="app.name" type="text" class="form-control" placeholder="Indiquez un titre" value="{{app.name}}">
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Description</label>
+					<div class="col-md-8">
+						<textarea data-ng-model="app.description" class="form-control" placeholder="Entrez une description" rows="5">{{app.description}}</textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Ville <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="city.name" data-html="1" data-animation="am-flip-x" placeholder="Choisissez la ville" ng-options="city.name as city.name for city in cities" bs-select>
+						</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Jeu de données <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<button type="button" class="btn btn-default form-control" ng-model="dataset.title" data-html="1" data-animation="am-flip-x" placeholder="Choisissez le jeu de données" ng-options="dataset.title as dataset.title for dataset in datasets" bs-select>
+						</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-2">Plates-formes <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<input
+		    				type="hidden"
+		    				data-ui-select2="selectPlatforms"
+		    				data-ng-model="platformsSelected"
+		    				class="input-large search-query"
+	    					>
+	    			</div>
+	    		</div>
+	    		<div class="form-group">
+					<label class="control-label col-md-2">Catégories <strong style="color:red;">*</strong></label>
+					<div class="col-md-8">
+						<input
+		    				type="hidden"
+		    				data-ui-select2="selectCategories"
+		    				data-ng-model="categoriesSelected"
+		    				class="input-large search-query"
+	    					>
+	    			</div>
+	    		</div>
+			</div>
+			<div class="form-actions fluid dataset-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="submit" class="btn blue">Enregistrer</button>
+					<button data-ng-if="!noDelete" type="button" class="btn default" ng-click="delete()">Supprimer</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endverbatim %}

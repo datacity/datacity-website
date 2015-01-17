@@ -5,6 +5,7 @@ namespace Datacity\PrivateBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Datacity\UserBundle\Entity\User;
 use Datacity\PublicBundle\Entity\News;
+use Datacity\PrivateBundle\Entity\ImageType;
 use Datacity\PrivateBundle\Entity\NewsType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -97,4 +98,31 @@ class NewsController extends Controller
     ));
     }
 
+    public function editAction(News $news)
+    {
+    
+    $form = $this->createFormBuilder($news)
+                 ->add('title', 'textarea')
+                 ->add('message','textarea')
+                 ->add('image', new ImageType(), array('required' => false))
+                 ->getForm();
+                 
+    $request = $this->get('request');
+    if ($request->getMethod() == 'POST'){
+    $form->bind($request);
+
+    if ($form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($news);
+      $em->flush();
+
+    
+    return $this->redirect($this->generateUrl('datacity_private_news'), 301);    
+      }
+    }
+    return $this->render('DatacityPrivateBundle::editNews.html.twig', array(
+            'form' => $form->createView(),
+            ));
+
+    }
 }
