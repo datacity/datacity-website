@@ -20,9 +20,10 @@ class TicketsController extends Controller
     {
     	$title = $ticket->getTitle();
         $ticket_id = $ticket->getId();
-		$ticketManager->deleteTicket($ticket);
-
-		$this->getDoctrine()->getManager()->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($ticket);
+        $em->flush();
+        
 
     	$response = new JsonResponse(array('status' => true, 'title' => $title, 'id' =>  $ticket_id));
     	return $response;

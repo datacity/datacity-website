@@ -8,7 +8,7 @@ tickets.statut: Statut
 tickets.author: Author
 tickets.assignedUser: Assigned to
 tickets.delete: Delete
-tickets.deleteUser: Deleting a user
+tickets.deleteTicket: Deleting a ticket
 tickets.warn: Warning ! You're about to delete the ticket with title
 tickets.confirm: Please confirm your action
 tickets.close: Close

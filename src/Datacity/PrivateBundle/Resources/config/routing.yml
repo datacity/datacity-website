@@ -171,6 +171,14 @@ datacity_private_tickets_list:
     pattern: /tickets
     defaults: {_controller: DatacityPrivateBundle:Tickets:index}
 
+datacity_private_ticket_remove:
+    pattern:  /tickets/{title}
+    requirements:
+        _method: DELETE
+    defaults: { _controller: DatacityPrivateBundle:Tickets:remove }
+    options:
+        expose: true
+
 
 datacity_private_applications_edit:
     pattern: /applications/edit/{name}

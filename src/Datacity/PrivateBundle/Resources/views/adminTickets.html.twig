@@ -37,7 +37,7 @@
 								</thead>
 								<tbody>
 								{% for ticket in tickets %}
-									<tr id="row-user-{{ticket.getId()}}">
+									<tr id="row-ticket-{{ ticket.id }}">
 									<td class="highlight">
 										<div class="success">
 										</div>
@@ -56,7 +56,7 @@
 										{{ ticket.assignedUser }}
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteTicket('{{ ticket.title }}'');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteTicket('{{ ticket.title }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -73,7 +73,7 @@
 									<h4 class="modal-title">{{ 'tickets.deleteTicket'|trans }}</h4>
 								</div>
 								<div class="modal-body">
-									 {{ 'tickets.warn'|trans }} <span id='ticketToDeleteTitle'></span>.<br/>{{ 'tickets.confirm'|trans }}.
+									 {{ 'tickets.warn'|trans }} <span id='TicketToDeleteTitle'></span>.<br/>{{ 'tickets.confirm'|trans }}.
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn default" data-dismiss="modal">{{ 'tickets.close'|trans }}</button>
@@ -89,17 +89,17 @@
 {% block javascripts %}
 {{ parent() }}
 <script type="text/javascript">
-	function deleteUser(title) {
+	function deleteTicket(title) {
 		$.ajax({
 		    type: 'DELETE',
 		    dataType: 'json',
-		    url: Routing.generate('datacity_private_tickets_remove', { title: title }),
+		    url: Routing.generate('datacity_private_ticket_remove', { title: title }),
 		    success: function(response) {
 		        $("#row-ticket-" + response['id']).fadeOut(300, function() { $(this).remove(); });
 		      }
 		  });
 		}
-	function setDeleteUser(title) {
+	function setDeleteTicket(title) {
 		$("#buttonDeleteTicket").attr("onClick", "deleteTicket('" + title + "');")
 		$("#TicketToDeleteTitle").html(title);
 	}
