@@ -1,4 +1,3 @@
-tickets.title: Tickets Management
 tickets.titleLink: Tickets Management
 tickets.table: List of tickets
 tickets.added: Tickets saved
@@ -8,11 +7,11 @@ tickets.dateTimeOpen: Opened
 tickets.statut: Statut
 tickets.author: Author
 tickets.assignedUser: Assigned to
-users.delete: Delete
-users.deleteUser: Deleting a user
-users.warn: Warning ! You're about to delete the user account of
-users.confirm: Please confirm your action
-users.close: Close
-users.confirmDel: Confirm Delete
-users.form: Form adding users
-users.addUser: Add the user
+tickets.delete: Delete
+tickets.deleteTicket: Deleting a ticket
+tickets.warn: Warning ! You're about to delete the ticket with title
+tickets.confirm: Please confirm your action
+tickets.close: Close
+tickets.confirmDel: Confirm Delete
+tickets.form: Form adding ticket
+tickets.addTicket: Add the ticket

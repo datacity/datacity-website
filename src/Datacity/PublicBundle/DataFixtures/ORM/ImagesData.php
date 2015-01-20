@@ -23,7 +23,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 			'http://datarmor.cotesdarmor.fr/image/layout_set_logo?img_id=11509&t=1404490687738',
 			'http://localhost/bundles/datacitypublic/img/logo2.png',
 			'https://lh3.ggpht.com/b3MqhCznkcveipm9R3HfHNXhP688l2y6cf7mzqyRwaWkYd6kAraS2GEf5qNjqZ36di3r=h900-rw',
-			'https://lh3.ggpht.com/0iQmYkXeQ_J6ojDYH3m3bq8x1tj1Dr4FHYiETF4iHIt5_60JFGRgcj0gJm7V8axATuNe=h900-rw'
+			'https://lh3.ggpht.com/0iQmYkXeQ_J6ojDYH3m3bq8x1tj1Dr4FHYiETF4iHIt5_60JFGRgcj0gJm7V8axATuNe=h900-rw',
+			'http://frenchweb.fr/wp-content/uploads/2014/11/EIP_EPITECH_650x400.gif'
 	);
 	
 	public function load(ObjectManager $manager)
@@ -42,7 +43,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 				'Dat\'Armor',
 				'Datacity',
 				'ooZoo main',
-				'ooZoo second'
+				'ooZoo second',
+				'Forum EIP'
 		);
 		
 		foreach (self::$imagesUrl as $i => $url)

@@ -1,4 +1,3 @@
-tickets.title: Gestion des Tickets
 tickets.titleLink: Gestion des tickets
 tickets.table: Liste des tickets
 tickets.added: Tickets enregistrés
@@ -8,9 +7,9 @@ tickets.dateTimeOpen: Ouverture
 tickets.statut: Statut
 tickets.author: Auteur
 tickets.assignedUser: Assigné à
-users.delete: Supprimer
-users.deleteUser: Suppression d'un utilisateur
-users.warn: Attention ! Vous êtes sur le point de supprimer le compte utilisateur de
-users.confirm: Merci de confirmer votre action
-users.close: Fermer
-users.confirmDel: Confirmer la suppression
+tickets.delete: Supprimer
+tickets.deleteTicket: Suppression d'un ticket
+tickets.warn: Attention ! Vous êtes sur le point de supprimer un ticket avec pour titre
+tickets.confirm: Merci de confirmer votre action
+tickets.close: Fermer
+tickets.confirmDel: Confirmer la suppression

@@ -16,16 +16,16 @@ class TicketsController extends Controller
     	return $response;
     }
 
-    public function removeAction(User $user)
+    public function removeAction(Ticket $ticket)
     {
-    	$name = $user->getFirstname() . " " . $user->getLastname();
-        $user_id = $user->getId();
-    	$userManager = $this->container->get('fos_user.user_manager');
-		$userManager->deleteUser($user);
+    	$title = $ticket->getTitle();
+        $ticket_id = $ticket->getId();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($ticket);
+        $em->flush();
+        
 
-		$this->getDoctrine()->getManager()->flush();
-
-    	$response = new JsonResponse(array('status' => true, 'name' => $name, 'id' => $user_id));
+    	$response = new JsonResponse(array('status' => true, 'title' => $title, 'id' =>  $ticket_id));
     	return $response;
     }
 }

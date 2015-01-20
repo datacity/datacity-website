@@ -37,7 +37,7 @@
 								</thead>
 								<tbody>
 								{% for ticket in tickets %}
-									<tr id="row-user-{{ticket.getId()}}">
+									<tr id="row-ticket-{{ ticket.id }}">
 									<td class="highlight">
 										<div class="success">
 										</div>
@@ -56,7 +56,7 @@
 										{{ ticket.assignedUser }}
 									</td>
 									<td>
-										//Delete
+										<a data-toggle="modal" href="#basic" onClick="setDeleteTicket('{{ ticket.title }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
 									</td>
 								</tr>
 								{% endfor %}
@@ -70,14 +70,14 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-									<h4 class="modal-title">{{ 'users.deleteUser'|trans }}</h4>
+									<h4 class="modal-title">{{ 'tickets.deleteTicket'|trans }}</h4>
 								</div>
 								<div class="modal-body">
-									 {{ 'users.warn'|trans }} <span id='userToDeleteName'></span>.<br/>{{ 'users.confirm'|trans }}.
+									 {{ 'tickets.warn'|trans }} <span id='TicketToDeleteTitle'></span>.<br/>{{ 'tickets.confirm'|trans }}.
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn default" data-dismiss="modal">{{ 'users.close'|trans }}</button>
-									<button id="buttonDeleteUser" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'users.confirmDel'|trans }}</button>
+									<button type="button" class="btn default" data-dismiss="modal">{{ 'tickets.close'|trans }}</button>
+									<button id="buttonDeleteTicket" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'tickets.confirmDel'|trans }}</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->
@@ -89,19 +89,19 @@
 {% block javascripts %}
 {{ parent() }}
 <script type="text/javascript">
-	function deleteUser(usernameCanonical) {
+	function deleteTicket(title) {
 		$.ajax({
 		    type: 'DELETE',
 		    dataType: 'json',
-		    url: Routing.generate('datacity_private_adminusers_remove', { usernameCanonical: usernameCanonical }),
+		    url: Routing.generate('datacity_private_ticket_remove', { title: title }),
 		    success: function(response) {
-		        $("#row-user-" + response['id']).fadeOut(300, function() { $(this).remove(); });
+		        $("#row-ticket-" + response['id']).fadeOut(300, function() { $(this).remove(); });
 		      }
 		  });
 		}
-	function setDeleteUser(usernameCanonical, name) {
-		$("#buttonDeleteUser").attr("onClick", "deleteUser('" + usernameCanonical + "');")
-		$("#userToDeleteName").html(name);
+	function setDeleteTicket(title) {
+		$("#buttonDeleteTicket").attr("onClick", "deleteTicket('" + title + "');")
+		$("#TicketToDeleteTitle").html(title);
 	}
 </script>
 {% endblock %}

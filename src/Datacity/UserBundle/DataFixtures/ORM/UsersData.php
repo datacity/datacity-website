@@ -161,6 +161,6 @@ class UsersData extends AbstractFixture implements OrderedFixtureInterface, Cont
 
 	public function getOrder()
 	{
-		return 8;
+		return 7;
 	}
 }
