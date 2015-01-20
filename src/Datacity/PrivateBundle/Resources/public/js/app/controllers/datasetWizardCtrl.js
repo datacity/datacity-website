@@ -613,13 +613,16 @@
 
 				function postSource(actualDatasetSlug) {
 					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + actualDatasetSlug;
-					var sourceSlug = actualDatasetSlug.replace(/[^a-zA-Z0-9\s]/g,"").toLowerCase().replace(/\s/g,'-') + new Date().getTime(); //TMP En attendant l'api...
+					var data = {source: $scope.$parent.sourceDataFinal}
+					data.model = $scope.sourceDataFinalColumns.map(function(item) {
+						return {name: item, type: "Texte", mandatory: true, unique: true}; //TODO handle mandatory & unique
+					});
 					$http({
 						method: 'POST',
 						contentType: false,
         				processData: false,
-        				data: $scope.$parent.sourceDataFinal,
-						url: apiUrl + '/' + actualDatasetSlug + '/' + sourceSlug,
+        				data: data,
+						url: apiUrl + '/' + actualDatasetSlug + '/source',
 						headers: {
 							'public_key': $scope.$parent.currentUser.public_key,
 							'private_key': $scope.$parent.currentUser.private_key,
@@ -628,8 +631,8 @@
 						//TODO Support d'erreur
 						var tmp = {};
 						tmp.metadata = $scope.$parent.meta.source;
-						if ($scope.wizardMode === 'dataset') {
-							tmp.dataModel = $scope.sourceDataFinalColumns.map(function(item) { //TMP En attendant l'api (support model)...
+						if ($scope.wizardMode === 'dataset') { //TODO REMOVE THIS LATER
+								tmp.dataModel = $scope.sourceDataFinalColumns.map(function(item) { //TMP En attendant l'api (support model)...
 								return {name: item, type: "Texte"}; //TODO Support type
 							});
 						}
