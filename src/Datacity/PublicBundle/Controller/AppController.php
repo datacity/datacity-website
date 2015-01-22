@@ -5,6 +5,8 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Datacity\PublicBundle\Entity\Application;
 
+define("PAGINATION_LIMIT", 1);
+
 class AppController extends Controller
 {
 	// Controlleur du portail applicatif. Ici nous recuperons les entites qui sont en DB pour generer le contenu
@@ -16,7 +18,15 @@ class AppController extends Controller
 		$cities = $this->getDoctrine()->getRepository("DatacityPublicBundle:City")->findAll();	
 		$applications = $this->getDoctrine()->getRepository("DatacityPublicBundle:Application")->findAll();
 		
-		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications));
+		$dql   = "SELECT a FROM DatacityPublicBundle:Application a";
+    	$query = $em->createQuery($dql);
+
+    	$paginator  = $this->get('knp_paginator');
+    	$pagination = $paginator->paginate(
+        $query,
+        $this->get('request')->query->get('page', 1),PAGINATION_LIMIT);
+
+		$response = $this->render('DatacityPublicBundle::portal.html.twig', array('filter_cities' => $cities, 'applis' => $applications, 'pagination' => $pagination));
 		return $response;
 	}
 	
