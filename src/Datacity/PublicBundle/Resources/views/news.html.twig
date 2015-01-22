@@ -21,43 +21,41 @@
 				</aside>
 			{# Affichage des news #}
 			</div>
-			<div class="span8">
+			</div>
+			<br/>
+				<br/>
+			<div style="margin-left:100px;">
 			{# Parcours de la liste des news envoyés par le controlleur #}
-					{% for news in news %}
-					<article>
-						<div class="row">
-					<div class="span8">
-						<div class="post-image">
-							<div class="post-heading">
-								<h3><a href="{{ path('datacity_public_newsDetail', {'id' : news.id }) }}">{{ news.getTitle() }}</a></h3>
+				{% for news in pagination %}
+					<div class="row">
+						<div class="span8">
+							<div class="post-image">
+								<div class="post-heading">
+									<h3><a href="{{ path('datacity_public_newsDetail', {'id' : news.id }) }}">{{ news.getTitle() }}</a></h3>
+								</div>
+								{% if news.image != null %}
+									<img src="{{ news.image.url }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>
+								{% endif %}
 							</div>
-							{% if news.image != null %}
-							<img src="{{ news.image.url }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>
-							{% endif %}
-						</div>
-						<p>
+							<p style="font-weight:bold;">
 							 {{ news.getMessage() }}
-						</p>
-						
-						<div class="bottom-article">
-							<ul class="meta-post">
-								<li><i class="icon-user"></i>{{ news.getUser().getUsername()}}</li>
-								<li><p>{{ news.getDate() | date('d-m-Y H:i') }}</p></li>
-							</ul>
+							</p>	
+							<div class="bottom-article" style="background-color:#D1D9D9;">
+								<ul class="meta-post">
+									<li><i class="icon-user"></i>{{ news.getUser().getUsername()}}</li>
+									<li><p>{{ news.getDate() | date('d-m-Y H:i') }}</p></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-				</article>
+					<div class="line-separator">
+					</div>
 				{% endfor %}
-				{# Affichage de la pagination #}
-				{% if news|length != 0 %}
-				<div id="pagination">
-					<span class="all">Page 1 of 3</span>
-					<span class="current">1</span>
-					<a href="#" class="inactive">2</a>
-					<a href="#" class="inactive">3</a>
+
+				<div class="navigation">
+    			{{ knp_pagination_render(pagination) }}
 				</div>
-				{% endif %}
+
 			</div>
 		</div>
 	</div>
