@@ -34,3 +34,57 @@ article#dataset {
 /* ui-bootstrap stuff */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+.line-separator{
+
+height:1px;
+
+background:#717171;
+
+margin-bottom:80px;
+margin-top:80px;
+margin-left:-40px;
+opacity: 0.3;
+
+border-bottom:1px solid #313030;
+
+}
+
+.navigation-producers{
+
+	margin-left:25px;
+}
+
+.description-producers{
+	font-weight:bold;
+	margin-left:25px;
+}
+
+.row-producers{
+
+	margin-left:55px;
+}
+
+.url-producers{
+
+	background-color:#D1D9D9;
+	margin-left:20px;
+	padding-left:5px;
+}
+
+.image-producers{
+
+	max-height: 100px;
+	max-width:300px;
+	width: auto;
+}
+
+.section-producers{
+
+	min-height: 250px;
+}
+
+.image-apps{
+
+	max-height: 200px;
+	width: auto;
+}
