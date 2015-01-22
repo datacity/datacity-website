@@ -11,19 +11,36 @@
 		<div class="row">
 			<div class="span12">
 				<div class="row">
-					<section id="projects" style='min-height: 550px;'>
+					<section id="projects" class="section-producers">
 					<ul id="thumbs" class="portfolio">
 					{# Boucle for de creation des block correspondant aux producteurs en base de donnee #}
-					{% for producer in producers %}
+					{% for producer in pagination %}
+					<div class="row">
+						<div class="row-producers">
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span4">
-						<h5>{{ producer.name }}</h5>
+						
+						<h5 style="font-weight:bold;">{{ producer.name }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="fancybox" data-fancybox-group="gallery" title="{{ producer.name }}" href="{{ path('datacity_public_producer_detail', {'slug' : producer.slug }) }}">
-							<img style="max-height: 80px; width: auto;" src="{{ producer.image.url }}" alt="{{ producer.image.alt }}">
-						</a>
+
 						<!-- Thumb Image and Description -->
-						</li>
+						
+						<a class="fancybox" data-fancybox-group="gallery" title="{{ producer.name }}" href="{{ path('datacity_public_producer_detail', {'slug' : producer.slug }) }}">
+							{% if producer.image != null %}
+								<img class="image-producers" src="{{ producer.image.url }}" alt="{{ producer.image.alt }}">
+							{% endif %}
+						</a>
+					</div>
+						</div>
+						<p class="description-producers">
+							 {{ producer.getDescription() }}
+						</p>
+						<div class="url-producers">
+							<ul class="meta-post">
+								<li><a href="{{ producer.getLink() }}">{{ producer.getLink() }}</a>
+							</ul>
+						</div>
+					<div class="line-separator" style="margin-left:20px;">
+						</div>
 					{% endfor %}
 					</ul>
 					</section>
@@ -32,4 +49,7 @@
 		</div>
 	</div>
 	</section>
+	<div class="navigation-producers">
+    	{{ knp_pagination_render(pagination) }}
+	</div>
 {% endblock %}
