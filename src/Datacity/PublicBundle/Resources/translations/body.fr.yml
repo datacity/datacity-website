@@ -10,6 +10,8 @@ menu:
 footer:
    browse: Parcourir
    info: Infos utiles
+   td: Documentation technique
+   ud: Documentation utilisateur
    talkaboutus: On parle de nous
    condition: Conditions d'utilisation
    privacypolicy: Politique de confidentialité 

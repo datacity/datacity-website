@@ -17,19 +17,42 @@
 	<!-- start slider -->
 	<div id="da-slider" class="da-slider">
 		<div class="da-slide">
-			<h2>DataCity</h2>
-			<p>{{ 'datacity.description'|trans }}</p>
+			<h2>{{ 'slide1.title'|trans }}</h2>
+			<p>
+				{{ 'slide1.description'|trans }}
+			</p>
 			<div class="da-img">
-				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/toto.png') }}" alt="image01" />
+				<video width="320" height="240" controls>
+					<source src="{{ asset('bundles/datacitypublic/img/slides/parallax/presentation.mp4') }}" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
 			</div>
 		</div>
 		<div class="da-slide">
-			<h2>{{ 'dashboard.title'|trans }}</h2>
+			<h2>{{ 'slide2.title'|trans }}</h2>
 			<p>
-				{{ 'dashboard.description'|trans }}
+				{{ 'slide2.description'|trans }}
 			</p>
 			<div class="da-img">
-				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/1.png') }}" alt="image01" />
+				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/mac.png') }}" alt="img_force" />
+			</div>
+		</div>
+		<div class="da-slide">
+			<h2>{{ 'slide3.title'|trans }}</h2>
+			<p>
+				{{ 'slide3.description'|trans }}
+			</p>
+			<div class="da-img">
+				<img src="{{ asset('bundles/datacitypublic/img/slides/parallax/innovation.jpeg') }}" alt="img_innovation" />
+			</div>
+		</div>
+		<div class="da-slide">
+			<h2>{{ 'slide4.title'|trans }}</h2>
+			<p>
+				{{ 'slide4.description'|trans }}
+			</p>
+			<div class="da-img">
+				<img src="{{  asset('bundles/datacitypublic/img/slides/parallax/mobile_phones.png') }}" alt="img_utilisateur" />
 			</div>
 		</div>
 		<nav class="da-arrows">
@@ -39,96 +62,10 @@
 	</div>
 	<!-- end slider -->
 	</section>
-	<!-- <section class="callaction">
-	<div class="container">
-		<div class="row">
-			<div class="span12">
-				<div class="big-cta">
-					<div class="cta-text">
-						<h3>We've created more than <span class="highlight"><strong>5000 websites</strong></span> this year!</h3>
-					</div>
-					<div class="cta floatright">
-						<a class="btn btn-large btn-theme btn-rounded" href="#">Request a quote</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</section> -->
+
 	
 	<section id="content">
 	 <div class="container">
-		{# <div class="row">
-			 <div class="span12">
-				<div class="row">
-					 <div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-briefcase icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Corporate business</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-desktop icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Responsive theme</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
-					<div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-beaker icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Coded carefully</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div>
-					 <div class="span3">
-						<div class="box aligncenter">
-							<div class="aligncenter icon">
-								<i class="icon-coffee icon-circled icon-64 active"></i>
-							</div>
-							<div class="text">
-								<h6>Sit and enjoy</h6>
-								<p>
-									 Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-								</p>
-								<a href="#">Learn more</a>
-							</div>
-						</div>
-					</div> 
-				</div>
-			</div>  
-		</div> 
-		<!-- divider -->
-		<!-- <div class="row">
-			<div class="span12">
-				<div class="solidline">
-				</div>
-			</div>
-		</div> #}
-		<!-- end divider -->
-		<!-- Portfolio Projects -->
 
 
 		<div class="row marginbot30">
@@ -180,11 +117,10 @@
 									
 							<!-- Item Project and Filter Name -->
 							<li class="item-thumbs span3 {{ appl.city.name }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
-							<h5>{{ appl.name }}</h5>
+							<center><h5>{{ appl.name }}</h5></center>
 							<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 							<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'slug' : appl.slug }) }}">
-							<span class="overlay-img"></span>
-							<span class="overlay-img-thumb font-icon-plus"></span>
+							
 							</a>
 							<!-- Thumb Image and Description -->
 							<center><img src="{{ appl.images[0].url }}" alt="{{ appl.description }}" style="max-height: 200px; width: auto;"></center>
@@ -197,7 +133,56 @@
 			</div>
 		</div>
 		<!-- End Portfolio Projects -->
-
+		<!-- divider -->
+		<div class="row">
+			<div class="span12">
+				<div class="solidline">
+				</div>
+			</div>
+		</div>
+		<!-- end divider -->
+		<!-- start team -->  
+		<div class="row">		
+			<div class="span12" id ="team">
+				<h3 class="heading" style="margin-left:45px">Présentation de l'équipe</h3>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/morale_c.jpg') }}" alt="Cyril Morales" /></center>
+					<h4>Cyril Morales</h4>
+					<p>Chef de projet</p>
+				</div>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/hamsou_l.jpg') }}"   alt="Lionel Hamsou"/></center>
+					<h4>Lionel Hamsou</h4>
+					<p>Développeur Mobile</p>
+				</div>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/souffl_m.jpg') }}"   alt="Marc Souflet"/></center>
+					<h4>Marc Soufflet</h4>
+					<p>Développeur API</p>
+				</div>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/legasa_r.jpg') }}"   alt="Ryan Legasal"/></center>
+					<h4>Ryan Legasal</h4>
+					<p>Développeur Web</p>
+				</div>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/meroua_c.jpg') }}"   alt="Cédric Mérouani"/></center>
+					<h4>Cédric Mérouani</h4>
+					<p>Développeur API</p>
+				</div>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/marqui_c.jpg') }}"   alt="Cyntia Marquis"/></center>
+					<h4>Cyntia Marquis</h4>
+					<p>Développeuse Web</p>
+				</div>
+				<div class="span3 margintop10 text-center">
+					<center><img class = "thumbnail" src="{{ asset('bundles/datacitypublic/img/team/guillaume.jpg') }}"   alt="Guillaume de Jabrun"/></center>
+					<h4>Guillaume de Jabrun</h4>
+					<p>Développeur Web</p>
+				</div>
+			</div>
+		</div>
+		<!-- end team --> 
 	</div>
 	</section>    
 {% endblock %}
