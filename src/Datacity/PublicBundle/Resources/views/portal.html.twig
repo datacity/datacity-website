@@ -31,13 +31,15 @@
 					{% set x = 0 %}
 					{% set currentPagination = 1 %}
 					{% set nbPaginationDisplay = 2 %}
-					{% for appl in applis %}
+					{% for appl in pagination %}
 						<!-- Item Project and Filter Name -->
 						<li class="item-thumbs span4 {{ appl.city.name }} prs-pagination-item prs-pagination-item-{{ currentPagination }}" data-id="id-{{ appl.id }}" data-type="{{ appl.city.name }}">
 						<h5>{{ appl.name }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 						<a class="fancybox" data-fancybox-group="gallery" title="{{ appl.name }}" href="{{ path('datacity_public_appDetail', {'slug' : appl.slug }) }}">
-						<img style="max-height: 200px; width: auto;" src="{{ appl.images[0].url }}" alt="{{ appl.description }}" >
+						{% if appl.images[0] != null %}
+						<img class="image-apps" src="{{ appl.images[0].url }}" alt="{{ appl.images[0].alt }}" >
+						{% endif %}
 						</a>
 						<!-- Thumb Image and Description -->
 						</li>
@@ -53,6 +55,8 @@
 		</div>
 	</div>
 	</section>
-
+	<div class="navigation-producers">
+    	{{ knp_pagination_render(pagination) }}
+	</div>
 
 {% endblock %}
