@@ -182,7 +182,7 @@ class User extends BaseUser
      */
     private $ticketAuthor;
 
-      /**
+    /**
      * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\Ticket", mappedBy="assignedUser", cascade={"persist"})
      * @JMS\Serializer\Annotation\Type("Datacity\PrivateBundle\Entity\Ticket")
      */

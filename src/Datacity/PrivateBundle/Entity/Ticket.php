@@ -54,8 +54,8 @@ class Ticket
      */
     private $dateTimeUpdate;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticket")
+    /**
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAssignedUser")
      */
     private $assignedUser;
 
