@@ -16,10 +16,10 @@
 								<h3>{{ news.title }}</h3>
 							</div>
 							{% if news.image != null %}
-							<img src="../{{ news.getImage().getwebPath() }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>
+							<img src="{{ news.image.url }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>
 							{% endif %}
 						</div>
-						<p>
+						<p style = "text-align: justify;">
 							 {{ news.getMessage() }}
 						</p>
 						
@@ -40,9 +40,11 @@
 					</div>
 					<div class="widget">
 						<h5 class="widgetheading">Sources</h5>
+						{% if news.image != null %}
 						<p>
-							www.infogouv.fr
+							{{ news.image.url }}
 						</p>
+						{% endif %}
 					</div>
 					</aside>
 				</div>
