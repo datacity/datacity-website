@@ -183,6 +183,13 @@ class Dataset
     private $applications;
 
     /**
+     * Si le dataset doit etre public ou non.
+     * @ORM\Column(name="is_public", type="boolean")
+     * @Serializer\Groups({"list"})
+     */
+    private $isPublic = true;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -756,5 +763,28 @@ class Dataset
     public function getApplications()
     {
         return $this->applications;
+    }
+
+    /**
+     * Set isPublic
+     *
+     * @param boolean $isPublic
+     * @return Dataset
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublic
+     *
+     * @return boolean
+     */
+    public function getIsPublic()
+    {
+        return $this->isPublic;
     }
 }

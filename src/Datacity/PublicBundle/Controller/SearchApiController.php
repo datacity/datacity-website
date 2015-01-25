@@ -28,9 +28,12 @@ class SearchApiController extends Controller
 
         $qb = $this->getDoctrine()->getRepository('DatacityPublicBundle:Dataset')->createQueryBuilder('d');
 
+        $qb->where($qb->expr()->eq('d.isPublic', ':public'))
+            ->setParameter('public', true);
+
         if ($text)
         {
-            $qb->where($qb->expr()->like('d.title', ':text')) //En attendant d'avoir un vrai moteur de recherche fulltext
+            $qb->andWhere($qb->expr()->like('d.title', ':text')) //En attendant d'avoir un vrai moteur de recherche fulltext
                 ->setParameter('text', "%$text%");
         }
 

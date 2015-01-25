@@ -25,7 +25,7 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{ 'datasetWizard.visibility'|trans }}</label>
 				<div class="col-md-8">
-					<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.dataset.visibility" data-html="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.choiceVisibility'|trans }}" ng-options="visibility for visibility in dvisibility" bs-select>
+					<button type="button" class="btn btn-default form-control" ng-model="$parent.meta.dataset.visibility" data-html="1" data-animation="am-flip-x" placeholder="{{ 'datasetWizard.choiceVisibility'|trans }}" ng-options="visibility.id as visibility.val for visibility in dvisibility" bs-select>
 					</button>
 				</div>
 			</div>

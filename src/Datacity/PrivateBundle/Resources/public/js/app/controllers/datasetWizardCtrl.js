@@ -546,9 +546,8 @@
 				$scope.$parent.endButton = null;
 
 				$scope.filterList = filterList.data.results;
-				$scope.dvisibility = ['Autoriser tout le monde à voir mes publications',
-					'Autoriser mes abonnés/abonnements à voir mes publications',
-					'N\'autoriser personne à voir mes publications'];
+				$scope.dvisibility = [{val : 'Autoriser tout le monde à voir mes publications', id:'public'},
+							{val:'N\'autoriser personne à voir mes publications', id:'private'}];
 			    $scope.getLocation = function(val) {
 			    	if (!val)
 			    		return null;

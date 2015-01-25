@@ -24,9 +24,8 @@
 				'$modal', '$log', 'licenses', 'dataset', 'operation', 'DatasetFactory',
 			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation, DatasetFactory) {
 				$scope.dataset = dataset;
-				$scope.dataset.visibility = ['Autoriser tout le monde à voir mes publications',
-									'Autoriser mes abonnés/abonnements à voir mes publications',
-									'N\'autoriser personne à voir mes publications'];
+				$scope.dataset.visibility = [{val : 'Autoriser tout le monde à voir mes publications', id:'public'},
+											{val:'N\'autoriser personne à voir mes publications', id:'private'}];
 				$scope.dataset.licenses = licenses;
 				if (operation === 'edit') {
 					$scope.dataset = dataset;

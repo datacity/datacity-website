@@ -37,6 +37,8 @@ class DataSetController extends Controller
                 return $this->thereIsAProblemHere('Unknown license "' . $params->license .'"');
             $dataset->setLicense($license);
 
+            $dataset->setIsPublic($params->visibility == "public");
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($dataset);
             $em->flush();
