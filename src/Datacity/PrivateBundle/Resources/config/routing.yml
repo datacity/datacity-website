@@ -179,15 +179,10 @@ datacity_private_ticket_remove:
     options:
         expose: true
 
-datacity_public_ticket_detail_admin:
-    pattern:  /ticket/{slug}
-    defaults: { _controller: DatacityPrivateBundle:Tickets:ticketDetailAdmin, slug: ""}
-
-datacity_private_tickets_post:
+datacity_private_tickets_detail_admin:
     pattern: /ticket/{slug}
-    defaults: { _controller: DatacityPrivateBundle:Tickets:post }
-    requirements:
-        _method:  POST
+    defaults: { _controller: DatacityPrivateBundle:Tickets:detail}
+
 
 
 datacity_private_applications_edit:

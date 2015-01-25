@@ -30,17 +30,17 @@
 				{% endfor %}
 			</div>
 			<div class="portlet-body form" >
-				<form action="{{path('datacity_private_tickets_post')}}" method="post"  {{ form_enctype(form) }} >
+				<form action="{{ path('datacity_private_tickets_detail_admin', {'slug' : ticket.slug }) }}" method="post"  {{ form_enctype(form) }} >
 					<div class="form-body">
 						<div class="form-group">
-							<label>message</label>{{ form_label(form.message, "Message") }}</label>
+							<label>{{ form_label(form.message, 'ticket.reply'|trans) }}</label>
 							 {{ form_errors(form.message) }}
 							{{ form_widget(form.message, {'attr': {'class': 'form-control', 'style': 'resize: none'}}) }}
 						</div>
 						{{ form_rest(form) }}
 					<div class="form-actions">
 						<input type="submit" class="btn green" value = "{{ 'ticket.replyTicket'|trans }}">
-						<input type="submit" class="btn bleu" value = "{{ 'ticket.replyAndCloseTicket'|trans }}">
+						<input type="submit" class="btn green" value = "{{ 'ticket.replyAndCloseTicket'|trans }}">
 					</div>
 
 				</form>

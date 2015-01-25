@@ -17,14 +17,10 @@ class TicketsController extends Controller
     	return $response;
     }
 
-    public function TicketDetailAdminAction(Ticket $ticket)
-    {
-        return $this->render('DatacityPrivateBundle::TicketDetailAdmin.html.twig', array("ticket" => $ticket));
-    }
-
-    public function postAction(Ticket $ticket) 
+    public function detailAction(Ticket $ticket) 
     {
 
+    
     $replyTicket = new ReplyTicket();
     
     $form = $this->createFormBuilder($replyTicket)
@@ -33,21 +29,27 @@ class TicketsController extends Controller
                  
     $request = $this->get('request');
     if ($request->getMethod() == 'POST'){
+
     $form->bind($request);
 
     if ($form->isValid()) {
-      $replyTicket->setMessage($replyTicket->getMessage());
-      $replyTicket->setTicket($ticket);
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($replyTicket);
-      $em->flush();
+    
+    // Récupère l'utilisateur courant
+    $user = $this->get('security.context')->getToken()->getUser();
+    $ticket->setAssignedUser($user);
+    $ticket->setStatut(1);
+    $replyTicket->setMessage($replyTicket->getMessage());
+    $replyTicket->setTicket($ticket);
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($replyTicket);
+    $em->flush();
 
     
-    return $this->redirect($this->generateUrl('datacity_public_ticket_detail_admin', array('slug' => $ticket->getSlug())));    
+    return $this->redirect($this->generateUrl('datacity_private_tickets_detail_admin', array('slug' => $ticket->getSlug())));    
       }
     }
     return $this->render('DatacityPrivateBundle::TicketDetailAdmin.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), 'ticket' => $ticket
             ));
     }
 
