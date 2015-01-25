@@ -2,6 +2,7 @@
 
 namespace Datacity\PrivateBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,32 +23,29 @@ class ReplyTicket
     private $id;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="message", type="string", length=255)
+     * @ORM\Column(name="message", type="text")
      */
     private $message;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=100)
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User")
      */
     private $author;
 
     /**
      * @var \DateTime
-     *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="dateTimeReply", type="datetime")
      */
     private $dateTimeReply;
-
+    
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idTicket", type="integer")
+     * @ORM\ManyToOne(targetEntity="Datacity\PrivateBundle\Entity\Ticket", inversedBy="reponses")
      */
-    private $idTicket;
+    private $ticket;
 
 
     /**
@@ -132,28 +130,28 @@ class ReplyTicket
         return $this->dateTimeReply;
     }
 
+   
+
     /**
-     * Set idTicket
+     * Set ticket
      *
-     * @param integer $idTicket
-     *
+     * @param \Datacity\PrivateBundle\Entity\Ticket $ticket
      * @return ReplyTicket
      */
-    public function setIdTicket($idTicket)
+    public function setTicket(\Datacity\PrivateBundle\Entity\Ticket $ticket = null)
     {
-        $this->idTicket = $idTicket;
+        $this->ticket = $ticket;
 
         return $this;
     }
 
     /**
-     * Get idTicket
+     * Get ticket
      *
-     * @return integer
+     * @return \Datacity\PrivateBundle\Entity\Ticket 
      */
-    public function getIdTicket()
+    public function getTicket()
     {
-        return $this->idTicket;
+        return $this->ticket;
     }
 }
-

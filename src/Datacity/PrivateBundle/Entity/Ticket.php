@@ -2,6 +2,7 @@
 
 namespace Datacity\PrivateBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +23,12 @@ class Ticket
     private $id;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=228, unique=true)
+     */
+    private $slug;
+
+     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
@@ -31,11 +38,12 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="message", type="string", length=255)
+     * @ORM\Column(name="message", type="text")
      */
     private $message;
 
     /**
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAuthor")
      */
     private $author;
@@ -49,7 +57,7 @@ class Ticket
 
     /**
      * @var \DateTime
-     *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="date_time_update", type="datetime")
      */
     private $dateTimeUpdate;
@@ -66,11 +74,23 @@ class Ticket
      */
     private $statut;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\ReplyTicket", mappedBy="ticket")
+     */
+     private $reponses;
+
+       /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reponses = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -81,7 +101,6 @@ class Ticket
      * Set title
      *
      * @param string $title
-     *
      * @return Ticket
      */
     public function setTitle($title)
@@ -94,7 +113,7 @@ class Ticket
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -105,7 +124,6 @@ class Ticket
      * Set message
      *
      * @param string $message
-     *
      * @return Ticket
      */
     public function setMessage($message)
@@ -118,7 +136,7 @@ class Ticket
     /**
      * Get message
      *
-     * @return string
+     * @return string 
      */
     public function getMessage()
     {
@@ -126,34 +144,9 @@ class Ticket
     }
 
     /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Ticket
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
      * Set dateTimeOpen
      *
      * @param \DateTime $dateTimeOpen
-     *
      * @return Ticket
      */
     public function setDateTimeOpen($dateTimeOpen)
@@ -166,7 +159,7 @@ class Ticket
     /**
      * Get dateTimeOpen
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateTimeOpen()
     {
@@ -177,7 +170,6 @@ class Ticket
      * Set dateTimeUpdate
      *
      * @param \DateTime $dateTimeUpdate
-     *
      * @return Ticket
      */
     public function setDateTimeUpdate($dateTimeUpdate)
@@ -190,7 +182,7 @@ class Ticket
     /**
      * Get dateTimeUpdate
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateTimeUpdate()
     {
@@ -198,34 +190,9 @@ class Ticket
     }
 
     /**
-     * Set assignedUser
-     *
-     * @param string $assignedUser
-     *
-     * @return Ticket
-     */
-    public function setAssignedUser($assignedUser)
-    {
-        $this->assignedUser = $assignedUser;
-
-        return $this;
-    }
-
-    /**
-     * Get assignedUser
-     *
-     * @return string
-     */
-    public function getAssignedUser()
-    {
-        return $this->assignedUser;
-    }
-
-    /**
      * Set statut
      *
      * @param integer $statut
-     *
      * @return Ticket
      */
     public function setStatut($statut)
@@ -238,11 +205,112 @@ class Ticket
     /**
      * Get statut
      *
-     * @return integer
+     * @return integer 
      */
     public function getStatut()
     {
         return $this->statut;
     }
-}
 
+    /**
+     * Set author
+     *
+     * @param \Datacity\UserBundle\Entity\User $author
+     * @return Ticket
+     */
+    public function setAuthor(\Datacity\UserBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Datacity\UserBundle\Entity\User 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set assignedUser
+     *
+     * @param \Datacity\UserBundle\Entity\User $assignedUser
+     * @return Ticket
+     */
+    public function setAssignedUser(\Datacity\UserBundle\Entity\User $assignedUser = null)
+    {
+        $this->assignedUser = $assignedUser;
+
+        return $this;
+    }
+
+    /**
+     * Get assignedUser
+     *
+     * @return \Datacity\UserBundle\Entity\User 
+     */
+    public function getAssignedUser()
+    {
+        return $this->assignedUser;
+    }
+
+    /**
+     * Add reponses
+     *
+     * @param \Datacity\PrivateBunble\Entity\ReplyTicket $reponses
+     * @return Ticket
+     */
+    public function addReponse(\Datacity\PrivateBunble\Entity\ReplyTicket $reponses)
+    {
+        $this->reponses[] = $reponses;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponses
+     *
+     * @param \Datacity\PrivateBunble\Entity\ReplyTicket $reponses
+     */
+    public function removeReponse(\Datacity\PrivateBunble\Entity\ReplyTicket $reponses)
+    {
+        $this->reponses->removeElement($reponses);
+    }
+
+    /**
+     * Get reponses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponses()
+    {
+        return $this->reponses;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Ticket
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+}

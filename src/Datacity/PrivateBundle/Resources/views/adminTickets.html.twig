@@ -41,13 +41,19 @@
 									<td class="highlight">
 										<div class="success">
 										</div>
-										<a href="#">{{ ticket.title }} </a>
+										<a href="{{ path('datacity_public_ticket_detail_admin', {'slug' : ticket.slug }) }}">{{ ticket.title }} </a>
 									</td>
 									<td>
 										{{ ticket.dateTimeOpen | date('d-m-Y H:i') }}
 									</td>
 									<td>
-										{{ ticket.statut }}
+										{% if ticket.statut == 0 %}
+											{{ 'tickets.open'|trans }}
+										{% elseif ticket.statut == 1 %}
+											{{ 'tickets.replied'|trans }}
+										{% elseif ticket.statut == 2 %}
+											{{ 'tickets.close'|trans }}
+										{% endif %}
 									</td>
 									<td>
 										{{ ticket.author }}
