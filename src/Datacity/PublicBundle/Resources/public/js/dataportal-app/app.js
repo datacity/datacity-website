@@ -116,8 +116,12 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             });
         }
     }
-]).controller('datasetCtrl', ['$scope', '$state', 'dataset', '$http', 'apiUrl',
-    function($scope, $state, dataset, $http, apiUrl) {
+]).controller('datasetCtrl', ['$scope', '$state', 'dataset', '$http', 'apiUrl', '$location',
+    function($scope, $state, dataset, $http, apiUrl, $location) {
+        jQuery('#tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
         $scope.$on('$viewContentLoaded', function() {
             (function(d, s, id) {
                 FB = null;
@@ -151,7 +155,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
             enableColumnReordering: true,
             showFooter: true
         };
-        $scope.urlSocialNetwork = document.location.toString().toLowerCase();
+        $scope.urlSocialNetwork = $location.absUrl();
         $scope.refine_array = [{'facet':'', 'value':''}];
         $scope.exclude_array = [{'facet':'', 'value':''}];
         $scope.facetsName = [];
