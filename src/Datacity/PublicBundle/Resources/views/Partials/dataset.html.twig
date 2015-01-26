@@ -4,16 +4,12 @@
 	{% verbatim %}
 	<div class="top-wrapper">
 		<div class="post-heading">
-		<iframe src="//www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%2Fdataview%23%2Fdataset%2Fresultats-des-elections-europeennes&amp;width&amp;layout=icon_link&amp;appId=317673251768041" scrolling="no" frameborder="0" style="height:20px;width:100px;margin-bottom:-8px;border:none; overflow:hidden;" allowTransparency="true"></iframe>
-		<a class="twitter-share-button"
-  		href="https://twitter.com/share"
-  		>
-			Tweet
-		</a>
+		<div class="fb-share-button" data-href="{{ urlSocialNetwork }}" data-layout="button_count" style="bottom: 5px"></div>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ dataset.name }}" data-hashtags="Datacity">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 			<h3>{{ dataset.name }}</h3>
 		</div>
 	</div>
-
 	<p>
 		 {{ dataset.desc }}
 	</p>

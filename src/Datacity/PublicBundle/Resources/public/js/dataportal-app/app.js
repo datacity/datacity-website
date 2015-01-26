@@ -117,6 +117,15 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
     }
 ]).controller('datasetCtrl', ['$scope', '$state', 'dataset', '$http', 'apiUrl',
     function($scope, $state, dataset, $http, apiUrl) {
+        $scope.$on('$viewContentLoaded', function() {
+            (function(d, s, id) {
+                FB = null;
+                var js, fjs = d.getElementsByTagName(s)[0];
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=317673251768041";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));
+        });
         $scope.dataset = dataset;
         $http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
             $scope.datasetData = res.data.data;

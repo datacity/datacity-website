@@ -26,34 +26,34 @@ jQuery(document).ready(function($) {
 			optionsList += '<option value="' + $anchor.attr('href') + '">' + indent + ' ' + $anchor.text() + '</option>';
 		}).end()
 		.after('<select class="selectmenu">' + optionsList + '</select>');
-		
+
 		$('select.selectmenu').on('change', function() {
 			window.location = $(this).val();
 		});
-		
+
 	})();
 
-	
+
 		  $('.toggle-link').each(function() {
 			$(this).click(function() {
 			  var state = 'open'; //assume target is closed & needs opening
 			  var target = $(this).attr('data-target');
 			  var targetState = $(this).attr('data-target-state');
-			  
+
 			  //allows trigger link to say target is open & should be closed
 			  if (typeof targetState !== 'undefined' && targetState !== false) {
 				state = targetState;
 			  }
-			  
+
 			  if (state == 'undefined') {
 				state = 'open';
 			  }
-			  
+
 			  $(target).toggleClass('toggle-link-'+ state);
-			  $(this).toggleClass(state);      
+			  $(this).toggleClass(state);
 			});
 		  });
-	
+
 		//add some elements with animate effect
 
 		$(".big-cta").hover(
@@ -76,35 +76,35 @@ jQuery(document).ready(function($) {
 			$(this).find('.image').removeClass("animated fadeInDown");
 			}
 		);
-		
-		
+
+
 		$('.accordion').on('show', function (e) {
-		
+
 			$(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
 			$(e.target).prev('.accordion-heading').find('.accordion-toggle i').removeClass('icon-plus');
 			$(e.target).prev('.accordion-heading').find('.accordion-toggle i').addClass('icon-minus');
 		});
-		
+
 		$('.accordion').on('hide', function (e) {
 			$(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
 			$(this).find('.accordion-toggle i').not($(e.target)).removeClass('icon-minus');
 			$(this).find('.accordion-toggle i').not($(e.target)).addClass('icon-plus');
-		});	
+		});
 
 
-		
+
 		//Navi hover
 		$('ul.nav li.dropdown').hover(function () {
 			$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn();
 		}, function () {
 			$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut();
 		});
-		
+
 		// tooltip
 		$('.social-network li a, .options_box .color a').tooltip();
 
 		// fancybox
-		$(".fancybox").fancybox({				
+		$(".fancybox").fancybox({
 				padding : 0,
 				autoResize: true,
 				beforeShow: function () {
@@ -116,7 +116,7 @@ jQuery(document).ready(function($) {
 				}
 			});
 
-		
+
 		//scroll to top
 		$(window).scroll(function(){
 			if ($(this).scrollTop() > 100) {
@@ -132,23 +132,13 @@ jQuery(document).ready(function($) {
 
 		$('#mycarousel').jcarousel();
 		$('#mycarousel1').jcarousel();
-	
-		//TWITTER
-		getTwitters('twitter', {
-			id: 'wrapbootstrap',
-			count: 1,
-			enableLinks: true,
-			ignoreReplies: false,
-			template: '<i class="icon-twitter icon-circled icon-48 active"></i><br /><span class="twitterPrefix"><span class="twitterStatus">%text%</span><br /><em class="twitterTime"><a href="http://twitter.com/%user_screen_name%/statuses/%id_str%">Date - %time%</a></em>',
-			newwindow: true
-		});
 
 		$('#da-slider').cslider();
-		
+
 		//flexslider
 		$('.flexslider').flexslider();
-			
-		//slitslider				
+
+		//slitslider
 		var Page = (function() {
 
 			var $nav = $( '#nav-dots > span' ),
@@ -166,17 +156,17 @@ jQuery(document).ready(function($) {
 				$nav.each( function( i ) {
 					$( this ).on( 'click', function() {
 					var $dot = $( this );
-			
+
 					if( !slitslider.isActive() ) {
 						$nav.removeClass( 'nav-dot-current' );
 						$dot.addClass( 'nav-dot-current' );
 					}
-										
+
 					slitslider.jump( i + 1 );
 					return false;
-									
+
 					} );
-									
+
 				} );
 
 			};
