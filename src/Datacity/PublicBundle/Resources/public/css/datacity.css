@@ -88,3 +88,9 @@ border-bottom:1px solid #313030;
 	max-height: 200px;
 	width: auto;
 }
+
+.fb-share-button span,
+.fb-share-button iframe {
+    width: 87px! important;
+    height: 20px! important;
+}
