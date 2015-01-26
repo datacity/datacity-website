@@ -261,10 +261,10 @@ class Ticket
     /**
      * Add reponses
      *
-     * @param \Datacity\PrivateBunble\Entity\ReplyTicket $reponses
+     * @param \Datacity\PrivateBundle\Entity\ReplyTicket $reponses
      * @return Ticket
      */
-    public function addReponse(\Datacity\PrivateBunble\Entity\ReplyTicket $reponses)
+    public function addReponse(\Datacity\PrivateBundle\Entity\ReplyTicket $reponses)
     {
         $this->reponses[] = $reponses;
 
@@ -274,9 +274,9 @@ class Ticket
     /**
      * Remove reponses
      *
-     * @param \Datacity\PrivateBunble\Entity\ReplyTicket $reponses
+     * @param \Datacity\PrivateBundle\Entity\ReplyTicket $reponses
      */
-    public function removeReponse(\Datacity\PrivateBunble\Entity\ReplyTicket $reponses)
+    public function removeReponse(\Datacity\PrivateBundle\Entity\ReplyTicket $reponses)
     {
         $this->reponses->removeElement($reponses);
     }
