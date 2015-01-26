@@ -1,0 +1,16 @@
+{% block subject %}[Datacity] Réinitialiser votre mot de passe{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+Bonjour {{ user.username }} !
+
+Vous pouvez réinitialiser votre mot de passe en cliquant sur ce lien : {{ confirmationUrl }}
+
+A bientôt,
+L'équipe Datacity
+{% endautoescape %}
+{% endblock %}
+
+{% block body_html %}
+{# {% include 'DatacityPublicBundle:Mail:reset.html.twig' %} #}
+{% endblock %}
