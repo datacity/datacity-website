@@ -1,7 +1,15 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
 {% block title %}Datacity -- Détail actualité{% endblock %}
-{% block pagetitle %}Détail actualité{% endblock %}
-{% block pagename %}Actualités- Détail{% endblock %}
+{% block pagetitle %}{{ news.title }}{% endblock %}
+{% block pagenameworkaround %}
+	<li>
+		<a href="{{ path('datacity_public_news') }}">Les Actualités</a>
+		<i class="icon-angle-right"></i>
+	</li>
+	<li class="active">
+		{{ news.slug }}
+	</li>
+{% endblock %}
 {% block pagecontent %}
 	<section id="content">
 		<div class="container">
@@ -12,9 +20,6 @@
 						<div class="row">
 					<div class="span8">
 						<div class="post-image">
-							<div class="post-heading">
-								<h3>{{ news.title }}</h3>
-							</div>
 							{% if news.image != null %}
 							<img src="{{ news.image.url }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>
 							{% endif %}
@@ -22,11 +27,11 @@
 						<p style = "text-align: justify;">
 							 {{ news.getMessage() }}
 						</p>
-						
+
 					</div>
 				</div>
 				</article>
-				
+
 			</div>
 				{# Affichages des différents informations concernant la donnée #}
 				<div class="span4">
@@ -50,5 +55,5 @@
 				</div>
 			</div>
 		</div>
-	</section> 
+	</section>
 {% endblock %}
