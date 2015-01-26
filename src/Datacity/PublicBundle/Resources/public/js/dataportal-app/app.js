@@ -1,11 +1,12 @@
 angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
                                     'angular-loading-bar', 'ngGrid', 'angularUtils.directives.dirPagination'])
     .constant('apiUrl', datacityParams.apiUrl)
-    .config(['$urlRouterProvider', '$stateProvider',
-    function($urlRouterProvider, $stateProvider) {
-        $urlRouterProvider.otherwise('/');
+    .config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
+    function($urlRouterProvider, $stateProvider, $locationProvider) {
+        $locationProvider.html5Mode(true).hashPrefix('!');
+        $urlRouterProvider.otherwise('/dataview');
         $stateProvider.state('default', {
-            url: '/',
+            url: '/dataview',
             templateUrl: '/partials/datasetlist',
             controller: 'homeCtrl',
             resolve: {
@@ -29,7 +30,7 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
                 ]
             },
         }).state('dataset', {
-            url: '/dataset/:slug',
+            url: '/dataview/dataset/:slug',
             templateUrl: '/partials/dataset',
             controller: 'datasetCtrl',
             resolve: {
@@ -127,9 +128,9 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
               }(document, 'script', 'facebook-jssdk'));
         });
         $scope.dataset = dataset;
-        $http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
-            $scope.datasetData = res.data.data;
-        });
+        //$http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
+         //   $scope.datasetData = res.data.data;
+        //});
         var pagingOptions = {
             pageSizes: [20, 50, 100],
             pageSize: 20,

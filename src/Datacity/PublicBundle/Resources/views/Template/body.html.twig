@@ -48,8 +48,8 @@
 	<div class="container ">
 		<!-- hidden top area toggle link -->
 		<div id="header-hidden-link">
-			<a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "fr"})) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_fr.jpg') }}" alt="fr" /></a>
-			<a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "en"})) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_uk.jpg') }}" alt="en" /></a>
+			<a target="_self" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "fr"})) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_fr.jpg') }}" alt="fr" /></a>
+			<a target="_self" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "en"})) }}"><img src="{{ asset('bundles/datacitypublic/img/flag_uk.jpg') }}" alt="en" /></a>
 		</div>
 		<!-- end toggle link -->
 		<div class="row nomargin">
@@ -60,8 +60,8 @@
 				{% else %}
 					<div class="headnav">
 						<ul>
-							<li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-user"></i>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-							<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+							<li><a target="_self" href="{{ path('fos_user_registration_register') }}"><i class="icon-user"></i>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+							<li><a target="_self" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
 						</ul>
 					</div>
 				{% endif %}
@@ -78,12 +78,12 @@
 					<div class="navigation">
 						<nav>
 						<ul class="nav topnav">
-							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_homepage' %}active{% endif %}"><a href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a></li>
-							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_dataviewpage' %}active{% endif %}"><a href="{{ path('datacity_public_dataviewpage') }}"><strong>{{ 'menu.datatable'|trans }}</strong></a></li>
-							<li class="{% if app.request.attributes.get('_route') starts with 'datacity_public_app' %}active{% endif %}"><a href="{{ path('datacity_public_appportalpage') }}">{{ 'menu.app'|trans }}</a></li>
-							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_news' %}active{% endif %}"><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
-							<li class="{% if app.request.attributes.get('_route') starts with 'datacity_public_producer' %}active{% endif %}"><a href="{{ path('datacity_public_producerpage') }}">{{ 'menu.producers'|trans }}</a></li>
-							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_contactpage' %}active{% endif %}"><a href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_homepage' %}active{% endif %}"><a target="_self" href="{{ path('datacity_public_homepage') }}">{{ 'menu.home'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_dataviewpage' %}active{% endif %}"><a target="_self" href="{{ path('datacity_public_dataviewpage') }}"><strong>{{ 'menu.datatable'|trans }}</strong></a></li>
+							<li class="{% if app.request.attributes.get('_route') starts with 'datacity_public_app' %}active{% endif %}"><a target="_self" href="{{ path('datacity_public_appportalpage') }}">{{ 'menu.app'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_news' %}active{% endif %}"><a target="_self" href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') starts with 'datacity_public_producer' %}active{% endif %}"><a target="_self" href="{{ path('datacity_public_producerpage') }}">{{ 'menu.producers'|trans }}</a></li>
+							<li class="{% if app.request.attributes.get('_route') == 'datacity_public_contactpage' %}active{% endif %}"><a target="_self" href="{{ path('datacity_public_contactpage') }}">{{ 'menu.contact'|trans }}</a></li>
 						</ul>
 						</nav>
 					</div>
@@ -101,9 +101,9 @@
 				<div class="widget">
 					<h5 class="widgetheading">{{ 'footer.browse'|trans }}</h5>
 					<ul class="link-list">
-						<li><a href="{{ path('datacity_public_appportalpage') }}">{{ 'menu.app'|trans }}</a></li>
-						<li><a href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
-						<li><a href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
+						<li><a target="_self" href="{{ path('datacity_public_appportalpage') }}">{{ 'menu.app'|trans }}</a></li>
+						<li><a target="_self" href="{{ path('datacity_public_news') }}">{{ 'menu.news'|trans }}</a></li>
+						<li><a target="_self" href="{{ path('datacity_public_dataviewpage') }}">{{ 'menu.datatable'|trans }}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -111,17 +111,17 @@
 			    <div class="widget">
 				     <h5 class="widgetheading">{{ 'footer.info'|trans }}</h5>
 				     <ul class="link-list">
-					      <li><a href="{{ asset('bundles/datacitypublic/files/doc_utilisateur.pdf') }}">{{ 'footer.ud'|trans }}</a></li>
-					       <li><a href="{{ asset('bundles/datacitypublic/files/doc_technique.pdf') }}">{{ 'footer.td'|trans }}</a></li>
-					      <li><a href="{{ path('datacity_public_condition') }}">{{ 'footer.condition'|trans }}</a></li>
-					      <li><a href="{{ path('datacity_public_privacypolicy') }}">{{ 'footer.privacypolicy'|trans }}</a></li>
+					      <li><a target="_self" href="{{ asset('bundles/datacitypublic/files/doc_utilisateur.pdf') }}">{{ 'footer.ud'|trans }}</a></li>
+					       <li><a target="_self" href="{{ asset('bundles/datacitypublic/files/doc_technique.pdf') }}">{{ 'footer.td'|trans }}</a></li>
+					      <li><a target="_self" href="{{ path('datacity_public_condition') }}">{{ 'footer.condition'|trans }}</a></li>
+					      <li><a target="_self" href="{{ path('datacity_public_privacypolicy') }}">{{ 'footer.privacypolicy'|trans }}</a></li>
 					    </ul>
 			    </div>
 			</div>
 			<div class="span2">
 				<div class="widget">
 					<h5 class="widgetheading">{{ 'footer.contact.title'|trans }}</h5>
-					<p><a href="{{ path('datacity_public_contactpage') }}">{{ 'footer.contact.form'|trans }}</a></p>
+					<p><a target="_self" href="{{ path('datacity_public_contactpage') }}">{{ 'footer.contact.form'|trans }}</a></p>
 					<p>{{ 'footer.contact.or'|trans }}</p>
 					<p><i class="icon-envelope-alt"></i> contact@datacity.com </p>
 				</div>
@@ -140,11 +140,7 @@
 				</div>
 				<div class="span6">
 					<ul class="social-network">
-						<li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest icon-square"></i></a></li>
-						<li><a href="#" data-placement="bottom" title="Google plus"><i class="icon-google-plus icon-square"></i></a></li>
+						<li><a target="_self" href="https://www.facebook.com/DataCityFR" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-square"></i></a></li>
 					</ul>
 				</div>
 			</div>
