@@ -183,7 +183,11 @@ datacity_private_tickets_detail_admin:
     pattern: /ticket/{slug}
     defaults: { _controller: DatacityPrivateBundle:Tickets:detail}
 
-
+datacity_private_tickets_get_usertickets:
+    pattern: /usertickets
+    defaults: {_controller: DatacityPrivateBundle:Tickets:getusertickets}
+    options:
+        expose: true
 
 datacity_private_applications_edit:
     pattern: /applications/edit/{name}

@@ -85,6 +85,25 @@
 			        	$scope.$state = $state;
 			     	}]
 				})
+
+				 	//Page ticket des users
+               	.state("userTickets", {
+					data: {
+						title: 'Vos Tickets',
+						description: 'Ajouter/Gérer vos Tickets',
+					},
+					ncyBreadcrumb: {
+					    label: 'Tickets'
+					},
+                	url: "/tickets",
+                	templateUrl: 'userTickets.html',
+					controller: 'userTicketController',
+					resolve: {
+						tickets: ['TicketFactory', function(TicketFactory) {
+							 return TicketFactory.getAll();
+						}]
+					}
+               	})
 				//Page applications des users
                	.state("userApplications", {
 					data: {
@@ -103,6 +122,7 @@
 						}]
 					}
                	})
+
                	.state("editApplication", {
 					data: {
 						title: 'Edition',

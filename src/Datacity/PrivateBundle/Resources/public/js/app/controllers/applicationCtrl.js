@@ -1,7 +1,7 @@
 (function() {
 	angular
 		.module('app')
-		.controller('applicationController', ['$scope', '$state', 'operation', 'application', 'AppFactory', 'cities', 'categories', 'platforms', 'datasets',
+		.controller('applicationController', ['$scope', '$state', 'operation', 'ticket', 'AppFactory', 'cities', 'categories', 'platforms', 'datasets',
 			function($scope, $state, operation, application, AppFactory, cities, categories, platforms, datasets) {
 	        	$scope.app = application;
 	        	$scope.cities = cities;

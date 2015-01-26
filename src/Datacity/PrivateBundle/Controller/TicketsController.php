@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Datacity\PrivateBundle\Entity\Ticket;
 use Datacity\PrivateBundle\Entity\ReplyTicket;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\SerializationContext;
 
 class TicketsController extends Controller
 {
@@ -51,6 +54,24 @@ class TicketsController extends Controller
     return $this->render('DatacityPrivateBundle::TicketDetailAdmin.html.twig', array(
             'form' => $form->createView(), 'ticket' => $ticket
             ));
+    }
+
+
+    public function getUserTicketsAction()
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->createQueryBuilder()->select('t')
+                  ->from('DatacityPrivateBundle:Ticket', 't')
+                  ->where('t.author = ?1')
+                  ->setParameter(1, $user->getId())
+                  ->getQuery()->getResult();
+        $response = new Response();
+        $serializer = $this->get('jms_serializer');
+        $response->setContent('{"results":' . $serializer->serialize($results,
+                            'json', SerializationContext::create()->setGroups(array('userTickets'))) . '}');
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     public function removeAction(Ticket $ticket)

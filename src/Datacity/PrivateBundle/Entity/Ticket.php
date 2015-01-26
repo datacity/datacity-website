@@ -4,6 +4,7 @@ namespace Datacity\PrivateBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Ticket
@@ -19,12 +20,14 @@ class Ticket
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Groups({"userTickets"})
      */
     private $id;
 
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=228, unique=true)
+     * @Serializer\Groups({"userTickets"})
      */
     private $slug;
 
@@ -32,6 +35,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=200)
+     * @Serializer\Groups({"userTickets"})
      */
     private $title;
 
@@ -39,12 +43,14 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="message", type="text")
+     * @Serializer\Groups({"userTickets"})
      */
     private $message;
 
     /**
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAuthor")
+     * @Serializer\Groups({"userTickets"})
      */
     private $author;
 
@@ -52,6 +58,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="date_time_open", type="datetime")
+     * @Serializer\Groups({"userTickets"})
      */
     private $dateTimeOpen;
 
@@ -59,11 +66,13 @@ class Ticket
      * @var \DateTime
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="date_time_update", type="datetime")
+     * @Serializer\Groups({"userTickets"})
      */
     private $dateTimeUpdate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAssignedUser")
+     * @Serializer\Groups({"userTickets"})
      */
     private $assignedUser;
 
@@ -71,11 +80,13 @@ class Ticket
      * @var integer
      *
      * @ORM\Column(name="statut", type="integer")
+     * @Serializer\Groups({"userTickets"})
      */
     private $statut;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\ReplyTicket", mappedBy="ticket")
+     * @Serializer\Groups({"userTickets"})
      */
      private $reponses;
 
