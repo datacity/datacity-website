@@ -31,7 +31,7 @@
 						<div class="span8">
 							<div class="post-image">
 								<div class="post-heading">
-									<h3><a href="{{ path('datacity_public_newsDetail', {'id' : news.id }) }}">{{ news.getTitle() }}</a></h3>
+									<h3><a href="{{ path('datacity_public_newsDetail', {'slug' : news.slug }) }}">{{ news.getTitle() }}</a></h3>
 								</div>
 								{% if news.image != null %}
 									<img src="{{ news.image.url }}" alt="{{ news.image.alt }}" style = "height : 400px; width: 700px"/>
@@ -39,7 +39,7 @@
 							</div>
 							<p style="font-weight:bold;">
 							 {{ news.getMessage() }}
-							</p>	
+							</p>
 							<div class="bottom-article" style="background-color:#D1D9D9;">
 								<ul class="meta-post">
 									<li><i class="icon-user"></i>{{ news.getUser().getUsername()}}</li>
@@ -59,5 +59,5 @@
 			</div>
 		</div>
 	</div>
-	</section>   
+	</section>
 {% endblock %}

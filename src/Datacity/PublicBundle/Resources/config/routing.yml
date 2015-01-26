@@ -35,8 +35,8 @@ datacity_public_news:
     defaults: { _controller: DatacityPublicBundle:News:news }
 
 datacity_public_newsDetail:
-    pattern:  /news/{id}
-    defaults: { _controller: DatacityPublicBundle:News:newsDetail, id: 0 }
+    pattern:  /news/{slug}
+    defaults: { _controller: DatacityPublicBundle:News:newsDetail }
 
 datacity_public_dataviewpage:
     pattern:  /dataview

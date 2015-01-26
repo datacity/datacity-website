@@ -18,12 +18,12 @@
 					<div class="row">
 						<div class="row-producers">
 						<!-- Item Project and Filter Name -->
-						
+
 						<h5 style="font-weight:bold;">{{ producer.name }}</h5>
 						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 
 						<!-- Thumb Image and Description -->
-						
+
 						<a class="fancybox" data-fancybox-group="gallery" title="{{ producer.name }}" href="{{ path('datacity_public_producer_detail', {'slug' : producer.slug }) }}">
 							{% if producer.image != null %}
 								<img class="image-producers" src="{{ producer.image.url }}" alt="{{ producer.image.alt }}">
