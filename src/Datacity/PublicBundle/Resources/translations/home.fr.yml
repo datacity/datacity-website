@@ -10,18 +10,18 @@ slide2:
     title: Notre Force
     description: >
       DataCity offre dans son back office utilisateur un système d'étape par étape de création de sources. 
-      Dans ce système tous les utilisateurs peuvent centralier, trier et améliorer des données de différents 
+      Dans ce système tous les utilisateurs peuvent centraliser, trier et améliorer des données de différents 
       formats et de sources différentes. Il permet également de dédoubloner ces données pour créer une nouvelle 
-      source plus clair qui pourra ensuite être exporter dans le format que l'utilisateur désire.
+      source plus clair qui pourra ensuite être exportée dans le format que l'utilisateur désire.
     access: Accès
 slide3:
     title: L'innovation
     description: > 
       DataCity rassemble les données des différents portails publics, de même que celles des projets open source de type 
       OpenStreet Map, pour les standardiser. Une fois ces données traitées, DataCity propose aux collectivités des
-      applications sur mesure, via un AppStore maison. Celles-ci sont payantes ou offertes à la location, pour une durée
+      applications sur mesure, via la boutique d'application de Datacity. Celles-ci sont payantes ou offertes à la location, pour une durée
       déterminée, incluant des services tels que la maintenance, l’hébergement, le référencement... En d’autres termes,
-      DataCity est un portail applicatif pour les utilisateurs qui pourront proposer à leur tour des applis mobiles.
+      DataCity est un portail applicatif pour les utilisateurs qui pourront proposer à leur tour des applications mobiles.
 slide4:
     title: Nos utilisateurs
     description: > 

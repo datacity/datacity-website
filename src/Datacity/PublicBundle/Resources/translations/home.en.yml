@@ -1,15 +1,34 @@
 title: Homepage
-datacity.description: > #FIXME Innacurate translation
-    Datacity is a project which offers several features in the domain of Open Data. 
-    It analyzes and centralizes the needs for regions thanks to the exploitation of free data,
-    and expose these by an application programming interface (API).
-    DataCity also offers a stretchable and moldable application portal on request of public services.
-dashboard:
-    title: Dashboard
-    description: > #FIXME Innacurate translation
-        The dashboard of DataCity provide select, sort, and deduplicate data for 
-        a clear result in a format desired by the user.
-    access: Access
+slide1:
+    title: The Project
+    description: >
+      Datacity is a project which offers several features in the domain of Open Data. 
+      It analyzes and centralizes the needs for regions thanks to the exploitation of free data,
+      and expose these by an application programming interface (API).
+      DataCity also offers a stretchable and moldable application portal on request of public services.
+slide2:
+    title: Our Strength
+    description: >
+      DataCity offer in its user back office a step by step system for creating sources.
+      In this system all users can centralize, sort and improve data from different
+      formats and from different sources. It also allows to divide the data to create a new
+      clearer source which can then be exported in a format that the user want.
+    access: Accès
+slide3:
+    title: Innovation
+    description: > 
+      DataCity gathers data from different public portals, as well as those of the open source projects of type
+      OpenStreet Map, to standardize them. Once these data are processed, DataCity offers to communities
+      custom applications thanks to Datacity's Applications Store.
+      These are paid or offered for rent for a determined period, 
+      they include services such as maintenance, hosting, SEO ... In other words,
+      DataCity is an application portal for users and they will be able, in their turn, to offer mobile apps.
+slide4:
+    title: Our Users
+    description: > 
+      Our main users are the communities and their citizens.
+      However they aren't the only target of DataCity. Indeed, developers who would recover
+      data stored on our server can also use the API DataCity as they want.
 apps.new: New <strong>applications</strong> in the store
 partner: Partner and <strong>customers</strong>
 actu.new: <strong>Datacity</strong> news<span></span>

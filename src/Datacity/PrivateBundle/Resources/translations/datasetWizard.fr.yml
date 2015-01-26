@@ -11,7 +11,7 @@ datasetWizard.ok: Terminer
 datasetWizard.error: Une erreur est survenue
 datasetWizard.delete: Supprimer
 datasetWizard.cancel: Annuler
-datasetWizard.deleteAll: Supprimer tout les fichiers
+datasetWizard.deleteAll: Supprimer tous les fichiers
 datasetWizard.addAll: Ajouter un ou des fichiers
 datasetWizard.fieldIn: Champs contenus dans les fichiers
 datasetWizard.add: Ajoutez au moins un fichier
@@ -23,11 +23,11 @@ datasetWizard.warn: Attention
 datasetWizard.filesNotIn: Les fichiers suivants ne seront pas inclus
 datasetWizard.continue: Continuer
 datasetWizard.fieldOfSource: Champs de votre source
-datasetWizard.copyFields: Copier tout les champs
-datasetWizard.deleteFields: Supprimer tout les champs
-datasetWizard.clearFields: Réinitialiser tout les champs
-datasetWizard.fieldOfDataset: Champs de votre jeux de donnée
-datasetWizard.addFields: Ajoutez ici les champs que vous voulez ajouter au jeu de donnée.
+datasetWizard.copyFields: Copier tous les champs
+datasetWizard.deleteFields: Supprimer tous les champs
+datasetWizard.clearFields: Réinitialiser tous les champs
+datasetWizard.fieldOfDataset: Champs de votre jeu de données
+datasetWizard.addFields: Ajoutez ici les champs que vous voulez ajouter au jeu de données.
 datasetWizard.replaceFields: Cette action remplacera les champs crées, confirmer ?
 datasetWizard.renameField: Renommer le champ ?
 datasetWizard.nameField: Nom du champ
@@ -56,7 +56,7 @@ datasetWizard.teritoryCover: Choisissez la couverture territoriale
 datasetWizard.selectCat: Choisissez la catégorie
 datasetWizard.cat: Catégories
 datasetWizard.sourceInfo: Information sur la source
-datasetWizard.datasetInfo: Information sur le jeux de donnée
+datasetWizard.datasetInfo: Information sur le jeu de données
 datasetWizard.final: Aperçu final
 datasetWizard.inProgress: Envoi en cours...
-datasetWizard.showDataset: Voir le jeu de donnée
+datasetWizard.showDataset: Voir le jeu de données
