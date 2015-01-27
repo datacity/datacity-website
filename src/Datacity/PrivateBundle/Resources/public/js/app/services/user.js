@@ -17,7 +17,6 @@
 						});
 				},
 				uploadImage: function(image) {
-					console.log(image);
 					return $http
 						.post(Routing.generate('datacity_private_user_uploadimage'), image).then(function(response) {
 							return response.data;
@@ -31,11 +30,9 @@
 					// 		return response.data;
 					// 	});
 				},
-				updatePassword: function(user) {
+				updatePassword: function(password) {
 					return $http
-						.post(Routing.generate('datacity_private_user_updatepassword'), user).then(function(response) {
-							return response.data;
-						});
+						.post(Routing.generate('datacity_private_user_updatepassword'), password);
 				},
 				delete: function(id) {
 					/*return $http

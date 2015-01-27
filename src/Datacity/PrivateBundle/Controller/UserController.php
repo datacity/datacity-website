@@ -43,7 +43,7 @@ class UserController extends Controller
             $userManager->updateUser($user);
             $response = new JsonResponse(array('action' => 'success'));
         } else {
-            $response = new JsonResponse(array('action' => 'failure'));
+            $response = new JsonResponse(array('action' => 'failure'), 400);
         }
         return $response;
     }
@@ -89,10 +89,10 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $response = new JsonResponse(array('action' => 'success'));
             } else {
-                $response = new JsonResponse(array('action' => 'failure'));
+                $response = new JsonResponse(array('action' => 'failure'), 403);
             }
         } else {
-            $response = new JsonResponse(array('action' => 'failure'));
+            $response = new JsonResponse(array('action' => 'failure'), 400);
         }
         return $response;
     }

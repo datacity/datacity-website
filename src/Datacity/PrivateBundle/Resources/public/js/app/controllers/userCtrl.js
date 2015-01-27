@@ -112,29 +112,24 @@
 					        	//console.log($scope.imageUpload);
 					        	toastr.success("Votre nouvel avatar est en ligne !", "Image chargée avec succès");
 					        } else {
-					        	toastr.error("Merci de contacter un administrateur ou de réessayer ultérieurement", "Une erreur est survenue ! :O");
+					        	toastr.error("Merci de contacter un administrateur ou de réessayer ultérieurement", "Une erreur est survenue !");
 					        }
 					 	});
 				 	} else {
 				 		//MESSAGE D'ERREUR
-                        toastr.error("Merci de contacter un administrateur ou de réessayer ultérieurement", "Une erreur est survenue ! :O");
+                        toastr.error("Merci de contacter un administrateur ou de réessayer ultérieurement", "Une erreur est survenue !");
 				 	}
 				}
 
 				$scope.updatePassword = function () {
-					console.log($scope.passwords);
-					if ($scope.passwords.newPassword && $scope.passwords.oldPassword
-						&& $scope.passwords.confirmPassword
-						&& $scope.passwords.newPassword == $scope.passwords.confirmPassword) {
+					if ($scope.passwords.newPassword == $scope.passwords.confirmPassword) {
 			        	var userPasswords = $scope.passwords;
-                        $scope.passwordChange.pw1.$setValidity("newPassword", true);
-                        $scope.passwordChange.pw2.$setValidity("confirmedPassword", true);
-				        UserFactory.updatePassword(userPasswords).then(function(data) {
+				        UserFactory.updatePassword(userPasswords).success(function(data) {
                             toastr.success("Utilisez votre nouveau mot de passe à la prochaine connexion", "Mot de passe modifié !");
-					 	});
+					 	}).error(function(data) {
+					 		toastr.error("Les champs doivent etre complétés. Le nouveau mot de passe et sa vérification doivent être identiques.", "Erreur lors de la vérification du mot de passe");
+					 	})
 				 	} else {
-						$scope.passwordChange.pw1.$setValidity("newPassword", false);
-                        $scope.passwordChange.pw2.$setValidity("confirmedPassword", false);
 				 		toastr.error("Les champs doivent etre complétés. Le nouveau mot de passe et sa vérification doivent être identiques.", "Erreur lors de la vérification du mot de passe");
 				 	}
 			    }
