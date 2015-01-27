@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="span12">
 					<h4>{{ 'contact.howto'|trans|raw }}</h4>
-					<form id="contactform" action="contact/contact.php" method="post" class="validateform" name="send-contact">
+					<form id="contactform" action="{{path('datacity_public_contactpage')}}" method="post" class="validateform" name="send-contact">
 						<div id="sendmessage">
 							 {{ 'contact.success'|trans }}.
 						</div>

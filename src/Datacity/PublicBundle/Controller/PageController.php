@@ -3,6 +3,7 @@
 namespace Datacity\PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
 {
@@ -15,11 +16,23 @@ class PageController extends Controller
 		$response = $this->render('DatacityPublicBundle::home.html.twig', array('applis' => $applications, 'news' => $news));
 		return $response;
 	}
-	
-	// Controlleur de la page Contact: page statique actuellement,
-	// on affiche donc seulement la page brute de contact twig.
-	public function contactAction()
+
+	public function contactAction(Request $request)
 	{
+		if ($request->getMethod() == 'POST') {
+	        $mailer = $this->get('mailer');
+	        $message = $mailer->createMessage()
+	            ->setSubject($request->request->get('subject'))
+	            ->setFrom($request->request->get('email'))
+	            ->setBody($request->request->get('name') . ' (' . $request->request->get('email') . ') : ' . $request->request->get('message'))
+				->setTo('datacity.eip@gmail.com');
+			$mailer->send($message);
+			$this->get('session')->getFlashBag()->add(
+			            'success',
+			            'Message envoyé !'
+			        );
+		}
+
 		$response = $this->render('DatacityPublicBundle::contact.html.twig');
 		return $response;
 	}

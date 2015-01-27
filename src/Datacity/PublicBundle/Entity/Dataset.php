@@ -76,6 +76,7 @@ class Dataset
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="creation_date", type="date")
      * @Serializer\Groups({"datasetShow"})
+     * @Serializer\Type("DateTime<'d-m-Y'>")
      */
     private $creationDate;
 
@@ -85,6 +86,7 @@ class Dataset
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="last_update", type="datetime")
      * @Serializer\Groups({"list", "datasetShow", "userList"})
+     * @Serializer\Type("DateTime<'d-m-Y'>")
      */
     private $lastModifiedDate;
 
