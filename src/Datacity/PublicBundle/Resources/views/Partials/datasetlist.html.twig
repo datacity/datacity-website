@@ -1,8 +1,9 @@
+{% trans_default_domain "datasetList" %}
 <div class="span12">
 	<form class="form-search" >
-		<input data-ng-model="text" placeholder="Rechercher" type="text" class="input-medium search-query">
+		<input data-ng-model="text" placeholder="{{ 'search'|trans }}" type="text" class="input-medium search-query">
 		<input data-typeahead="address for address in getLocation($viewValue)" data-typeahead-loading="loadingLocations"
-			data-ng-model="place" placeholder="Ou ?" type="text" class="input-medium search-query"
+			data-ng-model="place" placeholder="{{ 'where'|trans }}" type="text" class="input-medium search-query"
 			data-typeahead-editable='false'>
 		<i ng-show="loadingLocations" class="icon-refresh"></i>
 		<input
@@ -36,21 +37,21 @@
 				</p>
 				<div class="horizontal-data-bloc-bottom">
 					<ul class="meta-post">
-						<li><i class="icon-copy"></i> Jeux de donnée</li>
-						<li><a data-tooltip='Mise à jour'><i class="icon-calendar"></i> {{ dataset.lastUpdate }}</a></li>
-						<li><a data-tooltip='Auteur'><i class="icon-user"></i> {{ dataset.user }}</a></li>
+						<li><i class="icon-copy"></i> {% endverbatim %}{{ 'dataset'|trans }}</li>
+						<li><a data-tooltip='{{ 'update'|trans }}'>{% verbatim %}<i class="icon-calendar"></i> {{ dataset.lastUpdate }}</a></li>
+						<li>{% endverbatim %}<a data-tooltip='{{ 'author'|trans }}'>{% verbatim %}<i class="icon-user"></i> {{ dataset.user }}</a></li>
 						<li data-ng-if="dataset.locations.length == 1">
-							<a data-tooltip='Localisation'><i class="icon-map-marker"></i> {{ dataset.locations[0] }}
+							{% endverbatim %}<a data-tooltip='{{ 'location'|trans }}'>{% verbatim %}<i class="icon-map-marker"></i> {{ dataset.locations[0] }}
 							</a>
 						</li>
 						<li data-ng-if="dataset.locations.length > 1">
-							<a data-tooltip='Localisation'><i class="icon-map-marker"></i> {{ dataset.locations[0] }} (+ {{ dataset.locations.length }})
+							{% endverbatim %}<a data-tooltip='{{ 'location'|trans }}'>{% verbatim %}<i class="icon-map-marker"></i> {{ dataset.locations[0] }} (+ {{ dataset.locations.length }})
 							</a>
 						</li>
-						<li><a data-tooltip='Couverture'><i class="icon-globe"></i> {{ dataset.couverture }}</a></li>
-						<li><a data-tooltip='Fréquence'><i class="icon-refresh"></i> {{ dataset.frequency.name }}</a></li>
-						<li><a data-tooltip='Catégorie'><i class="icon-info-sign"></i> {{ dataset.categories[0].name }}</a></li>
-						<li><a data-tooltip='Licence'><i class="icon-legal"></i> {{ dataset.license }}</a></li>
+						<li>{% endverbatim %}<a data-tooltip='{{ 'cover'|trans }}'>{% verbatim %}<i class="icon-globe"></i> {{ dataset.couverture }}</a></li>
+						<li>{% endverbatim %}<a data-tooltip='{{ 'freq'|trans }}'>{% verbatim %}<i class="icon-refresh"></i> {{ dataset.frequency.name }}</a></li>
+						<li>{% endverbatim %}<a data-tooltip='{{ 'cat'|trans }}'>{% verbatim %}<i class="icon-info-sign"></i> {{ dataset.categories[0].name }}</a></li>
+						<li>{% endverbatim %}<a data-tooltip='{{ 'license'|trans }}'>{% verbatim %}<i class="icon-legal"></i> {{ dataset.license }}</a></li>
 					</ul>
 				</div>
 			{% endverbatim %}

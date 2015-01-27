@@ -1,0 +1,36 @@
+back: Retour
+search: Rechercher
+searchS: Recherche
+table: Tableau
+where: Où ?
+dataset: Jeu de données
+update: Mise à jour
+author: Auteur
+location: Localisation
+cover: Couverture
+freq: Fréquence
+cat: Catégorie
+license: Licence
+table: Tableau
+graph: Graphique
+nodata: Aucune donnée disponible
+research: Recherche plein texte
+results: Résultats
+nbResults: Nombre de résultats retournés
+index: Index du premier résultat
+facet: Facettes
+del: Supprimer
+addFacet: Ajouter une facette
+refine: Affiner
+addFilter: Ajouter filtre
+exclude: Exclure
+value: Valeur
+datasetSources: Sources du jeu de données :
+prod: Producteur
+linkOfSource:  Lien de la source
+download: Téléchargement
+cats: Catégorie(s)
+pubDate: Date de publication
+lastUpdate: Dernière mise à jour
+stats: Statistiques
+apps: Applications

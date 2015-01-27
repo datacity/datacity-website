@@ -1,0 +1,36 @@
+back: Back
+search: Search
+searchS: Research
+table: Table
+where: Where ?
+dataset: Dataset
+update: Update
+author: Author
+location: Location
+cover: Cover
+freq: Frequency
+cat: Category
+license: License
+table: Table
+graph: Graph
+nodata: No data availaible
+research: Research by text
+results: Results
+nbResults: Number of returned results
+index: Index of first result
+facet: Facets
+del: Delete
+addFacet: Add a facet
+refine: Refine
+addFilter: Add a filter
+exclude: Exclude
+value: Value
+datasetSources: Sources of the dataset :
+prod: Producer
+linkOfSource:  Link of source
+download: Download
+cats: Category(-es)
+pubDate: Publication date
+lastUpdate: Last update
+stats: Stats
+apps: Applications

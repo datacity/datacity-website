@@ -1,4 +1,5 @@
-<a ui-sref="default" class="pull-right"><i class="icon-angle-left"></i> Retour</a>
+{% trans_default_domain "datasetList" %}
+<a ui-sref="default" class="pull-right"><i class="icon-angle-left"></i> {{ 'back'|trans }}</a>
 <div class="span8">
 	<article id="dataset">
 	{% verbatim %}
@@ -15,8 +16,8 @@
 	</p>
 	</article>
 	<ul id="tabs" class="nav nav-tabs">
-        <li class="active"><a href="#tableau" data-toggle="tab">Tableau</a></li>
-        <li><a href="#graphique" data-toggle="tab">Graphique</a></li>
+        <li class="active"><a href="#tableau" data-toggle="tab">{% endverbatim %}{{ 'table'|trans }}{% verbatim %}</a></li>
+        <li><a href="#graphique" data-toggle="tab">{% endverbatim %}{{ 'graph'|trans }}{% verbatim %}</a></li>
         <li><a href="#api" data-toggle="tab">API</a></li>
      </ul>
 	<div class="visualizator">
@@ -24,7 +25,7 @@
 			<div class="tab-pane active" id="tableau">
             	<div data-ng-if="datasetData.length > 0" class="gridStyle" style="height: 600px" ng-grid="gridOptions">
 		        </div>
-		        <span data-ng-if="datasetData.length === 0">Aucune donnée disponible</span>
+		        <span data-ng-if="datasetData.length === 0">{% endverbatim %}{{ 'nodata'|trans }}{% verbatim %}</span>
         	</div>
 
         	<div class="tab-pane" id="graphique">
@@ -34,7 +35,7 @@
 			<div ng-click='updateUrl()' class="tab-pane" id="api">
 		    	<form  class="form-horizontal" style="width:550px;">
 					<div class="form-body">
-						<label style="margin-left:-15px;" class="col-md-2 control-label">jeu de données  <strong style="color:red;"></strong></label>
+						<label style="margin-left:-15px;" class="col-md-2 control-label">{% endverbatim %}{{ 'dataset'|trans }}{% verbatim %}  <strong style="color:red;"></strong></label>
 						<div class="row portfolio-block">
 							<div class="col-md-2">
 								<span style="margin-left:10px;margin-top:10px;padding-top:5px;font-weight:bold"> {{dataset.name}}</span>
@@ -42,24 +43,24 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-2" style="margin-left:-15px;">recherche  <strong style="color:red;"></strong></label>
+						<label class="control-label col-md-2" style="margin-left:-15px;">{% endverbatim %}{{ 'searchS'|trans }}{% verbatim %}  <strong style="color:red;"></strong></label>
 						<div class="col-md-3">
-							<input type="text" ng-model="q" name="q" style="width:250px;margin-left:10px;" class="form-control" placeholder="recherche plein texte">
+							<input type="text" ng-model="q" name="q" style="width:250px;margin-left:10px;" class="form-control" {% endverbatim %}placeholder="{{ 'research'|trans }}"{% verbatim %}>
 						</div>
 					</div><br/>
 					<div class="form-group">
-						<label class="col-md-2 control-label" style="margin-left:-15px;">résultats  </label>
+						<label class="col-md-2 control-label" style="margin-left:-15px;">{% endverbatim %}{{ 'results'|trans }}{% verbatim %}  </label>
 						<div class="col-md-2">
 							<input type="text" ng-model="col_nb" name="col_nb" style="width:250px; margin-left:10px;" class="form-control" placeholder="10"/>
 						</div>
-						<span style="margin-left:160px;font-size:12px;">nombre de résultats retournés</span>
+						<span style="margin-left:160px;font-size:12px;">{% endverbatim %}{{ 'nbResults'|trans }}{% verbatim %}</span>
 					</div><br/>
 					<div class="form-group">
-						<label class="control-label col-md-2" style="margin-left:-15px;">index <strong style="color:red;"></strong></label>
+						<label class="control-label col-md-2" style="margin-left:-15px;">Index <strong style="color:red;"></strong></label>
 						<div class="col-md-2">
 							<input type="text" ng-model="first_res" name="first_res" style="width:250px;margin-left:10px;" class="form-control" placeholder="0">
 						</div>
-						<span style="margin-left:160px;font-size:12px;">index du premier résultat</span>
+						<span style="margin-left:160px;font-size:12px;">{% endverbatim %}{{ 'index'|trans }}{% verbatim %}</span>
 					</div><br/>
 					<div class="form-group">
 						<div class="portlet-body">
@@ -68,7 +69,7 @@
 									<thead>
 										<tr>
 											<th>
-												<i></i> Facettes
+												<i></i> {% endverbatim %}{{ 'facet'|trans }}{% verbatim %}
 											</th>
 										</tr>
 									</thead>
@@ -78,7 +79,7 @@
 												{{facet}}
 											</td>
 											<td style="width:50px" ng-click='deleteRow(facet)'>
-											<button data-toggle="modal" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</button>
+											<button data-toggle="modal" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {% endverbatim %}{{ 'del'|trans }}{% verbatim %}</button>
 											</td>
 										</tr>
 									</tbody>
@@ -89,45 +90,45 @@
 					<div style="margin-left:20px;">
 						<div class="col-md-2" >
 							<input type="text" name="new_facet" class="form-control" ng-model="new_facet">
-							<button ng-click='addRow()' class="btn btn-lg green">ajouter une facette <i class="fa fa-plus"></i></button>
+							<button ng-click='addRow()' class="btn btn-lg green">{% endverbatim %}{{ 'addFacet'|trans }}{% verbatim %} <i class="fa fa-plus"></i></button>
 						</div><br/>
 					</div>
 					<div style="margin-top:35px;">
 						<div style="margin-top:20px;" class="portlet-body" >
-							<label class="control-label col-md-2" style="margin-left:-110px;margin-right:5px;">affiner </label>
+							<label class="control-label col-md-2" style="margin-left:-110px;margin-right:5px;">{% endverbatim %}{{ 'refine'|trans }}{% verbatim %} </label>
 							<div ng-repeat="ref in refine_array" style="margin-bottom:5px;">
 								<div data-ng-if="$index > 0">
 						 			<select style="margin-left:55px;">
 										<option selected="selected" style=" display: none;">{{ref.facet}}</option>
 									<select />
 									<input type="text" value={{ref.value}} name="current_value_refine" ng-class="" style="width:100px;margin-left:10px;" class="form-control">
-									<button data-toggle="modal" ng-click='deleteRefine($index)' class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</button>
+									<button data-toggle="modal" ng-click='deleteRefine($index)' class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {% endverbatim %}{{ 'del'|trans }}{% verbatim %}</button>
 								</div>
 								<div data-ng-if="$index == 0">
 									<select ng-options="facet.name for facet in facetsName" ng-model="facet">
-   										<option selected="selected" style="display:none" value="">facettes</option>
+   										<option selected="selected" style="display:none" value="">{% endverbatim %}{{ 'facet'|trans }}{% verbatim %}</option>
 									</select>
-									<input  type="text" ng-model="value_refine.title" value="" name="value_refine.title" ng-class="" style="width:100px;margin-left:10px;" class="form-control" placeholder="valeur">
-									<button ng-click='addFilter(facet, value_refine, "refine")' class="btn btn-lg green">ajouter filtre <i class="fa fa-plus"></i></button>
+									<input  type="text" ng-model="value_refine.title" value="" name="value_refine.title" ng-class="" style="width:100px;margin-left:10px;" class="form-control" {% endverbatim %}placeholder="{{ 'value'|trans }}"{% verbatim %}>
+									<button ng-click='addFilter(facet, value_refine, "refine")' class="btn btn-lg green">{% endverbatim %}{{ 'addFilter'|trans }}{% verbatim %} <i class="fa fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
 						<div style="margin-top:20px;" class="portlet-body" >
-							<label class="control-label col-md-2" style="margin-left:-110px;margin-right:5px;">exclure </label>
+							<label class="control-label col-md-2" style="margin-left:-110px;margin-right:5px;">{% endverbatim %}{{ 'exclude'|trans }}{% verbatim %} </label>
 							<div ng-repeat="ref in exclude_array" style="margin-bottom:5px;">
 								<div data-ng-if="$index > 0">
 						 			<select  style="margin-left:55px;">
 										<option selected="selected" style=" display: none;">{{ref.facet}}</option>
 									<select />
 									<input type="text" value={{ref.value}} name="current_value_refine" ng-class="" style="width:100px;margin-left:10px;" class="form-control">
-									<button data-toggle="modal" ng-click='deleteExclude($index)' class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</button>
+									<button data-toggle="modal" ng-click='deleteExclude($index)' class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {% endverbatim %}{{ 'del'|trans }}{% verbatim %}</button>
 								</div>
 								<div data-ng-if="$index == 0">
 									<select ng-options="facet.name for facet in facetsName" ng-model="facet">
-   										<option selected="selected" style="display:none" value="">facettes</option>
+   										<option selected="selected" style="display:none" value="">{% endverbatim %}{{ 'facet'|trans }}{% verbatim %}</option>
 									</select>
 									<input  type="text" ng-model="value_refine.title" value="" name="value_refine.title" ng-class="" style="width:100px;margin-left:10px;" class="form-control" placeholder="valeur">
-									<button ng-click='addFilter(facet, value_refine, "exclude")' class="btn btn-lg green">ajouter filtre <i class="fa fa-plus"></i></button>
+									<button ng-click='addFilter(facet, value_refine, "exclude")' class="btn btn-lg green">{% endverbatim %}{{ 'addFilter'|trans }}{% verbatim %} <i class="fa fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
@@ -147,14 +148,14 @@
 	<section data-ng-if="dataset.sources" class="data-links">
 		<div class="row">
 			<div class="span8">
-				<h4>Sources du jeux de données :</h5>
+				<h4>{{ 'datasetSources'|trans }}</h5>
 				{% verbatim %}
 				<div class="row">
 					<div class="span8" data-ng-repeat="source in dataset.sources">
 						<h5 class="horizontal-data-bloc-title">{{ source.title }}</h5>
 						<p>
-							Producteur : {{ source.producer.name }}</br>
-							<span data-ng-if="source.link">Lien de la source : <a href="{{ source.link }}">{{ source.link }}</a></span>
+							{% endverbatim %}{{ 'prod'|trans }}{% verbatim %} : {{ source.producer.name }}</br>
+							<span data-ng-if="source.link">{% endverbatim %}{{ 'linkOfSource'|trans }}{% verbatim %} : <a href="{{ source.link }}">{{ source.link }}</a></span>
 						</p>
 						<div class="horizontal-data-bloc-bottom">
 							<ul class="meta-post">
@@ -179,25 +180,25 @@
 		<h5 class="widgetheading">Informations :</h5>
 		{% verbatim %}
 		<ul class="folio-detail">
-			<li><label>Categorie(s) :</label> <span data-ng-repeat="cat in dataset.categories">{{ cat.name }}<span data-ng-if="!$last">, </span></span></li>
-			<li><label>Auteur :</label> {{ dataset.user.username }} </li>
-			<li><label>Date de publication :</label> {{ dataset.date }}</li>
-			<li><label>Derniere mise à jour :</label> {{ dataset.lastUpdate }}</li>
-			<li><label>Localisation :</label> <span data-ng-repeat="loc in dataset.locations">{{ loc.name }}<span data-ng-if="!$last">, </span></span></li>
-			<li><label>Couverture :</label> {{ dataset.couverture }}</li>
-			<li><label>License :</label> {{ dataset.license }}</li>
+			<li><label>{% endverbatim %}{{ 'cats'|trans }}{% verbatim %} :</label> <span data-ng-repeat="cat in dataset.categories">{{ cat.name }}<span data-ng-if="!$last">, </span></span></li>
+			<li><label>{% endverbatim %}{{ 'author'|trans }}{% verbatim %} :</label> {{ dataset.user.username }} </li>
+			<li><label>{% endverbatim %}{{ 'pubDate'|trans }}{% verbatim %} :</label> {{ dataset.date }}</li>
+			<li><label>{% endverbatim %}{{ 'lastUpdate'|trans }}{% verbatim %} :</label> {{ dataset.lastUpdate }}</li>
+			<li><label>{% endverbatim %}{{ 'location'|trans }}{% verbatim %} :</label> <span data-ng-repeat="loc in dataset.locations">{{ loc.name }}<span data-ng-if="!$last">, </span></span></li>
+			<li><label>{% endverbatim %}{{ 'cover'|trans }}{% verbatim %} :</label> {{ dataset.couverture }}</li>
+			<li><label>{% endverbatim %}{{ 'license'|trans }}{% verbatim %} :</label> {{ dataset.license }}</li>
 		</ul>
 		{% endverbatim %}
 	</div>
 	{% verbatim %}
 	<div class="widget">
-		<h5 class="widgetheading">Statistiques</h5>
+		<h5 class="widgetheading">{% endverbatim %}{{ 'stats'|trans }}{% verbatim %}</h5>
 		<p>
 			Nombre de vues : {{ dataset.visited_nb }}
 		</p>
 	</div>
 	<div class="widget">
-		<h5 class="widgetheading">Téléchargement</h5>
+		<h5 class="widgetheading">{% endverbatim %}{{ 'download'|trans }}{% verbatim %}</h5>
 		<p>
 			<a href="{{ downloadUrl.xml }}">XML <i class="icon-download-alt"></i></a>
 			<a href="{{ downloadUrl.json }}">JSON <i class="icon-download-alt"></i></a>
@@ -205,7 +206,7 @@
 		</p>
 	</div>
 	<div class="widget">
-		<h5 class="widgetheading">Applications</h5>
+		<h5 class="widgetheading">{% endverbatim %}{{ 'apps'|trans }}{% verbatim %}</h5>
 		<ul class="folio-detail">
 			<li data-ng-repeat="app in dataset.applications"><a data-ng-href="{{ app.url }}">{{ app.name }}</a></li>
 		</ul>
