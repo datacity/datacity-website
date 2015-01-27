@@ -1,0 +1,29 @@
+{% trans_default_domain "api" %}
+{% verbatim %}
+<div class="tab-pane active" id="tab_1_6">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						{% endverbatim %}{{ 'api.publickey'|trans }}{% verbatim %}
+					</h4>
+				</div>
+				<div class="panel-body">
+				{{ user.public_key }}
+				</div>
+			</div>
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						{% endverbatim %}{{ 'api.privatekey'|trans }}{% verbatim %}
+					</h4>
+				</div>
+				<div class="panel-body">
+				{{ user.private_key }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endverbatim %}

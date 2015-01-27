@@ -39,7 +39,8 @@
 
                 $scope.tabs = [
                     { heading: "Vue d'ensemble", route:"profile.mainView", active:false },
-                    { heading: "Paramètres du compte", route:"profile.settings", active:false }
+                    { heading: "Paramètres du compte", route:"profile.settings", active:false },
+                    { heading: "Information API", route:"profile.api", active:false }
                 ];
 
                 $scope.settingsTabs = [

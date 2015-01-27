@@ -7,18 +7,15 @@
 			<p>
 				{{user.about || "Aucune description"}}
 			</p>
-			<p>
-				<a ng-href="{{user.website_url}}">{{user.website_url || "http://datacity.fr"}}</a>
+			<p data-ng-if="user.website_url">
+				<a ng-href="{{user.website_url}}">{{ user.website_url }}</a>
 			</p>
 			<ul class="list-inline">
-				<li>
-					<i class="fa fa-map-marker"></i> {{user.city.name || "France" }}
+				<li data-ng-if="user.city.name">
+					<i class="fa fa-map-marker"></i> {{user.city.name }}
 				</li>
-				<li>
-					<i class="fa fa-calendar"></i> {{"01/09/2014" }}
-				</li>
-				<li>
-					<i class="fa fa-briefcase"></i> {{user.occupation || "Web développeur"}}
+				<li data-ng-if="user.occupation">
+					<i class="fa fa-briefcase"></i> {{user.occupation }}
 				</li>
 			</ul>
 		</div>

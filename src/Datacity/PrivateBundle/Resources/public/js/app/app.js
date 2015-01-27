@@ -481,6 +481,18 @@
 					    label: 'Profil'
 					},
                 })
+                .state("profile.api", {
+                	url: "/api",
+                	templateUrl: 'profileSettingsApi.html',
+					data: {
+						title: 'Votre Profil',
+						description: 'Informations api',
+					},
+					ncyBreadcrumb: {
+				        label: 'Information api',
+				        parent: 'profile.mainView'
+					},
+                })
                 .state("profile.settings", {
                 	url: "/settings",
                 	templateUrl: 'profileSettingsIndex.html',
