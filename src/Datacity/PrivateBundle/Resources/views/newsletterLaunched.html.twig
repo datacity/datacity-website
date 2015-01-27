@@ -1,0 +1,11 @@
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
+{% trans_default_domain "newsletter" %}
+{% block pageTitle %}{{ 'newsletter.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'newsletter.titleLink'|trans }}{% endblock %}
+{% block pagecontent %}
+
+<p>{{ message }}</p>
+
+<p><a href="{{ path('datacity_private_admin_newsletter') }}">Retour</a></p>
+
+{% endblock %}

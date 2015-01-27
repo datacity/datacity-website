@@ -12,3 +12,4 @@
 /web/images/
 /backups
 /jsvendor
+/app/spool/*

@@ -48,6 +48,13 @@ class Newsletter
     private $date;
 
     /**
+    * @var boolean
+    *
+    * @ORM\Column(name="launched", type="boolean")
+    */
+    private $launched = false;
+
+    /**
      * Get id
      *
      * @return integer
@@ -147,5 +154,28 @@ class Newsletter
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set launched
+     *
+     * @param boolean $launched
+     * @return Newsletter
+     */
+    public function setLaunched($launched)
+    {
+        $this->launched = $launched;
+
+        return $this;
+    }
+
+    /**
+     * Get launched
+     *
+     * @return boolean
+     */
+    public function getLaunched()
+    {
+        return $this->launched;
     }
 }

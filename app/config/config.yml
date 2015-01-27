@@ -139,7 +139,9 @@ swiftmailer:
     transport: gmail
     username:  datacity.eip@gmail.com
     password:  datacityepitech
-    spool:     { type: memory }
+    spool:
+        type: file
+        path: "%kernel.root_dir%/spool"
 
 fos_user:
     db_driver: orm

@@ -252,3 +252,7 @@ datacity_private_admin_newsletter_remove:
     defaults: {_controller: DatacityPrivateBundle:Newsletters:remove}
     options:
         expose: true
+
+datacity_private_admin_newsletter_launch:
+    pattern: /admin/newsletter/{slug}
+    defaults: {_controller: DatacityPrivateBundle:Newsletters:launch}

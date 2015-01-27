@@ -71,7 +71,7 @@ class User extends BaseUser
      * @Serializer\Expose
      *
      */
-    private $receiveNewsletter = true;
+    private $receiveNewsletter = false;
 
      /**
      * @var integer

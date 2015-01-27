@@ -54,4 +54,39 @@ class NewslettersController extends Controller
                 'form' => $form->createView(),
                 ));
     }
+
+    public function launchAction(Newsletter $newsletter) {
+        $message = "";
+        if ($newsletter->getLaunched()) {
+            $message = "La newsletter a déjà été envoyée.";
+            return $this->render('DatacityPrivateBundle::newsletterLaunched.html.twig', array('message' => $message));
+        }
+
+        $mailer = $this->get('mailer');
+        $message = $mailer->createMessage()
+            ->setSubject($newsletter->getObject())
+            ->setFrom('datacity.eip@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'DatacityPrivateBundle:Mail:template.html.twig',
+                    array('message' => $newsletter->getMessage(),
+                        'homepage' => $this->get('router')->generate('datacity_public_homepage', array(), true))),
+                'text/html');
+
+        $users = $this->getDoctrine()->getRepository("DatacityUserBundle:User")->findByReceiveNewsletter(true);
+        $numSent = 0;
+
+        foreach($users as $user) {
+            $message->setTo($user->getEmailCanonical());
+            $numSent += $mailer->send($message);
+        }
+
+        $message = 'La newsletter a été envoyée (' . $numSent . ' destinataires)';
+
+        $newsletter->setLaunched(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($newsletter);
+        $em->flush();
+        return $this->render('DatacityPrivateBundle::newsletterLaunched.html.twig', array('message' => $message));
+    }
 }
