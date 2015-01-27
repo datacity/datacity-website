@@ -12,6 +12,7 @@ use JMS\Serializer\SerializationContext;
 class DataSetController extends Controller
 {
     const ITEM_PER_REQUEST = 12;
+    const POINT_PER_DATASET = 5;
 
     private function thereIsAProblemHere($error = 'failure') {
         return new JsonResponse(array('error' => $error), 400);
@@ -38,6 +39,11 @@ class DataSetController extends Controller
             $dataset->setLicense($license);
 
             $dataset->setIsPublic($params->visibility == "public");
+
+            $user = $this->getUser();
+            $userManager = $this->get('fos_user.user_manager');
+            $user->setPoint($user->getPoint() + self::POINT_PER_DATASET);
+            $userManager->updateUser($user);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($dataset);

@@ -13,6 +13,9 @@ use Doctrine\ORM\Query\Expr;
 
 class SourceController extends Controller
 {
+
+    const POINT_PER_SOURCES = 2;
+
     private function thereIsAProblemHere($error = 'failure') {
         return new JsonResponse(array('error' => $error), 400);
     }
@@ -103,8 +106,12 @@ class SourceController extends Controller
                 }
             }
 
+            $user = $this->getUser();
+            $userManager = $this->get('fos_user.user_manager');
+            $user->setPoint($user->getPoint() + self::POINT_PER_SOURCES);
+            $userManager->updateUser($user);
+
             $em->flush();
-            //TODO Return Slug (et donc ajouter un champ slug dans l'entite)
             $response = new JsonResponse(array('action' => 'success'));
         } else {
             return $this->thereIsAProblemHere();

@@ -39,7 +39,7 @@
 								Point(s)<i class="fa fa-img-up"></i>
 							</span>
 							<span class="sale-num">
-								{{user.point || 0}}
+								{{user.point }}
 							</span>
 						</li>
 						<li>
@@ -52,10 +52,10 @@
 						</li>
 						<li>
 							<span class="sale-info">
-								{% endverbatim %}{{ 'profileOverview.sources'|trans }}{% verbatim %}
+								{% endverbatim %}{{ 'profileOverview.datasettotal'|trans }}{% verbatim %}
 							</span>
 							<span class="sale-num">
-								0
+								{{ user.datasetNumber }}
 							</span>
 						</li>
 					</ul>

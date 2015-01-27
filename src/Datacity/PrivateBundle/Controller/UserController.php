@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function getAction()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $response = new JsonResponse();
         $serializer = $this->get('jms_serializer');
@@ -30,7 +30,7 @@ class UserController extends Controller
             // $user = $serializer->deserialize($content, 'Datacity\UserBundle\Entity\User', 'json');
             $params = json_decode($content);
             $userManager = $this->get('fos_user.user_manager');
-            $user = $this->get('security.context')->getToken()->getUser();
+            $user = $this->getUser();
             $user->setFirstname($params->firstname);
             $user->setLastname($params->lastname);
             if (isset($params->about))

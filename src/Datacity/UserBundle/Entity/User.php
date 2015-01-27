@@ -276,6 +276,17 @@ class User extends BaseUser
     }
 
     /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("datasetNumber")
+     *
+     * @return string
+     */
+    public function getTotalDataset()
+    {
+        return count($this->datasetOwned);
+    }
+
+    /**
      * Get id
      *
      * @return integer

@@ -4,7 +4,7 @@ profileOverviewIndex.subs: Abonnement(s)
 profileOverviewIndex.followers: Abonné(s)
 profileOverview.review: Bilan des activités
 profileOverview.rating: Moyenne des notations
-profileOverview.sources: Total des sources crées
+profileOverview.datasettotal: Total de jeux de données crées
 profileOverview.follow: S'abonner
 profileOverview.unfollow: Se désabonner
 profileOverview.since: Inscrit depuis le

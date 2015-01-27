@@ -4,7 +4,7 @@ profileOverview.subs: Subscription(s)
 profileOverview.followers: Follower(s)
 profileOverview.review: Activities review
 profileOverview.rating: Average ratings
-profileOverview.sources: Total sources created
+profileOverview.datasettotal: Total datasets created
 profileOverview.follow: Follow
 profileOverview.unfollow: Unfollow
 profileOverview.since: Registered since
