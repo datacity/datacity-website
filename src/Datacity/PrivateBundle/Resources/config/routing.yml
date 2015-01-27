@@ -237,3 +237,18 @@ datacity_private_applications_delete_user_app:
     options:
         expose: true
 
+datacity_private_admin_newsletter:
+    pattern: /admin/newsletter
+    defaults: {_controller: DatacityPrivateBundle:Newsletters:list}
+
+datacity_private_admin_newsletter_add:
+    pattern: /admin/newsletter/add
+    defaults: {_controller: DatacityPrivateBundle:Newsletters:add}
+
+datacity_private_admin_newsletter_remove:
+    pattern: /admin/newsletter/{slug}
+    requirements:
+        _method: DELETE
+    defaults: {_controller: DatacityPrivateBundle:Newsletters:remove}
+    options:
+        expose: true

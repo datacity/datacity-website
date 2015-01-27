@@ -62,14 +62,13 @@ class ProducersController extends Controller
     $form->bind($request);
 
     if ($form->isValid()) {
-      $producer->setSlug($producer->getName());
       $em = $this->getDoctrine()->getManager();
       $em->persist($producer);
       //
       $em->flush();
 
     
-    return $this->redirect($this->generateUrl('datacity_private_producers_list'), 301);    
+    return $this->redirect($this->generateUrl('datacity_private_producers_list'));    
       }
     }
 	return $this->render('DatacityPrivateBundle::addProducer.html.twig', array(
@@ -98,7 +97,7 @@ class ProducersController extends Controller
       $em->flush();
 
     
-    return $this->redirect($this->generateUrl('datacity_private_producers_list'), 301);    
+    return $this->redirect($this->generateUrl('datacity_private_producers_list'));    
       }
     }
   return $this->render('DatacityPrivateBundle::editProducer.html.twig', array(

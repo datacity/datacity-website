@@ -1,0 +1,93 @@
+{% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
+{% trans_default_domain "newsletter" %}
+{% block pageTitle %}{{ 'newsletter.title'|trans }}{% endblock %}
+{% block lineTitleLink %}{{ 'newsletter.titleLink'|trans }}{% endblock %}
+{% block pagecontent %}
+
+
+<a href="{{ path('datacity_private_admin_newsletter_add') }}" class="btn btn-lg green">{{ 'newsletter.add'|trans }} <i class="fa fa-plus"></i></a><br><br>
+<!-- BEGIN SAMPLE TABLE PORTLET-->
+					<div class="portlet">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-bell-o"></i>{{ 'newsletter.table'|trans }} ({{newsletters|length}} {{ 'newsletter.added'|trans }})
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-advance table-hover">
+								<thead>
+								<tr>
+									<th>
+										<i class="fa fa-user"></i> {{ 'newsletter.name'|trans }}
+									</th>
+									<th class="hidden-xs">
+										<i class="fa fa-bookmark"></i> {{ 'newsletter.date'|trans }}
+									</th>
+									<th>
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for newsletter in newsletters %}
+									<tr id="row-newsletter-{{newsletter.getSlug()}}">
+									<td class="highlight">
+										<div class="success">
+										</div>
+										<a>{{ newsletter.object }}</a>
+									</td>
+									<td class="hidden-xs">
+										{{ newsletter.date | date("d/m/Y") }}
+									</td>
+									<td>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteProducer('{{ newsletter.slug }}', '{{ newsletter.object|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+									</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+									<h4 class="modal-title">{{ 'newsletter.deleteNewsletter'|trans }}</h4>
+								</div>
+								<div class="modal-body">
+									 {{ 'newsletter.warn'|trans }} <span id='producerToDeleteName'></span>.<br/>{{ 'newsletter.confirm'|trans }}.
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn default" data-dismiss="modal">{{ 'newsletter.close'|trans }}</button>
+									<button id="buttonDeleteProducer" type="button" class="btn blue" onClick="" data-dismiss="modal">{{ 'newsletter.confirmDel'|trans }}</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- END SAMPLE TABLE PORTLET-->
+
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+	<script type="text/javascript">
+		function deleteProducer(slug) {
+		$.ajax({
+		    type: 'DELETE',
+		    dataType: 'json',
+		    url: Routing.generate('datacity_private_admin_newsletter_remove', { slug: slug }),
+		    success: function(response) {
+		        $("#row-newsletter-" + response['slug']).fadeOut(300, function() { $(this).remove(); });
+		      }
+		  });
+		}
+	function setDeleteProducer(slug, name) {
+		$("#buttonDeleteProducer").attr("onClick", "deleteProducer('" + slug + "');")
+		$("#producerToDeleteName").html(name);
+
+	}
+	</script>
+{% endblock %}

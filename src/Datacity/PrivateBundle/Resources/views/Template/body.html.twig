@@ -205,6 +205,16 @@ Website: http://datacity.fr
 							</span>
 						</a>
 					</li>
+					<li id="nav-news" class="start {% if app.request.attributes.get('_route') starts with 'datacity_private_admin_newsletter' %}active{% endif %}">
+						<a href="{{ path('datacity_private_admin_newsletter') }}">
+							<i class="fa fa-file-text"></i>
+							<span class="title">
+								{{ 'body.newsletter'|trans }}
+							</span>
+							<span class="selected">
+							</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>
