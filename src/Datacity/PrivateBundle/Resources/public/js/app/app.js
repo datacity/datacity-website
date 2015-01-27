@@ -104,6 +104,26 @@
 						}]
 					}
                	})
+
+ 				.state("addTickets", {
+					data: {
+						title: 'Ajout',
+						description: 'Ajouter vos tickets',
+					},
+					ncyBreadcrumb: {
+					    label: 'Ajout'
+					},
+                	url: "/ticket/addTickets",
+                	templateUrl: 'addTicket.html',
+					controller: 'TicketController',
+					resolve: {
+						operation: function() {return 'add'},
+						ticket: ['TicketFactory', function(TicketFactory){
+							return [];
+						}]
+					}
+               	})
+
 				//Page applications des users
                	.state("userApplications", {
 					data: {
