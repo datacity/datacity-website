@@ -1,9 +1,9 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
 {% trans_default_domain "news" %}
 
-{% block title %}Datacity -- Page des actualités{% endblock %}
-{% block pagetitle %}Les Actualités{% endblock %}
-{% block pagename %}Les Actualités{% endblock %}
+{% block title %}Datacity -- {{ 'title'|trans }}{% endblock %}
+{% block pagetitle %}{{ 'news'|trans }}{% endblock %}
+{% block pagename %}{{ 'news'|trans }}{% endblock %}
 
 
 {% block pagecontent %}

@@ -1,9 +1,10 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+{% trans_default_domain "producerDetail" %}
 
 {# Ici, on configure les parametre de base de la page #}
-{% block title %}Datacity -- Producteurs{% endblock %}
-{% block pagetitle %}Producteurs{% endblock %}
-{% block pagename %}Producteurs{% endblock %}
+{% block title %}Datacity -- {{ 'prods'|trans }}{% endblock %}
+{% block pagetitle %}{{ 'prods'|trans }}{% endblock %}
+{% block pagename %}{{ 'prods'|trans }}{% endblock %}
 
 {% block pagecontent %}
 	<section id="content">

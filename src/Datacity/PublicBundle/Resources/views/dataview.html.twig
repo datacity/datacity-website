@@ -1,8 +1,10 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
+{% trans_default_domain "dataview" %}
+
 {% block bodyattr %}data-ng-app="datacity.datasets"{% endblock %}
-{% block title %}Datacity -- Page de vue des données{% endblock %}
-{% block pagetitle %}Les données{% endblock %}
-{% block pagename %}Les données{% endblock %}
+{% block title %}Datacity -- {{ 'dataview'|trans }}{% endblock %}
+{% block pagetitle %}{{ 'data'|trans }}{% endblock %}
+{% block pagename %}{{ 'data'|trans }}{% endblock %}
 
 {% block bodyhead %}
 <div id="fb-root"></div>
@@ -38,7 +40,7 @@
 	<div class="container">
 		<div class="row" data-ui-view>
 			<div class="span12">
-			      <p class="text-center">Chargement...</p>
+			      <p class="text-center">{{ 'loading'|trans }}...</p>
 			</div>
 		</div>
 	</div>

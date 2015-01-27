@@ -1,9 +1,10 @@
 {% extends 'DatacityPublicBundle:Template:pagebody.html.twig' %}
-{% block title %}Datacity -- Détail actualité{% endblock %}
+{% trans_default_domain "news" %}
+{% block title %}Datacity -- {{ 'detailNews'|trans }}{% endblock %}
 {% block pagetitle %}{{ news.title }}{% endblock %}
 {% block pagenameworkaround %}
 	<li>
-		<a href="{{ path('datacity_public_news') }}">Les Actualités</a>
+		<a href="{{ path('datacity_public_news') }}">{{ 'news'|trans }}</a>
 		<i class="icon-angle-right"></i>
 	</li>
 	<li class="active">
@@ -39,7 +40,7 @@
 					<div class="widget">
 						<h5 class="widgetheading">Informations</h5>
 						<ul class="folio-detail">
-							<li><label>Auteur : </label> {{ news.getUser().getUsername()}}</li>
+							<li><label>{{ 'author'|trans }} : </label> {{ news.getUser().getUsername()}}</li>
 							<li><label>Date : </label>{{ news.getDate() | date('d-m-Y H:i') }}</li>
 						</ul>
 					</div>
