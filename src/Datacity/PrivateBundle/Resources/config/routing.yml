@@ -3,11 +3,11 @@ datacity_private_homepage:
     defaults: { _controller: DatacityPrivateBundle:Default:index }
 
 datacity_private_adminusers:
-    pattern:  /users
+    pattern:  /admin/users
     defaults: { _controller: DatacityPrivateBundle:AdminUsers:index }
 
 datacity_private_adminusers_remove:
-    pattern:  /users/{usernameCanonical}
+    pattern:  /admin/users/{usernameCanonical}
     requirements:
         _method: DELETE
     defaults: { _controller: DatacityPrivateBundle:AdminUsers:remove }
@@ -15,27 +15,27 @@ datacity_private_adminusers_remove:
         expose: true
 
 datacity_private_adminusers_edit:
-    pattern: /users/{firstname}
+    pattern: /admin/users/{firstname}
     defaults: {_controller: DatacityPrivateBundle:AdminUsers:edit}
     options:
         expose: true
 
 datacity_private_news:
-    pattern:  /news
+    pattern:  /admin/news
     defaults: { _controller: DatacityPrivateBundle:News:index }
 
 datacity_private_news_edit:
-    pattern:  /news/edit/{title}
+    pattern:  /admin/news/edit/{title}
     defaults: { _controller: DatacityPrivateBundle:News:edit }
 
 datacity_private_news_add:
-    pattern:  /news/add
+    pattern:  /admin/news/add
     requirements:
         _method: GET|POST
     defaults: { _controller: DatacityPrivateBundle:News:add }
 
 datacity_private_news_remove:
-    pattern:  /news/{slug}
+    pattern:  /admin/news/{slug}
     requirements:
         _method: DELETE
     defaults: { _controller: DatacityPrivateBundle:News:remove }
@@ -104,13 +104,13 @@ datacity_private_producers_get:
         expose: true
 
 datacity_private_producers_edit:
-    pattern: /producers/edit/{name}
+    pattern: /admin/producers/edit/{name}
     defaults: {_controller: DatacityPrivateBundle:Producers:edit}
     options:
         expose: true
 
 datacity_private_producer_remove:
-    pattern:  /producers/{slug}
+    pattern:  /admin/producers/{slug}
     requirements:
         _method: DELETE
     defaults: { _controller: DatacityPrivateBundle:Producers:remove }
@@ -118,13 +118,13 @@ datacity_private_producer_remove:
         expose: true
 
 datacity_private_producers_post:
-    pattern: /producers/add
+    pattern: /admin/producers/add
     defaults: { _controller: DatacityPrivateBundle:Producers:post }
     requirements:
         _method:  GET|POST
 
 datacity_private_producers_list:
-    pattern: /producers/list
+    pattern: /admin/producers/list
     defaults: { _controller: DatacityPrivateBundle:Producers:list }
 
 datacity_private_user_get:
@@ -160,19 +160,19 @@ datacity_private_user_updatepassword:
         expose: true
 
 datacity_private_applications_list:
-    pattern: /applications/list
+    pattern: /admin/applications/list
     defaults: {_controller: DatacityPrivateBundle:Applications:list}
 
 datacity_private_applications_post:
-    pattern: /applications/add
+    pattern: /admin/applications/add
     defaults: {_controller: DatacityPrivateBundle:Applications:post}
 
 datacity_private_tickets_list:
-    pattern: /tickets
+    pattern: /admin/tickets
     defaults: {_controller: DatacityPrivateBundle:Tickets:index}
 
 datacity_private_ticket_remove:
-    pattern:  /tickets/{title}
+    pattern:  /admin/tickets/{title}
     requirements:
         _method: DELETE
     defaults: { _controller: DatacityPrivateBundle:Tickets:remove }
@@ -180,7 +180,7 @@ datacity_private_ticket_remove:
         expose: true
 
 datacity_private_tickets_detail_admin:
-    pattern: /ticket/{slug}
+    pattern: /admin/ticket/{slug}
     defaults: { _controller: DatacityPrivateBundle:Tickets:detail}
 
 datacity_private_tickets_get_usertickets:
@@ -190,13 +190,13 @@ datacity_private_tickets_get_usertickets:
         expose: true
 
 datacity_private_applications_edit:
-    pattern: /applications/edit/{name}
+    pattern: /admin/applications/edit/{name}
     defaults: {_controller: DatacityPrivateBundle:Applications:edit}
     options:
         expose: true
 
 datacity_private_applications_remove:
-    pattern:  /applications/{slug}
+    pattern:  /admin/applications/{slug}
     requirements:
         _method: DELETE
     defaults: { _controller: DatacityPrivateBundle:Applications:remove }

@@ -114,6 +114,7 @@ Website: http://datacity.fr
 	<!-- BEGIN CONTAINER -->
 	<div class="page-container">
 		<!-- BEGIN SIDEBAR -->
+		{% if app.user and is_granted("ROLE_ADMIN") %}
 		<div class="page-sidebar-wrapper">
 			<div class="page-sidebar navbar-collapse collapse">
 				<!-- BEGIN SIDEBAR MENU -->
@@ -198,10 +199,11 @@ Website: http://datacity.fr
 				<!-- END SIDEBAR MENU -->
 			</div>
 		</div>
+		{% endif %}
 		<!-- END SIDEBAR -->
 		<!-- BEGIN CONTENT -->
 		<div class="page-content-wrapper">
-			<div class="page-content">
+			<div class="page-content" {% if app.user and not is_granted("ROLE_ADMIN") %} style="margin-left: 0px" {% endif %}>
 				<!-- BEGIN PAGE HEADER-->
 				<div class="row">
 					<div class="col-lg-11">
