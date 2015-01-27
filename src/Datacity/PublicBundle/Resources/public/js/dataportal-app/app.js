@@ -132,9 +132,14 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
               }(document, 'script', 'facebook-jssdk'));
         });
         $scope.dataset = dataset;
-        //$http.get(apiUrl + '/users/something/dataset/' + dataset.slug + '/download').then(function(res) {
-         //   $scope.datasetData = res.data.data;
-        //});
+        $http.get(apiUrl + '/search?size=0&dataset=' + dataset.slug).then(function(res) {
+           $scope.datasetData = res.data.data;
+        });
+
+        $scope.downloadUrl = { json: apiUrl + '/' + dataset.slug + '/download/json',
+                                xml: apiUrl + '/' + dataset.slug + '/download/xml',
+                                csv: apiUrl + '/' + dataset.slug + '/download/csv'};
+
         var pagingOptions = {
             pageSizes: [20, 50, 100],
             pageSize: 20,

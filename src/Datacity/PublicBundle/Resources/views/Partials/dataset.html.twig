@@ -164,7 +164,6 @@
 								<li><a tooltip='Localisation'><i class="icon-pushpin"></i> {{ source.place.name }}</a></li>
 								<li><a tooltip='Couverture'><i class="icon-globe"></i> {{ source.coverage_territory.name }}</a></li>
 							</ul>
-							<a href="" class="pull-right">Télécharger <i class="icon-download-alt"></i></a>
 						</div>
 					</div>
 				</div>
@@ -195,6 +194,14 @@
 		<h5 class="widgetheading">Statistiques</h5>
 		<p>
 			Nombre de vues : {{ dataset.visited_nb }}
+		</p>
+	</div>
+	<div class="widget">
+		<h5 class="widgetheading">Téléchargement</h5>
+		<p>
+			<a href="{{ downloadUrl.xml }}">XML <i class="icon-download-alt"></i></a>
+			<a href="{{ downloadUrl.json }}">JSON <i class="icon-download-alt"></i></a>
+			<a href="{{ downloadUrl.csv }}">CSV <i class="icon-download-alt"></i></a>
 		</p>
 	</div>
 	<div class="widget">
