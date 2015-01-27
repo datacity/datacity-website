@@ -1,4 +1,5 @@
 {% trans_default_domain "profileSettings" %}
+
 <div id="tab_1-1" class="tab-pane active">
     <form name="userChange" role="form" ng-submit="updateUser()">
         <div class="form-group">
@@ -20,6 +21,11 @@
         <div class="form-group">
             <label class="control-label">{{ 'profileSettings.website'|trans }}</label>
             <input type="url" name="homepage" ng-model="userInfos.websiteUrl" placeholder="{{ 'profileSettings.yourWebsite'|trans }}" class="form-control"/>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input ng-model="userInfos.newsletter" type="checkbox"> {{ 'profileSettings.newsletter'|trans }}
+            </label>
         </div>
         <div class="margiv-top-10">
             <input type="submit" ng-show="userChange.$valid" value="{{ 'profileSettings.save'|trans }}" class="btn green"/>

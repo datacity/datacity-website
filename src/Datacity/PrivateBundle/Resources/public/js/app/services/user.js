@@ -12,19 +12,19 @@
 				},
 				updateUser: function(userinfos) {
 					return $http
-						.post(Routing.generate('datacity_private_usermanager_post'), userinfos).then(function(response) {
+						.post(Routing.generate('datacity_private_user_post'), userinfos).then(function(response) {
 							return response.data;
 						});
 				},
 				uploadImage: function(image) {
 					console.log(image);
 					return $http
-						.post(Routing.generate('datacity_private_usermanager_uploadimage'), image).then(function(response) {
+						.post(Routing.generate('datacity_private_user_uploadimage'), image).then(function(response) {
 							return response.data;
 						});
 					// return $upload.upload({
 					// 	   	url: Routing.generate('datacity_private_usermanager_uploadimage'),
-					// 	    method: 'POST', 
+					// 	    method: 'POST',
 					// 		file: image
 
 					// 	}).then(function(response) {
@@ -33,7 +33,7 @@
 				},
 				updatePassword: function(user) {
 					return $http
-						.post(Routing.generate('datacity_private_usermanager_updatepassword'), user).then(function(response) {
+						.post(Routing.generate('datacity_private_user_updatepassword'), user).then(function(response) {
 							return response.data;
 						});
 				},

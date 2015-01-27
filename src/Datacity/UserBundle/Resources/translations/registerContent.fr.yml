@@ -5,3 +5,6 @@ register.description: >
     et les met à disposition par une interface de programmation (API).
     DataCity offre également un portail applicatif extensible et malléable à la demande des services publics.
 register.submit: S'inscrire
+register.name: Nom :
+register.firstname: Prénom :
+register.newsletter: Je souhaite recevoir les dernieres informations de Datacity

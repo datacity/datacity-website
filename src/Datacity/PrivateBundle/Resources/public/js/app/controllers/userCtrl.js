@@ -5,7 +5,14 @@
 			function($scope, $stateParams, $modal, $log, UserFactory, $state, currentUser) {
 				$scope.user = currentUser;
 				$scope.passwords = {};
-				$scope.userInfos = {};
+				$scope.userInfos = {
+					firstname: currentUser.firstname,
+					lastname: currentUser.lastname,
+					occupation: currentUser.occupation,
+					about: currentUser.about,
+					website: currentUser.website,
+					newsletter: currentUser.receive_newsletter
+				};
 				//$scope.template = {};
 
 				//$scope.template.userOverview = Routing.generate('datacity_private_partials', {pageName: 'userOverview'});

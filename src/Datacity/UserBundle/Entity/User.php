@@ -6,13 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Util\SecureRandom;
-use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * User
  *
  * @ORM\Table(name="datacity_user")
  * @ORM\Entity(repositoryClass="Datacity\UserBundle\Entity\UserRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -30,7 +31,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      *
      * @Assert\NotBlank(message="Entrez votre prénom.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -47,7 +49,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=50)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      *
      * @Assert\NotBlank(message="Entrez votre nom.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -60,11 +63,22 @@ class User extends BaseUser
      */
     private $lastname;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="receive_newsletter", type="boolean")
+     * @Serializer\Type("boolean")
+     * @Serializer\Expose
+     *
+     */
+    private $receiveNewsletter = true;
+
      /**
      * @var integer
      *
      * @ORM\Column(name="point", type="integer")
-     * @JMS\Serializer\Annotation\Type("integer")
+     * @Serializer\Type("integer")
+     * @Serializer\Expose
      */
 
     private $point = 0;
@@ -73,7 +87,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="public_key", type="string", length=50, nullable=false)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $public_key;
@@ -82,7 +97,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="private_key", type="string", length=50, nullable=false)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $private_key;
@@ -91,7 +107,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="facebook", type="string", length=50, nullable=true)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $facebook;
@@ -100,7 +117,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=45, nullable=true)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $twitter;
@@ -109,7 +127,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="langue", type="string", length=45, nullable=true)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $langue;
@@ -118,7 +137,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="occupation", type="string", length=100, nullable=true)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $occupation;
@@ -127,7 +147,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="about", type="text", nullable=true)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $about;
@@ -136,7 +157,8 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="website_url", type="string", length=255, nullable=true)
-     * @JMS\Serializer\Annotation\Type("string")
+     * @Serializer\Type("string")
+     * @Serializer\Expose
      */
 
     private $websiteUrl;
@@ -146,13 +168,15 @@ class User extends BaseUser
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="join_date", type="date")
-     * @JMS\Serializer\Annotation\Type("DateTime")
+     * @Serializer\Type("DateTime")
+     * @Serializer\Expose
      */
     private $joinDate;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="user", cascade={"remove", "persist"})
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Application")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\Application")
+     * @Serializer\Expose
      */
 
     private $applications;
@@ -160,38 +184,40 @@ class User extends BaseUser
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\City", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\City")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\City")
+     * @Serializer\Expose
      */
     private $city;
 
     /**
      * @ORM\OneToOne(targetEntity="Datacity\PublicBundle\Entity\Image")
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Image")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\Image")
+     * @Serializer\Expose
      */
     private $profileImg;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\News")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\News")
      */
     private $news;
 
      /**
      * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\Ticket", mappedBy="author", cascade={"persist"})
-     * @JMS\Serializer\Annotation\Type("Datacity\PrivateBundle\Entity\Ticket")
+     * @Serializer\Type("Datacity\PrivateBundle\Entity\Ticket")
      */
     private $ticketAuthor;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\Ticket", mappedBy="assignedUser", cascade={"persist"})
-     * @JMS\Serializer\Annotation\Type("Datacity\PrivateBundle\Entity\Ticket")
+     * @Serializer\Type("Datacity\PrivateBundle\Entity\Ticket")
      */
     private $ticketAssignedUser;
 
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="creator", cascade={"persist"})
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\DSource")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\DSource")
      */
     private $sources;
 
@@ -201,33 +227,35 @@ class User extends BaseUser
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
      *      )
-     * @JMS\Serializer\Annotation\Type("Datacity\UserBundle\Entity\User")
-     * @MaxDepth(1)
+     * @Serializer\Type("Datacity\UserBundle\Entity\User")
+     * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      */
     private $following;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="following")
-     * @JMS\Serializer\Annotation\Type("Datacity\UserBundle\Entity\User")
-     * @MaxDepth(1)
+     * @Serializer\Type("Datacity\UserBundle\Entity\User")
+     * @Serializer\Expose
+     * @Serializer\MaxDepth(1)
      */
     private $followers;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\File", mappedBy="user", cascade={"persist"})
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\File")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\File")
      */
     private $files;
 
     /**
      * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="creator")
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Dataset")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\Dataset")
      */
     private $datasetOwned;
 
     /**
      * @ORM\ManyToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="contributors")
-     * @JMS\Serializer\Annotation\Type("Datacity\PublicBundle\Entity\Dataset")
+     * @Serializer\Type("Datacity\PublicBundle\Entity\Dataset")
      */
     private $datasetContributed;
 
@@ -862,5 +890,94 @@ class User extends BaseUser
     public function getFollowers()
     {
         return $this->followers;
+    }
+
+    /**
+     * Set receiveNewsletter
+     *
+     * @param boolean $receiveNewsletter
+     * @return User
+     */
+    public function setReceiveNewsletter($receiveNewsletter)
+    {
+        $this->receiveNewsletter = $receiveNewsletter;
+
+        return $this;
+    }
+
+    /**
+     * Get receiveNewsletter
+     *
+     * @return boolean 
+     */
+    public function getReceiveNewsletter()
+    {
+        return $this->receiveNewsletter;
+    }
+
+    /**
+     * Add ticketAuthor
+     *
+     * @param \Datacity\PrivateBundle\Entity\Ticket $ticketAuthor
+     * @return User
+     */
+    public function addTicketAuthor(\Datacity\PrivateBundle\Entity\Ticket $ticketAuthor)
+    {
+        $this->ticketAuthor[] = $ticketAuthor;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticketAuthor
+     *
+     * @param \Datacity\PrivateBundle\Entity\Ticket $ticketAuthor
+     */
+    public function removeTicketAuthor(\Datacity\PrivateBundle\Entity\Ticket $ticketAuthor)
+    {
+        $this->ticketAuthor->removeElement($ticketAuthor);
+    }
+
+    /**
+     * Get ticketAuthor
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTicketAuthor()
+    {
+        return $this->ticketAuthor;
+    }
+
+    /**
+     * Add ticketAssignedUser
+     *
+     * @param \Datacity\PrivateBundle\Entity\Ticket $ticketAssignedUser
+     * @return User
+     */
+    public function addTicketAssignedUser(\Datacity\PrivateBundle\Entity\Ticket $ticketAssignedUser)
+    {
+        $this->ticketAssignedUser[] = $ticketAssignedUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticketAssignedUser
+     *
+     * @param \Datacity\PrivateBundle\Entity\Ticket $ticketAssignedUser
+     */
+    public function removeTicketAssignedUser(\Datacity\PrivateBundle\Entity\Ticket $ticketAssignedUser)
+    {
+        $this->ticketAssignedUser->removeElement($ticketAssignedUser);
+    }
+
+    /**
+     * Get ticketAssignedUser
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTicketAssignedUser()
+    {
+        return $this->ticketAssignedUser;
     }
 }
