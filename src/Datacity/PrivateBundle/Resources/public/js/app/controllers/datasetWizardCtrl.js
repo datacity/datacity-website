@@ -65,6 +65,10 @@
 				}
 
 				function addTwoFileCombi(combinedColumn, currentCol, fileNameNew, fileNameOld) {
+					for(var i = 0, len = combinedColumn.length; i < len; i++) {
+						if (combinedColumn[i].fileName === fileNameNew)
+							return;
+					}
 					combinedColumn.push({fileName: fileNameNew, column: currentCol});
 					for(var i = 0, len = combinedColumn.length; i < len; i++) {
 						if (combinedColumn[i].fileName === fileNameOld)
