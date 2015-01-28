@@ -6,3 +6,4 @@ body.prod: Producers management
 body.apps: Apps management
 body.ticket: Tickets management
 body.by: by
+body.newsletter: Newsletters management

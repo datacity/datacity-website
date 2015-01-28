@@ -12,3 +12,5 @@ users.warn: Attention ! Vous êtes sur le point de supprimer le compte utilisate
 users.confirm: Merci de confirmer votre action
 users.close: Fermer
 users.confirmDel: Confirmer la suppression
+users.form: Formulaire d'ajout d'utilisateurs
+users.addUser: Ajouter un utilisateur

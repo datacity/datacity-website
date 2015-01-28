@@ -1,0 +1,16 @@
+newsletter.title: Gestion des newsletters
+newsletter.titleLink: Gestion des newsletters
+newsletter.add: Ajouter une newsletter
+newsletter.table: Tableau des newsletters
+newsletter.name: Nom
+newsletter.date: Date
+newsletter.form: Formulaire d'ajout de newsletter
+newsletter.addForm: Ajouter la newsletter
+newsletter.deleteNewsletter: Suppression d'une newsletter
+newsletter.warn: Attention ! Vous êtes sur le point de supprimer la newsletter
+newsletter.confirm: Merci de confirmer votre action
+newsletter.close: Fermer
+newsletter.confirmDel: Confirmer la suppression
+newsletter.launch: Envoyer
+newsletter.delete: Supprimer
+newsletter.back: Retour

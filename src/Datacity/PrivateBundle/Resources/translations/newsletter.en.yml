@@ -1,0 +1,16 @@
+newsletter.title: Newsletters management
+newsletter.titleLink: Newsletters management
+newsletter.add: Add a newsletter
+newsletter.table: Table of newsletters
+newsletter.name: Name
+newsletter.date: Date
+newsletter.form: Form adding newsletter
+newsletter.addForm: Add the newsletter
+newsletter.deleteNewsletter: Removing a newsletter
+newsletter.warn: Warning ! You're about to delete the newsletter
+newsletter.confirm: Please confirm your action
+newsletter.close: Close
+newsletter.confirmDel: Confirm Delete
+newsletter.launch: Send
+newsletter.delete: Delete
+newsletter.back: Back
