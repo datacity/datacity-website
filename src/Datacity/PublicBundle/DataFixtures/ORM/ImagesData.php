@@ -24,7 +24,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 			'http://localhost/bundles/datacitypublic/img/logo2.png',
 			'https://lh3.ggpht.com/b3MqhCznkcveipm9R3HfHNXhP688l2y6cf7mzqyRwaWkYd6kAraS2GEf5qNjqZ36di3r=h900-rw',
 			'https://lh3.ggpht.com/0iQmYkXeQ_J6ojDYH3m3bq8x1tj1Dr4FHYiETF4iHIt5_60JFGRgcj0gJm7V8axATuNe=h900-rw',
-			'http://frenchweb.fr/wp-content/uploads/2014/11/EIP_EPITECH_650x400.gif'
+			'http://frenchweb.fr/wp-content/uploads/2014/11/EIP_EPITECH_650x400.gif',
+			'http://www.dksh.com/data/docs/download/1300/en/Map-France.gif'
 	);
 	
 	public function load(ObjectManager $manager)
@@ -44,7 +45,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 				'Datacity',
 				'ooZoo main',
 				'ooZoo second',
-				'Forum EIP'
+				'Forum EIP',
+				'Carte France'
 		);
 		
 		foreach (self::$imagesUrl as $i => $url)
