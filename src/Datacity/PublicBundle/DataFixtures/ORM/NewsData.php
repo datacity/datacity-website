@@ -30,16 +30,6 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			$manager->persist($news);
 
 			$news = new News();
-			$news->setTitle("L'Equipe en France");
-			$news->setMessage("Toute l'équipe de DataCity est de retour en France nous allons pourvoir mettre
-			les bouchés double pour livrer une beta au plus tard fin Janvier. Nous vous tiendront informé 
-			lorsque la beta sera diposnible, n'hésitez pas à parler de DataCity autour de vous.");
-			$news->setDate(new \DateTime('2014-07-01 14:48:42'));
-			$news->setUser($this->getReference("user-cyril.morales@epitech.eu"));
-			$this->addReference("news-". $news->getTitle(), $news);
-			$manager->persist($news);
-
-			$news = new News();
 			$news->setTitle("Forum EIP");
 			$news->setMessage(" Les vendredi 21 de 14h-18h et samedi 22 Novembre de 9h-17h, venez
 			nous rencontrer au forum EIP à l'école d'Epitech Paris. 
@@ -63,7 +53,16 @@ class NewsData extends AbstractFixture implements OrderedFixtureInterface
 			$this->addReference("news-". $news->getTitle(), $news);
 			$manager->persist($news);
 
-			
+			$news = new News();
+			$news->setTitle("L'Equipe en France");
+			$news->setMessage("Toute l'équipe de DataCity est de retour en France nous allons pourvoir mettre
+			les bouchés double pour livrer une beta au plus tard fin Janvier. Nous vous tiendront informé 
+			lorsque la beta sera diposnible, n'hésitez pas à parler de DataCity autour de vous.");
+			$news->setDate(new \DateTime('2014-07-01 14:48:42'));
+			$news->setUser($this->getReference("user-cyril.morales@epitech.eu"));
+			$news->setImage($this->getReference('image-'.md5(ImagesData::$imagesUrl[15])));
+			$this->addReference("news-". $news->getTitle(), $news);
+			$manager->persist($news);			
 
 			
 		$manager->flush();
