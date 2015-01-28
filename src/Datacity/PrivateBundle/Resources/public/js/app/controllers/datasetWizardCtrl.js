@@ -229,12 +229,9 @@
 				function mergeKnownColumns(fileRef, file2, colRef, col2) {
 					for (var i = file2.datas.length - 1; i >= 0; i--) {
 						var colId = findExistingColumn(fileRef, colRef, file2.datas[i][col2]);
-						if (colId != -1)
-							delete fileRef.datas[colId][col2];
-						else {
+						if (colId === -1)
 							file2.datas[i][colRef] = file2.datas[i][col2];
-							delete file2.datas[i][col2];
-						}
+						delete file2.datas[i][col2];
 						mergeLine(fileRef.datas, colId, file2.datas, i);
 						file2.datas.splice(i, 1);
 					};
