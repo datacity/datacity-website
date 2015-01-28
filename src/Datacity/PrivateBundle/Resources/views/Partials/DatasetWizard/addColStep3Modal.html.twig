@@ -1,0 +1,33 @@
+{% trans_default_domain "datasetWizard" %}
+<div class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+	<button type="button" class="close" ng-click="$hide()">&times;</button>
+	<h4 class="modal-title">{{ 'datasetWizard.addColumn'|trans }}</h4>
+</div>
+<div class="modal-body">
+	<form action="" class="form-horizontal">
+		<div class="form-body">
+			<div class="form-group">
+				<label class="control-label col-md-3">{{ 'datasetWizard.nameaddfield'|trans }} <strong style="color:red;">*</strong></label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" data-ng-model="content.title" data-focus-me="focusInputRename" maxlength="17">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-3">{{ 'datasetWizard.valueaddfield'|trans }} <strong style="color:red;">*</strong></label>
+				<div class="col-md-9">
+					<textarea class="form-control" data-ng-model="content.value" rows="3"></textarea>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-ng-click="$hide()">{{ 'datasetWizard.cancel'|trans }}</button>
+	<button type="button" class="btn btn-primary" data-ng-click="confirmAddColModal($hide, content)">{{ 'datasetWizard.validate'|trans }}</button>
+</div>
+</div>
+</div>
+</div>

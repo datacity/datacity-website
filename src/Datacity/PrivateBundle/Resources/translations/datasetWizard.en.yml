@@ -60,3 +60,10 @@ datasetWizard.datasetInfo: Information about the dataset
 datasetWizard.final: Final view
 datasetWizard.inProgress: Sending...
 datasetWizard.showDataset: View the dataset
+datasetWizard.nameaddfield: Column name
+datasetWizard.valueaddfield: Column value
+datasetWizard.validate: Validate
+datasetWizard.namecolregex: Column choice
+datasetWizard.regex: Expression
+datasetWizard.replaceRegex: Replace
+datasetWizard.replaceRegex2: By

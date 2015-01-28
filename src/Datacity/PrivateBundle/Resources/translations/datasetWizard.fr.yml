@@ -60,3 +60,9 @@ datasetWizard.datasetInfo: Information sur le jeu de données
 datasetWizard.final: Aperçu final
 datasetWizard.inProgress: Envoi en cours...
 datasetWizard.showDataset: Voir le jeu de données
+datasetWizard.nameaddfield: Nom de la colonne
+datasetWizard.validate: Valider
+datasetWizard.valueaddfield: Valeur de la colonne
+datasetWizard.namecolregex: Choix de la colonne
+datasetWizard.replaceRegex: Remplacer
+datasetWizard.replaceRegex2: Par

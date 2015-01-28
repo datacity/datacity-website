@@ -2,8 +2,8 @@
 {% verbatim %}
 <div class="row wizard-controls-step3">
 	<div class="col-md-12">
-		<button data-placement="center" data-bs-modal="addColModal" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> {% endverbatim %}{{ 'datasetWizard.addColumn'|trans }}{% verbatim %}</button>
-		<button type="button" class="btn blue"><i class="fa fa-cogs"></i> {% endverbatim %}{{ 'datasetWizard.addRegExp'|trans }}{% verbatim %}</button>
+		<button data-ng-click="addColumnModal()" type="button" class="btn blue"><i class="fa fa-plus-square-o"></i> {% endverbatim %}{{ 'datasetWizard.addColumn'|trans }}{% verbatim %}</button>
+		<button data-ng-click="applyRegexModal()" type="button" class="btn blue"><i class="fa fa-cogs"></i> {% endverbatim %}{{ 'datasetWizard.addRegExp'|trans }}{% verbatim %}</button>
 	</div>
 </div>
 <div class="row">

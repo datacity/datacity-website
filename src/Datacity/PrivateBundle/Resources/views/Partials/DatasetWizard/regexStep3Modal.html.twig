@@ -1,0 +1,44 @@
+{% trans_default_domain "datasetWizard" %}
+<div class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+	<button type="button" class="close" ng-click="$hide()">&times;</button>
+	<h4 class="modal-title">{{ 'datasetWizard.addRegExp'|trans }}</h4>
+</div>
+<div class="modal-body">
+	<form action="" class="form-horizontal">
+		<div class="form-body">
+			<div class="form-group">
+				<label class="control-label col-md-3">{{ 'datasetWizard.namecolregex'|trans }} <strong style="color:red;">*</strong></label>
+				<div class="col-md-9">
+					<input
+	    				type="hidden"
+	    				data-ui-select2="getRegexColumn()"
+	    				data-ng-model="content.column"
+	    				class="input-large search-query"
+    					>
+    			</div>
+	    	</div>
+			<div class="form-group">
+				<label class="control-label col-md-3">{{ 'datasetWizard.replaceRegex'|trans }} <strong style="color:red;">*</strong></label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" data-ng-model="content.regex" data-focus-me="focusInputRename" maxlength="17">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-3">{{ 'datasetWizard.replaceRegex2'|trans }} <strong style="color:red;">*</strong></label>
+				<div class="col-md-9">
+					<input type="text" class="form-control" data-ng-model="content.regex2" data-focus-me="focusInputRename" maxlength="17">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-ng-click="$hide()">{{ 'datasetWizard.cancel'|trans }}</button>
+	<button type="button" class="btn btn-primary" data-ng-click="confirmRegexModal($hide, content)">{{ 'datasetWizard.validate'|trans }}</button>
+</div>
+</div>
+</div>
+</div>
