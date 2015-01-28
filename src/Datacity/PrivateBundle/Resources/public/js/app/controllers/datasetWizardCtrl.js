@@ -694,7 +694,7 @@
 				};
 
 				function postSource(actualDatasetSlug) {
-					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + actualDatasetSlug;
+					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '/dataset/' + actualDatasetSlug;
 					var data = {source: $scope.$parent.sourceDataFinal}
 					data.model = $scope.sourceDataFinalColumns.map(function(item) {
 						return {name: item, type: "Texte", mandatory: true, unique: true}; //TODO handle mandatory & unique
