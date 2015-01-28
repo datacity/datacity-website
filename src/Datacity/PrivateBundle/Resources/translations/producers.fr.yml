@@ -6,6 +6,7 @@ producers.add: Ajouter un producteur
 producers.name: Nom
 producers.link: Lien
 producers.delete: Supprimer
+producers.edit: Modifier
 producers.deleteProd: Suppression d'un producteur
 producers.warn: Attention ! Vous êtes sur le point de supprimer le producteur
 producers.confirm: Merci de confirmer votre action

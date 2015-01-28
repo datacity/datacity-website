@@ -7,6 +7,7 @@ users.contact: Contact
 users.city: City
 users.apps: Number of applications
 users.delete: Delete
+users.delete: Edit
 users.deleteUser: Deleting a user
 users.warn: Warning ! You're about to delete the user account of
 users.confirm: Please confirm your action

@@ -9,6 +9,7 @@ application.name: Nom
 application.city: Ville
 application.link: Lien
 application.delete: Supprimer
+application.edit: Modifier
 application.deleteApp: Suppression d'une application
 application.warn: Attention ! Vous êtes sur le point de supprimer l'application
 application.confirm: Merci de confirmer votre action

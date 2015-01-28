@@ -48,7 +48,7 @@
 									</td>
 									<td>
 										{% if ticket.statut == 0 %}
-											{{ 'tickets.open'|trans }}
+											{{ 'tickets.new'|trans }}
 										{% elseif ticket.statut == 1 %}
 											{{ 'tickets.replied'|trans }}
 										{% elseif ticket.statut == 2 %}
@@ -56,13 +56,18 @@
 										{% endif %}
 									</td>
 									<td>
-										{{ ticket.author }}
+										{{ ticket.author.firstname}}
+										{{ticket.author.lastname}}
 									</td>
 									<td>
-										{{ ticket.assignedUser }}
+										{% if ticket.assignedUser != null %}
+										{{ticket.assignedUser.firstname }}
+										{{ticket.assignedUser.lastname}}
+										{% endif %}
+
 									</td>
 									<td>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteTicket('{{ ticket.title }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteTicket('{{ ticket.title }}');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'tickets.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}

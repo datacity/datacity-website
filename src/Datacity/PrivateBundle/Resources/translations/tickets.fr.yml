@@ -12,4 +12,6 @@ tickets.deleteTicket: Suppression d'un ticket
 tickets.warn: Attention ! Vous êtes sur le point de supprimer un ticket avec pour titre
 tickets.confirm: Merci de confirmer votre action
 tickets.close: Fermer
+tickets.new: Nouveau
+tickets.replied: Répondu
 tickets.confirmDel: Confirmer la suppression
