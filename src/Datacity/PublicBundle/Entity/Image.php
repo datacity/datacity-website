@@ -36,6 +36,13 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extension", type="string", length=255, unique=false)
+     */
+    private $extension;
   
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PublicBundle\Entity\Category", inversedBy="images")
@@ -78,6 +85,29 @@ class Image
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     * @return Image
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+    
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string 
+     */
+    public function getExtension()
+    {
+        return $this->extension;
     }
 
     /**
@@ -154,6 +184,7 @@ class Image
       // On réinitialise les valeurs des attributs url et alt
       $this->url = null;
       $this->alt = null;
+      $this->extension = null;
     }
   }
 
@@ -170,9 +201,10 @@ class Image
 
     // Le nom du fichier est son id, on doit juste stocker également son extension
     // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
-    $this->url = $this->file->guessExtension();
+    $this->extension = $this->file->guessExtension();
 
     // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
+    $this->url = $this->file->getClientOriginalName();
     $this->alt = $this->file->getClientOriginalName();
   }
 
