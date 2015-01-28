@@ -51,17 +51,20 @@ border-bottom:1px solid #313030;
 
 .navigation-producers{
 
-	margin-left:25px;
+	margin-left:130px;
 }
 
 .description-producers{
 	font-weight:bold;
 	margin-left:25px;
+	width:700px;
+	text-align: justify;
 }
 
 .row-producers{
 
 	margin-left:55px;
+	margin-top:80px;
 }
 
 .url-producers{
@@ -81,16 +84,31 @@ border-bottom:1px solid #313030;
 .section-producers{
 
 	min-height: 250px;
+	margin-left:105px;
 }
 
 .image-apps{
 
 	max-height: 200px;
 	width: auto;
+	margin-left:auto;
+	margin-right: auto;
 }
 
 .fb-share-button span,
 .fb-share-button iframe {
     width: 87px! important;
     height: 20px! important;
+}
+
+.section-apps {
+
+	min-height: 550px;
+	margin-left:100px;
+}
+
+.description-news {
+
+	font-weight:bold;
+	text-align:justify;
 }

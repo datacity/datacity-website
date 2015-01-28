@@ -7,6 +7,7 @@ news.author: Auteur
 news.titleNews: Titre
 news.message: Message
 news.delete: Supprimer
+news.edit: Modifier
 news.deleteNews: Suppression d'une actualité
 news.warn: Attention ! Vous êtes sur le point de supprimer l'actualité
 news.confirm: Merci de confirmer votre action

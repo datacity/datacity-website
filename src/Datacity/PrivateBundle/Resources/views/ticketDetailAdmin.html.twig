@@ -1,5 +1,5 @@
 {% extends 'DatacityPrivateBundle:Template:body.html.twig' %}
-{% trans_default_domain "ticketdetailadmin" %}
+{% trans_default_domain "tickets" %}
 {% block pageTitle %}{{ 'ticketdetailadmin.title'|trans }}{% endblock %}
 {% block lineTitleLink %}{{ 'ticketdetailadmin.titleLink'|trans }}{% endblock %}
 
@@ -18,6 +18,15 @@
 
 			</div>
 			<div class="portlet-body">
+				<div class="well">
+					<div class="row-fluid">
+						<div class="span6">{{ ticket.author.firstname }} {{ticket.author.lastname }}</div>
+						<div class="span6">{{ ticket.message }}</div>
+						<div class="span6">{{ ticket.dateTimeUpdate | date('d-m-Y H:i') }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body">
 				{% for reponse in ticket.reponses %}
 
 				<div class = "well">
@@ -33,14 +42,14 @@
 				<form action="{{ path('datacity_private_tickets_detail_admin', {'slug' : ticket.slug }) }}" method="post"  {{ form_enctype(form) }} >
 					<div class="form-body">
 						<div class="form-group">
-							<label>{{ form_label(form.message, 'ticket.reply'|trans) }}</label>
+							<label>{{ form_label(form.message, 'tickets.reply'|trans) }}</label>
 							 {{ form_errors(form.message) }}
 							{{ form_widget(form.message, {'attr': {'class': 'form-control', 'style': 'resize: none'}}) }}
 						</div>
 						{{ form_rest(form) }}
 					<div class="form-actions">
-						<input type="submit" name="reply" class="btn green" value="{{ 'ticket.replyTicket'|trans }}">
-						<input type="submit" name="replyandclose" class="btn green" value="{{ 'ticket.replyAndCloseTicket'|trans }}">
+						<input type="submit" name="reply" class="btn green" value="{{ 'tickets.replyTicket'|trans }}">
+						<input type="submit" name="replyandclose" class="btn green" value="{{ 'tickets.replyAndCloseTicket'|trans }}">
 					</div>
 
 				</form>

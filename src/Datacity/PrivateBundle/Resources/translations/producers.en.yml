@@ -6,6 +6,7 @@ producers.add: Add a producer
 producers.name: Name
 producers.link: Link
 producers.delete: Delete
+producers.edit: Edit
 producers.deleteProd: Deleting a producer
 producers.warn: Warning ! You're about to delete the producer
 producers.confirm: Please confirm your action

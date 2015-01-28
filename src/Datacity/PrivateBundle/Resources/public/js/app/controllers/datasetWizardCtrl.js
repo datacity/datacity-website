@@ -65,6 +65,10 @@
 				}
 
 				function addTwoFileCombi(combinedColumn, currentCol, fileNameNew, fileNameOld) {
+					for(var i = 0, len = combinedColumn.length; i < len; i++) {
+						if (combinedColumn[i].fileName === fileNameNew)
+							return;
+					}
 					combinedColumn.push({fileName: fileNameNew, column: currentCol});
 					for(var i = 0, len = combinedColumn.length; i < len; i++) {
 						if (combinedColumn[i].fileName === fileNameOld)
@@ -201,13 +205,92 @@
 						takeFirstFileAndGo();
 						return;
 					}
-					for (var i = 0, len = $scope.combinedColumns.length; i < len; i++) {
-						//TODO CombineFile
-					}
-
-					$scope.$parent.sourceData = $scope.filesData[0]; //TMP
+					doCombineFiles();
 					$state.go($scope.statePrefix + 'step2');
 				};
+
+				function popNeededFile(filename) {
+					for (var i = $scope.filesData.length - 1; i >= 0; i--) {
+						if ($scope.filesData[i].fileName === filename) {
+							var neededFile = $scope.filesData[i];
+							$scope.filesData.splice(i, 1);
+							return neededFile;
+						}
+					};
+					return null; //Should never go here
+				}
+
+				function findExistingColumn(file, column, value) {
+					if (value === "")
+						return -1; //Don't combine empty columns
+					for (var i = 0, len = file.datas.length; i < len; i++) {
+						if (file.datas[i][column] === value)
+							return i;
+					}
+					return -1;
+				}
+
+				function mergeKnownColumns(fileRef, file2, colRef, col2) {
+					for (var i = file2.datas.length - 1; i >= 0; i--) {
+						var colId = findExistingColumn(fileRef, colRef, file2.datas[i][col2]);
+						if (colId === -1)
+							file2.datas[i][colRef] = file2.datas[i][col2];
+						delete file2.datas[i][col2];
+						mergeLine(fileRef.datas, colId, file2.datas, i);
+						file2.datas.splice(i, 1);
+					};
+				}
+
+				function mergeLine(datas1, i1, datas2, i2) {
+					if (i1 === -1) {
+						datas1.push(datas2[i2]);
+					}
+					else {
+						for (var attrname in datas2[i2]) {
+							var target = attrname;
+							if (datas1[i1][attrname] && datas1[i1][attrname] !== ""
+								&& (datas1[i1][attrname] !== datas2[i2][attrname]))
+								target = attrname + "_2"; //TODO May do something better here
+							datas1[i1][target] = datas2[i2][attrname];
+						}
+					}
+				}
+
+				function mergeColumns(file1, file2) {
+					for (var i = file2.datas.length - 1; i >= 0; i--) {
+						mergeLine(file1.datas, -1, file2.datas, i);
+						file2.datas.splice(i, 1);
+					};
+				}
+
+				function addToSourceData(currentFile, combinedCol, rowToCombine, notFirstGrp) {
+					if ($scope.$parent.sourceData === null) {
+						$scope.$parent.sourceData = currentFile;
+						delete $scope.$parent.sourceData.fileName;
+					}
+					else if (notFirstGrp) {
+						mergeColumns($scope.$parent.sourceData, currentFile);
+					}
+					else {
+						mergeKnownColumns($scope.$parent.sourceData, currentFile, combinedCol, rowToCombine)
+					}
+				}
+
+				function doCombineRow(rowsInfos) {
+					var combinedCol = rowsInfos[0].column;
+					for (var i = 0, len = rowsInfos.length; i < len; i++) {
+						var rowToCombine = rowsInfos[i].column;
+						var currentFile = popNeededFile(rowsInfos[i].fileName);
+						addToSourceData(currentFile, combinedCol, rowToCombine, i === 0);
+					}
+				}
+
+				function doCombineFiles() {
+					for (var i = 0, len = $scope.combinedColumns.length; i < len; i++) {
+						doCombineRow($scope.combinedColumns[i]);
+					}
+					$scope.$parent.sourceData.columns = Object.keys($scope.$parent.sourceData.datas[0]);
+				}
 
 				function takeFirstFileAndGo() {
 					$scope.$parent.sourceData = $scope.filesData[0];
@@ -611,7 +694,7 @@
 				};
 
 				function postSource(actualDatasetSlug) {
-					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + actualDatasetSlug;
+					$scope.datasetLink = Routing.generate('datacity_public_dataviewpage') + '/dataset/' + actualDatasetSlug;
 					var data = {source: $scope.$parent.sourceDataFinal}
 					data.model = $scope.sourceDataFinalColumns.map(function(item) {
 						return {name: item, type: "Texte", mandatory: true, unique: true}; //TODO handle mandatory & unique

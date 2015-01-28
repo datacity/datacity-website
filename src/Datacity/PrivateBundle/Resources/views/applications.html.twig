@@ -43,8 +43,8 @@
 										<a href="../../app/{{application.slug}}">{{ application.name }}</a>
 									</td>
 									<td class="hidden-xs">
-										{% if application.description |length > 150 %}
-										{{ application.description |slice(0, 150)}}...
+										{% if application.description |length > 100 %}
+										{{ application.description |slice(0, 100)}}...
 										{% else %}
 										{{ application.description}}
 										{% endif %}
@@ -64,8 +64,8 @@
 										{% endif %}
 									</td>
 									<td>
-										<a  href="{{ path('datacity_private_applications_edit', { name: application.name }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Edit</a>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a  href="{{ path('datacity_private_applications_edit', { name: application.name }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i>  {{ 'application.edit'|trans }}</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteApplication('{{ application.slug }}', '{{ application.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'application.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}

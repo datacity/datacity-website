@@ -54,8 +54,8 @@
 										{% endif %}
 									</td>
 									<td>
-										<a  href="{{ path('datacity_private_producers_edit', { name: producer.name }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Edit</a>
-										<a data-toggle="modal" href="#basic" onClick="setDeleteProducer('{{ producer.slug }}', '{{ producer.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Delete</a>
+										<a  href="{{ path('datacity_private_producers_edit', { name: producer.name }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'producers.edit'|trans }}</a>
+										<a data-toggle="modal" href="#basic" onClick="setDeleteProducer('{{ producer.slug }}', '{{ producer.name|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'producers.delete'|trans }}</a>
 									</td>
 								</tr>
 								{% endfor %}

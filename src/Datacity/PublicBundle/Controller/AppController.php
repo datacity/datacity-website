@@ -5,7 +5,7 @@ namespace Datacity\PublicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Datacity\PublicBundle\Entity\Application;
 
-define("PAGINATION_LIMIT", 1);
+define("PAGINATION_LIMIT", 2);
 
 class AppController extends Controller
 {

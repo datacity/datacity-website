@@ -7,6 +7,7 @@ users.contact: Contact
 users.city: Ville
 users.apps: Nombre d'applications
 users.delete: Supprimer
+users.edit: Modifier
 users.deleteUser: Suppression d'un utilisateur
 users.warn: Attention ! Vous êtes sur le point de supprimer le compte utilisateur de
 users.confirm: Merci de confirmer votre action

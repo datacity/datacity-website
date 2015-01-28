@@ -7,6 +7,7 @@ news.author: Author
 news.titleNews: Title
 news.message: Message
 news.delete: Delete
+news.edit: Edit
 news.deleteNews: Deleting a news
 news.warn: Warning ! You're about to delete the news
 news.confirm: Please confirm your action

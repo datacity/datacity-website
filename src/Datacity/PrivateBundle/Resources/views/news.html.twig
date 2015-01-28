@@ -54,7 +54,7 @@
 										{% endif %}
 									</td>
 									<td>
-										<a  href="{{ path('datacity_private_news_edit', { title: new.title }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> Edit</a>
+										<a  href="{{ path('datacity_private_news_edit', { title: new.title }) }}" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'news.edit'|trans }}</a>
 										<a data-toggle="modal" href="#basic" onClick="setDeleteNews('{{ new.slug }}', '{{ new.getTitle()|e('js') }} ');" class="btn default btn-xs black"><i class="fa fa-trash-o"></i> {{ 'news.delete'|trans }}</a>
 									</td>
 								</tr>

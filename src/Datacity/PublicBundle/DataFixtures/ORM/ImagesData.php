@@ -18,13 +18,14 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 			'http://wamu.org/sites/wamu.org/files/styles/headline_landscape/public/images/attach/08.02.13news-flickr-ocean-city.jpg?itok=gDxBsSWI',
 			'http://us.123rf.com/400wm/400/400/tribalium123/tribalium1231210/tribalium123121000126/15686858-bombe-vieux-commencent-a-exploser-explosion-de-bandes-dessinees-bombe-style-ancien.jpg',
 			'http://www.astrosurf.com/luxorion/Physique/bombe-mururoa1.jpg',
-			'http://www.data.gouv.fr/img/logo.png',
+			'https://www.data.gouv.fr/s/avatars/2015-01-12/88253549b48545b182ebd22c6d891c0b/datagouv.png',
 			'http://opendata.montpelliernumerique.fr/IMG/siteon0.png?1390241326',
 			'http://datarmor.cotesdarmor.fr/image/layout_set_logo?img_id=11509&t=1404490687738',
 			'http://localhost/bundles/datacitypublic/img/logo2.png',
 			'https://lh3.ggpht.com/b3MqhCznkcveipm9R3HfHNXhP688l2y6cf7mzqyRwaWkYd6kAraS2GEf5qNjqZ36di3r=h900-rw',
 			'https://lh3.ggpht.com/0iQmYkXeQ_J6ojDYH3m3bq8x1tj1Dr4FHYiETF4iHIt5_60JFGRgcj0gJm7V8axATuNe=h900-rw',
-			'http://frenchweb.fr/wp-content/uploads/2014/11/EIP_EPITECH_650x400.gif'
+			'http://frenchweb.fr/wp-content/uploads/2014/11/EIP_EPITECH_650x400.gif',
+			'http://www.dksh.com/data/docs/download/1300/en/Map-France.gif'
 	);
 	
 	public function load(ObjectManager $manager)
@@ -44,7 +45,8 @@ class ImagesData extends AbstractFixture implements OrderedFixtureInterface
 				'Datacity',
 				'ooZoo main',
 				'ooZoo second',
-				'Forum EIP'
+				'Forum EIP',
+				'Carte France'
 		);
 		
 		foreach (self::$imagesUrl as $i => $url)
