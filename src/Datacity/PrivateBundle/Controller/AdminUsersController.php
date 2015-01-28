@@ -33,38 +33,38 @@ class AdminUsersController extends Controller
     public function editAction(User $user)
     {
        // $producer = new User();
-    $form = $this->createFormBuilder($user)
-                 ->add('firstname', 'textarea')
-                 ->add('lastname','textarea')
-                 ->add('city', 'entity', array(
-                    'class' => 'DatacityPublicBundle:City',
-                    'property' => 'name',
-                    'multiple' => false,
-                    'query_builder' => function(EntityRepository $er) {
-                      return $er->createQueryBuilder('g')
-                      ->orderBy('g.name', 'ASC');
-                      },
-                  ))
-                 ->add('email', 'textarea')
-                 ->getForm();
-                 
-    $request = $this->get('request');
-    if ($request->getMethod() == 'POST'){
-    $form->bind($request);
+        $form = $this->createFormBuilder($user)
+                     ->add('firstname', 'textarea')
+                     ->add('lastname','textarea')
+                     ->add('city', 'entity', array(
+                        'class' => 'DatacityPublicBundle:City',
+                        'property' => 'name',
+                        'multiple' => false,
+                        'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('g')
+                          ->orderBy('g.name', 'ASC');
+                          },
+                      ))
+                     ->add('email', 'textarea')
+                     ->getForm();
 
-    if ($form->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($user);
-      //
-      $em->flush();
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST'){
+        $form->bind($request);
 
-    
-    return $this->redirect($this->generateUrl('datacity_private_adminusers'), 301);    
-      }
-    }
-    return $this->render('DatacityPrivateBundle::editAdminUser.html.twig', array(
-            'form' => $form->createView(),
-            ));
+        if ($form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($user);
+          //
+          $em->flush();
+
+
+        return $this->redirect($this->generateUrl('datacity_private_adminusers'));
+          }
+        }
+        return $this->render('DatacityPrivateBundle::editAdminUser.html.twig', array(
+                'form' => $form->createView(),
+                ));
 
     }
 }

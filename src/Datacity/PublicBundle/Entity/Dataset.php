@@ -143,7 +143,7 @@ class Dataset
     private $contributors;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="dataset")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DSource", mappedBy="dataset", cascade={"remove"})
      * @Serializer\Groups({"datasetShow"})
      */
     private $sources;
@@ -164,7 +164,7 @@ class Dataset
 
     /**
      * Les colonnes du dataset.
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\DataColumns", mappedBy="dataset", fetch="EXTRA_LAZY", cascade={"remove"})
      * @Serializer\Groups({"datasetShow"})
      */
     private $columns;

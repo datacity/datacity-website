@@ -199,7 +199,7 @@ class User extends BaseUser
     private $profileImg;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\News", mappedBy="user", cascade={"remove", "persist"})
      * @Serializer\Type("Datacity\PublicBundle\Entity\News")
      */
     private $news;
@@ -250,7 +250,7 @@ class User extends BaseUser
     private $files;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="creator")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Dataset", mappedBy="creator", cascade={"remove"})
      * @Serializer\Type("Datacity\PublicBundle\Entity\Dataset")
      */
     private $datasetOwned;

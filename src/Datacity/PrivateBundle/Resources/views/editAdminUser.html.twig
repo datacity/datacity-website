@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="portlet-body form">
-				<form action="{{path('datacity_private_adminusers_edit', {firstname: form.vars.value.firstname})}}" method="post" {{ form_enctype(form) }}>
+				<form action="{{path('datacity_private_adminusers_edit', {usernameCanonical: form.vars.value.usernameCanonical})}}" method="post" {{ form_enctype(form) }}>
 					<div class="form-body">
 						<div class="form-group">
 							<label>{{ form_label(form.firstname, "Prénom") }}</label>

@@ -15,7 +15,7 @@ datacity_private_adminusers_remove:
         expose: true
 
 datacity_private_adminusers_edit:
-    pattern: /admin/users/{firstname}
+    pattern: /admin/users/{usernameCanonical}
     defaults: {_controller: DatacityPrivateBundle:AdminUsers:edit}
     options:
         expose: true
