@@ -40,7 +40,7 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="extension", type="string", length=255, unique=false)
+     * @ORM\Column(name="extension", type="string", length=255, unique=false, nullable=true)
      */
     private $extension;
   
