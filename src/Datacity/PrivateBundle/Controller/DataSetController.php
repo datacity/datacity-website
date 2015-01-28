@@ -69,7 +69,9 @@ class DataSetController extends Controller
     }
 
     public function deleteAction(Dataset $dataset) {
-        //DELETE ON DOCTRINE THE DATASET
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($dataset);
+        $em->flush();
         $response = new JsonResponse(array('action' => 'success'));
         return $response;
     }

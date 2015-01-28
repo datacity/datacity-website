@@ -260,7 +260,12 @@
 						}],
 					    datasetSlug: ['$stateParams', function($stateParams){
 					        return $stateParams.slug;
-					    }]
+					    }],
+					    currentUser: ['UserFactory', function(UserFactory) {
+							return UserFactory.getUserFromSession().then(function(data) {
+				 				return data.user;
+				 			});
+						}]
 					}
 				})
 				.state('addDS', {

@@ -40,8 +40,8 @@
 			</div>
 			<div class="form-actions fluid dataset-actions">
 				<div class="col-md-offset-3 col-md-9">
-					<button type="submit" class="btn blue">{% endverbatim %}{{ 'formDataSet.save'|trans }}{% verbatim %}</button>
-					<button data-ng-if="!noDelete" type="button" class="btn default" ng-click="showModal()">{% endverbatim %}{{ 'formDataSet.delete'|trans }}{% verbatim %}</button>
+					<button type="submit" ng-disabled="inProgress" class="btn blue">{% endverbatim %}{{ 'formDataSet.save'|trans }}{% verbatim %}</button>
+					<button type="button" ng-disabled="inProgress" class="btn default" ng-click="showModal()">{% endverbatim %}{{ 'formDataSet.delete'|trans }}{% verbatim %}</button>
 				</div>
 			</div>
 		</form>

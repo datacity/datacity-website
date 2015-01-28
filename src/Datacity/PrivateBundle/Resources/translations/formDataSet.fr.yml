@@ -16,3 +16,7 @@ formDataSet.times: fois
 formDataSet.addSource: Ajouter une source
 formDataSet.addApplication: Ajouter une application
 formDataSet.relatedApplications: Applications associées
+formDataSet.warn: Confirmation de suppression
+formDataSet.confirmation: Voulez vous vraiment supprimer ce jeu de donnée ? Cela entraînera la suppression de toutes les sources/applications associées.
+formDataSet.cancel: Annuler
+formDataSet.validate: Valider

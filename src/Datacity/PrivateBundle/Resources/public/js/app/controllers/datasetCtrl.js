@@ -21,8 +21,8 @@
 	        	}
 	    }])
 		.controller('datasetController', ['$scope', '$stateParams', '$state',
-				'$modal', '$log', 'licenses', 'dataset', 'operation', 'DatasetFactory',
-			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation, DatasetFactory) {
+				'$modal', '$log', 'licenses', 'dataset', 'operation', 'DatasetFactory', 'currentUser',
+			function($scope, $stateParams, $state, $modal, $log, licenses, dataset, operation, DatasetFactory, currentUser) {
 				$scope.dataset = dataset;
 				$scope.dataset.visibility = [{val : 'Autoriser tout le monde à voir mes publications', id:'public'},
 											{val:'N\'autoriser personne à voir mes publications', id:'private'}];
@@ -30,6 +30,7 @@
 				$scope.dataset.licenses = licenses;
 				$scope.dataset = dataset;
 				$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '/dataset/' + dataset.slug;
+				$scope.inProgress = false;
 
 				$scope.submit = function() {
 					var result = {
@@ -38,20 +39,27 @@
 						title: $scope.dataset.title,
 						visibility: $scope.dataset.selectedVisibility
 					}
+					$scope.inProgress = true;
 					DatasetFactory.save(dataset.slug, result).then(function(response) {
 						toastr.success("Dataset mis à jour !");
+						$scope.inProgress = false;
 					});
 				}
-				$scope.delete = function() {
-					DatasetFactory.delete($stateParams.slug).then(function(response) {
-						console.log(response);
+				$scope.delete = function($hide) {
+					$scope.inProgress = true;
+					$hide();
+					var key = {public_key: currentUser.public_key, private_key: currentUser.private_key};
+					DatasetFactory.delete(key, $stateParams.slug).then(function(response) {
+						$state.go('datasetList');
 					});
 				}
 
-				$scope.confirm = $scope.delete;
- 				//var confirmDeleteModal = $modal({animation: 'am-fade-and-scale', placement: 'center', scope: $scope, template: '/app_dev.php/private/modals/modal', title: 'Confirmation', content: 'Voulez vous vraiment supprimmer ce jeu de donnée? Cela entraînera la suppression de toutes les sources associées.', show: false});
-  				//$scope.showModal = function() {
-    			//	confirmDeleteModal.$promise.then(confirmDeleteModal.show);
-  				//};
+ 				var confirmDeleteModal = $modal({animation: 'am-fade-and-scale',
+ 											placement: 'center', scope: $scope,
+ 											template: 'confirmDeleteDatasetModal.html',
+ 											show: false});
+  				$scope.showModal = function() {
+    				confirmDeleteModal.show();
+  				};
 		}]);
 })();

@@ -179,7 +179,7 @@ class Dataset
 
     /**
      * Les applications du dataset.
-     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="dataset")
+     * @ORM\OneToMany(targetEntity="Datacity\PublicBundle\Entity\Application", mappedBy="dataset", cascade={"remove"})
      * @Serializer\Groups({"datasetShow"})
      */
     private $applications;

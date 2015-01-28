@@ -16,3 +16,7 @@ formDataSet.times: times
 formDataSet.addSource: Add a source
 formDataSet.addApplication: Add an application
 formDataSet.relatedApplications: Related Applications
+formDataSet.warn: Deletion confirmation
+formDataSet.confirmation: Do you really want to delete this dataset ? This will delete all sources/applications associated.
+formDataSet.cancel: Cancel
+formDataSet.validate: Validate

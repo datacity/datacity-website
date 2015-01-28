@@ -1,0 +1,18 @@
+{% trans_default_domain "formDataSet" %}
+<div class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+	<button type="button" class="close" ng-click="$hide()">&times;</button>
+	<h4 class="modal-title">{{ 'formDataSet.warn'|trans }}</h4>
+</div>
+<div class="modal-body">
+	<p>{{ 'formDataSet.confirmation'|trans }}</p>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="$hide()">{{ 'formDataSet.cancel'|trans }}</button>
+	<button type="button" class="btn btn-primary" ng-click="delete($hide)">{{ 'formDataSet.validate'|trans }}</button>
+</div>
+</div>
+</div>
+</div>

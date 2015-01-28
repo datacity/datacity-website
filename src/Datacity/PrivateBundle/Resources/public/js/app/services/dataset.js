@@ -1,7 +1,7 @@
 (function() {
 	angular
 		.module('app')
-		.factory('DatasetFactory', ['$http', function($http) {
+		.factory('DatasetFactory', ['$http', 'apiUrl', function($http, apiUrl) {
 			return {
 				get: function(slug) {
 					return $http
@@ -34,10 +34,19 @@
 							return response.data;
 						});
 				},
-				delete: function(slug) {
+				delete: function(key, slug) {
 					return $http
 						.delete(Routing.generate('datacity_private_dataset_delete', {slug: slug})).then(function(response) {
-							return response.data;
+							return $http({
+								method: 'DELETE',
+								headers: {
+									'public_key': key.public_key,
+									'private_key': key.private_key
+								},
+								url: apiUrl + '/' + slug
+							}).then(function(idontcare) {
+								return response.data;
+							});
 						});
 				}
 			}
