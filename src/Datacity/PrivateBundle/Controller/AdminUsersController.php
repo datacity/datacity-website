@@ -33,7 +33,6 @@ class AdminUsersController extends Controller
     public function editAction(User $user)
     {
        // $producer = new User();
-    
     $form = $this->createFormBuilder($user)
                  ->add('firstname', 'textarea')
                  ->add('lastname','textarea')

@@ -1,7 +1,7 @@
-profileOverviewIndex.edit: Éditer
-profileOverviewIndex.profile: Profil
-profileOverviewIndex.subs: Abonnement(s)
-profileOverviewIndex.followers: Abonné(s)
+profileOverview.edit: Éditer
+profileOverview.profile: Profil
+profileOverview.subs: Abonnement(s)
+profileOverview.followers: Abonné(s)
 profileOverview.review: Bilan des activités
 profileOverview.rating: Moyenne des notations
 profileOverview.datasettotal: Total de jeux de données crées
