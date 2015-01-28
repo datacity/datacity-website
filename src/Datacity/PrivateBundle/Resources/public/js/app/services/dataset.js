@@ -24,13 +24,19 @@
 				},
 				post: function(dataset) {
 					return $http
-						.post(Routing.generate('datacity_private_dataset_save'), dataset).then(function(response) {
+						.post(Routing.generate('datacity_private_dataset_add'), dataset).then(function(response) {
 							return response.data;
 						});
 				},
-				delete: function(id) {
+				save: function(slug, data) {
 					return $http
-						.delete(Routing.generate('datacity_private_dataset_delete', {id: id})).then(function(response) {
+						.put(Routing.generate('datacity_private_dataset_save', {slug: slug}), data).then(function(response) {
+							return response.data;
+						});
+				},
+				delete: function(slug) {
+					return $http
+						.delete(Routing.generate('datacity_private_dataset_delete', {slug: slug})).then(function(response) {
 							return response.data;
 						});
 				}

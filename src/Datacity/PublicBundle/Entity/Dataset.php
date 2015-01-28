@@ -187,7 +187,7 @@ class Dataset
     /**
      * Si le dataset doit etre public ou non.
      * @ORM\Column(name="is_public", type="boolean")
-     * @Serializer\Groups({"list"})
+     * @Serializer\Groups({"list", "datasetShow"})
      */
     private $isPublic = true;
 

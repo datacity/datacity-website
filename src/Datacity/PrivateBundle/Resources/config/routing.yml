@@ -59,16 +59,24 @@ datacity_private_modals:
     defaults: { _controller: DatacityPrivateBundle:Default:modals }
 
 datacity_private_dataset_delete:
-    pattern: /dataset/{id}
+    pattern: /dataset/{slug}
     requirements:
         _method:  DELETE
     defaults: { _controller: DatacityPrivateBundle:DataSet:delete }
 
 datacity_private_dataset_save:
+    pattern: /dataset/{slug}
+    requirements:
+        _method:  PUT
+    defaults: { _controller: DatacityPrivateBundle:DataSet:save }
+    options:
+        expose: true
+
+datacity_private_dataset_add:
     pattern: /dataset/
     requirements:
         _method:  POST
-    defaults: { _controller: DatacityPrivateBundle:DataSet:save }
+    defaults: { _controller: DatacityPrivateBundle:DataSet:add }
     options:
         expose: true
 

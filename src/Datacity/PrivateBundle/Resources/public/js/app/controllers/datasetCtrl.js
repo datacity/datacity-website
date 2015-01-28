@@ -26,18 +26,11 @@
 				$scope.dataset = dataset;
 				$scope.dataset.visibility = [{val : 'Autoriser tout le monde à voir mes publications', id:'public'},
 											{val:'N\'autoriser personne à voir mes publications', id:'private'}];
+				$scope.dataset.selectedVisibility = dataset.is_public ? $scope.dataset.visibility[0].id : $scope.dataset.visibility[1].id;
 				$scope.dataset.licenses = licenses;
-				if (operation === 'edit') {
-					$scope.dataset = dataset;
-					$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '#/dataset/' + dataset.slug;
-				}
-				else if (operation === 'delete') {
-					DatasetFactory.delete($stateParams.slug).then(function(response) {
-						console.log(response);
-					});
-				}
+				$scope.dataset = dataset;
+				$scope.dataset.link = Routing.generate('datacity_public_dataviewpage') + '/dataset/' + dataset.slug;
 
-				//Form Events
 				$scope.submit = function() {
 					var result = {
 						license: $scope.dataset.license.name,
@@ -45,12 +38,9 @@
 						title: $scope.dataset.title,
 						visibility: $scope.dataset.selectedVisibility
 					}
-					if (operation === 'create' || operation === 'edit')
-						DatasetFactory.post(result).then(function(response) {
-							if (operation === 'create')
-								$state.go('editDS', {slug: response.result});
-						});
-
+					DatasetFactory.save(dataset.slug, result).then(function(response) {
+						toastr.success("Dataset mis à jour !");
+					});
 				}
 				$scope.delete = function() {
 					DatasetFactory.delete($stateParams.slug).then(function(response) {
@@ -58,7 +48,6 @@
 					});
 				}
 
-				// Custom Modal
 				$scope.confirm = $scope.delete;
  				//var confirmDeleteModal = $modal({animation: 'am-fade-and-scale', placement: 'center', scope: $scope, template: '/app_dev.php/private/modals/modal', title: 'Confirmation', content: 'Voulez vous vraiment supprimmer ce jeu de donnée? Cela entraînera la suppression de toutes les sources associées.', show: false});
   				//$scope.showModal = function() {
