@@ -14,13 +14,17 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Ticket
 {
+
+    const OPEN = 0;
+    const ASSIGNED = 1;
+    const CLOSE = 2;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Groups({"userTickets"})
      */
     private $id;
 
@@ -51,14 +55,17 @@ class Ticket
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAuthor")
      * @Serializer\Groups({"userTickets"})
+     * @Serializer\MaxDepth(1)
      */
     private $author;
 
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="date_time_open", type="datetime")
      * @Serializer\Groups({"userTickets"})
+     * @Serializer\Type("DateTime<'d-m-Y H:i:s'>")
      */
     private $dateTimeOpen;
 
@@ -67,12 +74,14 @@ class Ticket
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="date_time_update", type="datetime")
      * @Serializer\Groups({"userTickets"})
+     * @Serializer\Type("DateTime<'d-m-Y H:i:s'>")
      */
     private $dateTimeUpdate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User", inversedBy="ticketAssignedUser")
      * @Serializer\Groups({"userTickets"})
+     * @Serializer\MaxDepth(1)
      */
     private $assignedUser;
 
@@ -82,10 +91,10 @@ class Ticket
      * @ORM\Column(name="statut", type="integer")
      * @Serializer\Groups({"userTickets"})
      */
-    private $statut;
+    private $statut = self::OPEN;
 
     /**
-     * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\ReplyTicket", mappedBy="ticket")
+     * @ORM\OneToMany(targetEntity="Datacity\PrivateBundle\Entity\ReplyTicket", mappedBy="ticket", cascade={"remove"})
      * @Serializer\Groups({"userTickets"})
      */
      private $reponses;

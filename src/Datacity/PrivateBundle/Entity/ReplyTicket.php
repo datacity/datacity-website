@@ -4,6 +4,7 @@ namespace Datacity\PrivateBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * ReplyTicket
@@ -26,12 +27,14 @@ class ReplyTicket
      * @var text
      *
      * @ORM\Column(name="message", type="text")
+     * @Serializer\Groups({"userTickets"})
      */
     private $message;
 
     /**
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Datacity\UserBundle\Entity\User")
+     * @Serializer\Groups({"userTickets"})
      */
     private $author;
 
@@ -39,9 +42,12 @@ class ReplyTicket
      * @var \DateTime
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="dateTimeReply", type="datetime")
+     * @Serializer\Groups({"userTickets"})
+     * @Serializer\Type("DateTime<'d-m-Y hh-mm'>")
+     *
      */
     private $dateTimeReply;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Datacity\PrivateBundle\Entity\Ticket", inversedBy="reponses")
      */

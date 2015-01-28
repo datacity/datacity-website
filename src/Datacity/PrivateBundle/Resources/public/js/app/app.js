@@ -108,20 +108,37 @@
  				.state("addTickets", {
 					data: {
 						title: 'Ajout',
-						description: 'Ajouter vos tickets',
+						description: 'Ajouter un ticket',
 					},
 					ncyBreadcrumb: {
-					    label: 'Ajout'
+					    label: 'Ajout',
+					    parent: 'userTickets'
 					},
-                	url: "/ticket/addTickets",
-                	templateUrl: 'addTicket.html',
-					controller: 'TicketController',
+                	url: "/tickets/addTickets",
+                	templateUrl: 'formAddTicket.html',
+					controller: 'addTicketController'
+               	})
+
+ 				.state("detailTickets", {
+					data: {
+						title: 'Ticket',
+						description: 'Detail de votre ticket',
+					},
+					ncyBreadcrumb: {
+					    label: 'Ticket',
+					    parent: 'userTickets'
+					},
+                	url: "/tickets/detail/:slug",
 					resolve: {
-						operation: function() {return 'add'},
-						ticket: ['TicketFactory', function(TicketFactory){
-							return [];
+						ticket: ['$http', '$stateParams', function($http, $stateParams) {
+							return $http.get(Routing.generate('datacity_private_tickets_get_userticket', {slug: $stateParams.slug}))
+								.then(function(data){
+									return data.data.results;
+								});
 						}]
-					}
+					},
+                	templateUrl: 'ticketDetailUser.html',
+					controller: 'detailTicketController'
                	})
 
 				//Page applications des users

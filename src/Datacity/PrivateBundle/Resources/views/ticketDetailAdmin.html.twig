@@ -19,7 +19,7 @@
 			</div>
 			<div class="portlet-body">
 				{% for reponse in ticket.reponses %}
-				
+
 				<div class = "well">
 					<div class = "row-fluid">
 						<div class = "span6">{{ reponse.author }}</div>
@@ -39,8 +39,8 @@
 						</div>
 						{{ form_rest(form) }}
 					<div class="form-actions">
-						<input type="submit" class="btn green" value = "{{ 'ticket.replyTicket'|trans }}">
-						<input type="submit" class="btn green" value = "{{ 'ticket.replyAndCloseTicket'|trans }}">
+						<input type="submit" name="reply" class="btn green" value="{{ 'ticket.replyTicket'|trans }}">
+						<input type="submit" name="replyandclose" class="btn green" value="{{ 'ticket.replyAndCloseTicket'|trans }}">
 					</div>
 
 				</form>

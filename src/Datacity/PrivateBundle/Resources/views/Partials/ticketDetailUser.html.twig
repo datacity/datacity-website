@@ -1,0 +1,49 @@
+{% trans_default_domain "ticket" %}
+{% verbatim %}
+<div class="row">
+	<div class="col-md-12 ">
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>{{ ticket.title }}
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="well">
+					<div class="row-fluid">
+						<div class="span6">{{ ticket.author.firstname }} {{ticket.author.lastname }}</div>
+						<div class="span6">{{ ticket.message }}</div>
+						<div class="span6">{{ ticket.date_time_update }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body" data-ng-repeat="reply in ticket.reponses">
+				<div class="well">
+					<div class="row-fluid">
+						<div class="span6">{{ reply.author.firstname }} {{reply.author.lastname }}</div>
+						<div class="span6">{{ reply.message }}</div>
+						<div class="span6">{{ reply.dateTimeReply }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="portlet-body form" >
+				<form data-ng-submit="submit()" method="post" >
+					<div class="form-body">
+						<div class="form-group">
+							{% endverbatim %}
+							<label>{{ 'ticket.reply'|trans }}</label>
+							{% verbatim %}
+							<textarea data-ng-model="replyticket.message" class="form-control" {% endverbatim %} placeholder="{{ 'ticket.messagePlaceholder'|trans }}"{% verbatim %} rows="5"></textarea>
+						</div>
+					<div class="form-actions">
+						{% endverbatim %}
+						<input type="submit" class="btn green" value="{{ 'ticket.replyTicket'|trans }}">
+						{% verbatim %}
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endverbatim %}

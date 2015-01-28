@@ -18,9 +18,9 @@
 
 				</div>
 				<div class="form-group">
-					<label class="col-md-2 control-label">{% endverbatim %}{{ 'formAddTicket.message'|trans }}{% verbatim %} <strong style="color:red;">*</strong></label>
+					<label class="col-md-2 control-label">{% endverbatim %}{{ 'formAddTicket.message'|trans }}{% verbatim %}</label>
 					<div class="col-md-8">
-						<input data-ng-model="ticket.message" type="text" class="form-control" {% endverbatim %} placeholder="{{ 'formAddTicket.messagePlaceholder'|trans }}"{% verbatim %} value="">
+						<textarea data-ng-model="ticket.message" class="form-control" {% endverbatim %}placeholder="{{ 'formAddTicket.messagePlaceholder'|trans }}"{% verbatim %} rows="5"></textarea>
 					</div>
 				</div>
 			<div class="form-actions fluid dataset-actions">

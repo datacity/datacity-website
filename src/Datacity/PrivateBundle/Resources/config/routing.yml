@@ -183,9 +183,33 @@ datacity_private_tickets_detail_admin:
     pattern: /admin/ticket/{slug}
     defaults: { _controller: DatacityPrivateBundle:Tickets:detail}
 
-datacity_private_tickets_get_usertickets:
+datacity_private_tickets_get_allusertickets:
     pattern: /usertickets
     defaults: {_controller: DatacityPrivateBundle:Tickets:getusertickets}
+    options:
+        expose: true
+
+datacity_private_tickets_get_userticket:
+    pattern: /userticket/{slug}
+    requirements:
+        _method: GET
+    defaults: {_controller: DatacityPrivateBundle:Tickets:getuserticket}
+    options:
+        expose: true
+
+datacity_private_tickets_reply_usertickets:
+    pattern: /userticket/{slug}/reply
+    requirements:
+        _method: POST
+    defaults: {_controller: DatacityPrivateBundle:Tickets:replyUserTicket}
+    options:
+        expose: true
+
+datacity_private_tickets_create_usertickets:
+    pattern: /usertickets/add
+    requirements:
+        _method: POST
+    defaults: {_controller: DatacityPrivateBundle:Tickets:createusertickets}
     options:
         expose: true
 

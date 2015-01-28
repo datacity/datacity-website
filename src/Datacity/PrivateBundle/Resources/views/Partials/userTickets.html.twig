@@ -6,8 +6,8 @@
 			<span>
 				{% endverbatim %}{{ 'ticket.dataset'|trans }}{% verbatim %}
 			</span>
-			<a ui-route data-ui-sref="addDS" class="btn icn-only green">{% endverbatim %}{{ 'ticket.createDataset'|trans }}{% verbatim %}  <i class="m-icon-swapright m-icon-white"></i></a>
-			
+			<a ui-route data-ui-sref="addTickets" class="btn icn-only green">{% endverbatim %}{{ 'ticket.createTicket'|trans }}{% verbatim %}  <i class="m-icon-swapright m-icon-white"></i></a>
+
 		</div>
 	</div>
 </div>
@@ -40,7 +40,7 @@
 	<div class="col-md-2">
 		<div class="portfolio-btn">
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
-			<a data-ui-sref="" class="btn bigicn-only">
+			<a data-ui-sref="detailTickets({slug: ticket.slug})" class="btn bigicn-only">
 				<span>
 					{% endverbatim %}{{ 'ticket.manage'|trans }}{% verbatim %}
 				</span>

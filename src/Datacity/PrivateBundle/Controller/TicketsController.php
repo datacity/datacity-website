@@ -20,40 +20,33 @@ class TicketsController extends Controller
     	return $response;
     }
 
-    public function detailAction(Ticket $ticket) 
+    public function detailAction(Request $request, Ticket $ticket)
     {
+        $replyTicket = new ReplyTicket();
 
-    
-    $replyTicket = new ReplyTicket();
-    
-    $form = $this->createFormBuilder($replyTicket)
-                 ->add('message','textarea')
-                 ->getForm();
-                 
-    $request = $this->get('request');
-    if ($request->getMethod() == 'POST'){
+        $form = $this->createFormBuilder($replyTicket)
+                     ->add('message','textarea')
+                     ->getForm();
 
-    $form->bind($request);
+        $form->handleRequest($request);
 
-    if ($form->isValid()) {
-    
-    // Récupère l'utilisateur courant
-    $user = $this->get('security.context')->getToken()->getUser();
-    $ticket->setAssignedUser($user);
-    $ticket->setStatut(1);
-    $replyTicket->setMessage($replyTicket->getMessage());
-    $replyTicket->setTicket($ticket);
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($replyTicket);
-    $em->flush();
+        if ($form->isValid()) {
+            // Récupère l'utilisateur courant
+            $user = $this->getUser();
+            $ticket->setAssignedUser($user);
+            $ticket->setStatut($request->request->get('replyandclose') ? Ticket::CLOSE : Ticket::ASSIGNED);
+            $replyTicket->setMessage($replyTicket->getMessage());
+            $replyTicket->setTicket($ticket);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($replyTicket);
+            $em->flush();
 
-    
-    return $this->redirect($this->generateUrl('datacity_private_tickets_detail_admin', array('slug' => $ticket->getSlug())));    
-      }
-    }
-    return $this->render('DatacityPrivateBundle::TicketDetailAdmin.html.twig', array(
-            'form' => $form->createView(), 'ticket' => $ticket
-            ));
+
+            return $this->redirect($this->generateUrl('datacity_private_tickets_detail_admin', array('slug' => $ticket->getSlug())));
+          }
+        return $this->render('DatacityPrivateBundle::TicketDetailAdmin.html.twig', array(
+                'form' => $form->createView(), 'ticket' => $ticket
+                ));
     }
 
 
@@ -74,6 +67,63 @@ class TicketsController extends Controller
         return $response;
     }
 
+    public function getUserTicketAction(Ticket $ticket)
+    {
+        $response = new Response();
+        $serializer = $this->get('jms_serializer');
+        $response->setContent('{"results":' . $serializer->serialize($ticket,
+                            'json', SerializationContext::create()->setGroups(array('userTickets'))) . '}');
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    public function replyUserTicketAction(Request $request, Ticket $ticket)
+    {
+        $content = $request->getContent();
+        if (!empty($content)) {
+            $params = json_decode($content);
+            if (!isset($params->message))
+                return $this->thereIsAProblemHere('Missing parameters');
+            $replyticket = new ReplyTicket();
+
+            $replyticket->setMessage($params->message);
+            $replyticket->setTicket($ticket);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($replyticket);
+            $em->flush();
+            $response = new JsonResponse(array('action' => 'success'));
+        } else {
+            return $this->thereIsAProblemHere();
+        }
+        return $response;
+    }
+
+    private function thereIsAProblemHere($error = 'failure') {
+        return new JsonResponse(array('error' => $error), 400);
+    }
+
+    public function createUserTicketsAction(Request $request)
+    {
+        $content = $request->getContent();
+        if (!empty($content)) {
+            $params = json_decode($content);
+            if (!isset($params->title) || !isset($params->message))
+                return $this->thereIsAProblemHere('Missing parameters');
+            $ticket = new Ticket();
+            $ticket->setTitle($params->title);
+            $ticket->setMessage($params->message);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ticket);
+            $em->flush();
+            $response = new JsonResponse(array('action' => 'success'));
+        } else {
+            return $this->thereIsAProblemHere();
+        }
+        return $response;
+    }
+
     public function removeAction(Ticket $ticket)
     {
     	$title = $ticket->getTitle();
@@ -81,7 +131,6 @@ class TicketsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($ticket);
         $em->flush();
-        
 
     	$response = new JsonResponse(array('status' => true, 'title' => $title, 'id' =>  $ticket_id));
     	return $response;

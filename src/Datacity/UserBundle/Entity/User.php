@@ -33,6 +33,7 @@ class User extends BaseUser
      * @ORM\Column(name="firstname", type="string", length=50)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"userTickets"})
      *
      * @Assert\NotBlank(message="Entrez votre prénom.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -51,6 +52,7 @@ class User extends BaseUser
      * @ORM\Column(name="lastname", type="string", length=50)
      * @Serializer\Type("string")
      * @Serializer\Expose
+     * @Serializer\Groups({"userTickets"})
      *
      * @Assert\NotBlank(message="Entrez votre nom.", groups={"Registration", "Profile"})
      * @Assert\Length(

@@ -6,7 +6,7 @@
 			return { 
 				getAll: function() {
 					return $http
-						.get(Routing.generate('datacity_private_tickets_get_usertickets')).then(function(response) {
+						.get(Routing.generate('datacity_private_tickets_get_allusertickets')).then(function(response) {
 						return response.data.results;
 						});
 				}
