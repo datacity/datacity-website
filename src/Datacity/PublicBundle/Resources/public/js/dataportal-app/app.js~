@@ -164,7 +164,9 @@ angular.module('datacity.datasets', ['ui.router', 'ui.bootstrap', 'ui.select2',
 	$http.get(apiUrl + '/search?rows=0&dataset=' + dataset.slug).then(function(res) {
 
 		$scope.chartObject = {};
+
 		    var rowsChart = [];
+
 			    for (var key in res.data.data[0]) {
 			rowsChart.push({c: [
 				{v: key},
