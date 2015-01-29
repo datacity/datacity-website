@@ -622,7 +622,7 @@
 						return;
 					hide();
 					for (i = 0, len = columns.length; i < len; i++) {
-						for (j = 0, len = $scope.$parent.sourceDataFinal.length; j < len; j++) {
+						for (j = 0, leng = $scope.$parent.sourceDataFinal.length; j < leng; j++) {
 							$scope.$parent.sourceDataFinal[j][columns[i]] = $scope.$parent.sourceDataFinal[j][columns[i]]
 																				.replace(regex, regex2);
 						}
