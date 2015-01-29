@@ -1,12 +1,12 @@
-{% trans_default_domain "ticket" %}
+{% trans_default_domain "tickets" %}
 {% verbatim %}
 <div class="row">
 	<div class="col-md-12">
 		<div class="add-portfolio">
 			<span>
-				{% endverbatim %}{{ 'ticket.dataset'|trans }}{% verbatim %}
+				{% endverbatim %}{{ 'tickets.userTicketTitle'|trans }}{% verbatim %}
 			</span>
-			<a ui-route data-ui-sref="addTickets" class="btn icn-only green">{% endverbatim %}{{ 'ticket.createTicket'|trans }}{% verbatim %}  <i class="m-icon-swapright m-icon-white"></i></a>
+			<a ui-route data-ui-sref="addTickets" class="btn icn-only green">{% endverbatim %}{{ 'tickets.createTicket'|trans }}{% verbatim %}  <i class="m-icon-swapright m-icon-white"></i></a>
 
 		</div>
 	</div>
@@ -23,18 +23,31 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 portfolio-stat">
+	<div class="col-md-6 portfolio-info">
 		<div class="portfolio-info">
-			{% endverbatim %}{{ 'ticket.statut'|trans }}{% verbatim %}
-			<span>
-				{{ticket.statut}} {% endverbatim %}{% verbatim %}
-			</span>
+			{% endverbatim %}{{ 'tickets.statut'|trans }}{% verbatim %}
+				<p data-ng-if="ticket.statut == 0">	
+				{% endverbatim %}{{ 'tickets.new'|trans }}
+				</p>
+				<p data-ng-if="ticket.statut == 1">	
+					{{ 'tickets.replied'|trans }}
+				</p>
+				<p data-ng-if="ticket.statut == 2">	
+					{{ 'tickets.close'|trans }}
+				</p>
+				{% verbatim %}{% endverbatim %}{% verbatim %}
 		</div>
 		<div class="portfolio-info">
-			{% endverbatim %}{{ 'ticket.assignedUser'|trans }}{% verbatim %}
-			<span>
-				{{ticket.assignedUser}} {% endverbatim %}{% verbatim %}
-			</span>
+			{% endverbatim %}{{ 'tickets.assignedUser'|trans }}{% verbatim %}
+			<p>
+				{{ticket.assigned_user.firstname}} {{ticket.assigned_user.lastname}}{% endverbatim %}{% verbatim %}
+			</p>
+		</div>
+		<div class="portfolio-info">
+			{% endverbatim %}{{ 'tickets.lastUpdate'|trans }}{% verbatim %}
+			<p>
+				{{ticket.date_time_update}} {% endverbatim %}{% verbatim %}
+			</p>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -42,7 +55,7 @@
 			<!-- Route vers le Back pour l'édition on appelle le state du module ui.routeur dans app.js a partir de l'id du dataset récupéré précédemment -->
 			<a data-ui-sref="detailTickets({slug: ticket.slug})" class="btn bigicn-only">
 				<span>
-					{% endverbatim %}{{ 'ticket.manage'|trans }}{% verbatim %}
+					{% endverbatim %}{{ 'tickets.see'|trans }}{% verbatim %}
 				</span>
 			</a>
 		</div>

@@ -20,7 +20,7 @@
 										<i class="fa fa-user"></i> {{ 'tickets.title'|trans }}
 									</th>
 									<th class="hidden-xs">
-										<i class="fa fa-bookmark"></i> {{ 'tickets.dateTimeOpen'|trans }}
+										<i class="fa fa-bookmark"></i> {{ 'tickets.lastUpdate'|trans }}
 									</th>
 									<th>
 										<i class="fa fa-briefcase"></i> {{ 'tickets.statut'|trans }}
@@ -44,7 +44,7 @@
 										<a href="{{ path('datacity_private_tickets_detail_admin', {'slug' : ticket.slug }) }}">{{ ticket.title }} </a>
 									</td>
 									<td>
-										{{ ticket.dateTimeOpen | date('d-m-Y H:i') }}
+										{{ ticket.dateTimeUpdate | date('d-m-Y H:i') }}
 									</td>
 									<td>
 										{% if ticket.statut == 0 %}

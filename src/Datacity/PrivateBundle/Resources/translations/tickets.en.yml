@@ -17,3 +17,16 @@ tickets.replied: Replied
 tickets.confirmDel: Confirm Delete
 tickets.form: Form adding ticket
 tickets.addTicket: Add the ticket
+tickets.replyTicket: Reply
+tickets.replyAndCloseTicket : Reply and close
+tickets.reply: Message
+tickets.replyTitle : Ticket
+tickets.userTicketTitle : Your tickets
+tickets.createTicket: New ticket
+tickets.formAddTicket : Creation of ticket
+tickets.formTitleTicket : title
+tickets.formMessageTicket: Message
+tickets.save: Save
+tickets.see: See
+tickets.lastUpdate: Last update
+tickets.posted: Posted on

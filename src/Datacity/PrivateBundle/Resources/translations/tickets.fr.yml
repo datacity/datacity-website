@@ -2,7 +2,7 @@ tickets.titleLink: Gestion des tickets
 tickets.table: Liste des tickets
 tickets.added: Tickets enregistrés
 tickets.add: Ajouter un ticket
-tickets.title: Titre
+tickets.title: Gestion des tickets
 tickets.dateTimeOpen: Ouverture
 tickets.statut: Statut
 tickets.author: Auteur
@@ -11,7 +11,21 @@ tickets.delete: Supprimer
 tickets.deleteTicket: Suppression d'un ticket
 tickets.warn: Attention ! Vous êtes sur le point de supprimer un ticket avec pour titre
 tickets.confirm: Merci de confirmer votre action
-tickets.close: Fermer
+tickets.close: Fermé
 tickets.new: Nouveau
 tickets.replied: Répondu
 tickets.confirmDel: Confirmer la suppression
+tickets.replyTicket: Répondre
+tickets.replyAndCloseTicket : Répondre et fermer
+tickets.reply: Message
+tickets.replyTitle : Ticket
+tickets.userTicketTitle : Vos tickets
+tickets.createTicket: Nouveau ticket
+tickets.formAddTicket : Création d'un ticket
+tickets.formTitleTicket : Titre
+tickets.formMessageTicket: Message
+tickets.save: Enregister
+tickets.see : Voir
+tickets.lastUpdate: Dernière modification
+tickets.posted: Posté le
+

@@ -43,7 +43,7 @@ class ReplyTicket
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="dateTimeReply", type="datetime")
      * @Serializer\Groups({"userTickets"})
-     * @Serializer\Type("DateTime<'d-m-Y hh-mm'>")
+     * @Serializer\Type("DateTime<'d-m-Y H:i:s'>")
      *
      */
     private $dateTimeReply;
