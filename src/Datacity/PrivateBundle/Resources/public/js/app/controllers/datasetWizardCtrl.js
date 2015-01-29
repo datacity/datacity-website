@@ -557,8 +557,8 @@
 					$state.go($scope.statePrefix + 'step3');
 				};
 			}])
-		.controller('datasetWizardStep3Controller', ['$scope', '$state', '$filter', 'ngTableParams',
-			function($scope, $state, $filter, ngTableParams) {
+		.controller('datasetWizardStep3Controller', ['$scope', '$state', '$filter', 'ngTableParams', '$modal',
+			function($scope, $state, $filter, ngTableParams, $modal) {
 				if (!$scope.$parent.sourceDataFinal) {
 					$state.go($scope.statePrefix + 'step1');
 					return;
@@ -597,6 +597,59 @@
 			        }
 			    });
 
+				$scope.applyRegexModal = function() {
+					$modal({template: 'datasetWizardRegexStep3Modal.html',
+						placement: 'center',
+						scope: $scope,
+						animation: '',
+						show: true});
+				};
+
+				$scope.getRegexColumn = function() {
+					return {
+	            		'multiple': true,
+	            		'simple_tags': true,
+	            		'tags': $scope.sourceDataCurrentColumns,
+	            		'placeholder': ""
+        			};
+				}
+
+				$scope.confirmRegexModal = function(hide, data) {
+					var columns = data.column;
+					var regex = data.regex.toString();
+					var regex2 = data.regex2.toString();
+					if (columns.length == 0 || regex === "" || regex2 === "")
+						return;
+					hide();
+					for (i = 0, len = columns.length; i < len; i++) {
+						for (j = 0, leng = $scope.$parent.sourceDataFinal.length; j < leng; j++) {
+							$scope.$parent.sourceDataFinal[j][columns[i]] = $scope.$parent.sourceDataFinal[j][columns[i]]
+																				.replace(regex, regex2);
+						}
+					}
+				}
+
+				$scope.addColumnModal = function() {
+					$scope.focusInputRename = true;
+					$modal({template: 'datasetWizardAddColStep3Modal.html',
+						placement: 'center',
+						scope: $scope,
+						animation: '',
+						show: true});
+				};
+
+				$scope.confirmAddColModal = function(hide, data) {
+					var title = data.title.toString();
+					var value = data.value.toString();
+					if (title === "")
+						return;
+					hide();
+					$scope.sourceDataCurrentColumns.push(title);
+					for (i = 0, len = $scope.$parent.sourceDataFinal.length; i < len; i++) {
+						$scope.$parent.sourceDataFinal[i][title] = value;
+					}
+				}
+
 			    $scope.sortTable = function(name) {
 			    	var obj = {};
 			    	obj[name] = $scope.tableParams.isSortBy(name, 'asc') ? 'desc' : 'asc';
@@ -608,11 +661,6 @@
 			    	obj[name] = 'text';
 			    	return obj;
 			    }
-
-			    $scope.addColModal = {
-				  "title": "Ajout d'une colonne",
-				  "content": "TODO"
-				};
 			}])
 		.controller('datasetWizardStep4Controller', ['$scope', '$state', 'filterList', '$http',
 			function($scope, $state, filterList, $http) {

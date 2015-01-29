@@ -58,6 +58,7 @@ border-bottom:1px solid #313030;
 	font-weight:bold;
 	margin-left:25px;
 	width:700px;
+	text-align: justify;
 }
 
 .row-producers{
@@ -104,4 +105,10 @@ border-bottom:1px solid #313030;
 
 	min-height: 550px;
 	margin-left:100px;
+}
+
+.description-news {
+
+	font-weight:bold;
+	text-align:justify;
 }
